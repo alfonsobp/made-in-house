@@ -21,9 +21,19 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Ventas.ListadoVentaViewModel());
         }
 
+        public void AbrirNuevaVenta()
+        {
+            win.ShowWindow(new Ventas.RegistrarVentaViewModel { DisplayName = "Nueva Venta" });
+        }
+
         public void AbrirListadoCliente()
         {
             win.ShowWindow(new Ventas.ListadoClienteViewModel { DisplayName = "Maestro de Clientes" });
+        }
+
+        public void AbrirNuevoCliente()
+        {
+            win.ShowWindow(new Ventas.RegistrarClienteViewModel { DisplayName = "Nuevo Cliente" });
         }
 
 
