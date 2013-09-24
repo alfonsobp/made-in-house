@@ -29,8 +29,8 @@
         <GroupBox Header="Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
             <Grid Margin="0,0,0,-311">
                 <TextBlock Text="criterio" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="74" Margin="10,21,0,330"/>
-                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194"/>
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="294,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="194"/>
+                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194"/>                
+<TextBox Height="26" HorizontalAlignment="Left" Margin="294,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="194"/>
                 <DataGrid HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="220" Width="550">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
