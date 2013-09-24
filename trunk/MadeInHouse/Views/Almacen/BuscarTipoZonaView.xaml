@@ -11,7 +11,7 @@
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/modify.png" Height="24" Width="24" />
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
             </Button>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
@@ -29,7 +29,7 @@
         <GroupBox Header="Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
             <Grid Margin="0,0,0,-311">
                 <TextBlock Text="criterio" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="74" Margin="10,21,0,330"/>
-                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="ComboBox_SelectionChanged"  />
+                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194"/>
                 <TextBox Height="26" HorizontalAlignment="Left" Margin="294,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="194"/>
                 <DataGrid HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="220" Width="550">
                     <DataGrid.Columns>
