@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Almacen.MantenimientoAlmacenView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="600">
+    <Grid>
+        <RadioButton Content="Descripcion" HorizontalAlignment="Left" Margin="391,110,0,0" VerticalAlignment="Top" />
+        <RadioButton Content="Codigo" HorizontalAlignment="Left" Margin="391,131,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="27" Margin="391,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
+        <Button  HorizontalAlignment="Left" Height="34" Margin="545,145,0,0" VerticalAlignment="Top" Width="45">
+            <Image Source="/Assets/find.png" Height="20" Width="50" />
+        </Button>
+        <Label Content="Local" HorizontalAlignment="Left" Margin="22,75,0,0" VerticalAlignment="Top"/>
+        <TextBox  IsEnabled="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="100,75,0,0"/>
+        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="22,110,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="100,110,0,0"/>
+        <Label Content="Codigo" HorizontalAlignment="Left" Margin="22,145,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="False" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="100,145,0,0"/>
+
+        <Button  HorizontalAlignment="Left" Margin="280,230,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Image Source="/Assets/add.png" Height="50" Width="50" />
+        </Button>
+        <Button  HorizontalAlignment="Left" Margin="280,290,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Image Source="/Assets/minus.png" Height="50" Width="50" />
+        </Button>
+        <GroupBox Header="Mantener Almacenes" HorizontalAlignment="Left" Height="387" Margin="2,59,0,0" VerticalAlignment="Top" Width="359">
+            <DataGrid Margin="10,116,84,77" HorizontalAlignment="Center" Width="253">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Inventario"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="160"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <Button  HorizontalAlignment="Left" Margin="146,390,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Image Source="/Assets/check.png" Height="50" Width="50" />
+        </Button>
+        <Button  HorizontalAlignment="Left" Margin="217,390,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Image Source="/Assets/stop.png" Height="50" Width="50" />
+        </Button>
+        <Button  HorizontalAlignment="Left" Margin="289,390,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Image Source="/Assets/stop.png" Height="50" Width="50" />
+        </Button>
+        
+        <GroupBox Header="Criterios de Busqueda" HorizontalAlignment="Left" Margin="366,59,0,0" VerticalAlignment="Top" Height="371" Width="230">
+            <DataGrid Margin="0,122,-2,3" HorizontalAlignment="Right" Width="200" RenderTransformOrigin="0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
+                    <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="160"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <ToolBar VerticalAlignment="Top">
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+        </ToolBar>
+    </Grid>
+</UserControl>

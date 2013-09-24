@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Compras.CatalogoProductoProveedorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="640">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DataGrid Height="218" Margin="35,131,61,0" VerticalAlignment="Top">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo Comercial"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="90"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha Reg" Width="70"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha Ult Act" Width="80"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Activo" Width="50"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio (S/.)" Width="180"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Button" HorizontalAlignment="Left" Height="26" Margin="584,197,0,0" VerticalAlignment="Top" Width="34"/>
+        <Button HorizontalAlignment="Left" Height="38" Margin="584,197,0,0" VerticalAlignment="Top" Width="34">
+            <Image Source="/MadeInHouse;component/Assets/add.png" Height="20" Width="50" />
+        </Button>
+        <Button  HorizontalAlignment="Left" Height="38" Margin="584,239,0,0" VerticalAlignment="Top" Width="34">
+            <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
+        </Button>
+        <Label Content="Proveedor" HorizontalAlignment="Left" Margin="115,83,0,0" VerticalAlignment="Top" Height="26" Width="64"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="202,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="219"/>
+        <Button  HorizontalAlignment="Left" Margin="426,80,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1" Height="26">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+        </Button>
+        <ToolBar VerticalAlignment="Top" Height="41">
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+        </ToolBar>
+        <Label Content="Importar Catalogo de Excel" HorizontalAlignment="Left" Margin="84,354,0,0" VerticalAlignment="Top" Width="158" Height="26"/>
+        <Image HorizontalAlignment="Left" Height="36" Margin="34,372,0,0" VerticalAlignment="Top" Width="45" Source="/MadeInHouse;component/Assets/EXCEL LOGO.png"/>
+        <TextBox Name="file" HorizontalAlignment="Left" Height="23" Margin="84,385,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="311"/>
+        <Button HorizontalAlignment="Left" Margin="400,385,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="Button_Click_2" >
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+        </Button>
+        <Button Content="Importar" HorizontalAlignment="Left" Margin="480,385,0,0" VerticalAlignment="Top" Width="75" Height="23"  />
+        <GroupBox Header="Catalogo de Productos" Margin="10,41,10,15"/>
+
+    </Grid>
+</UserControl>

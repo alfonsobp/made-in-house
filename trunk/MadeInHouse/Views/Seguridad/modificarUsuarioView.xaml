@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Seguridad.modificarUsuarioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <Grid>
+
+        <Button Content="" HorizontalAlignment="Left" Margin="311,23,0,0" VerticalAlignment="Top" Width="50" Height="50
+                ">
+            <Button.Background>
+                <ImageBrush ImageSource="/MadeInHouse;component/Assets/find.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Image Source="/MadeInHouse;component/Assets/user.png" Margin="791,331,-8,7" />
+
+        <GroupBox Header="Rol de usuario" HorizontalAlignment="Left" Margin="429,27,0,0" VerticalAlignment="Top" Height="112" Width="269"/>
+
+        <GroupBox Header="Datos de usuario" HorizontalAlignment="Left" Margin="69,80,0,0" VerticalAlignment="Top" Height="158" Width="319"/>
+        <Label x:Name="lblUser" Content="Usuario:" HorizontalAlignment="Left" Margin="101,110,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="22" Margin="239,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtUser" HorizontalAlignment="Left" Height="22" Margin="239,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblPassword" Content="Contraseña:" HorizontalAlignment="Left" Margin="101,147,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblConfirmPassword" Content="Confirmar contraseña:" HorizontalAlignment="Left" Margin="102,185,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtConfirmPassword" HorizontalAlignment="Left" Height="24" Margin="239,186,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ComboBox x:Name="cmbUsuarioArea" HorizontalAlignment="Left" Margin="556,68,0,0" VerticalAlignment="Top" Width="120" ToolTip="Select ">
+            <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Recursos Humanos" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Seguridad" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label x:Name="lblSelectUserRole" Content="Área:" HorizontalAlignment="Left" Margin="463,64,0,0" VerticalAlignment="Top"/>
+        <ListBox HorizontalAlignment="Left" Height="196" Margin="105,290,0,0" VerticalAlignment="Top" Width="245">
+            <ListBoxItem Content="Agregar producto" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Editar producto" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Eliminar producto" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Agregar servicio" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Editar servicio" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Eliminar servicio" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Agregar proveedor" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Editar proveedor" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Eliminar proveedor" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Generar orden de compra" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Agregar solicitud de adquisión" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Editar solicitud de adquisión" HorizontalAlignment="Left" Width="118"/>
+            <ListBoxItem Content="Eliminar solicitud de adquisión" HorizontalAlignment="Left" Width="118"/>
+        </ListBox>
+        <Label Content="Cargo:" HorizontalAlignment="Left" Margin="462,100,0,0" VerticalAlignment="Top" Width="50"/>
+        <ComboBox x:Name="cmbUsuarioCargo" HorizontalAlignment="Left" Margin="556,101,0,0" VerticalAlignment="Top" Width="120" ToolTip="Select ">
+            <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Operario de Compras" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label Content="DNI:" HorizontalAlignment="Left" Margin="91,33,0,0" VerticalAlignment="Top" RenderTransformOrigin="-8.152,0.577"/>
+        <TextBox HorizontalAlignment="Left" Height="22" Margin="157,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="&gt;&gt;" HorizontalAlignment="Left" Margin="406,312,0,0" VerticalAlignment="Top" Width="46"/>
+        <Button Content="&gt;" HorizontalAlignment="Left" Margin="406,352,0,0" VerticalAlignment="Top" Width="46"/>
+        <Button Content="&lt;" HorizontalAlignment="Left" Margin="406,390,0,0" VerticalAlignment="Top" Width="46"/>
+        <Button Content="&lt;&lt;" HorizontalAlignment="Left" Margin="406,436,0,0" VerticalAlignment="Top" Width="46"/>
+        <ListBox HorizontalAlignment="Left" Height="196" Margin="516,294,0,0" VerticalAlignment="Top" Width="245"/>
+        <GroupBox Header="Accesos" HorizontalAlignment="Left" Height="268" Margin="70,252,0,0" VerticalAlignment="Top" Width="779"/>
+
+        <Button Content="" HorizontalAlignment="Left" Margin="388,538,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Button.Background>
+                <ImageBrush ImageSource="/MadeInHouse;component/Assets/check.png" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+        <Button Content="" HorizontalAlignment="Left" Margin="499,538,0,0" VerticalAlignment="Top" Width="50" Height="50">
+            <Button.Background>
+                <ImageBrush ImageSource="/MadeInHouse;component/Assets/images (3).jpg" Stretch="Uniform"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</UserControl>
