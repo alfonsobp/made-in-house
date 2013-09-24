@@ -88,6 +88,7 @@
     <Compile Include="ViewModels\Almacen\BuscarGuiasRemisionViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerAlmacenViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoClienteViewModel.cs" />
