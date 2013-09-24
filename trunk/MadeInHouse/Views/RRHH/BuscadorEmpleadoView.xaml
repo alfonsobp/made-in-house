@@ -4,12 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+                     d:DesignHeight="450" d:DesignWidth="700">
     <Grid>
         <GroupBox Header="Buscador de Empleados" Margin="10,41,10,15"/>
 
+        <GroupBox Header="Filtrar por :" Margin="26,71,26,0" VerticalAlignment="Top" Height="167"/>
+
         <ToolBar Margin="0,0,0,409">
-            
+
             <Button
     			x:Name="AbrirMantenerEmpleadoViewModel" >
                 <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
@@ -32,27 +34,50 @@
         </ToolBar>
         <DataGrid Margin="26,255,26,0" Height="151" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="Código"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="DNI"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Nombre"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="A. Paterno"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="A. Materno"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Nombre"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="A. Paterno"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Sucursal"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="110" Header="Área"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="110" Header="Puesto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-        <GroupBox Header="Filtrar por :" Margin="26,71,26,0" VerticalAlignment="Top" Height="167"/>
-        <RadioButton Content="Código" HorizontalAlignment="Left" Margin="53,91,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="DNI" HorizontalAlignment="Left" Margin="53,118,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="Nombre" HorizontalAlignment="Left" Margin="53,145,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="A. Paterno" HorizontalAlignment="Left" Margin="53,172,0,0" VerticalAlignment="Top"/>
-        <RadioButton Content="A. Materno" HorizontalAlignment="Left" Margin="53,199,0,0" VerticalAlignment="Top"/>
-        <Button Height="24" Margin="469,106,68,0" VerticalAlignment="Top">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="118,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="118,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="118,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="118,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
+        <Button Height="24" Margin="574,110,60,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
+
+        <Label Content="Área de trabajo" HorizontalAlignment="Left" Margin="275,137,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Puesto" HorizontalAlignment="Left" Margin="275,168,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Sede" HorizontalAlignment="Left" Margin="275,104,0,0" VerticalAlignment="Top" Width="92"/>
+        <ComboBox HorizontalAlignment="Left" Margin="420,111,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="420,141,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <ComboBox HorizontalAlignment="Left" Margin="420,172,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Asistente de Almacén" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Asistente de Compras" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label Content="Código" HorizontalAlignment="Left" Margin="43,104,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="DNI" HorizontalAlignment="Left" Margin="43,131,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="Nombre" HorizontalAlignment="Left" Margin="43,158,0,0" VerticalAlignment="Top" Width="92"/>
+        <Label Content="A. Paterno" HorizontalAlignment="Left" Margin="43,185,0,0" VerticalAlignment="Top" Width="92"/>
 
     </Grid>
 </UserControl>
