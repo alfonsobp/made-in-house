@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="520" d:DesignWidth="600">
+             d:DesignHeight="580" d:DesignWidth="600">
     <Grid>
         <ToolBar VerticalAlignment="Top" Margin="0">
             <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
@@ -28,7 +28,7 @@
         </ToolBar>
 
         <GroupBox Header="Criterios de búsqueda" Margin="40,74,40,0" VerticalAlignment="Top" Height="159">
-            <Grid Margin="1">
+            <Grid Margin="1,1,1,0" Height="135" VerticalAlignment="Top">
                 <Button  HorizontalAlignment="Right" Height="22" VerticalAlignment="Bottom" Width="60" Margin="0,0,10,10">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
@@ -49,7 +49,7 @@
             </Grid>
         </GroupBox>
 
-        <DataGrid Margin="40,253,40,19">
+        <DataGrid Margin="40,253,40,0" Height="288" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Cliente"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre Cliente"/>
