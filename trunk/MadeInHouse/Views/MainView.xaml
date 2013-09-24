@@ -80,10 +80,12 @@
                                     <RowDefinition />
                                     <RowDefinition />
                                     <RowDefinition />
+                                    <RowDefinition />
 
                                 </Grid.RowDefinitions>
                                 <Button x:Name="AbrirCatalogoProductoProveedorModel" Background="Aqua" BorderThickness="0" Content="Mant Catalogo productos" FontSize="20" />
-                                <Button x:Name="AbrirBuscadorProveedorViewModel" Background="Aqua" BorderThickness="0" Content="Mantener proveedor" FontSize="20"  Grid.Row="1"/>
+                                <Button x:Name="AbrirBuscadorProveedorViewModel" Background="Aqua" BorderThickness="0" Content="Buscar proveedor" FontSize="20"  Grid.Row="1"/>
+                                <Button x:Name="AbrirMantenerProveedorViewModel" Background="Aqua" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2"/>
                                
                             </Grid>
                         </Expander>
