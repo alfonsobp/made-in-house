@@ -12,7 +12,7 @@
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/modify.png" Height="24" Width="24" />
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
             </Button>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
