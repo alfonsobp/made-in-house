@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    class BuscadorEmpleadoViewModel:Screen
+    class BuscadorEmpleadoViewModel : Screen
     {
         public void AbrirMantenerEmpleadoViewModel()
         {
