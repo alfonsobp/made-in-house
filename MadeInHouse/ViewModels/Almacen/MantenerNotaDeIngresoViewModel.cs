@@ -9,5 +9,13 @@ namespace MadeInHouse.ViewModels.Almacen
 {
     class MantenerNotaDeIngresoViewModel:Screen
     {
+
+        public void AbrirPosicionProducto()
+        {
+
+            WindowManager win = new WindowManager();
+            Almacen.PosicionProductoViewModel abrirPosView = new Almacen.PosicionProductoViewModel();
+            win.ShowWindow(abrirPosView);
+        }
     }
 }

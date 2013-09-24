@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerAlmacenViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoClienteViewModel.cs" />
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Views\Almacen\MantenerNotaDeSalidaView.xaml.cs">
       <DependentUpon>MantenerNotaDeSalidaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\PosicionProductoView.xaml.cs">
+      <DependentUpon>PosicionProductoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\agregarServicioView.xaml.cs">
       <DependentUpon>agregarServicioView.xaml</DependentUpon>
@@ -313,6 +317,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\AnularDocumentosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\PosicionProductoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

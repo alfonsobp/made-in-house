@@ -92,7 +92,7 @@
                 <TextBox HorizontalAlignment="Left" Height="26" Margin="105,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
                 <Label Content="Cantidad" HorizontalAlignment="Left" Margin="25,70,0,0" VerticalAlignment="Top" Width="75"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="175,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="79"/>
-                <Button Content="Ubicar" HorizontalAlignment="Left" Margin="189,129,0,0" VerticalAlignment="Top" Width="65" Height="31"/>
+                <Button x:Name="AbrirPosicionProducto" Content="Ubicar" HorizontalAlignment="Left" Margin="189,129,0,0" VerticalAlignment="Top" Width="65" Height="31"/>
                 <Button HorizontalAlignment="Left" Margin="230,25,0,0" VerticalAlignment="Top" Width="24" Height="26">
                     <Image Source="/Assets/find.png" />
                 </Button>
