@@ -18,9 +18,9 @@ namespace MadeInHouse.Views.Almacen
     /// <summary>
     /// Lógica de interacción para MantenerZonasView.xaml
     /// </summary>
-    public partial class MantenerZonasView : UserControl
+    public partial class MantenerZonaView : UserControl
     {
-        public MantenerZonasView()
+        public MantenerZonaView()
         {
             InitializeComponent();
         }

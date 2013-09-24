@@ -7,7 +7,8 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenimientoInventarioViewModel:Screen
+    class MantenerZonaViewModel:Screen
     {
+        
     }
 }

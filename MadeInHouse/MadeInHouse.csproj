@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerAlmacenViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
@@ -103,9 +104,6 @@
     <Compile Include="ViewModels\Almacen\MantenerNotaDeIngresoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerNotaDeSalidaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\AnularDocumentosViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\MantenimientoAlmacenViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\MantenimientoCapacidadInventarioViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\MantenimientoInventarioViewModel.cs" />
     <Compile Include="ViewModels\Almacen\NuevoProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\agregarServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\CatalogoProductoProveedorViewModel.cs" />
@@ -159,8 +157,8 @@
     <Compile Include="Views\Almacen\MantenerTipoZonaView.xaml.cs">
       <DependentUpon>MantenerTipoZonaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\MantenerZonasView.xaml.cs">
-      <DependentUpon>MantenerZonasView.xaml</DependentUpon>
+    <Compile Include="Views\Almacen\MantenerZonaView.xaml.cs">
+      <DependentUpon>MantenerZonaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\MantenerNotaDeIngresoView.xaml.cs">
       <DependentUpon>MantenerNotaDeIngresoView.xaml</DependentUpon>
@@ -312,7 +310,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\MantenerZonasView.xaml">
+    <Page Include="Views\Almacen\MantenerZonaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

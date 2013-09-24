@@ -99,10 +99,7 @@ namespace MadeInHouse.ViewModels
             
             
         }
-        public void AbrirMantenimientoCapacidadInventarioViewModel()
-        {
-            ActivateItem(new Almacen.MantenimientoCapacidadInventarioViewModel { DisplayName = "Mantenimiento capacidad inventario" });
-        }
+        
         public void AbrirBuscarProducto()
         {
             win.ShowWindow(new Almacen.BuscadorProductoViewModel { DisplayName = "Buscar Producto" });
@@ -110,7 +107,7 @@ namespace MadeInHouse.ViewModels
         
         public void AbrirMantenimientoInventarioViewModel()
         {
-            ActivateItem(new Almacen.MantenimientoInventarioViewModel { DisplayName = "Mantenimiento inventario" });
+           // ActivateItem(new Almacen.MantenimientoInventarioViewModel { DisplayName = "Mantenimiento inventario" });
         }
         public void AbrirNuevoProducto()
         {

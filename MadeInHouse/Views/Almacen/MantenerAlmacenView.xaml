@@ -14,7 +14,7 @@
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
             </Button>
-            <Button Margin="0,3" VerticalAlignment="Stretch">
+            <Button x:Name="AbrirMantenerZona" Margin="0,3" VerticalAlignment="Stretch" >
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
             </Button>
             <Button>
