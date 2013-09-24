@@ -142,7 +142,8 @@
                             <RowDefinition />
 
                         </Grid.RowDefinitions>
-                        <Button x:Name="AbrirBuscadorEmpleadoViewModel" Background="Aqua" BorderThickness="0" Content="MantenerEmpleado" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirBuscadorEmpleado" Background="Aqua" BorderThickness="0" Content="Buscar empleado" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirMantenerEmpleado" Background="Aqua" BorderThickness="0" Content="Mantener empleado" FontSize="20" Grid.Row="1"/>
 
                     </Grid>
                 </Expander>
@@ -155,9 +156,9 @@
 
                         </Grid.RowDefinitions>
 
-                        <Button x:Name="abrirAgregarUsuario" Background="Aqua" BorderThickness="0" Content="Registrar Empleado" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="abrirModificarUsuario" Background="Aqua" BorderThickness="0" Content="Modificar Empleado" FontSize="20"  Grid.Row="1"/>
-                        
+                        <Button x:Name="AbrirBuscadorUsuario" Background="Aqua" BorderThickness="0" Content="Buscar Usuario" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirMantenerUsuario" Background="Aqua" BorderThickness="0" Content="Mantener Usuario" FontSize="20"  Grid.Row="1"/>
+
 
 
                     </Grid>
