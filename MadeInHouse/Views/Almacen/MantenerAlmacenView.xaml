@@ -35,10 +35,15 @@
                 <Label Content="Direccion" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
                 <Label Content="Zonas" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
-                <CheckBox Content="Zona Mercaderia" HorizontalAlignment="Left" Margin="123,97,0,0" VerticalAlignment="Top" Width="160"/>
-                <CheckBox Content="Zona Suministro" HorizontalAlignment="Left" Margin="123,135,0,0" VerticalAlignment="Top" Width="160" />
-                <CheckBox Content="Zona Devoluciones" HorizontalAlignment="Left" Margin="123,167,0,0" VerticalAlignment="Top" Width="160"/>
-                <CheckBox Content="Zona Anaqueles" HorizontalAlignment="Left" Margin="123,202,0,0" VerticalAlignment="Top" Width="160"/>
+                <DataGrid HorizontalAlignment="Left" Margin="24,117,0,0" VerticalAlignment="Top" Height="140" Width="260">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
+                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
+                        <DataGridTextColumn Width="50" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="check"/>
+
+
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </GroupBox>
     </Grid>
