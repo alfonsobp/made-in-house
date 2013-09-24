@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Almacen.MantenerZonasView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" Width="600">
+    <Grid>
+
+        <ToolBar VerticalAlignment="Top">
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/modify.png" Height="24" Width="24" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+        </ToolBar>
+        <GroupBox Header="Formulario" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="580">
+            <Grid>
+
+                <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                <Label Content="Zona" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Distribucion" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+                <DataGrid HorizontalAlignment="Left" Margin="24,126,0,0" VerticalAlignment="Top" Height="241" Width="259"/>
+                <DataGrid HorizontalAlignment="Left" Margin="406,126,0,0" VerticalAlignment="Top" Height="241" Width="111">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nivel"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Altura" HorizontalAlignment="Left" Margin="406,86,0,0" VerticalAlignment="Top" Width="50"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="461,89,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="56"/>
+                <Label Content="X" HorizontalAlignment="Left" Margin="123,92,0,0" VerticalAlignment="Top"/>
+                <Label Content="Y" HorizontalAlignment="Left" Margin="206,92,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="140,93,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="55"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="223,93,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="55"/>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
