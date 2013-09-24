@@ -203,36 +203,30 @@ namespace MadeInHouse.ViewModels
 
         #region Seguridad
 
-        public void abrirAgregarUsuario()
+        public void AbrirBuscadorUsuario()
         {
-            win.ShowWindow(new Seguridad.agregarUsuarioViewModel { DisplayName = "Modificar Usuario" });
-            
+            win.ShowWindow(new Seguridad.BuscadorUsuarioViewModel { DisplayName = "Buscar usuario" });
         }
 
-        public void abrirModificarUsuario()
+        public void AbrirMantenerUsuario()
         {
-            win.ShowWindow(new Seguridad.modificarUsuarioViewModel { DisplayName = "Modificar Usuario" });
+            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantener usuario" });
+
         }
 
         #endregion Seguridad
 
         #region RRHH
 
-        public void AbrirBuscadorEmpleadoViewModel()
+        public void AbrirBuscadorEmpleado()
         {
-            WindowManager win = new WindowManager();
-            RRHH.BuscadorEmpleadoViewModel obj = new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" };
-            win.ShowWindow(obj);
+            win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar empleado" });
+
         }
 
-        public void abrirAgregarEmpleado()
+        public void AbrirMantenerEmpleado()
         {
-            ActivateItem(new RRHH.agregarEmpleadoViewModel { DisplayName = "Agregar empleado" });
-        }
-
-        public void abrirModificarEmpleado()
-        {
-            ActivateItem(new RRHH.modificarEmpleadoViewModel { DisplayName = "Modificar empleado" });
+            win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantener empleado" });
         }
 
         public void abrirControlarAsistencia()
