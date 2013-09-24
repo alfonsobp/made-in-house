@@ -114,7 +114,7 @@ namespace MadeInHouse.ViewModels
         }
         public void AbrirNuevoProducto()
         {
-            win.ShowWindow(new Almacen.NuevoProductoViewModel { DisplayName = "Nuevo Producto" }); 
+            win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel { DisplayName = "Nuevo Producto" }); 
             
         }
 
