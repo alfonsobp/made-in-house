@@ -40,7 +40,7 @@
                 </DataGrid>
                 <Label Content="Producto:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="76,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="AbrirBuscarProducto" HorizontalAlignment="Right" Height="22" VerticalAlignment="Bottom" Width="60" Margin="0,0,154,260">
+                <Button x:Name="AbrirBuscarProducto" HorizontalAlignment="Left" Width="60" Margin="216,14,0,260">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="292,10,0,0" VerticalAlignment="Top"/>
