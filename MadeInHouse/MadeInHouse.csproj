@@ -169,9 +169,6 @@
     <Compile Include="Views\Almacen\MantenerNotaDeSalidaView.xaml.cs">
       <DependentUpon>MantenerNotaDeSalidaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\NuevoProductoView.xaml.cs">
-      <DependentUpon>NuevoProductoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Compras\agregarServicioView.xaml.cs">
       <DependentUpon>agregarServicioView.xaml</DependentUpon>
     </Compile>
@@ -322,10 +319,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\MantenimientoInventarioView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Almacen\NuevoProductoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
