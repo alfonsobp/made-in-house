@@ -155,15 +155,6 @@
     <Compile Include="Views\Almacen\MantenerZonasView.xaml.cs">
       <DependentUpon>MantenerZonasView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\MantenimientoAlmacenView.xaml.cs">
-      <DependentUpon>MantenimientoAlmacenView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Almacen\MantenimientoCapacidadInventarioView.xaml.cs">
-      <DependentUpon>MantenimientoCapacidadInventarioView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Almacen\MantenimientoInventarioView.xaml.cs">
-      <DependentUpon>MantenimientoInventarioView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Almacen\MantenerNotaDeIngresoView.xaml.cs">
       <DependentUpon>MantenerNotaDeIngresoView.xaml</DependentUpon>
     </Compile>
@@ -307,19 +298,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\MantenimientoAlmacenView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Almacen\AnularDocumentosView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Almacen\MantenimientoCapacidadInventarioView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Almacen\MantenimientoInventarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
