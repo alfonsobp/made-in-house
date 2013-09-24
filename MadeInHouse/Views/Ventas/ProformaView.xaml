@@ -11,7 +11,7 @@
                 <Image Source="/MadeInHouse;component/Assets/New document.png" />
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                <Image Source="/MadeInHouse;component/Assets/icono_imprimir.jpg" Height="30" Width="30" />
             </Button>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
