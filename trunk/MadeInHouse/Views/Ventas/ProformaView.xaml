@@ -29,7 +29,7 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="102,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Lista Requerida" HorizontalAlignment="Left" Margin="50,250,0,0" VerticalAlignment="Top" Height="320" Width="444">
+        <GroupBox Header="Lista Requerida" Margin="50,250,46,10">
             <Grid Margin="1">
                 <DataGrid Margin="1,50,1,1">
                     <DataGrid.Columns>
