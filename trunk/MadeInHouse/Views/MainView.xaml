@@ -127,8 +127,9 @@
                         <Button Background="Beige" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="3"/>
                         <Button x:Name="AbrirListadoVenta"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="4"/>
                         <Button x:Name="AbrirNuevaVenta"  Background="Aqua" BorderThickness="0" Content="Nueva Venta" FontSize="20" Grid.Row="5"/>
-                        <Button Background="Beige" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="6"/>
-                        <Button x:Name="AbrirListadoNotaCredito"  Background="Aqua" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="7"/>
+                        <Button x:Name="AbrirProforma"  Background="Aqua" BorderThickness="0" Content="Proformas" FontSize="20" Grid.Row="6"/>
+                        <Button Background="Beige" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="7"/>
+                        <Button x:Name="AbrirListadoNotaCredito"  Background="Aqua" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="8"/>
 
                     </Grid>
                 </Expander>
