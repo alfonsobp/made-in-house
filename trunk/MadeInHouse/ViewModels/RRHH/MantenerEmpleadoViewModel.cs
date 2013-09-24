@@ -8,7 +8,6 @@ using Caliburn.Micro;
 namespace MadeInHouse.ViewModels.RRHH
 {
     class MantenerEmpleadoViewModel : Screen
-
     {
     }
 }
