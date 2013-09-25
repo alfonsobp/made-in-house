@@ -8,11 +8,9 @@
     <Grid>
         <GroupBox Header="Buscador de Usuarios" Margin="10,41,10,15"/>
 
-        <GroupBox Header="Filtrar por :" Margin="26,71,26,0" VerticalAlignment="Top" Height="108"/>
-
         <ToolBar Margin="0,0,0,409">
             <Button
-    			x:Name="AbrirMantenerUsuarioViewModel" >
+    			x:Name="AbrirMantenerProveedorViewModel" >
                 <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
             <Button>
@@ -31,28 +29,20 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <DataGrid Margin="26,201,26,0" Height="205" VerticalAlignment="Top">
+        <DataGrid Margin="26,147,26,0" Height="259" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="ID Usuario"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Rol"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Fecha Ingreso"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Cambió contraseña"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="145" Header="Usuario"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="200" Header="Fecha Ingreso"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="200" Header="Fecha Última Modificación"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
-        <Button Height="24" Margin="453,110,84,0" VerticalAlignment="Top">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+
+        <GroupBox Header="Filtrar por :" Margin="26,71,26,0" VerticalAlignment="Top" Height="60"/>
+        <RadioButton Content="ID Usuario" HorizontalAlignment="Left" Margin="53,91,0,0" VerticalAlignment="Top"/>
+        <Button Height="24" Margin="469,91,68,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
 
-        <ComboBox HorizontalAlignment="Left" Margin="172,140,0,0" VerticalAlignment="Top" Width="151">
-            <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Asistente de Almacén" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Asistente de Compras" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
-        </ComboBox>
-        <Label Content="Rol" HorizontalAlignment="Left" Margin="53,140,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label Content="ID Usuario" HorizontalAlignment="Left" Margin="53,105,0,0" VerticalAlignment="Top" Width="92"/>
     </Grid>
 </UserControl>
