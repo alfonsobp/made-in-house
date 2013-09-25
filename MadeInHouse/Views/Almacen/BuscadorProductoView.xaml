@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid>
+    <Grid Margin="0,0,-22,0">
         <ToolBar VerticalAlignment="Top">
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
@@ -31,7 +31,7 @@
                 <TextBlock Text="criterio" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="74" Margin="10,21,0,330"/>
                 <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="ComboBox_SelectionChanged"  />
                 <TextBox Height="26" HorizontalAlignment="Left" Margin="294,21,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="194"/>
-                <DataGrid HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="220" Width="550">
+                <DataGrid HorizontalAlignment="Left" Margin="10,90,0,64" Width="550">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Linea"/>
