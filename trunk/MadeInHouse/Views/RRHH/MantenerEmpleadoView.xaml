@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            mc:Ignorable="d" Height="450" Width="700">
+            mc:Ignorable="d" Height="561.941" Width="750.746">
     <Grid>
 
         <ToolBar VerticalAlignment="Top">
@@ -26,22 +26,22 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        
-        <GroupBox Header="Mantener Empleado" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="217" Width="680">
-            <Grid Margin="10,10,-2,-10">
-                <Label Content="Código" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50"/>
-                <Label Content="DNI" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top" Width="34"/>
-                <Label Content="Nombre" HorizontalAlignment="Left" Margin="0,60,0,0" VerticalAlignment="Top" Width="58"/>
-                <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="0,90,0,0" VerticalAlignment="Top" Width="102"/>
-                <Label Content="Apellido Materno" HorizontalAlignment="Left" Margin="0,120,0,0" VerticalAlignment="Top" Width="106"/>
-                <Label Content="Direccion" HorizontalAlignment="Left" Margin="0,150,0,0" VerticalAlignment="Top" Width="66"/>
 
-                <Label Content="RUC" HorizontalAlignment="Left" Margin="320,0,0,0" VerticalAlignment="Top" Width="47"/>
-                <Label Content="Fecha de nacimiento" HorizontalAlignment="Left" Margin="320,30,0,0" VerticalAlignment="Top" Width="119"/>
-                <Label Content="Telefono" HorizontalAlignment="Left" Margin="320,92,0,0" VerticalAlignment="Top" Width="62"/>
-                <Label Content="Sexo" HorizontalAlignment="Left" Margin="320,61,0,0" VerticalAlignment="Top" Width="45"/>
-                <Label Content="Celular" HorizontalAlignment="Left" Margin="320,118,0,0" VerticalAlignment="Top" Width="47"/>
-                <Label Content="E-mail" HorizontalAlignment="Left" Margin="320,150,0,0" VerticalAlignment="Top" Width="45"/>
+        <GroupBox Header="Información Personal" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="217" Width="680">
+            <Grid Margin="10,10,-2,-10">
+                <Label Content="Código" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Margin="76,0,0,0"/>
+                <Label Content="DNI" HorizontalAlignment="Left" Margin="92,30,0,0" VerticalAlignment="Top" Width="34"/>
+                <Label Content="Nombre" HorizontalAlignment="Left" Margin="68,61,0,0" VerticalAlignment="Top" Width="58"/>
+                <Label Content="Apellido Paterno" HorizontalAlignment="Left" Margin="24,87,0,0" VerticalAlignment="Top" Width="102"/>
+                <Label Content="Apellido Materno" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top" Width="106"/>
+                <Label Content="Direccion" HorizontalAlignment="Left" Margin="60,147,0,0" VerticalAlignment="Top" Width="66"/>
+
+                <Label Content="RUC" HorizontalAlignment="Left" Margin="392,0,0,0" VerticalAlignment="Top" Width="47" RenderTransformOrigin="1.426,0.654"/>
+                <Label Content="Fecha de nacimiento" HorizontalAlignment="Left" Margin="308,30,0,0" VerticalAlignment="Top" Width="119"/>
+                <Label Content="Telefono" HorizontalAlignment="Left" Margin="370,87,0,0" VerticalAlignment="Top" Width="62"/>
+                <Label Content="Sexo" HorizontalAlignment="Left" Margin="392,61,0,0" VerticalAlignment="Top" Width="45"/>
+                <Label Content="Celular" HorizontalAlignment="Left" Margin="379,120,0,0" VerticalAlignment="Top" Width="47"/>
+                <Label Content="E-mail" HorizontalAlignment="Left" Margin="381,150,0,0" VerticalAlignment="Top" Width="45"/>
 
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="145,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="145,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
@@ -49,7 +49,7 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="145,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="145,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="145,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-                              
+
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
                 <DatePicker HorizontalAlignment="Left" Margin="444,33,0,0" VerticalAlignment="Top" Width="150"/>
                 <RadioButton Content="Masculino" HorizontalAlignment="Left" Margin="444,68,0,0" VerticalAlignment="Top"/>
@@ -57,30 +57,30 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
-                
+
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Información Laboral" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Height="128" Width="680">
+        <GroupBox Header="Información Laboral" HorizontalAlignment="Left" Margin="10,268,0,0" VerticalAlignment="Top" Height="137" Width="680">
             <Grid Margin="10,10,-2,-12">
 
-                <Label Content="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Área de trabajo" HorizontalAlignment="Left" Margin="0,33,0,0" VerticalAlignment="Top" Width="92"/>
-                <Label Content="Puesto" HorizontalAlignment="Left" Margin="0,64,0,0" VerticalAlignment="Top" Width="92"/>
-                
-                <ComboBox HorizontalAlignment="Left" Margin="145,4,0,0" VerticalAlignment="Top" Width="120">
+                <Label Content="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="89,3,0,0"/>
+                <Label Content="Área de trabajo" HorizontalAlignment="Left" Margin="35,37,0,0" VerticalAlignment="Top" Width="105"/>
+                <Label Content="Puesto" HorizontalAlignment="Left" Margin="80,69,0,0" VerticalAlignment="Top" Width="60"/>
+
+                <ComboBox HorizontalAlignment="Left" Margin="145,7,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
                 </ComboBox>
-                <ComboBox HorizontalAlignment="Left" Margin="145,37,0,0" VerticalAlignment="Top" Width="120">
+                <ComboBox HorizontalAlignment="Left" Margin="145,41,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                 </ComboBox>
-                <ComboBox HorizontalAlignment="Left" Margin="145,68,0,0" VerticalAlignment="Top" Width="120">
+                <ComboBox HorizontalAlignment="Left" Margin="145,72,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>
@@ -89,13 +89,28 @@
                     <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
                 </ComboBox>
 
-                <Label Content="Sueldo" HorizontalAlignment="Left" Margin="326,7,0,0" VerticalAlignment="Top" Width="55"/>
-                <Label Content="Cuenta Banco" HorizontalAlignment="Left" Margin="326,37,0,0" VerticalAlignment="Top" Width="86"/>
-                <Label Content="E-mail Empresa" HorizontalAlignment="Left" Margin="327,69,0,0" VerticalAlignment="Top" Width="93"/>
+                <Label Content="Sueldo" HorizontalAlignment="Left" Margin="379,7,0,0" VerticalAlignment="Top" Width="60"/>
+                <Label Content="Cuenta Banco" HorizontalAlignment="Left" Margin="342,37,0,0" VerticalAlignment="Top" Width="97"/>
+                <Label Content="E-mail Empresa" HorizontalAlignment="Left" Margin="333,69,0,0" VerticalAlignment="Top" Width="106"/>
 
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="444,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox Header="Inactividad Laboral" HorizontalAlignment="Left" Margin="10,410,0,0" VerticalAlignment="Top" Height="128" Width="680">
+            <Grid Margin="10,10,-2,-12">
+                <DatePicker HorizontalAlignment="Left" Margin="146,14,0,0" VerticalAlignment="Top" Width="150"/>
+
+                <Label Content="Fecha Inicio" HorizontalAlignment="Right" VerticalAlignment="Top" Width="88" Margin="0,10,519,0"/>
+                <Label Content="Fecha Fin" HorizontalAlignment="Left" Margin="65,41,0,0" VerticalAlignment="Top" Width="76"/>
+                <Label Content="Motivo" HorizontalAlignment="Left" Margin="377,10,0,0" VerticalAlignment="Top" Width="63"/>
+                <ComboBox HorizontalAlignment="Left" Margin="445,14,0,0" VerticalAlignment="Top" Width="120">
+                    <ComboBoxItem Content="Vacaciones" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Salud" HorizontalAlignment="Left" Width="118"/>
+                    <ComboBoxItem Content="Capacitación" HorizontalAlignment="Left" Width="118"/>
+                </ComboBox>
+                <DatePicker HorizontalAlignment="Left" Margin="146,43,0,0" VerticalAlignment="Top" Width="150"/>
             </Grid>
         </GroupBox>
 
