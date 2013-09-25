@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="311.986" d:DesignWidth="534.59">
+             d:DesignHeight="299.986" d:DesignWidth="480.59">
     <Grid>
         <ToolBar VerticalAlignment="Top">
             <Button>
@@ -26,24 +26,24 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Editar Contraseña" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="139" Width="515">
+        <GroupBox Header="Editar Contraseña" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" Width="453">
             <Grid Margin="0,0,-2,-3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="294*"/>
-                    <ColumnDefinition Width="211*"/>
+                    <ColumnDefinition Width="108*"/>
+                    <ColumnDefinition Width="133*"/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Contraseña Actual" HorizontalAlignment="Left" VerticalAlignment="Top" Width="112" Margin="88,10,0,0" Height="26"/>
                 <Label Content="Confirmar Contraseña" HorizontalAlignment="Left" Margin="69,76,0,0" VerticalAlignment="Top" Width="131" Height="26"/>
                 <Label Content="Contraseña Nueva" HorizontalAlignment="Left" Margin="88,43,0,0" VerticalAlignment="Top" Width="112" Height="26"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="30,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Grid.Column="1"/>
-                <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="30,10,0,0" Grid.Column="1"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="30,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Grid.Column="1"/>
+                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,43,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,76,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
 
 
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Contacto" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Height="79" Width="515">
+        <GroupBox Header="Contacto" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Height="79" Width="453">
             <Grid>
                 <Label Content="Teléfono" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="10,16,0,0"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="81,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
