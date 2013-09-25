@@ -213,7 +213,7 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantener usuario" });
 
         }
-
+        
         #endregion Seguridad
 
         #region RRHH
@@ -229,9 +229,9 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantener empleado" });
         }
 
-        public void abrirControlarAsistencia()
+        public void AbrirControlarAsistenciaEmpleado()
         {
-            ActivateItem(new RRHH.controlarAsistenciaViewModel { DisplayName = "Controlar asistencia" });
+            win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
         }
         public void AbrirListadoServicio()
         {

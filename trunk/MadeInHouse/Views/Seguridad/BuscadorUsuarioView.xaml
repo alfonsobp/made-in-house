@@ -7,9 +7,9 @@
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
 
-        <ToolBar Margin="0,0,0,409">
+        <ToolBar VerticalAlignment="Top">
             <Button
-    			x:Name="AbrirMantenerProveedorViewModel" >
+    			x:Name="AbrirMantenerUsuarioViewModel" >
                 <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
             <Button>
