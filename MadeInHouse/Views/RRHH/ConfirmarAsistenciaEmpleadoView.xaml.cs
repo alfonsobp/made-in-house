@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.RRHH
 {
     /// <summary>
-    /// Lógica de interacción para controlarAsistenciaView.xaml
+    /// Lógica de interacción para ConfirmarAsistenciaEmpleadoView.xaml
     /// </summary>
-    public partial class controlarAsistenciaView : UserControl
+    public partial class ConfirmarAsistenciaEmpleadoView : UserControl
     {
-        public controlarAsistenciaView()
+        public ConfirmarAsistenciaEmpleadoView()
         {
             InitializeComponent();
         }

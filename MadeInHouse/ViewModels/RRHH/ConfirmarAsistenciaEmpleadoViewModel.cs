@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 
-namespace MadeInHouse.ViewModels.Seguridad
+namespace MadeInHouse.ViewModels.RRHH
 {
-    class modificarUsuarioViewModel:Screen
+    class ConfirmarAsistenciaEmpleadoViewModel
     {
     }
 }

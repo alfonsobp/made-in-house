@@ -91,6 +91,8 @@
     <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\ConfigurarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerUsuarioViewModel.cs" />
@@ -123,13 +125,8 @@
     <Compile Include="ViewModels\Compras\SeleccionDeProveedoresViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\RRHH\agregarEmpleadoViewModel.cs" />
-    <Compile Include="ViewModels\RRHH\controlarAsistenciaViewModel.cs" />
-    <Compile Include="ViewModels\RRHH\modificarEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\BuscadorEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\MantenerEmpleadoViewModel.cs" />
-    <Compile Include="ViewModels\Seguridad\agregarUsuarioViewModel.cs" />
-    <Compile Include="ViewModels\Seguridad\modificarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EliminarVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoVentaViewModel.cs" />
@@ -219,8 +216,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\RRHH\controlarAsistenciaView.xaml.cs">
-      <DependentUpon>controlarAsistenciaView.xaml</DependentUpon>
+    <Compile Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml.cs">
+      <DependentUpon>ConfirmarAsistenciaEmpleadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\ControlarAsistenciaEmpleadoView.xaml.cs">
+      <DependentUpon>ControlarAsistenciaEmpleadoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RRHH\BuscadorEmpleadoView.xaml.cs">
       <DependentUpon>BuscadorEmpleadoView.xaml</DependentUpon>
@@ -382,7 +382,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RRHH\controlarAsistenciaView.xaml">
+    <Page Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\ControlarAsistenciaEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -545,6 +549,7 @@
     <Resource Include="Assets\delete.png" />
     <Resource Include="Assets\New document.png" />
     <Resource Include="Assets\icono_imprimir.jpg" />
+    <Resource Include="Assets\anonimo.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
