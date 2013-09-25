@@ -95,6 +95,7 @@
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoNotaCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\ProformaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarNotaCreditoViewModel.cs" />
     <Compile Include="Views\Almacen\BuscarGuiasRemisionView.xaml.cs">
@@ -256,6 +257,9 @@
     </Compile>
     <Compile Include="Views\Ventas\ListadoVentaView.xaml.cs">
       <DependentUpon>ListadoVentaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\ProformaView.xaml.cs">
+      <DependentUpon>ProformaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\RegistrarClienteView.xaml.cs">
       <DependentUpon>RegistrarClienteView.xaml</DependentUpon>
@@ -434,6 +438,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Ventas\ProformaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Ventas\RegistrarClienteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -540,6 +548,7 @@
     <Resource Include="Assets\stop.png" />
     <Resource Include="Assets\delete.png" />
     <Resource Include="Assets\New document.png" />
+    <Resource Include="Assets\icono_imprimir.jpg" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
