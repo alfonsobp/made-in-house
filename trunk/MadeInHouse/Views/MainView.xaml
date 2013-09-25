@@ -41,10 +41,10 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
-                            
-                            
 
-                            
+
+
+
                         </Grid.RowDefinitions>
                         <Button Background="Beige" BorderThickness="0" Content="Productos" FontSize="20" Grid.Row="0"/>
                         <Button x:Name="AbrirNuevoProducto" Background="Aqua" BorderThickness="0" Content="Registrar" FontSize="20"  Grid.Row="1"/>
@@ -57,7 +57,7 @@
                         <Button  x:Name="AbrirBuscarNotas" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="10"/>
                         <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Aqua" BorderThickness="0"  Content="Registrar NI" FontSize="20" Height="Auto"  Grid.Row="11"/>
                         <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Aqua" BorderThickness="0" Content="Registrar NS" FontSize="20" Height="Auto" Grid.Row="12"/>
-                        
+
 
                     </Grid>
                 </Expander>
@@ -86,7 +86,7 @@
                                 <Button x:Name="AbrirCatalogoProductoProveedorModel" Background="Aqua" BorderThickness="0" Content="Mant Catalogo productos" FontSize="20" />
                                 <Button x:Name="AbrirBuscadorProveedorViewModel" Background="Aqua" BorderThickness="0" Content="Buscar proveedor" FontSize="20"  Grid.Row="1"/>
                                 <Button x:Name="AbrirMantenerProveedorViewModel" Background="Aqua" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2"/>
-                               
+
                             </Grid>
                         </Expander>
                         <Expander Header="Documentos" FontSize="30" Background="Salmon" Grid.Row="1">
@@ -197,10 +197,11 @@
 
             </StackPanel>
         </ScrollViewer>
-        <DockPanel  Grid.Column="2" Height="70" LastChildFill="False" Margin="218,10,10,0" VerticalAlignment="Top">
-            <Image Source="/Assets/mario.jpg" DockPanel.Dock="Right" Width="124"  />
+        <DockPanel  Grid.Column="2" Height="70" LastChildFill="False" Margin="155,25,73,0" VerticalAlignment="Top">
+            <Button x:Name="AbrirConfigurarUsuario" Content="USER" Background="#009ACD" BorderThickness="0" FontSize="20" Grid.Column="2" RenderTransformOrigin="0.5,0.5" Width="65"/>
+            <Image Source="/Assets/mario.jpg" DockPanel.Dock="Left" Width="94"  />
         </DockPanel>
-        <Label Content="USER"  Background="#009ACD" Grid.Column="2" Margin="123,10,132,0" VerticalAlignment="Top" Height="70" FontSize="36"/>
 
+        
     </Grid>
 </Window>

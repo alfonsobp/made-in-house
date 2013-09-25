@@ -239,5 +239,12 @@ namespace MadeInHouse.ViewModels
         }
 
         #endregion RRHH
+
+        #region Configuracion
+        public void AbrirConfigurarUsuario()
+        {
+            win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
+        }
+        #endregion Configuracion
     }
 }
