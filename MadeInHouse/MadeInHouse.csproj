@@ -92,6 +92,7 @@
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\Seguridad\ConfigurarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
@@ -229,6 +230,9 @@
     </Compile>
     <Compile Include="Views\Seguridad\BuscadorUsuarioView.xaml.cs">
       <DependentUpon>BuscadorUsuarioView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\ConfigurarUsuarioView.xaml.cs">
+      <DependentUpon>ConfigurarUsuarioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\MantenerUsuarioView.xaml.cs">
       <DependentUpon>MantenerUsuarioView.xaml</DependentUpon>
@@ -391,6 +395,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Seguridad\BuscadorUsuarioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Seguridad\ConfigurarUsuarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
