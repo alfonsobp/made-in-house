@@ -46,17 +46,17 @@
 
 
                         </Grid.RowDefinitions>
-                        <Button Background="Beige" BorderThickness="0" Content="Productos" FontSize="20" Grid.Row="0"/>
-                        <Button x:Name="AbrirNuevoProducto" Background="Aqua" BorderThickness="0" Content="Registrar" FontSize="20"  Grid.Row="1"/>
-                        <Button x:Name="AbrirBuscarProducto" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="2"/>
-                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Aqua" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="3"/>
-                        <Button  Background="Beige" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="6"/>
-                        <Button  x:Name="AbrirBuscarGuiaDeRemision" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="7"/>
-                        <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Aqua" BorderThickness="0" Content="Registrar" FontSize="20"  Grid.Row="8"/>
-                        <Button  Background="Beige" BorderThickness="0" Content="Notas de I/S" FontSize="20"  Grid.Row="9"/>
-                        <Button  x:Name="AbrirBuscarNotas" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="10"/>
-                        <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Aqua" BorderThickness="0"  Content="Registrar NI" FontSize="20" Height="Auto"  Grid.Row="11"/>
-                        <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Aqua" BorderThickness="0" Content="Registrar NS" FontSize="20" Height="Auto" Grid.Row="12"/>
+                        <Button Background="Beige" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirNuevoProducto" Background="Aqua" BorderThickness="0" Content="Nuevo producto" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Aqua" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="2"/>
+                        <Button x:Name="AbrirBuscarProducto" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="3"/>
+                        <Button  Background="Beige" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="4"/>
+                        <Button  x:Name="AbrirBuscarGuiaDeRemision" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5"/>
+                        <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Aqua" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6"/>
+                        <Button  Background="Beige" BorderThickness="0" Content="Notas de I/S" FontSize="20"  Grid.Row="7"/>
+                        <Button  x:Name="AbrirBuscarNotas" Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="8"/>
+                        <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Aqua" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="9"/>
+                        <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Aqua" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10"/>
 
 
                     </Grid>

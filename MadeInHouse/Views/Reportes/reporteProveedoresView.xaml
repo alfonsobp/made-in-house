@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Reportes.reporteProveedoresView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="494" d:DesignWidth="500">
+    <Grid Height="488" VerticalAlignment="Top">
+        <TextBlock HorizontalAlignment="Left" Margin="52,68,0,0" TextWrapping="Wrap" Text="Fecha" VerticalAlignment="Top" Grid.Column="1"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="132,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+        <GroupBox Header="Proveedores" Margin="50,116,28,0" VerticalAlignment="Top" Height="300" Width="422">
+            <Grid Margin="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Margin="0,10,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción Producto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <ToolBar Grid.ColumnSpan="2" VerticalAlignment="Top">
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button/>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button/>
+            <Button/>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+            <Button/>
+            <Button/>
+        </ToolBar>
+    </Grid>
+</UserControl>

@@ -17,5 +17,15 @@ namespace MadeInHouse.ViewModels.Almacen
             Almacen.PosicionProductoViewModel abrirPosView = new Almacen.PosicionProductoViewModel();
             win.ShowWindow(abrirPosView);
         }
+
+
+        public void AbrirListarOrdenesCompra()
+        {
+
+            WindowManager win = new WindowManager();
+            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel ();
+            win.ShowWindow(abrirListaOrden);
+        }
+
     }
 }
