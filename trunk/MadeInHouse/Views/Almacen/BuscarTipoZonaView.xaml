@@ -7,7 +7,7 @@
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
         <ToolBar VerticalAlignment="Top">
-            <Button>
+            <Button x:Name="AbrirNuevaZona">
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
             </Button>
             <Button>
@@ -42,7 +42,7 @@
                 </DataGrid>
             </Grid>
         </GroupBox>
-        <Button Margin="410,95,119,0" VerticalAlignment="Top" Width="60">
+        <Button Margin="416,95,0,0" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
         </Button>
     </Grid>
