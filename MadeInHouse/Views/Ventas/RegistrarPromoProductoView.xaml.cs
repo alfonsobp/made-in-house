@@ -18,9 +18,9 @@ namespace MadeInHouse.Views.Ventas
     /// <summary>
     /// Lógica de interacción para RegistrarPromoProducto.xaml
     /// </summary>
-    public partial class RegistrarPromoProducto : UserControl
+    public partial class RegistrarPromoProductoView : UserControl
     {
-        public RegistrarPromoProducto()
+        public RegistrarPromoProductoView()
         {
             InitializeComponent();
         }

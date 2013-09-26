@@ -18,9 +18,9 @@ namespace MadeInHouse.Views.Ventas
     /// <summary>
     /// Lógica de interacción para ListadoPromoServicio.xaml
     /// </summary>
-    public partial class ListadoPromoServicio : UserControl
+    public partial class ListadoPromoServicioView : UserControl
     {
-        public ListadoPromoServicio()
+        public ListadoPromoServicioView()
         {
             InitializeComponent();
         }

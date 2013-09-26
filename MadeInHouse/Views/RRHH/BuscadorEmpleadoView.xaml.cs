@@ -20,9 +20,9 @@ namespace MadeInHouse.Views.RRHH
     /// </summary>
     public partial class BuscadorEmpleadoView : UserControl
     {
-        public BuscadorEmpleadoView()
-        {
-            InitializeComponent();
-        }
+        //public BuscadorEmpleadoView()
+        //{
+        //    InitializeComponent();
+        //}
     }
 }
