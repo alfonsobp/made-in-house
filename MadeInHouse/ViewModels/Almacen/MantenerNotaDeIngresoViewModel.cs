@@ -23,7 +23,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             WindowManager win = new WindowManager();
-            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel ();
+            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel() { DisplayName = "Ordenes de compra pendientes" };
             win.ShowWindow(abrirListaOrden);
         }
 
