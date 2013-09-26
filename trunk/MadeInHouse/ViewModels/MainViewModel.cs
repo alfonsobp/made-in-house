@@ -177,6 +177,21 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(obj);
         }
 
+        public void AbrirNuevoServicio()
+        {
+            WindowManager win = new WindowManager();
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
+            win.ShowWindow(obj);
+        }
+
+        public void AbrirEditarServicio()
+        {
+            WindowManager win = new WindowManager();
+            Compras.editarServicioViewModel obj = new Compras.editarServicioViewModel { DisplayName = "Editar Servicio" };
+            win.ShowWindow(obj);
+        }
+
+
         public void AbrirEditarServicioViewModel()
         {
             ActivateItem(new Compras.editarServicioViewModel { DisplayName = "Editar" });
