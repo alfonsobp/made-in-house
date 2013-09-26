@@ -35,6 +35,7 @@
                 <Label Content="Nombre" HorizontalAlignment="Left" Margin="17,56,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="117,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Direccion" HorizontalAlignment="Left" Margin="17,88,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBlock HorizontalAlignment="Left" Margin="119,98,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="50" Width="160"/>
                 <Label Content="Zonas:" HorizontalAlignment="Left" Margin="17,176,0,0" VerticalAlignment="Top" Width="94"/>
                 <DataGrid HorizontalAlignment="Left" Margin="17,207,0,0" VerticalAlignment="Top" Height="140" Width="260">
                     <DataGrid.Columns>
@@ -45,8 +46,7 @@
 
                     </DataGrid.Columns>
                 </DataGrid>
-                <TextBlock HorizontalAlignment="Left" Margin="117,98,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="50" Width="160"/>
-            </Grid>
+                </Grid>
         </GroupBox>
     </Grid>
 </UserControl>

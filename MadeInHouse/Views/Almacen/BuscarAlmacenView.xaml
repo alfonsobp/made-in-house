@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-                          d:DesignHeight="450" d:DesignWidth="600">
-    <Grid>
+             mc:Ignorable="d" Height="465" Width="607">
+    <Grid Margin="0,0,0,10">
         <ToolBar VerticalAlignment="Top">
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
@@ -26,20 +25,23 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
-            <Grid Margin="0,0,0,-311">
-                <TextBlock Text="criterio" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="74" Margin="10,21,0,330"/>
-                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194"  />
-                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194"  />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="288,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="194"/>
-                <DataGrid Margin="10,90,8,64">
+        <GroupBox Header="Criterios de busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="144" Width="580">
+            <Grid Margin="0,0,0,-290">
+                <Label Content="Codigo" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="398,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                <Label Content="Nombre" HorizontalAlignment="Left" Margin="17,11,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="117,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Direccion" HorizontalAlignment="Left" Margin="17,43,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBlock HorizontalAlignment="Left" Margin="119,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="50" Width="160"/>
+
+                <DataGrid Margin="10,140,8,10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                         <DataGridTextColumn Width="440" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Direccion"/>
-                        </DataGrid.Columns>
+                    </DataGrid.Columns>
                 </DataGrid>
-                <Button HorizontalAlignment="Left" Margin="493,21,0,0" VerticalAlignment="Top" Width="40" Height="40">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="30" Width="30"/>
+                <Button Margin="298,58,210,0" VerticalAlignment="Top" Width="60">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                 </Button>
 
             </Grid>
