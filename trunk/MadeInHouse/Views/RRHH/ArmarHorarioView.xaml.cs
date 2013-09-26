@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.RRHH
 {
     /// <summary>
-    /// Lógica de interacción para SueldoEmpleadoView.xaml
+    /// Lógica de interacción para BuscadorEmpleadoView.xaml
     /// </summary>
-    public partial class SueldoEmpleadoView : Page
+    public partial class BuscadorEmpleadoView : UserControl
     {
-        public SueldoEmpleadoView()
+        public BuscadorEmpleadoView()
         {
             InitializeComponent();
         }
