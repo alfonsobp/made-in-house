@@ -186,24 +186,24 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Button Background="Beige" BorderThickness="0" Content="Generar bla bla" FontSize="20"  Grid.Row="0"/>
+
+                        <Button x:Name="AbrirReporteHistorialLaboral"  Background="Aqua" BorderThickness="0" Content="Historial Laboral" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirReporteProductos"  Background="Aqua" BorderThickness="0" Content="Productos" FontSize="20" Grid.Row="1"/>
+                        <Button x:Name="AbrirReporteProveedores"  Background="Aqua" BorderThickness="0" Content="Proveedores" FontSize="20" Grid.Row="2"/>
+                        <Button x:Name="AbrirReporteVentas"  Background="Aqua" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="3"/>
 
                     </Grid>
                 </Expander>
-                <Expander Header="extras" FontSize="40" Style="{StaticResource ExpanderStyle}">
+                <Expander Header="Configurar" FontSize="40" Style="{StaticResource ExpanderStyle}">
 
-                    <Grid Background="White" Height="325">
+                    <Grid Background="White" >
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
+                            
                         </Grid.RowDefinitions>
-                        <Button Background="Beige" BorderThickness="0" Content="Registrar Almacen" FontSize="20" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top" Width="191" Height="38" Grid.Row="0"/>
-                        <Button x:Name="AbrirControlarAsistenciaEmpleado" Background="Aqua" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="1"/>
-                        <Button x:Name="AbrirMantenerTipoZona" Background="Aqua" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirControlarAsistenciaEmpleado" Background="Aqua" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="0" />
+                        <Button x:Name="AbrirMantenerTipoZona" Background="Aqua" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="1"/>
                     </Grid>
                 </Expander>
 
