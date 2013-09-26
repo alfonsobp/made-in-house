@@ -87,8 +87,10 @@
     <Compile Include="ViewModels\Almacen\BuscadorProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarGuiasRemisionViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\BuscarTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerAlmacenViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />

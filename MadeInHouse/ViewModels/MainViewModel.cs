@@ -233,6 +233,7 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
         }
+        
         public void AbrirListadoServicio()
         {
             win.ShowWindow(new Compras.ListadoServicioViewModel());
@@ -244,6 +245,10 @@ namespace MadeInHouse.ViewModels
         public void AbrirConfigurarUsuario()
         {
             win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
+        }
+        public void AbrirMantenerTipoZona()
+        {
+            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel { DisplayName = "Mantener Tipo Zona" });
         }
         #endregion Configuracion
     }
