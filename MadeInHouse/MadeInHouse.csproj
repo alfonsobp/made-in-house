@@ -243,6 +243,12 @@
     <Compile Include="Views\Ventas\EditarNotaCreditoView.xaml.cs">
       <DependentUpon>EditarNotaCreditoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Ventas\EditarPromoProductoView.xaml.cs">
+      <DependentUpon>EditarPromoProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\EditarPromoServicioView.xaml.cs">
+      <DependentUpon>EditarPromoServicioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ventas\EditarVentaView.xaml.cs">
       <DependentUpon>EditarVentaView.xaml</DependentUpon>
     </Compile>
@@ -255,6 +261,12 @@
     <Compile Include="Views\Ventas\ListadoNotaCreditoView.xaml.cs">
       <DependentUpon>ListadoNotaCreditoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Ventas\ListadoPromoProductoView.xaml.cs">
+      <DependentUpon>ListadoPromoProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\ListadoPromoServicioView.xaml.cs">
+      <DependentUpon>ListadoPromoServicioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ventas\ListadoVentaView.xaml.cs">
       <DependentUpon>ListadoVentaView.xaml</DependentUpon>
     </Compile>
@@ -266,6 +278,12 @@
     </Compile>
     <Compile Include="Views\Ventas\RegistrarNotaCreditoView.xaml.cs">
       <DependentUpon>RegistrarNotaCreditoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\RegistrarPromoProductoView.xaml.cs">
+      <DependentUpon>RegistrarPromoProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\RegistrarPromoServicioView.xaml.cs">
+      <DependentUpon>RegistrarPromoServicioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\RegistrarVentaView.xaml.cs">
       <DependentUpon>RegistrarVentaView.xaml</DependentUpon>
@@ -418,6 +436,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Ventas\EditarPromoProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ventas\EditarPromoServicioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Ventas\EditarVentaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -434,6 +460,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Ventas\ListadoPromoProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ventas\ListadoPromoServicioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Ventas\ListadoVentaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -447,6 +481,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ventas\RegistrarNotaCreditoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ventas\RegistrarPromoProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ventas\RegistrarPromoServicioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
