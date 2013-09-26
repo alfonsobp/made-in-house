@@ -125,6 +125,12 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Button Background="Beige" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
                         <Button x:Name="AbrirListadoCliente"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="1"/>
@@ -137,12 +143,12 @@
                         <Button x:Name="AbrirListadoDevoluciones"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="8"/>
                         <Button x:Name="AbrirRegistrarDevolucion"  Background="Aqua" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="9"/>
                         <Button x:Name="AbrirListadoNotaCredito"  Background="Aqua" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="10"/>
-                        <Button Background="Beige" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="9"/>
-                        <Button x:Name="AbrirListadoPromoProducto"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="10"/>
-                        <Button x:Name="AbrirNuevaPromoProducto"  Background="Aqua" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="11"/>
-                        <Button Background="Beige" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="12"/>
-                        <Button x:Name="AbrirListadoPromoServicio"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13"/>
-                        <Button x:Name="AbrirNuevaPromoServicio"  Background="Aqua" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="14"/>
+                        <Button Background="Beige" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="11"/>
+                        <Button x:Name="AbrirListadoPromoProducto"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="12"/>
+                        <Button x:Name="AbrirNuevaPromoProducto"  Background="Aqua" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="13"/>
+                        <Button Background="Beige" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="14"/>
+                        <Button x:Name="AbrirListadoPromoServicio"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="15"/>
+                        <Button x:Name="AbrirNuevaPromoServicio"  Background="Aqua" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="16"/>
                     </Grid>
                 </Expander>
                 <Expander Header="RRHH" FontSize="40" Style="{StaticResource ExpanderStyle}" >
