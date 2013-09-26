@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
-    <Grid Margin="0,0,-22,0">
+             mc:Ignorable="d" d:DesignWidth="600" Height="563">
+    <Grid>
         <ToolBar VerticalAlignment="Top">
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
@@ -26,12 +25,27 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
-            <Grid Margin="0,0,0,-311">
-                <TextBlock Text="criterio" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="74" Margin="10,21,0,330"/>
-                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194" SelectionChanged="ComboBox_SelectionChanged"  />
-                <TextBox Height="26" HorizontalAlignment="Left" Margin="294,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
-                <DataGrid HorizontalAlignment="Left" Margin="10,90,0,64" Width="550">
+        <GroupBox Header="Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="258" Width="580">
+            <Grid Margin="0,0,0,-277">
+                <Label Content="Codigo" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                <Label Content="Linea" HorizontalAlignment="Left" Margin="294,21,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Sublinea" HorizontalAlignment="Left" Margin="294,56,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Unidad Medida" HorizontalAlignment="Left" Margin="17,56,0,0" VerticalAlignment="Top" Width="94"/>
+                <ComboBox HorizontalAlignment="Left" Margin="400,25,0,0" VerticalAlignment="Top" Width="160"/>
+                <ComboBox HorizontalAlignment="Left" Margin="400,60,0,0" VerticalAlignment="Top" Width="160"/>
+                <ComboBox HorizontalAlignment="Left" Margin="123,60,0,0" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Sujeto a:" HorizontalAlignment="Left" Margin="17,95,0,0" VerticalAlignment="Top" Width="87"/>
+                <Label Content="Tipo de uso" HorizontalAlignment="Left" Margin="17,124,0,0" VerticalAlignment="Top" Width="87"/>
+                <CheckBox Content="Percepcion" HorizontalAlignment="Left" Margin="123,99,0,0" VerticalAlignment="Top" />
+                <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,127,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="232,127,0,0" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Height="102" Margin="400,100,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Descripcion" HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Observaciones" HorizontalAlignment="Left" Margin="294,95,0,0" VerticalAlignment="Top"/>
+
+                <DataGrid HorizontalAlignment="Left" Margin="10,251,0,20" Width="550">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Linea"/>
@@ -40,8 +54,8 @@
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Abreviatura"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Margin="493,21,35,0" VerticalAlignment="Top" Height="40">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="30" Width="30"/>
+                <Button Margin="294,207,214,0" VerticalAlignment="Top" Width="60">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                 </Button>
             </Grid>
         </GroupBox>
