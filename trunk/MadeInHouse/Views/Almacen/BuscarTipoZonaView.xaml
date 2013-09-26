@@ -26,21 +26,24 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
-            <Grid Margin="0,0,0,-311">
-                <TextBlock Text="criterio" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="74" Margin="10,21,0,330"/>
-                <ComboBox  Height="26" HorizontalAlignment="Left" Margin="76,21,0,0" VerticalAlignment="Top" Width="194"/>                
-<TextBox Height="26" HorizontalAlignment="Left" Margin="294,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194"/>
-                <DataGrid HorizontalAlignment="Left" Margin="10,90,0,0" VerticalAlignment="Top" Height="220" Width="550">
+        <GroupBox Header="Criterios de Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
+
+            <Grid Margin="0,79,0,-311">
+                <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,-73,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="118,-70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                <Label Content="Descripcion" HorizontalAlignment="Left" Margin="306,-70,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="400,-70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+
+                <DataGrid HorizontalAlignment="Left" Margin="10,10,0,-15" VerticalAlignment="Top" Height="300" Width="550">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                         <DataGridTextColumn Width="440" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcin"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Button Margin="493,21,35,0" VerticalAlignment="Top" Height="40">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="30" Width="30"/>
-                </Button>
             </Grid>
         </GroupBox>
+        <Button Margin="410,95,119,0" VerticalAlignment="Top" Width="60">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+        </Button>
     </Grid>
 </UserControl>
