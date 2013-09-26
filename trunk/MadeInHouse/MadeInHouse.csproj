@@ -243,14 +243,14 @@
     <Compile Include="Views\RRHH\ArmarHorarioView.xaml.cs">
       <DependentUpon>ArmarHorarioView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RRHH\BuscadorEmpleadoView.xaml.cs">
+      <DependentUpon>BuscadorEmpleadoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml.cs">
       <DependentUpon>ConfirmarAsistenciaEmpleadoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RRHH\ControlarAsistenciaEmpleadoView.xaml.cs">
       <DependentUpon>ControlarAsistenciaEmpleadoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RRHH\BuscadorEmpleadoView.xaml.cs">
-      <DependentUpon>BuscadorEmpleadoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RRHH\MantenerEmpleadoView.xaml.cs">
       <DependentUpon>MantenerEmpleadoView.xaml</DependentUpon>
@@ -476,15 +476,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RRHH\BuscadorEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RRHH\ControlarAsistenciaEmpleadoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RRHH\BuscadorEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

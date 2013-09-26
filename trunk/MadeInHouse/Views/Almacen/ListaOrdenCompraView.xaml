@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             mc:Ignorable="d" Height="325" Width="341">
     <Grid>
-        <Canvas HorizontalAlignment="Left" Height="213" Margin="36,49,0,0" VerticalAlignment="Top" Width="231" >
-            <DataGrid  Height="213" Width="231" HeadersVisibility="Column">
+        
+            <DataGrid  Height="213" Width="231" HeadersVisibility="Column" Margin="40">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Codigo" Width="150"/>
                     <DataGridTextColumn Header="Fecha" Width="400"/>
@@ -17,6 +16,10 @@
 
             </DataGrid>
             <Grid ShowGridLines="True" Height="187" Canvas.Top="26" Width="231">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="149*"/>
+                    <ColumnDefinition Width="82*"/>
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
@@ -26,7 +29,7 @@
                 </Grid.RowDefinitions>
 
             </Grid>
-        </Canvas>
+        
 
     </Grid>
 </UserControl>
