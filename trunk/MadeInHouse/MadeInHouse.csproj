@@ -88,11 +88,20 @@
     <Compile Include="ViewModels\Almacen\BuscarGuiasRemisionViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarTipoZonaViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\ListaOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerAlmacenViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\criteriosReporHisLabViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\criteriosReporProducViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\criteriosReporProveeViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\criteriosReporVentaViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteHistoLaboralViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteProductosViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteProveedoresViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteVentaViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ArmarHorarioViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
@@ -148,6 +157,9 @@
     </Compile>
     <Compile Include="Views\Almacen\BuscarTipoZonaView.xaml.cs">
       <DependentUpon>BuscarTipoZonaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\ListaOrdenCompraView.xaml.cs">
+      <DependentUpon>ListaOrdenCompraView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\MantenerGuiaDeRemisionView.xaml.cs">
       <DependentUpon>MantenerGuiaDeRemisionView.xaml</DependentUpon>
@@ -324,6 +336,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Almacen\ListaOrdenCompraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Almacen\MantenerGuiaDeRemisionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -423,6 +439,38 @@
     <Page Include="Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\criteriosReporHisLabView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\criteriosReporProducView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\criteriosReporProveeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\criteriosReporVentaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\reporteHistoLaboralView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\reporteProductosView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\reporteProveedoresView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Reportes\reporteVentaView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RRHH\ArmarHorarioView.xaml">
       <SubType>Designer</SubType>
@@ -569,8 +617,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\Reportes\" />
-    <Folder Include="Views\Reportes\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\add.png" />
@@ -627,11 +673,12 @@
     <Resource Include="Assets\edit2.png" />
     <Resource Include="Assets\EXCEL LOGO.png" />
     <Resource Include="Assets\mario.jpg" />
-    <Resource Include="Assets\stop.png" />
     <Resource Include="Assets\delete.png" />
+    <Resource Include="Assets\delete1.png" />
     <Resource Include="Assets\New document.png" />
     <Resource Include="Assets\icono_imprimir.jpg" />
     <Resource Include="Assets\anonimo.png" />
+    <Resource Include="Assets\stop.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />

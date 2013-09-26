@@ -43,12 +43,12 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Header="Contacto" HorizontalAlignment="Left" Margin="10,201,0,0" VerticalAlignment="Top" Height="79" Width="453">
+        <GroupBox Header="Contacto" Margin="10,201,18,20">
             <Grid>
                 <Label Content="Teléfono" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="10,16,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="81,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+                <TextBox HorizontalAlignment="Left" Margin="81,19,0,15" TextWrapping="Wrap" Width="135"/>
                 <Label Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="240,16,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="296,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+                <TextBox Margin="296,19,10,15" TextWrapping="Wrap"/>
             </Grid>
         </GroupBox>
 

@@ -31,8 +31,8 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <Label Content="Producto" HorizontalAlignment="Left" Margin="48,86,0,0" VerticalAlignment="Top" Width="98" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="173,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
+        <Label Content="Producto" HorizontalAlignment="Left" Margin="46,70,0,0" VerticalAlignment="Top" Width="98" Height="26"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,70,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="166" Grid.Row="1" VerticalAlignment="Top" Width="335" Margin="56,64,0,0">
         <Grid  ShowGridLines="true" HorizontalAlignment="Left" Height="166" Margin="-1" Grid.Row="1" VerticalAlignment="Bottom" Width="335">
             <Grid.ColumnDefinitions>
@@ -50,10 +50,11 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-        </Grid>
+                <Label Content="B35" Grid.Column="2" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+            </Grid>
         </Border>
-        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="428,82,0,0" VerticalAlignment="Top" Height="26" Width="58"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="535,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
+        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="428,67,0,0" VerticalAlignment="Top" Height="26" Width="58"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="537,67,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="166" Margin="428,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
             <Grid ShowGridLines="True">
                 <Grid.ColumnDefinitions>
@@ -67,6 +68,9 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
+                <Label Content="50" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
+                <Label Content="40%" HorizontalAlignment="Left" Margin="4,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="2"/>
+                <Label Content="1" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
             </Grid>
         </Border>
         <TextBox HorizontalAlignment="Left" Height="35" Margin="586,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
@@ -79,6 +83,10 @@
         <TextBox HorizontalAlignment="Left" Height="35" Margin="665,195,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
         <Label Content="Cant." HorizontalAlignment="Left" Margin="590,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Vol." HorizontalAlignment="Left" Margin="665,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Zona" HorizontalAlignment="Left" Margin="56,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Ubicacion" HorizontalAlignment="Left" Margin="428,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Label Content="Stock disponible" HorizontalAlignment="Left" Margin="46,116,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="172,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 
     </Grid>
