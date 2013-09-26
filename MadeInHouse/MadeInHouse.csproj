@@ -102,13 +102,19 @@
     <Compile Include="ViewModels\Ventas\DetalleVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\EditarPromoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\EditarPromoServicioViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoDevolucionesViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoNotaCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\ListadoPromoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\ListadoPromoServicioViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ProformaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarClienteViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarDevolucionesViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarNotaCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\RegistrarPromoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\RegistrarPromoServicioViewModel.cs" />
     <Compile Include="Views\Almacen\BuscarGuiasRemisionView.xaml.cs">
       <DependentUpon>BuscarGuiasRemisionView.xaml</DependentUpon>
     </Compile>

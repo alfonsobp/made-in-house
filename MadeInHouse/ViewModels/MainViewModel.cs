@@ -55,6 +55,26 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
         }
 
+        public void AbrirListadoPromoProducto()
+        {
+            win.ShowWindow(new Ventas.ListadoPromoProductoViewModel { DisplayName = "Promociones de Productos" });
+        }
+
+        public void AbrirListadoPromoServicio()
+        {
+            win.ShowWindow(new Ventas.ListadoPromoServicioViewModel { DisplayName = "Promociones de Servicios" });
+        }
+
+        public void AbrirNuevaPromoServicio()
+        {
+            win.ShowWindow(new Ventas.RegistrarPromoServicioViewModel { DisplayName = "Nueva Promoción de Servicio" });
+        }
+
+        public void AbrirNuevaPromoProducto()
+        {
+            win.ShowWindow(new Ventas.RegistrarPromoProductoViewModel { DisplayName = "Nueva Promoción de Producto" });
+        }
+
         #endregion Ventas
 
         #region Almacen

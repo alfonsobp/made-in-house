@@ -20,7 +20,7 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Content="Producto:" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
-                <Button Height="23" Width="60" Margin="325,13,25,191">
+                <Button x:Name="AbrirBuscarProducto" Height="23" Width="60" Margin="326,13,24,191">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <Label Content="Descuento:" HorizontalAlignment="Left" Margin="30,41,0,0" VerticalAlignment="Top" Height="26" Width="69"/>
