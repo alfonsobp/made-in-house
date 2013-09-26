@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="420
+             d:DesignHeight="430
              " d:DesignWidth="460
              ">
     <Grid RenderTransformOrigin="0.482,0.483">
@@ -15,20 +15,20 @@
         <Label Content="Fax" HorizontalAlignment="Left" Height="23" Margin="80,204,0,0" VerticalAlignment="Top" Width="27"/>
         <Label Content="Contacto" HorizontalAlignment="Left" Height="23" Margin="46,243,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="RUC" HorizontalAlignment="Left" Height="23" Margin="67,281,0,0" VerticalAlignment="Top" Width="40"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273"/>
-        <TextBox HorizontalAlignment="Left" Height="41" Margin="125,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Text="PROV-0023"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Text="LADRILLOS DIAZ S.A."/>
+        <TextBox HorizontalAlignment="Left" Height="41" Margin="125,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="315" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Text="2222222"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Text="2312"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Text="RAUL GONZALES"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="273" Text="121212121212"/>
         <Button  HorizontalAlignment="Left" Height="39" Margin="330,368,0,0" VerticalAlignment="Top" Width="49" >
             <Image Source="/Assets/check.png" Height="30" Width="30" />
         </Button>
         <Button  HorizontalAlignment="Left" Height="39" Margin="389,368,0,0" VerticalAlignment="Top" Width="50" Click="Button_Click_1" RenderTransformOrigin="0.38,0.436">
             <Image Source="/Assets/stop.png" Height="30" Width="30" />
         </Button>
-        <GroupBox Header="Mantener Proveedor" HorizontalAlignment="Left" Height="364" Margin="12,49,0,0" VerticalAlignment="Top" Width="440"/>
+        <GroupBox Header="Mantener Proveedor" HorizontalAlignment="Left" Height="374" Margin="10,46,0,0" VerticalAlignment="Top" Width="440"/>
         <ToolBar VerticalAlignment="Top">
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />

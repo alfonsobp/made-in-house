@@ -62,7 +62,7 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="365,47,0,0" VerticalAlignment="Top" Height="384" Width="235">
+        <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="361,41,0,0" VerticalAlignment="Top" Height="384" Width="235">
             <DataGrid Margin="21,132,3,5" SelectionChanged="DataGrid_SelectionChanged_1" HorizontalAlignment="Center" Width="199">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
