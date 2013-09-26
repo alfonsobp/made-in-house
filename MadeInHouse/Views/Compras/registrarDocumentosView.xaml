@@ -78,9 +78,9 @@
         <Label Content="Interes financiero" HorizontalAlignment="Left" Height="26" Margin="477,439,0,0" VerticalAlignment="Top" Width="102" RenderTransformOrigin="0.541,1.444"/>
         <TextBox  HorizontalAlignment="Left" Height="26" Margin="596,469,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="IGV" HorizontalAlignment="Left" Height="26" Margin="550,470,0,0" VerticalAlignment="Top" Width="29" RenderTransformOrigin="0.541,1.444"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="596,498,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="596,500,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="TOTAL" HorizontalAlignment="Left" Height="26" Margin="532,501,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.541,1.444"/>
-        <TextBox   HorizontalAlignment="Left" Height="29" Margin="146,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Text="BOLETA"/>
+        <TextBox   IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="146,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Text="BOLETA"/>
         <GroupBox Header="Proveedor" Margin="306,45,10,0" VerticalAlignment="Top" Height="88"/>
         <GroupBox Header="Detalle del doc pago" Height="104" Margin="10,126,10,0" VerticalAlignment="Top"/>
         <GroupBox Header="Detalle" Margin="0,361,17,0" HorizontalAlignment="Right" Width="283" Height="176" VerticalAlignment="Top"/>
