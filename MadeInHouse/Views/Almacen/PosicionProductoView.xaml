@@ -32,7 +32,7 @@
             </Button>
         </ToolBar>
         <Label Content="Producto" HorizontalAlignment="Left" Margin="48,86,0,0" VerticalAlignment="Top" Width="98" Height="26"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="173,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="189"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="173,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="166" Grid.Row="1" VerticalAlignment="Top" Width="335" Margin="56,64,0,0">
         <Grid  ShowGridLines="true" HorizontalAlignment="Left" Height="166" Margin="-1" Grid.Row="1" VerticalAlignment="Bottom" Width="335">
             <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
         </Grid>
         </Border>
         <Label Content="Cantidad" HorizontalAlignment="Left" Margin="428,82,0,0" VerticalAlignment="Top" Height="26" Width="58"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="535,86,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="81"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="535,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="166" Margin="428,64,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
             <Grid ShowGridLines="True">
                 <Grid.ColumnDefinitions>
@@ -69,14 +69,14 @@
                 </Grid.RowDefinitions>
             </Grid>
         </Border>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,149,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,195,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,149,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
-        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,195,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,149,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="586,195,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,64,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,109,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,149,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="665,195,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
         <Label Content="Cant." HorizontalAlignment="Left" Margin="590,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Vol." HorizontalAlignment="Left" Margin="665,22,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 

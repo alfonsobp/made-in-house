@@ -29,7 +29,7 @@
         <Button  HorizontalAlignment="Left" Height="35" Margin="273,272,0,0" VerticalAlignment="Top" Width="40" FontSize="16">
             <Image Source="/Assets/minus.png" Height="20" Width="50" />
         </Button>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Margin="100,75,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Margin="100,75,0,0"/>
         <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="100,75,0,0"/>
         <TextBox IsEnabled="False" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="100,113,0,0"/>
         <CheckBox Content="venta" HorizontalAlignment="Left" Margin="100,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.877,-0.068"/>
