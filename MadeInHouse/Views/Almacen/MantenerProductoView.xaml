@@ -26,25 +26,27 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Formulario" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="580">
+        <GroupBox Header="Informacion Producto" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="580">
             <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="570" Margin="0,0,-2,0">
-                <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <Label Content="Codigo" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
-                <Label Content="Linea" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
-                <Label Content="Sublinea" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Width="94"/>
-                <Label Content="Unidad Medida" HorizontalAlignment="Left" Margin="24,117,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Linea" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Sublinea" HorizontalAlignment="Left" Margin="17,86,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Unidad Medida" HorizontalAlignment="Left" Margin="17,117,0,0" VerticalAlignment="Top" Width="94"/>
                 <ComboBox HorizontalAlignment="Left" Margin="123,59,0,0" VerticalAlignment="Top" Width="160"/>
                 <ComboBox HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
                 <ComboBox HorizontalAlignment="Left" Margin="123,121,0,0" VerticalAlignment="Top" Width="160"/>
-                <CheckBox Content="Percepcion" HorizontalAlignment="Left" Margin="24,152,0,0" VerticalAlignment="Top" />
-                <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,152,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="212,152,0,0" VerticalAlignment="Top"/>
-                <TextBlock HorizontalAlignment="Left" Height="131" Margin="123,211,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,172,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Observaciones" HorizontalAlignment="Left" Margin="24,206,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Percepcion" HorizontalAlignment="Left" Margin="123,156,0,0" VerticalAlignment="Top" />
+                <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,184,0,0" VerticalAlignment="Top"/>
+                <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="232,184,0,0" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Height="131" Margin="123,245,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Descripcion" HorizontalAlignment="Left" Margin="17,206,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Observaciones" HorizontalAlignment="Left" Margin="17,240,0,0" VerticalAlignment="Top"/>
                 <Image HorizontalAlignment="Left" Height="175" Margin="324,24,0,0" VerticalAlignment="Top" Width="236"/>
                 <Button Content="Ingresar Foto" HorizontalAlignment="Left" Margin="324,211,0,0" VerticalAlignment="Top" Width="236"/>
+                <Label Content="Sujeto a:" HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Width="87"/>
+                <Label Content="Tipo de uso" HorizontalAlignment="Left" Margin="17,181,0,0" VerticalAlignment="Top" Width="87"/>
 
             </Grid>
         </GroupBox>
