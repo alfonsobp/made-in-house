@@ -228,6 +228,9 @@
     <Compile Include="Views\RRHH\MantenerEmpleadoView.xaml.cs">
       <DependentUpon>MantenerEmpleadoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RRHH\SueldoEmpleadoView.xaml.cs">
+      <DependentUpon>SueldoEmpleadoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Seguridad\BuscadorUsuarioView.xaml.cs">
       <DependentUpon>BuscadorUsuarioView.xaml</DependentUpon>
     </Compile>
@@ -413,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RRHH\MantenerEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\SueldoEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
