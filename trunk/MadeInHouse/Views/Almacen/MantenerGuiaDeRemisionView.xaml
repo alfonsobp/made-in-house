@@ -91,13 +91,13 @@
             <Grid>
                 <Label Content="Almacen origen" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="93"/>
                 <Label Content="Inventario origen" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="397" />
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="192,159,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="397"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397" />
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="192,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
                 <Label Content="Fecha de traslado" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.5" Height="26" Width="103"/>
                 <DatePicker HorizontalAlignment="Left" Margin="192,280,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
                 <Label Content="Camion" HorizontalAlignment="Left" Margin="20,239,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
                 <Label Content="Conductor" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="192,199,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="397"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="192,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
                 <ComboBox HorizontalAlignment="Left" Margin="192,243,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
                 <Label Content="Dirección de partida" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top" Width="126" Height="26"/>
                 <Label Content="Direccion de llegada" HorizontalAlignment="Left" Margin="18,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.484,0.5" Width="126" Height="26"/>

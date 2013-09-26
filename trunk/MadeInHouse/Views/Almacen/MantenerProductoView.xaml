@@ -29,7 +29,7 @@
         <GroupBox Header="Formulario" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="580">
             <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="570" Margin="0,0,-2,0">
                 <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
                 <Label Content="Linea" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
                 <Label Content="Sublinea" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Width="94"/>
                 <Label Content="Unidad Medida" HorizontalAlignment="Left" Margin="24,117,0,0" VerticalAlignment="Top" Width="94"/>
@@ -41,7 +41,7 @@
                 <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="212,152,0,0" VerticalAlignment="Top"/>
                 <TextBlock HorizontalAlignment="Left" Height="131" Margin="123,211,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,172,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,176,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,176,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Observaciones" HorizontalAlignment="Left" Margin="24,206,0,0" VerticalAlignment="Top"/>
                 <Image HorizontalAlignment="Left" Height="175" Margin="324,24,0,0" VerticalAlignment="Top" Width="236"/>
                 <Button Content="Ingresar Foto" HorizontalAlignment="Left" Margin="324,211,0,0" VerticalAlignment="Top" Width="236"/>

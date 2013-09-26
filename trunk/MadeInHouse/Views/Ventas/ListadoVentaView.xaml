@@ -12,9 +12,9 @@
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="ID Venta" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="81,9,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="97"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="81,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="97"/>
                 <TextBlock HorizontalAlignment="Left" Margin="220,12,0,0" TextWrapping="Wrap" Text="ID Cliente" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="299,9,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="97"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="299,9,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="97"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="F. emisión" VerticalAlignment="Top"/>
                 <DatePicker HorizontalAlignment="Left" Margin="81,37,0,0" VerticalAlignment="Top" Width="97"/>
             </Grid>

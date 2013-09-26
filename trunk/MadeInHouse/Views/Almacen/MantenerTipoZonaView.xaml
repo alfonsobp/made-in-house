@@ -28,9 +28,9 @@
         <GroupBox Header="Formulario" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="126" Width="375">
             <Grid Height="116" VerticalAlignment="Top" Margin="0,0,0,-12">
                 <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
                 <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="160"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
 
             </Grid>
         </GroupBox>
