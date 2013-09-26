@@ -4,41 +4,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="450" d:DesignWidth="640">
     <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="160,89,0,0" VerticalAlignment="Top" Width="273" Height="29">
-            <ComboBoxItem Content="OC-2013-012"/>
-            <ComboBoxItem Content="OC-2013-022"/>
-            <ComboBoxItem Content="OC-2013-044"/>
-        </ComboBox>
-        <Label Content="Orden de compra Pendiente" HorizontalAlignment="Left" Height="31" Margin="160,58,0,0" VerticalAlignment="Top" Width="205"/>
-        <DataGrid Height="115" Margin="28,230,28,0" VerticalAlignment="Top">
+        <Label Content="Orden de compra a emitir" HorizontalAlignment="Left" Height="31" Margin="9,38,0,0" VerticalAlignment="Top" Width="205"/>
+        <DataGrid Height="118" Margin="18,205,10,0" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo" Width="90"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo Comercial" Width="110">
+                    <DataGridTextColumn.Foreground>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="#FFCDCD33" Offset="1"/>
+                        </LinearGradientBrush>
+                    </DataGridTextColumn.Foreground>
+                </DataGridTextColumn>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="200"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio ( S/. )" Width="100"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Importe ( S/. )" Width="100"/>
             </DataGrid.Columns>
+            <Button Content="1212121,algo,12,12"/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
         </DataGrid>
-        <Label Content="Proveedor " HorizontalAlignment="Left" Margin="8,140,0,0" VerticalAlignment="Top"/>
-        <Label Content="Codigo" HorizontalAlignment="Left" Margin="27,170,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="81,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" Text="LADRILLOS DIAZ S.A. "/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="80,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" Text="PRO-0024"/>
-        <Label Content="Medio de pago" HorizontalAlignment="Left" Margin="338,135,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fecha Emision" HorizontalAlignment="Left" Margin="338,168,0,0" VerticalAlignment="Top"/>
-        <Label Content="Observaciones" HorizontalAlignment="Left" Margin="28,350,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="51" Margin="28,376,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="349"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="453,362,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Total" HorizontalAlignment="Left" Height="26" Margin="402,362,0,0" VerticalAlignment="Top" Width="46"/>
-        <GroupBox Header="Mantener Orden de Compra" Height="399" VerticalAlignment="Top" Margin="5,46,5,0"/>
-        <Button  HorizontalAlignment="Left" Margin="439,397,0,0" VerticalAlignment="Top" Width="63"  Height="33">
-            <Image Source="/Assets/check.png" Height="30" Width="50" />
-        </Button>
-        <Button  HorizontalAlignment="Left" Margin="515,397,0,0" VerticalAlignment="Top" Width="56" Click="Button_Click_2" Height="33">
-            <Image Source="/Assets/stop.png" Height="30" Width="50" />
-        </Button>
-        <ComboBox HorizontalAlignment="Left" Margin="434,139,0,0" VerticalAlignment="Top" Width="77">
+        <Label Content="Proveedor " HorizontalAlignment="Left" Margin="8,122,0,0" VerticalAlignment="Top"/>
+        <Label Content="Codigo" HorizontalAlignment="Left" Margin="27,152,0,0" VerticalAlignment="Top" Width="68"/>
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="81,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="246" Text="LADRILLOS DIAZ S.A. "/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="80,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" Text="PROV-0024"/>
+        <Label Content="Medio de pago" HorizontalAlignment="Left" Margin="338,113,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha Emision" HorizontalAlignment="Left" Margin="338,146,0,0" VerticalAlignment="Top"/>
+        <Label Content="Observaciones" HorizontalAlignment="Left" Margin="25,342,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="25,373,0,26" TextWrapping="Wrap" Width="363"/>
+        <TextBox IsEnabled="false" Margin="445,398,0,26" TextWrapping="Wrap" HorizontalAlignment="Left" Width="145"/>
+        <Label Content="Total Bruto" Height="26" Margin="0,372,115,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80"/>
+        <GroupBox Header="Detalle" Height="82" VerticalAlignment="Top" Margin="0,101,10,0"/>
+        <ComboBox HorizontalAlignment="Left" Margin="434,117,0,0" VerticalAlignment="Top" Width="156">
             <ComboBoxItem Content="FACTURA"/>
             <ComboBoxItem Content="BOLETA"/>
         </ComboBox>
@@ -65,7 +66,11 @@
         <Menu HorizontalAlignment="Left" Height="4" Margin="638,145,-41,0" VerticalAlignment="Top" Width="3">
             <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="156"/>
         </Menu>
-        <DatePicker HorizontalAlignment="Left" Margin="434,167,0,0" VerticalAlignment="Top" Width="156"/>
+        <DatePicker  HorizontalAlignment="Left" Margin="434,145,0,0" VerticalAlignment="Top" Width="156"/>
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="10,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Text="OC-98000012"/>
+        <Button  HorizontalAlignment="Left" Height="38" Margin="214,58,0,0" VerticalAlignment="Top" Width="60">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="50" />
+        </Button>
 
     </Grid>
 </UserControl>

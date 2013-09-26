@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
+             d:DesignHeight="550" d:DesignWidth="600">
     <Grid>
         <ToolBar VerticalAlignment="Top">
             <Button>
@@ -26,42 +26,61 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <DataGrid Height="219" Margin="34,85,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="308">
+        <DataGrid  Height="219" Margin="25,87,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="308">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="180"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="180"/>
               
             </DataGrid.Columns>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
         </DataGrid>
-        <Label Content="Codigo del producto" HorizontalAlignment="Left" Margin="398,85,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="398,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Label Content="Proveedor Escogido" HorizontalAlignment="Left" Margin="398,151,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="398,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Button  HorizontalAlignment="Left" Height="22" Margin="499,210,0,0" VerticalAlignment="Top" Width="43">
-            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+        <Label Content="Codigo" HorizontalAlignment="Left" Margin="360,87,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="360,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Proveedor" HorizontalAlignment="Left" Margin="360,141,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="360,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Button  HorizontalAlignment="Left" Height="38" Margin="518,157,0,0" VerticalAlignment="Top" Width="55">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="43" />
         </Button>
-        <DataGrid Height="160" Margin="34,355,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="534">
+        <DataGrid Height="160" Margin="25,346,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="549">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="180"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="180"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor" Width="180"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="180"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="100"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor" Width="200"/>
+               
             </DataGrid.Columns>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
         </DataGrid>
-        <Button Content="Confirmar" Margin="398,280,0,0" VerticalAlignment="Top" Click="Button_Click_1" HorizontalAlignment="Left" Width="75"/>
-        <Button Content="Cancelar" Margin="478,280,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="64"/>
-        <GroupBox Header="Seleccion de proveedores" Margin="10,62,10,0" VerticalAlignment="Top" Height="259"/>
-        <GroupBox Header="Resultados de seleccion " Margin="10,336,0,10" HorizontalAlignment="Left" Width="580"/>
-        <Button Margin="439,522,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
+        <GroupBox Header="Consolidado de Productos a comprar" Margin="10,54,10,0" VerticalAlignment="Top" Height="259"/>
+        <GroupBox Header="Resultados" Margin="10,318,0,0" HorizontalAlignment="Left" Width="580" Height="202" VerticalAlignment="Top"/>
+        <Button Margin="364,254,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
             <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="50" />
         </Button>
-        <Button Margin="503,524,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
+        <Button Margin="424,254,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
             <Image Source="/MadeInHouse;component/Assets/stop.png" Height="30" Width="50" />
         </Button>
-        <Label Content="cantidad" HorizontalAlignment="Left" Margin="398,226,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="398,248,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
+        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="360,196,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="360,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
 
     </Grid>
 </UserControl>
