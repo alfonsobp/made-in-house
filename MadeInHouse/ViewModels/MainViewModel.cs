@@ -40,6 +40,14 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Ventas.RegistrarClienteViewModel { DisplayName = "Nuevo Cliente" });
         }
+        public void AbrirListadoDevoluciones()
+        {
+            win.ShowWindow(new Ventas.ListadoDevolucionesViewModel());
+        }
+        public void AbrirRegistrarDevolucion()
+        {
+            win.ShowWindow(new Ventas.RegistrarDevolucionesViewModel());
+        }
 
 
         public void AbrirListadoNotaCredito()

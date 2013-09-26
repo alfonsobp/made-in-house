@@ -119,6 +119,8 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
 
                         </Grid.RowDefinitions>
                         <Button Background="Beige" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
@@ -129,7 +131,9 @@
                         <Button x:Name="AbrirNuevaVenta"  Background="Aqua" BorderThickness="0" Content="Nueva Venta" FontSize="20" Grid.Row="5"/>
                         <Button x:Name="AbrirProforma"  Background="Aqua" BorderThickness="0" Content="Proformas" FontSize="20" Grid.Row="6"/>
                         <Button Background="Beige" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="7"/>
-                        <Button x:Name="AbrirListadoNotaCredito"  Background="Aqua" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="8"/>
+                        <Button x:Name="AbrirListadoDevoluciones"  Background="Aqua" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="8"/>
+                        <Button x:Name="AbrirRegistrarDevolucion"  Background="Aqua" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="9"/>
+                        <Button x:Name="AbrirListadoNotaCredito"  Background="Aqua" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="10"/>
 
                     </Grid>
                 </Expander>
