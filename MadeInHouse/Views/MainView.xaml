@@ -71,6 +71,10 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
 
 
                         </Grid.RowDefinitions>
@@ -89,7 +93,21 @@
 
                             </Grid>
                         </Expander>
-                        <Expander Header="Documentos" FontSize="30" Background="Salmon" Grid.Row="1">
+                        <Expander Header="Servicios" FontSize="30" Background="Salmon" Grid.Row="1">
+                            <Grid Background="White" Height="Auto">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+
+                                </Grid.RowDefinitions>
+                                <Button x:Name="AbrirNuevoServicio"  Background="Aqua" BorderThickness="0" Content="Nuevo" FontSize="20" />
+                                <Button x:Name="AbrirEditarServicio" Background="Aqua" BorderThickness="0" Content="Editar" FontSize="20"  Grid.Row="1"/>
+
+                            </Grid>
+                        </Expander>
+                        <Expander Header="Documentos" FontSize="30" Background="Salmon" Grid.Row="2">
                             <Grid Background="White" Height="Auto">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
