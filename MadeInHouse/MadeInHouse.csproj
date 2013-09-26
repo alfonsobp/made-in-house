@@ -93,6 +93,7 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\ArmarHorarioViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorUsuarioViewModel.cs" />
@@ -218,6 +219,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\RRHH\ArmarHorarioView.xaml.cs">
+      <DependentUpon>ArmarHorarioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml.cs">
       <DependentUpon>ConfirmarAsistenciaEmpleadoView.xaml</DependentUpon>
     </Compile>
@@ -229,9 +233,6 @@
     </Compile>
     <Compile Include="Views\RRHH\MantenerEmpleadoView.xaml.cs">
       <DependentUpon>MantenerEmpleadoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RRHH\SueldoEmpleadoView.xaml.cs">
-      <DependentUpon>SueldoEmpleadoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\BuscadorUsuarioView.xaml.cs">
       <DependentUpon>BuscadorUsuarioView.xaml</DependentUpon>
@@ -405,6 +406,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RRHH\ArmarHorarioView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -418,10 +423,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RRHH\MantenerEmpleadoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RRHH\SueldoEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

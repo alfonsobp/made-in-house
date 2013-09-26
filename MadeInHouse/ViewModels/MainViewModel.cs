@@ -239,6 +239,11 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Compras.ListadoServicioViewModel());
         }
 
+        public void AbrirArmarHorario()
+        {
+            win.ShowWindow(new RRHH.ArmarHorarioViewModel() { DisplayName = "Armar Horario" });
+        }
+
         #endregion RRHH
 
         #region Configuracion

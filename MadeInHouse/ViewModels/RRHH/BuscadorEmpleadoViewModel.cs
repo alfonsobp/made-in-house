@@ -15,5 +15,6 @@ namespace MadeInHouse.ViewModels.RRHH
             RRHH.MantenerEmpleadoViewModel obj = new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantener Empleado" };
             win.ShowWindow(obj);
         }
+
     }
 }
