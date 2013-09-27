@@ -215,6 +215,7 @@
                         <Button x:Name="AbrirReporteProductos"  Background="Aqua" BorderThickness="0" Content="Productos" FontSize="20" Grid.Row="1"/>
                         <Button x:Name="AbrirReporteProveedores"  Background="Aqua" BorderThickness="0" Content="Proveedores" FontSize="20" Grid.Row="2"/>
                         <Button x:Name="AbrirReporteVentas"  Background="Aqua" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="3"/>
+                        <Button x:Name="AbrirReporteTardanzas"  Background="Aqua" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="4"/>
 
                     </Grid>
                 </Expander>
