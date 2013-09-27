@@ -9,7 +9,8 @@ namespace MadeInHouse.ViewModels.RRHH
 {
     class MantenerEmpleadoViewModel : Screen
     {
-        public void AbrirArmarHorarioViewModel()
+
+        public void AbrirArmarHorario()
         {
             WindowManager win = new WindowManager();
             RRHH.ArmarHorarioViewModel obj = new RRHH.ArmarHorarioViewModel { DisplayName = "Armar Horario" };
