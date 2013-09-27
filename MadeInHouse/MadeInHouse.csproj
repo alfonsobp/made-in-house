@@ -95,6 +95,7 @@
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteTardanzasViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteVentasViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ArmarHorarioViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
@@ -235,6 +236,9 @@
     </Compile>
     <Compile Include="Views\Reportes\reporteTardanzasView.xaml.cs">
       <DependentUpon>reporteTardanzasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\reporteVentasView.xaml.cs">
+      <DependentUpon>reporteVentasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RRHH\ArmarHorarioView.xaml.cs">
       <DependentUpon>ArmarHorarioView.xaml</DependentUpon>
@@ -437,6 +441,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Reportes\reporteTardanzasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\reporteVentasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

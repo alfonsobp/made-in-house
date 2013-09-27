@@ -307,6 +307,10 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Reportes.reporteTardanzasViewModel { DisplayName = "Reporte de Tardanzas" });
         }
+        public void AbrirReporteVentas()
+        {
+            win.ShowWindow(new Reportes.reporteVentasViewModel { DisplayName = "Reporte de Ventas" });
+        }
         
 
 
