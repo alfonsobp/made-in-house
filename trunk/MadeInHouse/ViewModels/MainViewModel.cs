@@ -303,25 +303,6 @@ namespace MadeInHouse.ViewModels
 
         #region Reportes
 
-        public void AbrirReporteHistorialLaboral()
-        {
-            win.ShowWindow(new Reportes.criteriosReporHisLabViewModel { DisplayName = "Reporte de historial laboral" });
-        }
-
-        public void AbrirReporteProductos()
-        {
-            win.ShowWindow(new Reportes.criteriosReporProducViewModel { DisplayName = "Reporte de productos" });
-        }
-
-        public void AbrirReporteProveedores()
-        {
-            win.ShowWindow(new Reportes.criteriosReporProveeViewModel { DisplayName = "Reporte de proveedores" });
-        }
-
-        public void AbrirReporteVentas()
-        {
-            win.ShowWindow(new Reportes.criteriosReporVentaViewModel { DisplayName = "Reporte de ventas" });
-        }
         public void AbrirReporteTardanzas()
         {
             win.ShowWindow(new Reportes.reporteTardanzasViewModel { DisplayName = "Reporte de Tardanzas" });

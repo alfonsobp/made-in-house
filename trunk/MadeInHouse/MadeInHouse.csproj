@@ -94,15 +94,7 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\criteriosReporHisLabViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\criteriosReporProducViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\criteriosReporProveeViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\criteriosReporVentaViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\reporteHistoLaboralViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\reporteProductosViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\reporteProveedoresViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteTardanzasViewModel.cs" />
-    <Compile Include="ViewModels\Reportes\reporteVentaViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ArmarHorarioViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
@@ -444,41 +436,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Reportes\criteriosReporHisLabView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Reportes\criteriosReporProducView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Reportes\criteriosReporProveeView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Reportes\criteriosReporVentaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Reportes\reporteHistoLaboralView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Reportes\reporteProductosView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Reportes\reporteProveedoresView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Reportes\reporteTardanzasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Reportes\reporteVentaView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\RRHH\ArmarHorarioView.xaml">
       <SubType>Designer</SubType>
