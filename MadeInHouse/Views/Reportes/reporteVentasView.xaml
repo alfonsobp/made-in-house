@@ -73,12 +73,14 @@
                         <Button Content=">>" Margin="209,49,300,32"></Button>
                     </Grid>
                 </GroupBox>
-                <DataGrid HorizontalAlignment="Left" Margin="10,439,0,-93" VerticalAlignment="Top" Height="176" Width="548">
+                <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
+                <TextBox HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
+                <DataGrid HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top" Height="176" Width="451">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                        <DataGridTextColumn Width="150" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
-                        <DataGridTextColumn Width="90" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unit."/>
-                        <DataGridTextColumn Width="90" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                        <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                        <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
+                        <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unit."/>
+                        <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                         <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Monto Total"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -89,10 +91,6 @@
 
             </Grid>
         </GroupBox>
-
-
-
-
     </Grid>
 
 </UserControl>
