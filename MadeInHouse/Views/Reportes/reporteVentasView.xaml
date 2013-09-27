@@ -25,6 +25,9 @@
         </ToolBar>
         <GroupBox Header="Reporte de Ventas" HorizontalAlignment="Left" Height="544" Margin="10,46,0,0" VerticalAlignment="Top" Width="580">
             <Grid>
+                <Button Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                </Button>
                 <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,70,0,0" Width="548" Height="123">
                     <Grid>
                         <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
