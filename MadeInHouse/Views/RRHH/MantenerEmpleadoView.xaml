@@ -107,7 +107,7 @@
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
                 </Button>
                 <Label Content="Horario Laboral" HorizontalAlignment="Left" Margin="10,83,0,0" VerticalAlignment="Top" Width="105"/>
-                <Button x:Name="AbrirArmarHorarioViewModel" Content="Armar Horario" HorizontalAlignment="Left" Margin="135,89,0,0" VerticalAlignment="Top" Width="90"/>
+                <Button x:Name="AbrirArmarHorario" Content="Armar Horario" HorizontalAlignment="Left" Margin="135,89,0,0" VerticalAlignment="Top" Width="90"/>
               
             </Grid>
         </GroupBox>

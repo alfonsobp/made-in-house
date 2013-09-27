@@ -9,7 +9,7 @@ namespace MadeInHouse.ViewModels.RRHH
 {
     class BuscadorEmpleadoViewModel : Screen
     {
-        public void AbrirMantenerEmpleadoViewModel()
+        public void AbrirMantenerEmpleado()
         {
             WindowManager win = new WindowManager();
             RRHH.MantenerEmpleadoViewModel obj = new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantener Empleado" };
