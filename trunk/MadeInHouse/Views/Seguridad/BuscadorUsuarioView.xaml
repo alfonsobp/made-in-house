@@ -33,21 +33,11 @@
             <Grid>
                 <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="103" Margin="10,10,10,0">
                     <Grid Margin="10,10,-12,-22">
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="119,2,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
-                        <Button Height="24" Margin="400,5,143,0" VerticalAlignment="Top">
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="174,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+                        <Button Height="24" VerticalAlignment="Top" Margin="389,25,74,0">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                         </Button>
-
-                        <ComboBox HorizontalAlignment="Left" Margin="119,35,0,0" VerticalAlignment="Top" Width="151">
-                            <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Asistente de Almacén" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Asistente de Compras" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
-                        <Label Content="Rol" HorizontalAlignment="Left" Margin="0,35,0,0" VerticalAlignment="Top" Width="61"/>
-                        <Label Content="ID Usuario" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92"/>
+                        <Label Content="ID Usuario" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="55,23,0,0"/>
                     </Grid>
                 </GroupBox>
                 <DataGrid Height="213" VerticalAlignment="Top" Margin="10,131,10,0">
