@@ -205,14 +205,9 @@
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
                         </Grid.RowDefinitions>
-
-                        <Button x:Name="AbrirReporteTardanzas"  Background="Aqua" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0"/>
-
+                            <Button x:Name="AbrirReporteTardanzas"  Background="Aqua" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0"/>
+                            <Button x:Name="AbrirReporteVentas"  Background="Aqua" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="1"/>
                     </Grid>
                 </Expander>
                 <Expander Header="Configurar" FontSize="40" Style="{StaticResource ExpanderStyle}">
