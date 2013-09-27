@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="400" d:DesignWidth="700">
-    <Grid Margin="0,0,-1,10">
+             mc:Ignorable="d" Height="418" Width="716.5">
+    <Grid Margin="0,0,-1,48">
         <ToolBar VerticalAlignment="Top">
             <Button
     			x:Name="AbrirMantenerEmpleadoViewModel">
@@ -274,6 +273,12 @@
 
             </GroupBox>
         </Grid>
+
+
+
+
+
+
 
     </Grid>
 </UserControl>
