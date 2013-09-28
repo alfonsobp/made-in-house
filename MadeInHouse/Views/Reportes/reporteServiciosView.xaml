@@ -7,19 +7,19 @@
              d:DesignWidth="600" Height="696.5">
     <Grid>
         <ToolBar VerticalAlignment="Top" Height="41">
-            <Button>
+            <Button ToolTip="Restaurar Ventana">
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button ToolTip="Limpiar criterios del reporte">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
             </Button>
-            <Button Height="30" Width="30">
+            <Button ToolTip="Actualizar datos" Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
-            <Button Height="35" Width="35">
+            <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
                 <Image Source="/MadeInHouse;component/Assets/excel logo.png" />
             </Button>
-            <Button Height="30" Width="30">
+            <Button ToolTip="Exportar tabla a PDF" Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/pdf.png" />
             </Button>
         </ToolBar>
