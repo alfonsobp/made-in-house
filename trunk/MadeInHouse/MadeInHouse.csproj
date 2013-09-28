@@ -197,6 +197,9 @@
     <Compile Include="Views\Compras\BuscadorProveedorView.xaml.cs">
       <DependentUpon>BuscadorProveedorView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Compras\BuscadorSolicitudesAdquisicion.xaml.cs">
+      <DependentUpon>BuscadorSolicitudesAdquisicion.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Compras\CatalogoProductoProveedorView.xaml.cs">
       <DependentUpon>CatalogoProductoProveedorView.xaml</DependentUpon>
     </Compile>
@@ -401,6 +404,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\BuscadorProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\BuscadorSolicitudesAdquisicion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
