@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Reportes.reporteDevolucionesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignWidth="512.791" Height="696.5">
+    <Grid Margin="0,0,0,-21">
+        <ToolBar VerticalAlignment="Top" Height="41">
+            <Button ToolTip="Restaurar Ventana">
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Limpiar criterios del reporte">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Actualizar datos" Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+            <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
+                <Image Source="/MadeInHouse;component/Assets/excel logo.png" />
+            </Button>
+            <Button ToolTip="Exportar tabla a PDF" Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/pdf.png" />
+            </Button>
+        </ToolBar>
+        <GroupBox Header="Reporte de Devoluciones" Height="639" Margin="10,46,22,0" VerticalAlignment="Top">
+            <Grid HorizontalAlignment="Left" Width="469">
+                <Button ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                </Button>
+                <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="449" Height="123">
+                    <Grid>
+                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                            <ListBoxItem Content="Tornillos Luchito"/>
+                            <ListBoxItem Content="Pepe Ganga"/>
+                            <ListBoxItem Content="Cemento Sol"/>
+                        </ListBox>
+                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                            <ListBoxItem Content="Radioshack"/>
+                        </ListBox>
+                        <Button Width="20" Content=">" Margin="209,26,208,57"></Button>
+                        <Button Width="20" Content=">>" Margin="209,49,208,32"></Button>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Categorías" VerticalAlignment="Top" Margin="10,183,0,0" Height="123" HorizontalAlignment="Left" Width="449">
+                    <Grid>
+                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                            <ListBoxItem Content="Tornillos"/>
+                            <ListBoxItem Content="Taladros"/>
+                            <ListBoxItem Content="Cemento"/>
+                            <ListBoxItem Content="Ladrillos"/>
+                            <ListBoxItem Content="Focos"/>
+                            <ListBoxItem Content="Puertas"/>
+                        </ListBox>
+                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                            <ListBoxItem Content="Lamparas"/>
+                        </ListBox>
+                        <Button  Width="20" Content=">" Margin="209,26,208,57"></Button>
+                        <Button Width="20" Content=">>" Margin="209,49,208,32"></Button>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Header="Sede" VerticalAlignment="Top" Margin="10,311,0,0" Height="123" HorizontalAlignment="Left" Width="449">
+                    <Grid>
+                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                            <ListBoxItem Content="San Miguel"/>
+                            <ListBoxItem Content="La Molina"/>
+                            <ListBoxItem Content="Puente Piedra"/>
+                            <ListBoxItem Content="Surco"/>
+                        </ListBox>
+                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                            <ListBoxItem Content="San Borja"/>
+                        </ListBox>
+                        <Button Width="20" Content=">" Margin="209,26,207,57"></Button>
+                        <Button Width="20" Content=">>" Margin="209,49,207,32"></Button>
+                    </Grid>
+                </GroupBox>
+                <DataGrid Margin="10,439,10,0" VerticalAlignment="Top" Height="176">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="55" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                        <DataGridTextColumn Width="85" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor"/>
+                        <DataGridTextColumn Width="90" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
+                        <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unit."/>
+                        <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                        <DataGridTextColumn Width="150" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Motivo"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
+                <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
+                <DatePicker HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                <DatePicker HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>
