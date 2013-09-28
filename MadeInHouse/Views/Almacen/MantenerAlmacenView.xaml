@@ -27,14 +27,14 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Informacion Tienda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="346" Grid.ColumnSpan="2">
+        <GroupBox Header="Información Tienda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="346" Grid.ColumnSpan="2">
             <Grid HorizontalAlignment="Left" Width="340">
 
-                <Label Content="Codigo" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="117,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
-                <Label Content="Nombre" HorizontalAlignment="Left" Margin="17,56,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,56,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="117,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Direccion" HorizontalAlignment="Left" Margin="17,88,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Dirección:" HorizontalAlignment="Left" Margin="17,88,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="66" Margin="117,91,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Zonas:" HorizontalAlignment="Left" Margin="17,176,0,0" VerticalAlignment="Top" Width="94"/>
                 <DataGrid HorizontalAlignment="Left" Margin="17,207,0,0" VerticalAlignment="Top" Height="140" Width="260">
