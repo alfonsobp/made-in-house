@@ -29,8 +29,8 @@
         </ToolBar>
         <DataGrid Margin="10,188,10,0" Height="234" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Codigo"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="330" Header="Razon Social"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="330" Header="Razón Social"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="150" Header="RUC"/>
             </DataGrid.Columns>
             <Button/>
@@ -45,20 +45,19 @@
             <Button/>
         </DataGrid>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="145,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <GroupBox Header="Filtrar por :" Margin="10,46,10,0" VerticalAlignment="Top" Height="137"/>
-        <Button Height="43" Margin="454,67,83,0" VerticalAlignment="Top">
+        <GroupBox Header="Criterios de Búsqueda" Margin="10,46,10,0" VerticalAlignment="Top" Height="137"/>
+        <Button Height="25" Margin="454,67,83,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="145,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <CheckBox Content="Razon Social" HorizontalAlignment="Left" Margin="26,103,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Codigo" HorizontalAlignment="Left" Margin="26,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="26,67,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="145,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <CheckBox Content="RUC" HorizontalAlignment="Left" Margin="26,133,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="175,150,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="372,150,0,0" VerticalAlignment="Top"/>
-        <CheckBox Content="Fecha Registro" HorizontalAlignment="Left" Margin="26,158,0,0" VerticalAlignment="Top"/>
-        <Label Content="De" HorizontalAlignment="Left" Margin="145,152,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasta" HorizontalAlignment="Left" Margin="327,148,0,0" VerticalAlignment="Top"/>
+        <Label Content="RUC:" HorizontalAlignment="Left" Margin="26,125,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="145,153,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker HorizontalAlignment="Left" Margin="312,155,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="26,152,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="265,153,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </UserControl>
