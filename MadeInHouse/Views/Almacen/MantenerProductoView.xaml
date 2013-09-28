@@ -36,7 +36,7 @@
                 <ComboBox HorizontalAlignment="Left" Margin="123,59,0,0" VerticalAlignment="Top" Width="160"/>
                 <ComboBox HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
                 <ComboBox HorizontalAlignment="Left" Margin="123,121,0,0" VerticalAlignment="Top" Width="160"/>
-                <CheckBox Content="Percepcion" HorizontalAlignment="Left" Margin="123,156,0,0" VerticalAlignment="Top" />
+                <CheckBox Content="Percepción" HorizontalAlignment="Left" Margin="123,156,0,0" VerticalAlignment="Top" />
                 <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,184,0,0" VerticalAlignment="Top"/>
                 <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="232,184,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="123,210,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
