@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="467">
-    <Grid HorizontalAlignment="Left" Width="540" Height="640" VerticalAlignment="Top">
+             d:DesignHeight="640" d:DesignWidth="476">
+    <Grid HorizontalAlignment="Left" Width="477" Height="640" VerticalAlignment="Top" Margin="0,0,-10,0">
         <ToolBar VerticalAlignment="Top" Margin="0">
             <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
                 <Image Source="/MadeInHouse;component/Assets/New document.png" />
@@ -17,7 +17,7 @@
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Datos del Contacto" Margin="10,46,86,383">
+        <GroupBox Header="Datos del Contacto" Margin="10,46,0,383" HorizontalAlignment="Left" Width="452">
             <Grid Margin="1">
                 <Label Content="Vendedor:" Margin="32,45,0,0" RenderTransformOrigin="0.508,1.808" VerticalAlignment="Top" HorizontalAlignment="Left"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="102,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Padding="2,0,0,0"/>
@@ -31,7 +31,7 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="102,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Padding="2,0,0,0"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Lista Requerida" Margin="10,262,86,21">
+        <GroupBox Header="Lista Requerida" Margin="10,262,0,21" HorizontalAlignment="Left" Width="452">
             <Grid Margin="1">
                 <DataGrid Margin="1,50,1,1">
                     <DataGrid.Columns>
