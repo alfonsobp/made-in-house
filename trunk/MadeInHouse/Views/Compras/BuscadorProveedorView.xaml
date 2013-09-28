@@ -5,28 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid>
-        <ToolBar Margin="0,0,0,409">
-            <Button
-                 x:Name="AbrirMantenerProveedorViewModel" >
-                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-            </Button>
-        </ToolBar>
+    <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
         <DataGrid Margin="10,188,10,0" Height="234" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Código"/>
@@ -58,6 +37,36 @@
         <DatePicker HorizontalAlignment="Left" Margin="312,155,0,0" VerticalAlignment="Top" Width="105"/>
         <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="26,152,0,0" VerticalAlignment="Top"/>
         <Label Content="Hasta:" HorizontalAlignment="Left" Margin="265,153,0,0" VerticalAlignment="Top"/>
+        <ToolBar VerticalAlignment="Top" Height="41">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button
+        		x:Name="AbrirMantenerProveedorViewModel" >
+                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            </Button>
+            <Button Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
+        </ToolBar>
 
     </Grid>
 </UserControl>
