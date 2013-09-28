@@ -28,12 +28,7 @@
         <Label Content="Tipo" HorizontalAlignment="Left" Margin="22,110,0,0" VerticalAlignment="Top"/>
         <TextBox IsEnabled="False" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="100,110,0,0"/>
 
-        <GroupBox Header="Mantener Almacenes" HorizontalAlignment="Left" Height="387" Margin="2,59,0,0" VerticalAlignment="Top" Width="359">
-            <Button HorizontalAlignment="Left" Margin="150,110,0,0" VerticalAlignment="Top" Width="50" Height="50">
-                <Image Source="/Assets/stop.png" Height="50" Width="50"/>
-            </Button>
-
-        </GroupBox>
+        <GroupBox Header="Mantener Almacenes" HorizontalAlignment="Left" Height="387" Margin="2,59,0,0" VerticalAlignment="Top" Width="359"/>
         <Label Content="Eliminar" HorizontalAlignment="Left" Margin="22,200,0,0" VerticalAlignment="Top"/>
         
         <ToolBar VerticalAlignment="Top">
