@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Reportes.reporteVentasView"
+﻿<UserControl x:Class="MadeInHouse.Views.Reportes.reporteServiciosView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="600" Height="696.5">
-    <Grid Margin="0,0,0,-21">
+             mc:Ignorable="d" 
+             d:DesignWidth="600" Height="696.5">
+    <Grid>
         <ToolBar VerticalAlignment="Top" Height="41">
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
@@ -22,7 +23,7 @@
                 <Image Source="/MadeInHouse;component/Assets/pdf.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Reporte de Ventas" HorizontalAlignment="Left" Height="639" Margin="10,46,0,-85" VerticalAlignment="Top" Width="580">
+        <GroupBox Header="Reporte de Servicios" HorizontalAlignment="Left" Height="639" Margin="10,46,0,-85" VerticalAlignment="Top" Width="580">
             <Grid>
                 <Button Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
@@ -30,12 +31,12 @@
                 <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
                     <Grid>
                         <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                            <ListBoxItem Content="Tornillos Luchito"/>
-                            <ListBoxItem Content="Pepe Ganga"/>
-                            <ListBoxItem Content="Cemento Sol"/>
+                            <ListBoxItem Content="Electrisistas Unidos"/>
+                            <ListBoxItem Content="Instalaciones 24Hrs"/>
+                            <ListBoxItem Content="Armando Muebles SAC"/>
                         </ListBox>
                         <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                            <ListBoxItem Content="Radioshack"/>
+                            <ListBoxItem Content="Fontaneros SAC"/>
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
                         <Button Content=">>" Margin="209,49,300,32"></Button>
@@ -44,15 +45,12 @@
                 <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
                     <Grid>
                         <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                            <ListBoxItem Content="Tornillos"/>
-                            <ListBoxItem Content="Taladros"/>
-                            <ListBoxItem Content="Cemento"/>
-                            <ListBoxItem Content="Ladrillos"/>
-                            <ListBoxItem Content="Focos"/>
-                            <ListBoxItem Content="Puertas"/>
+                            <ListBoxItem Content="Baños"/>
+                            <ListBoxItem Content="Techos"/>
+                            <ListBoxItem Content="Electronicos"/>
                         </ListBox>
                         <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                            <ListBoxItem Content="Lamparas"/>
+                            <ListBoxItem Content="Muebles"/>
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
                         <Button Content=">>" Margin="209,49,300,32"></Button>
@@ -77,10 +75,9 @@
                 <TextBox HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
                 <DataGrid HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top" Height="176" Width="451">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
                         <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor"/>
-                        <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
-                        <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unit."/>
+                        <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Servicio"/>
+                        <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio"/>
                         <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                         <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Monto Total"/>
                     </DataGrid.Columns>
@@ -93,5 +90,4 @@
             </Grid>
         </GroupBox>
     </Grid>
-
 </UserControl>
