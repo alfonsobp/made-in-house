@@ -24,8 +24,8 @@
             </Button>
         </ToolBar>
         <GroupBox Header="Reporte de Devoluciones" Height="639" Margin="10,46,22,0" VerticalAlignment="Top">
-            <Grid HorizontalAlignment="Left" Width="469">
-                <Button ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
+            <Grid>
+                <Button ToolTip="Generar reporte" Margin="399,21,0,0" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                 </Button>
                 <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="449" Height="123">
