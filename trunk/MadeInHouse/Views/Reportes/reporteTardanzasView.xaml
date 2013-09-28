@@ -16,7 +16,7 @@
                 <TextBox Margin="75,22,383,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
                 <DatePicker HorizontalAlignment="Left" Margin="75,55,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
                 <DatePicker HorizontalAlignment="Left" Margin="276,55,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                <Button Margin="326,89,164,0" VerticalAlignment="Top" Width="60">
+                <Button ToolTip="Generar reporte" Margin="326,89,164,0" VerticalAlignment="Top" Width="60">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                 </Button>
                 <DataGrid HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Height="190" Width="530">
