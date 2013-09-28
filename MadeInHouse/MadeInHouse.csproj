@@ -682,6 +682,7 @@
     <Resource Include="Assets\cancel.png" />
     <Resource Include="Assets\importar.png" />
     <Resource Include="Assets\file.png" />
+    <Resource Include="Assets\xls.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
