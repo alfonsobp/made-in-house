@@ -11,11 +11,11 @@
         </Grid.RowDefinitions>
         <DataGrid Margin="21,136,75,96">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo Comercial"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="90"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código Comercial"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="90"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Registro" Width="70"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Ultima Actualizacion" Width="80"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Ultima Actualización" Width="80"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Activo" Width="50"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio (S/.)" Width="180"/>
             </DataGrid.Columns>
@@ -38,7 +38,7 @@
         <Button Margin="0,240,22,0" HorizontalAlignment="Right" Width="34" Height="38" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
         </Button>
-        <Label Content="Proveedor" Margin="23,86,553,338"/>
+        <Label Content="Proveedor:" Margin="23,86,544,338"/>
         <TextBox Margin="110,86,271,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
         <Button Margin="0,83,177,0" Click="Button_Click_1" HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
@@ -67,12 +67,12 @@
         <Image Margin="21,381,0,33" Source="/MadeInHouse;component/Assets/EXCEL LOGO.png" HorizontalAlignment="Left" Width="45"/>
         <TextBox Name="file" Margin="84,394,245,33" TextWrapping="Wrap"/>
         <Button Margin="0,376,155,33" Click="Button_Click_2" HorizontalAlignment="Right" Width="75" >
-            <Image Source="/MadeInHouse;component/Assets/find.png" Height="30" Width="50" />
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="30" Width="35" />
         </Button>
         <Button Margin="0,376,75,33" HorizontalAlignment="Right" Width="75">
             <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
         </Button> 
-        <GroupBox Header="Catalogo de Productos" Margin="10,46,10,10"/>
+        <GroupBox Header="Catálogo de Productos" Margin="10,46,10,10"/>
 
     </Grid>
 </UserControl>
