@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="540">
-    <Grid>
+             d:DesignHeight="640" d:DesignWidth="467">
+    <Grid HorizontalAlignment="Left" Width="540" Height="640" VerticalAlignment="Top">
         <ToolBar VerticalAlignment="Top" Margin="0">
             <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
                 <Image Source="/MadeInHouse;component/Assets/New document.png" />
@@ -17,21 +17,21 @@
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Datos del Contacto" Margin="50,57,46,372">
+        <GroupBox Header="Datos del Contacto" Margin="10,46,86,383">
             <Grid Margin="1">
                 <Label Content="Vendedor:" Margin="32,45,0,0" RenderTransformOrigin="0.508,1.808" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="102,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Padding="2,0,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="102,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Padding="2,0,0,0"/>
                 <Label Content="Puesto:" Margin="32,78,0,0" HorizontalAlignment="Left" Width="49" Height="28" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="102,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Padding="2,0,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="102,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Padding="2,0,0,0"/>
                 <Label Content="Telf:" Margin="32,139,0,0" RenderTransformOrigin="0.469,1.615" Height="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="32"/>
-                <TextBox Margin="102,139,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="292" Height="23" VerticalAlignment="Top" Padding="2,0,0,0"/>
+                <TextBox Margin="102,139,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="126" Height="23" VerticalAlignment="Top" Padding="2,0,0,0"/>
                 <Label Content="Correo:" Margin="31,108,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="49"/>
-                <TextBox Margin="102,108,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="292" Height="23" VerticalAlignment="Top" Padding="2,0,0,0"/>
+                <TextBox Margin="102,108,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="221" Height="23" VerticalAlignment="Top" Padding="2,0,0,0"/>
                 <Label Content="Tienda:" Margin="32,13,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="102,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="292" Padding="2,0,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="102,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221" Padding="2,0,0,0"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Lista Requerida" Margin="50,273,46,10">
+        <GroupBox Header="Lista Requerida" Margin="10,262,86,21">
             <Grid Margin="1">
                 <DataGrid Margin="1,50,1,1">
                     <DataGrid.Columns>
@@ -42,7 +42,7 @@
                 </DataGrid>
                 <Label Content="Producto:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="76,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Button x:Name="AbrirBuscarProducto" HorizontalAlignment="Left" Width="60" Margin="216,14,0,0" Height="23" VerticalAlignment="Top">
+                <Button x:Name="AbrirBuscarProducto" HorizontalAlignment="Left" Width="60" Margin="216,14,0,0" Height="25" VerticalAlignment="Top">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="292,10,0,0" VerticalAlignment="Top"/>
