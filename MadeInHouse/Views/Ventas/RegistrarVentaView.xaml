@@ -11,7 +11,7 @@
         <TextBox HorizontalAlignment="Left" Height="23" Margin="130,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="57,156,0,0" TextWrapping="Wrap" Text="RUC:" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="130,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <GroupBox Header="Productos" Margin="40,227,40,0" VerticalAlignment="Top" Height="300">
+        <GroupBox Header="Productos" Margin="40,227,0,0" VerticalAlignment="Top" Height="300" HorizontalAlignment="Left" Width="420">
             <Grid Margin="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -20,7 +20,7 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="280,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Cantidad:" VerticalAlignment="Top" Width="57" Margin="214,10,0,0"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="99,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
-                <DataGrid Margin="10,50,10,10">
+                <DataGrid Margin="10,50,0,10" HorizontalAlignment="Left" Width="386">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="IDProducto"/>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción"/>
