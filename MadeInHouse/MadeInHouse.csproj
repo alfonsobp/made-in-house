@@ -619,7 +619,6 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\add.png" />
     <Resource Include="Assets\check.png" />
     <Resource Include="Assets\conf.png" />
     <Resource Include="Assets\copy.png" />
@@ -631,9 +630,7 @@
     <Resource Include="Assets\edit2old.png" />
     <Resource Include="Assets\edit3.png" />
     <Resource Include="Assets\editar.png" />
-    <Resource Include="Assets\eraser.png" />
     <Resource Include="Assets\excel.png" />
-    <Resource Include="Assets\find.png" />
     <Resource Include="Assets\images %281%29.jpg" />
     <Resource Include="Assets\images %283%29.jpg" />
     <Resource Include="Assets\images %284%29.jpg" />
@@ -641,15 +638,11 @@
     <Resource Include="Assets\images %287%29.jpg" />
     <Resource Include="Assets\images.jpg" />
     <Resource Include="Assets\link.png" />
-    <Resource Include="Assets\minus.png" />
     <Resource Include="Assets\new.png" />
-    <Resource Include="Assets\new2.png" />
     <Resource Include="Assets\open.png" />
     <Resource Include="Assets\pdf.png" />
     <Resource Include="Assets\redo.png" />
-    <Resource Include="Assets\refresh.png" />
     <Resource Include="Assets\report.png" />
-    <Resource Include="Assets\save.png" />
     <Resource Include="Assets\save2.png" />
     <Resource Include="Assets\start.png" />
     <Resource Include="Assets\undo.png" />
@@ -670,15 +663,25 @@
     <Resource Include="Assets\controlarAsistencia.png" />
     <Resource Include="Assets\eliminarEmpleado.png" />
     <Resource Include="Assets\modificarEmpleado.png" />
-    <Resource Include="Assets\edit2.png" />
     <Resource Include="Assets\EXCEL LOGO.png" />
     <Resource Include="Assets\mario.jpg" />
-    <Resource Include="Assets\delete.png" />
     <Resource Include="Assets\delete1.png" />
     <Resource Include="Assets\New document.png" />
     <Resource Include="Assets\icono_imprimir.jpg" />
     <Resource Include="Assets\anonimo.png" />
     <Resource Include="Assets\stop.png" />
+    <Resource Include="Assets\add.png" />
+    <Resource Include="Assets\delete.png" />
+    <Resource Include="Assets\edit2.png" />
+    <Resource Include="Assets\eraser.png" />
+    <Resource Include="Assets\find.png" />
+    <Resource Include="Assets\minus.png" />
+    <Resource Include="Assets\new2.png" />
+    <Resource Include="Assets\refresh.png" />
+    <Resource Include="Assets\save.png" />
+    <Resource Include="Assets\cancel.png" />
+    <Resource Include="Assets\importar.png" />
+    <Resource Include="Assets\file.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
