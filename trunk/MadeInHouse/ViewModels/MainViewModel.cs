@@ -319,6 +319,10 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Reportes.reporteDevolucionesViewModel { DisplayName = "Reporte de Devoluciones" });
         }
+        public void AbrirReporteAcciones()
+        {
+            win.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
+        }
 
 
 

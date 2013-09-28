@@ -207,11 +207,13 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                             <Button x:Name="AbrirReporteTardanzas"  Background="Aqua" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0"/>
-                            <Button x:Name="AbrirReporteVentas"  Background="Aqua" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="1"/>
-                            <Button x:Name="AbrirReporteServicios"  Background="Aqua" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="2"/>
-                            <Button x:Name="AbrirReporteDevoluciones"  Background="Aqua" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="3"/>
+                            <Button x:Name="AbrirReporteAcciones"  Background="Aqua" BorderThickness="0" Content="Log de Acciones" FontSize="20" Grid.Row="1"/>
+                            <Button x:Name="AbrirReporteVentas"  Background="Aqua" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="2"/>
+                            <Button x:Name="AbrirReporteServicios"  Background="Aqua" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="3"/>
+                            <Button x:Name="AbrirReporteDevoluciones"  Background="Aqua" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="4"/>
                     </Grid>
                 </Expander>
                 <Expander Header="Configurar" FontSize="40" Style="{StaticResource ExpanderStyle}">
