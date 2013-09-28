@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="322" d:DesignWidth="459">
+             d:DesignHeight="429" d:DesignWidth="459">
     <Grid>
-        <GroupBox Header="Criterios de búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="93" HorizontalAlignment="Left" Width="433">
+        <GroupBox Header="Criterios de búsqueda" Margin="10,46,0,290" HorizontalAlignment="Left" Width="433">
             <Grid Margin="1">
-                <Button  HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="60" Margin="351,37,0,0">
+                <Button  HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="60" Margin="336,37,0,0">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="ID Venta:" VerticalAlignment="Top"/>
@@ -19,7 +19,7 @@
                 <DatePicker HorizontalAlignment="Left" Margin="81,37,0,0" VerticalAlignment="Top" Width="97"/>
             </Grid>
         </GroupBox>
-        <DataGrid Margin="10,144,16,12">
+        <DataGrid Margin="10,144,16,0" Height="273" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Venta"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Cliente"/>
