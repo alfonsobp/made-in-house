@@ -30,21 +30,21 @@
 
         <GroupBox Header="Buscador de Empleados" Margin="10,46,10,10" >
             <Grid Margin="0,0,0,8">
-                <GroupBox Header="Filtrar por :" Margin="10,10,10,0" VerticalAlignment="Top" Height="167">
+                <GroupBox Header="Filtrar por" Margin="10,10,10,0" VerticalAlignment="Top" Height="167">
                     <Grid>
-                        <Label Content="Código" HorizontalAlignment="Left" VerticalAlignment="Top" Width="48" Margin="37,14,0,0"/>
-                        <Label Content="DNI" HorizontalAlignment="Left" Margin="52,45,0,0" VerticalAlignment="Top" Width="33"/>
-                        <Label Content="Nombre" HorizontalAlignment="Left" Margin="26,76,0,0" VerticalAlignment="Top" Width="59"/>
-                        <Label Content="A. Paterno" HorizontalAlignment="Left" Margin="15,107,0,0" VerticalAlignment="Top" Width="70"/>
+                        <Label Content="Código:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Margin="15,14,0,0"/>
+                        <Label Content="DNI:" HorizontalAlignment="Left" Margin="15,45,0,0" VerticalAlignment="Top" Width="59"/>
+                        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="15,76,0,0" VerticalAlignment="Top" Width="59"/>
+                        <Label Content="A. Paterno:" HorizontalAlignment="Left" Margin="15,107,0,0" VerticalAlignment="Top" Width="70"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="101,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
 
-                        <Label Content="Sede" HorizontalAlignment="Left" Margin="389,17,0,0" VerticalAlignment="Top" Width="36"/>
-                        <Label Content="Área de trabajo" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="92"/>
-                        <Label Content="Puesto" HorizontalAlignment="Left" Margin="377,74,0,0" VerticalAlignment="Top" Width="49"/>
-                        
+                        <Label Content="Sede:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="44"/>
+                        <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="96"/>
+                        <Label Content="Puesto:" HorizontalAlignment="Left" Margin="334,74,0,0" VerticalAlignment="Top" Width="49"/>
+
                         <ComboBox HorizontalAlignment="Left" Margin="447,17,0,0" VerticalAlignment="Top" Width="120">
                             <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
@@ -66,7 +66,7 @@
                             <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
 
-                        <Button Height="24" Margin="464,111,109,0" VerticalAlignment="Top">
+                        <Button Height="25" Margin="464,111,109,0" VerticalAlignment="Top">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                         </Button>
                     </Grid>
@@ -88,9 +88,9 @@
         </GroupBox>
 
 
-        
-        
-        
+
+
+
 
     </Grid>
 </UserControl>
