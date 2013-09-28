@@ -323,7 +323,10 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
         }
-
+        public void AbrirReporteCompras()
+        {
+            win.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
+        }
 
 
         #endregion

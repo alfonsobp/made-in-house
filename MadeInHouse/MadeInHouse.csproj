@@ -95,6 +95,7 @@
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteDevolucionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteServiciosViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteTardanzasViewModel.cs" />
@@ -242,6 +243,9 @@
     </Compile>
     <Compile Include="Views\Reportes\reporteAccionesView.xaml.cs">
       <DependentUpon>reporteAccionesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\reporteComprasView.xaml.cs">
+      <DependentUpon>reporteComprasView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\reporteDevolucionesView.xaml.cs">
       <DependentUpon>reporteDevolucionesView.xaml</DependentUpon>
@@ -460,6 +464,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Reportes\reporteAccionesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\reporteComprasView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
