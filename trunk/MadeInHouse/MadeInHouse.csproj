@@ -233,20 +233,11 @@
     <Compile Include="Views\Compras\CatalogoServiciosView.xaml.cs">
       <DependentUpon>CatalogoServiciosView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Compras\editarProveedorView.xaml.cs">
-      <DependentUpon>editarProveedorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Compras\editarServicioView.xaml.cs">
-      <DependentUpon>editarServicioView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Compras\generarOrdenCompraView.xaml.cs">
       <DependentUpon>generarOrdenCompraView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\MantenerProveedorView.xaml.cs">
       <DependentUpon>MantenerProveedorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Compras\ListadoServicioView.xaml.cs">
-      <DependentUpon>ListadoServicioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\mantenerProductoView.xaml.cs">
       <DependentUpon>mantenerProductoView.xaml</DependentUpon>
@@ -487,23 +478,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Compras\editarProveedorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Compras\editarServicioView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Compras\generarOrdenCompraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\MantenerProveedorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Compras\ListadoServicioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -787,6 +766,7 @@
     <Resource Include="Assets\warehouse.png" />
     <Resource Include="Assets\close-icon.png" />
     <Resource Include="Assets\minimize-icon.png" />
+    <Resource Include="Assets\home.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />

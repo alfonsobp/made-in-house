@@ -3,23 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="379.403" Height="392.687">
+             mc:Ignorable="d" d:DesignWidth="379.403" Height="440.687">
     <Grid RenderTransformOrigin="0.482,0.483">
         <Label Content="Código:" HorizontalAlignment="Left" Height="38" Margin="35,81,0,0" VerticalAlignment="Top" Width="51"/>
-        <Label Content="Razón Social:" HorizontalAlignment="Left" Height="38" Margin="35,124,0,0" VerticalAlignment="Top" Width="85"/>
-        <Label Content="Dirección:" HorizontalAlignment="Left" Height="41" Margin="35,319,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label Content="Teléfono:" HorizontalAlignment="Left" Height="23" Margin="35,165,0,0" VerticalAlignment="Top" Width="60"/>
-        <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,204,0,0" VerticalAlignment="Top" Width="40"/>
-        <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,243,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,282,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Height="38" Margin="35,161,0,0" VerticalAlignment="Top" Width="85"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Height="41" Margin="35,356,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="Teléfono:" HorizontalAlignment="Left" Height="23" Margin="35,202,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
-        <TextBox HorizontalAlignment="Left" Height="55" Margin="125,319,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
+        <TextBox HorizontalAlignment="Left" Height="55" Margin="125,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2222222"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2312"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="RAUL GONZALES"/>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="121212121212"/>
-        <GroupBox Header="Nuevo Proveedor" HorizontalAlignment="Left" Height="337" Margin="10,46,0,0" VerticalAlignment="Top" Width="356"/>
+        <GroupBox Header="Nuevo Proveedor" HorizontalAlignment="Left" Height="385" Margin="11,46,0,0" VerticalAlignment="Top" Width="356"/>
         <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -34,17 +34,22 @@
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
             </Button>
             <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            </Button>
+            <Button Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
+        <Label Content="Telf Contacto:" HorizontalAlignment="Left" Height="23" Margin="11,328,0,0" VerticalAlignment="Top" Width="85"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
     </Grid>
 </UserControl>
