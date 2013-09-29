@@ -359,7 +359,7 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
         }
-        public void AbrirReporteCompras()
+        public void AbrirReporteCompra()
         {
             win.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
         }

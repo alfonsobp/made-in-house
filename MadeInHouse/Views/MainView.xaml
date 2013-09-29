@@ -204,7 +204,7 @@
                         <Button x:Name="AbrirReporteVentas"   Background="Black" Foreground="white" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="2"/>
                         <Button x:Name="AbrirReporteServicios"   Background="Black" Foreground="white" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="3"/>
                         <Button x:Name="AbrirReporteDevoluciones"  Background="Black" Foreground="white"  BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="4"/>
-                        <Button x:Name="AbrirReporteCompras"  Background="Black" Foreground="white"  BorderThickness="0" Content="Compras" FontSize="20" Grid.Row="5"/>
+                        <Button x:Name="AbrirReporteCompra"  Background="Black" Foreground="white"  BorderThickness="0" Content="Compras" FontSize="20" Grid.Row="5"/>
                         <Button x:Name="AbrirReporteEntradaSalidaProd"   Background="Black" Foreground="white" BorderThickness="0" Content="Ent/Sal de Productos" FontSize="20" Grid.Row="6"/>
                         <Button x:Name="AbrirReporteSolicitudes"  Background="Black" Foreground="white"  BorderThickness="0" Content="Solicitudes" FontSize="20" Grid.Row="7"/>
                         <Button x:Name="AbrirReporteStock"  Background="Black" Foreground="white"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8"/>
