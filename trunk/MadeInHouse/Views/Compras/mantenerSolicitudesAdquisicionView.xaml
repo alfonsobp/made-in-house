@@ -6,17 +6,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="680">
     <Grid Height="460" VerticalAlignment="Top">
-        <Label Content="Codigo de Solicitud de adquisición" HorizontalAlignment="Left" Margin="28,48,0,0" VerticalAlignment="Top"/>
-        <Label Content="Elaborado por  " HorizontalAlignment="Left" Margin="41,127,0,0" VerticalAlignment="Top" Width="86"/>
-        <Label Content="Puesto" HorizontalAlignment="Left" Margin="79,153,0,0" VerticalAlignment="Top" Width="61"/>
-        <Label Content="Almacen" HorizontalAlignment="Left" Margin="404,128,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="172,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Text="Juan Perez Gonzales"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="172,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Text="Operario Ventas"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="500,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="ALMACEN-001"/>
+        <GroupBox Header="Detalle:" HorizontalAlignment="Left" Height="90" Margin="7,107,0,0" VerticalAlignment="Top" Width="663"/>
+        <Label Content="Código de Solicitud de adquisición:" HorizontalAlignment="Left" Margin="28,53,0,0" VerticalAlignment="Top"/>
+        <Label Content="Elaborado por:" HorizontalAlignment="Left" Margin="41,127,0,0" VerticalAlignment="Top" Width="94"/>
+        <Label Content="Puesto:" HorizontalAlignment="Left" Margin="41,153,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="343,128,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="148,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Text="Juan Perez Gonzales"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="149,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Text="Operario Ventas"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="438,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="ALMACEN-001"/>
         <DataGrid HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Height="227" Width="484">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo de Producto" Width="120"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="130"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código de Producto" Width="120"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="130"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad Solicitada" Width="120"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad Atendida" Width="150"/>
             </DataGrid.Columns>
@@ -37,10 +38,10 @@
         <Button  HorizontalAlignment="Left" Height="39" Margin="593,381,0,0" VerticalAlignment="Top" Width="67">
             <Image Source="/MadeInHouse;component/Assets/stop.png" Height="30" Width="50" />
         </Button>
-        <GroupBox Header="Detalle" HorizontalAlignment="Left" Height="90" Margin="7,107,0,0" VerticalAlignment="Top" Width="663"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="500,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="12/12/2012"/>
-        <Label Content="Fecha Emision" HorizontalAlignment="Left" Margin="379,156,0,0" VerticalAlignment="Top" Width="114"/>
-            <ToolBar VerticalAlignment="Top">
+
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="438,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="12/12/2012"/>
+        <Label Content="Fecha Emisión:" HorizontalAlignment="Left" Margin="343,156,0,0" VerticalAlignment="Top" Width="114"/>
+        <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -48,30 +49,30 @@
                 </LinearGradientBrush>
             </ToolBar.Background>
             <Button>
-                    <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-                </Button>
-                <Button>
-                    <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-                </Button>
-                <Button>
-                    <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-                </Button>
-                <Button>
-                    <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                </Button>
-                <Button>
-                    <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                </Button>
-                <Button Height="30" Width="30">
-                    <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                </Button>
-            </ToolBar>
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+        </ToolBar>
         <TextBox HorizontalAlignment="Left" Height="23" Margin="527,347,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TextBox_TextChanged_1"/>
-        <Label Content="Cantidad Atendida" HorizontalAlignment="Left" Margin="527,316,0,0" VerticalAlignment="Top"/>
+        <Label Content="Cantidad Atendida:" HorizontalAlignment="Left" Margin="527,316,0,0" VerticalAlignment="Top"/>
         <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="527,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Codigo" HorizontalAlignment="Left" Margin="527,257,0,0" VerticalAlignment="Top"/>
-        <GroupBox Header="Ingresar Detalles " HorizontalAlignment="Left" Margin="503,209,0,0" VerticalAlignment="Top" Width="167" Height="227"/>
-        <Button  HorizontalAlignment="Left" Height="34" Margin="299,67,0,0" VerticalAlignment="Top" Width="45">
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="527,257,0,0" VerticalAlignment="Top"/>
+        <GroupBox Header="Ingresar Detalles" HorizontalAlignment="Left" Margin="503,209,0,0" VerticalAlignment="Top" Width="167" Height="227"/>
+        <Button  HorizontalAlignment="Left" Height="25" Margin="299,79,0,0" VerticalAlignment="Top" Width="64">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="28,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Text="SOL-ADQ-9800121"/>
