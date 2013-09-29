@@ -97,7 +97,7 @@
                        
                        
                         <Button  Background="Beige" BorderThickness="0" Content="Solicitudes de Adquisicion" FontSize="20"  Grid.Row="7"/>                       
-                        <Button  x:Name="AbrirBuscadorSolicitudesAdquisicionViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscador de Solicitudes" FontSize="20"  Grid.Row="8"/>
+                        <Button  x:Name="AbrirBuscadorSolicitudesAdquisicionViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar de Solicitudes" FontSize="20"  Grid.Row="8"/>
                         <Button x:Name="AbrirSeleccionDeProveedoresViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="9"/>
 
                         <Button  Background="Beige" BorderThickness="0" Content="Ordenes de Compra" FontSize="20"  Grid.Row="10"/>
@@ -106,7 +106,7 @@
                         
                         <Button  Background="Beige" BorderThickness="0" Content="Documentos de pago" FontSize="20"  Grid.Row="13"/>
                         <Button x:Name="AbrirRegistrarDocumentosViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Documento" FontSize="20"  Grid.Row="14"/>
-                        <Button x:Name="AbrirBuscarDocumentosViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar de documentos de pago" FontSize="20"  Grid.Row="15"/>
+                        <Button x:Name="AbrirBuscarDocumentosViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="15"/>
                           
                     </Grid>
                 </Expander>

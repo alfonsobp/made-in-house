@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="460" d:DesignWidth="680">
-    <Grid Height="460" VerticalAlignment="Top">
+    <Grid Height="460" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
         <GroupBox Header="Detalle:" HorizontalAlignment="Left" Height="90" Margin="7,107,0,0" VerticalAlignment="Top" Width="663"/>
         <Label Content="Código de Solicitud de adquisición:" HorizontalAlignment="Left" Margin="28,53,0,0" VerticalAlignment="Top"/>
         <Label Content="Elaborado por:" HorizontalAlignment="Left" Margin="41,127,0,0" VerticalAlignment="Top" Width="94"/>

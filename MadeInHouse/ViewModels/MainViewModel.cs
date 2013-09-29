@@ -157,7 +157,7 @@ namespace MadeInHouse.ViewModels
         public void AbrirBuscarDocumentosViewModel() {
 
             WindowManager win = new WindowManager();
-            Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos Pago" };
+            Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos de  Pago" };
             win.ShowWindow(obj);
             
 
@@ -169,7 +169,7 @@ namespace MadeInHouse.ViewModels
         {
 
             WindowManager win = new WindowManager();
-            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel{ DisplayName = "Buscador Documentos Pago" };
+            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel{ DisplayName = "Buscador Orden de compra" };
             win.ShowWindow(obj);
             
 
@@ -197,7 +197,7 @@ namespace MadeInHouse.ViewModels
         }
         public void AbrirEditarProveedorViewModel()
         {
-            ActivateItem(new Compras.editarProveedorViewModel { DisplayName = "Editas" });
+            ActivateItem(new Compras.editarProveedorViewModel { DisplayName = "Edita Proveedor" });
         }
 
         public void AbrirBuscadorProveedorViewModel() {
