@@ -6,6 +6,12 @@
              mc:Ignorable="d" d:DesignWidth="600" Height="567">
     <Grid>
         <ToolBar VerticalAlignment="Top" Margin="0">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
             <Button x:Name="AbrirRegistrarPromoProducto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
                 <Image Source="/MadeInHouse;component/Assets/New document.png" />
             </Button>
