@@ -158,6 +158,14 @@ namespace MadeInHouse.ViewModels
         {
             ActivateItem(new Compras.agregarServicioViewModel { DisplayName = "Agregar" });
         }
+
+        public void AbrirBuscadorServicioViewModel()
+        {
+            WindowManager win = new WindowManager();
+            Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel { DisplayName = "Buscador de Servicios" };
+            win.ShowWindow(obj);
+        }
+
         public void AbrirCatalogoProductoProveedorModel()
         {
             //ActivateItem(new Compras.CatalogoProductoProveedorViewModel { DisplayName = "Catalogo productos" });

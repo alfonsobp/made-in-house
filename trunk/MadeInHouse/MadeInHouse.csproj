@@ -94,6 +94,7 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorSolicitudesAdquisicionViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
@@ -198,6 +199,9 @@
     </Compile>
     <Compile Include="Views\Compras\BuscadorProveedorView.xaml.cs">
       <DependentUpon>BuscadorProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\BuscadorServicioView.xaml.cs">
+      <DependentUpon>BuscadorServicioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\BuscadorSolicitudesAdquisicionView.xaml.cs">
       <DependentUpon>BuscadorSolicitudesAdquisicionView.xaml</DependentUpon>
@@ -409,6 +413,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\BuscadorProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\BuscadorServicioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
