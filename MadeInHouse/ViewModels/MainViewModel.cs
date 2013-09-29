@@ -299,13 +299,13 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirBuscadorEmpleado()
         {
-            win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar empleado" });
+            win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
 
         }
 
         public void AbrirMantenerEmpleado()
         {
-            win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantener empleado" });
+            win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Registrar Empleado" });
         }
 
         public void AbrirControlarAsistenciaEmpleado()
