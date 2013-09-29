@@ -101,7 +101,10 @@
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteDevolucionesViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteEnSaProductosViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteServiciosViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteSolicitudesViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteStockViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteTardanzasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteVentasViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ArmarHorarioViewModel.cs" />
@@ -266,8 +269,17 @@
     <Compile Include="Views\Reportes\reporteDevolucionesView.xaml.cs">
       <DependentUpon>reporteDevolucionesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\reporteEnSaProductosView.xaml.cs">
+      <DependentUpon>reporteEnSaProductosView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\reporteServiciosView.xaml.cs">
       <DependentUpon>reporteServiciosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\reporteSolicitudesView.xaml.cs">
+      <DependentUpon>reporteSolicitudesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\reporteStockView.xaml.cs">
+      <DependentUpon>reporteStockView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\reporteTardanzasView.xaml.cs">
       <DependentUpon>reporteTardanzasView.xaml</DependentUpon>
@@ -507,7 +519,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reportes\reporteEnSaProductosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reportes\reporteServiciosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\reporteSolicitudesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\reporteStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
