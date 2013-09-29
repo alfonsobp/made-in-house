@@ -7,6 +7,12 @@
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
         <ToolBar VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
@@ -28,13 +34,13 @@
         </ToolBar>
         <GroupBox Header="Mantener Usuario" HorizontalAlignment="Left" Margin="33,49,0,0" VerticalAlignment="Top" Height="134" Width="607">
             <Grid>
-                <Label Content="ID Usuario" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66" Margin="141,14,0,0"/>
+                <Label Content="ID Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="78" Margin="141,14,0,0"/>
                 <Label Content="Confirmar Contraseña" HorizontalAlignment="Left" Margin="141,74,0,0" VerticalAlignment="Top" Width="131"/>
-                <Label Content="Contraseña" HorizontalAlignment="Left" Margin="141,44,0,0" VerticalAlignment="Top" Width="78"/>
+                <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="141,44,0,0" VerticalAlignment="Top" Width="78"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="297,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                 <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="297,14,0,0"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="297,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-               
+
 
             </Grid>
         </GroupBox>
@@ -42,8 +48,8 @@
         <GroupBox Header="Asignación de accesos" HorizontalAlignment="Left" Margin="33,200,0,0" VerticalAlignment="Top" Height="273" Width="607">
             <Grid>
 
-                <Label Content="Rol" HorizontalAlignment="Left" VerticalAlignment="Top" Width="32" Margin="39,14,0,0"/>
-                <ComboBox HorizontalAlignment="Left" Margin="143,14,0,0" VerticalAlignment="Top" Width="120">
+                <Label Content="Rol:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="32" Margin="39,14,0,0"/>
+                <ComboBox HorizontalAlignment="Left" Margin="111,14,0,0" VerticalAlignment="Top" Width="120">
                     <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>
@@ -51,8 +57,8 @@
                     <ComboBoxItem Content="Asistente de Compras" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
                 </ComboBox>
-                <Label Content="Módulo" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="36,52,0,0"/>
-                <ComboBox x:Name="cmbUsuarioArea" HorizontalAlignment="Left" Margin="143,52,0,0" VerticalAlignment="Top" Width="120" Focusable="True">
+                <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="36,52,0,0"/>
+                <ComboBox x:Name="cmbUsuarioArea" HorizontalAlignment="Left" Margin="111,52,0,0" VerticalAlignment="Top" Width="120" Focusable="True">
                     <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
@@ -60,7 +66,7 @@
                     <ComboBoxItem Content="Seguridad" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="Reportes" HorizontalAlignment="Left" Width="118"/>
                 </ComboBox>
-                <Label Content="Accesos" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="329,33,0,0"/>
+                <Label Content="Accesos:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="65" Margin="265,52,0,0"/>
 
                 <DataGrid HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Height="132" Width="575">
                     <DataGrid.Columns>
@@ -70,8 +76,8 @@
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Escritura"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <CheckBox Content="Lectura" HorizontalAlignment="Left" Margin="421,31,0,0" VerticalAlignment="Top" Width="77"/>
-                <CheckBox Content="Escritura" HorizontalAlignment="Left" Margin="421,51,0,0" VerticalAlignment="Top" Width="77"/>
+                <CheckBox Content="Lectura" HorizontalAlignment="Left" Margin="330,57,0,0" VerticalAlignment="Top" Width="77"/>
+                <CheckBox Content="Escritura" HorizontalAlignment="Left" Margin="412,57,0,0" VerticalAlignment="Top" Width="77"/>
             </Grid>
         </GroupBox>
 
