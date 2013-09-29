@@ -21,8 +21,8 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="324,48,0,0" VerticalAlignment="Top"/>
-        <Label Content="Código:" HorizontalAlignment="Left" Margin="329,79,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.5">
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="347,64,0,0" VerticalAlignment="Top"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="352,91,0,0" VerticalAlignment="Top" Width="50" RenderTransformOrigin="0.5,0.5">
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -32,8 +32,8 @@
                 </TransformGroup>
             </Label.RenderTransform>
         </Label>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="404,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" Text="LADRILLOS DIAZ S.A."/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="404,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" Text="PROV-0024"/>
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="25" Margin="427,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="189" Text="LADRILLOS DIAZ S.A."/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="25" Margin="427,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" Text="PROV-0024"/>
         <Label Content="Medio de pago:" HorizontalAlignment="Left" Margin="50,192,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha de rececepción:" HorizontalAlignment="Left" Margin="274,155,0,0" VerticalAlignment="Top"/>
         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="36,377,0,0" VerticalAlignment="Top"/>
@@ -76,7 +76,7 @@
             </Button>
         </ToolBar>
         <Label Content="Número:" HorizontalAlignment="Left" Margin="50,152,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fecha Vencimiento:" HorizontalAlignment="Left" Margin="274,192,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha vencimiento:" HorizontalAlignment="Left" Margin="274,192,0,0" VerticalAlignment="Top"/>
         <TextBox   HorizontalAlignment="Left" Height="29" Margin="146,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Text="1233121212"/>
         <TextBox  HorizontalAlignment="Left" Height="26" Margin="587,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Descuento:" HorizontalAlignment="Left" Height="26" Margin="477,408,0,0" VerticalAlignment="Top" Width="77" RenderTransformOrigin="0.541,1.444"/>
@@ -87,11 +87,11 @@
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,500,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="TOTAL:" HorizontalAlignment="Left" Height="26" Margin="477,500,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.541,1.444"/>
         <TextBox   IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="146,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Text="BOLETA"/>
-        <GroupBox Header="Proveedor" Margin="603,38,41,0" VerticalAlignment="Top" Height="88"/>
-        <GroupBox Header="Detalle del documento de pago" Height="104" Margin="10,126,43,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
+        <GroupBox Header="Proveedor" Margin="334,46,43,0" VerticalAlignment="Top" Height="80"/>
+        <GroupBox Header="Detalle del documento de pago" Height="104" Margin="36,126,43,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
         <GroupBox Header="Detalle" Margin="0,356,31,0" HorizontalAlignment="Right" Width="261" Height="181" VerticalAlignment="Top"/>
-        <Label Content="Orden de compra en proceso" HorizontalAlignment="Left" Height="31" Margin="19,48,0,0" VerticalAlignment="Top" Width="205"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="19,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Text="OC-98000012"/>
+        <Label Content="Orden de compra en proceso" HorizontalAlignment="Left" Height="31" Margin="36,48,0,0" VerticalAlignment="Top" Width="205"/>
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="25" Margin="36,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Text="OC-98000012"/>
         <Button  HorizontalAlignment="Left" Height="25" Margin="224,79,0,0" VerticalAlignment="Top" Width="76">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="50" />
         </Button>
