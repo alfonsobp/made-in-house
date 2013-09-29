@@ -71,6 +71,9 @@
             <Button Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
+            <Button Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/money.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
         </ToolBar>
 
     </Grid>

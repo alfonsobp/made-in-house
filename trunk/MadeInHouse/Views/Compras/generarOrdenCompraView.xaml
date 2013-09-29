@@ -6,8 +6,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="640">
     <Grid>
-        <Label Content="Orden de compra a emitir:" HorizontalAlignment="Left" Height="31" Margin="18,69,0,0" VerticalAlignment="Top" Width="205"/>
-        <DataGrid Height="118" Margin="18,205,10,0" VerticalAlignment="Top">
+        <Label Content="Orden de compra :" HorizontalAlignment="Left" Height="31" Margin="18,69,0,0" VerticalAlignment="Top" Width="205"/>
+        <DataGrid Height="118" Margin="18,188,10,0" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código Comercial" Width="110">
                     <DataGridTextColumn.Foreground>
@@ -36,8 +36,8 @@
         <Label Content="Fecha Emisión:" HorizontalAlignment="Left" Margin="338,146,0,0" VerticalAlignment="Top"/>
         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="25,342,0,0" VerticalAlignment="Top"/>
         <TextBox HorizontalAlignment="Left" Margin="25,373,0,26" TextWrapping="Wrap" Width="293"/>
-        <TextBox IsEnabled="false" Margin="434,342,0,82" TextWrapping="Wrap" HorizontalAlignment="Left" Width="111"/>
-        <Label Content="Total Bruto:" Height="26" Margin="0,342,222,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="80"/>
+        <TextBox IsEnabled="false" Margin="494,324,0,100" TextWrapping="Wrap" HorizontalAlignment="Left" Width="127"/>
+        <Label Content="Total Bruto:" Height="26" Margin="0,324,165,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="92"/>
         <GroupBox Header="Detalle" Height="82" VerticalAlignment="Top" Margin="10,101,10,0" RenderTransformOrigin="0.5,0.5"/>
         <ComboBox HorizontalAlignment="Left" Margin="434,117,0,0" VerticalAlignment="Top" Width="156">
             <ComboBoxItem Content="FACTURA"/>
@@ -76,10 +76,9 @@
             <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="156"/>
         </Menu>
         <DatePicker  HorizontalAlignment="Left" Margin="434,146,0,0" VerticalAlignment="Top" Width="156"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="171,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Text="OC-98000012"/>
-        <Button  HorizontalAlignment="Left" Height="25" Margin="369,69,0,0" VerticalAlignment="Top" Width="60">
-            <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="50" />
-        </Button>
+        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="144,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Text="OC-98000012"/>
+
+
 
     </Grid>
 </UserControl>

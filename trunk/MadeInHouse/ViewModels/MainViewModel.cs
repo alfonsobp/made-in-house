@@ -208,9 +208,7 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(obj);
         }
 
-     
-
-
+  
         public void AbrirGenerarOrdenCompra()
         {
             WindowManager win = new WindowManager();
@@ -252,6 +250,19 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(obj);
             
         }
+
+        public void AbrirBuscarCotizacion()
+        {
+            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel{ DisplayName = "Buscador Cotizaciones" };
+            win.ShowWindow(obj);
+        }
+
+        public void AbrirNuevaCotizacion()
+        {
+            Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel { DisplayName = "Cotizacion" };
+            win.ShowWindow(obj);
+        }
+
 
         #endregion Compras
 
