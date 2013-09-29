@@ -81,7 +81,7 @@
         <TextBox  HorizontalAlignment="Left" Height="26" Margin="587,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Descuento:" HorizontalAlignment="Left" Height="26" Margin="477,408,0,0" VerticalAlignment="Top" Width="77" RenderTransformOrigin="0.541,1.444"/>
         <TextBox  HorizontalAlignment="Left" Height="26" Margin="587,439,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Interes financiero:" HorizontalAlignment="Left" Height="26" Margin="477,439,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.541,1.444"/>
+        <Label Content="Interés financiero:" HorizontalAlignment="Left" Height="26" Margin="477,439,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.541,1.444"/>
         <TextBox  HorizontalAlignment="Left" Height="26" Margin="587,469,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="IGV:" HorizontalAlignment="Left" Height="26" Margin="477,469,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.541,1.444"/>
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,500,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
@@ -89,7 +89,7 @@
         <TextBox   IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="146,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91" Text="BOLETA"/>
         <GroupBox Header="Proveedor" Margin="334,46,43,0" VerticalAlignment="Top" Height="80"/>
         <GroupBox Header="Detalle del documento de pago" Height="104" Margin="36,126,43,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-        <GroupBox Header="Detalle" Margin="0,356,31,0" HorizontalAlignment="Right" Width="261" Height="181" VerticalAlignment="Top"/>
+        <GroupBox Header="Detalle" Margin="0,356,31,0" HorizontalAlignment="Right" Width="254" Height="181" VerticalAlignment="Top"/>
         <Label Content="Orden de compra en proceso" HorizontalAlignment="Left" Height="31" Margin="36,48,0,0" VerticalAlignment="Top" Width="205"/>
         <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="25" Margin="36,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Text="OC-98000012"/>
         <Button  HorizontalAlignment="Left" Height="25" Margin="224,79,0,0" VerticalAlignment="Top" Width="76">
