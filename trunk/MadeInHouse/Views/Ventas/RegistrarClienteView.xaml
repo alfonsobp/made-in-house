@@ -8,22 +8,28 @@
     <Grid>
 
         <ToolBar VerticalAlignment="Top" Margin="0">
-            <Button IsEnabled="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
-                <Image Source="/MadeInHouse;component/Assets/New document.png" />
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button ToolTip="Nuevo cliente" IsEnabled="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="35" Margin="0,3" >
+                <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
             </Button>
-            <Button IsEnabled="False" >
+            <Button ToolTip="Editar cliente" IsEnabled="False" >
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button ToolTip="Guardar cliente">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
-            <Button IsEnabled="False" >
+            <Button ToolTip="Eliminar cliente" IsEnabled="False" >
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button ToolTip="Limpiar formulario">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
             </Button>
-            <Button IsEnabled="False" Height="30" Width="30">
+            <Button ToolTip="Actualizar datos" IsEnabled="False" Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
