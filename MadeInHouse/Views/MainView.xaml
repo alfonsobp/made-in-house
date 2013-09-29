@@ -141,6 +141,9 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
 
                         </Grid.RowDefinitions>
 
@@ -164,9 +167,14 @@
                         <Button x:Name="AbrirGenerarOrdenCompra" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Orden de Compra" FontSize="20"  Grid.Row="11"/>
                         <Button x:Name="AbrirBuscarOrdenCompra" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Orden de Compra" FontSize="20"  Grid.Row="12"/>
 
-                        <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Documentos de pago" FontSize="20"  Grid.Row="13"/>
-                        <Button x:Name="AbrirRegistrarDocumentos"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Documento" FontSize="20"  Grid.Row="14"/>
-                        <Button x:Name="AbrirBuscarDocumentos"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="15"/>
+                        <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Cotizaciones" FontSize="20"  Grid.Row="13"/>
+                        <Button x:Name="AbrirNuevaCotizacion"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Cotizacion" FontSize="20"  Grid.Row="14"/>
+                        <Button x:Name="AbrirBuscarCotizacion"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Cotizaciones" FontSize="20"  Grid.Row="15"/>
+
+
+                        <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Documentos de pago" FontSize="20"  Grid.Row="16"/>
+                        <Button x:Name="AbrirRegistrarDocumentos"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo doc. pago" FontSize="20"  Grid.Row="17"/>
+                        <Button x:Name="AbrirBuscarDocumentos"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="18"/>
 
                     </Grid>
                 </Expander>
