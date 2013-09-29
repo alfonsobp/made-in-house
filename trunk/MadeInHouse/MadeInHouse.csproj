@@ -94,6 +94,8 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorSolicitudesAdquisicionViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
@@ -198,6 +200,12 @@
     </Compile>
     <Compile Include="Views\Almacen\PosicionProductoView.xaml.cs">
       <DependentUpon>PosicionProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\SolicitudAbConsolidarView.xaml.cs">
+      <DependentUpon>SolicitudAbConsolidarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\SolicitudAbDetalleView.xaml.cs">
+      <DependentUpon>SolicitudAbDetalleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\agregarServicioView.xaml.cs">
       <DependentUpon>agregarServicioView.xaml</DependentUpon>
@@ -428,6 +436,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\PosicionProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\SolicitudAbConsolidarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\SolicitudAbDetalleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Almacen.SolicitudAbConsolidarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="343" Width="334">
+    <Grid>
+        <ToolBar VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button ToolTip="Nuevo Producto">
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Modificar Producto">
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Guardar Producto">
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Eliminar Producto">
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Limpiar Formulario">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+            </Button>
+            <Button ToolTip="Refresh" Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+            </Button>
+        </ToolBar>
+        <GroupBox Header="Tienda a consolidar" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="83" Width="314">
+            <Grid Margin="0,0,-2,0">
+                <Label Content="Tienda" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="50" Margin="17,14,0,0"/>
+                <ComboBox HorizontalAlignment="Left" Margin="100,19,0,0" VerticalAlignment="Top" Width="194"/>
+            </Grid>
+        </GroupBox>
+        <Grid HorizontalAlignment="Left" Height="192" Margin="10,134,0,0" VerticalAlignment="Top" Width="314">
+            <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="172" Width="294">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
+                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
+                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Estado"/>
+                </DataGrid.Columns>
+                <Button/>
+            </DataGrid>
+        </Grid>
+
+
+    </Grid>
+</UserControl>
