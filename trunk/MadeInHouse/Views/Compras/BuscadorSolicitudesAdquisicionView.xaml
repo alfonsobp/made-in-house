@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="450" d:DesignWidth="562">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -40,10 +40,10 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-        <DataGrid Margin="11,201,62,0" Height="234" VerticalAlignment="Top">
+        <DataGrid Margin="11,201,0,0" Height="234" VerticalAlignment="Top" HorizontalAlignment="Left" Width="527">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Almacen"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Almacén"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Estado"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Fecha Registro"/>
             </DataGrid.Columns>
@@ -58,23 +58,23 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <GroupBox Header="Criterios de Búsqueda" Margin="11,59,9,0" VerticalAlignment="Top" Height="137"/>
-        <Button Height="25" Margin="455,80,82,0" VerticalAlignment="Top">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <GroupBox Header="Criterios de Búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="528"/>
+        <Button Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <Label Content="Almacen:" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
-        <Label Content="Código:" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="28,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="123,127,0,0" VerticalAlignment="Top" Width="120">
             <ComboBoxItem Content="Atendido" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
-        <Label Content="Estado:" HorizontalAlignment="Left" Margin="27,138,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="146,166,0,0" VerticalAlignment="Top" Width="104"/>
-        <DatePicker HorizontalAlignment="Left" Margin="313,168,0,0" VerticalAlignment="Top" Width="105"/>
-        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="27,165,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="266,166,0,0" VerticalAlignment="Top"/>
+        <Label Content="Estado:" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="126,161,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="31,161,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
