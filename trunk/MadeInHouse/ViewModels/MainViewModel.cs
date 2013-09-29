@@ -363,7 +363,18 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
         }
-
+        public void AbrirReporteEntradaSalidaProd()
+        {
+            win.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
+        }
+        public void AbrirReporteSolicitudes()
+        {
+            win.ShowWindow(new Reportes.reporteSolicitudesViewModel { DisplayName = "Reporte de Solicitudes de compra" });
+        }
+        public void AbrirReporteStock()
+        {
+            win.ShowWindow(new Reportes.reporteStockViewModel { DisplayName = "Reporte de Stock de productos" });
+        }
 
         #endregion
     }
