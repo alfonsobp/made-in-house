@@ -12,8 +12,8 @@
                     <GradientStop Color="Snow" Offset="1"/>
                 </LinearGradientBrush>
             </ToolBar.Background>
-            <Button x:Name="AbrirRegistrarPromoProducto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
-                <Image Source="/MadeInHouse;component/Assets/New document.png" />
+            <Button x:Name="AbrirRegistrarPromoProducto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="35" Margin="0,3" >
+                <Image Source="/MadeInHouse;component/Assets/New2.png" />
             </Button>
             <Button x:Name="AbrirEditarPromoProducto" >
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
