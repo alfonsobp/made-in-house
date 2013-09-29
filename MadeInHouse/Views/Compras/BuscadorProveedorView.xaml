@@ -7,7 +7,7 @@
              d:DesignHeight="450" d:DesignWidth="600">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Listado de proveedores" />
+            <Layouts:TitleBarTemplate  title="Listado de proveedores" />
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
                 <DataGrid Margin="10,188,10,0" Height="234" VerticalAlignment="Top">
                     <DataGrid.Columns>

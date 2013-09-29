@@ -168,43 +168,36 @@ namespace MadeInHouse.ViewModels
 
         #region Compras
 
-        public void AbrirBuscarDocumentosViewModel() {
-            Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos de  Pago" };
-            win.ShowWindow(obj);
+        public void AbrirBuscarDocumentos() {
+           
+            win.ShowWindow(new  Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos de  Pago" });
         }
 
-
-
-        public void AbrirBuscarOrdenCompraViewModel()
+        public void AbrirBuscarOrdenCompra()
         {
             Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel{ DisplayName = "Buscador Orden de compra" };
             win.ShowWindow(obj);
+         
         }
 
-        public void AbrirAgregarServicioViewModel()
-        {
-            ActivateItem(new Compras.agregarServicioViewModel { DisplayName = "Agregar" });
-        }
-
-        public void AbrirBuscadorServicioViewModel()
+      
+        public void AbrirBuscadorServicio()
         {
             Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel { DisplayName = "Buscador de Servicios" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirCatalogoProductoProveedorModel()
+        public void AbrirCatalogoProductoProveedor()
         {
-            //ActivateItem(new Compras.CatalogoProductoProveedorViewModel { DisplayName = "Catalogo productos" });
+           
 
             Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel { DisplayName = "Mantenimiento Catalogo de Productos" };
             win.ShowWindow(obj);
         }
-        public void AbrirEditarProveedorViewModel()
-        {
-            ActivateItem(new Compras.editarProveedorViewModel { DisplayName = "Edita Proveedor" });
-        }
 
-        public void AbrirBuscadorProveedorViewModel() {
+      
+
+        public void AbrirBuscadorProveedor() {
             Compras.BuscadorProveedorViewModel obj = new Compras.BuscadorProveedorViewModel { DisplayName = "Buscar Proveedor" };
             win.ShowWindow(obj);
         }
@@ -215,63 +208,44 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(obj);
         }
 
-        public void AbrirEditarServicio()
-        {
-            Compras.editarServicioViewModel obj = new Compras.editarServicioViewModel { DisplayName = "Editar Servicio" };
-            win.ShowWindow(obj);
-        }
+     
 
 
-        public void AbrirEditarServicioViewModel()
-        {
-            ActivateItem(new Compras.editarServicioViewModel { DisplayName = "Editar" });
-        }
-        public void AbrirGenerarOrdenCompraViewModel()
+        public void AbrirGenerarOrdenCompra()
         {
             WindowManager win = new WindowManager();
             Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" };
             win.ShowWindow(obj);
         }
-        /*
-        public void AbrirIngresarProveedorViewModel()
-        {
-            ActivateItem(new Compras.BuscadorProveedorViewModel { DisplayName = "Registrar" });
-        }
-        public void AbrirMantenerProductoViewModel()
-        {
-            ActivateItem(new Compras.mantenerProductoViewModel { DisplayName = "Productos" });
-        }
-         
-         * 
-          */
-        public void AbrirMantenerProveedorViewModel() {
+    
+        public void AbrirMantenerProveedor() {
 
             WindowManager win = new WindowManager();
             Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Mantener Proveedor" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirMantenerSolicitudesAdquisicionViewModel()
+        public void AbrirMantenerSolicitudesAdquisicion()
         {
             WindowManager win = new WindowManager();
             Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Mantenimiento de Solicitudes de Adquisicion" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirBuscadorSolicitudesAdquisicionViewModel()
+        public void AbrirBuscadorSolicitudesAdquisicion()
         {
             WindowManager win = new WindowManager();
             Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel { DisplayName = "Buscador de Solicitudes de Adquisicion" };
             win.ShowWindow(obj);
         }
         
-        public void AbrirSeleccionDeProveedoresViewModel() {
+        public void AbrirSeleccionDeProveedores() {
             WindowManager win = new WindowManager();
             Compras.SeleccionDeProveedoresViewModel obj = new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirRegistrarDocumentosViewModel()
+        public void AbrirRegistrarDocumentos()
         {
             WindowManager win = new WindowManager();
             Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel { DisplayName = "Registrar Documentos" };
