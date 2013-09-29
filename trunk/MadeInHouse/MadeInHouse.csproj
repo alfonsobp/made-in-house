@@ -95,9 +95,9 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
-    <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
+ <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\SolicitudAbRegistrarViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\StockMinListadoViewModel.cs" />    <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorSolicitudesAdquisicionViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
@@ -203,12 +203,21 @@
     <Compile Include="Views\Almacen\PosicionProductoView.xaml.cs">
       <DependentUpon>PosicionProductoView.xaml</DependentUpon>
     </Compile>
+ <Compile Include="Views\Almacen\SolicitudAbListadoView.xaml.cs">
+      <DependentUpon>SolicitudAbListadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\SolicitudAbRegistrarView.xaml.cs">
+      <DependentUpon>SolicitudAbRegistrarView.xaml</DependentUpon>
+</Compile>
     <Compile Include="Views\Almacen\SolicitudAbConsolidarView.xaml.cs">
       <DependentUpon>SolicitudAbConsolidarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\SolicitudAbDetalleView.xaml.cs">
       <DependentUpon>SolicitudAbDetalleView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Almacen\StockMinListadoView.xaml.cs">
+      <DependentUpon>StockMinListadoView.xaml</DependentUpon>
+    </Compile>    
     <Compile Include="Views\Compras\agregarServicioView.xaml.cs">
       <DependentUpon>agregarServicioView.xaml</DependentUpon>
     </Compile>
@@ -438,15 +447,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\SolicitudAbConsolidarView.xaml">
+<Page Include="Views\Almacen\SolicitudAbConsolidarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\SolicitudAbDetalleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page> <Page Include="Views\Almacen\SolicitudAbListadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Compras\agregarServicioView.xaml">
+    <Page Include="Views\Almacen\SolicitudAbRegistrarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\StockMinListadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>    <Page Include="Views\Compras\agregarServicioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -763,7 +782,7 @@
     <Resource Include="Assets\importar.png" />
     <Resource Include="Assets\file.png" />
     <Resource Include="Assets\xls.png" />
-    <Resource Include="Assets\warehouse.png" />
+    <Resource Include="Assets\start2.png" /> <Resource Include="Assets\warehouse.png" />
     <Resource Include="Assets\close-icon.png" />
     <Resource Include="Assets\minimize-icon.png" />
     <Resource Include="Assets\home.png" />
@@ -773,8 +792,7 @@
     <Resource Include="Assets\reportes.png" />
     <Resource Include="Assets\rrhh.png" />
     <Resource Include="Assets\seguridad.png" />
-    <Resource Include="Assets\ventas.png" />
-    <Content Include="Libraries\Caliburn.Micro.dll" />
+    <Resource Include="Assets\ventas.png" />    <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
     <Content Include="Libraries\System.ComponentModel.Composition.dll" />
