@@ -11,9 +11,15 @@
             <RowDefinition Height="13*"/>
             <RowDefinition Height="37*"/>
         </Grid.RowDefinitions>
-        <ToolBar VerticalAlignment="Top" Height="41">
-            <Button x:Name="AbrirRegistrarDevolucion" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
-                <Image Source="/MadeInHouse;component/Assets/New document.png" />
+        <ToolBar VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button x:Name="AbrirRegistrarDevolucion" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,3" >
+                <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
             </Button>
             <Button x:Name="AbrirEditarDevolucion" >
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
