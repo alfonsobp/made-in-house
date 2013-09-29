@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="600" Height="567">
+             mc:Ignorable="d" Height="517" Width="543">
     <Grid>
         <ToolBar VerticalAlignment="Top" Margin="0">
             <ToolBar.Background>
@@ -28,7 +28,7 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Criterios de búsqueda" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Height="199" Width="520">
+        <GroupBox Header="Criterios de búsqueda" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top" Height="199" Width="520">
             <Grid>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="112,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
                 <Button Height="23" Width="60" Margin="301,13,147,141">
@@ -46,7 +46,7 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
             </Grid>
         </GroupBox>
-        <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="40,285,0,0" VerticalAlignment="Top" Height="252" Width="520">
+        <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="10,255,0,0" VerticalAlignment="Top" Height="252" Width="520">
             <Grid>
                 <DataGrid HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="488" Margin="10,10,0,0">
                     <DataGrid.Columns>

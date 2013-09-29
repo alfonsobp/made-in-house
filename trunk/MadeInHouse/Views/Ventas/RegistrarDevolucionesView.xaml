@@ -39,7 +39,7 @@
                 <Image Source="/MadeInHouse;component/Assets/New document.png" />
             </Button>
         </ToolBar>
-        <TextBlock HorizontalAlignment="Left" Margin="10,60,0,0" TextWrapping="Wrap" Text="Cliente" VerticalAlignment="Top" Height="16" Width="37"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="53"><Run Text="Cliente"/><Run Language="es-pe" Text=":"/></TextBlock>
         <GroupBox Header="Productos" Margin="10" Grid.Row="1">
             <DataGrid>
                 <DataGrid.Columns>

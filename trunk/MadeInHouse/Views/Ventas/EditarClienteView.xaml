@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="310" d:DesignWidth="600">
-    <Grid>
+             d:DesignHeight="271" d:DesignWidth="536">
+    <Grid Margin="0,0,10,10">
         <ToolBar VerticalAlignment="Top" Margin="0">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -33,21 +33,21 @@
             </Button>
         </ToolBar>
 
-        <GroupBox Header="Datos del Cliente" Margin="42,70,35,30">
+        <GroupBox Header="Datos del Cliente" Margin="10,51,0,0" HorizontalAlignment="Left" Width="513" Height="210" VerticalAlignment="Top">
             <Grid>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="130,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Nombre" HorizontalAlignment="Left" Margin="27,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.037,-1.846"/>
-                <Label Content="Razón Social" HorizontalAlignment="Left" Margin="27,70,0,0" VerticalAlignment="Top"/>
+                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="27,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.037,-1.846"/>
+                <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="27,70,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="130,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Dirección" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
+                <Label Content="Dirección:" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="130,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Teléfono" HorizontalAlignment="Left" Margin="286,108,0,0" VerticalAlignment="Top"/>
+                <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="286,108,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="358,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="RUC" HorizontalAlignment="Left" Margin="286,70,0,0" VerticalAlignment="Top"/>
-                <Label Content="DNI" HorizontalAlignment="Left" Margin="286,27,0,0" VerticalAlignment="Top"/>
+                <Label Content="RUC:" HorizontalAlignment="Left" Margin="286,70,0,0" VerticalAlignment="Top"/>
+                <Label Content="DNI:" HorizontalAlignment="Left" Margin="286,27,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="358,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="358,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <Label Content="Estado" HorizontalAlignment="Left" Margin="130,152,0,0" VerticalAlignment="Top"/>
+                <Label Content="Estado:" HorizontalAlignment="Left" Margin="130,152,0,0" VerticalAlignment="Top"/>
                 <RadioButton Content="Activo" HorizontalAlignment="Left" Margin="199,158,0,0" VerticalAlignment="Top"/>
                 <RadioButton Content="Inactivo" HorizontalAlignment="Left" Margin="286,158,0,0" VerticalAlignment="Top"/>
             </Grid>
