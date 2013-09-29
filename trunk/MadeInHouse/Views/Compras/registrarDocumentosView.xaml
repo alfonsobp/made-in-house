@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="560" d:DesignWidth="750">
-    <Grid HorizontalAlignment="Left" Width="750">
+    <Grid HorizontalAlignment="Left" Width="750" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
         <DataGrid Height="115" Margin="36,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="673">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código" Width="100"/>
@@ -97,6 +97,36 @@
         </Button>
         <DatePicker HorizontalAlignment="Left" Margin="404,194,0,0" VerticalAlignment="Top"/>
         <DatePicker HorizontalAlignment="Left" Margin="404,157,0,0" VerticalAlignment="Top"/>
+        <ToolBar VerticalAlignment="Top" Height="41">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button
+        		x:Name="AbrirMantenerProveedorViewModel" >
+                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            </Button>
+            <Button Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
+        </ToolBar>
 
     </Grid>
 </UserControl>
