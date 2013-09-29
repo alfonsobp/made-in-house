@@ -80,7 +80,7 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
-                           
+                            <RowDefinition />
 
                         </Grid.RowDefinitions>
                         
@@ -89,14 +89,15 @@
                         <Button x:Name="AbrirBuscadorProveedorViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar proveedor" FontSize="20"  Grid.Row="2"/>
                         <Button x:Name="AbrirMantenerProveedorViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="3"/>
                         <Button  Background="Beige" BorderThickness="0" Content="Servicios" FontSize="20"  Grid.Row="4"/>
-                        <Button x:Name="AbrirNuevoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="5" />
-                        <Button x:Name="AbrirEditarServicio"  Background="Black" Foreground="white" BorderThickness="0" Content="Editar" FontSize="20"  Grid.Row="6"/>
-                        <Button  Background="Beige" BorderThickness="0" Content="Documentos" FontSize="20"  Grid.Row="7"/>
-                        <Button  x:Name="AbrirMantenerSolicitudesAdquisicionViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Mant Sol. de  Adquisicion" FontSize="20"  Grid.Row="8"/>
-                        <Button  x:Name="AbrirBuscadorSolicitudesAdquisicionViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscador Solicitudes" FontSize="20"  Grid.Row="9"/>
-                        <Button x:Name="AbrirSeleccionDeProveedoresViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="10"/>
-                        <Button x:Name="AbrirGenerarOrdenCompraViewModel" Background="Black" Foreground="white" BorderThickness="0" Content="Orden de compra" FontSize="20"  Grid.Row="11"/>
-                        <Button x:Name="AbrirRegistrarDocumentosViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Registro de documentos" FontSize="20"  Grid.Row="12"/>
+                        <Button x:Name="AbrirNuevoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Servicio" FontSize="20"  Grid.Row="5" />
+                        <Button x:Name="AbrirBuscadorServicioViewModel"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscador de Servicios" FontSize="20"  Grid.Row="6" />
+                        <Button x:Name="AbrirEditarServicio"  Background="Black" Foreground="white" BorderThickness="0" Content="Editar Servicio" FontSize="20"  Grid.Row="7"/>
+                        <Button  Background="Beige" BorderThickness="0" Content="Documentos" FontSize="20"  Grid.Row="8"/>
+                        <Button  x:Name="AbrirMantenerSolicitudesAdquisicionViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Mant Sol. de  Adquisicion" FontSize="20"  Grid.Row="9"/>
+                        <Button  x:Name="AbrirBuscadorSolicitudesAdquisicionViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscador de Solicitudes" FontSize="20"  Grid.Row="10"/>
+                        <Button x:Name="AbrirSeleccionDeProveedoresViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="11"/>
+                        <Button x:Name="AbrirGenerarOrdenCompraViewModel" Background="Black" Foreground="white" BorderThickness="0" Content="Orden de compra" FontSize="20"  Grid.Row="12"/>
+                        <Button x:Name="AbrirRegistrarDocumentosViewModel"  Background="Black" Foreground="white" BorderThickness="0" Content="Registro de documentos" FontSize="20"  Grid.Row="13"/>
                           
                     </Grid>
                 </Expander>

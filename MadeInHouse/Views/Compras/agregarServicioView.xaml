@@ -8,12 +8,16 @@
     <Grid>
         <GroupBox Header="Ingresar Servicio" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="580" Margin="10,60,0,0">
             <Grid Margin="2,0,-2,0">
-                <Label Content="Codigo" HorizontalAlignment="Left" Margin="13,87,0,0" VerticalAlignment="Top"/>
-                <Label Content="Nombre" HorizontalAlignment="Left" Margin="13,118,0,0" VerticalAlignment="Top"/>
+                <Label Content="Codigo:" HorizontalAlignment="Left" Margin="13,30,0,0" VerticalAlignment="Top"/>
+                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="13,60,0,0" VerticalAlignment="Top"/>
+                <Label Content="Precio:" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top"/>
+                <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="13,120,0,0" VerticalAlignment="Top"/>
                 <Label Content="Descripcion" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="115" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,121,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <DataGrid HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="219">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
