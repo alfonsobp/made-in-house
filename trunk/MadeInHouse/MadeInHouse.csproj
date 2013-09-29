@@ -814,6 +814,7 @@
     <Resource Include="Assets\ventas.png" />
     <Resource Include="Assets\mail32.png" />
     <Resource Include="Assets\money.png" />
+    <Resource Include="Assets\contacto.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
