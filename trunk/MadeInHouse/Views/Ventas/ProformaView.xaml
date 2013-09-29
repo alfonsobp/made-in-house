@@ -13,11 +13,11 @@
                     <GradientStop Color="Snow" Offset="1"/>
                 </LinearGradientBrush>
             </ToolBar.Background>
-            <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
-                <Image Source="/MadeInHouse;component/Assets/New document.png" />
+            <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,3" >
+                <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/icono_imprimir.jpg" Height="30" Width="30" />
+                <Image Source="/MadeInHouse;component/Assets/icono_imprimir.png" Height="30" Width="30" />
             </Button>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
