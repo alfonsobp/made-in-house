@@ -767,6 +767,13 @@
     <Resource Include="Assets\close-icon.png" />
     <Resource Include="Assets\minimize-icon.png" />
     <Resource Include="Assets\home.png" />
+    <Resource Include="Assets\almacen.png" />
+    <Resource Include="Assets\compas.png" />
+    <Resource Include="Assets\configurar.png" />
+    <Resource Include="Assets\reportes.png" />
+    <Resource Include="Assets\rrhh.png" />
+    <Resource Include="Assets\seguridad.png" />
+    <Resource Include="Assets\ventas.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />

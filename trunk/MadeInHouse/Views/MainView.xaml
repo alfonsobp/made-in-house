@@ -5,7 +5,7 @@
         Title="MadeInHouse" Height="1024" Width="1280"  WindowState="Maximized">
     <Window.Resources>
         <Style x:Key="ExpanderStyle">
-            <Setter Property="Expander.Background" Value="#009ACD"/>
+            <Setter Property="Expander.Background" Value="#FF080808"/>
             <Style.Triggers>
                 <Trigger Property="Expander.IsMouseOver" Value="true" >
                     <Setter Property="Expander.Background" Value="#FF4F4848" />
@@ -22,23 +22,26 @@
             <DropShadowEffect/>
         </Grid.Effect>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="136*"/>
-            <ColumnDefinition Width="325*"/>
+            <ColumnDefinition Width="159*"/>
+            <ColumnDefinition Width="302*"/>
             <ColumnDefinition Width="175*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer HorizontalAlignment="Left" Width="272">
+        <ScrollViewer HorizontalAlignment="Left" Width="335" Grid.ColumnSpan="2">
             <ScrollViewer.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
                     <GradientStop Color="#FF555050" Offset="1"/>
                 </LinearGradientBrush>
             </ScrollViewer.Background>
-            <StackPanel Width="238">
-                <HeaderedContentControl Header="INDEX"  Foreground="Gray"  FontSize="40"    >
+            <StackPanel Width="303">
+                <HeaderedContentControl Header="Inicio"  Foreground="Gray"  FontSize="40"    >
                     <Image Source="/MadeInHouse;component/Assets/home.png" Height="40" Margin="104,0,81,0" />
                 </HeaderedContentControl>
-                    <Expander Header="Almacenes" Background="Black" Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
-                   
+                    <Expander Header="Almacenes" Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/almacen.png" Stretch="None"/>
+                    </Expander.Background>
+
                     <Grid Background="White" Height="Auto">
                         <Grid.RowDefinitions>
                             <RowDefinition/>
@@ -79,8 +82,10 @@
 
                     </Grid>
                 </Expander>
-                <Expander Header="Compras" Background="Black"  Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
-                    
+                <Expander Header="Compras"   Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/compas.png" Stretch="None"/>
+                    </Expander.Background>
                     <Grid Background="White" Height="Auto">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -128,8 +133,10 @@
                           
                     </Grid>
                 </Expander>
-                <Expander Header="Ventas"  Background="Black"   Foreground="Gray" FontSize="40"  Style="{StaticResource ExpanderStyle}">
-                    
+                <Expander Header="Ventas"     Foreground="Gray" FontSize="40"  Style="{StaticResource ExpanderStyle}">
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/ventas.png" Stretch="None"/>
+                    </Expander.Background>
                     <Grid Background="White" Height="Auto">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -154,6 +161,7 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
+                        
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
                         <Button x:Name="AbrirListadoCliente"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="1"/>
                         <Button x:Name="AbrirNuevoCliente"   Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="2"/>
@@ -173,22 +181,16 @@
                         <Button x:Name="AbrirNuevaPromoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="16"/>
                     </Grid>
                 </Expander>
-                <Expander Header="RRHH"  Background="Black"  Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
-                    
-                    <Grid Background="White" Height="Auto">
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
+                <Expander Header="RRHH"    Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/rrhh.png" Stretch="None"/>
+                    </Expander.Background>
 
-                        </Grid.RowDefinitions>
-                        <Button x:Name="AbrirBuscadorEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar empleado" FontSize="20" Grid.Row="0"/>
-                        <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener empleado" FontSize="20" Grid.Row="1"/>
-
-                    </Grid>
                 </Expander>
-                <Expander Header="Seguridad"  Background="Black" FontSize="40"  Foreground="Gray"  Style="{StaticResource ExpanderStyle}">
-                    
+                <Expander Header="Seguridad"   FontSize="40"  Foreground="Gray"  Style="{StaticResource ExpanderStyle}">
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/seguridad.png" Stretch="None"/>
+                    </Expander.Background>
                     <Grid Background="White" Height="Auto">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -203,8 +205,10 @@
 
                     </Grid>
                 </Expander>
-                <Expander Header="Reportes"  Background="Black"   Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
-                   
+                <Expander Header="Reportes"     Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/reportes.png" Stretch="None"/>
+                    </Expander.Background>
                     <Grid Background="White" Height="Auto">
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -228,8 +232,10 @@
                         <Button x:Name="AbrirReporteStock"  Background="Black" Foreground="white"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8"/>
                     </Grid>
                 </Expander>
-                <Expander Header="Configurar"  Background="Black"  Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
-                   
+                <Expander Header="Configurar"    Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/configurar.png" Stretch="None"/>
+                    </Expander.Background>
                     <Grid Background="White" >
                         <Grid.RowDefinitions>
                             <RowDefinition />
@@ -249,6 +255,6 @@
             <Image Source="/Assets/conf.png" DockPanel.Dock="Left" Width="58"  />
         </DockPanel>
 
-        
+
     </Grid>
 </Window>
