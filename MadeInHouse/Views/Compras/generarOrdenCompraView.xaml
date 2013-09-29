@@ -7,7 +7,7 @@
              d:DesignHeight="450" d:DesignWidth="640">
     <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
         <Label Content="Orden de compra :" HorizontalAlignment="Left" Height="31" Margin="18,69,0,0" VerticalAlignment="Top" Width="205"/>
-        <DataGrid Height="118" Margin="18,188,10,0" VerticalAlignment="Top">
+        <DataGrid Height="118" Margin="17,188,38,0" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código Comercial" Width="110">
                     <DataGridTextColumn.Foreground>
@@ -20,7 +20,7 @@
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="200"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio ( S/. )" Width="100"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Importe ( S/. )" Width="100"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Importe ( S/. )" Width="106"/>
             </DataGrid.Columns>
             <Button Content="1212121,algo,12,12"/>
             <Button/>
