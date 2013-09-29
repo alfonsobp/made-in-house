@@ -32,29 +32,31 @@
             </Button>
         </ToolBar>
 
-        <GroupBox Header="Criterios de búsqueda" Margin="10,46,10,0" VerticalAlignment="Top" Height="159">
-            <Grid Margin="1,1,1,0" Height="135" VerticalAlignment="Top">
-                <Button  HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="60" Margin="299,100,0,0">
+        <GroupBox Header="Criterios de búsqueda" Margin="10,46,10,0" VerticalAlignment="Top" Height="179">
+            <Grid Margin="1">
+                <Button  HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="60" Margin="297,128,0,0">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="ID Cliente:" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="81,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
                 <TextBlock HorizontalAlignment="Left" Margin="220,12,0,0" TextWrapping="Wrap" Text="Nombre:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="299,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,38,0,0" TextWrapping="Wrap" Text="F. registro:" VerticalAlignment="Top"/>
-                <DatePicker HorizontalAlignment="Left" Margin="81,37,0,0" VerticalAlignment="Top" Width="97"/>
-                <TextBlock HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="DNI:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="81,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
-                <TextBlock HorizontalAlignment="Left" Margin="220,38,0,0" TextWrapping="Wrap" Text="Razón Social:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="299,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="297,9,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="99"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,70,0,0" TextWrapping="Wrap" Text="F. registro:" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" Margin="218,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="es-pe" Text="Hasta:"/></TextBlock>
+                <DatePicker HorizontalAlignment="Left" Margin="297,66,0,0" VerticalAlignment="Top" Width="97"/>
+                <DatePicker HorizontalAlignment="Left" Margin="81,66,0,0" VerticalAlignment="Top" Width="97"/>
+                <TextBlock HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" Text="DNI:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="81,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
+                <TextBlock HorizontalAlignment="Left" Margin="218,39,0,0" TextWrapping="Wrap" Text="Razón Social:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="297,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
                 <TextBlock HorizontalAlignment="Left" Margin="10,100,0,0" TextWrapping="Wrap" Text="RUC:" VerticalAlignment="Top" RenderTransformOrigin="0.429,3.25"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="81,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
-                <TextBlock HorizontalAlignment="Left" Margin="220,70,0,0" TextWrapping="Wrap" Text="Teléfono:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="299,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
+                <TextBlock HorizontalAlignment="Left" Margin="218,100,0,0" TextWrapping="Wrap" Text="Teléfono:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="297,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="97"/>
             </Grid>
         </GroupBox>
 
-        <DataGrid Margin="10,210,10,0" Height="288" VerticalAlignment="Top">
+        <DataGrid Margin="10,230,10,0" Height="268" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Cliente"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre Cliente"/>
