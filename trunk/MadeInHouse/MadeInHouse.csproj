@@ -95,6 +95,8 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
  <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\StockMinListadoViewModel.cs" />    <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
