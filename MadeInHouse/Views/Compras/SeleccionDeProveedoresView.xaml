@@ -32,10 +32,10 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <DataGrid  Height="219" Margin="25,87,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="308">
+        <DataGrid  Height="219" Margin="25,69,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="308">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="180"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="180"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="180"/>
               
             </DataGrid.Columns>
@@ -53,17 +53,17 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <Label Content="Codigo" HorizontalAlignment="Left" Margin="360,87,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="360,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Label Content="Proveedor" HorizontalAlignment="Left" Margin="360,141,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="360,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Button  HorizontalAlignment="Left" Height="38" Margin="518,157,0,0" VerticalAlignment="Top" Width="55">
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="360,66,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="360,97,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+        <Button  HorizontalAlignment="Left" Height="25" Margin="473,159,0,0" VerticalAlignment="Top" Width="55">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="43" />
         </Button>
-        <DataGrid Height="160" Margin="25,346,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="549">
+        <DataGrid Height="160" Margin="25,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="549">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion" Width="180"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="180"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="100"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor" Width="200"/>
                
@@ -77,16 +77,16 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <GroupBox Header="Consolidado de Productos a comprar" Margin="10,54,10,0" VerticalAlignment="Top" Height="259"/>
-        <GroupBox Header="Resultados" Margin="10,318,0,0" HorizontalAlignment="Left" Width="580" Height="202" VerticalAlignment="Top"/>
-        <Button Margin="364,254,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
+        <GroupBox Header="Consolidado de Productos a comprar" Margin="10,46,10,0" VerticalAlignment="Top" Height="259"/>
+        <GroupBox Header="Resultados" Margin="10,310,0,0" HorizontalAlignment="Left" Width="580" Height="202" VerticalAlignment="Top"/>
+        <Button Margin="398,206,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
             <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="50" />
         </Button>
-        <Button Margin="424,254,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
+        <Button Margin="473,206,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
             <Image Source="/MadeInHouse;component/Assets/stop.png" Height="30" Width="50" />
         </Button>
-        <Label Content="Cantidad" HorizontalAlignment="Left" Margin="360,196,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="360,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
+        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="360,128,0,0" VerticalAlignment="Top"/>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
 
     </Grid>
 </UserControl>
