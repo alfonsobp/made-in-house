@@ -256,9 +256,6 @@
     <Compile Include="Views\Compras\MantenerProveedorView.xaml.cs">
       <DependentUpon>MantenerProveedorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Compras\mantenerProductoView.xaml.cs">
-      <DependentUpon>mantenerProductoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Compras\mantenerSolicitudesAdquisicionView.xaml.cs">
       <DependentUpon>mantenerSolicitudesAdquisicionView.xaml</DependentUpon>
     </Compile>
@@ -398,6 +395,10 @@
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Dictionary\estilos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Almacen\BuscarGuiasRemisionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -519,10 +520,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\MantenerProveedorView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Compras\mantenerProductoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -5,9 +5,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <local:AppBootstrapper x:Key="bootstrapper" />
+                <ResourceDictionary >
+                    <local:AppBootstrapper x:Key="bootstrapper" />                  
                 </ResourceDictionary>
+                <ResourceDictionary Source="Dictionary/estilos.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

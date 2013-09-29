@@ -54,7 +54,7 @@
 
 
 
-    <Grid>
+    <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="159*"/>
             <ColumnDefinition Width="302*"/>

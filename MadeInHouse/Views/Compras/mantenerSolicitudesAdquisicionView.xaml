@@ -14,7 +14,7 @@
         <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="148,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Text="Juan Perez Gonzales"/>
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="149,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Text="Operario Ventas"/>
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="438,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="ALMACEN-001"/>
-        <DataGrid HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Height="227" Width="484">
+        <DataGrid HorizontalAlignment="Left" Margin="12,215,0,0" VerticalAlignment="Top" Height="227" Width="484" Background="{x:Null}" BorderBrush="{x:Null}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código de Producto" Width="120"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="130"/>
