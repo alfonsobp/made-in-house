@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MadeInHouse.Views.Ventas
+namespace MadeInHouse.Views
 {
     /// <summary>
-    /// Lógica de interacción para RegistrarClienteView.xaml
+    /// Lógica de interacción para TestView.xaml
     /// </summary>
-    public partial class RegistrarClienteView : UserControl
+    public partial class TestView : Window
     {
-        public RegistrarClienteView()
+        public TestView()
         {
             InitializeComponent();
         }

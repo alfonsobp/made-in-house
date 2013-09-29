@@ -7,14 +7,26 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.ComponentModel.Composition;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        private WindowManager win = new WindowManager();
+        private MyWindowManager win = new MyWindowManager();
+
+        public static List<List<Window>> MinWin = new List<List<Window>>();
 
         #region Ventas
+
+        public void AbrirListadoCliente()
+        {
+            win.ShowWindow(new Ventas.ClienteBuscarViewModel());
+        }
+        public void AbrirNuevoCliente()
+        {
+            win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
+        }
 
         public void AbrirListadoVenta()
         {
@@ -31,15 +43,7 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
         }
 
-        public void AbrirListadoCliente()
-        {
-            win.ShowWindow(new Ventas.ListadoClienteViewModel { DisplayName = "Maestro de Clientes" });
-        }
-
-        public void AbrirNuevoCliente()
-        {
-            win.ShowWindow(new Ventas.RegistrarClienteViewModel { DisplayName = "Nuevo Cliente" });
-        }
+        
         public void AbrirListadoDevoluciones()
         {
             win.ShowWindow(new Ventas.ListadoDevolucionesViewModel());
@@ -165,24 +169,16 @@ namespace MadeInHouse.ViewModels
         #region Compras
 
         public void AbrirBuscarDocumentosViewModel() {
-
-            WindowManager win = new WindowManager();
             Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos de  Pago" };
             win.ShowWindow(obj);
-            
-
         }
 
 
 
         public void AbrirBuscarOrdenCompraViewModel()
         {
-
-            WindowManager win = new WindowManager();
             Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel{ DisplayName = "Buscador Orden de compra" };
             win.ShowWindow(obj);
-            
-
         }
 
         public void AbrirAgregarServicioViewModel()
@@ -192,7 +188,6 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirBuscadorServicioViewModel()
         {
-            WindowManager win = new WindowManager();
             Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel { DisplayName = "Buscador de Servicios" };
             win.ShowWindow(obj);
         }
@@ -201,7 +196,6 @@ namespace MadeInHouse.ViewModels
         {
             //ActivateItem(new Compras.CatalogoProductoProveedorViewModel { DisplayName = "Catalogo productos" });
 
-            WindowManager win = new WindowManager();
             Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel { DisplayName = "Mantenimiento Catalogo de Productos" };
             win.ShowWindow(obj);
         }
@@ -211,21 +205,18 @@ namespace MadeInHouse.ViewModels
         }
 
         public void AbrirBuscadorProveedorViewModel() {
-            WindowManager win = new WindowManager();
             Compras.BuscadorProveedorViewModel obj = new Compras.BuscadorProveedorViewModel { DisplayName = "Buscar Proveedor" };
             win.ShowWindow(obj);
         }
 
         public void AbrirNuevoServicio()
         {
-            WindowManager win = new WindowManager();
             Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
             win.ShowWindow(obj);
         }
 
         public void AbrirEditarServicio()
         {
-            WindowManager win = new WindowManager();
             Compras.editarServicioViewModel obj = new Compras.editarServicioViewModel { DisplayName = "Editar Servicio" };
             win.ShowWindow(obj);
         }

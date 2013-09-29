@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
-namespace MadeInHouse.ViewModels.Ventas
+namespace MadeInHouse.ViewModels
 {
-    class RegistrarClienteViewModel:Screen
+    public class TestViewModel : PropertyChangedBase
     {
     }
 }
