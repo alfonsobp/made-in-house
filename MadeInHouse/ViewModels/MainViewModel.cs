@@ -227,6 +227,13 @@ namespace MadeInHouse.ViewModels
             Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Mantenimiento de Solicitudes de Adquisicion" };
             win.ShowWindow(obj);
         }
+
+        public void AbrirBuscadorSolicitudesAdquisicionViewModel()
+        {
+            WindowManager win = new WindowManager();
+            Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel { DisplayName = "Buscador de Solicitudes de Adquisicion" };
+            win.ShowWindow(obj);
+        }
         
         public void AbrirSeleccionDeProveedoresViewModel() {
             WindowManager win = new WindowManager();

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Compras
 {
     /// <summary>
-    /// Lógica de interacción para BuscadorSolicitudesAdquisicion.xaml
+    /// Lógica de interacción para BuscadorSolicitudesAdquisicionView.xaml
     /// </summary>
-    public partial class BuscadorSolicitudesAdquisicion : UserControl
+    public partial class BuscadorSolicitudesAdquisicionView : UserControl
     {
-        public BuscadorSolicitudesAdquisicion()
+        public BuscadorSolicitudesAdquisicionView()
         {
             InitializeComponent();
         }
