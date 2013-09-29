@@ -96,6 +96,8 @@
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorSolicitudesAdquisicionViewModel.cs" />
+    <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
+    <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteDevolucionesViewModel.cs" />
@@ -206,8 +208,17 @@
     <Compile Include="Views\Compras\BuscadorSolicitudesAdquisicionView.xaml.cs">
       <DependentUpon>BuscadorSolicitudesAdquisicionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Compras\BuscarDocumentoView.xaml.cs">
+      <DependentUpon>BuscarDocumentoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\BuscarOrdenCompraView.xaml.cs">
+      <DependentUpon>BuscarOrdenCompraView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Compras\CatalogoProductoProveedorView.xaml.cs">
       <DependentUpon>CatalogoProductoProveedorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\CatalogoServiciosView.xaml.cs">
+      <DependentUpon>CatalogoServiciosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\editarProveedorView.xaml.cs">
       <DependentUpon>editarProveedorView.xaml</DependentUpon>
@@ -424,7 +435,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Compras\BuscarDocumentoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\BuscarOrdenCompraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Compras\CatalogoProductoProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\CatalogoServiciosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -154,6 +154,27 @@ namespace MadeInHouse.ViewModels
 
         #region Compras
 
+        public void AbrirBuscarDocumentosViewModel() {
+
+            WindowManager win = new WindowManager();
+            Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos Pago" };
+            win.ShowWindow(obj);
+            
+
+        }
+
+
+
+        public void AbrirBuscarOrdenCompraViewModel()
+        {
+
+            WindowManager win = new WindowManager();
+            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel{ DisplayName = "Buscador Documentos Pago" };
+            win.ShowWindow(obj);
+            
+
+        }
+
         public void AbrirAgregarServicioViewModel()
         {
             ActivateItem(new Compras.agregarServicioViewModel { DisplayName = "Agregar" });

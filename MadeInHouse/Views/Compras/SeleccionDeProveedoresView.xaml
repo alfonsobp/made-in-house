@@ -83,10 +83,40 @@
             <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="50" />
         </Button>
         <Button Margin="473,206,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
-            <Image Source="/MadeInHouse;component/Assets/stop.png" Height="30" Width="50" />
+            <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="50" />
         </Button>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="360,128,0,0" VerticalAlignment="Top"/>
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
+        <ToolBar VerticalAlignment="Top" Height="41">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button
+        		x:Name="AbrirMantenerProveedorViewModel" >
+                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            </Button>
+            <Button Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
+        </ToolBar>
 
     </Grid>
 </UserControl>
