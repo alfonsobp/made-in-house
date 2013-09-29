@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="418" Width="716.5">
-    <Grid Margin="0,0,-1,48">
-        <ToolBar VerticalAlignment="Top">
+             mc:Ignorable="d" Height="389.369" Width="633.471">
+    <Grid Height="371" VerticalAlignment="Top">
+        <ToolBar VerticalAlignment="Top" Margin="0,0,10,0">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+
             <Button
     			x:Name="AbrirMantenerEmpleadoViewModel">
                 <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
@@ -28,9 +35,9 @@
         </ToolBar>
 
 
-        <Grid Margin="0,0,0,8">
-            <GroupBox Header="Construir Horario" Margin="10,113,282,0" VerticalAlignment="Top" Height="259">
-                <Grid Margin="10,10,-2,-14" RenderTransformOrigin="0.5,0.5">
+        <Grid Margin="0,0,10,0">
+            <GroupBox Header="Construir Horario" Margin="10,113,0,0" HorizontalAlignment="Left" Width="393">
+                <Grid Margin="10,10,-2,-12" RenderTransformOrigin="0.5,0.5">
                     <Label Content="Día" HorizontalAlignment="Left" Margin="1,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.12,0.545"/>
                     <Label Content="Hora Entrada" HorizontalAlignment="Left" Margin="108,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.12,0.545"/>
                     <Label Content="Hora Salida" HorizontalAlignment="Left" Margin="266,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.12,0.545"/>
@@ -43,7 +50,7 @@
                     <Label Content="Domingo" HorizontalAlignment="Left" Margin="1,194,0,0" VerticalAlignment="Top" RenderTransformOrigin="2.12,0.545"/>
 
                     <ComboBox HorizontalAlignment="Left" Margin="89,31,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -58,7 +65,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="89,58,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True"/>
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -73,7 +80,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="89,85,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True"/>
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -88,7 +95,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="89,112,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -103,7 +110,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="89,140,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True"/>
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -118,7 +125,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="89,167,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -133,7 +140,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="89,194,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="08:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="09:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
@@ -148,7 +155,7 @@
                         <ComboBoxItem Content="20:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,32,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -163,7 +170,7 @@
                         <ComboBoxItem Content="22:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,59,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True"/>
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -178,7 +185,7 @@
                         <ComboBoxItem Content="22:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,86,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -193,7 +200,7 @@
                         <ComboBoxItem Content="22:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,113,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -208,7 +215,7 @@
                         <ComboBoxItem Content="22:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,140,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -223,7 +230,7 @@
                         <ComboBoxItem Content="22:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,167,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -238,7 +245,7 @@
                         <ComboBoxItem Content="22:00" HorizontalAlignment="Left" Width="118"/>
                     </ComboBox>
                     <ComboBox HorizontalAlignment="Left" Margin="242,194,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118"/>
+                        <ComboBoxItem Content="10:00" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                         <ComboBoxItem Content="11:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="12:00" HorizontalAlignment="Left" Width="118"/>
                         <ComboBoxItem Content="13:00" HorizontalAlignment="Left" Width="118"/>
@@ -256,19 +263,19 @@
             </GroupBox>
             <GroupBox Header="Tipo Horario" Margin="10,52,10,0" VerticalAlignment="Top" Height="56">
                 <Grid>
-                    <CheckBox Content="Completo (40h semanales)" HorizontalAlignment="Left" Margin="80,10,0,0" VerticalAlignment="Top"/>
-                    <CheckBox Content="Parcial (20h semanales)" HorizontalAlignment="Left" Margin="356,10,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Completo (40h semanales)" HorizontalAlignment="Left" Margin="71,10,0,0" VerticalAlignment="Top"/>
+                    <CheckBox Content="Parcial (20h semanales)" HorizontalAlignment="Left" Margin="347,10,0,0" VerticalAlignment="Top"/>
                 </Grid>
 
             </GroupBox>
-            <GroupBox Header="Resumen" Margin="434,113,10,0" VerticalAlignment="Top" Height="157">
+            <GroupBox Header="Resumen" Margin="420,113,10,0" VerticalAlignment="Top" Height="123">
                 <Grid>
-                    <Label Content="Horas Proyectadas" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Horas Programadas" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Horas Faltantes" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="124,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="124,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="124,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Horas Proyectadas:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Horas Programadas:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Horas Faltantes:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="138,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="29" Text="40"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="138,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="29"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="138,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="29"/>
                 </Grid>
 
             </GroupBox>
