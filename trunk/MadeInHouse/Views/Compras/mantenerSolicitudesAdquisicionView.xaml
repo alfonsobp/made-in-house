@@ -41,7 +41,13 @@
         <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="500,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Text="12/12/2012"/>
         <Label Content="Fecha Emision" HorizontalAlignment="Left" Margin="379,156,0,0" VerticalAlignment="Top" Width="114"/>
             <ToolBar VerticalAlignment="Top">
-                <Button>
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button>
                     <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                 </Button>
                 <Button>

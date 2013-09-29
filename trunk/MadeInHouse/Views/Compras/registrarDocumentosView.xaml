@@ -50,6 +50,12 @@
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="596,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Total Bruto" HorizontalAlignment="Left" Height="26" Margin="509,377,0,0" VerticalAlignment="Top" Width="77" RenderTransformOrigin="0.541,1.444"/>
         <ToolBar VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
                 <Button>
                     <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                 </Button>
