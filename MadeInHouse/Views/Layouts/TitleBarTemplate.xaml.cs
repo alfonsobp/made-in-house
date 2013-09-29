@@ -23,6 +23,9 @@ namespace MadeInHouse.Views.Layouts
     {
         public static readonly DependencyProperty titleProperty = DependencyProperty.Register("title", typeof(string), typeof(TitleBarTemplate), new PropertyMetadata(string.Empty));
 
+        private const int ALTURA = 35;
+        private const int ANCHO = 200;
+
         public string title
         {
             get { return (string)GetValue(titleProperty); }
@@ -37,24 +40,24 @@ namespace MadeInHouse.Views.Layouts
 
         private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Window.GetWindow(this).Width != 200)
+            if (Window.GetWindow(this).Width != ANCHO)
                 Window.GetWindow(this).DragMove();
         }
 
         private void CloseWin_Click(object sender, RoutedEventArgs e)
         {
             Window.GetWindow(this).Close();
-            if (Window.GetWindow(this).Width == 200)
+            if (Window.GetWindow(this).Width == ANCHO)
                 fixTabs();
         }
 
         private void MinimizeWin_Click(object sender, RoutedEventArgs e)
         {
-            if (Window.GetWindow(this).Width != 200)
+            if (Window.GetWindow(this).Width != ANCHO)
             {
                 Window.GetWindow(this).SizeToContent = SizeToContent.Manual;
-                Window.GetWindow(this).Width = 200;
-                Window.GetWindow(this).Height = 20;
+                Window.GetWindow(this).Width = ANCHO;
+                Window.GetWindow(this).Height = ALTURA;
                 if (MainViewModel.MinWin.Count == 0)
                 {
                     MainViewModel.MinWin.Add(new List<Window>());
@@ -71,8 +74,8 @@ namespace MadeInHouse.Views.Layouts
                 }
 
 
-                Window.GetWindow(this).Left = Application.Current.MainWindow.ActualWidth - 30 - 210 * (MainViewModel.MinWin.Last().Count);
-                Window.GetWindow(this).Top = Application.Current.MainWindow.ActualHeight - 30 - 30 * (MainViewModel.MinWin.Count);
+                Window.GetWindow(this).Left = Application.Current.MainWindow.ActualWidth - 30 - (ANCHO + 10) * (MainViewModel.MinWin.Last().Count);
+                Window.GetWindow(this).Top = Application.Current.MainWindow.ActualHeight - 30 - (ALTURA + 10) * (MainViewModel.MinWin.Count);
             }
             else
             {
@@ -107,8 +110,8 @@ namespace MadeInHouse.Views.Layouts
             {
                 for (int j = 0; j < MainViewModel.MinWin.ElementAt(i).Count; j++)
                 {
-                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Left = Application.Current.MainWindow.ActualWidth - 30 - 210 * (j + 1);
-                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Top = Application.Current.MainWindow.ActualHeight - 30 - 30 * (i + 1);
+                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Left = Application.Current.MainWindow.ActualWidth - 30 - (ANCHO + 10) * (j + 1);
+                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Top = Application.Current.MainWindow.ActualHeight - 30 - (ALTURA + 10) * (i + 1);
                 }
             }
         }

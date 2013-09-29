@@ -51,6 +51,6 @@
         <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="False" Click="MinimizeWin_Click" Width="30">
             <Image Source="/MadeInHouse;component/Assets/minimize-icon.png" Height="20" HorizontalAlignment="Right" />
         </Button>
-        <TextBlock Text="{Binding title}" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center" />
+        <TextBlock Text="{Binding title}" TextAlignment="Center" FontSize="16" VerticalAlignment="Center" />
     </DockPanel>
 </UserControl>
