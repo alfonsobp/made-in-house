@@ -125,7 +125,7 @@
     <Compile Include="ViewModels\Ventas\EditarPromoProductoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarPromoServicioViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteBuscarViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\ListadoDevolucionesViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\DevolucionesBuscarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoNotaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoPromoProductoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoPromoServicioViewModel.cs" />
@@ -350,8 +350,8 @@
     <Compile Include="Views\Ventas\ClienteBuscarView.xaml.cs">
       <DependentUpon>ClienteBuscarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\ListadoDevolucionesView.xaml.cs">
-      <DependentUpon>ListadoDevolucionesView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\DevolucionesBuscarView.xaml.cs">
+      <DependentUpon>DevolucionesBuscarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\ListadoNotaCreditoView.xaml.cs">
       <DependentUpon>ListadoNotaCreditoView.xaml</DependentUpon>
@@ -635,7 +635,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\ListadoDevolucionesView.xaml">
+    <Page Include="Views\Ventas\DevolucionesBuscarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

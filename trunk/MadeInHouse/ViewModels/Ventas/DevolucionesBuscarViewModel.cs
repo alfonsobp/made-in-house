@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class ListadoDevolucionesViewModel : PropertyChangedBase
+    class DevolucionesBuscarViewModel : PropertyChangedBase
     {
         private WindowManager win = new WindowManager();
 

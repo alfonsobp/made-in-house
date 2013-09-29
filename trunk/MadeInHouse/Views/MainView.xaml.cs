@@ -24,7 +24,7 @@ namespace MadeInHouse.Views
             InitializeComponent();
         }
 
-        private void CerrarAplicacion_Click(object sender, RoutedEventArgs e)
+        private void CloseWin_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

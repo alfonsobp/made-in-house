@@ -10,5 +10,5 @@ using Caliburn.Micro;
 
 namespace MadeInHouse
 {
-    public class AppBootstrapper : Bootstrapper<ViewModels.MainViewModel> { }
+    public class AppBootstrapper : Bootstrapper<ViewModels.LoginViewModel> { }
 }

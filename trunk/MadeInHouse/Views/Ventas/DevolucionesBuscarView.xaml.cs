@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Ventas
 {
     /// <summary>
-    /// Lógica de interacción para ListadoDevolucionesView.xaml
+    /// Lógica de interacción para DevolucionesBuscarView.xaml
     /// </summary>
-    public partial class ListadoDevolucionesView : UserControl
+    public partial class DevolucionesBuscarView : UserControl
     {
-        public ListadoDevolucionesView()
+        public DevolucionesBuscarView()
         {
             InitializeComponent();
         }

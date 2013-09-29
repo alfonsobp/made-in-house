@@ -46,7 +46,7 @@ namespace MadeInHouse.ViewModels
         
         public void AbrirListadoDevoluciones()
         {
-            win.ShowWindow(new Ventas.ListadoDevolucionesViewModel());
+            win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
         }
         public void AbrirRegistrarDevolucion()
         {
