@@ -147,8 +147,18 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel { DisplayName = "Nuevo Producto" }); 
             
         }
-
         
+        public void AbrirSolicitudAbConsolidar()
+        {
+            win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel { DisplayName = "Consolidar Solicitudes" }); 
+            
+        }
+        public void AbrirSolicitudAbDetalle()
+        {
+            win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel { DisplayName = "Detalle Solicitud" }); 
+        }
+        
+
 
         #endregion Almacen
 

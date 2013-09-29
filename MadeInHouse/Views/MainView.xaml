@@ -61,7 +61,7 @@
                         <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10"/>
                         <Button  Background="Beige" BorderThickness="0" Content="Control de stock" FontSize="20"  Grid.Row="11"/>
                         <Button   Background="Aqua" BorderThickness="0" Content="Ver stocks mínimos" FontSize="20" Height="Auto" Grid.Row="12"/>
-                        <Button   Background="Aqua" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="13"/>
+                        <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Black" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="13"/>
                         <Button   Background="Aqua" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="14"/>
 
                     </Grid>

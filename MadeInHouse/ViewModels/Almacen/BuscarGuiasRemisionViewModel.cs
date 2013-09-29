@@ -16,7 +16,6 @@ namespace MadeInHouse.ViewModels.Almacen
             win.ShowWindow(abrirGuiaView);
 
 
-
         }
 
 
