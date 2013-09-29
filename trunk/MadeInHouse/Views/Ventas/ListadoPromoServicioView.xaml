@@ -28,7 +28,7 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Campos de búsqueda" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Height="199" Width="520">
+        <GroupBox Header="Criterios de búsqueda" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Height="199" Width="520">
             <Grid>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="112,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
                 <Button Height="23" Width="60" Margin="301,13,147,141">
@@ -48,7 +48,7 @@
         </GroupBox>
         <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="40,285,0,0" VerticalAlignment="Top" Height="252" Width="520">
             <Grid>
-                <DataGrid HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="508">
+                <DataGrid HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="488" Margin="10,10,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Código" Width="60"/>
                         <DataGridTextColumn Header="Servicio" Width="246"/>
