@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="560" d:DesignWidth="750" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-    <Grid HorizontalAlignment="Left" Width="750" Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
-        <DataGrid Height="115" Margin="36,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="673">
+    <Grid HorizontalAlignment="Left" Width="750" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+        <DataGrid Height="115" Margin="36,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="673" Background="{x:Null}" Foreground="{x:Null}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código" Width="100"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="250"/>
