@@ -18,9 +18,6 @@
 
 
     <Grid>
-        <Grid.Effect>
-            <DropShadowEffect/>
-        </Grid.Effect>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="159*"/>
             <ColumnDefinition Width="302*"/>
@@ -34,7 +31,7 @@
                 </LinearGradientBrush>
             </ScrollViewer.Background>
             <StackPanel Width="303">
-                <HeaderedContentControl Header="Inicio"  Foreground="Gray"  FontSize="40"    >
+                <HeaderedContentControl Header="MENU"  Foreground="Gray"  FontSize="40"    >
                     <Image Source="/MadeInHouse;component/Assets/home.png" Height="40" Margin="104,0,81,0" />
                 </HeaderedContentControl>
                     <Expander Header="Almacenes" Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >

@@ -57,7 +57,7 @@
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="360,97,0,0" VerticalAlignment="Top"/>
         <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Button  HorizontalAlignment="Left" Height="25" Margin="473,159,0,0" VerticalAlignment="Top" Width="55">
+        <Button  HorizontalAlignment="Left" Height="25" Margin="520,159,0,0" VerticalAlignment="Top" Width="55">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="43" />
         </Button>
         <DataGrid Height="160" Margin="25,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="549">
@@ -77,12 +77,12 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <GroupBox Header="Consolidado de Productos a comprar" Margin="10,46,10,0" VerticalAlignment="Top" Height="259"/>
+        <GroupBox Header="Consolidado de Productos a comprar" Margin="10,46,10,0" VerticalAlignment="Top" Height="264"/>
         <GroupBox Header="Resultados" Margin="10,310,0,0" HorizontalAlignment="Left" Width="580" Height="202" VerticalAlignment="Top"/>
-        <Button Margin="398,206,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
+        <Button Margin="466,245,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
             <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="50" />
         </Button>
-        <Button Margin="473,206,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
+        <Button Margin="526,245,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
             <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="50" />
         </Button>
         <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="360,128,0,0" VerticalAlignment="Top"/>
