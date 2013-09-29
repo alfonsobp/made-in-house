@@ -7,15 +7,21 @@
              d:DesignHeight="450" Width="366">
     <Grid>
 
-        <ToolBar VerticalAlignment="Top" HorizontalAlignment="Left" Width="366" Height="41" Grid.ColumnSpan="2">
+        <ToolBar VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
+                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
             <Button x:Name="AbrirMantenerZona" Margin="0,3" VerticalAlignment="Stretch" >
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />

@@ -16,23 +16,29 @@
             <ColumnDefinition Width="412*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-        <ToolBar VerticalAlignment="Top" Grid.ColumnSpan="3" Height="35">
+        <ToolBar VerticalAlignment="Top" Grid.ColumnSpan="3">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
             <Button>
-                <Image Source="/Assets/new2.png" Height="24" Width="24" />
+                <Image Source="/Assets/new2.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/Assets/edit2.png" Height="24" Width="24" />
+                <Image Source="/Assets/edit2.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/Assets/save.png" Height="24" Width="24" />
+                <Image Source="/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/Assets/delete.png" Height="24" Width="24" />
+                <Image Source="/Assets/delete.png" Height="30" Width="30" />
             </Button>
             <Button>
-                <Image Source="/Assets/eraser.png" Height="24" Width="24" />
+                <Image Source="/Assets/eraser.png" Height="30" Width="30" />
             </Button>
-            <Button Height="24" Width="24">
+            <Button Height="30" Width="30">
                 <Image Source="/Assets/refresh.png" />
             </Button>
         </ToolBar>
