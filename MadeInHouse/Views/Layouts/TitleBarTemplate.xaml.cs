@@ -23,8 +23,9 @@ namespace MadeInHouse.Views.Layouts
     {
         public static readonly DependencyProperty titleProperty = DependencyProperty.Register("title", typeof(string), typeof(TitleBarTemplate), new PropertyMetadata(string.Empty));
 
-        private const int ALTURA = 35;
+        private const int ALTURA = 33;
         private const int ANCHO = 200;
+        private static int tabsXfila = 0;
 
         public string title
         {
@@ -53,6 +54,12 @@ namespace MadeInHouse.Views.Layouts
 
         private void MinimizeWin_Click(object sender, RoutedEventArgs e)
         {
+            if (tabsXfila == 0)
+            {
+                double anchoWin = Application.Current.MainWindow.Owner.ActualWidth;
+                double calcTabs = ((anchoWin / 636) * 477) / (ANCHO);
+                tabsXfila = (int)Math.Truncate(calcTabs);
+            }
             if (Window.GetWindow(this).Width != ANCHO)
             {
                 Window.GetWindow(this).SizeToContent = SizeToContent.Manual;
@@ -63,7 +70,7 @@ namespace MadeInHouse.Views.Layouts
                     MainViewModel.MinWin.Add(new List<Window>());
                 }
 
-                if (MainViewModel.MinWin.Last().Count < 5)
+                if (MainViewModel.MinWin.Last().Count < tabsXfila)
                 {
                     MainViewModel.MinWin.Last().Add(Window.GetWindow(this));
                 }
@@ -74,14 +81,14 @@ namespace MadeInHouse.Views.Layouts
                 }
 
 
-                Window.GetWindow(this).Left = Application.Current.MainWindow.ActualWidth - 30 - (ANCHO + 10) * (MainViewModel.MinWin.Last().Count);
-                Window.GetWindow(this).Top = Application.Current.MainWindow.ActualHeight - 30 - (ALTURA + 10) * (MainViewModel.MinWin.Count);
+                Window.GetWindow(this).Left = Application.Current.MainWindow.Owner.ActualWidth - 5 - (ANCHO + 5) * (MainViewModel.MinWin.Last().Count);
+                Window.GetWindow(this).Top = Application.Current.MainWindow.Owner.ActualHeight - 5 - (ALTURA + 5) * (MainViewModel.MinWin.Count);
             }
             else
             {
                 Window.GetWindow(this).SizeToContent = SizeToContent.WidthAndHeight;
-                Window.GetWindow(this).Top = 0.5 * (Application.Current.MainWindow.ActualHeight - Window.GetWindow(this).ActualHeight);
-                Window.GetWindow(this).Left = 0.5 * (Application.Current.MainWindow.ActualWidth - Window.GetWindow(this).ActualWidth);
+                Window.GetWindow(this).Top = 0.5 * (Application.Current.MainWindow.Owner.ActualHeight - Window.GetWindow(this).ActualHeight);
+                Window.GetWindow(this).Left = 0.5 * (Application.Current.MainWindow.Owner.ActualWidth - Window.GetWindow(this).ActualWidth);
 
                 fixTabs();
             }
@@ -98,7 +105,7 @@ namespace MadeInHouse.Views.Layouts
                 }
                 if (i < MainViewModel.MinWin.Count - 1)
                 {
-                    if (MainViewModel.MinWin.ElementAt(i).Count < 5)
+                    if (MainViewModel.MinWin.ElementAt(i).Count < tabsXfila)
                     {
                         MainViewModel.MinWin.ElementAt(i).Add(MainViewModel.MinWin.ElementAt(i + 1).First());
                         MainViewModel.MinWin.ElementAt(i + 1).Remove(MainViewModel.MinWin.ElementAt(i + 1).First());
@@ -110,8 +117,8 @@ namespace MadeInHouse.Views.Layouts
             {
                 for (int j = 0; j < MainViewModel.MinWin.ElementAt(i).Count; j++)
                 {
-                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Left = Application.Current.MainWindow.ActualWidth - 30 - (ANCHO + 10) * (j + 1);
-                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Top = Application.Current.MainWindow.ActualHeight - 30 - (ALTURA + 10) * (i + 1);
+                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Left = Application.Current.MainWindow.Owner.ActualWidth - 5 - (ANCHO + 5) * (j + 1);
+                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Top = Application.Current.MainWindow.Owner.ActualHeight - 5 - (ALTURA + 5) * (i + 1);
                 }
             }
         }
