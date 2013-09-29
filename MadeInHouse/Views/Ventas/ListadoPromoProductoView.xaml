@@ -44,7 +44,7 @@
         </GroupBox>
         <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="40,237,0,0" VerticalAlignment="Top" Height="252" Width="520">
             <Grid>
-                <DataGrid HorizontalAlignment="Left" Height="230" VerticalAlignment="Top" Width="508">
+                <DataGrid HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="488" Margin="10,10,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Código" Width="60"/>
                         <DataGridTextColumn Header="Producto" Width="246"/>

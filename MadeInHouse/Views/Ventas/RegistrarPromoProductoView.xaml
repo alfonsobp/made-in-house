@@ -30,7 +30,7 @@
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
                 <Label Content="Descuento:" HorizontalAlignment="Left" Margin="30,41,0,0" VerticalAlignment="Top" Height="26" Width="69"/>
-                <CheckBox Content="Límite de Stock:" HorizontalAlignment="Left" Margin="30,83,0,0" VerticalAlignment="Top"/>
+                <Label Content="Límite de Stock:" HorizontalAlignment="Left" Margin="30,75,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="144,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="144,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
                 <GroupBox Header="Vigencia" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Height="102" Width="309">

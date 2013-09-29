@@ -39,7 +39,7 @@
         </GroupBox>
         <GroupBox Header="Lista Requerida" Margin="10,262,0,21" HorizontalAlignment="Left" Width="452">
             <Grid Margin="1">
-                <DataGrid Margin="1,50,1,1">
+                <DataGrid Margin="10,50,10,10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="80" Header="Cantidad"/>
                         <DataGridTextColumn Width="266" Header="Producto"/>

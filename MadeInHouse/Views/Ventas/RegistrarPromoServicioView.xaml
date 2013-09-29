@@ -42,7 +42,7 @@
 
                     </Grid>
                 </GroupBox>
-                <CheckBox Content="Límite de Stock:" HorizontalAlignment="Left" Margin="30,83,0,0" VerticalAlignment="Top"/>
+                <Label Content="Límite de Stock:" HorizontalAlignment="Left" Margin="30,72,0,0" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="144,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
                 
             </Grid>
