@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="696.5" Height="725.896">
-    <Grid Margin="0,0,0,10">
+             mc:Ignorable="d" Height="697.896" Width="513">
+    <Grid Height="694" VerticalAlignment="Top" HorizontalAlignment="Left" Width="518">
         <ToolBar VerticalAlignment="Top" Height="41">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
             <Button ToolTip="Restaurar Ventana">
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
@@ -16,20 +22,20 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
             <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
-                <Image Source="/MadeInHouse;component/Assets/excel logo.png" />
+                <Image Source="/MadeInHouse;component/Assets/xls.png" />
             </Button>
-            <Button ToolTip="Exportar tabla a PDF" Height="30" Width="30">
+            <Button ToolTip="Exportar tabla a PDF" Height="35" Width="35">
                 <Image Source="/MadeInHouse;component/Assets/pdf.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Reporte de Entrada y Salida de Productos" HorizontalAlignment="Left" Height="639" Margin="10,46,0,-85" VerticalAlignment="Top" Width="580">
-            <Grid Margin="12,0,-12,0" Height="617" VerticalAlignment="Top">
-                <Button ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
+        <GroupBox Header="Reporte de Entrada y Salida de Productos" HorizontalAlignment="Left" Height="639" Margin="10,46,0,0" VerticalAlignment="Top" Width="498">
+            <Grid Margin="12,0,-62,0" Height="617" VerticalAlignment="Top" HorizontalAlignment="Left" Width="486">
+                <Button ToolTip="Generar reporte" Margin="403,21,0,0" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                 </Button>
-                <GroupBox Header="Productos" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
+                <GroupBox Header="Productos" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="453" Height="123">
                     <Grid>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                        <ListBox Name="listBoxProductos1" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                             <ListBoxItem Content="Tornillo Punta metalica"/>
                             <ListBoxItem Content="Tornillo magnetico AAA"/>
                             <ListBoxItem Content="Tornillo Astar"/>
@@ -37,29 +43,29 @@
                             <ListBoxItem Content="Tornillon"/>
                             <ListBoxItem Content="Tornillo Tornado"/>
                         </ListBox>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                            <ListBoxItem Content=""/>
+                        <ListBox Name="listBoxProductos2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                            
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
                         <Button Content=">>" Margin="209,49,300,32"></Button>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Almacen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
+                <GroupBox Header="Almacén" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="453" Height="123">
                     <Grid>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                        <ListBox Name="listBoxAlmacen1" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                             <ListBoxItem Content="San Miguel"/>
                             <ListBoxItem Content="La Molina"/>
                             <ListBoxItem Content="Puente Piedra"/>
                             <ListBoxItem Content="Surco"/>
                         </ListBox>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                        <ListBox Name="listBoxAlmacen2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                             <ListBoxItem Content="San Borja"/>
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
                         <Button Content=">>" Margin="209,49,300,32"></Button>
                     </Grid>
                 </GroupBox>
-                <DataGrid HorizontalAlignment="Left" Margin="32,470,0,0" VerticalAlignment="Top" Height="147" Width="403">
+                <DataGrid HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top" Height="147" Width="453">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="idTransacción"/>
                         <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="TipoTran"/>
@@ -74,9 +80,9 @@
                 <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
                 <DatePicker HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
                 <DatePicker HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="548" Height="123">
+                <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="453" Height="123">
                     <Grid>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                        <ListBox Name="listBoxCategorias1" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                             <ListBoxItem Content="Tornillos"/>
                             <ListBoxItem Content="Taladros"/>
                             <ListBoxItem Content="Cemento"/>
@@ -84,7 +90,7 @@
                             <ListBoxItem Content="Focos"/>
                             <ListBoxItem Content="Puertas"/>
                         </ListBox>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                        <ListBox Name="listBoxCategorias2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                             <ListBoxItem Content="Tornillos"/>
                         </ListBox>
                         <Button Content="&gt;" Margin="209,26,300,57"/>
@@ -93,6 +99,6 @@
                 </GroupBox>
 
             </Grid>
-        </GroupBox>   
+        </GroupBox>
     </Grid>
 </UserControl>

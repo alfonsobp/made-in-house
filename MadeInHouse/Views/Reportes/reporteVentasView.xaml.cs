@@ -52,5 +52,14 @@ namespace MadeInHouse.Views.Reportes
 
 
         }
+        private void Unselect(object sender, RoutedEventArgs e)
+        {
+            listBoxCategorias1.UnselectAll();
+            listBoxCategorias2.UnselectAll();
+            listBoxSede1.UnselectAll();
+            listBoxSede2.UnselectAll();
+            listBoxProveedores1.UnselectAll();
+            listBoxProveedores2.UnselectAll();
+        }
     }
 }

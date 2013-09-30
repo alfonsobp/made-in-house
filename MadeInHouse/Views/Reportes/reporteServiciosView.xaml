@@ -42,12 +42,12 @@
                 </Button>
                 <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
                     <Grid>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                        <ListBox Name="listBoxProveedores1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                             <ListBoxItem Content="Electrisistas Unidos"/>
                             <ListBoxItem Content="Instalaciones 24Hrs"/>
                             <ListBoxItem Content="Armando Muebles SAC"/>
                         </ListBox>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                        <ListBox Name="listBoxProveedores2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                             <ListBoxItem Content="Fontaneros SAC"/>
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
@@ -56,12 +56,12 @@
                 </GroupBox>
                 <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
                     <Grid>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                        <ListBox Name="listBoxCategorias1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                             <ListBoxItem Content="Baños"/>
                             <ListBoxItem Content="Techos"/>
                             <ListBoxItem Content="Electronicos"/>
                         </ListBox>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                        <ListBox Name="listBoxCategorias2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                             <ListBoxItem Content="Muebles"/>
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
@@ -70,13 +70,13 @@
                 </GroupBox>
                 <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
                     <Grid>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                        <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                             <ListBoxItem Content="San Miguel"/>
                             <ListBoxItem Content="La Molina"/>
                             <ListBoxItem Content="Puente Piedra"/>
                             <ListBoxItem Content="Surco"/>
                         </ListBox>
-                        <ListBox HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                        <ListBox Name="listBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                             <ListBoxItem Content="San Borja"/>
                         </ListBox>
                         <Button Content=">" Margin="209,26,300,57"></Button>
