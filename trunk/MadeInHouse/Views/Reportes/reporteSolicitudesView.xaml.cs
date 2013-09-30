@@ -24,5 +24,33 @@ namespace MadeInHouse.Views.Reportes
         {
             InitializeComponent();
         }
+        private void pasarListBox(ListBox origen, ListBox destino)
+        {
+            String text = origen.SelectedItem.ToString();
+            text = text.Replace("System.Windows.Controls.ListBoxItem: ", "");
+            destino.Items.Add(text);
+            origen.Items.Remove(origen.SelectedItem);
+        }
+        private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
+        {
+            if (listBoxProveedores1.SelectedItem != null)
+                pasarListBox(listBoxProveedores1, listBoxProveedores2);
+            if (listBoxProveedores2.SelectedItem != null)
+                pasarListBox(listBoxProveedores2, listBoxProveedores1);
+
+            if (listBoxCategorias1.SelectedItem != null)
+                pasarListBox(listBoxCategorias1, listBoxCategorias2);
+            if (listBoxCategorias2.SelectedItem != null)
+                pasarListBox(listBoxCategorias2, listBoxCategorias1);
+
+        }
+        private void Unselect(object sender, RoutedEventArgs e)
+        {
+            listBoxCategorias1.UnselectAll();
+            listBoxCategorias2.UnselectAll();
+
+            listBoxProveedores1.UnselectAll();
+            listBoxProveedores2.UnselectAll();
+        }
     }
 }
