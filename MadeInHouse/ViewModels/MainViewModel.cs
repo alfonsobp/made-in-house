@@ -76,7 +76,7 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirNuevaPromoProducto()
         {
-            win.ShowWindow(new Ventas.RegistrarPromoProductoViewModel { DisplayName = "Nueva Promoción de Producto" });
+            win.ShowWindow(new Ventas.RegistrarPromoProductoViewModel());
         }
 
         #endregion Ventas
