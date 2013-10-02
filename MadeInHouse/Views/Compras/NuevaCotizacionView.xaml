@@ -36,11 +36,12 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-        <DataGrid Margin="0,201,0,0" Height="175" VerticalAlignment="Top" HorizontalAlignment="Left" Width="285">
+        <DataGrid Margin="25,201,0,0" Height="115" VerticalAlignment="Top" HorizontalAlignment="Left" Width="407">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Descripcion"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="50" Header="P. Unit"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="140" Header="Descripcion"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="Cant"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="103" Header="P.Cant"/>
 
             </DataGrid.Columns>
             <Button/>
@@ -65,18 +66,20 @@
             <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="28,130,0,0" VerticalAlignment="Top" Width="49"/>
-        <DatePicker HorizontalAlignment="Left" Margin="122,161,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="28,161,0,0" VerticalAlignment="Top" Width="95"/>
-        <Label Content="Observacion:" HorizontalAlignment="Left" Margin="342,201,0,0" VerticalAlignment="Top"/>
-        <Button HorizontalAlignment="Left" Height="38" Margin="300,247,0,0" VerticalAlignment="Top" Width="34">
+        <Label Content="Observacion:" HorizontalAlignment="Left" Margin="25,334,0,0" VerticalAlignment="Top"/>
+        <Button HorizontalAlignment="Left" Height="38" Margin="441,222,0,0" VerticalAlignment="Top" Width="34">
             <Image Source="/MadeInHouse;component/Assets/add.png" Height="20" Width="50" />
         </Button>
-        <Button  HorizontalAlignment="Left" Height="38" Margin="300,289,0,0" VerticalAlignment="Top" Width="34">
+        <Button  HorizontalAlignment="Left" Height="38" Margin="441,264,0,0" VerticalAlignment="Top" Width="34">
             <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
         </Button>
-        <DatePicker HorizontalAlignment="Left" Margin="339,159,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label Content="Fecha Respuesta:" HorizontalAlignment="Left" Margin="228,159,0,0" VerticalAlignment="Top" Width="106"/>
-        <TextBox HorizontalAlignment="Left" Height="144" Margin="342,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+        <DatePicker HorizontalAlignment="Left" Margin="131,163,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Content="Fecha Respuesta:" HorizontalAlignment="Left" Margin="25,161,0,0" VerticalAlignment="Top" Width="106"/>
+        <TextBox HorizontalAlignment="Left" Height="41" Margin="108,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="300"/>
+        <DatePicker HorizontalAlignment="Left" Margin="334,132,0,0" VerticalAlignment="Top" Width="93"/>
+        <DatePicker HorizontalAlignment="Left" Margin="334,161,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Content="Desde:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,130,0,0"/>
+        <Label Content="Hasta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,159,0,0"/>
 
     </Grid>
 </UserControl>
