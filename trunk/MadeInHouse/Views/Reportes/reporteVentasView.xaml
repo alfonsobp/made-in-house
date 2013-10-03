@@ -41,17 +41,19 @@
                             <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" Name="listBoxProveedores1" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                                        <ListBoxItem Content="Tornillos Luchito"  />
-                                        <ListBoxItem Content="Pepe Ganga"/>
-                                        <ListBoxItem Content="Cemento Sol"/>
+                                        <ListBoxItem Content="radioshack"/>
+                                        <ListBoxItem Content="pepe ganga"/>
+                                        <ListBoxItem Content="martillos jose"/>
+                                        <ListBoxItem Content="serruchos con filo"/>
+                                       
                                     </ListBox>
                                     <ListBox Name="listBoxProveedores2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                                        <ListBoxItem Content="Radioshack"/>
+                                        <ListBoxItem Content="cemento sol"/>
                                     </ListBox>
-                                    <Button Margin="202,24,290,52">
+                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,290,28">
+                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -69,10 +71,10 @@
                                     <ListBox Name="listBoxCategorias2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Lamparas"/>
                                     </ListBox>
-                                    <Button Margin="202,24,290,52">
+                                    <Button Name="derecha2" Margin="202,24,290,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,290,28">
+                                    <Button Name="izquierda2" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -88,10 +90,10 @@
                                     <ListBox Name="listBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="San Borja"/>
                                     </ListBox>
-                                    <Button Margin="202,24,290,52">
+                                    <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,290,28">
+                                    <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
