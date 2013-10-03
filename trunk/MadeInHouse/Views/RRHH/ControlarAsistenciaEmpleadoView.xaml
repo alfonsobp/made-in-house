@@ -6,7 +6,7 @@
              mc:Ignorable="d" Height="180" Width="349.808">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="350" Height="180" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,-53" Height="180" VerticalAlignment="Top">
-            <Layouts:TitleBarTemplate title="Registrar Rol" DockPanel.Dock="Top"/>
+            <Layouts:TitleBarTemplate title="Marcar Asistencia" DockPanel.Dock="Top"/>
 
             <Grid Width="346" Height="145" VerticalAlignment="Top">
                 <Label Content="ID Usuario" HorizontalAlignment="Left" Margin="57,31,0,0" VerticalAlignment="Top"/>
