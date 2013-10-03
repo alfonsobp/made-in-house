@@ -4,8 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="362" Width="334">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,10" >
+             mc:Ignorable="d" d:designHeight="362" d:designWidth="334">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,10" Background="White">
         <StackPanel Margin="0,0,0,19">
             <Layouts:TitleBarTemplate  title="Consolidar Solicitudes"/>
             <Grid Height="326">

@@ -237,6 +237,9 @@
     <Compile Include="Views\Almacen\PosicionProductoView.xaml.cs">
       <DependentUpon>PosicionProductoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Almacen\ProductoMovimientos.xaml.cs">
+      <DependentUpon>ProductoMovimientos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Almacen\SolicitudAbListadoView.xaml.cs">
       <DependentUpon>SolicitudAbListadoView.xaml</DependentUpon>
     </Compile>
@@ -540,6 +543,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\PosicionProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\ProductoMovimientos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
