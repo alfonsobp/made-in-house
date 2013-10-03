@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            mc:Ignorable="d" Height="444.197" Width="748.059">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+            mc:Ignorable="d" d:designHeight="444.197" d:designWidth="748.059">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate  title="Nueva nota de salida"/>
             <Grid HorizontalAlignment="Left" Width="748">

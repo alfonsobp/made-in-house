@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
             mc:Ignorable="d" Height="232" Width="607">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar Stock en Tiempo Real" />
             <Grid Margin="0,0,0,10">

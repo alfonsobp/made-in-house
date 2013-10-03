@@ -6,7 +6,7 @@
              xmlns:Almacen="clr-namespace:MadeInHouse.Views.Almacen" 
             x:Class="MadeInHouse.ViewModels.Almacen.BuscarGuiasRemisionView" 
              mc:Ignorable="d" Height="463" Width="424.667">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar guias" />
             <Grid HorizontalAlignment="Left" Width="425" Height="463" VerticalAlignment="Top">

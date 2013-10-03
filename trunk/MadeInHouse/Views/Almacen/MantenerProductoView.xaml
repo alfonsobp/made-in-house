@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" Width="499.576">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+             d:DesignHeight="450" d:designWidth="499.576">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Nuevo producto" />
             <Grid>
