@@ -55,9 +55,9 @@
 
 
     <Grid>
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="/MadeInHouse;component/Assets/construir.jpg" Stretch="None"/>
-        </Grid.Background>
+        </Grid.Background>-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="320*"/>
             <ColumnDefinition Width="667*"/>
