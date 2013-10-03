@@ -23,10 +23,10 @@
                 </LinearGradientBrush>
             </ToolBar.Background>
             <Button
-                 x:Name="AbrirBuscadorServicioViewModel" >
+                 x:Name="NuevoServicio" >
                 <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+                    <Button  x:Name="EditarServicio">
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
             <Button>

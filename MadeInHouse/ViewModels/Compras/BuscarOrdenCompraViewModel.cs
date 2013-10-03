@@ -10,6 +10,22 @@ namespace MadeInHouse.ViewModels.Compras
     class BuscarOrdenCompraViewModel:Screen
     {
 
+        private WindowManager win = new WindowManager();
+
+        public void NuevaOrden()
+        {
+
+
+            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Nueva Orden de Compra" };
+            win.ShowWindow(obj);
+        }
+        public void EditarOrden()
+        {
+
+            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Editar Orden de Compra" };
+            win.ShowWindow(obj);
+        }
+
 
     }
 }
