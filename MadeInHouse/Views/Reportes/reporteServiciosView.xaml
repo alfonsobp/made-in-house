@@ -8,7 +8,7 @@
              d:DesignWidth="600" Height="696.5">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Reporte de acciones" />
+            <Layouts:TitleBarTemplate title="Reporte de Servicios" />
             <Grid>
                 <ToolBar VerticalAlignment="Top" Margin="0">
                     <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
