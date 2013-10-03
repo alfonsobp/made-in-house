@@ -1,62 +1,69 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Seguridad.ConfigurarUsuarioView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+    x:Class="MadeInHouse.Views.Seguridad.ConfigurarUsuarioView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="299.986" d:DesignWidth="480.59">
-    <Grid>
-        <ToolBar VerticalAlignment="Top">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-            </Button>
-        </ToolBar>
-        <GroupBox Header="Editar Contraseña" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" Width="453">
-            <Grid Margin="0,0,-2,-3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="108*"/>
-                    <ColumnDefinition Width="133*"/>
-                </Grid.ColumnDefinitions>
-                <Label Content="Contraseña Actual:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Margin="88,10,0,0" Height="26" Grid.ColumnSpan="2"/>
-                <Label Content="Confirmar Contraseña:+++++++++++++++" HorizontalAlignment="Left" Margin="88,76,0,0" VerticalAlignment="Top" Width="131" Height="26" Grid.ColumnSpan="2"/>
-                <Label Content="Contraseña Nueva:" HorizontalAlignment="Left" Margin="88,43,0,0" VerticalAlignment="Top" Width="112" Height="26"/>
-                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
-                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,43,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
-                <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,76,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Configuración de usuario" />
 
-
-            </Grid>
-        </GroupBox>
-
-        <GroupBox Header="Contacto" Margin="10,201,18,20">
             <Grid>
-                <Label Content="Teléfono:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66" Margin="10,16,0,0"/>
-                <TextBox HorizontalAlignment="Left" Margin="81,19,0,15" TextWrapping="Wrap" Width="135"/>
-                <Label Content="Email:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="240,16,0,0"/>
-                <TextBox Margin="296,19,10,15" TextWrapping="Wrap"/>
-            </Grid>
-        </GroupBox>
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                <GroupBox Header="Editar Contraseña" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" Width="453">
+                    <Grid Margin="0,0,-2,-3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="108*"/>
+                            <ColumnDefinition Width="133*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Contraseña Actual:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Margin="88,10,0,0" Height="26" Grid.ColumnSpan="2"/>
+                        <Label Content="Confirmar Contraseña:+++++++++++++++" HorizontalAlignment="Left" Margin="88,76,0,0" VerticalAlignment="Top" Width="131" Height="26" Grid.ColumnSpan="2"/>
+                        <Label Content="Contraseña Nueva:" HorizontalAlignment="Left" Margin="88,43,0,0" VerticalAlignment="Top" Width="112" Height="26"/>
+                        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,43,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,76,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
 
-    </Grid>
+
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Contacto" Margin="10,201,18,20">
+                    <Grid>
+                        <Label Content="Teléfono:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66" Margin="10,16,0,0"/>
+                        <TextBox HorizontalAlignment="Left" Margin="81,19,0,15" TextWrapping="Wrap" Width="135"/>
+                        <Label Content="Email:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="240,16,0,0"/>
+                        <TextBox Margin="296,19,10,15" TextWrapping="Wrap"/>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+        </StackPanel>
+    </Border>
 </UserControl>
