@@ -45,16 +45,16 @@
         </ToolBar>
         <GroupBox Grid.Column="3" Header="Productos" Margin="10,57,10,139" Grid.RowSpan="3">
             <Grid>
-                <Label Content="Código" Margin="10,22,287,346"/>
+                <Label Content="Código:" Margin="10,22,287,346"/>
                 <DataGrid x:Name="productos" Margin="10,0,10,36" HeadersVisibility="Column" Height="257" VerticalAlignment="Bottom">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Codigo" Width="90"/>
+                        <DataGridTextColumn Header="Código" Width="90"/>
                         <DataGridTextColumn Header="Nombre" Width="120"/>
                         <DataGridTextColumn Header="Cantidad" Width="80"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="105,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
-                <Label Content="Cantidad" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="79"/>
+                <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="79"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="145,71,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="80"/>
                 <Button  HorizontalAlignment="Left" Margin="230,22,0,0" VerticalAlignment="Top" Width="24" Height="24">
                     <Image Source="/Assets/find.png" />
@@ -72,10 +72,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Código" HorizontalAlignment="Left" Margin="17,25,0,0" VerticalAlignment="Top" Width="47" Height="20"/>
+                <TextBlock Text="Código:" HorizontalAlignment="Left" Margin="17,25,0,0" VerticalAlignment="Top" Width="47" Height="20"/>
                 <TextBox HorizontalAlignment="Left" Height="22" Margin="108,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
-                <TextBlock Text="Fecha" HorizontalAlignment="Left" Margin="17,75,0,0" VerticalAlignment="Top" Width="62" Height="22"/>
-                <TextBlock Text="Tipo" HorizontalAlignment="Left" Margin="17,50,0,0" VerticalAlignment="Top" Width="47" Height="20" RenderTransformOrigin="0.468,0.462"/>
+                <TextBlock Text="Fecha:" HorizontalAlignment="Left" Margin="17,75,0,0" VerticalAlignment="Top" Width="62" Height="22"/>
+                <TextBlock Text="Tipo:" HorizontalAlignment="Left" Margin="17,50,0,0" VerticalAlignment="Top" Width="47" Height="20" RenderTransformOrigin="0.468,0.462"/>
                 <ComboBox HorizontalAlignment="Left" Margin="108,50,0,0" VerticalAlignment="Top" Width="160" Height="22">
                     <ComboBoxItem Content="GR-Traslado interno" HorizontalAlignment="Left" Width="118"/>
                     <ComboBoxItem Content="GR-Traslado externo" HorizontalAlignment="Left" Width="118"/>
@@ -85,9 +85,9 @@
         </GroupBox>
         <GroupBox Grid.Column="2" Header="GroupBox" Margin="10,57,10,10">
             <Grid>
-                <Label Content="Doc. Ref." HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="87" Margin="10,20,0,0"/>
-                <Label Content="Cliente/Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="87" Margin="10,51,0,0"/>
-                <Label Content="Dirección" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.079,0.385" Height="26" Width="60" Margin="10,82,0,0"/>
+                <Label Content="Doc. Ref.:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="87" Margin="10,20,0,0"/>
+                <Label Content="Cliente/Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="87" Margin="10,51,0,0"/>
+                <Label Content="Dirección:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.079,0.385" Height="26" Width="60" Margin="10,82,0,0"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="120,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
                 <TextBox HorizontalAlignment="Left" Margin="120,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="22"/>
                 <TextBox HorizontalAlignment="Left" Margin="120,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="24"/>
@@ -95,18 +95,18 @@
         </GroupBox>
         <GroupBox Header="Información general" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
             <Grid>
-                <Label Content="Almacen origen" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="93"/>
-                <Label Content="Inventario origen" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="26" Width="101"/>
+                <Label Content="Almacen origen:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="103"/>
+                <Label Content="Inventario origen:" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397" />
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="192,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
-                <Label Content="Fecha de traslado" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.5" Height="26" Width="103"/>
+                <Label Content="Fecha de traslado:" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.5" Height="26" Width="112"/>
                 <DatePicker HorizontalAlignment="Left" Margin="192,280,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
-                <Label Content="Camion" HorizontalAlignment="Left" Margin="20,239,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
-                <Label Content="Conductor" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+                <Label Content="Camión:" HorizontalAlignment="Left" Margin="20,239,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+                <Label Content="Conductor:" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="192,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
                 <ComboBox HorizontalAlignment="Left" Margin="192,243,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
-                <Label Content="Dirección de partida" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top" Width="126" Height="26"/>
-                <Label Content="Direccion de llegada" HorizontalAlignment="Left" Margin="18,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.484,0.5" Width="126" Height="26"/>
+                <Label Content="Dirección de partida:" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top" Width="126" Height="26"/>
+                <Label Content="Dirección de llegada:" HorizontalAlignment="Left" Margin="18,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.484,0.5" Width="126" Height="26"/>
                 <ComboBox HorizontalAlignment="Left" Margin="192,36,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
                 <ComboBox HorizontalAlignment="Left" Margin="192,77,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
             </Grid>
