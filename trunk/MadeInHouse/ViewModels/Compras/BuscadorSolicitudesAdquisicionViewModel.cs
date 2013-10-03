@@ -10,11 +10,20 @@ namespace MadeInHouse.ViewModels.Compras
 {
     class BuscadorSolicitudesAdquisicionViewModel:Screen
     {
-        public void AbrirMantenerSolicitudesAdquisicionViewModel()
+        private WindowManager win = new WindowManager();
+
+        public void NuevaSolicitud()
         {
 
-            WindowManager win = new WindowManager();
-            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Mantenimiento de Solicitudes de Adquisicion"};
+
+            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Nueva Solicitud" };
+            win.ShowWindow(obj);
+        }
+        public void EditarSolicitud()
+        {
+
+
+            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Editar Solicitud" };
             win.ShowWindow(obj);
         }
     }

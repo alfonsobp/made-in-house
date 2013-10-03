@@ -9,10 +9,19 @@ namespace MadeInHouse.ViewModels.Compras
 {
     class BuscadorProveedorViewModel:Screen
     {
-        public void AbrirMantenerProveedorViewModel()
+        private WindowManager win = new WindowManager();
+
+        public void NuevoProveedor()
         {
 
-            WindowManager win = new WindowManager();
+            
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Mantener Proveedor" };
+            win.ShowWindow(obj);
+        }
+        public void EditarProveedor()
+        {
+
+
             Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Mantener Proveedor" };
             win.ShowWindow(obj);
         }

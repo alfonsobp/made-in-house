@@ -9,11 +9,22 @@ namespace MadeInHouse.ViewModels.Compras
 {
     class BuscadorServicioViewModel:Screen
     {
-        public void AbrirBuscadorServicioViewModel()
+        private WindowManager win = new WindowManager();
+
+        public void NuevoServicio()
         {
-            WindowManager win = new WindowManager();
+
+
             Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
             win.ShowWindow(obj);
         }
+        public void EditarServicio()
+        {
+
+
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Editar Servicio" };
+            win.ShowWindow(obj);
+        }
+
     }
 }

@@ -22,10 +22,10 @@
                 </LinearGradientBrush>
             </ToolBar.Background>
             <Button
-    			x:Name="AbrirMantenerSolicitudesAdquisicionViewModel" >
+    			x:Name="NuevaCotizacion" >
                 <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="EditarCotizacion">
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
             <Button>

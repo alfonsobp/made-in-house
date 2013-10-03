@@ -56,10 +56,10 @@
                 </LinearGradientBrush>
             </ToolBar.Background>
             <Button
-        		x:Name="AbrirMantenerProveedorViewModel" >
+        		 x:Name="NuevaOrden" >
                 <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+                    <Button  x:Name="EditarOrden">
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
             <Button>
