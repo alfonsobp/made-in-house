@@ -6,13 +6,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Listado de Ordenes de Compra" />
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
-        <DataGrid Margin="2,201,9,0" Height="234" VerticalAlignment="Top">
+        <DataGrid Margin="2,201,0,0" Height="213" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="190" Header="Proveedor"/>
@@ -30,12 +30,12 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox HorizontalAlignment="Left"  Text="PROV-00012" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <GroupBox Header="Criterios de Búsqueda" Margin="11,59,9,0" VerticalAlignment="Top" Height="137"/>
         <Button Height="25" Margin="455,80,82,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox  Text="OC-001212" HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120">

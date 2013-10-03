@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+             d:DesignHeight="474.324" d:DesignWidth="600">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate  title="Listado de proveedores" />
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
