@@ -85,6 +85,7 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
+    <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerTiendaViewModel.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\StockMinListadoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\ZonaDistribucionViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorSolicitudesAdquisicionViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarCotizacionViewModel.cs" />
@@ -184,6 +186,9 @@
     <Compile Include="Views\Almacen\BuscarTipoZonaView.xaml.cs">
       <DependentUpon>BuscarTipoZonaView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Almacen\BuscarZonaView.xaml.cs">
+      <DependentUpon>BuscarZonaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Almacen\ListaOrdenCompraView.xaml.cs">
       <DependentUpon>ListaOrdenCompraView.xaml</DependentUpon>
     </Compile>
@@ -243,6 +248,9 @@
     </Compile>
     <Compile Include="Views\Almacen\StockMinListadoView.xaml.cs">
       <DependentUpon>StockMinListadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\ZonaDistribucionView.xaml.cs">
+      <DependentUpon>ZonaDistribucionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\agregarServicioView.xaml.cs">
       <DependentUpon>agregarServicioView.xaml</DependentUpon>
@@ -459,6 +467,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Almacen\BuscarZonaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Almacen\ListaOrdenCompraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -536,6 +548,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\StockMinListadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\ZonaDistribucionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
