@@ -312,10 +312,14 @@
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
-
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="0" />
                         <Button x:Name="AbrirMantenerTipoZona"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="3"/>
+
                     </Grid>
                 </Expander>
 

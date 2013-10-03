@@ -337,6 +337,16 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Almacen.BuscarTipoZonaViewModel { DisplayName = "Mantener Tipo Zona" });
         }
+        public void AbrirMantenerLineaProducto()
+        {
+            win.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
+        }
+        
+        public void AbrirMantenerSubLineaProducto()
+        {
+            win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel ());
+        }
+
         #endregion Configuracion
 
         #region Reportes
