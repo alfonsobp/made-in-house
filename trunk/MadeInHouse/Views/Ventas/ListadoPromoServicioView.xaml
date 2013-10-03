@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="557" Width="543">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="white">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar Promociones de Servicios" />
             <Grid>

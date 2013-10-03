@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="345" d:DesignWidth="450">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Nueva Promoción de Servicios" />
             <Grid>
