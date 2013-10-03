@@ -8,7 +8,7 @@
              d:DesignHeight="713" d:DesignWidth="604.5">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Reporte de acciones" />
+            <Layouts:TitleBarTemplate title="Reporte de Stocks" />
             <Grid>
                 <ToolBar VerticalAlignment="Top" Margin="0">
                     <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="30" Margin="0,3" >
