@@ -85,7 +85,7 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirBuscarGuiaDeRemision()
         {
-            //WindowManager win = new WindowManager();
+           
             Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel { DisplayName = "Busqueda de guias de remisión" };
             win.ShowWindow(buscarGuiaView);
 
@@ -95,20 +95,16 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirMantenerGuiaDeRemision()
         {
-            WindowManager win = new WindowManager();
+        
             Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView  = new Almacen.MantenerGuiaDeRemisionViewModel { DisplayName = "Mantenimiento de guias de remisión" };
-            //abrirGuiaView. = true;
-            win.ShowWindow(abrirGuiaView);
-            
-            
-            
+            win.ShowWindow(abrirGuiaView);     
         }
 
         public void AbrirBuscarNotas()
         {
-            WindowManager win = new WindowManager();
-            Almacen.BuscarNotasViewModel buscarNotasView = new Almacen.BuscarNotasViewModel { DisplayName = "Buscqueda de notas de ingreso / salida" };
-            win.ShowWindow(buscarNotasView);
+            
+            win.ShowWindow (new Almacen.BuscarNotasViewModel() );
+            
 
         }
 
