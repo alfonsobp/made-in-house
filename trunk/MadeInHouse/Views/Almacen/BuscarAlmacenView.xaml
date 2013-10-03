@@ -37,9 +37,9 @@
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="398,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
                 <Label Content="Nombre" HorizontalAlignment="Left" Margin="17,11,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="117,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Direccion" HorizontalAlignment="Left" Margin="17,43,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBlock HorizontalAlignment="Left" Margin="119,53,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="50" Width="160"/>
-
+                <Label Content="Tienda" HorizontalAlignment="Left" Margin="17,53,0,0" VerticalAlignment="Top" Width="94"/>
+                <ComboBox HorizontalAlignment="Left" Margin="117,57,0,0" VerticalAlignment="Top" Width="159"/>
+                
                 <DataGrid Margin="10,140,8,10">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
