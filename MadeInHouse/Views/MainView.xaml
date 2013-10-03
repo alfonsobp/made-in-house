@@ -67,7 +67,7 @@
             <Image Source="/MadeInHouse;component/Assets/close-icon.png" Height="20" HorizontalAlignment="Right" />
         </Button>
         <DockPanel  Grid.Column="2" Height="90" LastChildFill="False" Margin="0,34,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="Black">
-            <Label Content="Bienvenido ,&#xA;Admin" Grid.Column="2" HorizontalAlignment="Left" Margin="43,7,0,31" Foreground="White" Width="131" >
+            <Label Content="Bienvenido ,&#xA;Luis Morán Rosas" Grid.Column="2" HorizontalAlignment="Left" Margin="43,7,0,0" Foreground="White" Width="131" Height="52" VerticalAlignment="Top" >
                 <Label.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleY="-1" ScaleX="-1"/>
@@ -77,8 +77,8 @@
                     </TransformGroup>
                 </Label.RenderTransform>
             </Label>
-            <Button x:Name="AbrirConfigurarUsuario" Foreground="white" BorderThickness="0" FontSize="20" Width="60" BorderBrush="{x:Null}" Background="Black" >
-                <Image Source="/Assets/contacto.png"/>
+            <Button x:Name="AbrirConfigurarUsuario" Foreground="white" BorderThickness="0" FontSize="20" Width="73" BorderBrush="{x:Null}" Background="Black" >
+                <Image Source="/Assets/fotoEmpleadoAsistencia.jpg" Width="73" Height="80"/>
             </Button>
         </DockPanel>
         <ScrollViewer HorizontalAlignment="Left" Width="335" Grid.ColumnSpan="2">
@@ -256,17 +256,17 @@
                         <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/rrhh.png" Stretch="None"/>
                     </Expander.Background>
 
-                        <Grid Background="White" Height="Auto">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
+                    <Grid Background="White" Height="Auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                            <Button x:Name="AbrirRegistrarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Empleado" FontSize="20"  Grid.Row="0"/>
-                            <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento Empleado" FontSize="20"  Grid.Row="1"/>
-                            <Button x:Name="AbrirMantenerRol"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento de Rol" FontSize="20"  Grid.Row="2"/>
-                            <Button x:Name="AbrirCargarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3"/>
+                        <Button x:Name="AbrirRegistrarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Empleado" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento Empleado" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenerRol"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento de Rol" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirCargarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3"/>
                     </Grid>
                 </Expander>
 
@@ -346,7 +346,7 @@
                         <Button x:Name="AbrirMantenerTipoZona"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2"/>
                         <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
-                        
+
 
                     </Grid>
                 </Expander>
@@ -354,7 +354,7 @@
 
             </StackPanel>
         </ScrollViewer>
-        
+
 
 
 
