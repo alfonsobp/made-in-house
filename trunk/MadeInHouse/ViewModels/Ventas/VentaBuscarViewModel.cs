@@ -7,13 +7,17 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class RegistrarDevolucionesViewModel : PropertyChangedBase
+    class VentaBuscarViewModel : PropertyChangedBase
     {
         private WindowManager win = new WindowManager();
 
-        public void AbrirDetalleVenta()
+        public void AbrirRegistrarVenta()
         {
-            win.ShowWindow(new Ventas.DetalleVentaViewModel());
+            win.ShowWindow(new Ventas.VentaRegistrarViewModel ());
+        }
+        public void AbrirEditarVenta()
+        {
+            win.ShowWindow(new Ventas.VentaEditarViewModel());
         }
     }
 }

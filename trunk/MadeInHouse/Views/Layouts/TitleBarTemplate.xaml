@@ -48,7 +48,7 @@
         <Button x:Name="CloseWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="False" Click="CloseWin_Click" Width="30" Height="30">
             <Image Source="/MadeInHouse;component/Assets/close-icon.png" Height="20" HorizontalAlignment="Right" />
         </Button>
-        <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="False" Click="MinimizeWin_Click" Width="30">
+        <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="False" Click="MinimizeWin_Click" Width="30" Height="30">
             <Image Source="/MadeInHouse;component/Assets/minimize-icon.png" Height="20" HorizontalAlignment="Right" />
         </Button>
         <TextBlock Text="{Binding title}" TextAlignment="Center" FontSize="16" VerticalAlignment="Center" />

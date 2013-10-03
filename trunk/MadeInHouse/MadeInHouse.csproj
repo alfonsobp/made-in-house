@@ -144,7 +144,7 @@
     <Compile Include="ViewModels\Ventas\ListadoPromoServicioViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ProformaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteRegistrarViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\RegistrarDevolucionesViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\DevolucionesRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarNotaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarPromoProductoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarPromoServicioViewModel.cs" />
@@ -172,10 +172,10 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\RRHH\BuscadorEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\MantenerEmpleadoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\EditarVentaViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\VentaEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EliminarVentaViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\ListadoVentaViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\RegistrarVentaViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\VentaBuscarViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\VentaRegistrarViewModel.cs" />
     <Compile Include="Views\Almacen\BuscarNotasView.xaml.cs">
       <DependentUpon>BuscarNotasView.xaml</DependentUpon>
     </Compile>
@@ -387,8 +387,8 @@
     <Compile Include="Views\Ventas\EditarPromoServicioView.xaml.cs">
       <DependentUpon>EditarPromoServicioView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\EditarVentaView.xaml.cs">
-      <DependentUpon>EditarVentaView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\VentaEditarView.xaml.cs">
+      <DependentUpon>VentaEditarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\EliminarVentaView.xaml.cs">
       <DependentUpon>EliminarVentaView.xaml</DependentUpon>
@@ -408,8 +408,8 @@
     <Compile Include="Views\Ventas\ListadoPromoServicioView.xaml.cs">
       <DependentUpon>ListadoPromoServicioView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\ListadoVentaView.xaml.cs">
-      <DependentUpon>ListadoVentaView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\VentaBuscarView.xaml.cs">
+      <DependentUpon>VentaBuscarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\ProformaView.xaml.cs">
       <DependentUpon>ProformaView.xaml</DependentUpon>
@@ -417,8 +417,8 @@
     <Compile Include="Views\Ventas\ClienteRegistrarView.xaml.cs">
       <DependentUpon>ClienteRegistrarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\RegistrarDevolucionesView.xaml.cs">
-      <DependentUpon>RegistrarDevolucionesView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\DevolucionesRegistrarView.xaml.cs">
+      <DependentUpon>DevolucionesRegistrarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\RegistrarNotaCreditoView.xaml.cs">
       <DependentUpon>RegistrarNotaCreditoView.xaml</DependentUpon>
@@ -429,8 +429,8 @@
     <Compile Include="Views\Ventas\RegistrarPromoServicioView.xaml.cs">
       <DependentUpon>RegistrarPromoServicioView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\RegistrarVentaView.xaml.cs">
-      <DependentUpon>RegistrarVentaView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\VentaRegistrarView.xaml.cs">
+      <DependentUpon>VentaRegistrarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
@@ -719,7 +719,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\EditarVentaView.xaml">
+    <Page Include="Views\Ventas\VentaEditarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -747,7 +747,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\ListadoVentaView.xaml">
+    <Page Include="Views\Ventas\VentaBuscarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -759,7 +759,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\RegistrarDevolucionesView.xaml">
+    <Page Include="Views\Ventas\DevolucionesRegistrarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -775,7 +775,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\RegistrarVentaView.xaml">
+    <Page Include="Views\Ventas\VentaRegistrarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

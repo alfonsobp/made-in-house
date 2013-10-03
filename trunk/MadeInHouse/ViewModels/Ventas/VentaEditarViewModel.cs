@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class EditarVentaViewModel:Screen
+    class VentaEditarViewModel : PropertyChangedBase
     {
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Windows;
+using System.Windows.Media;
 
 namespace MadeInHouse.Models
 {
@@ -15,7 +16,8 @@ namespace MadeInHouse.Models
             Window window = base.EnsureWindow(model, view, isDialog);
             window.WindowStyle = WindowStyle.None;
             window.ResizeMode = ResizeMode.NoResize;
-
+            window.AllowsTransparency = true;
+            window.Background = Brushes.Transparent;
             return window;
         }
     }

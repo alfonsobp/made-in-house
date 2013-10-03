@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Ventas
 {
     /// <summary>
-    /// Lógica de interacción para ListadoVentaView.xaml
+    /// Lógica de interacción para DevolucionesRegistrarView.xaml
     /// </summary>
-    public partial class ListadoVentaView : UserControl
+    public partial class DevolucionesRegistrarView : UserControl
     {
-        public ListadoVentaView()
+        public DevolucionesRegistrarView()
         {
             InitializeComponent();
         }
