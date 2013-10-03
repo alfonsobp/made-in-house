@@ -30,6 +30,10 @@ namespace MadeInHouse.ViewModels
             {
                 win.ShowWindow(new Ventas.VentaRegistrarViewModel());
             }
+            public void AbrirNuevaVentaCajero()
+            {
+                win.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
+            }
 
             public void AbrirProforma()
             {
