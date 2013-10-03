@@ -13,7 +13,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirBuscarProducto()
         {
-            win.ShowWindow(new Almacen.BuscadorProductoViewModel { DisplayName = "Buscar Producto" });
+            win.ShowWindow(new Almacen.ProductoBuscarViewModel { DisplayName = "Buscar Producto" });
         }
     }
 }

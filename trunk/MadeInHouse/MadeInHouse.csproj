@@ -85,7 +85,7 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
-    <Compile Include="ViewModels\Almacen\BuscadorProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\ProductoBuscarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarGuiasRemisionViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarTipoZonaViewModel.cs" />
@@ -187,8 +187,8 @@
     <Compile Include="Views\Almacen\AnularDocumentosView.xaml.cs">
       <DependentUpon>AnularDocumentosView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\BuscadorProductoView.xaml.cs">
-      <DependentUpon>BuscadorProductoView.xaml</DependentUpon>
+    <Compile Include="Views\Almacen\ProductoBuscarView.xaml.cs">
+      <DependentUpon>ProductoBuscarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\BuscarAlmacenView.xaml.cs">
       <DependentUpon>BuscarAlmacenView.xaml</DependentUpon>
@@ -447,7 +447,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\BuscadorProductoView.xaml">
+    <Page Include="Views\Almacen\ProductoBuscarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
