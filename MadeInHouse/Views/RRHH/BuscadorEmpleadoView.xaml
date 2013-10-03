@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
                      d:DesignHeight="700" d:DesignWidth="700">
 
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="700" Height="700" VerticalAlignment="Top">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="700" Height="700" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,-2">
             <Layouts:TitleBarTemplate title="Buscar Empleado" DockPanel.Dock="Top"/>
 

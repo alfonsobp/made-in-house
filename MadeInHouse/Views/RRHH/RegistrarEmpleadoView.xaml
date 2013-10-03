@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="775.5" Width="786.246">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="785" Height="775" VerticalAlignment="Top">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="785" Height="775" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,-2">
             <Layouts:TitleBarTemplate title="Registrar Empleado" DockPanel.Dock="Top"/>
 
