@@ -10,24 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MadeInHouse.Views
+namespace MadeInHouse.Views.Almacen
 {
     /// <summary>
-    /// Lógica de interacción para MainView.xaml
+    /// Lógica de interacción para BuscarZonaView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class BuscarZonaView : UserControl
     {
-        public MainView()
+        public BuscarZonaView()
         {
             InitializeComponent();
         }
-
-        private void CloseWin_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }
