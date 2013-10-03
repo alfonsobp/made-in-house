@@ -35,7 +35,10 @@ namespace MadeInHouse.ViewModels
             {
                 win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
             }
-
+            public void AbrirListadoPrecios()
+            {
+                win.ShowWindow(new Ventas.PreciosBuscarViewModel());
+            }
         
             public void AbrirListadoDevoluciones()
             {

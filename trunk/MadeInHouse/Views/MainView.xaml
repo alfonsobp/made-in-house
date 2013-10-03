@@ -223,6 +223,8 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
 
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
@@ -242,6 +244,8 @@
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="14"/>
                         <Button x:Name="AbrirListadoPromoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="15"/>
                         <Button x:Name="AbrirNuevaPromoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="16"/>
+                        <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Precios" FontSize="20" Grid.Row="17"/>
+                        <Button x:Name="AbrirListadoPrecios"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="18"/>
                     </Grid>
                 </Expander>
                 <!--RRHH-->
