@@ -86,7 +86,7 @@ namespace MadeInHouse.ViewModels
         public void AbrirBuscarGuiaDeRemision()
         {
            
-            Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel { DisplayName = "Busqueda de guias de remisión" };
+            Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
             win.ShowWindow(buscarGuiaView);
 
 
@@ -95,8 +95,8 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirMantenerGuiaDeRemision()
         {
-        
-            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView  = new Almacen.MantenerGuiaDeRemisionViewModel { DisplayName = "Mantenimiento de guias de remisión" };
+
+            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();  
             win.ShowWindow(abrirGuiaView);     
         }
 
@@ -110,20 +110,20 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirMantenerNotaDeIngreso()
         {
-            WindowManager win = new WindowManager();
-            Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel { DisplayName = "Mantenimiento de notas de ingreso" };
+            
+            Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel ();
             win.ShowWindow(abrirNotaIView);
             
         }
         public void AbrirMantenerNotaDeSalida()
         {
-            WindowManager win = new WindowManager();
-            Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel { DisplayName = "Mantenimiento de notas de salida" };
+            
+            Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel ();
             win.ShowWindow(abrirNotaIView);
         }
         public void AbrirAnularDocumentos()
         {
-            ActivateItem(new Almacen.AnularDocumentosViewModel { DisplayName = "Anular documentos" });
+            win.ShowWindow(new Almacen.AnularDocumentosViewModel ());
         }
         public void AbrirMantenimientoAlmacen()
         {
@@ -135,7 +135,7 @@ namespace MadeInHouse.ViewModels
         
         public void AbrirBuscarProducto()
         {
-            win.ShowWindow(new Almacen.ProductoBuscarViewModel { DisplayName = "Buscar Producto" });
+            win.ShowWindow(new Almacen.ProductoBuscarViewModel ());
         }
         
         public void AbrirMantenimientoInventarioViewModel()
@@ -144,18 +144,18 @@ namespace MadeInHouse.ViewModels
         }
         public void AbrirNuevoProducto()
         {
-            win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel { DisplayName = "Nuevo Producto" }); 
+            win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel ()); 
             
         }
         
         public void AbrirSolicitudAbConsolidar()
         {
-            win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel { DisplayName = "Consolidar Solicitudes" }); 
+            win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel ()); 
             
         }
         public void AbrirSolicitudAbDetalle()
         {
-            win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel { DisplayName = "Detalle Solicitud" }); 
+            win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel()); 
         }
         
 

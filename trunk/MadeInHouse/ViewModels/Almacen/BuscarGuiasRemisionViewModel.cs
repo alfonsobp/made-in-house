@@ -3,16 +3,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class BuscarGuiasRemisionViewModel:Screen
+    class BuscarGuiasRemisionViewModel : PropertyChangedBase
 
     {
+
+
+        private MyWindowManager win = new MyWindowManager();
+
         public void AbrirMantenerGuiaDeRemision()
         {
-            WindowManager win = new WindowManager();
-            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel { DisplayName = "Mantenimiento de guias de remisión" };
+            
+            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel() ;
             win.ShowWindow(abrirGuiaView);
 
 

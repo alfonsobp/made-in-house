@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerNotaDeSalidaViewModel:Screen
+    class MantenerNotaDeSalidaViewModel:PropertyChangedBase
     {
     }
 }

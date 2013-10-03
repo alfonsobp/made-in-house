@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerZonaViewModel:Screen
+    class MantenerZonaViewModel : PropertyChangedBase
     {
         
     }
