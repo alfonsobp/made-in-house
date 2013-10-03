@@ -55,10 +55,10 @@
                                     <ListBox Name="listBoxProductos2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
 
                                     </ListBox>
-                                    <Button Margin="202,24,290,52">
+                                    <Button Name="derecha2" Margin="202,24,290,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,290,28">
+                                    <Button Name="izquierda2" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -74,10 +74,10 @@
                                     <ListBox Name="listBoxAlmacen2"  MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="San Borja"/>
                                     </ListBox>
-                                    <Button Margin="202,24,290,52">
+                                    <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,290,28">
+                                    <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -98,7 +98,7 @@
                             <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxCategorias1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                                        <ListBoxItem Content="Tornillos"/>
+                                        
                                         <ListBoxItem Content="Taladros"/>
                                         <ListBoxItem Content="Cemento"/>
                                         <ListBoxItem Content="Ladrillos"/>
@@ -108,10 +108,10 @@
                                     <ListBox Name="listBoxCategorias2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Tornillos"/>
                                     </ListBox>
-                                    <Button Margin="202,24,290,52">
+                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,290,28">
+                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
