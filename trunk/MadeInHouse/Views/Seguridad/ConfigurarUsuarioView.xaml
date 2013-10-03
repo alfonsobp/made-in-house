@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="299.986" d:DesignWidth="480.59">
+             d:DesignHeight="330" d:DesignWidth="480.59">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Configuración de usuario" />
@@ -54,7 +54,7 @@
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="Contacto" Margin="10,201,18,20">
+                <GroupBox Header="Contacto" Margin="10,201,18,10">
                     <Grid>
                         <Label Content="Teléfono:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66" Margin="10,16,0,0"/>
                         <TextBox HorizontalAlignment="Left" Margin="81,19,0,15" TextWrapping="Wrap" Width="135"/>

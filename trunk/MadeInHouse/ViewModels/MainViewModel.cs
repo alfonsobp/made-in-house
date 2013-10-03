@@ -351,6 +351,11 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Almacen.MantenerTiendaViewModel());
         }
 
+        public void AbrirMantenerModulo()
+        {
+            win.ShowWindow(new Seguridad.MantenerModuloViewModel());
+        }
+
         #endregion Configuracion
 
         #region Reportes

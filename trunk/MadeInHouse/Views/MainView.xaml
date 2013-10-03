@@ -346,7 +346,7 @@
                         <Button x:Name="AbrirMantenerTipoZona"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2"/>
                         <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
-
+                        <Button x:Name="AbrirMantenerModulo"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener Módulo" FontSize="20"  Grid.Row="5"/>
 
                     </Grid>
                 </Expander>
