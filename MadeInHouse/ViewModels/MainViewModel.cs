@@ -139,7 +139,7 @@ namespace MadeInHouse.ViewModels
         
         public void AbrirBuscarProducto()
         {
-            win.ShowWindow(new Almacen.BuscadorProductoViewModel { DisplayName = "Buscar Producto" });
+            win.ShowWindow(new Almacen.ProductoBuscarViewModel { DisplayName = "Buscar Producto" });
         }
         
         public void AbrirMantenimientoInventarioViewModel()
@@ -338,7 +338,6 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Almacen.BuscarTipoZonaViewModel { DisplayName = "Mantener Tipo Zona" });
         }
         #endregion Configuracion
-
 
         #region Reportes
 

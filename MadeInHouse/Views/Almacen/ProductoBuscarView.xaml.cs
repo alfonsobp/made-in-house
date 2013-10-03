@@ -18,16 +18,14 @@ namespace MadeInHouse.Views.Almacen
     /// <summary>
     /// Lógica de interacción para BusquedaProducto.xaml
     /// </summary>
-    public partial class BuscadorProductoView : UserControl
+    public partial class ProductoBuscarView : UserControl
     {
-        public BuscadorProductoView()
+        public ProductoBuscarView()
         {
-            InitializeComponent();
+          InitializeComponent();
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
+        
     }
 }
