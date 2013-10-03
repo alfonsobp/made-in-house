@@ -290,15 +290,14 @@ namespace MadeInHouse.ViewModels
 
         #region RRHH
 
-        public void AbrirBuscadorEmpleado()
+        public void AbrirRegistrarEmpleado()
         {
-            win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
-
+            win.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { DisplayName = "Registrar Empleado" });
         }
 
         public void AbrirMantenerEmpleado()
         {
-            win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Registrar Empleado" });
+            win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantenimiento Empleado" });
         }
 
         public void AbrirControlarAsistenciaEmpleado()
@@ -306,14 +305,25 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
         }
         
-        public void AbrirListadoServicio()
+        public void AbrirMantenerRol()
         {
-            win.ShowWindow(new Compras.ListadoServicioViewModel());
+            win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName="Mantenimiento de Roles"});
         }
 
-        public void AbrirArmarHorario()
+
+        public void AbrirCargarOrganigrama()
         {
-            win.ShowWindow(new RRHH.ArmarHorarioViewModel() { DisplayName = "Armar Horario" });
+            win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Cargar Organigrama" });
+        }
+
+        public void AbrirBuscarEmpleado()
+        {
+            win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
+        }
+
+        public void AbrirBuscarOrganigrama()
+        {
+            win.ShowWindow(new RRHH.BuscarOrganigramaViewModel { DisplayName = "Buscar Organigrama" });
         }
 
         #endregion RRHH

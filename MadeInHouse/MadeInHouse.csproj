@@ -116,8 +116,14 @@
     <Compile Include="ViewModels\Reportes\reporteTardanzasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteVentasViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ArmarHorarioViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\BuscarOrganigramaViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\CargarOrganigramaViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\MantenerRolViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\RegistrarEmpleadoViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\RegistrarRolViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\VerEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\ConfigurarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerUsuarioViewModel.cs" />
@@ -311,6 +317,12 @@
     <Compile Include="Views\RRHH\BuscadorEmpleadoView.xaml.cs">
       <DependentUpon>BuscadorEmpleadoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RRHH\BuscarOrganigramaView.xaml.cs">
+      <DependentUpon>BuscarOrganigramaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\CargarOrganigramaView.xaml.cs">
+      <DependentUpon>CargarOrganigramaView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml.cs">
       <DependentUpon>ConfirmarAsistenciaEmpleadoView.xaml</DependentUpon>
     </Compile>
@@ -319,6 +331,18 @@
     </Compile>
     <Compile Include="Views\RRHH\MantenerEmpleadoView.xaml.cs">
       <DependentUpon>MantenerEmpleadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\MantenerRolView.xaml.cs">
+      <DependentUpon>MantenerRolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\RegistrarEmpleadoView.xaml.cs">
+      <DependentUpon>RegistrarEmpleadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\RegistrarRolView.xaml.cs">
+      <DependentUpon>RegistrarRolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\VerEmpleadoView.xaml.cs">
+      <DependentUpon>VerEmpleadoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\BuscadorUsuarioView.xaml.cs">
       <DependentUpon>BuscadorUsuarioView.xaml</DependentUpon>
@@ -591,6 +615,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\RRHH\BuscarOrganigramaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\CargarOrganigramaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RRHH\ConfirmarAsistenciaEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -600,6 +632,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RRHH\MantenerEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\MantenerRolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\RegistrarEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\RegistrarRolView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\VerEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -815,6 +863,7 @@
     <Resource Include="Assets\mail32.png" />
     <Resource Include="Assets\money.png" />
     <Resource Include="Assets\contacto.png" />
+    <Resource Include="Assets\Organigrama.jpg" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />

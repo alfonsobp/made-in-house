@@ -10,10 +10,15 @@ using System.Windows.Input;
 using System.ComponentModel.Composition;
 using MadeInHouse.Models;
 
-namespace MadeInHouse.ViewModels.RRHH
+namespace MadeInHouse.ViewModels.RRHH 
 {
-    public class ConfirmarAsistenciaEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
+    public class RegistrarEmpleadoViewModel:Screen
     {
         private MyWindowManager win = new MyWindowManager();
+
+        public void AbrirArmarHorario()
+        {
+            win.ShowWindow(new RRHH.ArmarHorarioViewModel { DisplayName = "Armar Horario" });
+        }
     }
 }

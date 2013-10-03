@@ -12,8 +12,13 @@ using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    public class ConfirmarAsistenciaEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
+    public class MantenerRolViewModel : Conductor<IScreen>.Collection.OneActive
     {
         private MyWindowManager win = new MyWindowManager();
+
+        public void AbrirRegistrarRol()
+        {
+            win.ShowWindow(new RRHH.RegistrarRolViewModel { });
+        }
     }
 }

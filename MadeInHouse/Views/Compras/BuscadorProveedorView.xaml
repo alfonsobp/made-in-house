@@ -48,7 +48,7 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button
-        		x:Name="AbrirMantenerProveedorViewModel" >
+        		        x:Name="AbrirMantenerProveedorViewModel" >
                         <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
                     <Button>

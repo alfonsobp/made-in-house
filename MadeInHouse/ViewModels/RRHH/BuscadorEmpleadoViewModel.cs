@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
+using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel.Composition;
+using MadeInHouse.Models;
+
 namespace MadeInHouse.ViewModels.RRHH
 {
-    class BuscadorEmpleadoViewModel : Screen
+    public class BuscadorEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        public void AbrirMantenerEmpleado()
-        {
-            WindowManager win = new WindowManager();
-            RRHH.MantenerEmpleadoViewModel obj = new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantener Empleado" };
-            win.ShowWindow(obj);
-        }
-
+        private MyWindowManager win = new MyWindowManager();
     }
 }
