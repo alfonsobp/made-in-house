@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="520" d:DesignWidth="600">
+             d:DesignHeight="540" d:DesignWidth="580">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar Promociones de Productos"/>
-            <Grid>
+            <Grid Height="505">
                 <ToolBar VerticalAlignment="Top" Margin="0">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -32,11 +32,11 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Campos de búsqueda" HorizontalAlignment="Left" Margin="40,60,0,0" VerticalAlignment="Top" Height="156" Width="520">
-                    <Grid Margin="1" HorizontalAlignment="Left" Height="141" VerticalAlignment="Top" Width="508">
+                <GroupBox Header="Campos de búsqueda" Margin="40,60,36,289">
+                    <Grid Margin="1">
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
                         <Label Content="ID Producto:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
-                        <Button  HorizontalAlignment="Right" Height="23" Width="60" Margin="0,0,147,105" VerticalAlignment="Bottom">
+                        <Button  HorizontalAlignment="Right" Height="23" Width="60" Margin="0,0,125,96" VerticalAlignment="Bottom">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                         </Button>
                         <DatePicker HorizontalAlignment="Left" Margin="112,57,0,0" VerticalAlignment="Top" Width="172"/>
@@ -45,9 +45,9 @@
                         <DatePicker HorizontalAlignment="Left" Margin="112,98,0,0" VerticalAlignment="Top" Width="172"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="40,237,0,0" VerticalAlignment="Top" Height="252" Width="520">
-                    <Grid>
-                        <DataGrid HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="488" Margin="10,10,0,0">
+                <GroupBox Header="Resultado de la búsqueda" Margin="40,237,36,10">
+                    <Grid Margin="1">
+                        <DataGrid Margin="10,10,10,14">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Código" Width="60"/>
                                 <DataGridTextColumn Header="Producto" Width="246"/>
