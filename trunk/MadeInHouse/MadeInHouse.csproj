@@ -123,6 +123,7 @@
     <Compile Include="ViewModels\RRHH\CargarOrganigramaViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ConfirmarAsistenciaEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\ControlarAsistenciaEmpleadoViewModel.cs" />
+    <Compile Include="ViewModels\RRHH\EditarEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\MantenerRolViewModel.cs" />
     <Compile Include="ViewModels\RRHH\RegistrarEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\RegistrarRolViewModel.cs" />
@@ -340,6 +341,9 @@
     </Compile>
     <Compile Include="Views\RRHH\ControlarAsistenciaEmpleadoView.xaml.cs">
       <DependentUpon>ControlarAsistenciaEmpleadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RRHH\EditarEmpleadoView.xaml.cs">
+      <DependentUpon>EditarEmpleadoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RRHH\MantenerEmpleadoView.xaml.cs">
       <DependentUpon>MantenerEmpleadoView.xaml</DependentUpon>
@@ -652,6 +656,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RRHH\ControlarAsistenciaEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RRHH\EditarEmpleadoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
