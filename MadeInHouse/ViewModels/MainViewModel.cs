@@ -346,6 +346,10 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel ());
         }
+        public void AbrirMantenerTienda()
+        {
+            win.ShowWindow(new Almacen.MantenerTiendaViewModel());
+        }
 
         #endregion Configuracion
 

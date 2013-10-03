@@ -87,6 +87,7 @@
     <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerTiendaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ProductoBuscarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarGuiasRemisionViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
@@ -194,6 +195,9 @@
     </Compile>
     <Compile Include="Views\Almacen\MantenerSubLineaProductoView.xaml.cs">
       <DependentUpon>MantenerSubLineaProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\MantenerTiendaView.xaml.cs">
+      <DependentUpon>MantenerTiendaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\ProductoBuscarView.xaml.cs">
       <DependentUpon>ProductoBuscarView.xaml</DependentUpon>
@@ -460,6 +464,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\MantenerSubLineaProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\MantenerTiendaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
