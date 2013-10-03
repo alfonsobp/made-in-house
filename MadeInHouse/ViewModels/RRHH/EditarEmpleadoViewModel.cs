@@ -12,13 +12,8 @@ using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    public class VerEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
+    public class EditarEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
     {
         private MyWindowManager win = new MyWindowManager();
-
-        public void AbrirEditarEmpleado()
-        {
-            win.ShowWindow(new RRHH.EditarEmpleadoViewModel { });
-        }
     }
 }
