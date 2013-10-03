@@ -24,5 +24,10 @@ namespace MadeInHouse.Views.Compras
         {
             InitializeComponent();
         }
+
+        private void Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

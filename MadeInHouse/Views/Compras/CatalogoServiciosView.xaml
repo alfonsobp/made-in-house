@@ -1,12 +1,17 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Compras.CatalogoServiciosView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts" 
+             x:Class="MadeInHouse.Views.Compras.CatalogoServiciosView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
               d:DesignHeight="450" d:DesignWidth="640">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Catalogo de Servicios" />
+            <!-- CAMBIAR NOMBREEEE -->
 
-    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+            <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
         <DataGrid Margin="75,179,125,53" BorderBrush="#FF14191D" Background="White" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código Prov" Width="90" />
@@ -121,4 +126,7 @@
         <TextBox Margin="108,96,273,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
 
     </Grid>
+            <!-- AGREGAR ESTAS 2 ULTIMAS ETIKETAS ANTES DEL USERCONTROL -->
+        </StackPanel>
+    </Border>
 </UserControl>
