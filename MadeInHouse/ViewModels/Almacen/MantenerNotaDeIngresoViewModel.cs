@@ -4,16 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerNotaDeIngresoViewModel:Screen
+    class MantenerNotaDeIngresoViewModel:PropertyChangedBase
     {
-
+        MyWindowManager win = new MyWindowManager();
         public void AbrirPosicionProducto()
         {
 
-            WindowManager win = new WindowManager();
+            
             Almacen.PosicionProductoViewModel abrirPosView = new Almacen.PosicionProductoViewModel();
             win.ShowWindow(abrirPosView);
         }
@@ -22,8 +23,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void AbrirListarOrdenesCompra()
         {
 
-            WindowManager win = new WindowManager();
-            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel() { DisplayName = "Ordenes de compra pendientes" };
+            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel();
             win.ShowWindow(abrirListaOrden);
         }
 

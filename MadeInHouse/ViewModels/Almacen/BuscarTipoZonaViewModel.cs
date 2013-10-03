@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
     class BuscarTipoZonaViewModel:Screen
     {
-        private WindowManager win = new WindowManager();
+        private MyWindowManager win = new MyWindowManager();
         public void AbrirNuevaZona()
         {
-            win.ShowWindow(new Almacen.MantenerTipoZonaViewModel { DisplayName = "Nuevo Tipo de Zona" });
+            win.ShowWindow(new Almacen.MantenerTipoZonaViewModel());
 
         }
 

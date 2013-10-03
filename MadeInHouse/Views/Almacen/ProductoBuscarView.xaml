@@ -1,68 +1,73 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Almacen.ProductoBuscarView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.ProductoBuscarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignWidth="600" Height="563">
-    <Grid>
-        <ToolBar VerticalAlignment="Top">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-            </Button>
-        </ToolBar>
-        <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="258" Width="580">
-            <Grid Margin="0,0,0,-277">
-                <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
-                <Label Content="Línea:" HorizontalAlignment="Left" Margin="294,21,0,0" VerticalAlignment="Top" Width="94"/>
-                <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="294,56,0,0" VerticalAlignment="Top" Width="94"/>
-                <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,56,0,0" VerticalAlignment="Top" Width="94"/>
-                <ComboBox HorizontalAlignment="Left" Margin="400,25,0,0" VerticalAlignment="Top" Width="160"/>
-                <ComboBox HorizontalAlignment="Left" Margin="400,60,0,0" VerticalAlignment="Top" Width="160"/>
-                <ComboBox HorizontalAlignment="Left" Margin="123,60,0,0" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Sujeto a:" HorizontalAlignment="Left" Margin="17,95,0,0" VerticalAlignment="Top" Width="87"/>
-                <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,124,0,0" VerticalAlignment="Top" Width="87"/>
-                <CheckBox Content="Percepción" HorizontalAlignment="Left" Margin="123,99,0,0" VerticalAlignment="Top" />
-                <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,127,0,0" VerticalAlignment="Top"/>
-                <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="232,127,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="22" Margin="123,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Descripción:" HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Width="94"/>
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Buscar productos" />
+            <Grid>
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="258" Width="580">
+                    <Grid Margin="0,0,0,-277">
+                        <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                        <Label Content="Línea:" HorizontalAlignment="Left" Margin="294,21,0,0" VerticalAlignment="Top" Width="94"/>
+                        <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="294,56,0,0" VerticalAlignment="Top" Width="94"/>
+                        <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,56,0,0" VerticalAlignment="Top" Width="94"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="400,25,0,0" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="400,60,0,0" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="123,60,0,0" VerticalAlignment="Top" Width="160"/>
+                        <Label Content="Sujeto a:" HorizontalAlignment="Left" Margin="17,95,0,0" VerticalAlignment="Top" Width="87"/>
+                        <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,124,0,0" VerticalAlignment="Top" Width="87"/>
+                        <CheckBox Content="Percepción" HorizontalAlignment="Left" Margin="123,99,0,0" VerticalAlignment="Top" />
+                        <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,127,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="232,127,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="22" Margin="123,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Width="94"/>
 
-                <DataGrid HorizontalAlignment="Left" Margin="10,251,0,20" Width="550">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Linea"/>
-                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Sublinea"/>
-                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
-                        <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Abreviatura"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <Button Margin="294,207,214,0" VerticalAlignment="Top" Width="60">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
-                </Button>
+                        <DataGrid HorizontalAlignment="Left" Margin="10,251,0,20" Width="550">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
+                                <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Linea"/>
+                                <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Sublinea"/>
+                                <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
+                                <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Abreviatura"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button Margin="294,207,214,0" VerticalAlignment="Top" Width="60">
+                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                        </Button>
+                    </Grid>
+                </GroupBox>
             </Grid>
-        </GroupBox>
-    </Grid>
+        </StackPanel>
+    </Border>
 </UserControl>

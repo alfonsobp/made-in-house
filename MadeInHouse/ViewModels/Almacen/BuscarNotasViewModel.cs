@@ -13,7 +13,7 @@ namespace MadeInHouse.ViewModels.Almacen
         private MyWindowManager win = new MyWindowManager();
         public void AbrirMantenerNotaDeIngreso()
         {            
-             win.ShowWindow( new Almacen.MantenerNotaDeIngresoViewModel { DisplayName = "Mantenimiento de notas de ingreso" });   
+             win.ShowWindow( new Almacen.MantenerNotaDeIngresoViewModel()) ;   
         }
 
     }
