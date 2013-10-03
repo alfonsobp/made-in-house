@@ -8,13 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" Width="562" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
     <!-- COPIAR DESDE AKI -->
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Listado de Cotizaciones" />
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid>
-        <ToolBar Margin="0,0,0,409">
+        <ToolBar Height="55" VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -47,7 +47,7 @@
                 <Image Source="/MadeInHouse;component/Assets/mail32.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-        <DataGrid Margin="11,201,0,0" Height="234" VerticalAlignment="Top" HorizontalAlignment="Left" Width="527">
+        <DataGrid Margin="11,201,0,0" HorizontalAlignment="Left" Width="527" Height="198" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Proveedor"/>

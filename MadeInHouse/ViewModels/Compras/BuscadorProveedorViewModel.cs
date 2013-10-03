@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Compras
 {
     class BuscadorProveedorViewModel:Screen
     {
-        private WindowManager win = new WindowManager();
+        private MyWindowManager win = new MyWindowManager();
 
         public void NuevoProveedor()
         {

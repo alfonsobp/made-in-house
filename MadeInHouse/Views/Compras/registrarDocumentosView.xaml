@@ -4,13 +4,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="560" d:DesignWidth="750" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+             mc:Ignorable="d" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="586.866" Width="757.463">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Height="585" VerticalAlignment="Top" Margin="0,0,0,-25">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Documentos de pago" />
             <!-- CAMBIAR NOMBREEEE -->
-            <Grid HorizontalAlignment="Left" Width="750" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+            <Grid HorizontalAlignment="Left" Width="750" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="549">
         <DataGrid Height="115" Margin="36,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="673" Background="{x:Null}" Foreground="{x:Null}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código" Width="100"/>

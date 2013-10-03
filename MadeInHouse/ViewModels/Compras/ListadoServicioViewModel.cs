@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Compras
 {
     class ListadoServicioViewModel : PropertyChangedBase
     {
-        private WindowManager win = new WindowManager();
+        private MyWindowManager win = new MyWindowManager();
 
         public void AbrirAgregarServicio()
         {

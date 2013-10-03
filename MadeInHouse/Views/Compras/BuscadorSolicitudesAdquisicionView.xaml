@@ -8,16 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="562">
     <!-- COPIAR DESDE AKI -->
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Listado Solicitudes de Adquisicion" />
             <!-- CAMBIAR NOMBREEEE -->
-            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="418">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <ToolBar Margin="0,0,0,409">
+        <ToolBar Margin="0,0,0,371">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -47,7 +47,7 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-        <DataGrid Margin="11,201,0,0" Height="234" VerticalAlignment="Top" HorizontalAlignment="Left" Width="527">
+        <DataGrid Margin="11,201,0,0" Height="172" VerticalAlignment="Top" HorizontalAlignment="Left" Width="527">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Almacén"/>
@@ -65,12 +65,12 @@
             <Button/>
             <Button/>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox Text="ALM-001" HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <GroupBox Header="Criterios de Búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="528"/>
         <Button Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293" Text="SOL-ADQ-0001"/>
         <Label Content="Almacén:" HorizontalAlignment="Left" Margin="28,99,0,0" VerticalAlignment="Top"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
         <ComboBox HorizontalAlignment="Left" Height="23" Margin="123,127,0,0" VerticalAlignment="Top" Width="120">

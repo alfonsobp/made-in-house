@@ -4,14 +4,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="640">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+             mc:Ignorable="d" d:DesignWidth="640" Height="487.703">
+    <Border Background="White"  BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Orden de compra" />
             <!-- CAMBIAR NOMBREEEE -->
 
-            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="454">
         <Label Content="Orden de compra :" HorizontalAlignment="Left" Height="31" Margin="18,69,0,0" VerticalAlignment="Top" Width="205"/>
         <DataGrid Height="118" Margin="17,188,38,0" VerticalAlignment="Top">
             <DataGrid.Columns>
