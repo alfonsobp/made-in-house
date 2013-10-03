@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="423.359" Width="701.452">
 
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="700" Height="423" VerticalAlignment="Top">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="700" Height="423" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="430" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Establecer Horario" DockPanel.Dock="Top"/>
 
