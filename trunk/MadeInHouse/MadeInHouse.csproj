@@ -898,6 +898,7 @@
     <Resource Include="Assets\Organigrama.jpg" />
     <Resource Include="Assets\icono_imprimir.png" />
     <Resource Include="Assets\fotoEmpleado.jpg" />
+    <Resource Include="Assets\construir.jpg" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
