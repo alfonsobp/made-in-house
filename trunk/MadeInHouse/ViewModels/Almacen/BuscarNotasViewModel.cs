@@ -4,18 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class BuscarNotasViewModel:Screen
+    class BuscarNotasViewModel : PropertyChangedBase
     {
-
+        private MyWindowManager win = new MyWindowManager();
         public void AbrirMantenerNotaDeIngreso()
-        {
-            WindowManager win = new WindowManager();
-            Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel { DisplayName = "Mantenimiento de notas de ingreso" };
-            win.ShowWindow(abrirNotaIView);
-            
+        {            
+             win.ShowWindow( new Almacen.MantenerNotaDeIngresoViewModel { DisplayName = "Mantenimiento de notas de ingreso" });   
         }
 
     }
