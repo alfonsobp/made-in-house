@@ -33,7 +33,7 @@
             </Button>
         </ToolBar>
         <GroupBox Header="Información Producto" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="491">
-            <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="496">
+            <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" Margin="0,0,-2,0">
                 <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
                 <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,82,0,0" VerticalAlignment="Top" Width="94"/>
