@@ -1,13 +1,7 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Input;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using System.ComponentModel.Composition;
+﻿using Caliburn.Micro;
 using MadeInHouse.Models;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels
 {
@@ -18,61 +12,60 @@ namespace MadeInHouse.ViewModels
         public static List<List<Window>> MinWin = new List<List<Window>>();
 
         #region Ventas
+            public void AbrirListadoCliente()
+            {
+                win.ShowWindow(new Ventas.ClienteBuscarViewModel());
+            }
+            public void AbrirNuevoCliente()
+            {
+                win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
+            }
 
-        public void AbrirListadoCliente()
-        {
-            win.ShowWindow(new Ventas.ClienteBuscarViewModel());
-        }
-        public void AbrirNuevoCliente()
-        {
-            win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
-        }
+            public void AbrirListadoVenta()
+            {
+                win.ShowWindow(new Ventas.VentaBuscarViewModel());
+            }
 
-        public void AbrirListadoVenta()
-        {
-            win.ShowWindow(new Ventas.ListadoVentaViewModel());
-        }
+            public void AbrirNuevaVenta()
+            {
+                win.ShowWindow(new Ventas.VentaRegistrarViewModel());
+            }
 
-        public void AbrirNuevaVenta()
-        {
-            win.ShowWindow(new Ventas.RegistrarVentaViewModel { DisplayName = "Nueva Venta" });
-        }
-
-        public void AbrirProforma()
-        {
-            win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
-        }
+            public void AbrirProforma()
+            {
+                win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
+            }
 
         
-        public void AbrirListadoDevoluciones()
-        {
-            win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
-        }
-        public void AbrirRegistrarDevolucion()
-        {
-            win.ShowWindow(new Ventas.RegistrarDevolucionesViewModel());
-        }
+            public void AbrirListadoDevoluciones()
+            {
+                win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
+            }
+            public void AbrirRegistrarDevolucion()
+            {
+                win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
+            }
 
 
-        public void AbrirListadoNotaCredito()
-        {
-            win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
-        }
+            public void AbrirListadoNotaCredito()
+            {
+                win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
+            }
 
-        public void AbrirListadoPromoProducto()
-        {
-            win.ShowWindow(new Ventas.ListadoPromoProductoViewModel { DisplayName = "Promociones de Productos" });
-        }
+            public void AbrirListadoPromoProducto()
+            {
+                win.ShowWindow(new Ventas.ListadoPromoProductoViewModel { DisplayName = "Promociones de Productos" });
+            }
 
-        public void AbrirListadoPromoServicio()
-        {
-            win.ShowWindow(new Ventas.ListadoPromoServicioViewModel { DisplayName = "Promociones de Servicios" });
-        }
+            public void AbrirListadoPromoServicio()
+            {
+                win.ShowWindow(new Ventas.ListadoPromoServicioViewModel { DisplayName = "Promociones de Servicios" });
+            }
 
-        public void AbrirNuevaPromoServicio()
-        {
-            win.ShowWindow(new Ventas.RegistrarPromoServicioViewModel { DisplayName = "Nueva Promoción de Servicio" });
-        }
+            public void AbrirNuevaPromoServicio()
+            {
+                win.ShowWindow(new Ventas.RegistrarPromoServicioViewModel { DisplayName = "Nueva Promoción de Servicio" });
+            }
 
         public void AbrirNuevaPromoProducto()
         {
@@ -88,9 +81,6 @@ namespace MadeInHouse.ViewModels
            
             Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
             win.ShowWindow(buscarGuiaView);
-
-
-
         }
 
         public void AbrirMantenerGuiaDeRemision()

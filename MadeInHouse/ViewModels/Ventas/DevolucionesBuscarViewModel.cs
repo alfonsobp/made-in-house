@@ -13,11 +13,11 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirRegistrarDevolucion()
         {
-            win.ShowWindow(new Ventas.RegistrarDevolucionesViewModel());
+            win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
         }
         public void AbrirEditarDevolucion()
         {
-            win.ShowWindow(new Ventas.RegistrarDevolucionesViewModel());
+            win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
         }
     }
 }

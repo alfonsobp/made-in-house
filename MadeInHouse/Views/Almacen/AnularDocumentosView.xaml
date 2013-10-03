@@ -5,9 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
     d:DesignHeight="450" d:DesignWidth="600">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Anular documentos" />
+    <Border BorderThickness="2" BorderBrush="Black" CornerRadius="6">
+        <DockPanel>
+            <Layouts:TitleBarTemplate DockPanel.Dock="Top" title="Anular Documentos" />
             <Grid>
                 <RadioButton Content="Descripcion" HorizontalAlignment="Left" Margin="391,110,0,0" VerticalAlignment="Top" />
                 <RadioButton Content="Codigo" HorizontalAlignment="Left" Margin="391,131,0,0" VerticalAlignment="Top" />
@@ -61,7 +61,7 @@
                     </Button>
                 </ToolBar>
             </Grid>
-        </StackPanel>
+        </DockPanel>
     </Border>
 </UserControl>
 
