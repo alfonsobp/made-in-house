@@ -9,15 +9,15 @@
             <Layouts:TitleBarTemplate title="Registrar Rol" DockPanel.Dock="Top"/>
 
             <Grid>
-                <Label Content="Fecha" HorizontalAlignment="Left" Margin="47,27,0,0" VerticalAlignment="Top"/>
-                <Label Content="Hora" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="03/10/2013" />
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,73,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="07:58:34"/>
+                <Label Content="Fecha:" HorizontalAlignment="Left" Margin="38,27,0,0" VerticalAlignment="Top"/>
+                <Label Content="Hora:" HorizontalAlignment="Left" Margin="38,55,0,0" VerticalAlignment="Top"/>
+                <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="105,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="03/10/2013" />
+                <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="105,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="07:58:34"/>
                 <Image Source="/MadeInHouse;component/Assets/fotoEmpleadoAsistencia.jpg" HorizontalAlignment="Left" Height="127" Margin="94,101,0,0" VerticalAlignment="Top" Width="117"/>
-                <Label Content="Nombres" HorizontalAlignment="Left" Margin="38,233,0,0" VerticalAlignment="Top"/>
-                <Label Content="Apellidos" HorizontalAlignment="Left" Margin="38,272,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Luis Antonio" />
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Flores Eustaquio"/>
+                <Label Content="Nombres:" HorizontalAlignment="Left" Margin="38,233,0,0" VerticalAlignment="Top"/>
+                <Label Content="Apellidos:" HorizontalAlignment="Left" Margin="38,261,0,0" VerticalAlignment="Top"/>
+                <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="105,233,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Luis Antonio" />
+                <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="105,261,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="Flores Eustaquio"/>
                 <Button  HorizontalAlignment="Right" Height="30" VerticalAlignment="Bottom" Width="30" Margin="0,0,179,25">
                     <Image Source="/MadeInHouse;component/Assets/check.png" Height="28" Width="28" />
                 </Button>
