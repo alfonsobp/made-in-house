@@ -49,8 +49,12 @@
                                     <ListBox Name="listBoxProveedores2"  MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Radioshack"/>
                                     </ListBox>
-                                    <Button Width="20" Content=">" Margin="209,26,208,57"></Button>
-                                    <Button Width="20" Content=">>" Margin="209,49,208,32"></Button>
+                                    <Button Margin="202,24,186,52">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button  Margin="202,49,186,28">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Categorías" VerticalAlignment="Top" Margin="10,183,0,0" Height="123" HorizontalAlignment="Left" Width="449">
@@ -66,8 +70,12 @@
                                     <ListBox Name="listBoxCategorias2"  MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Lamparas"/>
                                     </ListBox>
-                                    <Button  Width="20" Content=">" Margin="209,26,208,57"></Button>
-                                    <Button Width="20" Content=">>" Margin="209,49,208,32"></Button>
+                                    <Button Margin="202,24,188,52" RenderTransformOrigin="0.5,0.5">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button  Margin="202,49,188,28">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
                                 </Grid>
                             </GroupBox>
                             <DataGrid Margin="10,321,0,0" VerticalAlignment="Top" Height="176">

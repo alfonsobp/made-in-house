@@ -48,8 +48,12 @@
                                     <ListBox Name="listBoxProveedores2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Radioshack"/>
                                     </ListBox>
-                                    <Button Content=">" Margin="209,26,300,57"></Button>
-                                    <Button Content=">>" Margin="209,49,300,32"></Button>
+                                    <Button Margin="202,24,285,52">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Margin="202,49,285,27">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
@@ -65,8 +69,12 @@
                                     <ListBox Name="listBoxCategorias2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Lamparas"/>
                                     </ListBox>
-                                    <Button Content=">" Margin="209,26,300,57"></Button>
-                                    <Button Content=">>" Margin="209,49,300,32"></Button>
+                                    <Button Margin="202,24,284,52">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Margin="202,49,284,27">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
@@ -80,8 +88,12 @@
                                     <ListBox Name="listBoxSede2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="San Borja"/>
                                     </ListBox>
-                                    <Button Content=">" Margin="209,26,300,57"></Button>
-                                    <Button Content=">>" Margin="209,49,300,32"></Button>
+                                    <Button Margin="202,24,284,52">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Margin="202,49,284,27">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
                                 </Grid>
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
