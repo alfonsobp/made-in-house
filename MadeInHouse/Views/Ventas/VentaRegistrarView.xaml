@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="785.075" d:DesignWidth="500">
+             d:DesignHeight="774.627" d:DesignWidth="500">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <DockPanel>
             <Layouts:TitleBarTemplate DockPanel.Dock="Top" title="Registro de venta" />
@@ -41,13 +41,12 @@
                     <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                 </Button>
             </ToolBar>
-            <Grid>
-                <GroupBox Header="Nueva Venta" HorizontalAlignment="Left" Height="644" Margin="10,10,0,0" VerticalAlignment="Top" Width="480"/>
-                <TextBlock HorizontalAlignment="Left" Margin="50,80,0,0" TextWrapping="Wrap" Text="ID Cliente:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="130,78,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <TextBlock HorizontalAlignment="Left" Margin="57,156,0,0" TextWrapping="Wrap" Text="RUC:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="130,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <GroupBox Header="Productos" Margin="40,227,0,0" VerticalAlignment="Top" Height="300" HorizontalAlignment="Left" Width="420">
+            <Grid Margin="30">
+                <TextBlock HorizontalAlignment="Left" Margin="1,0,0,0" TextWrapping="Wrap" Text="ID Cliente:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="74,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Margin="1,55,0,0" TextWrapping="Wrap" Text="RUC:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="74,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <GroupBox Header="Productos" Margin="0,167,0,0" Height="300" VerticalAlignment="Top">
                     <Grid Margin="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -68,30 +67,34 @@
                         </DataGrid>
                     </Grid>
                 </GroupBox>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total (Sin dcto):" VerticalAlignment="Top" Width="86" Margin="50,554,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="160,554,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Descuento:" VerticalAlignment="Top" Width="73" Margin="50,584,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="160,584,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="IGV:" VerticalAlignment="Top" Width="86" Margin="50,614,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="160,614,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="50,644,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="160,644,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="289,584,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="370,584,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="289,614,0,0"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="370,614,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                
-                <TextBlock HorizontalAlignment="Left" Margin="57,182,0,0" TextWrapping="Wrap" Text="Razón Social:" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="130,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="321"/>
-                <RadioButton Content="Boleta" HorizontalAlignment="Left" Margin="57,116,0,0" VerticalAlignment="Top"/>
-                <RadioButton Content="Factura" HorizontalAlignment="Left" Margin="130,116,0,0" VerticalAlignment="Top"/>
-                <Button Content="" HorizontalAlignment="Left" Margin="255,78,0,0" VerticalAlignment="Top" Width="28" Height="23">
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total (Sin dcto):" VerticalAlignment="Top" Width="86" Margin="0,485,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="91,485,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Descuento:" VerticalAlignment="Top" Width="73" Margin="1,513,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="91,513,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="IGV:" VerticalAlignment="Top" Width="86" Margin="0,541,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="91,569,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="0,569,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="91,541,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="236,513,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="305,513,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="236,541,0,0"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="305,541,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+
+                <TextBlock HorizontalAlignment="Left" Margin="0,83,0,0" TextWrapping="Wrap" Text="Razón Social:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="74,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="321"/>
+                <RadioButton Content="Boleta" HorizontalAlignment="Left" Margin="5,35,0,0" VerticalAlignment="Top"/>
+                <RadioButton Content="Factura" HorizontalAlignment="Left" Margin="78,35,0,0" VerticalAlignment="Top"/>
+                <Button Content="" HorizontalAlignment="Left" Margin="192,0,0,0" VerticalAlignment="Top" Width="28" Height="23">
                     <Button.Background>
                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/agregarEmpleado.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
-                <TextBlock HorizontalAlignment="Left" Margin="299,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="es-pe" Text="Modo pago:"/></TextBlock>
-                <ComboBox HorizontalAlignment="Left" Margin="370,80,0,0" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Margin="236,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="es-pe" Text="Modo pago:"/></TextBlock>
+                <ComboBox HorizontalAlignment="Left" Margin="305,1,0,0" VerticalAlignment="Top" Width="90"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,111,0,0" TextWrapping="Wrap" Text="Direccion:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="74,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="321"/>
+                <TextBlock HorizontalAlignment="Left" Margin="0,139,0,0" TextWrapping="Wrap" Text="Telefono:" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="74,139,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="116"/>
 
             </Grid>
         </DockPanel>
