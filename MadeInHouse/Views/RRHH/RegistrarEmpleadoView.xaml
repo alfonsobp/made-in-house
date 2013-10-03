@@ -146,10 +146,10 @@
                         <TextBox HorizontalAlignment="Left" Height="24" Margin="537,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
                         <CheckBox Content="AFP" HorizontalAlignment="Left" Margin="4,63,0,0" VerticalAlignment="Top"/>
                         <CheckBox Content="CTS" HorizontalAlignment="Left" Margin="4,95,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Gratificación" HorizontalAlignment="Left" Margin="259,63,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Seguro Contra Accidentes" HorizontalAlignment="Left" Margin="259,95,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Seguro Dental" HorizontalAlignment="Left" Margin="537,63,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Seguro Oncológico" HorizontalAlignment="Left" Margin="537,95,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Content="Gratificación" HorizontalAlignment="Left" Margin="193,63,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Content="Seguro Contra Accidentes" HorizontalAlignment="Left" Margin="193,95,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Content="Seguro Dental" HorizontalAlignment="Left" Margin="441,63,0,0" VerticalAlignment="Top"/>
+                        <CheckBox Content="Seguro Oncológico" HorizontalAlignment="Left" Margin="441,95,0,0" VerticalAlignment="Top"/>
                         <Label Content="Nombre Banco:" HorizontalAlignment="Left" Margin="441,29,0,0" VerticalAlignment="Top" Width="98"/>
                         <TextBox HorizontalAlignment="Left" Height="22" Margin="537,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Text="BBVA Banco Continental"/>
                     </Grid>
