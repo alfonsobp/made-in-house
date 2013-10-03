@@ -49,10 +49,10 @@
                                     <ListBox Name="listBoxProveedores2"  MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Radioshack"/>
                                     </ListBox>
-                                    <Button Margin="202,24,186,52">
+                                    <Button Name="derecha1" Margin="202,24,186,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,186,28">
+                                    <Button Name="izquierda1" Margin="202,49,186,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -70,10 +70,10 @@
                                     <ListBox Name="listBoxCategorias2"  MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Lamparas"/>
                                     </ListBox>
-                                    <Button Margin="202,24,188,52" RenderTransformOrigin="0.5,0.5">
+                                    <Button Name="derecha2" Margin="202,24,188,52"  Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button  Margin="202,49,188,28">
+                                    <Button Name="izquierda2" Margin="202,49,188,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
