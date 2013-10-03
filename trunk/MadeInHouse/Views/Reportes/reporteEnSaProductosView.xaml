@@ -7,7 +7,7 @@
              mc:Ignorable="d" Height="697.896" Width="513">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Reporte de Entrada y Salda de Productos" />
+            <Layouts:TitleBarTemplate Background="Black" title="Reporte de Entrada y Salida de Productos" />
             <Grid>
                 <Grid Height="694" VerticalAlignment="Top" HorizontalAlignment="Left" Width="518">
                     <ToolBar VerticalAlignment="Top" Height="41">
