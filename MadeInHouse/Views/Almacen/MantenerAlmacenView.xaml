@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Width="366" Height="391.5">
+             mc:Ignorable="d" Width="367.5" Height="465">
     <Grid>
 
         <ToolBar VerticalAlignment="Top">
@@ -32,8 +32,8 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Información Almacen" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="341" Width="346">
-            <Grid HorizontalAlignment="Left" Width="340" Margin="0,0,-6,-37">
+        <GroupBox Header="Información Almacen" HorizontalAlignment="Left" Margin="10,41,0,10" Width="346">
+            <Grid Margin="0,0,-6,-12">
 
                 <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="117,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
@@ -41,8 +41,8 @@
                 <ComboBox HorizontalAlignment="Left" Margin="117,57,0,0" VerticalAlignment="Top" Width="159"/>
                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,88,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="117,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                <Label Content="Zonas:" HorizontalAlignment="Left" Margin="17,123,0,0" VerticalAlignment="Top" Width="94"/>
-                <DataGrid HorizontalAlignment="Left" Margin="17,152,0,0" VerticalAlignment="Top" Height="140" Width="260">
+                <Label Content="Zonas:" HorizontalAlignment="Left" Margin="17,221,0,0" VerticalAlignment="Top" Width="94"/>
+                <DataGrid HorizontalAlignment="Left" Margin="17,250,0,0" VerticalAlignment="Top" Height="140" Width="260">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                         <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
@@ -51,7 +51,13 @@
 
                     </DataGrid.Columns>
                 </DataGrid>
-                
+                <Label Content="Altura" HorizontalAlignment="Left" Margin="17,190,0,0" VerticalAlignment="Top" Width="94"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="117,193,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="56"/>
+                <Label Content="Filas:" HorizontalAlignment="Left" Margin="17,125,0,0" VerticalAlignment="Top"/>
+                <Label Content="Columnas:" HorizontalAlignment="Left" Margin="17,159,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="117,125,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="117,160,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="55"/>
+
             </Grid>
         </GroupBox>
     </Grid>

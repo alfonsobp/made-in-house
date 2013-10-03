@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Width="395" Height="175">
+             mc:Ignorable="d" Width="395" Height="222">
     <Grid Margin="0">
         <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
@@ -31,12 +31,14 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" />
             </Button>
         </ToolBar>
-        <GroupBox Header="Informacion Zona" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="126" Width="375">
-            <Grid Height="116" VerticalAlignment="Top" Margin="0,0,0,-12">
-                <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+        <GroupBox Header="Informacion Zona" HorizontalAlignment="Left" Margin="10,41,0,10" Width="375">
+            <Grid Height="160" VerticalAlignment="Top" Margin="0,0,0,-56">
+                <Label Content="Codigo:" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
-                <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
+                <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <Label Content="Color:" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top"/>
+                <ComboBox HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
 
             </Grid>
         </GroupBox>
