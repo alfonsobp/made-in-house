@@ -40,7 +40,7 @@
                         <ComboBox HorizontalAlignment="Left" Margin="117,20,0,0" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="17,58,0,0" VerticalAlignment="Top" Width="94"/>
                         <ComboBox HorizontalAlignment="Left" Margin="117,58,0,0" VerticalAlignment="Top" Width="160"/>
-                        <Button Margin="17,89,491,0" VerticalAlignment="Top" Width="60">
+                        <Button x:Name="AbrirZonaDistribucion" Margin="17,89,491,0" VerticalAlignment="Top" Width="60">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                         </Button>
 
