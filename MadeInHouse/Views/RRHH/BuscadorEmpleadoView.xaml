@@ -18,10 +18,10 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
+                    <Button ToolTip="Limpiar ventana">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
-                    <Button Height="30" Width="30">
+                    <Button ToolTip="Refrescar ventana" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
@@ -77,10 +77,30 @@
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="85" Header="Ape. Paterno"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="85" Header="Ape. Materno"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Nombre"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Sucursal"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="70" Header="Sucursal"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Área"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="70" Header="Puesto"/>
                             </DataGrid.Columns>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
                         </DataGrid>
                     </Grid>
                 </GroupBox>

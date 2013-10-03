@@ -18,23 +18,23 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button
+                    <Button ToolTip="Nuevo rol"
         		        x:Name="AbrirRegistrarRol" >
                         <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button ToolTip="Editar rol">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button ToolTip="Eliminar rol">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button Height="30" Width="30">
+                    <Button ToolTip="Limpiar ventana" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
                     </Button>
-                    <Button Height="50" Width="50">
+                    <Button ToolTip="Refrescar ventana" Height="50" Width="50">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                 </ToolBar>

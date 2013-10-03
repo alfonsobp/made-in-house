@@ -17,16 +17,13 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
+                    <Button ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
+                    <Button ToolTip="Limpiar ventana">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
-                    <Button Height="30" Width="30">
+                    <Button ToolTip="Refrescar ventana" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
