@@ -1,11 +1,17 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Compras.NuevaCotizacionView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+             x:Class="MadeInHouse.Views.Compras.NuevaCotizacionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500">
-    <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Cotizacion" />
+            <!-- CAMBIAR NOMBREEEE -->
+
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
         <ToolBar Margin="0,0,-1,359">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -82,4 +88,6 @@
         <Label Content="Hasta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,159,0,0"/>
 
     </Grid>
+        </StackPanel>
+    </Border>
 </UserControl>

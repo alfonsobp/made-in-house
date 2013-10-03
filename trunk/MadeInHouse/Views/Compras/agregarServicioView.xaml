@@ -1,13 +1,19 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Compras.agregarServicioView"
+﻿<UserControl   xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+    x:Class="MadeInHouse.Views.Compras.agregarServicioView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Servicios" />
+            
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
         <GroupBox Header="Ingresar Servicio" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="580" Margin="10,60,0,0">
-            <Grid >
+          
+                    <Grid >
                 <Label Content="Codigo:" HorizontalAlignment="Left" Margin="13,30,0,0" VerticalAlignment="Top"/>
                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="13,60,0,0" VerticalAlignment="Top"/>
                 <Label Content="Precio:" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top"/>
@@ -78,4 +84,6 @@
             </Button>
         </ToolBar>
     </Grid>
+    </StackPanel>
+    </Border>
 </UserControl>

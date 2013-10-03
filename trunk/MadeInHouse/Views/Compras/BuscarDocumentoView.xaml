@@ -1,11 +1,19 @@
-﻿<UserControl x:Class="MadeInHouse.Views.Compras.BuscarDocumentoView"
+﻿<UserControl 
+    xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"       
+    x:Class="MadeInHouse.Views.Compras.BuscarDocumentoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+    <!-- COPIAR DESDE AKI -->
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Listado Documentos de pago" />
+            <!-- CAMBIAR NOMBREEEE -->
+
+            <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
         <DataGrid Margin="11,206,10,0" Height="234" VerticalAlignment="Top">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
@@ -77,4 +85,6 @@
         </ToolBar>
 
     </Grid>
+        </StackPanel>
+    </Border>
 </UserControl>
