@@ -880,6 +880,7 @@
     <Resource Include="Assets\money.png" />
     <Resource Include="Assets\contacto.png" />
     <Resource Include="Assets\Organigrama.jpg" />
+    <Resource Include="Assets\icono_imprimir.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
