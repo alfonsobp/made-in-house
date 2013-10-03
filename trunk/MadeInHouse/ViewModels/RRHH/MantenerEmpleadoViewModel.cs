@@ -5,16 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
+using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel.Composition;
+using MadeInHouse.Models;
+
 namespace MadeInHouse.ViewModels.RRHH
 {
-    class MantenerEmpleadoViewModel : Screen
+    public class MantenerEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
     {
+        private MyWindowManager win = new MyWindowManager();
 
-        public void AbrirArmarHorario()
+        public void AbrirVerEmpleado()
         {
-            WindowManager win = new WindowManager();
-            RRHH.ArmarHorarioViewModel obj = new RRHH.ArmarHorarioViewModel { DisplayName = "Armar Horario" };
-            win.ShowWindow(obj);
+            win.ShowWindow(new RRHH.VerEmpleadoViewModel { });
         }
+
+        public void AbrirRegistrarEmpleado()
+        {
+            win.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { });
+        }
+
+
     }
 }

@@ -226,12 +226,41 @@
                         <Button x:Name="AbrirNuevaPromoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="16"/>
                     </Grid>
                 </Expander>
-                <Expander Header="RRHH"    Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
+                <!--RRHH-->
+                <Expander Header="RRHH"    Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" RenderTransformOrigin="0.475,0.496" >
                     <Expander.Background>
                         <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/rrhh.png" Stretch="None"/>
                     </Expander.Background>
 
+                        <Grid Background="White" Height="Auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                        </Grid.RowDefinitions>
+                            <Button x:Name="AbrirRegistrarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Empleado" FontSize="20"  Grid.Row="0"/>
+                            <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento Empleado" FontSize="20"  Grid.Row="1"/>
+                            <Button x:Name="AbrirMantenerRol"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento de Rol" FontSize="20"  Grid.Row="2"/>
+                            <Button x:Name="AbrirCargarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3"/>
+                    </Grid>
                 </Expander>
+
+                <Expander Header="Clima Laboral"    Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" RenderTransformOrigin="0.475,0.496" >
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/rrhh.png" Stretch="None"/>
+                    </Expander.Background>
+
+                    <Grid Background="White" Height="Auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Button x:Name="AbrirBuscarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Empleado" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirBuscarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Ver Organigrama" FontSize="20"  Grid.Row="1"/>
+                    </Grid>
+                </Expander>
+
                 <Expander Header="Seguridad"   FontSize="40"  Foreground="Gray"  Style="{StaticResource ExpanderStyle}">
                     <Expander.Background>
                         <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/seguridad.png" Stretch="None"/>
@@ -245,8 +274,6 @@
 
                         <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Usuario" FontSize="20"  Grid.Row="0"/>
                         <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener Usuario" FontSize="20"  Grid.Row="1"/>
-
-
 
                     </Grid>
                 </Expander>

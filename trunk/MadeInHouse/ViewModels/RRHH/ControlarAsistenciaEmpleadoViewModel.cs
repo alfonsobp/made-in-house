@@ -5,15 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
+using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel.Composition;
+using MadeInHouse.Models;
+
 namespace MadeInHouse.ViewModels.RRHH
 {
-    class ControlarAsistenciaEmpleadoViewModel:Screen
+    public class ControlarAsistenciaEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
     {
+        private MyWindowManager win = new MyWindowManager();
+
         public void AbrirConfirmarAsistenciaEmpleado()
         {
-            WindowManager win = new WindowManager();
-            RRHH.ConfirmarAsistenciaEmpleadoViewModel obj = new RRHH.ConfirmarAsistenciaEmpleadoViewModel {};
-            win.ShowWindow(obj);
+            win.ShowWindow(new RRHH.ConfirmarAsistenciaEmpleadoViewModel { });
         }
 
 

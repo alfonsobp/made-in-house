@@ -12,7 +12,7 @@ using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    public class ConfirmarAsistenciaEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
+    public class BuscarOrganigramaViewModel : Conductor<IScreen>.Collection.OneActive
     {
         private MyWindowManager win = new MyWindowManager();
     }
