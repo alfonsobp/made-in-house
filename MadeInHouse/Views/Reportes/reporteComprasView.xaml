@@ -48,10 +48,10 @@
                                     <ListBox Name="listBoxProveedores2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Radioshack"/>
                                     </ListBox>
-                                    <Button Margin="202,24,285,52">
+                                    <Button Name="derecha1" Margin="202,24,285,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button Margin="202,49,285,27">
+                                    <Button Name="izquierda1" Margin="202,49,285,27" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -69,10 +69,10 @@
                                     <ListBox Name="listBoxCategorias2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="Lamparas"/>
                                     </ListBox>
-                                    <Button Margin="202,24,284,52">
+                                    <Button Name="derecha2" Margin="202,24,284,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button Margin="202,49,284,27">
+                                    <Button Name="izquierda2" Margin="202,49,284,27" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
@@ -88,10 +88,10 @@
                                     <ListBox Name="listBoxSede2" MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
                                         <ListBoxItem Content="San Borja"/>
                                     </ListBox>
-                                    <Button Margin="202,24,284,52">
+                                    <Button Name="derecha3" Margin="202,24,284,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button Margin="202,49,284,27">
+                                    <Button Name="izquierda3" Margin="202,49,284,27" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
