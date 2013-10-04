@@ -109,7 +109,7 @@ namespace MadeInHouse.Views.Reportes
             //releaseObject(xlWorkBook);
             //releaseObject(xlApp);
 
-            MessageBox.Show("Excel file created , you can find the file c:\\LALALA.xls");
+            MessageBox.Show("archivo excel creado , esta en c:\\LALALA.xls");
         }
 
 
