@@ -18,9 +18,9 @@ namespace MadeInHouse.Views.Almacen
     /// <summary>
     /// Lógica de interacción para ProductoMovimientos.xaml
     /// </summary>
-    public partial class ProductoMovimientos : UserControl
+    public partial class ProductoMovimientosView : UserControl
     {
-        public ProductoMovimientos()
+        public ProductoMovimientosView()
         {
             InitializeComponent();
         }

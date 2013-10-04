@@ -114,6 +114,7 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
 
 
 
@@ -134,6 +135,7 @@
                         <Button  x:Name="AbrirBuscarZona" Background="Black" Foreground="white" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="12"/>
                         <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Black" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="13"/>
                         <Button  x:Name="AbrirSolicitudAbDetalle" Background="Black" Foreground="white" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="14"/>
+                        <Button  x:Name="AbrirMovimientos" Background="Black" Foreground="white" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15"/>
 
                     </Grid>
                 </Expander>
