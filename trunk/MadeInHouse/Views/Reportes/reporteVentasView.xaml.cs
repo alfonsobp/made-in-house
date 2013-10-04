@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace MadeInHouse.Views.Reportes
 {
@@ -85,6 +86,30 @@ namespace MadeInHouse.Views.Reportes
 
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, listBoxSede2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(listBoxSede2, listBoxSede1);
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            xlWorkSheet.Cells[1, 1] = "COLOMA SE LA COME";
+
+            xlWorkBook.SaveAs("c:\\LALALA.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+
+            //releaseObject(xlWorkSheet);
+            //releaseObject(xlWorkBook);
+            //releaseObject(xlApp);
+
+            MessageBox.Show("Excel file created , you can find the file c:\\LALALA.xls");
         }
 
 
