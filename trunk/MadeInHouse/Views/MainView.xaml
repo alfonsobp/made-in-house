@@ -299,7 +299,7 @@
                         </Grid.RowDefinitions>
 
                         <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Usuario" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener Usuario" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Usuario" FontSize="20"  Grid.Row="1"/>
 
                     </Grid>
                 </Expander>

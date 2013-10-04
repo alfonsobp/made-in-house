@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Seguridad
 {
-    class MantenerUsuarioViewModel : Screen
+    class MantenerUsuarioViewModel : Conductor<IScreen>.Collection.OneActive
     {
     }
 }

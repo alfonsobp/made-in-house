@@ -5,15 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
+using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel.Composition;
+using MadeInHouse.Models;
 namespace MadeInHouse.ViewModels.Seguridad
 {
-    class BuscadorUsuarioViewModel : Screen
+    class BuscadorUsuarioViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        public void AbrirMantenerUsuarioViewModel()
+        private MyWindowManager win = new MyWindowManager();
+        //public void AbrirMantenerUsuarioViewModel()
+        //{
+        //    WindowManager win = new WindowManager();
+        //    Seguridad.MantenerUsuarioViewModel obj = new Seguridad.MantenerUsuarioViewModel { DisplayName = "Registrar usuario" };
+        //    win.ShowWindow(obj);
+        //}
+
+        public void AbrirMantenerUsuario()
         {
-            WindowManager win = new WindowManager();
-            Seguridad.MantenerUsuarioViewModel obj = new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantener usuario" };
-            win.ShowWindow(obj);
+            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { });
         }
     }
 }
