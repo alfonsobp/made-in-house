@@ -83,6 +83,11 @@ namespace MadeInHouse.ViewModels
 
         #region Almacen
 
+        public void AbrirMovimientos()
+        {
+            win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+        }
+
         public void AbrirBuscarGuiaDeRemision()
         {
            

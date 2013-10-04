@@ -99,6 +99,7 @@
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\ProductoMovimientosViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />
@@ -237,8 +238,8 @@
     <Compile Include="Views\Almacen\PosicionProductoView.xaml.cs">
       <DependentUpon>PosicionProductoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\ProductoMovimientos.xaml.cs">
-      <DependentUpon>ProductoMovimientos.xaml</DependentUpon>
+    <Compile Include="Views\Almacen\ProductoMovimientosView.xaml.cs">
+      <DependentUpon>ProductoMovimientosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\SolicitudAbListadoView.xaml.cs">
       <DependentUpon>SolicitudAbListadoView.xaml</DependentUpon>
@@ -546,7 +547,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\ProductoMovimientos.xaml">
+    <Page Include="Views\Almacen\ProductoMovimientosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
