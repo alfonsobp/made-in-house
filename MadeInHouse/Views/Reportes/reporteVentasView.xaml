@@ -100,7 +100,7 @@
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
                             <TextBox HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
-                            <DataGrid HorizontalAlignment="Left" Margin="10,439,0,2" Width="451">
+                            <DataGrid HorizontalAlignment="Left" Margin="10,439,0,2" Width="451" SelectionChanged="DataGrid_SelectionChanged">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
                                     <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor"/>
@@ -108,7 +108,9 @@
                                     <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unit."/>
                                     <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                                     <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Monto Total"/>
+                                    
                                 </DataGrid.Columns>
+                                
                             </DataGrid>
                             <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
