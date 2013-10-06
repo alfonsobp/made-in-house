@@ -100,7 +100,7 @@
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
                             <TextBox HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
-                            <DataGrid HorizontalAlignment="Left" Margin="10,439,0,2" Width="451" SelectionChanged="DataGrid_SelectionChanged">
+                            <DataGrid HorizontalAlignment="Left" Margin="10,439,0,2" Width="451" >
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
                                     <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor"/>
