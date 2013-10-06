@@ -1,18 +1,28 @@
 ﻿<Window xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.LoginView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Login" Height="254" Width="480" WindowStyle="ThreeDBorderWindow" Background="White"
+        Title="Login" Height="296" Width="488" WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen ">
-    <DockPanel>
-        <Grid Background="White">
-            <Label x:Name="lblUser" Content="Usuario:" HorizontalAlignment="Left" Margin="45,45,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.471,0.077" Height="26"/>
-            <Button x:Name="enter" Content="Acceder" HorizontalAlignment="Left" Margin="187,168,0,0" VerticalAlignment="Top" Width="75" Height="20" Background="#FF9B9B9B"/>
-            <Image Source="/MadeInHouse;component/Assets/user.png" HorizontalAlignment="Left" Height="135" Margin="309,22,0,0" VerticalAlignment="Top" Width="137"/>
-            <Label x:Name="idPassword" Content="Contraseña:" HorizontalAlignment="Left" Margin="45,87,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
-            <TextBox x:Name="txtUser" HorizontalAlignment="Left" Height="22" Margin="138,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
-            <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="22" Margin="138,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
 
-        </Grid>
+        <DockPanel>
+            
+
+            <Layouts:TitleBarTemplate title="Login" DockPanel.Dock="Top"/>   
+        <Grid>
+                <Grid.Background>
+                    <ImageBrush ImageSource="/MadeInHouse;component/Assets/bg-login2.jpg"/>
+                </Grid.Background>
+
+                <Label x:Name="lblUser" Content="Usuario:" HorizontalAlignment="Left" Margin="135,87,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.471,0.077" Height="26"/>
+            <Button x:Name="enter" Content="Ingresar" HorizontalAlignment="Left" Margin="212,193,0,0" VerticalAlignment="Top" Width="75" Height="20" Background="#FF9B9B9B"/>
+                <Label x:Name="idPassword" Content="Contraseña:" HorizontalAlignment="Left" Margin="135,129,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
+            <TextBox x:Name="txtUser" HorizontalAlignment="Left" Height="22" Margin="228,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+            <TextBox x:Name="txtPassword" HorizontalAlignment="Left" Height="22" Margin="228,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
+                <Label Content="Sistema MadeInHouse" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="185,36,0,0"/>
+
+            </Grid>
+        
     </DockPanel>
-
+    </Border>
 </Window>

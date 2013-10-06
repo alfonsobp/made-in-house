@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels
 {
-    public class LoginViewModel : Screen
+    public class LoginViewModel : Conductor<IScreen>.Collection.OneActive
     {
         public void enter()
         {
