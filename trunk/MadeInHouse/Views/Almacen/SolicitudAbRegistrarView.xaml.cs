@@ -24,5 +24,7 @@ namespace MadeInHouse.Views.Almacen
         {
             InitializeComponent();
         }
+
+
     }
 }
