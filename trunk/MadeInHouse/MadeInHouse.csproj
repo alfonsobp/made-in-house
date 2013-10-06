@@ -969,6 +969,7 @@
     <Resource Include="Assets\fotoEmpleadoAsistencia.jpg" />
     <Resource Include="Assets\right.png" />
     <Resource Include="Assets\left.png" />
+    <Resource Include="Assets\bg-login2.jpg" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
