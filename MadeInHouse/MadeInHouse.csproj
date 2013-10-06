@@ -969,8 +969,10 @@
     <Resource Include="Assets\fotoEmpleadoAsistencia.jpg" />
     <Resource Include="Assets\right.png" />
     <Resource Include="Assets\left.png" />
-    <Resource Include="Assets\bg-login2.jpg" />
-    <Content Include="Libraries\Caliburn.Micro.dll" />
+<Resource Include="Assets\Lightning.png" />
+    <Resource Include="Assets\edit4.png" />
+    <Resource Include="Assets\Lightning2.png" />
+ <Resource Include="Assets\bg-login2.jpg" />    <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
     <Content Include="Libraries\System.ComponentModel.Composition.dll" />

@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="509" Width="457">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+             mc:Ignorable="d" Height="509" Width="416">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Nueva solicitud de abastecimiento"/>
-            <Grid>
+            <Grid HorizontalAlignment="Left" Width="410">
                 <ToolBar VerticalAlignment="Top" Height="41">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -21,27 +21,42 @@
 
                 </ToolBar>
 
-                <DataGrid Height="265" VerticalAlignment="Top" Margin="17,170,0,0" HorizontalAlignment="Left" Width="423">
+                <DataGrid Height="182" VerticalAlignment="Top" Margin="18,253,0,0" HorizontalAlignment="Left" Width="374">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Producto" Width="150"/>
-                        <DataGridTextColumn Header="Cant. Sugerida" Width="160"/>
-                        <DataGridTextColumn Header="Cant. Pedida" Width="160"/>
+                        <DataGridTextColumn Header="Stock" Width="55"/>
+                        <DataGridTextColumn Header="Cant. Sugerida" Width="90"/>
+                        <DataGridTextColumn Header="Cant. Pedida" Width="150"/>
 
                     </DataGrid.Columns>
                 </DataGrid>
-                <GroupBox Header="Datos generales" Margin="17,56,17,0" VerticalAlignment="Top" Height="90">
-                    <Grid>
+                <GroupBox Header="Datos generales" Margin="17,56,18,0" VerticalAlignment="Top" Height="102">
+                    <Grid HorizontalAlignment="Left" Width="365" Margin="0,0,-2,0">
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Label Content="Almacén" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" />
+                        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="25,10,0,0" VerticalAlignment="Top" />
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="108,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" IsEnabled="False" />
-                        <Label Content="Fecha" HorizontalAlignment="Left" Margin="25,0,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="Fecha:" HorizontalAlignment="Left" Margin="25,0,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                         <DatePicker HorizontalAlignment="Left" Margin="108,6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="151"/>
                     </Grid>
 
                 </GroupBox>
+                <GroupBox Header="Productos" HorizontalAlignment="Left" Margin="18,174,0,0" VerticalAlignment="Top" Width="374" Height="74">
+                    <Grid HorizontalAlignment="Left" Height="53" VerticalAlignment="Top" Width="352">
+                        <Label Content="Código:" HorizontalAlignment="Left" Margin="30,6,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="24" Margin="111,6,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" />
+                        <Button HorizontalAlignment="Left" Margin="229,6,0,0" VerticalAlignment="Top" Width="29" Height="24">
+                            <Image Source="/Assets/find.png" />
+                        </Button>
+                        <Button  HorizontalAlignment="Left" Margin="291,6,0,0" VerticalAlignment="Top" Width="45" Height="34">
+                            <Image Source="/Assets/add.png" />
+                        </Button>
+
+                    </Grid>
+                </GroupBox>
+                
 
 
             </Grid>

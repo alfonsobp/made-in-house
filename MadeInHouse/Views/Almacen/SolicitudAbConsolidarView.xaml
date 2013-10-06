@@ -4,11 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:designHeight="362" d:designWidth="334">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,10" Background="White">
-        <StackPanel Margin="0,0,0,19">
+             mc:Ignorable="d" d:designHeight="362" d:designWidth="334" >
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <StackPanel>
             <Layouts:TitleBarTemplate  title="Consolidar Solicitudes"/>
-            <Grid Height="326">
+            <Grid Height="419">
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -17,10 +17,10 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button ToolTip="Nuevo Producto">
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/lightning2.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Modificar Producto">
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/edit4.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Guardar Producto">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
@@ -35,22 +35,22 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Tienda a consolidar" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="83" Width="314">
-                    <Grid Margin="0,0,-2,0">
-                        <Label Content="Tienda" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="50" Margin="17,14,0,0"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="100,19,0,0" VerticalAlignment="Top" Width="194"/>
-                    </Grid>
-                </GroupBox>
-                <Grid HorizontalAlignment="Left" Height="182" Margin="10,134,0,0" VerticalAlignment="Top" Width="314">
+                <Grid HorizontalAlignment="Left" Height="363" Margin="0,46,0,0" VerticalAlignment="Top" Width="388">
 
-                    <DataGrid HorizontalAlignment="Left" Margin="10,10,0,21" Width="294">
+                    <DataGrid Margin="10,0,0,39" HorizontalAlignment="Left" Width="368" Height="220" VerticalAlignment="Bottom">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                            <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
-                            <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Estado"/>
+                            <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
+                            <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
+                            <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Estado"/>
                         </DataGrid.Columns>
-                        <Button/>
+                        
                     </DataGrid>
+                    <GroupBox Header="Tienda a consolidar" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Height="82" Width="368">
+                        <Grid Margin="0,0,-2,0">
+                            <Label Content="Tienda" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="50" Margin="17,14,0,0"/>
+                            <ComboBox HorizontalAlignment="Left" Margin="100,19,0,0" VerticalAlignment="Top" Width="194"/>
+                        </Grid>
+                    </GroupBox>
                 </Grid>
 
 
