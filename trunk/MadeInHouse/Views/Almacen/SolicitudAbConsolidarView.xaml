@@ -17,10 +17,10 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button ToolTip="Nuevo Producto">
-                        <Image Source="/MadeInHouse;component/Assets/lightning2.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/lightning.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Modificar Producto">
-                        <Image Source="/MadeInHouse;component/Assets/edit4.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Guardar Producto">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />

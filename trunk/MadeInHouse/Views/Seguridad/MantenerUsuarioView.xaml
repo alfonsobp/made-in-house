@@ -76,7 +76,7 @@
                             <ComboBoxItem Content="Reportes" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
 
-                        <DataGrid HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Height="145" Width="546" SelectionChanged="DataGrid_SelectionChanged_1">
+                        <DataGrid HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Height="145" Width="546" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="140" Header="Módulo"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="260" Header="Acceso a ventana"/>
