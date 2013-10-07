@@ -46,10 +46,10 @@ namespace MadeInHouse.Views.Reportes
 
         private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
         {
-            if (listBoxProductos1.SelectedItem != null)
-                pasarListBox(listBoxProductos1, listBoxProductos2);
-            if (listBoxProductos2.SelectedItem != null)
-                pasarListBox(listBoxProductos2, listBoxProductos1);
+            if (listBoxCategorias1.SelectedItem != null)
+                pasarListBox(listBoxCategorias1, listBoxCategorias2);
+            if (listBoxCategorias2.SelectedItem != null)
+                pasarListBox(listBoxCategorias2, listBoxCategorias1);
 
             if (listBoxCategorias1.SelectedItem != null)
                 pasarListBox(listBoxCategorias1, listBoxCategorias2);
@@ -67,8 +67,8 @@ namespace MadeInHouse.Views.Reportes
         {
             listBoxCategorias1.UnselectAll();
             listBoxCategorias2.UnselectAll();
-            listBoxProductos1.UnselectAll();
-            listBoxProductos2.UnselectAll();
+            listBoxCategorias1.UnselectAll();
+            listBoxCategorias2.UnselectAll();
             listBoxAlmacen2.UnselectAll();
             listBoxAlmacen1.UnselectAll();
         }
@@ -78,8 +78,8 @@ namespace MadeInHouse.Views.Reportes
             if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
             if (sender.Equals(izquierda1)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
 
-            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxProductos1, listBoxProductos2);
-            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxProductos2, listBoxProductos1);
+            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
+            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
 
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxAlmacen1, listBoxAlmacen2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(listBoxAlmacen2, listBoxAlmacen1);
