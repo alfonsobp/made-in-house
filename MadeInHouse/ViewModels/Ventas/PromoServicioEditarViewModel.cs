@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class RegistrarPromoServicioViewModel:Screen
+    class PromoServicioEditarViewModel:Screen
     {
     }
 }

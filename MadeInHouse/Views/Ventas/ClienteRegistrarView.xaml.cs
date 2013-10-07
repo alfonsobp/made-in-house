@@ -24,5 +24,10 @@ namespace MadeInHouse.Views.Ventas
         {
             InitializeComponent();
         }
+
+        private void Grid_SizeChanged_1(object sender, SizeChangedEventArgs e)
+        {
+
+        }
     }
 }

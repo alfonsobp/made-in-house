@@ -148,22 +148,22 @@
     <Compile Include="ViewModels\Seguridad\RegistrarModuloViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\Ventas\DetalleVentaViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\EditarClienteViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\ClienteEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\EditarPromoProductoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\EditarPromoServicioViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\PromoProductoEditarViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\PromoServicioEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteBuscarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\DevolucionesBuscarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ListadoNotaCreditoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\ListadoPromoProductoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\ListadoPromoServicioViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\PromoProductoBuscarViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\PromoServicioBuscarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\PreciosBuscarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ProformaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\DevolucionesRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\RegistrarNotaCreditoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\RegistrarPromoProductoViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\RegistrarPromoServicioViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\PromoProductoRegistrarViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\PromoServicioRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\VentaCajeroRegistrarViewModel.cs" />
     <Compile Include="Views\Almacen\BuscarGuiasRemisionView.xaml.cs">
       <DependentUpon>BuscarGuiasRemisionView.xaml</DependentUpon>
@@ -410,17 +410,17 @@
     <Compile Include="Views\Ventas\DetalleVentaView.xaml.cs">
       <DependentUpon>DetalleVentaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\EditarClienteView.xaml.cs">
-      <DependentUpon>EditarClienteView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\ClienteEditarView.xaml.cs">
+      <DependentUpon>ClienteEditarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\EditarNotaCreditoView.xaml.cs">
       <DependentUpon>EditarNotaCreditoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\EditarPromoProductoView.xaml.cs">
-      <DependentUpon>EditarPromoProductoView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\PromoProductoEditarView.xaml.cs">
+      <DependentUpon>PromoProductoEditarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\EditarPromoServicioView.xaml.cs">
-      <DependentUpon>EditarPromoServicioView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\PromoServicioEditarView.xaml.cs">
+      <DependentUpon>PromoServicioEditarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\PreciosBuscarView.xaml.cs">
       <DependentUpon>PreciosBuscarView.xaml</DependentUpon>
@@ -443,11 +443,11 @@
     <Compile Include="Views\Ventas\ListadoNotaCreditoView.xaml.cs">
       <DependentUpon>ListadoNotaCreditoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\ListadoPromoProductoView.xaml.cs">
-      <DependentUpon>ListadoPromoProductoView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\PromoProductoBuscarView.xaml.cs">
+      <DependentUpon>PromoProductoBuscarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\ListadoPromoServicioView.xaml.cs">
-      <DependentUpon>ListadoPromoServicioView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\PromoServicioBuscarView.xaml.cs">
+      <DependentUpon>PromoServicioBuscarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\VentaBuscarView.xaml.cs">
       <DependentUpon>VentaBuscarView.xaml</DependentUpon>
@@ -464,11 +464,11 @@
     <Compile Include="Views\Ventas\RegistrarNotaCreditoView.xaml.cs">
       <DependentUpon>RegistrarNotaCreditoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\RegistrarPromoProductoView.xaml.cs">
-      <DependentUpon>RegistrarPromoProductoView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\PromoProductoRegistrarView.xaml.cs">
+      <DependentUpon>PromoProductoRegistrarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\RegistrarPromoServicioView.xaml.cs">
-      <DependentUpon>RegistrarPromoServicioView.xaml</DependentUpon>
+    <Compile Include="Views\Ventas\PromoServicioRegistrarView.xaml.cs">
+      <DependentUpon>PromoServicioRegistrarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\VentaRegistrarView.xaml.cs">
       <DependentUpon>VentaRegistrarView.xaml</DependentUpon>
@@ -768,7 +768,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\EditarClienteView.xaml">
+    <Page Include="Views\Ventas\ClienteEditarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -776,11 +776,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\EditarPromoProductoView.xaml">
+    <Page Include="Views\Ventas\PromoProductoEditarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\EditarPromoServicioView.xaml">
+    <Page Include="Views\Ventas\PromoServicioEditarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -812,11 +812,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\ListadoPromoProductoView.xaml">
+    <Page Include="Views\Ventas\PromoProductoBuscarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\ListadoPromoServicioView.xaml">
+    <Page Include="Views\Ventas\PromoServicioBuscarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -840,11 +840,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\RegistrarPromoProductoView.xaml">
+    <Page Include="Views\Ventas\PromoProductoRegistrarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\RegistrarPromoServicioView.xaml">
+    <Page Include="Views\Ventas\PromoServicioRegistrarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

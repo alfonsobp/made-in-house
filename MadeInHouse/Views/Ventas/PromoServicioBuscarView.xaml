@@ -1,13 +1,13 @@
-﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Ventas.ListadoPromoServicioView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Ventas.PromoServicioBuscarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="557" Width="543">
+             mc:Ignorable="d" Height="577" Width="562">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="white">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar Promociones de Servicios" />
-            <Grid>
+            <Grid HorizontalAlignment="Left" Width="558">
                 <ToolBar VerticalAlignment="Top" Margin="0">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -16,29 +16,26 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button x:Name="AbrirNuevaPromoServicio" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Width="35" Margin="0,3" >
-                        <Image Source="/MadeInHouse;component/Assets/New2.png" />
+                        <Image Source="/MadeInHouse;component/Assets/New2.png" ToolTip="Nuevo" />
                     </Button>
                     <Button x:Name="AbrirEditarPromoServicio" >
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30"  ToolTip="Editar"/>
                     </Button>
                     <Button x:Name="AbrirDesactivarPromoServicio" >
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" ToolTip="Eliminar"/>
                     </Button>
                     <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" ToolTip="Limpiar Datos"/>
                     </Button>
                     <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" ToolTip="Actualizar"/>
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Criterios de búsqueda" Margin="10,51,9,257">
-                    <Grid>
+                <GroupBox Header="Criterios de búsqueda" Margin="10,51,0,275" HorizontalAlignment="Left" Padding="10,10,10,10">
+                    <Grid Margin="1">
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="112,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
-                        <Button Height="23" Width="60" Margin="301,13,147,141">
-                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
-                        </Button>
                         <Label Content="ID Producto:" HorizontalAlignment="Left" Margin="17,51,0,0" VerticalAlignment="Top"/>
-                        <Button Height="23" Width="60" Margin="301,54,147,100">
+                        <Button Height="23" Width="60" Margin="301,13,135,138">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                         </Button>
                         <DatePicker HorizontalAlignment="Left" Margin="112,92,0,0" VerticalAlignment="Top" Width="172"/>
@@ -47,9 +44,12 @@
                         <DatePicker HorizontalAlignment="Left" Margin="112,133,0,0" VerticalAlignment="Top" Width="172"/>
                         <Label Content="ID Servicio:" HorizontalAlignment="Left" Margin="17,10,0,0" VerticalAlignment="Top"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="112,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="172"/>
+                        <Button Height="23" Width="60" Margin="301,54,135,97">
+                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                        </Button>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="10,255,0,1" Width="520">
+                <GroupBox Header="Resultado de la búsqueda" HorizontalAlignment="Left" Margin="10,272,10,10" Padding="10,10,10,10">
                     <Grid Margin="1">
                         <DataGrid HorizontalAlignment="Left" Height="210" VerticalAlignment="Top" Width="488" Margin="10,10,0,0">
                             <DataGrid.Columns>

@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="640" d:DesignWidth="476">
+             d:DesignHeight="672" d:DesignWidth="485">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="white">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Proformas"/>
@@ -17,13 +17,13 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,3" >
-                        <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
+                        <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30" ToolTip="Nuevo"/>
                     </Button>
                     <Button>
-                        <Image Source="/MadeInHouse;component/Assets/icono_imprimir.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/icono_imprimir.png" Height="30" Width="30" ToolTip="Imprimir"/>
                     </Button>
                     <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" ToolTip="Limpiar Datos"/>
                     </Button>
                 </ToolBar>
                 <GroupBox Header="Datos del Contacto" Margin="10,46,0,383" HorizontalAlignment="Left" Width="452">

@@ -20,7 +20,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirEditarcliente()
         {
-            win.ShowWindow(new Ventas.EditarClienteViewModel { DisplayName = "Editar Cliente" });
+            win.ShowWindow(new Ventas.ClienteEditarViewModel { DisplayName = "Editar Cliente" });
         }
     }
 }
