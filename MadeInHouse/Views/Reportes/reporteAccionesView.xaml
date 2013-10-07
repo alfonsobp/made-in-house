@@ -25,7 +25,9 @@
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
                             <DataGrid HorizontalAlignment="Left" Margin="10,120,0,2" Width="530">
-                                <DataGrid.Columns>
+                                <DataGrid.Columns>                                    
+                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Usuario"/>
+                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Módulo"/>
                                     <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
                                     <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Hora"/>
                                     <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="IP"/>

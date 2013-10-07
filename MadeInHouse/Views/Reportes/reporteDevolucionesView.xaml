@@ -34,12 +34,12 @@
                             <Image Source="/MadeInHouse;component/Assets/pdf.png" />
                         </Button>
                     </ToolBar>
-                    <GroupBox Header="Reporte de Devoluciones" Height="608" Margin="10,46,22,0" VerticalAlignment="Top">
+                    <GroupBox Header="Reporte de Devoluciones" Height="608" Margin="10,46,10,0" VerticalAlignment="Top">
                         <Grid>
                             <Button ToolTip="Generar reporte" Margin="399,21,0,0" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
-                            <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="449" Height="123">
+                            <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="449" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxProveedores1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="Tornillos Luchito"/>
@@ -57,7 +57,7 @@
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Categorías" VerticalAlignment="Top" Margin="10,183,0,0" Height="123" HorizontalAlignment="Left" Width="449">
+                            <GroupBox Header="Categorías" VerticalAlignment="Top" Margin="10,311,0,0" Height="123" HorizontalAlignment="Left" Width="449">
                                 <Grid>
                                     <ListBox Name="listBoxCategorias1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="Tornillos"/>
@@ -78,7 +78,7 @@
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Sede" VerticalAlignment="Top" Margin="10,311,0,0" Height="123" HorizontalAlignment="Left" Width="449">
+                            <GroupBox Header="Sede" VerticalAlignment="Top" Margin="10,60,0,0" Height="123" HorizontalAlignment="Left" Width="449">
                                 <Grid>
                                     <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="San Miguel"/>
@@ -99,11 +99,9 @@
                             </GroupBox>
                             <DataGrid Margin="10,439,10,2">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="55" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                                    <DataGridTextColumn Width="85" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor"/>
-                                    <DataGridTextColumn Width="90" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
-                                    <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio Unit."/>
-                                    <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                                    <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Documento dev."/>
+                                    <DataGridTextColumn Width="85" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
                                     <DataGridTextColumn Width="150" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Motivo"/>
 
                                 </DataGrid.Columns>
