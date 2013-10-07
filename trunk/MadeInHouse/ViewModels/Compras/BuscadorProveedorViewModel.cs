@@ -44,7 +44,7 @@ namespace MadeInHouse.ViewModels.Compras
         public string FechaIni
         {
             get { return fechaIni; }
-            set { fechaIni = value; NotifyOfPropertyChange(() => FechaFin); }
+            set { fechaIni = value; NotifyOfPropertyChange(() => FechaIni); }
         }
 
         private string fechaFin;
