@@ -8,6 +8,7 @@ using MadeInHouse.Models;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -63,8 +64,21 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstProveedor = value; NotifyOfPropertyChange(() => LstProveedor); }
         }
 
+        private Proveedor proveedorS;
+
+        public void SelectedItemChanged(object sender)
+        {
+
+            proveedorS = ((sender as DataGrid).SelectedItem as Proveedor);
+
+        
+        }
 
 
+        public void test() {
+
+            MessageBox.Show("El proveedor tiene Codigo = " + proveedorS.Codigo + " , Ruc = "+proveedorS.Ruc  +" , Razon Social = "+proveedorS.RazonSocial );
+        }
      
         public void NuevoProveedor()
         {
@@ -89,10 +103,10 @@ namespace MadeInHouse.ViewModels.Compras
             MessageBox.Show("proveedor :  Codigo = " + txtCodigo + ", Razon social = " + txtRazonSocial + ", Ruc = "+txtRuc + ", Fecha Inicial = "+fechaIni + ", Fecha Fin = "+fechaFin);
 
             List<Proveedor> e = new List<Proveedor>();
-            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999999"));
-            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999999"));
-            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999999"));
-            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999999"));
+            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999991"));
+            e.Add(new Proveedor("121213","Ladrillos San Jorge 2","999999992"));
+            e.Add(new Proveedor("121214","Ladrillos San Jorge 3","999999993"));
+            e.Add(new Proveedor("121215","Ladrillos San Jorge 4 ","999999994"));
 
             lstProveedor = e;
             NotifyOfPropertyChange("LstProveedor");
