@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Ventas
 {
     /// <summary>
-    /// Lógica de interacción para EditarClienteView.xaml
+    /// Lógica de interacción para EditarPromoProductoView.xaml
     /// </summary>
-    public partial class EditarClienteView : UserControl
+    public partial class PromoProductoEditarView : UserControl
     {
-        public EditarClienteView()
+        public PromoProductoEditarView()
         {
             InitializeComponent();
         }

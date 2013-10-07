@@ -7,7 +7,7 @@ using Caliburn.Micro;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class RegistrarPromoProductoViewModel : Screen
+    class PromoProductoRegistrarViewModel : Screen
     {
         private WindowManager win = new WindowManager();
 

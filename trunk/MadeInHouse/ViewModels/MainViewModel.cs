@@ -61,22 +61,22 @@ namespace MadeInHouse.ViewModels
 
             public void AbrirListadoPromoProducto()
             {
-                win.ShowWindow(new Ventas.ListadoPromoProductoViewModel { DisplayName = "Promociones de Productos" });
+                win.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
             }
 
             public void AbrirListadoPromoServicio()
             {
-                win.ShowWindow(new Ventas.ListadoPromoServicioViewModel { DisplayName = "Promociones de Servicios" });
+                win.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
             }
 
             public void AbrirNuevaPromoServicio()
             {
-                win.ShowWindow(new Ventas.RegistrarPromoServicioViewModel { DisplayName = "Nueva Promoción de Servicio" });
+                win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
             }
 
         public void AbrirNuevaPromoProducto()
         {
-            win.ShowWindow(new Ventas.RegistrarPromoProductoViewModel());
+            win.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
         }
 
         #endregion Ventas

@@ -1,12 +1,13 @@
-﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Ventas.RegistrarPromoProductoView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Ventas.PromoServicioRegistrarView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="340" Width="450">
+             mc:Ignorable="d" 
+             d:DesignHeight="345" d:DesignWidth="450">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
-             <Layouts:TitleBarTemplate title="Nueva Promoción de Productos"/>
+            <Layouts:TitleBarTemplate title="Nueva Promoción de Servicios" />
             <Grid>
                 <ToolBar VerticalAlignment="Top" Margin="0">
                     <ToolBar.Background>
@@ -16,10 +17,10 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button>
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" ToolTip="Guardar" />
                     </Button>
                     <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" ToolTip="Limpiar Datos"/>
                     </Button>
                 </ToolBar>
 
@@ -28,15 +29,14 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Producto:" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
-                        <Button x:Name="AbrirBuscarProducto" Height="23" Width="60" Margin="326,13,24,191">
+                        <Label Content="Servicio:" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Height="26" Width="61"/>
+                        <Button Height="23" Width="60" Margin="325,13,25,191">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                         </Button>
                         <Label Content="Descuento:" HorizontalAlignment="Left" Margin="30,41,0,0" VerticalAlignment="Top" Height="26" Width="69"/>
-                        <Label Content="Límite de Stock:" HorizontalAlignment="Left" Margin="30,75,0,0" VerticalAlignment="Top"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="144,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="144,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
-                        <GroupBox Header="Vigencia" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" Height="102" Width="309">
+                        <GroupBox Header="Vigencia" Margin="10,115,91,11">
                             <Grid>
                                 <Label Content="Fecha de Inicio:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                                 <DatePicker HorizontalAlignment="Left" Margin="115,12,0,0" VerticalAlignment="Top" Width="172" Height="24"/>
@@ -45,7 +45,9 @@
 
                             </Grid>
                         </GroupBox>
+                        <Label Content="Límite de Stock:" HorizontalAlignment="Left" Margin="30,72,0,0" VerticalAlignment="Top"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="144,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
+
                     </Grid>
                 </GroupBox>
             </Grid>

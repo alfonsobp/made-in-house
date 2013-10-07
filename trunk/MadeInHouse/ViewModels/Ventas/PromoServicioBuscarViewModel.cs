@@ -8,18 +8,18 @@ using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class ListadoPromoServicioViewModel:Screen
+    class PromoServicioBuscarViewModel:Screen
     {
         private MyWindowManager win = new MyWindowManager();
 
         public void AbrirNuevaPromoServicio()
         {
-            win.ShowWindow(new Ventas.RegistrarPromoServicioViewModel());
+            win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel());
         }
 
         public void AbrirEditarPromoServicio()
         {
-            win.ShowWindow(new Ventas.EditarPromoServicioViewModel());
+            win.ShowWindow(new Ventas.PromoServicioEditarViewModel());
         }
     }
 }
