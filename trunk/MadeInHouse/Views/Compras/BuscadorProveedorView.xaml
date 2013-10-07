@@ -9,35 +9,25 @@
         <StackPanel>
             <Layouts:TitleBarTemplate  title="Listado de proveedores" />
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-                <DataGrid Margin="10,188,10,0" Height="234" VerticalAlignment="Top">
+                <DataGrid x:Name="LstProveedor" Margin="10,188,10,0" Height="234" VerticalAlignment="Top" AutoGenerateColumns="false">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Código"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="330" Header="Razón Social"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="150" Header="RUC"/>
+                        <DataGridTextColumn Binding="{Binding Path=Codigo}"  Width="100" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=RazonSocial}"  Width="330" Header="Razón Social"/>
+                        <DataGridTextColumn Binding="{Binding Path=Ruc}"  Width="150" Header="RUC"/>
                     </DataGrid.Columns>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
                 </DataGrid>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="145,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox  x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="145,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <GroupBox Header="Criterios de Búsqueda" Margin="10,46,10,0" VerticalAlignment="Top" Height="137"/>
-                <Button Height="25" Margin="454,67,83,0" VerticalAlignment="Top">
+                <Button x:Name="BuscarProveedor" Height="25" Margin="454,67,83,0" VerticalAlignment="Top">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="145,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox x:Name="TxtCodigo"  HorizontalAlignment="Left" Height="23" Margin="145,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top"/>
                 <Label Content="Código:" HorizontalAlignment="Left" Margin="26,67,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="145,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="145,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <Label Content="RUC:" HorizontalAlignment="Left" Margin="26,125,0,0" VerticalAlignment="Top"/>
-                <DatePicker HorizontalAlignment="Left" Margin="145,153,0,0" VerticalAlignment="Top" Width="104"/>
-                <DatePicker HorizontalAlignment="Left" Margin="312,155,0,0" VerticalAlignment="Top" Width="105"/>
+                <DatePicker x:Name="FechaIni" HorizontalAlignment="Left" Margin="145,153,0,0" VerticalAlignment="Top" Width="104"/>
+                <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="312,155,0,0" VerticalAlignment="Top" Width="105"/>
                 <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="26,152,0,0" VerticalAlignment="Top"/>
                 <Label Content="Hasta:" HorizontalAlignment="Left" Margin="265,153,0,0" VerticalAlignment="Top"/>
                 <ToolBar VerticalAlignment="Top" Height="41">
