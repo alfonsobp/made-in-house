@@ -16,37 +16,34 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button ToolTip="Nuevo Producto">
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
                     </Button>
                     <Button ToolTip="Modificar Producto">
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
                     </Button>
                     <Button ToolTip="Guardar Producto">
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
                     </Button>
                     <Button ToolTip="Eliminar Producto">
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="24" Width="24" />
                     </Button>
                     <Button ToolTip="Limpiar Formulario">
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="24" Width="24" />
                     </Button>
                     <Button ToolTip="Refresh" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
                 <Grid HorizontalAlignment="Left" Height="262" Margin="10,46,0,0" VerticalAlignment="Top" Width="494">
-                    <DataGrid Margin="10">
+                    <DataGrid Margin="0,10,10,25" Background="Aqua">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
                             <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Stock en Central"/>
-                            <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad Pedida"/>
-                            <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad Atendida"/>
-                            <DataGridTextColumn Width="88" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Accion"/>
+                            <DataGridTextColumn Width="90" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cant. Pedida"/>
+                            <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cant. Atendida"/>
+                            <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Accion"/>
                         </DataGrid.Columns>
-                        <Button/>
-                        <Button/>
-                        <Button/>
-                        <Button/>
+                
                     </DataGrid>
                 </Grid>
 
