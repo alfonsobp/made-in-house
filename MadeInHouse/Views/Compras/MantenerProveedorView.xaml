@@ -18,13 +18,13 @@
         <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
         <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
-        <TextBox HorizontalAlignment="Left" Height="55" Margin="125,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2222222"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2312"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="RAUL GONZALES"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="121212121212"/>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
+        <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
+        <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="55" Margin="125,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
+        <TextBox x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2222222"/>
+        <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2312"/>
+        <TextBox x:Name="TxtFax" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="RAUL GONZALES"/>
+        <TextBox x:Name="TxtContacto" HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="121212121212"/>
         <GroupBox Header="Nuevo Proveedor" HorizontalAlignment="Left" Height="385" Margin="11,46,0,0" VerticalAlignment="Top" Width="356"/>
         <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
@@ -42,7 +42,7 @@
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="GuardarProveedor">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>
@@ -56,7 +56,7 @@
             </Button>
         </ToolBar>
         <Label Content="Telf Contacto:" HorizontalAlignment="Left" Height="23" Margin="11,328,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="125,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
+        <TextBox x:Name="TxtTelefonoContacto" HorizontalAlignment="Left" Height="23" Margin="125,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
     </Grid>
         </StackPanel>
     </Border>
