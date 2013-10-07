@@ -7,7 +7,7 @@
              mc:Ignorable="d" d:DesignWidth="600" Height="406">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Reporte de Tardanzas" />
+            <Layouts:TitleBarTemplate title="Reporte de Asistencia" />
             <Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -33,6 +33,8 @@
                                     <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Tiempo de tardanza"/>
                                 </DataGrid.Columns>
                             </DataGrid>
+                            <CheckBox Content="A tiempo" IsChecked="True" HorizontalAlignment="Left" Margin="218,21,0,0" VerticalAlignment="Top"/>
+                            <CheckBox Content="Tardanzas" IsChecked="True" HorizontalAlignment="Left" Margin="318,22,0,0" VerticalAlignment="Top"/>
                         </Grid>
                     </GroupBox>
                     <ToolBar VerticalAlignment="Top" Height="41">

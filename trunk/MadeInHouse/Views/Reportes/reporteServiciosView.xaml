@@ -45,7 +45,7 @@
                             <Button ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
-                            <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
+                            <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxProveedores1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="Electrisistas Unidos"/>
@@ -63,7 +63,7 @@
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
+                            <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxCategorias1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="Baños"/>
@@ -81,7 +81,7 @@
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
+                            <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="San Miguel"/>
@@ -104,11 +104,11 @@
                             <TextBox HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
                             <DataGrid HorizontalAlignment="Left" Margin="10,439,0,10" Width="451">
                                 <DataGrid.Columns>
+                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
                                     <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor"/>
+                                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Categoría"/>
                                     <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Servicio"/>
                                     <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio"/>
-                                    <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
-                                    <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Monto Total"/>
                                 </DataGrid.Columns>
                             </DataGrid>
                             <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>

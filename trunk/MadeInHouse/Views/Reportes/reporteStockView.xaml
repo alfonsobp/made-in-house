@@ -63,7 +63,7 @@
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Almacén" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
+                            <GroupBox Header="Almacén" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxAlmacen1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
                                         <ListBoxItem Content="San Miguel"/>
@@ -82,12 +82,13 @@
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <DataGrid HorizontalAlignment="Left" Margin="39,470,0,0" VerticalAlignment="Top" Height="147" Width="451">
+                            <DataGrid HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Height="132" Width="548">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Almacen"/>
+                                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Categoría"/>
                                     <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
-                                    <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Zona"/>
-                                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                                    <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Zona"/>
+                                    <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
                                     <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Stock Mínimo"/>
                                 </DataGrid.Columns>
                             </DataGrid>
@@ -95,10 +96,10 @@
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
                             <DatePicker HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
                             <DatePicker HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="548" Height="123">
+                            <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
                                 <Grid>
                                     <ListBox Name="listBoxCategorias1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                                        
+
                                         <ListBoxItem Content="Taladros"/>
                                         <ListBoxItem Content="Cemento"/>
                                         <ListBoxItem Content="Ladrillos"/>
