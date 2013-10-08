@@ -39,7 +39,7 @@ namespace MadeInHouse.DataObjects
 
                      Proveedor p = new Proveedor();
                      p.Codigo =reader["CodProveedor"].ToString() ;
-                     p.RazonSocial = reader["RazonSocial"].ToString();x
+                     p.RazonSocial = reader["RazonSocial"].ToString();
                     // p.Contacto = reader["Contacto"].ToString();
                      //p.Direccion = reader["Direccion"].ToString();
                     // p.Fax = reader["Fax"].ToString();
