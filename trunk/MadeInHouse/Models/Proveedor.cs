@@ -79,6 +79,11 @@ namespace MadeInHouse.Models
             set { direccion = value; }
         }
 
+        public Proveedor() { 
+        
+        
+        }
+
         public Proveedor(string codigo, string razonsocial, string ruc, string telefono, string fax, string email, 
                          string contacto, string telefonoContacto, string direccion) {
 

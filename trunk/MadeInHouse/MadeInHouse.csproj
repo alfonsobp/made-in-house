@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />

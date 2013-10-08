@@ -17,6 +17,8 @@ namespace MadeInHouse.ViewModels.Almacen
             
             Almacen.MantenerZonaViewModel  abrirZonaView = new Almacen.MantenerZonaViewModel();
             win.ShowWindow(abrirZonaView);
+
+                
         }
 
     }
