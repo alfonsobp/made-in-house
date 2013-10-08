@@ -977,6 +977,9 @@
     <Resource Include="Assets\edit4.png" />
     <Resource Include="Assets\Lightning2.png" />
     <Resource Include="Assets\bg-login2.jpg" />
+    <Resource Include="Assets\cake.png" />
+    <Resource Include="Assets\commentblack32.png" />
+    <Resource Include="Assets\warning.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
