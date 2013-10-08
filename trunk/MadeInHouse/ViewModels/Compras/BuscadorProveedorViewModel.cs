@@ -18,7 +18,6 @@ namespace MadeInHouse.ViewModels.Compras
         private MyWindowManager win = new MyWindowManager();
 
       
-
         private string txtRuc;
 
         public string TxtRuc
@@ -72,7 +71,6 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void SelectedItemChanged(object sender)
         {
-
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
             
         }
@@ -85,19 +83,13 @@ namespace MadeInHouse.ViewModels.Compras
         }
      
         public void NuevoProveedor()
-        {
-            
-             
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Nuevo Proveedor" };
-            
-            win.ShowWindow(obj);
-           
-           
-
+        {        
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Nuevo Proveedor" };   
+            win.ShowWindow(obj);  
         }
+
         public void EditarProveedor()
         {
-
             Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorSeleccionado);
             win.ShowWindow(obj);
         }

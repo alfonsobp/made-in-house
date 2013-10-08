@@ -13,14 +13,18 @@
             <Grid RenderTransformOrigin="0.482,0.483">
         <Label Content="Código:" HorizontalAlignment="Left" Height="38" Margin="35,81,0,0" VerticalAlignment="Top" Width="51"/>
         <Label Content="Razón Social:" HorizontalAlignment="Left" Height="38" Margin="35,161,0,0" VerticalAlignment="Top" Width="85"/>
-        <Label Content="Dirección:" HorizontalAlignment="Left" Height="41" Margin="35,356,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Height="41" Margin="35,380,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Height="23" Margin="35,350,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="Teléfono:" HorizontalAlignment="Left" Height="23" Margin="35,202,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Telf Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,318,0,0" VerticalAlignment="Top" Width="85"/>
         <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
         <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
         <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
         <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
-        <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="55" Margin="125,360,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
+        <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
+        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="ladrillosD@gmail.com"/>
+        <TextBox x:Name="TxtTelefonoContacto" HorizontalAlignment="Left" Height="23" Margin="125,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
         <TextBox x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2222222"/>
         <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2312"/>
         <TextBox x:Name="TxtFax" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="RAUL GONZALES"/>
@@ -55,8 +59,6 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-        <Label Content="Telf Contacto:" HorizontalAlignment="Left" Height="23" Margin="11,328,0,0" VerticalAlignment="Top" Width="85"/>
-        <TextBox x:Name="TxtTelefonoContacto" HorizontalAlignment="Left" Height="23" Margin="125,328,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
     </Grid>
         </StackPanel>
     </Border>

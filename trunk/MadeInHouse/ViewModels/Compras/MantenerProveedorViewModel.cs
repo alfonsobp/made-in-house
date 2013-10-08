@@ -24,6 +24,7 @@ namespace MadeInHouse.ViewModels.Compras
             txtTelefonoContacto = p.TelefonoContacto;
             txtRuc = p.Ruc;
             txtRazonSocial = p.RazonSocial;
+            txtEmail = p.Email;
 
             //Editar
             indicador = 2;
@@ -111,16 +112,24 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtDireccion = value; NotifyOfPropertyChange(() => TxtDireccion); }
         }
 
+        private string txtEmail;
+
+        public string TxtEmail
+        {
+            get { return txtEmail; }
+            set { txtEmail = value; NotifyOfPropertyChange(() => TxtEmail); }
+        }
+
         public void GuardarProveedor()
         {
             if (indicador == 1)
                 MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " + 
-                                txtTelefonoContacto + "\nDireccion = " + txtDireccion); 
+                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto + 
+                                "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion); 
             else
                 MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
-                                txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto + 
+                                "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
         }
     }
 }
