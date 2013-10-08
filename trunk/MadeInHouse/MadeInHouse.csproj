@@ -87,11 +87,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="inf245g4DataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>inf245g4DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
@@ -875,17 +870,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="inf245g4DataSet.xsc">
-      <DependentUpon>inf245g4DataSet.xsd</DependentUpon>
-    </None>
-    <None Include="inf245g4DataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>inf245g4DataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="inf245g4DataSet.xss">
-      <DependentUpon>inf245g4DataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
