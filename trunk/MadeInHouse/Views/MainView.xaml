@@ -65,7 +65,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <DockPanel  Grid.Column="2" Height="90" LastChildFill="False" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="Black" Margin="37,0,0,0">
+        <DockPanel  Grid.Column="2" Height="90" LastChildFill="False" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="Black" Margin="10,0,0,0">
             <Label Content="Bienvenido ,&#xA;Tony Stark Mamani" Grid.Column="2" HorizontalAlignment="Left" Margin="43,7,0,0" Foreground="White" Width="131" Height="52" VerticalAlignment="Top" >
                 <Label.RenderTransform>
                     <TransformGroup>
