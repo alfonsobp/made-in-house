@@ -27,7 +27,7 @@ namespace MadeInHouse.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=inti.lab.inf.pucp.edu.pe;Initial Catalog=inf245g4;Persist Security In" +
-            "fo=True;User ID=inf245g4usr")]
+            "fo=True;User ID=inf245g4usr;Password=insignia")]
         public string inf245g4ConnectionString {
             get {
                 return ((string)(this["inf245g4ConnectionString"]));
