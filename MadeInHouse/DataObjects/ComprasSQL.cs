@@ -14,16 +14,14 @@ namespace MadeInHouse.DataObjects
     {
        public static List<Proveedor>  BuscarProveedor(string codigo , string razonSocial , string Ruc, string fechaIni , string fechaFin){
 
-           //'
-           //CODPROVEEDOR , RUC , RAZONSOCIAL , FAX  , TELEFONO , DIRECCION , ESTADO ( ENTERO )  , OBSERVACIONES 
-
+          
 
              List<Proveedor> lstProveedor = new List<Proveedor>();
              SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
              SqlCommand cmd = new SqlCommand();
              SqlDataReader reader;
 
-             cmd.CommandText = "SELECT * FROM Desarrollo.Proveedor ";
+             cmd.CommandText = "SELECT * FROM Proveedor ";
              cmd.CommandType = CommandType.Text;
              cmd.Connection = conn;
 
@@ -34,20 +32,21 @@ namespace MadeInHouse.DataObjects
                  reader = cmd.ExecuteReader();
 
 
-                 while (reader.NextResult())
+                 while (reader.Read())
                  {
 
                      Proveedor p = new Proveedor();
-                     p.Codigo =reader["CodProveedor"].ToString() ;
-                     p.RazonSocial = reader["RazonSocial"].ToString();
-                    // p.Contacto = reader["Contacto"].ToString();
-                     //p.Direccion = reader["Direccion"].ToString();
-                    // p.Fax = reader["Fax"].ToString();
-                    // p.Telefono = reader["Telefono"].ToString();
-                     //p.TelefonoContacto = reader["TelefContacto"].ToString();
-                    // p.Email = reader["Email"].ToString();
-
-
+                     p.Codigo =reader["codProveedor"].ToString() ;
+                     p.RazonSocial = reader["razonSocial"].ToString();
+                     p.Contacto = reader["contacto"].ToString();
+                     p.Direccion = reader["direccion"].ToString();
+                     p.Fax = reader["fax"].ToString();
+                     p.Telefono = reader["telefono"].ToString();
+                     p.TelefonoContacto = reader["telefContacto"].ToString();
+                     p.Email = reader["email"].ToString();
+                     p.Ruc = reader["Ruc"].ToString();
+                    
+                     
                      lstProveedor.Add(p);
                  }
 
@@ -67,13 +66,89 @@ namespace MadeInHouse.DataObjects
 
      public static int  agregarProveedor(Proveedor p ){
 
+         SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+         SqlCommand cmd = new SqlCommand();
+         int k = 0;
 
-         return 1;
+         cmd.CommandText = "INSERT INTO Proveedor(codProveedor,razonSocial,contacto,direccion,fax,telefono ,telefContacto,email,ruc)" +
+         "VALUES (@codProveedor,@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefContacto,@email,@ruc)";
+         cmd.CommandType = CommandType.Text;
+         cmd.Connection = conn;
+          
+         cmd.Parameters.AddWithValue("@codProveedor",p.Codigo);
+         cmd.Parameters.AddWithValue("@razonSocial",p.RazonSocial);
+         cmd.Parameters.AddWithValue("@contacto",p.Contacto);
+         cmd.Parameters.AddWithValue("@direccion",p.Direccion);
+         cmd.Parameters.AddWithValue("@fax",p.Fax);
+         cmd.Parameters.AddWithValue("@telefono",p.Telefono);
+         cmd.Parameters.AddWithValue("@telefContacto",p.TelefonoContacto);
+         cmd.Parameters.AddWithValue("@email",p.Email);
+         cmd.Parameters.AddWithValue("@ruc", p.Ruc);
+
+         try
+         {
+             conn.Open();
+
+
+             k = cmd.ExecuteNonQuery();
+
+             conn.Close();
+
+         }
+         catch (Exception e)
+         {
+             MessageBox.Show(e.StackTrace.ToString());
+         }
+
+
+
+         return k;
      }
 
     public static   int editarProveedor(Proveedor p){
-    
-    return 1;
+
+        SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+        SqlCommand cmd = new SqlCommand();
+        int k = 0;
+
+        cmd.CommandText = "UPDATE Proveedor  "+
+        "SET razonSocial= @razonSocial,contacto= @contacto,direccion= @direccion,fax= @fax,telefono= @telefono ,telefContacto= @telefContacto,email= @email ,ruc = @ruc " +
+        " WHERE codProveedor= @codProveedor ";
+        cmd.CommandType = CommandType.Text;
+        cmd.Connection = conn;
+
+        cmd.Parameters.AddWithValue("@codProveedor", p.Codigo);
+        cmd.Parameters.AddWithValue("@razonSocial", p.RazonSocial);
+        cmd.Parameters.AddWithValue("@contacto", p.Contacto);
+        cmd.Parameters.AddWithValue("@direccion", p.Direccion);
+        cmd.Parameters.AddWithValue("@fax", p.Fax);
+        cmd.Parameters.AddWithValue("@telefono", p.Telefono);
+        cmd.Parameters.AddWithValue("@telefContacto", p.TelefonoContacto);
+        cmd.Parameters.AddWithValue("@email", p.Email);
+        cmd.Parameters.AddWithValue("@ruc", p.Ruc);
+
+
+        try
+        {
+            conn.Open();
+
+
+            k = cmd.ExecuteNonQuery();
+
+            conn.Close();
+
+        }
+        catch (Exception e)
+        {
+            MessageBox.Show(e.StackTrace.ToString());
+        }
+
+
+
+        return k;
+
+
+
     }
 
     public static int eliminarProveedor(Proveedor p) {

@@ -122,14 +122,52 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void GuardarProveedor()
         {
+            int k;
+            Proveedor p = new Proveedor();
+            p.Codigo = txtCodigo;
+            p.Contacto = txtContacto;
+            p.Direccion = txtDireccion;
+            p.Email = txtEmail;
+            p.Fax = txtFax;
+            p.RazonSocial = txtRazonSocial;
+            p.Ruc = txtRuc;
+            p.Telefono = TxtTelefono;
+            p.TelefonoContacto = txtTelefonoContacto;
+
             if (indicador == 1)
-                MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto + 
-                                "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion); 
-            else
+            {
+                
+
+                
+
+                 k = DataObjects.ComprasSQL.agregarProveedor(p);
+
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                    MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
+                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
+                                txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+                 
+                       
+                
+
+            }
+
+            if (indicador == 2)
+            {
+
+                k = DataObjects.ComprasSQL.editarProveedor(p);
+
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
                 MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
                                 "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto + 
                                 "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+
+            }
+            
         }
     }
 }
