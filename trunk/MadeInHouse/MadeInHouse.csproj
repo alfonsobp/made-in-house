@@ -980,6 +980,7 @@
     <Resource Include="Assets\cake.png" />
     <Resource Include="Assets\commentblack32.png" />
     <Resource Include="Assets\warning.png" />
+    <Resource Include="Assets\gear.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />
