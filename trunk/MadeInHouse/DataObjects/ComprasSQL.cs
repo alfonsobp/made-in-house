@@ -23,7 +23,7 @@ namespace MadeInHouse.DataObjects
              SqlCommand cmd = new SqlCommand();
              SqlDataReader reader;
 
-             cmd.CommandText = "SELECT * FROM Proveedor  ";
+             cmd.CommandText = "SELECT * FROM Desarrollo.Proveedor ";
              cmd.CommandType = CommandType.Text;
              cmd.Connection = conn;
 
@@ -38,13 +38,14 @@ namespace MadeInHouse.DataObjects
                  {
 
                      Proveedor p = new Proveedor();
-                     p.Codigo =reader["CODPROVEEDOR"].ToString() ;
-                     p.Contacto = reader["CONTACTO"].ToString();
-                     p.Direccion = reader["DIRECCION"].ToString();
-                     p.Fax = reader["FAX"].ToString();
-                     p.Telefono = reader["TELEFONO"].ToString();
-                     p.TelefonoContacto = reader["TELEFCONTACTO"].ToString();
-                     p.Email = reader["EMAIL"].ToString();
+                     p.Codigo =reader["CodProveedor"].ToString() ;
+                     p.RazonSocial = reader["RazonSocial"].ToString();x
+                    // p.Contacto = reader["Contacto"].ToString();
+                     //p.Direccion = reader["Direccion"].ToString();
+                    // p.Fax = reader["Fax"].ToString();
+                    // p.Telefono = reader["Telefono"].ToString();
+                     //p.TelefonoContacto = reader["TelefContacto"].ToString();
+                    // p.Email = reader["Email"].ToString();
 
 
                      lstProveedor.Add(p);
