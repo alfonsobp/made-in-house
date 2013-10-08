@@ -37,23 +37,20 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Editar Contraseña" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" Width="453">
-                    <Grid Margin="0,0,-2,-3">
+                <GroupBox Header="Editar Contraseña" HorizontalAlignment="Left" Margin="163,46,0,0" VerticalAlignment="Top" Height="150" Width="304">
+                    <Grid Margin="10,0,-2,-3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="108*"/>
                             <ColumnDefinition Width="133*"/>
                         </Grid.ColumnDefinitions>
-                        <Label Content="Contraseña Actual:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="136" Margin="88,10,0,0" Height="26" Grid.ColumnSpan="2"/>
-                        <Label Content="Confirmar Contraseña:+++++++++++++++" HorizontalAlignment="Left" Margin="88,76,0,0" VerticalAlignment="Top" Width="131" Height="26" Grid.ColumnSpan="2"/>
-                        <Label Content="Contraseña Nueva:" HorizontalAlignment="Left" Margin="88,43,0,0" VerticalAlignment="Top" Width="112" Height="26"/>
-                        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
-                        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,43,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
-                        <PasswordBox Grid.Column="1" HorizontalAlignment="Left" Margin="30,76,0,0" VerticalAlignment="Top" Width="135" Height="26"/>
-
-
+                        <Label Content="Contraseña Actual:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="136" Margin="0,10,150,0" Height="26" Grid.ColumnSpan="2"/>
+                        <Label Content="Confirmar Contraseña:+++++++++++++++" HorizontalAlignment="Right" Margin="0,76,155,0" VerticalAlignment="Top" Width="131" Height="26" Grid.ColumnSpan="2"/>
+                        <Label Content="Contraseña Nueva:" HorizontalAlignment="Right" Margin="0,43,174,0" VerticalAlignment="Top" Width="112" Height="26" Grid.ColumnSpan="2"/>
+                        <PasswordBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                        <PasswordBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,43,10,0" VerticalAlignment="Top" Width="135" Height="26"/>
+                        <PasswordBox Grid.Column="1" HorizontalAlignment="Right" Margin="0,76,10,0" VerticalAlignment="Top" Width="135" Height="26"/>
                     </Grid>
                 </GroupBox>
-
                 <GroupBox Header="Contacto" Margin="10,201,18,10">
                     <Grid>
                         <Label Content="Teléfono:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66" Margin="10,16,0,0"/>
@@ -62,8 +59,12 @@
                         <TextBox Margin="296,19,10,15" TextWrapping="Wrap"/>
                     </Grid>
                 </GroupBox>
+                <Image Source="/MadeInHouse;component/Assets/fotoEmpleadoAsistencia.jpg" HorizontalAlignment="Left" Height="138" Margin="27,48,0,0" VerticalAlignment="Top" Width="136"/>
 
             </Grid>
+
         </StackPanel>
+
     </Border>
+
 </UserControl>

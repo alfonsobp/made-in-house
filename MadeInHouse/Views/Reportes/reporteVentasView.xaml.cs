@@ -99,7 +99,10 @@ namespace MadeInHouse.Views.Reportes
             xlWorkBook = xlApp.Workbooks.Add(misValue);
 
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            xlWorkSheet.Cells[1, 1] = "COLOMA SE LA COME";
+            xlWorkSheet.Cells[1, 1] = "2";
+            xlWorkSheet.Cells[2, 1] = "5";
+            xlWorkSheet.Cells[3, 1] = "8";
+            xlWorkSheet.Cells[4, 1] = "=SUMA(A1:A3)";
 
             xlWorkBook.SaveAs("C:\\LALALA.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
