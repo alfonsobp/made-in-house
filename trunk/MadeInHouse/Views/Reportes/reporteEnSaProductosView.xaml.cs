@@ -51,10 +51,10 @@ namespace MadeInHouse.Views.Reportes
             if (listBoxCategorias2.SelectedItem != null)
                 pasarListBox(listBoxCategorias2, listBoxCategorias1);
 
-            if (listBoxCategorias1.SelectedItem != null)
-                pasarListBox(listBoxCategorias1, listBoxCategorias2);
+            if (listBoxProveedores2.SelectedItem != null)
+                pasarListBox(listBoxProveedores1, listBoxProveedores2);
             if (listBoxCategorias2.SelectedItem != null)
-                pasarListBox(listBoxCategorias2, listBoxCategorias1);
+                pasarListBox(listBoxProveedores2, listBoxProveedores1);
 
             if (listBoxAlmacen1.SelectedItem != null)
                 pasarListBox(listBoxAlmacen1, listBoxAlmacen2);
@@ -78,8 +78,8 @@ namespace MadeInHouse.Views.Reportes
             if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
             if (sender.Equals(izquierda1)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
 
-            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
-            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
+            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxProveedores1, listBoxProveedores2);
+            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxProveedores2, listBoxProveedores1);
 
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxAlmacen1, listBoxAlmacen2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(listBoxAlmacen2, listBoxAlmacen1);
