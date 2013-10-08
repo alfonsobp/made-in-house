@@ -9,7 +9,7 @@ using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using MadeInHouse.inf245g4DataSetTableAdapters;
+
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -21,6 +21,9 @@ namespace MadeInHouse.ViewModels.Compras
 
         public string TxtRuc
         {
+           
+           
+
             get { return txtRuc; }
             set { txtRuc = value; NotifyOfPropertyChange(() => TxtRuc); }
         }
@@ -71,7 +74,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
 
             proveedorS = ((sender as DataGrid).SelectedItem as Proveedor);
-
+            
         
         }
 
