@@ -17,6 +17,8 @@ namespace MadeInHouse.ViewModels.Compras
     {
         private MyWindowManager win = new MyWindowManager();
 
+      
+
         private string txtRuc;
 
         public string TxtRuc
@@ -99,7 +101,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
 
 
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Editar Proveedor" };
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorS);
             win.ShowWindow(obj);
         }
 
