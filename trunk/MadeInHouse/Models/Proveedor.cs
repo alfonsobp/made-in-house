@@ -71,10 +71,16 @@ namespace MadeInHouse.Models
             set { direccion = value; }
         }
 
-        public Proveedor(string codigo, string razonsocial, string ruc) {
+        public Proveedor(string codigo, string razonsocial, string ruc, string telefono, string contacto,
+                         string telefonoContacto, string fax, string direccion) {
             this.codigo = codigo;
             this.razonSocial = razonsocial;
-            this.ruc = ruc;     
+            this.ruc = ruc;
+            this.telefono = telefono;
+            this.contacto = contacto;
+            this.telefonoContacto = telefonoContacto;
+            this.fax = fax;
+            this.direccion = direccion;
         }
     }
 }

@@ -24,8 +24,6 @@ namespace MadeInHouse.ViewModels.Compras
         public string TxtRuc
         {
            
-           
-
             get { return txtRuc; }
             set { txtRuc = value; NotifyOfPropertyChange(() => TxtRuc); }
         }
@@ -77,7 +75,6 @@ namespace MadeInHouse.ViewModels.Compras
 
             proveedorS = ((sender as DataGrid).SelectedItem as Proveedor);
             
-        
         }
 
 
@@ -100,7 +97,6 @@ namespace MadeInHouse.ViewModels.Compras
         public void EditarProveedor()
         {
 
-
             Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorS);
             win.ShowWindow(obj);
         }
@@ -110,10 +106,10 @@ namespace MadeInHouse.ViewModels.Compras
             MessageBox.Show("proveedor :  Codigo = " + txtCodigo + ", Razon social = " + txtRazonSocial + ", Ruc = "+txtRuc + ", Fecha Inicial = "+fechaIni + ", Fecha Fin = "+fechaFin);
 
             List<Proveedor> e = new List<Proveedor>();
-            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999991"));
-            e.Add(new Proveedor("121213","Ladrillos San Jorge 2","999999992"));
-            e.Add(new Proveedor("121214","Ladrillos San Jorge 3","999999993"));
-            e.Add(new Proveedor("121215","Ladrillos San Jorge 4 ","999999994"));
+            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999991", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
+            e.Add(new Proveedor("121213", "Ladrillos San Jorge 2", "999999992", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
+            e.Add(new Proveedor("121214", "Ladrillos San Jorge 3", "999999993", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
+            e.Add(new Proveedor("121215", "Ladrillos San Jorge 4 ", "999999994", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
 
             lstProveedor = e;
             NotifyOfPropertyChange("LstProveedor");
