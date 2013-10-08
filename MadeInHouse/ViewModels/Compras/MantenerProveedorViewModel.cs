@@ -24,13 +24,27 @@ namespace MadeInHouse.ViewModels.Compras
             txtTelefonoContacto = p.TelefonoContacto;
             txtRuc = p.Ruc;
             txtRazonSocial = p.RazonSocial;
-                
+
+            //Editar
+            indicador = 2;
              
         }
 
-        public MantenerProveedorViewModel(){
-        
 
+        public MantenerProveedorViewModel()
+        {
+            //Insertar
+            indicador = 1;
+        }
+
+
+        private int indicador;
+        //indicador = 1 para insertar
+        //indicador = 2 para editar
+
+        public int Indicador
+        {
+            get { return indicador; }
         }
 
         private string txtCodigo;
@@ -99,8 +113,14 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void GuardarProveedor()
         {
-            MessageBox.Show("proveedor :  Codigo = " + txtCodigo + ", Razon social = " + txtRazonSocial + ", Ruc = " + txtRuc +
-                            ", Telefono = " + txtTelefono + ", Direccion = " + txtDireccion); 
+            if (indicador == 1)
+                MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
+                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " + 
+                                txtTelefonoContacto + "\nDireccion = " + txtDireccion); 
+            else
+                MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
+                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
+                                txtTelefonoContacto + "\nDireccion = " + txtDireccion);
         }
     }
 }
