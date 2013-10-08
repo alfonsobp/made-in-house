@@ -68,19 +68,20 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstProveedor = value; NotifyOfPropertyChange(() => LstProveedor); }
         }
 
-        private Proveedor proveedorS;
+        private Proveedor proveedorSeleccionado;
 
         public void SelectedItemChanged(object sender)
         {
 
-            proveedorS = ((sender as DataGrid).SelectedItem as Proveedor);
+            proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
             
         }
 
 
         public void test() {
 
-            MessageBox.Show("El proveedor tiene Codigo = " + proveedorS.Codigo + " , Ruc = "+proveedorS.Ruc  +" , Razon Social = "+proveedorS.RazonSocial );
+            MessageBox.Show("El proveedor tiene Codigo = " + proveedorSeleccionado.Codigo + " , Ruc = " + proveedorSeleccionado.Ruc + 
+                            " , Razon Social = " + proveedorSeleccionado.RazonSocial);
         }
      
         public void NuevoProveedor()
@@ -97,22 +98,24 @@ namespace MadeInHouse.ViewModels.Compras
         public void EditarProveedor()
         {
 
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorS);
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorSeleccionado);
             win.ShowWindow(obj);
         }
 
         public void BuscarProveedor() {
 
-            MessageBox.Show("proveedor :  Codigo = " + txtCodigo + ", Razon social = " + txtRazonSocial + ", Ruc = "+txtRuc + ", Fecha Inicial = "+fechaIni + ", Fecha Fin = "+fechaFin);
+            MessageBox.Show("Proveedor Buscado \n\nCodigo =" + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc + 
+                            "\n Fecha Inicial = " + fechaIni + "\n Fecha Fin = " + fechaFin);
 
             List<Proveedor> e = new List<Proveedor>();
-            e.Add(new Proveedor("121212","Ladrillos San Jorge","999999991", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
-            e.Add(new Proveedor("121213", "Ladrillos San Jorge 2", "999999992", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
-            e.Add(new Proveedor("121214", "Ladrillos San Jorge 3", "999999993", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
-            e.Add(new Proveedor("121215", "Ladrillos San Jorge 4 ", "999999994", "986689107", "Carloncho", "555-555", "FAX", "Jr Hola"));
+            e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
+            e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
+            e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
+            e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
 
             lstProveedor = e;
             NotifyOfPropertyChange("LstProveedor");
+
         }
 
     }

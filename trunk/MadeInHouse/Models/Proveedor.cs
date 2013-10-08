@@ -47,6 +47,14 @@ namespace MadeInHouse.Models
             set { fax = value; }
         }
 
+        string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
+        }
+
         string contacto;
 
         public string Contacto
@@ -71,16 +79,19 @@ namespace MadeInHouse.Models
             set { direccion = value; }
         }
 
-        public Proveedor(string codigo, string razonsocial, string ruc, string telefono, string contacto,
-                         string telefonoContacto, string fax, string direccion) {
+        public Proveedor(string codigo, string razonsocial, string ruc, string telefono, string fax, string email, 
+                         string contacto, string telefonoContacto, string direccion) {
+
             this.codigo = codigo;
             this.razonSocial = razonsocial;
             this.ruc = ruc;
             this.telefono = telefono;
             this.contacto = contacto;
             this.telefonoContacto = telefonoContacto;
+            this.email = email;
             this.fax = fax;
             this.direccion = direccion;
+
         }
     }
 }
