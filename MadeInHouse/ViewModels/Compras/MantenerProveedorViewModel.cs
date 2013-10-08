@@ -13,6 +13,26 @@ namespace MadeInHouse.ViewModels.Compras
 {
     class MantenerProveedorViewModel:Screen
     {
+
+        public MantenerProveedorViewModel(Proveedor p) {
+
+            txtCodigo = p.Codigo;
+            txtContacto = p.Contacto;
+            txtDireccion = p.Direccion;
+            txtFax = p.Fax;
+            txtTelefono = p.Telefono;
+            txtTelefonoContacto = p.TelefonoContacto;
+            txtRuc = p.Ruc;
+            txtRazonSocial = p.RazonSocial;
+                
+             
+        }
+
+        public MantenerProveedorViewModel(){
+        
+
+        }
+
         private string txtCodigo;
 
         public string TxtCodigo
