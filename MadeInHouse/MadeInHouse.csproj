@@ -466,9 +466,6 @@
     <Compile Include="Views\Ventas\PromoServicioRegistrarView.xaml.cs">
       <DependentUpon>PromoServicioRegistrarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\Ventana de prueba.xaml.cs">
-      <DependentUpon>Ventana de prueba.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Ventas\VentaRegistrarView.xaml.cs">
       <DependentUpon>VentaRegistrarView.xaml</DependentUpon>
     </Compile>
@@ -844,10 +841,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ventas\PromoServicioRegistrarView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Ventas\Ventana de prueba.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
