@@ -35,9 +35,9 @@
 
         <DataGrid Margin="32,136,34,34">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Cliente"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Observacion"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button  HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="60" Margin="227,82,0,0">
