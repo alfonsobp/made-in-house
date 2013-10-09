@@ -41,8 +41,11 @@ namespace MadeInHouse.Views.Layouts
 
         private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (Window.GetWindow(this).Width != ANCHO)
-                Window.GetWindow(this).DragMove();
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                if (Window.GetWindow(this).Width != ANCHO)
+                    Window.GetWindow(this).DragMove();
+            }
         }
 
         private void CloseWin_Click(object sender, RoutedEventArgs e)
