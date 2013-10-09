@@ -45,12 +45,15 @@
         </Style>
     </UserControl.Resources>
     <DockPanel x:Name="titleBar" MouseDown="titleBar_MouseDown" VerticalAlignment="Center">
-        <Button x:Name="CloseWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="False" Click="CloseWin_Click" Width="30" Height="30">
-            <Image Source="/MadeInHouse;component/Assets/close-icon.png" Height="20" HorizontalAlignment="Right" />
+        <Button x:Name="CloseWin"  DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="true" Click="CloseWin_Click" Foreground="white" FontSize="20" Width="36" Height="30" BorderBrush="{x:Null}" Background="Black" RenderTransformOrigin="0.5,0.5" >
+            <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="20" HorizontalAlignment="Right" />
         </Button>
-        <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="False" Click="MinimizeWin_Click" Width="30" Height="30">
-            <Image Source="/MadeInHouse;component/Assets/minimize-icon.png" Height="20" HorizontalAlignment="Right" />
+
+        <Button x:Name="MinimizeWin" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="true" Click="MinimizeWin_Click"  Foreground="white" Width="36" Height="30" BorderBrush="{x:Null}" Background="Black" RenderTransformOrigin="0.5,0.5">
+            <Image Source="/MadeInHouse;component/Assets/minimize.png" Height="20" HorizontalAlignment="Right" />
         </Button>
+
         <TextBlock Text="{Binding title}" TextAlignment="Center" FontSize="16" VerticalAlignment="Center" />
+
     </DockPanel>
 </UserControl>
