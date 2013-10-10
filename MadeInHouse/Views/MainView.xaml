@@ -100,21 +100,21 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
-                        <Button x:Name="AbrirNuevoProducto" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="1" Foreground="#FFF9F5F5"/>
-                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="2"/>
-                        <Button x:Name="AbrirBuscarProducto" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="3"/>
+                        <Button x:Name="AbrirNuevoProducto" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="1" Foreground="DarkGray"/>
+                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="2"/>
+                        <Button x:Name="AbrirBuscarProducto" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="3"/>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="4"/>
-                        <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Black" Foreground="white"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5"/>
-                        <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6"/>
+                        <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5"/>
+                        <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6"/>
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Notas de I/S" FontSize="20"  Grid.Row="7"/>
-                        <Button  x:Name="AbrirBuscarNotas" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="8"/>
-                        <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Black" Foreground="white" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="9"/>
-                        <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10"/>
+                        <Button  x:Name="AbrirBuscarNotas" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="8"/>
+                        <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Black" Foreground="DarkGray" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="9"/>
+                        <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10"/>
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Control de stock" FontSize="20"  Grid.Row="11"/>
-                        <Button  x:Name="AbrirBuscarZona" Background="Black" Foreground="white" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="12"/>
-                        <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Black" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="13"/>
-                        <Button  x:Name="AbrirSolicitudAbDetalle" Background="Black" Foreground="white" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="14"/>
-                        <Button  x:Name="AbrirMovimientos" Background="Black" Foreground="white" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15"/>
+                        <Button  x:Name="AbrirBuscarZona" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="12"/>
+                        <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="13"/>
+                        <Button  x:Name="AbrirSolicitudAbDetalle" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="14"/>
+                        <Button  x:Name="AbrirMovimientos" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15"/>
 
                     </Grid>
                 </Expander>
@@ -149,32 +149,32 @@
 
                         </Grid.RowDefinitions>
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Proveedores" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirBuscadorProveedor"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar proveedor" FontSize="20"  Grid.Row="1"/>
-                        <Button x:Name="AbrirMantenerProveedor"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2"/>
-                        <Button x:Name="AbrirCatalogoProductoProveedor"  Background="Black" Foreground="white" BorderThickness="0" Content="Catalogo productos" FontSize="20"   Grid.Row="3"/>
+                        <Button x:Name="AbrirBuscadorProveedor"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar proveedor" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenerProveedor"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirCatalogoProductoProveedor"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Catalogo productos" FontSize="20"   Grid.Row="3"/>
 
 
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Servicios" FontSize="20"  Grid.Row="4"/>
-                        <Button x:Name="AbrirNuevoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Servicio" FontSize="20"  Grid.Row="5" />
-                        <Button x:Name="AbrirBuscadorServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar de Servicios" FontSize="20"  Grid.Row="6" />
+                        <Button x:Name="AbrirNuevoServicio"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo Servicio" FontSize="20"  Grid.Row="5" />
+                        <Button x:Name="AbrirBuscadorServicio"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar de Servicios" FontSize="20"  Grid.Row="6" />
 
 
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Solicitudes de Adquisicion" FontSize="20"  Grid.Row="7"/>
-                        <Button  x:Name="AbrirBuscadorSolicitudesAdquisicion"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar de Solicitudes" FontSize="20"  Grid.Row="8"/>
-                        <Button x:Name="AbrirSeleccionDeProveedores"  Background="Black" Foreground="white" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="9"/>
+                        <Button  x:Name="AbrirBuscadorSolicitudesAdquisicion"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar de Solicitudes" FontSize="20"  Grid.Row="8"/>
+                        <Button x:Name="AbrirSeleccionDeProveedores"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="9"/>
 
                         <Button  Background="Gray" Foreground="white"  BorderThickness="0" Content="Ordenes de Compra" FontSize="20"  Grid.Row="10"/>
-                        <Button x:Name="AbrirGenerarOrdenCompra" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Orden de Compra" FontSize="20"  Grid.Row="11"/>
-                        <Button x:Name="AbrirBuscarOrdenCompra" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Orden de Compra" FontSize="20"  Grid.Row="12"/>
+                        <Button x:Name="AbrirGenerarOrdenCompra" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Orden de Compra" FontSize="20"  Grid.Row="11"/>
+                        <Button x:Name="AbrirBuscarOrdenCompra" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar Orden de Compra" FontSize="20"  Grid.Row="12"/>
 
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Cotizaciones" FontSize="20"  Grid.Row="13"/>
-                        <Button x:Name="AbrirNuevaCotizacion"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Cotizacion" FontSize="20"  Grid.Row="14"/>
-                        <Button x:Name="AbrirBuscarCotizacion"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Cotizaciones" FontSize="20"  Grid.Row="15"/>
+                        <Button x:Name="AbrirNuevaCotizacion"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo Cotizacion" FontSize="20"  Grid.Row="14"/>
+                        <Button x:Name="AbrirBuscarCotizacion"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar Cotizaciones" FontSize="20"  Grid.Row="15"/>
 
 
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Documentos de pago" FontSize="20"  Grid.Row="16"/>
-                        <Button x:Name="AbrirRegistrarDocumentos"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo doc. pago" FontSize="20"  Grid.Row="17"/>
-                        <Button x:Name="AbrirBuscarDocumentos"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="18"/>
+                        <Button x:Name="AbrirRegistrarDocumentos"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo doc. pago" FontSize="20"  Grid.Row="17"/>
+                        <Button x:Name="AbrirBuscarDocumentos"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="18"/>
 
                     </Grid>
                 </Expander>
@@ -210,26 +210,26 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
-                        <Button x:Name="AbrirListadoCliente"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="1"/>
-                        <Button x:Name="AbrirNuevoCliente"   Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="2"/>
-                        <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="3"/>
-                        <Button x:Name="AbrirListadoVenta"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="4"/>
-                        <Button x:Name="AbrirNuevaVenta"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Venta" FontSize="20" Grid.Row="5"/>
-                        <Button x:Name="AbrirNuevaVentaCajero"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Venta Cajero" FontSize="20" Grid.Row="6"/>
-                        <Button x:Name="AbrirProforma"   Background="Black" Foreground="white" BorderThickness="0" Content="Proformas" FontSize="20" Grid.Row="7"/>
+                        <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirListadoCliente"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="1"/>
+                        <Button x:Name="AbrirNuevoCliente"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="2"/>
+                        <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="3"/>
+                        <Button x:Name="AbrirListadoVenta"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="4"/>
+                        <Button x:Name="AbrirNuevaVenta"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Venta" FontSize="20" Grid.Row="5"/>
+                        <Button x:Name="AbrirNuevaVentaCajero"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Venta Cajero" FontSize="20" Grid.Row="6"/>
+                        <Button x:Name="AbrirProforma"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Proformas" FontSize="20" Grid.Row="7"/>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="8"/>
-                        <Button x:Name="AbrirListadoDevoluciones"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="9"/>
-                        <Button x:Name="AbrirRegistrarDevolucion"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="10"/>
+                        <Button x:Name="AbrirListadoDevoluciones"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="9"/>
+                        <Button x:Name="AbrirRegistrarDevolucion"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="10"/>
                         <!--<Button x:Name="AbrirListadoNotaCredito"   Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11"/>-->
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="12"/>
-                        <Button x:Name="AbrirListadoPromoProducto"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13"/>
-                        <Button x:Name="AbrirNuevaPromoProducto"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="14"/>
-                        <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="15"/>
-                        <Button x:Name="AbrirListadoPromoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16"/>
-                        <Button x:Name="AbrirNuevaPromoServicio"   Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="17"/>
+                        <Button x:Name="AbrirListadoPromoProducto"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13"/>
+                        <Button x:Name="AbrirNuevaPromoProducto"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="14"/>
+                        <Button Background="Gray" Foreground="DarkGray" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="15"/>
+                        <Button x:Name="AbrirListadoPromoServicio"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16"/>
+                        <Button x:Name="AbrirNuevaPromoServicio"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="17"/>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Precios" FontSize="20" Grid.Row="18"/>
-                        <Button x:Name="AbrirListadoPrecios"   Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="19"/>
+                        <Button x:Name="AbrirListadoPrecios"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="19"/>
                     </Grid>
                 </Expander>
                 <!--RRHH-->
@@ -262,8 +262,8 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Button x:Name="AbrirBuscarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Empleado" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirBuscarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Ver Organigrama" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirBuscarEmpleado"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar Empleado" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirBuscarOrganigrama"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Ver Organigrama" FontSize="20"  Grid.Row="1"/>
                     </Grid>
                 </Expander>
 
@@ -278,8 +278,8 @@
 
                         </Grid.RowDefinitions>
 
-                        <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Usuario" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Usuario" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar Usuario" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Usuario" FontSize="20"  Grid.Row="1"/>
 
                     </Grid>
                 </Expander>
@@ -299,15 +299,15 @@
                             <RowDefinition />
                             <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Button x:Name="AbrirReporteTardanzas"   Background="Black" Foreground="white" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0"/>
-                        <Button x:Name="AbrirReporteAcciones"   Background="Black" Foreground="white" BorderThickness="0" Content="Log de Acciones" FontSize="20" Grid.Row="1"/>
-                        <Button x:Name="AbrirReporteVentas"   Background="Black" Foreground="white" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="2"/>
-                        <Button x:Name="AbrirReporteServicios"   Background="Black" Foreground="white" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="3"/>
-                        <Button x:Name="AbrirReporteDevoluciones"  Background="Black" Foreground="white"  BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="4"/>
-                        <Button x:Name="AbrirReporteCompra"  Background="Black" Foreground="white"  BorderThickness="0" Content="Compras" FontSize="20" Grid.Row="5"/>
-                        <Button x:Name="AbrirReporteEntradaSalidaProd"   Background="Black" Foreground="white" BorderThickness="0" Content="Ent/Sal de Productos" FontSize="20" Grid.Row="6"/>
-                        <Button x:Name="AbrirReporteSolicitudes"  Background="Black" Foreground="white"  BorderThickness="0" Content="Solicitudes" FontSize="20" Grid.Row="7"/>
-                        <Button x:Name="AbrirReporteStock"  Background="Black" Foreground="white"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8"/>
+                        <Button x:Name="AbrirReporteTardanzas"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirReporteAcciones"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Log de Acciones" FontSize="20" Grid.Row="1"/>
+                        <Button x:Name="AbrirReporteVentas"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="2"/>
+                        <Button x:Name="AbrirReporteServicios"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="3"/>
+                        <Button x:Name="AbrirReporteDevoluciones"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="4"/>
+                        <Button x:Name="AbrirReporteCompra"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Compras" FontSize="20" Grid.Row="5"/>
+                        <Button x:Name="AbrirReporteEntradaSalidaProd"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Ent/Sal de Productos" FontSize="20" Grid.Row="6"/>
+                        <Button x:Name="AbrirReporteSolicitudes"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Solicitudes" FontSize="20" Grid.Row="7"/>
+                        <Button x:Name="AbrirReporteStock"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8"/>
                     </Grid>
                 </Expander>
                 <Expander Header="Configuración"    Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
@@ -323,12 +323,12 @@
                             <RowDefinition />
 
                         </Grid.RowDefinitions>
-                        <Button x:Name="AbrirMantenerTienda"  Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="1" />
-                        <Button x:Name="AbrirMantenerTipoZona"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2"/>
-                        <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
-                        <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
-                        <Button x:Name="AbrirMantenerModulo"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener Módulo" FontSize="20"  Grid.Row="5"/>
+                        <Button x:Name="AbrirMantenerTienda"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="1" />
+                        <Button x:Name="AbrirMantenerTipoZona"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
+                        <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
+                        <Button x:Name="AbrirMantenerModulo"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Módulo" FontSize="20"  Grid.Row="5"/>
 
                     </Grid>
                 </Expander>
