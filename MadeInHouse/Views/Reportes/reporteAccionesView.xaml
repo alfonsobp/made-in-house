@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="600" Height="406">
+             mc:Ignorable="d" d:DesignWidth="700" Height="406">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Acciones" />
@@ -13,25 +13,26 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Reporte de Acciones de Usuarios" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="317" Width="562">
+                    <GroupBox Header="Reporte de Acciones de Usuarios" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="317" Width="676">
                         <Grid>
-                            <Label Content="Usuario:" HorizontalAlignment="Left" Height="29" Margin="17,21,0,0" VerticalAlignment="Top" Width="80"/>
-                            <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="17,55,0,0" VerticalAlignment="Top" Width="80"/>
-                            <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="218,55,0,0" VerticalAlignment="Top" Width="80"/>
-                            <TextBox Margin="75,22,383,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="75,55,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="276,55,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <Button ToolTip="Generar reporte" Margin="326,89,164,0" VerticalAlignment="Top" Width="60">
+                            <Label Content="Usuario:" HorizontalAlignment="Left" Height="29" Margin="74,26,0,0" VerticalAlignment="Top" Width="80"/>
+                            <Label Content="Desde" HorizontalAlignment="Left" Height="29" Margin="74,60,0,0" VerticalAlignment="Top" Width="80"/>
+                            <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="278,58,0,0" VerticalAlignment="Top" Width="45"/>
+                            <TextBox Margin="132,27,422,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="132,60,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="333,59,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                            <Button ToolTip="Generar reporte" Margin="492,58,112,0" VerticalAlignment="Top" Width="60">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
-                            <DataGrid HorizontalAlignment="Left" Margin="10,120,0,2" Width="530">
+                            <DataGrid HorizontalAlignment="Left" Margin="10,104,0,2" Width="644">
                                 <DataGrid.Columns>                                    
                                     <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Usuario"/>
-                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Módulo"/>
-                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
-                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Hora"/>
-                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="IP"/>
+                                    <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Módulo"/>
                                     <DataGridTextColumn Width="250" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Acción"/>
+                                    <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
+                                    <DataGridTextColumn Width="70" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Hora"/>
+                                    <DataGridTextColumn Width="80" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="IP"/>
+                                    
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
