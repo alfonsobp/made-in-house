@@ -332,6 +332,49 @@
 
                     </Grid>
                 </Expander>
+                <Expander Header="Almacenes" Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
+                    <Expander.Background>
+                        <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/almacen.png" Stretch="None"/>
+                    </Expander.Background>
+
+                    <Grid Background="White" Height="Auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition/>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
+                        <Button x:Name="AbrirNuevoProducto1" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="1" Foreground="#FFF9F5F5"/>
+                        <Button x:Name="AbrirMantenimientoAlmacen1"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="2"/>
+                        <Button x:Name="AbrirBuscarProducto1" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="3"/>
+                        <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="4"/>
+                        <Button  x:Name="AbrirBuscarGuiaDeRemision1"  Background="Black" Foreground="white"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5"/>
+                        <Button  x:Name="AbrirMantenerGuiaDeRemision1" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6"/>
+                        <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Notas de I/S" FontSize="20"  Grid.Row="7"/>
+                        <Button  x:Name="AbrirBuscarNotas1" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="8"/>
+                        <Button  x:Name="AbrirMantenerNotaDeIngreso1" Background="Black" Foreground="white" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="9"/>
+                        <Button  x:Name="AbrirMantenerNotaDeSalida1" Background="Black" Foreground="white" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10"/>
+                        <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Control de stock" FontSize="20"  Grid.Row="11"/>
+                        <Button  x:Name="AbrirBuscarZona1" Background="Black" Foreground="white" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="12"/>
+                        <Button  x:Name="AbrirSolicitudAbConsolidar1" Background="Black" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="13"/>
+                        <Button  x:Name="AbrirSolicitudAbDetalle1" Background="Black" Foreground="white" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="14"/>
+                        <Button  x:Name="AbrirMovimientos1" Background="Black" Foreground="white" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15"/>
+
+                    </Grid>
+                </Expander>
 
 
             </StackPanel>
@@ -399,6 +442,67 @@
                 </TransformGroup>
             </DockPanel.RenderTransform>
         </DockPanel>
-        <Label Content="Tony Stark Mamani" Foreground="white" Grid.Column="2" HorizontalAlignment="Left" Margin="148,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="113" Height="26"/>
+        <Label Content="Tony Stark Mamani" Foreground="white" Grid.Column="2" HorizontalAlignment="Left" Margin="131,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="113" Height="26"/>
+        <Image Source="/MadeInHouse;component/Assets/fotoEmpleadoAsistencia.jpg" HorizontalAlignment="Left" Height="134" Margin="131,40,0,0" VerticalAlignment="Top" Width="113" Grid.Column="2"/>
+        <DockPanel Height="4" LastChildFill="False" Margin="221,175,-28,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="orange" Grid.Column="2" HorizontalAlignment="Left" Width="119">
+            <DockPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DockPanel.RenderTransform>
+        </DockPanel>
+        <DockPanel Height="4" LastChildFill="False" Margin="108,160,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="orange" Grid.Column="2" HorizontalAlignment="Left" Width="142">
+            <DockPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.489"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DockPanel.RenderTransform>
+        </DockPanel>
+        <Image Source="/MadeInHouse;component/Assets/fotoEmpleadoAsistencia.jpg" HorizontalAlignment="Left" Height="138" Margin="127,40,0,0" VerticalAlignment="Top" Width="120" Grid.Column="2" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.152"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <DockPanel Height="4" LastChildFill="False" Margin="219,175,-29,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="orange" Grid.Column="2" HorizontalAlignment="Left" Width="122">
+            <DockPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DockPanel.RenderTransform>
+        </DockPanel>
+        <DockPanel Height="3" LastChildFill="False" Margin="231,161,-62,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="orange" Grid.Column="2" HorizontalAlignment="Left" Width="143">
+            <DockPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.391"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DockPanel.RenderTransform>
+        </DockPanel>
+        <DockPanel Height="4" LastChildFill="False" Margin="219,36,-29,0" VerticalAlignment="Top" RenderTransformOrigin="0.117,0.449" Background="orange" Grid.Column="2" HorizontalAlignment="Left" Width="122">
+            <DockPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </DockPanel.RenderTransform>
+        </DockPanel>
     </Grid>
 </Window>
