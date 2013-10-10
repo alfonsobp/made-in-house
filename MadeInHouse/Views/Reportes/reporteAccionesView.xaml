@@ -16,7 +16,7 @@
                     <GroupBox Header="Reporte de Acciones de Usuarios" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="317" Width="676">
                         <Grid>
                             <Label Content="Usuario:" HorizontalAlignment="Left" Height="29" Margin="74,26,0,0" VerticalAlignment="Top" Width="80"/>
-                            <Label Content="Desde" HorizontalAlignment="Left" Height="29" Margin="74,60,0,0" VerticalAlignment="Top" Width="80"/>
+                            <Label Content="Desde:" HorizontalAlignment="Left" Height="29" Margin="74,60,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="278,58,0,0" VerticalAlignment="Top" Width="45"/>
                             <TextBox Margin="132,27,422,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
                             <DatePicker HorizontalAlignment="Left" Margin="132,60,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
