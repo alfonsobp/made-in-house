@@ -34,7 +34,7 @@
                         <Label x:Name="lblRuc" Content="RUC:" HorizontalAlignment="Left" Margin="323,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.429,-1.192"/>
                         <Label x:Name="lblDNI" Content="DNI:" HorizontalAlignment="Left" Margin="323,13,0,0" VerticalAlignment="Top"/>
                         <Label x:Name="lblRazonSocial" Content="Razón Social:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.577"/>
-                        <Label x:Name="lblMail" Content="Correo:" HorizontalAlignment="Left" Margin="10,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.577"/>
+                        <Label x:Name="lblMail" Content="Correo:" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.577"/>
                         <Label x:Name="lblTelf2" Content="Teléfono 2:" HorizontalAlignment="Left" Margin="323,103,0,0" VerticalAlignment="Top"/>
                         <Label x:Name="lblDist" Content="Distrito:" HorizontalAlignment="Left" Margin="323,131,0,0" VerticalAlignment="Top"/>
                         
