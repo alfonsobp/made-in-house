@@ -310,7 +310,7 @@
                         <Button x:Name="AbrirReporteStock"  Background="Black" Foreground="white"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8"/>
                     </Grid>
                 </Expander>
-                <Expander Header="Configurar"    Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
+                <Expander Header="Configuración"    Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
                     <Expander.Background>
                         <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/configurar.png" Stretch="None"/>
                     </Expander.Background>
