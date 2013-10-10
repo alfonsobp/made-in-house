@@ -34,12 +34,6 @@
                 <Button Height="30" Width="30">
                     <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                 </Button>
-                <Button>
-                    <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-                </Button>
-                <Button>
-                    <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-                </Button>
             </ToolBar>
             <Grid>
                 <TextBlock HorizontalAlignment="Left" Margin="28,28,0,0" TextWrapping="Wrap" Text="DNI:" VerticalAlignment="Top"/>
