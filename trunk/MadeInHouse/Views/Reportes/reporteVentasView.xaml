@@ -29,7 +29,7 @@
                         <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35" Click="Button_Click">
                             <Image Source="/MadeInHouse;component/Assets/xls.png" />
                         </Button>
-                        <Button ToolTip="Exportar tabla a PDF" Height="35" Width="35">
+                        <Button Name="botonPDF" ToolTip="Exportar tabla a PDF" Height="35" Width="35" Click="Button_Click_1">
                             <Image Source="/MadeInHouse;component/Assets/pdf.png" />
                         </Button>
                     </ToolBar>
