@@ -36,7 +36,7 @@ namespace MadeInHouse.DataObjects
                  {
 
                      Proveedor p = new Proveedor();
-                     p.Codigo =reader["codProveedor"].ToString() ;
+p.Codigo =reader["codProveedor"].ToString() ;
                      p.RazonSocial = reader["razonSocial"].ToString();
                      p.Contacto = reader["contacto"].ToString();
                      p.Direccion = reader["direccion"].ToString();
@@ -44,10 +44,7 @@ namespace MadeInHouse.DataObjects
                      p.Telefono = reader["telefono"].ToString();
                      p.TelefonoContacto = reader["telefContacto"].ToString();
                      p.Email = reader["email"].ToString();
-                     p.Ruc = reader["Ruc"].ToString();
-                    
-                     
-                     lstProveedor.Add(p);
+                     p.Ruc = reader["Ruc"].ToString();                     lstProveedor.Add(p);
                  }
 
                  conn.Close();
