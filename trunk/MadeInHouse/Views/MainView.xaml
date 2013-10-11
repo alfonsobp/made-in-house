@@ -6,9 +6,9 @@
         Title="MadeInHouse"  WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize" d:DesignWidth="1280" d:DesignHeight="1024.5">
     <Window.Resources>
         <Style x:Key="ExpanderStyle">
-            <Setter Property="Control.Background" Value="#FF080808"/>
+            <Setter Property="Expander.Background" Value="#FF080808"/>
             <Style.Triggers>
-                <Trigger Property="UIElement.IsMouseOver" Value="true" >
+                <Trigger Property="Expander.IsMouseOver" Value="true" >
                     <Setter Property="Control.Background" Value="#FF4F4848" />
                 </Trigger>
             </Style.Triggers>
@@ -100,9 +100,9 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
-                        <Button x:Name="AbrirNuevoProducto" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="1" Foreground="DarkGray"/>
-                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="2"/>
-                        <Button x:Name="AbrirBuscarProducto" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="3"/>
+                        <Button x:Name="AbrirNuevoProducto" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="2" Foreground="#FFF9F5F5"/>
+                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Black" Foreground="White" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="1"/>
+                        <Button x:Name="AbrirBuscarProducto" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Producto" FontSize="20"  Grid.Row="3"/>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="4"/>
                         <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5"/>
                         <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6"/>
