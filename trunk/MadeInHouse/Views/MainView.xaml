@@ -244,11 +244,13 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
-                        <Button x:Name="AbrirRegistrarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Empleado" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento Empleado" FontSize="20"  Grid.Row="1"/>
-                        <Button x:Name="AbrirMantenerRol"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento de Rol" FontSize="20"  Grid.Row="2"/>
-                        <Button x:Name="AbrirCargarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3"/>
+                        <Button Background="gRAY" Foreground="white" BorderThickness="0" Content="Empleado" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirRegistrarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirMantenerRol"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento de Rol" FontSize="20"  Grid.Row="3"/>
+                        <Button x:Name="AbrirCargarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="4"/>
                     </Grid>
                 </Expander>
 
@@ -275,11 +277,15 @@
                         <Grid.RowDefinitions>
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
 
                         </Grid.RowDefinitions>
 
-                        <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar Usuario" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Usuario" FontSize="20"  Grid.Row="1"/>
+                        <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Usuario" FontSize="20"  Grid.Row="0"/>
+                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2"/>
+                        
+                        
 
                     </Grid>
                 </Expander>
