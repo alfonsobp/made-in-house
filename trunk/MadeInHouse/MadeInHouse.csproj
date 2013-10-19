@@ -89,6 +89,10 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
+    <Compile Include="Models\Almacen\Almacen.cs" />
+    <Compile Include="Models\Almacen\GuiaRemision.cs" />
+    <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Almacen\Tienda.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
@@ -890,7 +894,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Almacen\" />
     <Folder Include="Models\Compras\" />
     <Folder Include="Models\Reportes\" />
     <Folder Include="Models\RRHH\" />
