@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="290" d:DesignWidth="350">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="350" Height="290" VerticalAlignment="Top">
-        <DockPanel Margin="0,0,-2,0" Height="290" VerticalAlignment="Top">
+             d:DesignHeight="500" d:DesignWidth="600">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="600" Height="500" VerticalAlignment="Top">
+        <DockPanel Margin="0,0,-2,0" Height="500" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Registrar Rol" DockPanel.Dock="Top"/>
 
-            <Grid Height="250" VerticalAlignment="Top" Width="346">
+            <Grid Height="500" VerticalAlignment="Top" Width="600">
 
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
@@ -29,18 +29,17 @@
                     </Button>
                 </ToolBar>
 
-                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="194" Width="326">
+                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="185" Width="580">
                     <Grid Margin="0,10,-2,3">
 
 
-                        <Label Content="Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="6,100,0,0"/>
-                        <Label Content="Área:" HorizontalAlignment="Left" Margin="6,127,0,0" VerticalAlignment="Top" Width="40"/>
+                        <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="6,100,0,0"/>
 
                         <ComboBox HorizontalAlignment="Left" Margin="81,100,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="RRHH" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
 
@@ -49,15 +48,32 @@
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="81,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                         <Label Content="Descripción:" HorizontalAlignment="Left" Margin="6,41,0,0" VerticalAlignment="Top"/>
                         <TextBox HorizontalAlignment="Left" Height="57" Margin="81,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="81,127,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
-
 
                     </Grid>
                 </GroupBox>
+
+                <GroupBox Header="Asignación de accesos a ventanas" HorizontalAlignment="Left" Margin="10,0,0,48" VerticalAlignment="Bottom" Height="216" Width="580">
+                    <Grid Margin="0,0,-2,18">
+
+                        <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="145" Width="546" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="140" Header="Módulo"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="260" Header="Acceso a ventana"/>
+                                <DataGridCheckBoxColumn  Header="Lectura" CanUserReorder="False">
+                                </DataGridCheckBoxColumn>
+                                <DataGridCheckBoxColumn  Header="Escritura" CanUserReorder="False" />
+                            </DataGrid.Columns>
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+
             </Grid>
         </DockPanel>
     </Border>
