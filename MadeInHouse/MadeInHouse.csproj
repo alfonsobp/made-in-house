@@ -889,7 +889,14 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Almacen\" />
+    <Folder Include="Models\Compras\" />
+    <Folder Include="Models\Reportes\" />
+    <Folder Include="Models\RRHH\" />
+    <Folder Include="Models\Seguridad\" />
+    <Folder Include="Models\Ventas\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\check.png" />
     <Resource Include="Assets\conf.png" />
