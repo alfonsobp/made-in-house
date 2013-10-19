@@ -138,8 +138,6 @@ namespace MadeInHouse.ViewModels.Compras
             {
                 
 
-                
-
                  k = DataObjects.ComprasSQL.agregarProveedor(p);
 
                 if (k == 0)

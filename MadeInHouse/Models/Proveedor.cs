@@ -80,8 +80,7 @@ namespace MadeInHouse.Models
         }
 
         public Proveedor() { 
-        
-        
+            
         }
 
         public Proveedor(string codigo, string razonsocial, string ruc, string telefono, string fax, string email, 

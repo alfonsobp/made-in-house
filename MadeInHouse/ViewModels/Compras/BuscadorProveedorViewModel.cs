@@ -94,14 +94,24 @@ namespace MadeInHouse.ViewModels.Compras
             win.ShowWindow(obj);
         }
 
-        public void BuscarProveedor() {
+        public void EliminarProveedor()
+        {
+            MessageBox.Show("Proveedor Eliminado \n\nCodigo = " + proveedorSeleccionado.Codigo + "\nRazon social = " + proveedorSeleccionado.RazonSocial + 
+                            "\nRuc = " + proveedorSeleccionado.Ruc + "\nTelefono = " + proveedorSeleccionado.Telefono + "\nFax = " + proveedorSeleccionado.Fax + 
+                            "\nContacto = " + proveedorSeleccionado.Contacto + "\nTelefono contacto = " + proveedorSeleccionado.TelefonoContacto + 
+                            "\nDireccion = " + proveedorSeleccionado.Direccion);
+            DataObjects.ComprasSQL.eliminarProveedor(proveedorSeleccionado);
+        }
+
+        public void BuscarProveedor() 
+        {
 
           //  MessageBox.Show("Proveedor Buscado \n\nCodigo =" + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc + 
-            //                "\n Fecha Inicial = " + fechaIni + "\n Fecha Fin = " + fechaFin);
+          //                "\n Fecha Inicial = " + fechaIni + "\n Fecha Fin = " + fechaFin);
 
           //  List<Proveedor> e = new List<Proveedor>();
           //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
-          //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
+         //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
           //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
           //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
 
@@ -110,6 +120,12 @@ namespace MadeInHouse.ViewModels.Compras
             lstProveedor = DataObjects.ComprasSQL.BuscarProveedor(null,null,null,null,null);
             NotifyOfPropertyChange("LstProveedor");
 
+        }
+
+        public void ActualizarProveedor()
+        {
+            lstProveedor = DataObjects.ComprasSQL.BuscarProveedor(null, null, null, null, null);
+            NotifyOfPropertyChange("LstProveedor");
         }
 
     }

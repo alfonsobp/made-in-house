@@ -36,7 +36,7 @@ namespace MadeInHouse.DataObjects
                  {
 
                      Proveedor p = new Proveedor();
-p.Codigo =reader["codProveedor"].ToString() ;
+                     p.Codigo =reader["codProveedor"].ToString() ;
                      p.RazonSocial = reader["razonSocial"].ToString();
                      p.Contacto = reader["contacto"].ToString();
                      p.Direccion = reader["direccion"].ToString();
@@ -61,7 +61,8 @@ p.Codigo =reader["codProveedor"].ToString() ;
        } 
 
 
-     public static int  agregarProveedor(Proveedor p ){
+       public static int  agregarProveedor(Proveedor p )
+       {
 
          SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
          SqlCommand cmd = new SqlCommand();
@@ -102,7 +103,8 @@ p.Codigo =reader["codProveedor"].ToString() ;
          return k;
      }
 
-    public static   int editarProveedor(Proveedor p){
+       public static   int editarProveedor(Proveedor p)
+       {
 
         SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
         SqlCommand cmd = new SqlCommand();
@@ -124,37 +126,54 @@ p.Codigo =reader["codProveedor"].ToString() ;
         cmd.Parameters.AddWithValue("@email", p.Email);
         cmd.Parameters.AddWithValue("@ruc", p.Ruc);
 
-
         try
         {
             conn.Open();
-
 
             k = cmd.ExecuteNonQuery();
 
             conn.Close();
 
         }
+
         catch (Exception e)
         {
             MessageBox.Show(e.StackTrace.ToString());
         }
 
-
-
         return k;
 
-
-
     }
 
-    public static int eliminarProveedor(Proveedor p) {
+       public static int eliminarProveedor(Proveedor p) 
+       {
+           SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+           SqlCommand cmd = new SqlCommand();
+           int k = 0;
 
-        return 1;
-    
-    }
+           cmd.CommandText = "DELETE FROM Proveedor WHERE codProveedor = @codProveedor";
+           cmd.CommandType = CommandType.Text;
+           cmd.Connection = conn;
 
+           cmd.Parameters.AddWithValue("@codProveedor", p.Codigo);
 
+           try
+           {
+               conn.Open();
+
+               k = cmd.ExecuteNonQuery();
+
+               conn.Close();
+
+           }
+           catch (Exception e)
+           {
+               MessageBox.Show(e.StackTrace.ToString());
+           }
+
+           return k;
+       
+       }
 
     }
 
