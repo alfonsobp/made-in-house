@@ -4,8 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Width="366" Height="371.5">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,10">
+        <StackPanel Margin="0,0,0,34">
             <Layouts:TitleBarTemplate title="Nueva tienda" />
             <Grid>
 
@@ -36,7 +36,7 @@
                     </Button>
                 </ToolBar>
                 <GroupBox Header="Información Tienda" HorizontalAlignment="Left" Margin="10,41,0,10" Width="346">
-                    <Grid HorizontalAlignment="Left" Width="340" Margin="0,0,-6,-12">
+                    <Grid HorizontalAlignment="Left" Width="340" Margin="0,0,-6,8">
 
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="117,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
@@ -48,8 +48,6 @@
                         <ComboBox HorizontalAlignment="Left" Margin="117,123,0,0" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Dirección:" HorizontalAlignment="Left" Margin="17,156,0,0" VerticalAlignment="Top" Width="94"/>
                         <TextBox HorizontalAlignment="Left" Height="66" Margin="117,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                        <Label Content="Tienda Central: " HorizontalAlignment="Left" Margin="17,239,0,0" VerticalAlignment="Top" Width="94"/>
-                        <CheckBox Content="Si" HorizontalAlignment="Left" Margin="117,245,0,0" VerticalAlignment="Top" Height="20" Width="79"/>
 
                     </Grid>
                 </GroupBox>
