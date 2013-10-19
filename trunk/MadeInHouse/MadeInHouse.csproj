@@ -88,8 +88,12 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
+    <Compile Include="DataObjects\DBConexion.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Proveedor.cs" />
+    <Compile Include="Models\Tarjeta.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />

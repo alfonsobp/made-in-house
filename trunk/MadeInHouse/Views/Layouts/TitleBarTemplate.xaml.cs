@@ -23,7 +23,7 @@ namespace MadeInHouse.Views.Layouts
     {
         public static readonly DependencyProperty titleProperty = DependencyProperty.Register("title", typeof(string), typeof(TitleBarTemplate), new PropertyMetadata(string.Empty));
 
-        private const int ALTURA = 33;
+        private const int ALTURA = 58;
         private const int ANCHO = 200;
         private static int tabsXfila = 0;
 
