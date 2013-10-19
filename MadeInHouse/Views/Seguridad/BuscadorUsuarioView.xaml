@@ -43,7 +43,7 @@
                             <Grid Margin="0,0,0,-12">
 
                                 <Label Content="ID Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="20,10,0,0"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+                                <TextBox HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
 
                                 <Label Content="Fecha de registro:" HorizontalAlignment="Left" Height="29" Margin="20,46,0,0" VerticalAlignment="Top" Width="109"/>
                                 <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="306,46,0,0" VerticalAlignment="Top" Width="48"/>

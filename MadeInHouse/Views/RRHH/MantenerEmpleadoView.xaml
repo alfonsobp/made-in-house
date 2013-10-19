@@ -49,7 +49,7 @@
                                 <TextBox HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
                                 <TextBox HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
 
-                                <Label Content="Sede:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="44"/>
+                                <Label Content="Tienda:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="49"/>
                                 <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="96"/>
                                 <Label Content="Puesto:" HorizontalAlignment="Left" Margin="334,74,0,0" VerticalAlignment="Top" Width="49"/>
 
@@ -76,9 +76,6 @@
 
                                 <Button Height="25" Margin="503,110,70,0" VerticalAlignment="Top">
                                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
-                                </Button>
-                                <Button x:Name="AbrirVerEmpleado" Height="25" Margin="447,110,139,0" VerticalAlignment="Top">
-                                    <Image Source="/MadeInHouse;component/Assets/contacto.png" Height="25" Width="29" />
                                 </Button>
                                 <!--<Button x:Name="AbrirArmarHorario" Content="Armar Horario" HorizontalAlignment="Left" Margin="546,59,0,0" VerticalAlignment="Top" Width="90"/>-->
                             </Grid>

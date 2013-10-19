@@ -411,6 +411,9 @@
     <Compile Include="Views\Seguridad\RegistrarModuloView.xaml.cs">
       <DependentUpon>RegistrarModuloView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Seguridad\RegistrarUsuarioView.xaml.cs">
+      <DependentUpon>RegistrarUsuarioView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Ventas\DetalleVentaView.xaml.cs">
       <DependentUpon>DetalleVentaView.xaml</DependentUpon>
     </Compile>
@@ -765,6 +768,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Seguridad\RegistrarModuloView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Seguridad\RegistrarUsuarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

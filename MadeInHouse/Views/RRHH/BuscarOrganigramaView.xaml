@@ -29,7 +29,7 @@
                     <Grid Margin="0,10,15,3">
 
 
-                        <Label Content="Sede:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="10,3,0,0"/>
+                        <Label Content="Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="10,3,0,0"/>
                         <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="351,3,0,0" VerticalAlignment="Top" Width="105"/>
 
                         <ComboBox HorizontalAlignment="Left" Margin="135,3,0,0" VerticalAlignment="Top" Width="120">

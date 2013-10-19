@@ -39,7 +39,7 @@
                                 <TextBox HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
                                 <TextBox HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
 
-                                <Label Content="Sede:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="44"/>
+                                <Label Content="Tienda:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="49"/>
                                 <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="96"/>
                                 <Label Content="Puesto:" HorizontalAlignment="Left" Margin="334,74,0,0" VerticalAlignment="Top" Width="49"/>
 
@@ -77,7 +77,7 @@
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="85" Header="Ape. Paterno"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="85" Header="Ape. Materno"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Nombre"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="70" Header="Sucursal"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="70" Header="Tienda"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Área"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="70" Header="Puesto"/>
                             </DataGrid.Columns>
