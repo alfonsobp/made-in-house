@@ -4,11 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="300" Background="Black" FontWeight="Bold" Foreground="White">
+             d:DesignHeight="30" d:DesignWidth="300" FontWeight="Bold" Foreground="White" Background="Black">
     <UserControl.Resources>
-        <Style x:Key="ShadowStyle">
-            <Setter Property="Control.Foreground" Value="LightGray" />
-        </Style>
         <Style x:Key="InformButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Template">
@@ -17,8 +14,7 @@
                         <Border>
                             <Grid>
                                 <ContentPresenter HorizontalAlignment="Center" 
-	                           VerticalAlignment="Center" Name="contentShadow" 
-					Style="{StaticResource ShadowStyle}">
+	                           VerticalAlignment="Center" Name="contentShadow">
                                     <ContentPresenter.RenderTransform>
                                         <TranslateTransform X="1.0" Y="1.0" />
                                     </ContentPresenter.RenderTransform>
@@ -28,9 +24,6 @@
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="#FF4788c8" />
-                            </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter TargetName="content" Property="RenderTransform" >
                                     <Setter.Value>
@@ -44,16 +37,13 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <DockPanel x:Name="titleBar" MouseDown="titleBar_MouseDown" VerticalAlignment="Center">
-        <Button x:Name="CloseWin"  DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="true" Click="CloseWin_Click" Foreground="white" FontSize="20" Width="36" Height="30" BorderBrush="{x:Null}" Background="Black" RenderTransformOrigin="0.5,0.5" >
-            <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="20" HorizontalAlignment="Right" />
-        </Button>
-
-        <Button x:Name="MinimizeWin" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Focusable="true" Click="MinimizeWin_Click"  Foreground="white" Width="36" Height="30" BorderBrush="{x:Null}" Background="Black" RenderTransformOrigin="0.5,0.5">
-            <Image Source="/MadeInHouse;component/Assets/minimize.png" Height="20" HorizontalAlignment="Right" />
-        </Button>
-
-        <TextBlock Text="{Binding title}" TextAlignment="Center" FontSize="16" VerticalAlignment="Center" />
-
-    </DockPanel>
+        <DockPanel x:Name="titleBar" MouseDown="titleBar_MouseDown" VerticalAlignment="Center" Height="30">
+            <Button x:Name="CloseWin" Style="{StaticResource InformButton}"  DockPanel.Dock="Right" HorizontalAlignment="Right" Click="CloseWin_Click" Foreground="white" Width="28" Height="22">
+                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="20" HorizontalAlignment="Right" />
+            </Button>
+            <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" Click="MinimizeWin_Click"  Foreground="white" Width="28" Height="22" >
+                <Image Source="/MadeInHouse;component/Assets/minimize.png" Height="20" HorizontalAlignment="Right" />
+            </Button>
+            <TextBlock Text="{Binding title}" TextAlignment="Center" FontSize="16" VerticalAlignment="Center" />
+        </DockPanel>
 </UserControl>
