@@ -79,6 +79,17 @@ namespace MadeInHouse.Models.Almacen
             set { idLinea = value; }
         }
 
+        int idSubLinea;
+
+        public int IdSubLinea
+        {
+            get { return idSubLinea; }
+            set { idSubLinea = value; }
+        }
+
+       
+
+
 
 
 

@@ -91,6 +91,7 @@ namespace MadeInHouse.Models.Ventas
                 db.cmd.Parameters.Add(new SqlParameter("nombre", '%' + nombre + '%'));
             }
 
+
             if (sexo != -1)
             {
                 db.cmd.Parameters.Add(new SqlParameter("sexo", sexo));
