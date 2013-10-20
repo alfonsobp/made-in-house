@@ -93,12 +93,11 @@
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Almacen\Tienda.cs" />
-    <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\ClienteGateway.cs" />
-    <Compile Include="Models\MyWindowManager.cs" />
+    <Compile Include="Models\Ventas\Cliente.cs" />
+    <Compile Include="Models\Ventas\ClienteGateway.cs" />    <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Seguridad\Usuario.cs" />
-    <Compile Include="Models\Tarjeta.cs" />
+    <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />

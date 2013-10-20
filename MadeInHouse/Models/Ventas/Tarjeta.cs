@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadeInHouse.Models
+namespace MadeInHouse.Models.Ventas
 {
     class Tarjeta
     {
@@ -19,10 +19,10 @@ namespace MadeInHouse.Models
 
         public Tarjeta(SqlDataReader reader)
         {
-            this.codTarjeta = reader["codTarjeta"] == null ? null : (string)reader["codTarjeta"];
-            this.fecEmision = reader["fechaEmi"] == null ? null : (string)reader["fechaEmi"];
-            this.fecAnulado = reader["fechaAnu"] == null ? null : (string)reader["fechaAnu"];
-            this.estado = reader["estado"] == null ? -1: (int)reader["estado"];
+            this.codTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta"))? null : (string)reader["codTarjeta"];
+            this.fecEmision = reader.IsDBNull(reader.GetOrdinal("fechaEmi"))? null : (string)reader["fechaEmi"].ToString();
+            this.fecAnulado = reader.IsDBNull(reader.GetOrdinal("fechaAnu"))? null : (string)reader["fechaAnu"].ToString();
+            this.estado = reader.IsDBNull(reader.GetOrdinal("estado"))? -1: (int)reader["estado"];
             this.cliente = new Cliente(reader);
         }
     }
