@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataObjects\Almacen\ProductoGateway.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="Models\Almacen\Almacen.cs" />
@@ -907,7 +908,6 @@
     <Folder Include="Models\Compras\" />
     <Folder Include="Models\Reportes\" />
     <Folder Include="Models\RRHH\" />
-    <Folder Include="Models\Ventas\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\check.png" />
