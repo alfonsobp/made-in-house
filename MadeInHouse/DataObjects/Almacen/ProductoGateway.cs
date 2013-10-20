@@ -17,19 +17,6 @@ namespace MadeInHouse.DataObjects.Almacen
             db = new DBConexion();
         }
 
-        public List<Producto> BuscarProducto()
-        {
-            List<Producto> listaProductos= null;
-            string where = null;
-
-            if (String)
-
-
-
-
-
-            return listaProductos;
-        }
 
 
 

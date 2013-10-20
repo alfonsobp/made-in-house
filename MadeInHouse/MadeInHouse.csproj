@@ -94,6 +94,9 @@
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Ventas\Cliente.cs" />
+    <Compile Include="Models\Ventas\ClienteGateway.cs" />
+    <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Almacen\SubLineaProducto.cs" />
     <Compile Include="Models\Almacen\Tienda.cs" />
     <Compile Include="Models\Almacen\TipoZona.cs" />
