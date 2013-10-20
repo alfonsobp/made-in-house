@@ -9,12 +9,11 @@ namespace MadeInHouse.Models.Ventas
 {
     class Tarjeta
     {//C:\Users\cliente712\Documents\Visual Studio 2012\Projects\made-in-house\MadeInHouse\Models\
-        public string codTarjeta { get; set; }
-        public string fecEmision { get; set; }
-        public string fecAnulado { get; set; }
-        public int estado { get; set; }
+        public string codTarjeta {get;set;}
+        public string fecEmision {get;set;}
+        public string fecAnulado {get;set;}
+        public int estado {get;set;}
         public Cliente cliente { get; set; }
-
         private Tarjeta() { }
 
         public Tarjeta(SqlDataReader reader)
