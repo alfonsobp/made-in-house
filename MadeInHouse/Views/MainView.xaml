@@ -282,8 +282,8 @@
                         </Grid.RowDefinitions>
 
                         <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Usuario" FontSize="20"  Grid.Row="0"/>
-                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1"/>
-                        <Button x:Name="AbrirBuscadorUsuario"  Background="Black" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirRegistrarUsuario"  Background="Black" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenerUsuario"  Background="Black" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2"/>
                         
                         
 

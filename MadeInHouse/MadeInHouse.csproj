@@ -97,6 +97,7 @@
     <Compile Include="Models\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Proveedor.cs" />
+    <Compile Include="Models\Seguridad\Usuario.cs" />
     <Compile Include="Models\Tarjeta.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="ViewModels\Seguridad\MantenerModuloViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\RegistrarModuloViewModel.cs" />
+    <Compile Include="ViewModels\Seguridad\RegistrarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\Ventas\DetalleVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteEditarViewModel.cs" />
@@ -904,7 +906,6 @@
     <Folder Include="Models\Compras\" />
     <Folder Include="Models\Reportes\" />
     <Folder Include="Models\RRHH\" />
-    <Folder Include="Models\Seguridad\" />
     <Folder Include="Models\Ventas\" />
   </ItemGroup>
   <ItemGroup>

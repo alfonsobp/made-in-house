@@ -21,6 +21,11 @@ namespace MadeInHouse.ViewModels.RRHH
             win.ShowWindow(new RRHH.VerEmpleadoViewModel { });
         }
 
+        public void AbrirEditarEmpleado()
+        {
+            win.ShowWindow(new RRHH.EditarEmpleadoViewModel { });
+        }
+
         public void AbrirRegistrarEmpleado()
         {
             win.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { });

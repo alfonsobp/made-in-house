@@ -19,7 +19,7 @@
                     <Button ToolTip="Nuevo empleado" x:Name="AbrirRegistrarEmpleado" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,3" >
                         <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
                     </Button>
-                    <Button ToolTip="Editar empleado" x:Name="AbrirEditarCliente" >
+                    <Button ToolTip="Editar empleado" x:Name="AbrirEditarEmpleado" >
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Guardar cambios">
