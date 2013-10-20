@@ -280,14 +280,14 @@ namespace MadeInHouse.ViewModels
 
         #region Seguridad
 
-        public void AbrirBuscadorUsuario()
+        public void AbrirRegistrarUsuario()
         {
-            win.ShowWindow(new Seguridad.BuscadorUsuarioViewModel { DisplayName = "Buscar usuario" });
+            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { DisplayName = "Registrar usuario" });
         }
 
         public void AbrirMantenerUsuario()
         {
-            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantener usuario" });
+            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantenimiento de usuario" });
 
         }
         

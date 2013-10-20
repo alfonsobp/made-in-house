@@ -6,7 +6,7 @@
             mc:Ignorable="d" Height="400" Width="784.746">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="785" Height="400" VerticalAlignment="Top" Margin="0,0,-3,0">
         <DockPanel Margin="0,0,-2,0" Height="400" VerticalAlignment="Top">
-            <Layouts:TitleBarTemplate title="Registrar Empleado" DockPanel.Dock="Top"/>
+            <Layouts:TitleBarTemplate title="Editar Empleado" DockPanel.Dock="Top"/>
 
             <Grid Height="360" VerticalAlignment="Top" Width="777">
 

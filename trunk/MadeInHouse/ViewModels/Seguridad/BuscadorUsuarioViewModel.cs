@@ -21,9 +21,9 @@ namespace MadeInHouse.ViewModels.Seguridad
         //    win.ShowWindow(obj);
         //}
 
-        public void AbrirMantenerUsuario()
+        public void AbrirRegistrarUsuario()
         {
-            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { });
+            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { });
         }
     }
 }
