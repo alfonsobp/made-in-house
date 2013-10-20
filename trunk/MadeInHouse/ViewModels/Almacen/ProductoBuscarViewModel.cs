@@ -9,5 +9,11 @@ namespace MadeInHouse.ViewModels.Almacen
 {
     class ProductoBuscarViewModel : PropertyChangedBase
     {
+
+
+
+
+
+
     }
 }
