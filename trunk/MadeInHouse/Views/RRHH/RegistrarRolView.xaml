@@ -36,6 +36,7 @@
                         <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="6,114,0,0"/>
 
                         <ComboBox HorizontalAlignment="Left" Margin="81,114,0,0" VerticalAlignment="Top" Width="120">
+                            <ComboBoxItem Content="General" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
