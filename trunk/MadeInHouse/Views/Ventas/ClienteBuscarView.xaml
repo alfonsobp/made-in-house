@@ -75,7 +75,7 @@
                             <DatePicker x:Name="registroDesde" Height="25" Width="150" Grid.Row="4" Grid.Column="1" Margin="4" />
                             <DatePicker x:Name="registroHasta" Height="25" Width="150" Grid.Row="4" Grid.Column="3" Margin="4" />
                             <Label Content="Num. tarjeta:" VerticalAlignment="Center" />
-                            <Label Content="DNI:" VerticalAlignment="Center" Grid.Column="2" />
+                            <Label Content="DNI/RUC:" VerticalAlignment="Center" Grid.Column="2" />
                             <Label Content="Teléfono:" VerticalAlignment="Center" Grid.Column="4" />
                             <Label Content="Cliente:" VerticalAlignment="Center" Grid.Row="1" />
                             <Label Content="Sexo:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4" />
@@ -88,7 +88,7 @@
                             </Button>
                         </Grid>
                     </GroupBox>
-                    <DataGrid Margin="10" ItemsSource="{Binding Clientes}" AutoGenerateColumns="False" Grid.Row="1" BorderThickness="2">
+                    <DataGrid Margin="10" x:Name="Clientes" AutoGenerateColumns="False" Grid.Row="1" BorderThickness="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=codTarjeta}" Header="Tarjeta"/>
                             <DataGridTextColumn Binding="{Binding Path=cliente.nombre}" Header="Nombre Cliente"/>
