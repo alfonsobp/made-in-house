@@ -6,7 +6,7 @@
             mc:Ignorable="d" Height="714" Width="705">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="705" Margin="0,0,0,10">
         <DockPanel>
-            <Layouts:TitleBarTemplate title="Mantenimiento Empleado" DockPanel.Dock="Top"/>
+            <Layouts:TitleBarTemplate title="Administrar Empleado" DockPanel.Dock="Top"/>
 
             <Grid Height="697" VerticalAlignment="Top">
                 <ToolBar VerticalAlignment="Top" Margin="0">

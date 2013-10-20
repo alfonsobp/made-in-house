@@ -41,31 +41,32 @@
                             <Label Content="Nombres:" HorizontalAlignment="Left" Margin="12,56,0,0" VerticalAlignment="Top" Width="120"/>
                             <Label Content="Apellido Paterno:" HorizontalAlignment="Left" Margin="12,84,0,0" VerticalAlignment="Top" Width="120"/>
                             <Label Content="Apellido Materno:" HorizontalAlignment="Left" Margin="12,112,0,0" VerticalAlignment="Top" Width="120"/>
-                            <Label Content="Referencia:" HorizontalAlignment="Left" Margin="12,219,0,0" VerticalAlignment="Top" Width="117"/>
+                            <Label Content="Referencia:" HorizontalAlignment="Left" Margin="12,227,0,0" VerticalAlignment="Top" Width="117"/>
 
-                            <Label Content="Dirección:" Margin="12,191,532,0" VerticalAlignment="Top" RenderTransformOrigin="1.426,0.654"/>
+                            <Label Content="Dirección:" Margin="13,196,531,0" VerticalAlignment="Top" RenderTransformOrigin="1.426,0.654"/>
                             <Label Content="Fecha de nacimiento:" HorizontalAlignment="Left" Margin="13,140,0,0" VerticalAlignment="Top" Width="124"/>
                             <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="451,165,0,0" VerticalAlignment="Top" Width="62"/>
                             <Label Content="Sexo:" HorizontalAlignment="Left" Margin="13,166,0,0" VerticalAlignment="Top" Width="119"/>
                             <Label Content="Celular:" HorizontalAlignment="Left" Margin="451,193,0,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="1.17,0.385"/>
                             <Label Content="E-mail:" HorizontalAlignment="Left" Margin="451,224,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.043,0.538"/>
 
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" Text="46065492"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                            <TextBox x:Name="TxtCodEmp" HorizontalAlignment="Left" Height="23" Margin="137,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
+                            <TextBox x:Name="TxtDNI" HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" Text="46065492"/>
+                            <TextBox x:Name="TxtNomb" HorizontalAlignment="Left" Height="23" Margin="137,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
+                            <TextBox x:Name="TxtApePat" HorizontalAlignment="Left" Height="23" Margin="137,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
+                            <TextBox x:Name="TxtApeMat" HorizontalAlignment="Left" Height="23" Margin="137,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
+                            <TextBox x:Name="TxtDir" HorizontalAlignment="Left" Height="23" Margin="137,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                            <TextBox x:Name="TxtRef" HorizontalAlignment="Left" Height="23" Margin="137,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
 
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="137,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="137,140,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.5,1.472"/>
-                            <RadioButton Content="Masculino" HorizontalAlignment="Left" Margin="137,171,0,0" VerticalAlignment="Top"/>
-                            <RadioButton Content="Femenino" HorizontalAlignment="Left" Margin="223,171,0,0" VerticalAlignment="Top"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="547,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" Text="958870884"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="547,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="547,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" Text="alguien_283@hotmail.com"/>
+                            
+                            <DatePicker x:Name="TxtFechNac" HorizontalAlignment="Left" Margin="137,140,0,0" VerticalAlignment="Top" Width="135" RenderTransformOrigin="0.5,1.472"/>
+                            <RadioButton x:Name="RdbMasc" Content="Masculino" HorizontalAlignment="Left" Margin="137,171,0,0" VerticalAlignment="Top"/>
+                            <RadioButton x:Name="RdbFem" Content="Femenino" HorizontalAlignment="Left" Margin="223,171,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="TxtTelef" HorizontalAlignment="Left" Height="23" Margin="547,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" />
+                            <TextBox x:Name="TxtCel" HorizontalAlignment="Left" Height="23" Margin="547,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
+                            <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="547,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" />
                             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="130" Margin="548,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="136"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="547,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"/>
+                            <TextBox x:Name="TxtRutFoto" HorizontalAlignment="Left" Height="23" Margin="547,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="137"/>
                             <Button Height="22" Margin="701,141,10,0" VerticalAlignment="Top">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
                             </Button>
