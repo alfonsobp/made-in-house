@@ -14,7 +14,9 @@ namespace MadeInHouse.Models.Ventas
         public string fecAnulado {get;set;}
         public int estado {get;set;}
         public Cliente cliente { get; set; }
-        private Tarjeta() { }
+        private Tarjeta(){
+        
+        }
 
         public Tarjeta(SqlDataReader reader)
         {
@@ -27,3 +29,4 @@ namespace MadeInHouse.Models.Ventas
         }
     }
 }
+
