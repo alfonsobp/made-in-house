@@ -135,6 +135,8 @@
     <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteDevolucionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteEnSaProductosViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reporteProductosCanjePuntosViewModel.cs" />
+    <Compile Include="ViewModels\Reportes\reportePromocionesFrecuentesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteServiciosViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteSolicitudesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteStockViewModel.cs" />
@@ -345,6 +347,12 @@
     </Compile>
     <Compile Include="Views\Reportes\reporteEnSaProductosView.xaml.cs">
       <DependentUpon>reporteEnSaProductosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\reporteProductosCanjePuntosView.xaml.cs">
+      <DependentUpon>reporteProductosCanjePuntosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\reportePromocionesFrecuentesView.xaml.cs">
+      <DependentUpon>reportePromocionesFrecuentesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\reporteServiciosView.xaml.cs">
       <DependentUpon>reporteServiciosView.xaml</DependentUpon>
@@ -679,6 +687,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Reportes\reporteEnSaProductosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\reporteProductosCanjePuntosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\reportePromocionesFrecuentesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -401,6 +401,14 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Reportes.reporteStockViewModel { DisplayName = "Reporte de Stock de productos" });
         }
+        public void AbrirReportePromocionesTop()
+        {
+            win.ShowWindow(new Reportes.reportePromocionesFrecuentesViewModel { DisplayName = "Reporte de Promociones Top" });
+        }
+        public void AbrirReporteProductosCanjePuntos()
+        {
+            win.ShowWindow(new Reportes.reporteProductosCanjePuntosViewModel { DisplayName = "Reporte de Productos canjeados por Puntos" });
+        }
 
         #endregion
     }

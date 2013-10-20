@@ -1,0 +1,83 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+             x:Class="MadeInHouse.Views.Reportes.reportePromocionesFrecuentesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="600" Height="555.216">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,113">
+        <StackPanel Margin="-2,-21,2,21">
+            <Layouts:TitleBarTemplate title="Reporte de Promociones Top" Height="48" />
+            <Grid>
+                <Grid Margin="0,0,0,-21">
+                    <ToolBar VerticalAlignment="Top" Height="41">
+                        <ToolBar.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF535050" Offset="0.073"/>
+                                <GradientStop Color="Snow" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ToolBar.Background>
+                        <Button ToolTip="Restaurar Ventana">
+                            <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                        </Button>
+                        <Button ToolTip="Limpiar criterios del reporte">
+                            <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                        </Button>
+                        <Button ToolTip="Actualizar datos" Height="30" Width="30">
+                            <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                        </Button>
+                        <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35" >
+                            <Image Source="/MadeInHouse;component/Assets/xls.png" />
+                        </Button>
+                        <Button Name="botonPDF" ToolTip="Exportar tabla a PDF" Height="35" Width="35" >
+                            <Image Source="/MadeInHouse;component/Assets/pdf.png" />
+                        </Button>
+                    </ToolBar>
+                    <GroupBox Header="Reporte de Ventas" HorizontalAlignment="Left" Height="354" Margin="10,46,0,0" VerticalAlignment="Top" Width="580">
+                        <Grid Margin="0,0,0,9">
+                            <Button ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
+                                <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                            </Button>
+                            <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="548" Height="123">
+                                <Grid>
+                                    <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
+                                        <ListBoxItem Content="San Miguel"/>
+                                        <ListBoxItem Content="La Molina"/>
+                                        <ListBoxItem Content="Puente Piedra"/>
+                                        <ListBoxItem Content="Surco"/>
+                                    </ListBox>
+                                    <ListBox Name="listBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
+                                        <ListBoxItem Content="San Borja"/>
+                                    </ListBox>
+                                    <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
+                                </Grid>
+                            </GroupBox>
+                            <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
+                            <DataGrid HorizontalAlignment="Left" Margin="20,217,0,0" Width="533" Height="106" VerticalAlignment="Top" >
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Posición"/>
+                                    <DataGridTextColumn Width="65" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cód Prom"/>
+                                    <DataGridTextColumn Width="75" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción"/>
+                                    <DataGridTextColumn Width="125" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha últma vigencia"/>
+                                    <DataGridTextColumn Width="60" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="N° veces"/>
+                                    <DataGridTextColumn Width="150" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad ofertas vendidas"/>
+                                </DataGrid.Columns>
+
+                            </DataGrid>
+                            <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
+                            <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

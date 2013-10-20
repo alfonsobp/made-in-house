@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Reportes
 {
     /// <summary>
-    /// Lógica de interacción para reporteComprasView.xaml
+    /// Lógica de interacción para reportePromocionesFrecuentesView.xaml
     /// </summary>
-    public partial class reporteComprasView : UserControl
+    public partial class reportePromocionesFrecuentesView : UserControl
     {
-        public reporteComprasView()
+        public reportePromocionesFrecuentesView()
         {
             InitializeComponent();
         }
@@ -44,41 +44,22 @@ namespace MadeInHouse.Views.Reportes
             }
         }
 
+        private void Unselect(object sender, RoutedEventArgs e)
+        {
+            listBoxSede1.UnselectAll();
+            listBoxSede2.UnselectAll();
+        }
+
         private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
         {
-            if (listBoxProveedores1.SelectedItem != null)
-                pasarListBox(listBoxProveedores1, listBoxProveedores2);
-            if (listBoxProveedores2.SelectedItem != null)
-                pasarListBox(listBoxProveedores2, listBoxProveedores1);
-
-            if (listBoxCategorias1.SelectedItem != null)
-                pasarListBox(listBoxCategorias1, listBoxCategorias2);
-            if (listBoxCategorias2.SelectedItem != null)
-                pasarListBox(listBoxCategorias2, listBoxCategorias1);
-
             if (listBoxSede1.SelectedItem != null)
                 pasarListBox(listBoxSede1, listBoxSede2);
             if (listBoxSede2.SelectedItem != null)
                 pasarListBox(listBoxSede2, listBoxSede1);
         }
 
-        private void Unselect(object sender, RoutedEventArgs e)
-        {
-            listBoxCategorias1.UnselectAll();
-            listBoxCategorias2.UnselectAll();
-            listBoxSede1.UnselectAll();
-            listBoxSede2.UnselectAll();
-            listBoxProveedores1.UnselectAll();
-            listBoxProveedores2.UnselectAll();
-        }
         private void Pasar_Todo(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxProveedores1, listBoxProveedores2);
-            if (sender.Equals(izquierda1)) todo_lista_a_lista(listBoxProveedores2, listBoxProveedores1);
-
-            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
-            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
-
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, listBoxSede2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(listBoxSede2, listBoxSede1);
         }
