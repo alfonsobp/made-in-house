@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Windows;
 using MadeInHouse.Models;
+using MadeInHouse.Models.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -28,11 +29,12 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             cliGateway = new ClienteGateway();
             Clientes = cliGateway.BuscarClientes();
+            Console.WriteLine(Clientes);
         }
 
-        private List<Cliente> clientes;
+        private List<Tarjeta> clientes;
 
-        public List<Cliente> Clientes
+        public List<Tarjeta> Clientes
         {
             get
             {
@@ -64,10 +66,10 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
-        public void RealizarBusqueda(string dni, string telefono, string nombre, string cmbSexo)
+        public void RealizarBusqueda(string tarjeta, string dni, string telefono, string nombre, string cmbSexo, string ruc, string razonSocial, string registroDesde, string registroHasta)
         {
             cliGateway = new ClienteGateway();
-            Clientes = cliGateway.BuscarClientes(dni, telefono, nombre, sexo[cmbSexo]);
+            Clientes = cliGateway.BuscarClientes(tarjeta, dni, telefono, nombre, sexo[cmbSexo], ruc, razonSocial, registroDesde, registroHasta);
         }
     }
 }

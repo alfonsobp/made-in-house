@@ -8,12 +8,12 @@
              d:DesignHeight="657" d:DesignWidth="786.5">
     <Border BorderThickness="10" CornerRadius="6">
         <Border.Effect>
-            <DropShadowEffect Color="Orange" ShadowDepth="0" RenderingBias="Quality" BlurRadius="20" />
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
         </Border.Effect>
-        <Border BorderBrush="Orange" BorderThickness="2" CornerRadius="8" Background="White">
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
             <DockPanel>
                 <Border DockPanel.Dock="Top" Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
-                    <Layouts:TitleBarTemplate title="Listado de clientes" Foreground="{x:Null}" />
+                    <Layouts:TitleBarTemplate title="Listado de clientes" />
                 </Border>
                 <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
@@ -90,10 +90,10 @@
                     </GroupBox>
                     <DataGrid Margin="10" ItemsSource="{Binding Clientes}" AutoGenerateColumns="False" Grid.Row="1" BorderThickness="2">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=id}" Header="ID Cliente"/>
-                            <DataGridTextColumn Binding="{Binding Path=nombre}" Header="Nombre Cliente"/>
-                            <DataGridTextColumn Binding="{Binding Path=ruc}" Header="Ruc del Cliente"/>
-                            <DataGridTextColumn Binding="{Binding Path=fecNacimiento}" Header="Fecha de Emisión"/>
+                            <DataGridTextColumn Binding="{Binding Path=codTarjeta}" Header="Tarjeta"/>
+                            <DataGridTextColumn Binding="{Binding Path=cliente.nombre}" Header="Nombre Cliente"/>
+                            <DataGridTextColumn Binding="{Binding Path=cliente.ruc}" Header="Ruc del Cliente"/>
+                            <DataGridTextColumn Binding="{Binding Path=cliente.fecNacimiento}" Header="Fecha de Emisión"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
