@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignWidth="600" d:DesignHeight="606.134">
+             d:DesignWidth="458.209" d:DesignHeight="606.134">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar productos" />
@@ -35,8 +35,8 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="258" Width="580">
-                    <Grid Margin="0,0,0,-277" HorizontalAlignment="Left" Width="568">
+                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="258" Width="434">
+                    <Grid Margin="0,0,0,-277" HorizontalAlignment="Left" Width="428">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
                         <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,100,0,0" VerticalAlignment="Top" Width="94"/>
@@ -46,15 +46,15 @@
                         <ComboBox HorizontalAlignment="Left" Margin="123,60,0,0" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,60,0,0" VerticalAlignment="Top" Width="87"/>
 
-                        <DataGrid HorizontalAlignment="Left" Margin="10,251,0,20" Width="507">
+                        <DataGrid HorizontalAlignment="Left" Margin="10,251,0,20" Width="418">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="150" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                                 <DataGridTextColumn Width="180" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Linea"/>
                                 <DataGridTextColumn Width="180" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Sublinea"/>
-                                
+
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Margin="315,26,153,0" VerticalAlignment="Top">
+                        <Button Margin="315,26,44,0" VerticalAlignment="Top">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="84"/>
                         </Button>
                     </Grid>
