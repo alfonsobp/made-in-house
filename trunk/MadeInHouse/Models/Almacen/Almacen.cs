@@ -9,13 +9,13 @@ namespace MadeInHouse.Models.Almacen
     class Almacen
     {
         private int idAlmacen;
-
+        
         public int IdAlmacen
         {
             get { return idAlmacen; }
             set { idAlmacen = value; }
         }
-
+                
         private string tipo;
 
         public string Tipo

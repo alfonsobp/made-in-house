@@ -91,10 +91,12 @@
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="Models\Almacen\Almacen.cs" />
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
+    <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Almacen\SubLineaProducto.cs" />
     <Compile Include="Models\Almacen\Tienda.cs" />
-    <Compile Include="Models\Ventas\Cliente.cs" />
-    <Compile Include="Models\Ventas\ClienteGateway.cs" />    <Compile Include="Models\MyWindowManager.cs" />
+    <Compile Include="Models\Almacen\TipoZona.cs" />
+    <Compile Include="Models\Almacen\Ubicacion.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Seguridad\Usuario.cs" />
     <Compile Include="Models\Ventas\Tarjeta.cs" />
