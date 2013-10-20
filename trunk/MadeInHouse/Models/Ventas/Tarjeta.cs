@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace MadeInHouse.Models.Ventas
 {
     class Tarjeta
-    {
+    {//C:\Users\cliente712\Documents\Visual Studio 2012\Projects\made-in-house\MadeInHouse\Models\
         public string codTarjeta { get; set; }
         public string fecEmision { get; set; }
         public string fecAnulado { get; set; }

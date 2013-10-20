@@ -75,7 +75,7 @@
                 <HeaderedContentControl Header="MENU"  Foreground="Gray"  FontSize="40" Height="57"    >
                     <Image Source="/MadeInHouse;component/Assets/home.png" Height="40" Margin="104,0,81,0" />
                 </HeaderedContentControl>
-                <Expander Header="Almacenes" Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
+                <Expander Header="Almacén" Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}" >
                     <Expander.Background>
                         <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/almacen.png" Stretch="None"/>
                     </Expander.Background>
@@ -304,6 +304,8 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Button x:Name="AbrirReporteTardanzas"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0"/>
                         <Button x:Name="AbrirReporteAcciones"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Log de Acciones" FontSize="20" Grid.Row="1"/>
@@ -314,6 +316,8 @@
                         <Button x:Name="AbrirReporteEntradaSalidaProd"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Ent/Sal de Productos" FontSize="20" Grid.Row="6"/>
                         <Button x:Name="AbrirReporteSolicitudes"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Solicitudes" FontSize="20" Grid.Row="7"/>
                         <Button x:Name="AbrirReporteStock"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8"/>
+                        <Button x:Name="AbrirReportePromocionesTop"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Top Promociones" FontSize="20" Grid.Row="9"/>
+                        <Button x:Name="AbrirReporteProductosCanjePuntos"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Productos Canje por Puntos" FontSize="20" Grid.Row="10"/>
                     </Grid>
                 </Expander>
                 <Expander Header="Configuración"    Foreground="gray" FontSize="40" Style="{StaticResource ExpanderStyle}">
