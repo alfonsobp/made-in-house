@@ -24,6 +24,7 @@ namespace MadeInHouse.Models.Ventas
             this.fecAnulado = reader.IsDBNull(reader.GetOrdinal("fechaAnu"))? null : (string)reader["fechaAnu"].ToString();
             this.estado = reader.IsDBNull(reader.GetOrdinal("estado"))? -1: (int)reader["estado"];
             this.cliente = new Cliente(reader);
+
         }
     }
 }
