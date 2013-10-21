@@ -134,8 +134,5 @@ namespace MadeInHouse.ViewModels.RRHH
             set { txtEmail = value; NotifyOfPropertyChange(() => TxtEmail); }
         }
 
-
-
-
     }
 }
