@@ -41,12 +41,14 @@
 
                 <GroupBox Header="Buscar Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="93" Width="480">
                     <Grid Margin="0,10,15,3">
-                        <Label Content="Área:" HorizontalAlignment="Left" Margin="62,19,0,0" VerticalAlignment="Top" Width="40"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="107,19,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="TODAS" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
+                        <Label Content="Módulo:" HorizontalAlignment="Left" Margin="136,19,0,0" VerticalAlignment="Top" Width="56"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="197,22,0,0" VerticalAlignment="Top" Width="120">
+                            <ComboBoxItem Content="TODOS" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                             <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="RRHH" HorizontalAlignment="Left" Width="118"/>
+                            <ComboBoxItem Content="Seguridad" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
                         <Button Height="22" Margin="367,19,234,0" VerticalAlignment="Top">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
