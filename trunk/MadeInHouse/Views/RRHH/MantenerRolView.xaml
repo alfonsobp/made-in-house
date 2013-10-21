@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="420" d:DesignWidth="709">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="709" Height="420" VerticalAlignment="Top">
+             d:DesignHeight="420" d:DesignWidth="500">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="500" Height="420" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="420" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Mantenimiento de Rol" DockPanel.Dock="Top"/>
 
-            <Grid Height="420" VerticalAlignment="Top" Width="703" Margin="0,0,0,-30">
+            <Grid Height="420" VerticalAlignment="Top" Width="500" Margin="0,0,0,-30">
 
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
@@ -39,28 +39,16 @@
                     </Button>
                 </ToolBar>
 
-                <GroupBox Header="Buscar Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="96" Width="678">
+                <GroupBox Header="Buscar Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="93" Width="480">
                     <Grid Margin="0,10,15,3">
-
-
-                        <Label Content="Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="51,19,0,0"/>
-                        <Label Content="Área:" HorizontalAlignment="Left" Margin="287,19,0,0" VerticalAlignment="Top" Width="40"/>
-
+                        <Label Content="Área:" HorizontalAlignment="Left" Margin="62,19,0,0" VerticalAlignment="Top" Width="40"/>
                         <ComboBox HorizontalAlignment="Left" Margin="107,19,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="TODAS" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True"/>
-                            <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
-                        <ComboBox HorizontalAlignment="Left" Margin="332,19,0,0" VerticalAlignment="Top" Width="120">
                             <ComboBoxItem Content="TODAS" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
                             <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
-                        <Button Height="22" Margin="547,19,54,0" VerticalAlignment="Top">
+                        <Button Height="22" Margin="367,19,234,0" VerticalAlignment="Top">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
                         </Button>
 
@@ -70,9 +58,7 @@
                 <DataGrid Margin="10,158,10,0" Height="198" VerticalAlignment="Top">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Rol"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="333" Header="Descripción"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="115" Header="Sede"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="115" Header="Área"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="370" Header="Descripción"/>
                     </DataGrid.Columns>
                     <Button/>
                     <Button/>
