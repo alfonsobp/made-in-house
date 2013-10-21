@@ -34,13 +34,13 @@ namespace MadeInHouse.Models.RRHH
 
         string modulo;
 
-        int estado;
-
         public string Modulo
         {
             get { return modulo; }
             set { modulo = value; }
         }
+
+        int estado;
 
         public int Estado
         {

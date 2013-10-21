@@ -90,11 +90,14 @@
     <Compile Include="DataObjects\Almacen\ProductoGateway.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
+    <Compile Include="DataObjects\RrhhSQL.cs" />
     <Compile Include="Models\Almacen\Almacen.cs" />
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
+    <Compile Include="Models\RRHH\Empleado.cs" />
+    <Compile Include="Models\RRHH\Rol.cs" />
     <Compile Include="Models\Ventas\Cliente.cs" />
     <Compile Include="Models\Ventas\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
@@ -926,7 +929,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Reportes\" />
-    <Folder Include="Models\RRHH\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\check.png" />
