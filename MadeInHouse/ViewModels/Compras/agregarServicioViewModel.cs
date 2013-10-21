@@ -95,7 +95,7 @@ namespace MadeInHouse.ViewModels.Compras
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
                 else
-                    MessageBox.Show("Servicio Registrado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
+                    MessageBox.Show("Servicio Editado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
                                     "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
 
             }

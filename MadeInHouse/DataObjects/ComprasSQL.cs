@@ -326,6 +326,7 @@ namespace MadeInHouse.DataObjects
            cmd.CommandType = CommandType.Text;
            cmd.Connection = conn;
 
+           cmd.Parameters.AddWithValue("@codServicio", s.Codigo);
            cmd.Parameters.AddWithValue("@nombre", s.Nombre);
            cmd.Parameters.AddWithValue("@descripcion", s.Descripcion);
 
