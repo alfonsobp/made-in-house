@@ -115,7 +115,8 @@ namespace MadeInHouse.DataObjects
             cmd.Connection = conn;
 
             r.Estado = 1; //1: Existencia lógica
-            r.IdRol = Genera_IdRol();   //esta función devuelve el código autogenerado
+            //r.IdRol = Genera_IdRol();   //esta función devuelve el código autogenerado
+            r.IdRol = 7;
             cmd.Parameters.AddWithValue("@idRol", r.IdRol);
             cmd.Parameters.AddWithValue("@nombre", r.NombRol);
             cmd.Parameters.AddWithValue("@descripcion", r.Descripcion);

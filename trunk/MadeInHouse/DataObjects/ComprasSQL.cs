@@ -42,7 +42,7 @@ namespace MadeInHouse.DataObjects
                      p.Direccion = reader["direccion"].ToString();
                      p.Fax = reader["fax"].ToString();
                      p.Telefono = reader["telefono"].ToString();
-                     p.TelefonoContacto = reader["telefContacto"].ToString();
+                     p.TelefonoContacto = reader["telefonoContacto"].ToString();
                      p.Email = reader["email"].ToString();
                      p.Ruc = reader["Ruc"].ToString();                     lstProveedor.Add(p);
                  }
@@ -68,8 +68,8 @@ namespace MadeInHouse.DataObjects
          SqlCommand cmd = new SqlCommand();
          int k = 0;
 
-         cmd.CommandText = "INSERT INTO Proveedor(codProveedor,razonSocial,contacto,direccion,fax,telefono ,telefContacto,email,ruc)" +
-         "VALUES (@codProveedor,@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefContacto,@email,@ruc)";
+         cmd.CommandText = "INSERT INTO Proveedor(codProveedor,razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,ruc)" +
+         "VALUES (@codProveedor,@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefonoContacto,@email,@ruc)";
          cmd.CommandType = CommandType.Text;
          cmd.Connection = conn;
           
@@ -79,7 +79,7 @@ namespace MadeInHouse.DataObjects
          cmd.Parameters.AddWithValue("@direccion",p.Direccion);
          cmd.Parameters.AddWithValue("@fax",p.Fax);
          cmd.Parameters.AddWithValue("@telefono",p.Telefono);
-         cmd.Parameters.AddWithValue("@telefContacto",p.TelefonoContacto);
+         cmd.Parameters.AddWithValue("@telefonoContacto",p.TelefonoContacto);
          cmd.Parameters.AddWithValue("@email",p.Email);
          cmd.Parameters.AddWithValue("@ruc", p.Ruc);
 
@@ -111,7 +111,7 @@ namespace MadeInHouse.DataObjects
         int k = 0;
 
         cmd.CommandText = "UPDATE Proveedor  "+
-        "SET razonSocial= @razonSocial,contacto= @contacto,direccion= @direccion,fax= @fax,telefono= @telefono ,telefContacto= @telefContacto,email= @email ,ruc = @ruc " +
+        "SET razonSocial= @razonSocial,contacto= @contacto,direccion= @direccion,fax= @fax,telefono= @telefono ,telefonoContacto= @telefonoContacto,email= @email ,ruc = @ruc " +
         " WHERE codProveedor= @codProveedor ";
         cmd.CommandType = CommandType.Text;
         cmd.Connection = conn;
@@ -122,7 +122,7 @@ namespace MadeInHouse.DataObjects
         cmd.Parameters.AddWithValue("@direccion", p.Direccion);
         cmd.Parameters.AddWithValue("@fax", p.Fax);
         cmd.Parameters.AddWithValue("@telefono", p.Telefono);
-        cmd.Parameters.AddWithValue("@telefContacto", p.TelefonoContacto);
+        cmd.Parameters.AddWithValue("@telefonoContacto", p.TelefonoContacto);
         cmd.Parameters.AddWithValue("@email", p.Email);
         cmd.Parameters.AddWithValue("@ruc", p.Ruc);
 
