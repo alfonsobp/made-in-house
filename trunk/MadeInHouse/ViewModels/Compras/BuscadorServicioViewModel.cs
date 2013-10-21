@@ -75,7 +75,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         }
 
-        public void ActualizarProveedor()
+        public void ActualizarServicio()
         {
             lstServicio = DataObjects.ComprasSQL.BuscarServicio(null, null);
             NotifyOfPropertyChange("LstServicio");
