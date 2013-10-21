@@ -18,7 +18,7 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button ToolTip="Guardar cambios">
+                    <Button x:Name="GuardarRol" ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Limpiar ventana" Height="30" Width="30">
@@ -32,10 +32,12 @@
                 <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="185" Width="580">
                     <Grid Margin="0,10,-2,3">
 
-
-                        <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="6,114,0,0"/>
-
-                        <ComboBox HorizontalAlignment="Left" Margin="81,114,0,0" VerticalAlignment="Top" Width="120">
+                        <Label Content="Nombre Rol:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="96"/>
+                        <TextBox x:Name="TxtNombRol" HorizontalAlignment="Left" Height="23" Margin="111,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TxtDesc" HorizontalAlignment="Left" Height="57" Margin="111,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
+                        <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="10,114,0,0"/>
+                        <ComboBox x:Name="CmbModulo" HorizontalAlignment="Left" Margin="111,114,0,0" VerticalAlignment="Top" Width="120">
                             <ComboBoxItem Content="General" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
@@ -43,13 +45,6 @@
                             <ComboBoxItem Content="RRHH" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
-
-
-                        <Label Content="Rol:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="81,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="57" Margin="81,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
-
                     </Grid>
                 </GroupBox>
 
