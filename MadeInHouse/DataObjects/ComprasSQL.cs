@@ -1,4 +1,5 @@
 ﻿using MadeInHouse.Models;
+using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,7 +15,6 @@ namespace MadeInHouse.DataObjects
     {
        public static List<Proveedor>  BuscarProveedor(string codigo , string razonSocial , string Ruc, string fechaIni , string fechaFin){
 
-          
 
              List<Proveedor> lstProveedor = new List<Proveedor>();
              SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
@@ -173,6 +173,21 @@ namespace MadeInHouse.DataObjects
 
            return k;
        
+       }
+
+       public static int agregarServicio(Servicio s)
+       {
+           return 1;
+       }
+
+       public static int editarServicio(Servicio s)
+       {
+           return 1;
+       }
+
+       public static int eliminarServicio(Servicio s)
+       {
+           return 1;
        }
 
     }
