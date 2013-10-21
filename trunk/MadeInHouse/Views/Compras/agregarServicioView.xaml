@@ -16,19 +16,18 @@
                     <Grid >
                 <Label Content="Codigo:" HorizontalAlignment="Left" Margin="13,30,0,0" VerticalAlignment="Top"/>
                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="13,60,0,0" VerticalAlignment="Top"/>
-                <Label Content="Precio:" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top"/>
-                <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="13,120,0,0" VerticalAlignment="Top"/>
+                <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top"/>
                 <Label Content="Descripcion" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="115" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="85,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                <DataGrid HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="195">
+                <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="89" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
+                <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <TextBox x:Name="TxtProveedor" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <DataGrid HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto" Width="180"/>
-                    </DataGrid.Columns>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto" Width="110"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio" Width="100"/>
+                            </DataGrid.Columns>
                     <Button/>
                     <Button/>
                     <Button/>
@@ -45,10 +44,10 @@
                     <Button/>
                 </DataGrid>
                 <Label Content="Productos soportados" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top"/>
-                <Button HorizontalAlignment="Left" Height="38" Margin="520,107,0,0" VerticalAlignment="Top" Width="34">
+                <Button HorizontalAlignment="Left" Height="38" Margin="534,106,0,0" VerticalAlignment="Top" Width="34">
                     <Image Source="/Assets/add.png" Height="20" Width="50" />
                 </Button>
-                <Button  HorizontalAlignment="Left" Height="38" Margin="520,149,0,0" VerticalAlignment="Top" Width="34">
+                <Button  HorizontalAlignment="Left" Height="38" Margin="534,154,0,0" VerticalAlignment="Top" Width="34">
                     <Image Source="/Assets/minus.png" Height="20" Width="50" />
                 </Button>
                 <Label Content="" HorizontalAlignment="Left" Margin="11,192,0,0" VerticalAlignment="Top" Height="28"/>
@@ -70,7 +69,7 @@
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="GuardarServicio">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>

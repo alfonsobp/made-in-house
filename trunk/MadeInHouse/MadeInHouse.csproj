@@ -94,6 +94,7 @@
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Compras\Servicio.cs" />
     <Compile Include="Models\Ventas\Cliente.cs" />
     <Compile Include="Models\Ventas\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
@@ -924,7 +925,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Compras\" />
     <Folder Include="Models\Reportes\" />
     <Folder Include="Models\RRHH\" />
   </ItemGroup>
