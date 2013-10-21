@@ -20,5 +20,9 @@ namespace MadeInHouse.ViewModels.RRHH
         {
             win.ShowWindow(new RRHH.RegistrarRolViewModel { });
         }
+
+
+
+
     }
 }
