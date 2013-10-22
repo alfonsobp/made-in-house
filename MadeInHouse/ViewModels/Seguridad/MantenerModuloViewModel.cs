@@ -4,16 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel.Composition;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Seguridad
 {
-    class MantenerModuloViewModel
+    class MantenerModuloViewModel : Conductor<IScreen>.Collection.OneActive
     {
+        private MyWindowManager win = new MyWindowManager();
         public void AbrirRegistrarModulo()
         {
-            WindowManager win = new WindowManager();
-            Seguridad.RegistrarModuloViewModel obj = new Seguridad.RegistrarModuloViewModel {  };
-            win.ShowWindow(obj);
+            win.ShowWindow(new Seguridad.RegistrarModuloViewModel { });
         }
     }
 

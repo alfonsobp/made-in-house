@@ -198,15 +198,16 @@ namespace MadeInHouse.DataObjects
 
         }
 
-        //AUTO GENERAR CÓDIGO DE ROL:
-        public static int Genera_IdRol()
+        /****************************************** MODULO ************************************/
+        //BUSCAR:
+        public static List<Modulo> BuscarModulo(string modulo)
         {
-            int idAutoGen = 0;
+            List<Modulo> lstModulo = new List<Modulo>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT COUNT (*) AS idRol FROM Rol";
+            cmd.CommandText = "SELECT * FROM ModuloSistema ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -214,8 +215,116 @@ namespace MadeInHouse.DataObjects
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
-                //idAutoGen = Convert.ToInt32(reader[1].ToString()) + 1;
-                idAutoGen = 7;
+                while (reader.Read())
+                {
+                    Modulo m = new Modulo();
+
+                    m.NombreModulo = reader["nombre"].ToString();
+                    m.Descripcion = reader["descripcion"].ToString();
+                    //DESPUÉS DE AGREGAR EL CAMPO "estado" A LA TABLA ModuloSistema, DESCOMENTAR LA LÍNEA DE ABAJO
+                    //m.Estado = Convert.ToInt32(reader["estado"].ToString());
+                    lstModulo.Add(m);
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return lstModulo;
+        }         
+
+        //INSERTAR:
+        public static int insertarModulo(Modulo m)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            //cmd.CommandText = "INSERT INTO Modulo(nombre,descripcion,estado)" +
+            cmd.CommandText = "INSERT INTO Modulo(nombre,descripcion)" +
+            //"VALUES (@nombre,@descripcion,@estado)";
+            "VALUES (@nombre,@descripcion)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+
+            cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
+            cmd.Parameters.AddWithValue("@descripcion", m.Descripcion);
+            //cmd.Parameters.AddWithValue("@estado", m.Estado);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        //ACTUALIZAR:
+        public static int actualizarModulo(Modulo m)
+        {
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE Modulo" +
+            "SET nombre= @nombre, descripcion= @descripcion" +
+            " WHERE idModulo= @idModulo";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
+            cmd.Parameters.AddWithValue("@descripcion", m.Descripcion);
+            cmd.Parameters.AddWithValue("@idRol", m.IdModulo);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+
+        //ELIMINAR:
+        public static int eliminarModulo(Modulo m)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE Rol " +
+            "SET estado= @estado" +
+            " WHERE idModulo= @idModulo ";
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            m.Estado = 0;
+            cmd.Parameters.AddWithValue("@estado", m.Estado);  //0: Eliminado Lógico
+            cmd.Parameters.AddWithValue("@idRol", m.IdModulo);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
                 conn.Close();
 
             }
@@ -224,7 +333,9 @@ namespace MadeInHouse.DataObjects
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
-            return idAutoGen;
+            return k;
+
         }
+
     }
 }

@@ -3,13 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="420" Width="664.945">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="666" Height="420" VerticalAlignment="Top" Margin="0,0,-56,0">
-        <DockPanel Margin="0,0,0,-4" Height="420" VerticalAlignment="Top" HorizontalAlignment="Left" Width="654">
+             mc:Ignorable="d" Width="498.508" Height="270.746">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="497" Height="268" VerticalAlignment="Top" Margin="0,0,-7,0">
+        <DockPanel Height="263" VerticalAlignment="Top" HorizontalAlignment="Left" Width="495" Margin="0,0,-2,0">
             <Layouts:TitleBarTemplate title="Mantenimiento de Módulo" DockPanel.Dock="Top" Loaded="TitleBarTemplate_Loaded_1"/>
 
-            <Grid Height="420" VerticalAlignment="Top" Width="648" Margin="0,0,0,-30">
+            <Grid Height="236" VerticalAlignment="Top" Width="479">
 
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
@@ -39,35 +38,11 @@
                     </Button>
                 </ToolBar>
 
-                <GroupBox Header="Buscar Módulo" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="80" Width="619">
-                    <Grid Margin="0,10,15,3">
-
-
-                        <Label Content="Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="143,6,0,0"/>
-
-                        <ComboBox HorizontalAlignment="Left" Margin="215,6,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="TODAS" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True"/>
-                            <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
-                        <Button Height="22" Margin="375,6,167,0" VerticalAlignment="Top">
-                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
-                        </Button>
-
-                    </Grid>
-                </GroupBox>
-
-                <DataGrid Margin="10,131,19,0" Height="225" VerticalAlignment="Top">
+                <DataGrid Margin="10,60,10,0" Height="167" VerticalAlignment="Top">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Módulo"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="370" Header="Descripción"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="136" Header="Sede"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="350" Header="Descripción"/>
                     </DataGrid.Columns>
-                    <Button/>
-                    <Button/>
                     <Button/>
                     <Button/>
                     <Button/>

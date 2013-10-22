@@ -50,6 +50,7 @@ namespace MadeInHouse.ViewModels.RRHH
             set { cmbModulo = value; NotifyOfPropertyChange(() => CmbModulo); }
         }
 
+        /*
         private int estado;
 
         public int Estado
@@ -57,6 +58,7 @@ namespace MadeInHouse.ViewModels.RRHH
             get { return estado; }
             set { estado = value; }
         }
+        */
         
         //Insertar:
         public RegistrarRolViewModel()
@@ -72,49 +74,44 @@ namespace MadeInHouse.ViewModels.RRHH
             txtNombRol = r.NombRol;
             txtDesc = r.Descripcion;
             cmbModulo = r.Modulo;
-            estado = r.Estado;
+//            estado = r.Estado;
         }
 
         public void GuardarRol()
         {
+            int k;
+            Rol r = new Rol();
+
+            //idRol: autogenerado
+            r.NombRol = txtNombRol;
+            r.Descripcion = txtDesc;
+            r.Modulo = cmbModulo;
+            r.Estado = 1;   //Existencia Lógica
+
+
+            //INSERTAR NUEVO MÓDULO:
+            if (indicador == 1)
             {
-                int k;
-                Rol r = new Rol();
+                k = DataObjects.RrhhSQL.insertarRol(r);
 
-                //idRol: autogenerado
-                r.NombRol = txtNombRol;
-                r.Descripcion = txtDesc;
-                r.Modulo = cmbModulo;
-                r.Estado = 1;   //Existencia Lógica
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                    MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
+                                "\n Módulo = " + "HARDCODEADO xD");
+            }
 
+            //ACTUALIZA UN MÓDULO:
+            if (indicador == 2)
+            {
+                k = DataObjects.RrhhSQL.actualizarRol(r);
 
-                //INSERTAR NUEVO MÓDULO:
-                if (indicador == 1)
-                {
-                    k = DataObjects.RrhhSQL.insertarRol(r);
-
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
-                                    "\n Módulo = " + "HARDCODEADO xD");
-                }
-
-                //ACTUALIZA UN MÓDULO:
-                if (indicador == 2)
-                {
-                    k = DataObjects.RrhhSQL.actualizarRol(r);
-
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
-                                    "\n Módulo = " + "HARDCODEADO xD");
-                }
-
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                    MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
+                                "\n Módulo = " + "HARDCODEADO xD");
             }
         }
-
     }
-
 }
