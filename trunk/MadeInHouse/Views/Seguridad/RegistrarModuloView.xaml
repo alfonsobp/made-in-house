@@ -18,7 +18,7 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button ToolTip="Guardar cambios">
+                    <Button x:Name="GuardarModulo" ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Limpiar ventana" Height="30" Width="30">
@@ -31,10 +31,10 @@
 
                 <GroupBox Header="Nuevo módulo" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="139" Width="325">
                     <Grid Margin="0,10,15,3">
-                        <Label Content="Módulo:" HorizontalAlignment="Left" Margin="50,21,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="TxtNombModulo" HorizontalAlignment="Left" Height="23" Margin="129,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="50,52,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="23" Margin="129,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Módulo:" HorizontalAlignment="Left" Margin="10,18,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TxtNombModulo" HorizontalAlignment="Left" Height="23" Margin="89,18,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
+                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="42" Margin="89,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
 
                     </Grid>
                 </GroupBox>
