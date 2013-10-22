@@ -83,9 +83,10 @@ namespace MadeInHouse.ViewModels.RRHH
 
                 //idRol: autogenerado
                 r.NombRol = txtNombRol;
-                r.Descripcion = txtNombRol;
+                r.Descripcion = txtDesc;
                 r.Modulo = cmbModulo;
-                //estado: 1
+                r.Estado = 1;   //Existencia Lógica
+
 
                 //INSERTAR NUEVO MÓDULO:
                 if (indicador == 1)
