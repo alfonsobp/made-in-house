@@ -21,7 +21,7 @@ namespace MadeInHouse.DataObjects
              SqlCommand cmd = new SqlCommand();
              SqlDataReader reader;
 
-             cmd.CommandText = "SELECT * FROM Proveedor ";
+             cmd.CommandText = "SELECT * FROM Servicios ";
              cmd.CommandType = CommandType.Text;
              cmd.Connection = conn;
 
