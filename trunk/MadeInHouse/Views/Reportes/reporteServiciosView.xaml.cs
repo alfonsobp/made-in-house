@@ -47,42 +47,42 @@ namespace MadeInHouse.Views.Reportes
         private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
         {
             if (listBoxProveedores1.SelectedItem != null)
-                pasarListBox(listBoxProveedores1, listBoxProveedores2);
-            if (listBoxProveedores2.SelectedItem != null)
-                pasarListBox(listBoxProveedores2, listBoxProveedores1);
+                pasarListBox(listBoxProveedores1, LstProveedores);
+            if (LstProveedores.SelectedItem != null)
+                pasarListBox(LstProveedores, listBoxProveedores1);
 
             if (listBoxCategorias1.SelectedItem != null)
-                pasarListBox(listBoxCategorias1, listBoxCategorias2);
-            if (listBoxCategorias2.SelectedItem != null)
-                pasarListBox(listBoxCategorias2, listBoxCategorias1);
+                pasarListBox(listBoxCategorias1, LstCategoria);
+            if (LstCategoria.SelectedItem != null)
+                pasarListBox(LstCategoria, listBoxCategorias1);
 
             if (listBoxSede1.SelectedItem != null)
-                pasarListBox(listBoxSede1, listBoxSede2);
-            if (listBoxSede2.SelectedItem != null)
-                pasarListBox(listBoxSede2, listBoxSede1);
+                pasarListBox(listBoxSede1, LstSede);
+            if (LstSede.SelectedItem != null)
+                pasarListBox(LstSede, listBoxSede1);
 
 
         }
         private void Unselect(object sender, RoutedEventArgs e)
         {
             listBoxCategorias1.UnselectAll();
-            listBoxCategorias2.UnselectAll();
+            LstCategoria.UnselectAll();
             listBoxSede1.UnselectAll();
-            listBoxSede2.UnselectAll();
+            LstSede.UnselectAll();
             listBoxProveedores1.UnselectAll();
-            listBoxProveedores2.UnselectAll();
+            LstProveedores.UnselectAll();
         }
 
         private void Pasar_Todo(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxProveedores1, listBoxProveedores2);
-            if (sender.Equals(izquierda1)) todo_lista_a_lista(listBoxProveedores2, listBoxProveedores1);
+            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxProveedores1, LstProveedores);
+            if (sender.Equals(izquierda1)) todo_lista_a_lista(LstProveedores, listBoxProveedores1);
 
-            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
-            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
+            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, LstCategoria);
+            if (sender.Equals(izquierda2)) todo_lista_a_lista(LstCategoria, listBoxCategorias1);
 
-            if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, listBoxSede2);
-            if (sender.Equals(izquierda3)) todo_lista_a_lista(listBoxSede2, listBoxSede1);
+            if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, LstSede);
+            if (sender.Equals(izquierda3)) todo_lista_a_lista(LstSede, listBoxSede1);
         }
     }
 }
