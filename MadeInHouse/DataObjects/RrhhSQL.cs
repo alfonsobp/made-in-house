@@ -243,8 +243,8 @@ namespace MadeInHouse.DataObjects
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            //cmd.CommandText = "INSERT INTO Modulo(nombre,descripcion,estado)" +
-            cmd.CommandText = "INSERT INTO Modulo(nombre,descripcion)" +
+            //cmd.CommandText = "INSERT INTO ModuloSistema(nombre,descripcion,estado)" +
+            cmd.CommandText = "INSERT INTO ModuloSistema(nombre,descripcion)" +
             //"VALUES (@nombre,@descripcion,@estado)";
             "VALUES (@nombre,@descripcion)";
             cmd.CommandType = CommandType.Text;
@@ -276,7 +276,7 @@ namespace MadeInHouse.DataObjects
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "UPDATE Modulo" +
+            cmd.CommandText = "UPDATE ModuloSistema" +
             "SET nombre= @nombre, descripcion= @descripcion" +
             " WHERE idModulo= @idModulo";
             cmd.CommandType = CommandType.Text;
@@ -284,7 +284,7 @@ namespace MadeInHouse.DataObjects
 
             cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
             cmd.Parameters.AddWithValue("@descripcion", m.Descripcion);
-            cmd.Parameters.AddWithValue("@idRol", m.IdModulo);
+            cmd.Parameters.AddWithValue("@idModulo", m.IdModulo);
 
             try
             {
@@ -309,7 +309,7 @@ namespace MadeInHouse.DataObjects
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "UPDATE Rol " +
+            cmd.CommandText = "UPDATE ModuloSistema " +
             "SET estado= @estado" +
             " WHERE idModulo= @idModulo ";
 
@@ -319,7 +319,7 @@ namespace MadeInHouse.DataObjects
 
             m.Estado = 0;
             cmd.Parameters.AddWithValue("@estado", m.Estado);  //0: Eliminado Lógico
-            cmd.Parameters.AddWithValue("@idRol", m.IdModulo);
+            cmd.Parameters.AddWithValue("@idModulo", m.IdModulo);
 
             try
             {
