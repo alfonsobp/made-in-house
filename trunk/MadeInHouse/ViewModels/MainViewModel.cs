@@ -199,7 +199,7 @@ namespace MadeInHouse.ViewModels
         {
 
           
-            Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel { DisplayName = "Mantenimiento Catalogo de Productos" };
+            Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel();
             win.ShowWindow(obj);
         }
 
