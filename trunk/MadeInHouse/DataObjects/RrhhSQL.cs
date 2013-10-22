@@ -104,20 +104,16 @@ namespace MadeInHouse.DataObjects
         //INSERTAR:
         public static int insertarRol(Rol r)
         {
-
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Rol(idRol, nombre, descripcion, estado)" +
-            "VALUES (@idRol, @nombre, @descripcion, @estado)";
+            cmd.CommandText = "INSERT INTO Rol(nombre,descripcion,estado)" +
+            "VALUES (@nombre,@descripcion,@estado)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
-            r.Estado = 1; //1: Existencia lógica
-            //r.IdRol = Genera_IdRol();   //esta función devuelve el código autogenerado
-            r.IdRol = 7;
-            cmd.Parameters.AddWithValue("@idRol", r.IdRol);
+
             cmd.Parameters.AddWithValue("@nombre", r.NombRol);
             cmd.Parameters.AddWithValue("@descripcion", r.Descripcion);
             cmd.Parameters.AddWithValue("@estado", r.Estado);  
