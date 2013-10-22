@@ -16,16 +16,13 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Compras
 {
     /// <summary>
-    /// Lógica de interacción para CatalogoProductoProveedorView.xaml
+    /// Lógica de interacción para ProductoView.xaml
     /// </summary>
-    public partial class CatalogoProductoProveedorView : UserControl
+    public partial class ProductoView : UserControl
     {
-        public CatalogoProductoProveedorView()
+        public ProductoView()
         {
             InitializeComponent();
         }
-
-     
-    
     }
 }

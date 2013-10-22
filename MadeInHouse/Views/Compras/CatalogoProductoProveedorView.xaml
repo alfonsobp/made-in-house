@@ -6,136 +6,71 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="524.189" Width="637.568">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-49" Height="523" VerticalAlignment="Top">
-        <StackPanel>
+        <StackPanel Margin="0,6,0,-6">
             <Layouts:TitleBarTemplate title="Catalogo de productos" />
-            <!-- CAMBIAR NOMBREEEE -->
-
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <DataGrid Margin="21,136,75,96" BorderBrush="#FF14191D" Background="White" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código Comercial"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="90"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Registro" Width="70"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Ultima Actualización" Width="80"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Activo" Width="50"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio (S/.)" Width="180"/>
-            </DataGrid.Columns>
-            <Button Background="Black"/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-        </DataGrid>
-      
-        <Button Height="38" Margin="0,197,22,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="34">
-            <Button.OpacityMask>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                    <GradientStop Color="#FF6D6D6D" Offset="0.429"/>
-                    <GradientStop Color="#FF646464" Offset="0.37"/>
-                    <GradientStop Color="#FF494949" Offset="0.261"/>
-                    <GradientStop Color="#FF2B2B2B" Offset="0.125"/>
-                    <GradientStop Color="#FF1C1C1C" Offset="0.083"/>
-                </LinearGradientBrush>
-            </Button.OpacityMask>
-            <Image Source="/MadeInHouse;component/Assets/add.png" Height="20" Width="50" >
-                <Image.OpacityMask>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                        <GradientStop Color="#FF6D6D6D" Offset="0.429"/>
-                        <GradientStop Color="#FF646464" Offset="0.37"/>
-                        <GradientStop Color="#FF494949" Offset="0.261"/>
-                        <GradientStop Color="#FF2B2B2B" Offset="0.125"/>
-                        <GradientStop Color="#FF1C1C1C" Offset="0.083"/>
-                    </LinearGradientBrush>
-                </Image.OpacityMask>
-            </Image>
-        </Button>
-        <Button Margin="0,240,22,0" HorizontalAlignment="Right" Width="34" Height="38" VerticalAlignment="Top">
-            <Button.OpacityMask>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="Black" Offset="0"/>
-                    <GradientStop Color="White" Offset="1"/>
-                    <GradientStop Color="#FF6D6D6D" Offset="0.429"/>
-                    <GradientStop Color="#FF646464" Offset="0.37"/>
-                    <GradientStop Color="#FF494949" Offset="0.261"/>
-                    <GradientStop Color="#FF2B2B2B" Offset="0.125"/>
-                    <GradientStop Color="#FF1C1C1C" Offset="0.083"/>
-                </LinearGradientBrush>
-            </Button.OpacityMask>
-            <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" >
-                <Image.OpacityMask>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="Black" Offset="0"/>
-                        <GradientStop Color="White" Offset="1"/>
-                        <GradientStop Color="#FF6D6D6D" Offset="0.429"/>
-                        <GradientStop Color="#FF646464" Offset="0.37"/>
-                        <GradientStop Color="#FF494949" Offset="0.261"/>
-                        <GradientStop Color="#FF2B2B2B" Offset="0.125"/>
-                        <GradientStop Color="#FF1C1C1C" Offset="0.083"/>
-                    </LinearGradientBrush>
-                </Image.OpacityMask>
-            </Image>
-        </Button>
-        <Label Content="Proveedor:" Margin="23,86,544,338"/>
-        <TextBox Margin="110,86,271,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-        <Button Margin="0,83,177,0" Click="Button_Click_1" HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
-            <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
-        </Button>
-        <ToolBar VerticalAlignment="Top" Height="41">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button
-                 x:Name="AbrirMantenerProveedorViewModel" >
-                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
-            </Button>
-            <Button Height="50" Width="50">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-            </Button>
-        </ToolBar>
-        <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
-        <Image Margin="21,381,0,33" Source="/MadeInHouse;component/Assets/importar.png" HorizontalAlignment="Left" Width="45"/>
-        <TextBox Name="file" Margin="84,394,245,33" TextWrapping="Wrap"/>
-        <Button Margin="0,376,155,33" Click="Button_Click_2" HorizontalAlignment="Right" Width="75" >
-            <Image Source="/MadeInHouse;component/Assets/file.png" Height="30" Width="35" />
-        </Button>
-        <Button Margin="0,376,75,33" HorizontalAlignment="Right" Width="75">
-            <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="30" />
-        </Button> 
-        <GroupBox Header="Catálogo de Productos" Margin="10,46,10,10"/>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DataGrid SelectedItem="{Binding Path=Seleccionado, Mode=TwoWay}" ItemsSource="{Binding Path=TblCatalogo, Mode=OneWay}" Margin="47,136,49,96" BorderBrush="#FF14191D" Background="White" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding CodigoProducto}" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding CodigoComercial}"  Header="Código Comercial"/>
+                        <DataGridTextColumn Binding="{Binding Descripcion}" Header="Descripción" Width="90"/>
+                        <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="70"/>
+                        <DataGridTextColumn Binding="{Binding FechaAct}"  Header="Ultima Actualización" Width="80"/>
+                        <DataGridTextColumn Binding="{Binding Estado}" Header="Activo" Width="50"/>
+                        <DataGridTextColumn Binding="{Binding Precio}" Header="Precio (S/.)" Width="180"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Proveedor:" Margin="23,86,544,338"/>
+                <TextBox  Margin="110,86,271,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+                <Button x:Name="BuscarCatalogo" Margin="0,83,177,0"  HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
+                </Button>
+                <ToolBar VerticalAlignment="Top" Height="41">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button
+            			x:Name="NuevoProducto" >
+                        <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="EditarProducto">
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+                    </Button>
+                    <Button Height="50" Width="50">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+                    </Button>
+                </ToolBar>
+                <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
+                <Image Margin="21,381,0,33" Source="/MadeInHouse;component/Assets/importar.png" HorizontalAlignment="Left" Width="45"/>
+                <TextBox x:Name="Path" Margin="84,394,245,33" TextWrapping="Wrap"/>
+                <Button x:Name="BuscarPath" Margin="0,376,155,33" HorizontalAlignment="Right" Width="75" >
+                    <Image Source="/MadeInHouse;component/Assets/file.png" Height="30" Width="35" />
+                </Button>
+                <Button x:Name="Cargar" Margin="0,376,75,33" HorizontalAlignment="Right" Width="75">
+                    <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="30" />
+                </Button>
+                <GroupBox Header="Catálogo de Productos" Margin="10,46,0,0"/>
 
-    </Grid>
+            </Grid>
+            <!-- CAMBIAR NOMBREEEE -->
         </StackPanel>
     </Border>
 </UserControl>

@@ -95,6 +95,7 @@
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Compras\CatalogoProveedor.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />
     <Compile Include="Models\RRHH\Rol.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
+    <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteDevolucionesViewModel.cs" />
@@ -323,6 +325,9 @@
     </Compile>
     <Compile Include="Views\Compras\NuevaCotizacionView.xaml.cs">
       <DependentUpon>NuevaCotizacionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\ProductoView.xaml.cs">
+      <DependentUpon>ProductoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\registrarDocumentosView.xaml.cs">
       <DependentUpon>registrarDocumentosView.xaml</DependentUpon>
@@ -659,6 +664,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\NuevaCotizacionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\ProductoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
