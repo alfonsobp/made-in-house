@@ -31,21 +31,10 @@
 
                 <GroupBox Header="Nuevo módulo" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="139" Width="325">
                     <Grid Margin="0,10,15,3">
-
-
-                        <Label Content="Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="53,72,0,0"/>
-
-                        <ComboBox HorizontalAlignment="Left" Margin="129,73,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
-                        <Label Content="Módulo:" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="50,41,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="129,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Módulo:" HorizontalAlignment="Left" Margin="50,21,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TxtNombModulo" HorizontalAlignment="Left" Height="23" Margin="129,21,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Descripción:" HorizontalAlignment="Left" Margin="50,52,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="23" Margin="129,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
                     </Grid>
                 </GroupBox>

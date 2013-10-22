@@ -98,6 +98,7 @@
     <Compile Include="Models\Compras\CatalogoProveedor.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />
+    <Compile Include="Models\RRHH\Modulo.cs" />
     <Compile Include="Models\RRHH\Rol.cs" />
     <Compile Include="Models\Ventas\Cliente.cs" />
     <Compile Include="Models\Ventas\ClienteGateway.cs" />
