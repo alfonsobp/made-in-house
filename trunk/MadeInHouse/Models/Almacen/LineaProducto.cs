@@ -15,12 +15,12 @@ namespace MadeInHouse.Models.Almacen
             get { return idLinea; }
             set { idLinea = value; }
         }
-        string codigoLinea;
+        string abreviatura;
 
-        public string CodigoLinea
+        public string Abreviatura
         {
-            get { return codigoLinea; }
-            set { codigoLinea = value; }
+            get { return abreviatura; }
+            set { abreviatura = value; }
         }
         string nombre;
 

@@ -87,7 +87,13 @@ namespace MadeInHouse.Models.Almacen
             set { idSubLinea = value; }
         }
 
-       
+        int estado;
+
+        public int Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
 
 
 
