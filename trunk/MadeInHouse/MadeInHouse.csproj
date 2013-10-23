@@ -97,6 +97,7 @@
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="DataObjects\ReportesSQL.cs" />
     <Compile Include="DataObjects\RrhhSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\AccesoSQL.cs" />
     <Compile Include="DataObjects\UtilesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\UsuarioSQL.cs" />
     <Compile Include="Models\Almacen\Almacen.cs" />
@@ -112,6 +113,7 @@
     <Compile Include="Models\RRHH\Empleado.cs" />
     <Compile Include="Models\RRHH\Modulo.cs" />
     <Compile Include="Models\RRHH\Rol.cs" />
+    <Compile Include="Models\Seguridad\Acceso.cs" />
     <Compile Include="Models\Ventas\Cliente.cs" />
     <Compile Include="Models\Ventas\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />

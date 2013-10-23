@@ -1,172 +1,181 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Caliburn.Micro;
 using MadeInHouse.Models;
 using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Input;
+using System.ComponentModel.Composition;
+using MadeInHouse.Models;
+using MadeInHouse.Models.Seguridad;
+using MadeInHouse.Views.Seguridad;
+using MadeInHouse.Models.RRHH;
+using MadeInHouse.Views.RRHH;
+
 
 namespace MadeInHouse.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>.Collection.OneActive
     {
+        
         private MyWindowManager win = new MyWindowManager();
 
         public static List<List<Window>> MinWin = new List<List<Window>>();
 
-        #region Ventas
-            public void AbrirListadoCliente()
-            {
-                win.ShowWindow(new Ventas.ClienteBuscarViewModel());
-            }
-            public void AbrirNuevoCliente()
-            {
-                win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
-            }
-
-            public void AbrirListadoVenta()
-            {
-                win.ShowWindow(new Ventas.VentaBuscarViewModel());
-            }
-
-            public void AbrirNuevaVenta()
-            {
-                win.ShowWindow(new Ventas.VentaRegistrarViewModel());
-            }
-            public void AbrirNuevaVentaCajero()
-            {
-                win.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
-            }
-
-            public void AbrirProforma()
-            {
-                win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
-            }
-            public void AbrirListadoPrecios()
-            {
-                win.ShowWindow(new Ventas.PreciosBuscarViewModel());
-            }
+        private Acceso accesoRol = new Acceso();
         
-            public void AbrirListadoDevoluciones()
-            {
-                win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
-            }
-            public void AbrirRegistrarDevolucion()
-            {
-                win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
-            }
 
+        int[] accModulo = new int[7];
+        int[,] accVentana = new int[7,50];
+        int[,,] accVentanaInt = new int[7,50,10];
 
-            public void AbrirListadoNotaCredito()
-            {
-                win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
-            }
+        Usuario u;
+        int idRol;
 
-            public void AbrirListadoPromoProducto()
-            {
-                win.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
-            }
-
-            public void AbrirListadoPromoServicio()
-            {
-                win.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
-            }
-
-            public void AbrirNuevaPromoServicio()
-            {
-                win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
-            }
-
-        public void AbrirNuevaPromoProducto()
-        {
-            win.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
-        }
-
-        #endregion Ventas
-
+        //MODULO ALMACÉN: 0
         #region Almacen
+        //Ventana Externa: 0.0
 
-        public void AbrirMovimientos()
+        public void CargarAccesosRol(Usuario u, out Acceso accRol)
         {
-            win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
-        }
+            /*
+            int k = 0;
+            k = DataObjects.Seguridad.AccesoSQL.;
+            */
+            int idRol;
+            accRol = new Acceso();
 
-        public void AbrirBuscarGuiaDeRemision()
-        {
-           
-            Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
-            win.ShowWindow(buscarGuiaView);
-        }
-
-        public void AbrirMantenerGuiaDeRemision()
-        {
-
-            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();  
-            win.ShowWindow(abrirGuiaView);     
-        }
-
-        public void AbrirBuscarNotas()
-        {
+            //obtener el idRol que pertenece el usuario
+            idRol = DataObjects.RrhhSQL.buscarIdRol(u); 
             
-            win.ShowWindow (new Almacen.BuscarNotasViewModel() );
+            //Obtener la lista de Módulos permitidos:
+            DataObjects.Seguridad.AccesoSQL.buscarModulos(idRol, out accModulo);
+            for (int i = 0; i < 7; i++)
+                accRol.AccModulo[i] = accModulo[i];
             
+            //Obtener la lista de Acceso a Ventanas Permitidas:
 
+                
         }
 
-        public void AbrirMantenerNotaDeIngreso()
-        {
-            
-            Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel ();
-            win.ShowWindow(abrirNotaIView);
-            
-        }
-        public void AbrirMantenerNotaDeSalida()
-        {
-            
-            Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel ();
-            win.ShowWindow(abrirNotaIView);
-        }
-        public void AbrirAnularDocumentos()
-        {
-            win.ShowWindow(new Almacen.AnularDocumentosViewModel ());
-        }
         public void AbrirMantenimientoAlmacen()
         {
-
-            win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
-            
-            
+            CargarAccesosRol(u, out accesoRol);
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 0]) == 1)
+                win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
         }
         
-        public void AbrirBuscarProducto()
-        {
-            win.ShowWindow(new Almacen.ProductoBuscarViewModel ());
-        }
-        
-        public void AbrirMantenimientoInventarioViewModel()
-        {
-           // ActivateItem(new Almacen.MantenimientoInventarioViewModel { DisplayName = "Mantenimiento inventario" });
-        }
+        //Ventana Externa: 0.1
         public void AbrirNuevoProducto()
         {
-            win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel ()); 
-            
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 1]) == 1)
+                win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel());
         }
 
+        //Ventana Externa: 0.2
+        public void AbrirBuscarProducto()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 2]) == 1)
+                win.ShowWindow(new Almacen.ProductoBuscarViewModel());
+        }
+        
+        //Ventana Externa: 0.3
+        public void AbrirBuscarGuiaDeRemision()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 3]) == 1)
+            {
+                Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
+                win.ShowWindow(buscarGuiaView);
+            }
+        }
+
+        //Ventana Externa: 0.4
+        public void AbrirMantenerGuiaDeRemision()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 4]) == 1)
+            {
+                Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();
+                win.ShowWindow(abrirGuiaView);
+            }
+        }
+
+        //Ventana Externa: 0.5
+        public void AbrirBuscarNotas()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 5]) == 1)
+                win.ShowWindow(new Almacen.BuscarNotasViewModel());
+        }
+
+        //Ventana Externa: 0.6
+        public void AbrirMantenerNotaDeIngreso()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 6]) == 1)
+            {
+                Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel();
+                win.ShowWindow(abrirNotaIView);
+            }
+        }
+
+        //Ventana Externa: 0.7
+        public void AbrirMantenerNotaDeSalida()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 7]) == 1)
+            {
+                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
+                win.ShowWindow(abrirNotaIView);
+            }
+        }
+
+        //Ventana Externa: 0.8
         public void AbrirBuscarZona()
         {
-
-            Almacen.BuscarZonaViewModel buscarZona = new Almacen.BuscarZonaViewModel();
-            win.ShowWindow(buscarZona);
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 8]) == 1)
+            {
+                Almacen.BuscarZonaViewModel buscarZona = new Almacen.BuscarZonaViewModel();
+                win.ShowWindow(buscarZona);
+            }
         }
 
+        //Ventana Externa: 0.9
         public void AbrirSolicitudAbConsolidar()
         {
-            win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel ()); 
-            
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 9]) == 1)
+                win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
         }
 
+        //Ventana Externa: 0.10
         public void AbrirSolicitudAbDetalle()
         {
-            win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel()); 
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 10]) == 1)
+                win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
         }
+
+        //Ventana Externa: 0.11
+        public void AbrirMovimientos()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 11]) == 1)
+                win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+        }
+
+        //Ventana Externa: 0.12
+        public void AbrirMantenimientoInventarioViewModel()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 12]) == 1)
+            {
+                // ActivateItem(new Almacen.MantenimientoInventarioViewModel { DisplayName = "Mantenimiento inventario" });
+            }
+        }
+
+        //Ventana Externa: 0.13
+        public void AbrirAnularDocumentos()
+        {
+            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 13]) == 1)
+                win.ShowWindow(new Almacen.AnularDocumentosViewModel());
+        }
+
 
 
         #endregion Almacen
@@ -277,21 +286,76 @@ namespace MadeInHouse.ViewModels
 
 
         #endregion Compras
-
-        #region Seguridad
-
-        public void AbrirRegistrarUsuario()
-        {
-            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { DisplayName = "Registrar usuario" });
-        }
-
-        public void AbrirMantenerUsuario()
-        {
-            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantenimiento de usuario" });
-
-        }
         
-        #endregion Seguridad
+        #region Ventas
+        public void AbrirListadoCliente()
+        {
+            win.ShowWindow(new Ventas.ClienteBuscarViewModel());
+        }
+        public void AbrirNuevoCliente()
+        {
+            win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
+        }
+
+        public void AbrirListadoVenta()
+        {
+            win.ShowWindow(new Ventas.VentaBuscarViewModel());
+        }
+
+        public void AbrirNuevaVenta()
+        {
+            win.ShowWindow(new Ventas.VentaRegistrarViewModel());
+        }
+        public void AbrirNuevaVentaCajero()
+        {
+            win.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
+        }
+
+        public void AbrirProforma()
+        {
+            win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
+        }
+        public void AbrirListadoPrecios()
+        {
+            win.ShowWindow(new Ventas.PreciosBuscarViewModel());
+        }
+
+        public void AbrirListadoDevoluciones()
+        {
+            win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
+        }
+        public void AbrirRegistrarDevolucion()
+        {
+            win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
+        }
+
+
+        public void AbrirListadoNotaCredito()
+        {
+            win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
+        }
+
+        public void AbrirListadoPromoProducto()
+        {
+            win.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
+        }
+
+        public void AbrirListadoPromoServicio()
+        {
+            win.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
+        }
+
+        public void AbrirNuevaPromoServicio()
+        {
+            win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
+        }
+
+        public void AbrirNuevaPromoProducto()
+        {
+            win.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
+        }
+
+        #endregion Ventas
 
         #region RRHH
 
@@ -309,10 +373,10 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
         }
-        
+
         public void AbrirMantenerRol()
         {
-            win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName="Mantenimiento de Roles"});
+            win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento de Roles" });
         }
 
 
@@ -332,36 +396,21 @@ namespace MadeInHouse.ViewModels
         }
 
         #endregion RRHH
+        
+        #region Seguridad
 
-        #region Configuracion
-        public void AbrirConfigurarUsuario()
+        public void AbrirRegistrarUsuario()
         {
-            win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
+            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { DisplayName = "Registrar usuario" });
         }
-        public void AbrirMantenerTipoZona()
+
+        public void AbrirMantenerUsuario()
         {
-            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
-        }
-        public void AbrirMantenerLineaProducto()
-        {
-            win.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
+            win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantenimiento de usuario" });
+
         }
         
-        public void AbrirMantenerSubLineaProducto()
-        {
-            win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel ());
-        }
-        public void AbrirMantenerTienda()
-        {
-            win.ShowWindow(new Almacen.MantenerTiendaViewModel());
-        }
-
-        public void AbrirMantenerModulo()
-        {
-            win.ShowWindow(new Seguridad.MantenerModuloViewModel());
-        }
-
-        #endregion Configuracion
+        #endregion Seguridad
 
         #region Reportes
 
@@ -411,5 +460,36 @@ namespace MadeInHouse.ViewModels
         }
 
         #endregion
+
+        #region Configuracion
+        public void AbrirConfigurarUsuario()
+        {
+            win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
+        }
+        public void AbrirMantenerTipoZona()
+        {
+            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
+        }
+        public void AbrirMantenerLineaProducto()
+        {
+            win.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
+        }
+
+        public void AbrirMantenerSubLineaProducto()
+        {
+            win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel());
+        }
+        public void AbrirMantenerTienda()
+        {
+            win.ShowWindow(new Almacen.MantenerTiendaViewModel());
+        }
+
+        public void AbrirMantenerModulo()
+        {
+            win.ShowWindow(new Seguridad.MantenerModuloViewModel());
+        }
+
+        #endregion Configuracion
+
     }
 }
