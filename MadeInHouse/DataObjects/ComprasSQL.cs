@@ -44,7 +44,8 @@ namespace MadeInHouse.DataObjects
                      p.Telefono = reader["telefono"].ToString();
                      p.TelefonoContacto = reader["telefonoContacto"].ToString();
                      p.Email = reader["email"].ToString();
-                     p.Ruc = reader["Ruc"].ToString();                     lstProveedor.Add(p);
+                     p.Ruc = reader["Ruc"].ToString();                     
+                     lstProveedor.Add(p);
                  }
 
                  conn.Close();

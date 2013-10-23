@@ -340,7 +340,7 @@ namespace MadeInHouse.ViewModels
         }
         public void AbrirMantenerTipoZona()
         {
-            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel { DisplayName = "Mantener Tipo Zona" });
+            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
         }
         public void AbrirMantenerLineaProducto()
         {

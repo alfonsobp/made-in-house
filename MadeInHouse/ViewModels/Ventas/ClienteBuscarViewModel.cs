@@ -29,9 +29,10 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             cliGateway = new ClienteGateway();
             Clientes = cliGateway.BuscarClientes();
+            
             Console.WriteLine(Clientes);
         }
-
+        
         private List<Tarjeta> clientes;
 
         public List<Tarjeta> Clientes
