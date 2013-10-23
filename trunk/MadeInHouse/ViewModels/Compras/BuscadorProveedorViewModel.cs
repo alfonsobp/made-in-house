@@ -119,7 +119,7 @@ namespace MadeInHouse.ViewModels.Compras
 
          //   lstProveedor = e;
 
-            lstProveedor = DataObjects.ComprasSQL.BuscarProveedor(null,null,null,null,null);
+            LstProveedor = DataObjects.ComprasSQL.BuscarProveedor(null,null,null,null,null);
             NotifyOfPropertyChange("LstProveedor");
 
         }
