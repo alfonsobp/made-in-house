@@ -209,7 +209,7 @@
     <Compile Include="ViewModels\Compras\generarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorProveedorViewModel.cs" />
     <Compile Include="ViewModels\Compras\ListadoServicioViewModel.cs" />
-    <Compile Include="ViewModels\Compras\mantenerProductoViewModel.cs" />
+    <Compile Include="ViewModels\Compras\MantenerProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\MantenerProveedorViewModel.cs" />
     <Compile Include="ViewModels\Compras\mantenerSolicitudesAdquisicionViewModel.cs" />
     <Compile Include="ViewModels\Compras\registrarDocumentosViewModel.cs" />

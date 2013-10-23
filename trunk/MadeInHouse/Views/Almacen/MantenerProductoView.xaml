@@ -38,19 +38,19 @@
                 <GroupBox Header="Información Producto" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="491">
                     <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" Margin="0,0,-2,0">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="123,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,82,0,0" VerticalAlignment="Top" Width="94"/>
                         <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,113,0,0" VerticalAlignment="Top" Width="94"/>
                         <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,144,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="123,86,0,0" VerticalAlignment="Top" Width="160"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="123,117,0,0" VerticalAlignment="Top" Width="160"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="123,148,0,0" VerticalAlignment="Top" Width="160"/>
-                        <CheckBox Content="Percepción" HorizontalAlignment="Left" Margin="123,183,0,0" VerticalAlignment="Top" />
-                        <CheckBox Content="Uso Interno" HorizontalAlignment="Left" Margin="123,211,0,0" VerticalAlignment="Top"/>
-                        <CheckBox Content="Venta" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox x:Name="CmbLinea" HorizontalAlignment="Left" Margin="123,86,0,0" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox x:Name="CmbSubLinea" HorizontalAlignment="Left" Margin="123,117,0,0" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox x:Name="CmdUniMedida" HorizontalAlignment="Left" Margin="123,148,0,0" VerticalAlignment="Top" Width="160"/>
+                        <CheckBox x:Name="ChkPercepcion" Content="Percepción" HorizontalAlignment="Left" Margin="123,183,0,0" VerticalAlignment="Top" />
+                        <CheckBox x:Name="ChkInterno" Content="Interno" HorizontalAlignment="Left" Margin="123,211,0,0" VerticalAlignment="Top"/>
+                        <CheckBox x:Name="ChkVenta" Content="Venta" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"/>
                         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,51,0,0" VerticalAlignment="Top" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="84" Margin="123,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                        <TextBox x:Name="TxtDescrip" HorizontalAlignment="Left" Height="84" Margin="123,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                         <Label  Content="Descripcion:" HorizontalAlignment="Left" Margin="17,240,0,0" VerticalAlignment="Top"/>
                         <Image  Source="/Assets/anonimo.png" HorizontalAlignment="Left" Height="182" Width="134" Margin="324,24,0,0" VerticalAlignment="Top"/>
                         <Button Content="Ingresar Foto" Margin="324,211,23,0" VerticalAlignment="Top"/>

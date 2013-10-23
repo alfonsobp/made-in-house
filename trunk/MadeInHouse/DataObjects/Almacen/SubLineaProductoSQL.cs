@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -19,17 +20,19 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public void AgregarSubLineaProducto(SubLineaProducto slp,int idLinea)
         {
+            
             db.cmd.CommandText = "INSERT INTO SubLineaProducto (nombre,idLinea,abreviatura) values (@nombre,@idLinea,@abreviatura)";
             db.cmd.Parameters.AddWithValue("@nombre", slp.Nombre);
             db.cmd.Parameters.AddWithValue("@idLinea", idLinea);
             db.cmd.Parameters.AddWithValue("@Abreviatura", slp.Abreviatura);
 
             try
-            {
+            {   
+                
                 db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.conn.Close();
-
+                db.cmd.Parameters.Clear();
 
             }
             catch (SqlException e)
