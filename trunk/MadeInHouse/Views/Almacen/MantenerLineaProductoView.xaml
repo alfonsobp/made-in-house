@@ -22,7 +22,7 @@
                     <Button>
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
                     </Button>
-                    <Button x:Name="GuardarProducto">
+                    <Button x:Name="GuardarLineaProducto">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
                     </Button>
                     <Button>

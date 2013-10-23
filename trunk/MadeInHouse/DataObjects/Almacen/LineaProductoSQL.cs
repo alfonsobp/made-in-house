@@ -39,6 +39,13 @@ namespace MadeInHouse.DataObjects.Almacen
                 Console.WriteLine(e.StackTrace.ToString());
             }
 
+            int idLinea= new UtilesSQL().ObtenerMaximoID("LineaProducto", "idLinea");
+            SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
+            foreach (SubLineaProducto slp in lp.Sublineas)
+            {
+                
+                slpSQL.AgregarSubLineaProducto(slp,idLinea);
+            }
 
         }
 

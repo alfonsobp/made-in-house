@@ -30,5 +30,13 @@ namespace MadeInHouse.Models.Almacen
             set { nombre = value; }
         }
 
+        private List<SubLineaProducto> sublineas;
+
+        internal List<SubLineaProducto> Sublineas
+        {
+            get { return sublineas; }
+            set { sublineas = value; }
+        }
+
     }
 }

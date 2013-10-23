@@ -3,49 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MadeInHouse.Models.Almacen;
 using System.Data.SqlClient;
 
-namespace MadeInHouse.DataObjects.Almacen
+namespace MadeInHouse.DataObjects
 {
-    class SubLineaProductoSQL
+    class UtilesSQL
     {
         private DBConexion db = null;
-
-        public SubLineaProductoSQL()
+        public UtilesSQL()
         {
             db = new DBConexion();
         }
 
-        public void AgregarSubLineaProducto(SubLineaProducto slp,int idLinea)
+        public int ObtenerMaximoID (string nombreTabla, string nombreID) 
         {
-            db.cmd.CommandText = "INSERT INTO SubLineaProducto (nombre,idLinea,abreviatura) values (@nombre,@idLinea,@abreviatura)";
-            db.cmd.Parameters.AddWithValue("@nombre", slp.Nombre);
-            db.cmd.Parameters.AddWithValue("@idLinea", idLinea);
-            db.cmd.Parameters.AddWithValue("@Abreviatura", slp.Abreviatura);
 
+            int id=0;
+            SqlDataReader reader;
+            db.cmd.CommandText = "SELECT MAX("+nombreID+") FROM "+nombreTabla;
             try
             {
                 db.conn.Open();
-                db.cmd.ExecuteNonQuery();
+                reader = db.cmd.ExecuteReader();
+                if (reader.Read())
+                    id = reader.GetInt32(0);
                 db.conn.Close();
-
-
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
             }
 
-
-
+            return id;
         }
-
 
 
 

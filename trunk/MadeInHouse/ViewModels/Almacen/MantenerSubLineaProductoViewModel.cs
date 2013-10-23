@@ -67,7 +67,7 @@ namespace MadeInHouse.ViewModels.Almacen
             slp.Nombre=txtNombre;
             slp.Abreviatura = txtAbrv;
             
-            lpVM.Actualiza(slp);
+            lpVM.ActualizaTablaSubLineas(slp);
         }
 
     }
