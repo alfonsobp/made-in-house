@@ -254,7 +254,7 @@
                     </Grid>
                 </Expander>
 
-                <Expander Header="Clima Laboral"    Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" RenderTransformOrigin="0.475,0.496" >
+                <Expander x:Name="ClimaLaboral" Header="Clima Laboral"    Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}" RenderTransformOrigin="0.475,0.496" >
                     <Expander.Background>
                         <ImageBrush AlignmentX="Right" ImageSource="/MadeInHouse;component/Assets/rrhh.png" Stretch="None"/>
                     </Expander.Background>
