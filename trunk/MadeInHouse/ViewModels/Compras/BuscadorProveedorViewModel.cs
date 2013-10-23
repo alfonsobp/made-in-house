@@ -77,7 +77,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
 
-
         public void test() {
 
             MessageBox.Show("El proveedor tiene Codigo = " + proveedorSeleccionado.Codigo + " , Ruc = " + proveedorSeleccionado.Ruc + 

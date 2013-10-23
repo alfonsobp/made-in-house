@@ -69,7 +69,6 @@ namespace MadeInHouse.DataObjects.Almacen
             return listaTipoZona;
         }
 
-
         public int agregarTipoZona(TipoZona p)
         {
             
