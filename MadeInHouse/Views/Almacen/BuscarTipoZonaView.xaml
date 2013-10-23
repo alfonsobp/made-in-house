@@ -20,7 +20,7 @@
                     <Button x:Name="AbrirNuevaZona">
                         <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
                     </Button>
-                    <Button>
+                    <Button x:Name="EditarTipoZona">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
                     </Button>
                     <Button>

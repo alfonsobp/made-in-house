@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Caliburn.Micro;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
@@ -17,6 +18,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         private List<TipoZona > listaTipoZona;
+        private TipoZona tipoZonaSeleccionada = new TipoZona();
+
         public BuscarTipoZonaViewModel() {
             gateway = new DataObjects.Almacen.TipoZonaSQL();
             ListaTipoZona = gateway.BuscarZona();
@@ -47,6 +50,17 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        public void SelectedItemChanged(object sender)
+        {
+            tipoZonaSeleccionada = ((sender as DataGrid).SelectedItem as TipoZona);
+
+        }
+        
+        public void EditarTipoZona()
+        {
+            Almacen.MantenerTipoZonaViewModel obj = new Almacen.MantenerTipoZonaViewModel (tipoZonaSeleccionada);
+            win.ShowWindow(obj);
+        }
 
         public void BuscarTipoZona(string codigo, string descripcion)
         {

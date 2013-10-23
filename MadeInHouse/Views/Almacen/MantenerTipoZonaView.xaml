@@ -34,12 +34,12 @@
         </ToolBar>
         <GroupBox Header="Informacion Zona" HorizontalAlignment="Left" Margin="10,41,0,10" Width="375">
             <Grid Margin="0,0,0,-12">
-                <Label Content="Codigo:" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                <Label  Content="Codigo:" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                <TextBox x:Name="txtIdTipoZona" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
                 <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Color:" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
+                <ComboBox x:Name="CmbColor" HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
 
             </Grid>
         </GroupBox>
