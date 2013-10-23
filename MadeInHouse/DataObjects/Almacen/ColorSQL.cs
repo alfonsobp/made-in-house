@@ -18,9 +18,9 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public List<Color> BuscarZona(int codigo)
+        public Color BuscarZona(int codigo)
         {
-            List<Color> listaColor = new List<Color>();
+            Color listaColor = new Color();
             
             string where = "WHERE 1=1 ";
 
@@ -37,12 +37,9 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 while (reader.Read())
                 {
-                    Color p = new Color();
-                    p.IdColor = reader.IsDBNull(reader.GetOrdinal("idColor")) ? -1 : int.Parse(reader["idColor"].ToString());
-                    p.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
-                    p.CodHex = reader.IsDBNull(reader.GetOrdinal("codHex")) ? null : reader["codHex"].ToString();
-
-                    listaColor.Add(p);
+                    listaColor.IdColor = reader.IsDBNull(reader.GetOrdinal("idColor")) ? -1 : int.Parse(reader["idColor"].ToString());
+                    listaColor.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    listaColor.CodHex = reader.IsDBNull(reader.GetOrdinal("codHex")) ? null : reader["codHex"].ToString();
                 }
 
                 db.conn.Close();
@@ -95,7 +92,6 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return listaColor;
         }
-
 
     }
 }

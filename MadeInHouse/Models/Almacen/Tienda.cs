@@ -33,9 +33,9 @@ namespace MadeInHouse.Models.Almacen
             set { direccion = value; }
         }
 
-        private string ubigeo;
+        private Ubigeo ubigeo;
 
-        public string Ubigeo
+        public Ubigeo Ubigeo
         {
             get { return ubigeo; }
             set { ubigeo = value; }

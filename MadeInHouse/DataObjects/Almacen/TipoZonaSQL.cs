@@ -18,7 +18,6 @@ namespace MadeInHouse.DataObjects.Almacen
             db = new DBConexion();
         }
 
-
         public List<TipoZona> BuscarZona(int codigo=-1,string descripcion=null)
         {
             List<TipoZona> listaTipoZona = new List<TipoZona>();
