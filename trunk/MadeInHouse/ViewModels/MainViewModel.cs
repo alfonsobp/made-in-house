@@ -57,10 +57,14 @@ namespace MadeInHouse.ViewModels
                 accRol.AccModulo[i] = accModulo[i];
             
             //Obtener la lista de Acceso a Ventanas Permitidas:
-
-                
+            DataObjects.Seguridad.AccesoSQL.buscarVentanas(accModulo, out accVentana);
+            for (int i = 0; i < 7; i++)
+                for (int j = 0; j < 30; j++)
+                    accRol.AccVentana[i, j] = accVentana[i, j];
+    
         }
 
+        //Ventana Externa: 0.0
         public void AbrirMantenimientoAlmacen()
         {
             CargarAccesosRol(u, out accesoRol);
