@@ -46,8 +46,8 @@ namespace MadeInHouse.Models.RRHH
         {
             get { return estado; }
             set { estado = value; }
-        }        
-
+        }
+       
         public Rol()
         {
 

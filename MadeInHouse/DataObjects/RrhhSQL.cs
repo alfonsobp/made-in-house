@@ -1,4 +1,5 @@
 ﻿using MadeInHouse.Models.RRHH;
+using MadeInHouse.Models.Seguridad;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -64,6 +65,47 @@ namespace MadeInHouse.DataObjects
         }
 
         /****************************************** ROL ************************************/
+
+        public static int buscarIdRol(Usuario u)
+        {
+            int idRolEnc= 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT idRol FROM Usuario WHERE idUsuario=@idUsuario ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                    idRolEnc= (int)(reader["idRol"]);
+                else
+                    MessageBox.Show("Usuario no válido, revisar datos");
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return idRolEnc;
+        }
+
+
+
+
+
+
+
 
         //BUSCAR:
         public static List<Rol> BuscarProveedor(string modulo)
