@@ -25,5 +25,10 @@ namespace MadeInHouse.Views
         {
             InitializeComponent();
         }
+
+        private void TxtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            TxtPasswordUser.Text = TxtPassword.Password;
+        }
     }
 }
