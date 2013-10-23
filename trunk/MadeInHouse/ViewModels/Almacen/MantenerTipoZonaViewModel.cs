@@ -12,7 +12,10 @@ namespace MadeInHouse.ViewModels.Almacen
     {
         private TipoZona tipoZonaSeleccionada;
 
-        internal TipoZona TipoZonaSeleccionada
+
+        private DataObjects.Almacen.ColorSQL gateway= new DataObjects.Almacen.ColorSQL();
+
+        public TipoZona TipoZonaSeleccionada
         {
             get { return tipoZonaSeleccionada; }
             set { tipoZonaSeleccionada = value; }
@@ -45,7 +48,20 @@ namespace MadeInHouse.ViewModels.Almacen
                 this.cmbColor = value;
                 this.NotifyOfPropertyChange(() => this.CmbColor);
             }
+
         }
+        private Color cmbColorSelected;
+
+        public Color CmbColorSelected
+        {
+            get { return this.cmbColorSelected; }
+            private set {
+                if (this.cmbColorSelected == value) { return;}
+                cmbColorSelected = value;
+                this.NotifyOfPropertyChange(() => this.CmbColorSelected);
+            }
+        }
+
         private int txtIdTipoZona;
         
         public int TxtIdTipoZona
@@ -63,15 +79,18 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public MantenerTipoZonaViewModel(TipoZona  tipoZonaSeleccionada)
         {
+            //Modifica
             indicador = 2;    
             // TODO: Complete member initialization
-            
+            cmbColor = gateway.BuscarZona();
+            cmbColorSelected = gateway.BuscarZona(int.Parse(tipoZonaSeleccionada.Color));
             this.tipoZonaSeleccionada = tipoZonaSeleccionada;
         }
 
         public MantenerTipoZonaViewModel()
         {
-            
+            cmbColor = gateway.BuscarZona();
+            //Nuevo
             indicador = 1;
                     
         }

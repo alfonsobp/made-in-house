@@ -92,6 +92,7 @@
     <Compile Include="DataObjects\Almacen\SubLineaProductoSQL.cs" />
     <Compile Include="DataObjects\Almacen\ColorSQL.cs" />
     <Compile Include="DataObjects\Almacen\TipoZonaSQL.cs" />
+    <Compile Include="DataObjects\Almacen\UbigeoSQL.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="DataObjects\ReportesSQL.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Almacen\Ubigeo.cs" />
     <Compile Include="Models\Compras\CatalogoProveedor.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />

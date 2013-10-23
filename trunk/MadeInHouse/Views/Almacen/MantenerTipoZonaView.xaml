@@ -39,7 +39,7 @@
                 <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
                 <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Color:" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="CmbColor" HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
+                <ComboBox x:Name="CmbColor" ItemsSource="{Binding Path=CmbColor}" SelectedItem="{Binding Path=CmbColorSelected}" Background="{ Binding Path=CmbColor.CodHex}" HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
 
             </Grid>
         </GroupBox>
