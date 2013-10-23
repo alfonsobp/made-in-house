@@ -68,12 +68,14 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private Proveedor proveedorSeleccionado;
-
+        
         public void SelectedItemChanged(object sender)
         {
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
             
         }
+
+
 
 
         public void test() {

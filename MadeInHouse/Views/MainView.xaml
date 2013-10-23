@@ -101,7 +101,7 @@
                         </Grid.RowDefinitions>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
                         <Button x:Name="AbrirNuevoProducto" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="2" Foreground="#FFF9F5F5"/>
-                        <Button x:Name="AbrirMantenimientoAlmacen"  Background="Black" Foreground="White" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="1"/>
+                        <Button x:Name="AbrirMantenimientoAlmacen" Background="Black" Foreground="White" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="1"/>
                         <Button x:Name="AbrirBuscarProducto" Background="Black" Foreground="white" BorderThickness="0" Content="Buscar Producto" FontSize="20"  Grid.Row="3"/>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="4"/>
                         <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Black" Foreground="DarkGray"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5"/>
