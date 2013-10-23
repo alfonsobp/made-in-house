@@ -87,8 +87,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="DataObjects\Almacen\ColorSQL.cs" />
-    <Compile Include="DataObjects\Almacen\ProductoGateway.cs" />
+
+	 <Compile Include="DataObjects\Almacen\LineaProductoSQL.cs" />
+    <Compile Include="DataObjects\Almacen\ProductoSQL.cs" />
+    <Compile Include="DataObjects\Almacen\SubLineaProductoSQL.cs" />    <Compile Include="DataObjects\Almacen\ColorSQL.cs" />
     <Compile Include="DataObjects\Almacen\TipoZonaSQL.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />

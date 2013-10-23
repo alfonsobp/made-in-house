@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:designWidth="347" d:designHeight="199">
+   
+    
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Nueva sublinea de producto"/>
-            <Grid Margin="0">
+            <Grid Margin="0" Height="183" Width="310">
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -21,7 +23,7 @@
                     <Button>
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button x:Name="GuardarSubLinea">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -34,15 +36,16 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Informacion de SubLinea" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="118" Width="325">
-                    <Grid Height="96" VerticalAlignment="Top">
-                        <Label Content="Pertenece a la Linea:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="121"/>
-                        <ComboBox HorizontalAlignment="Left" Height="23" Margin="143,24,0,0" VerticalAlignment="Top" Width="140"/>
-                        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="143,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
+                        <Label Content="Pertenece a la Línea:" HorizontalAlignment="Left" Margin="17,61,0,0" VerticalAlignment="Top" Height="26" Width="121"/>
+                <ComboBox x:Name="cmbLineaProducto" SelectedIndex="0" IsEnabled="{Binding Estado}"
+                            HorizontalAlignment="Left" Height="23" Margin="143,64,0,0" VerticalAlignment="Top" Width="140"/>
+                        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,89,0,0" VerticalAlignment="Top" Width="94"/>
+                        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="143,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
+                <Label Content="Abreviatura:" HorizontalAlignment="Left" Margin="17,123,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TxtAbrv" HorizontalAlignment="Left" Height="23" Margin="143,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"/>
 
-                    </Grid>
-                </GroupBox>
+
+
             </Grid>
         </StackPanel>
     </Border>

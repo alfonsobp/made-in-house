@@ -25,13 +25,22 @@ namespace MadeInHouse.Models.Almacen
             set { nombre = value; }
         }
 
-        private LineaProducto idLinea;
+        private int idLinea;
 
-        public LineaProducto IdLinea
+        public int IdLinea
         {
             get { return idLinea; }
             set { idLinea = value; }
         }
+
+        private string abreviatura;
+
+        public string Abreviatura
+        {
+            get { return abreviatura; }
+            set { abreviatura = value; }
+        }
+
     
 
     }
