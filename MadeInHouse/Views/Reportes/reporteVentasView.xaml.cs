@@ -50,42 +50,42 @@ namespace MadeInHouse.Views.Reportes
         private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
         {
             if (listBoxProveedores1.SelectedItem != null)
-                pasarListBox(listBoxProveedores1, listBoxProveedores2);
-            if (listBoxProveedores2.SelectedItem != null)
-                pasarListBox(listBoxProveedores2, listBoxProveedores1);
+                pasarListBox(listBoxProveedores1, ListBoxProveedores2);
+            if (ListBoxProveedores2.SelectedItem != null)
+                pasarListBox(ListBoxProveedores2, listBoxProveedores1);
 
             if (listBoxCategorias1.SelectedItem != null)
-                pasarListBox(listBoxCategorias1, listBoxCategorias2);
-            if (listBoxCategorias2.SelectedItem != null)
-                pasarListBox(listBoxCategorias2, listBoxCategorias1);
+                pasarListBox(listBoxCategorias1, ListBoxCategorias2);
+            if (ListBoxCategorias2.SelectedItem != null)
+                pasarListBox(ListBoxCategorias2, listBoxCategorias1);
 
             if (listBoxSede1.SelectedItem != null)
-                pasarListBox(listBoxSede1, listBoxSede2);
-            if (listBoxSede2.SelectedItem != null)
-                pasarListBox(listBoxSede2, listBoxSede1);
+                pasarListBox(listBoxSede1, ListBoxSede2);
+            if (ListBoxSede2.SelectedItem != null)
+                pasarListBox(ListBoxSede2, listBoxSede1);
 
 
         }
         private void Unselect(object sender, RoutedEventArgs e)
         {
             listBoxCategorias1.UnselectAll();
-            listBoxCategorias2.UnselectAll();
+            ListBoxCategorias2.UnselectAll();
             listBoxSede1.UnselectAll();
-            listBoxSede2.UnselectAll();
+            ListBoxSede2.UnselectAll();
             listBoxProveedores1.UnselectAll();
-            listBoxProveedores2.UnselectAll();
+            ListBoxProveedores2.UnselectAll();
         }
 
         private void Pasar_Todo(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxProveedores1, listBoxProveedores2);
-            if (sender.Equals(izquierda1)) todo_lista_a_lista(listBoxProveedores2, listBoxProveedores1);
+            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxProveedores1, ListBoxProveedores2);
+            if (sender.Equals(izquierda1)) todo_lista_a_lista(ListBoxProveedores2, listBoxProveedores1);
 
-            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, listBoxCategorias2);
-            if (sender.Equals(izquierda2)) todo_lista_a_lista(listBoxCategorias2, listBoxCategorias1);
+            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, ListBoxCategorias2);
+            if (sender.Equals(izquierda2)) todo_lista_a_lista(ListBoxCategorias2, listBoxCategorias1);
 
-            if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, listBoxSede2);
-            if (sender.Equals(izquierda3)) todo_lista_a_lista(listBoxSede2, listBoxSede1);
+            if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, ListBoxSede2);
+            if (sender.Equals(izquierda3)) todo_lista_a_lista(ListBoxSede2, listBoxSede1);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

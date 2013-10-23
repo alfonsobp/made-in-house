@@ -16,7 +16,6 @@ namespace MadeInHouse.DataObjects
         public static List<Serviciorepor> GenerarReporServicios(string codigo, string razonSocial, string Ruc, string fechaIni, string fechaFin)
         {
 
-
             List<Serviciorepor> lstServ = new List<Serviciorepor>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -32,7 +31,6 @@ namespace MadeInHouse.DataObjects
                 conn.Open();
 
                 reader = cmd.ExecuteReader();
-
 
                 while (reader.Read())
                 {
@@ -56,6 +54,50 @@ namespace MadeInHouse.DataObjects
 
 
             return lstServ;
+
+        }
+
+        public static List<Ventarepor> GenerarReporVentas(string codigo, string razonSocial, string Ruc, string fechaIni, string fechaFin)
+        {
+
+            List<Ventarepor> lstVenta = new List<Ventarepor>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT Producto.tipo Uso as Categoria, Servicio.descripcion as Nombre, ProveedorxProducto.IdProveedor as Proveedor" +
+                               "FROM Proveedor, Producto, Servicio, DetalleVenta";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+
+                    Ventarepor p = new Ventarepor();
+                    p.Codigo = reader["Categoria"].ToString();
+                    p.Fecha = Convert.ToDateTime(reader["Nombre"].ToString());
+                    p.Proveedor = reader["contacto"].ToString();
+                    p.Producto = reader["Proveedor"].ToString();
+                    p.MontoTotal = reader["fax"].ToString();
+                    lstVenta.Add(p);
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return lstVenta;
 
         }
     }

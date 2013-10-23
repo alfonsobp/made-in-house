@@ -17,17 +17,17 @@ namespace MadeInHouse.ViewModels.Reportes
     {
         private MyWindowManager win = new MyWindowManager();
 
-        private string fechaIni;
+        private DateTime fechaIni;
 
-        public string FechaIni
+        public DateTime FechaIni
         {
             get { return fechaIni; }
             set { fechaIni = value; NotifyOfPropertyChange(() => FechaIni); }
         }
 
-        private string fechaFin;
+        private DateTime fechaFin;
 
-        public string FechaFin
+        public DateTime FechaFin
         {
             get { return fechaFin; }
             set { fechaFin = value; NotifyOfPropertyChange(() => FechaFin); }
