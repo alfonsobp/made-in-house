@@ -59,16 +59,10 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void AgregarSubLinea()
         {
-            /*LstSubLinea=new List<SubLineaProducto>();
-            LstSubLinea.Add(new SubLineaProducto());
-            LstSubLinea[0].Nombre = "sss";
-            LstSubLinea[0].Abreviatura = "sk";*/
-            
-
             win.ShowWindow(new MantenerSubLineaProductoViewModel(this));   
         }
 
-        public void Actualiza(SubLineaProducto slp)
+        public void ActualizaTablaSubLineas(SubLineaProducto slp)
         {
             if (LstSubLinea != null)
             {
@@ -90,6 +84,19 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange("LstSubLinea");
         }
 
+
+        public void GuardarLineaProducto()
+        {
+
+            lpSQL = new LineaProductoSQL();
+            LineaProducto lp = new LineaProducto();
+            lp.Nombre = TxtNombre;
+            lp.Abreviatura = TxtAbrv;
+            lp.Sublineas = LstSubLinea;
+            lpSQL.AgregarLineaProducto(lp);
+
+
+        }
 
     }
 }
