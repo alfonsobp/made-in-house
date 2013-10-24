@@ -5,11 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel.Composition;
-using MadeInHouse.Models;
 using MadeInHouse.Models.Seguridad;
 using MadeInHouse.Views.Seguridad;
 using MadeInHouse.Models.RRHH;
@@ -489,7 +487,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 4.0
         public void AbrirRegistrarUsuario()
         {
-            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { DisplayName = "Registrar usuario" });
+            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { /* DisplayName = "Registrar usuario" */ });
         }
 
         //Ventana Externa: 4.1
