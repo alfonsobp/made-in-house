@@ -58,6 +58,7 @@
                                 <DataGridCheckBoxColumn  Header="Lectura" CanUserReorder="False"/>
                                 <DataGridCheckBoxColumn  Header="Escritura" CanUserReorder="False" />
                                 <DataGridCheckBoxColumn  Header="Mostrar" CanUserReorder="False" />
+                                
                             </DataGrid.Columns>
                             <Button />
                             <Button />

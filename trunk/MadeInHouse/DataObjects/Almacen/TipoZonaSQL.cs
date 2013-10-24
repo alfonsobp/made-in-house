@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.DataObjects.Almacen
@@ -18,15 +20,15 @@ namespace MadeInHouse.DataObjects.Almacen
             db = new DBConexion();
         }
 
-        public List<TipoZona> BuscarZona(int codigo=-1,string descripcion=null)
+        public ObservableCollection<TipoZona> BuscarZona(int codigo = -1, string descripcion = null)
         {
-            List<TipoZona> listaTipoZona = new List<TipoZona>();
+            ObservableCollection<TipoZona> listaTipoZona = new ObservableCollection<TipoZona>();
             
             string where = "WHERE 1=1 ";
 
             if (codigo != -1)
             {
-                where = where + " AND idTipoZona = @codigo ";
+                where = where + " AND idTipoZona = @idTipoZona ";
                 db.cmd.Parameters.Add(new SqlParameter("idTipoZona", codigo));
             }
 
@@ -50,7 +52,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.Color = reader.IsDBNull(reader.GetOrdinal("color")) ? null : reader["color"].ToString();
                     p.IdTipoZona = reader.IsDBNull(reader.GetOrdinal("idTipoZona")) ? -1 : int.Parse(reader["idTipoZona"].ToString());  
                     p.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
-
+                    p.IdColor = reader.IsDBNull(reader.GetOrdinal("idColor")) ? -1 : int.Parse(reader["idColor"].ToString());
                     listaTipoZona.Add(p);
                 }
 
@@ -68,32 +70,27 @@ namespace MadeInHouse.DataObjects.Almacen
             return listaTipoZona;
         }
 
-        public int agregarTipoZona(TipoZona p)
+        public void agregarTipoZona(TipoZona p)
         {
             
-            db.cmd.CommandText = "INSERT INTO TipoZona(idTipoZona,nombre,idColor)" +
-            "VALUES (@idTipoZona,@nombre,@idColor)";
-            int k = 0;
-
-            db.cmd.Parameters.Add(new SqlParameter("idTipoZona", p.IdTipoZona));
+            db.cmd.CommandText = "INSERT INTO TipoZona(nombre,color,idColor)" +
+            "VALUES (@nombre,@color,@idColor)";
+            
             db.cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
-            db.cmd.Parameters.Add(new SqlParameter("idColor", p.Color));
-    
+            db.cmd.Parameters.Add(new SqlParameter("color", p.Color));
+            db.cmd.Parameters.Add(new SqlParameter("idColor", p.IdColor));
+
             try
             {
                 db.conn.Open();
-
-                k = db.cmd.ExecuteNonQuery();
-
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
             }
-
-            return k;
         }
 
         public int modificarTipoZona(TipoZona p)

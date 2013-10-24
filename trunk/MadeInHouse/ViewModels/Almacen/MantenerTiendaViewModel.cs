@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -15,7 +16,8 @@ namespace MadeInHouse.ViewModels.Almacen
             this.cmbDpto=gateway.BuscarDpto();
         }
 
-        private DataObjects.Almacen.UbigeoSQL gateway = new DataObjects.Almacen.UbigeoSQL();
+        private UbigeoSQL gateway = new UbigeoSQL();
+
 
         private string txtCodigo;
 
@@ -116,7 +118,13 @@ namespace MadeInHouse.ViewModels.Almacen
             tienda.Direccion = this.txtDir;
             Ubigeo seleccionado = new Ubigeo();
             seleccionado = gateway.buscarUbigeo(cmbDistSeleccionado.CodDpto, cmbDptoSeleccionado.CodProv, cmbProvSeleccionado.CodDist);
-     
+            tienda.Ubigeo = seleccionado;
+            tienda.FechaReg = DateTime.Today;
+
+            TiendaSQL gw = new TiendaSQL();
+            gw.AgregarTienda(tienda);
+
+
         }
 
     }

@@ -31,6 +31,14 @@ namespace MadeInHouse.Models.Almacen
             get { return color; }
             set { color = value; }
         }
+
+        private int idColor;
+
+        public int IdColor
+        {
+            get { return idColor; }
+            set { idColor = value; }
+        }
     
     }   
 
