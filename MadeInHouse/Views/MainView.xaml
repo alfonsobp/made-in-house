@@ -153,11 +153,9 @@
                         <Button x:Name="AbrirMantenerProveedor"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2"/>
                         <Button x:Name="AbrirCatalogoProductoProveedor"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Catalogo productos" FontSize="20"   Grid.Row="3"/>
 
-
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Servicios" FontSize="20"  Grid.Row="4"/>
                         <Button x:Name="AbrirNuevoServicio"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo Servicio" FontSize="20"  Grid.Row="5" />
                         <Button x:Name="AbrirBuscadorServicio"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar de Servicios" FontSize="20"  Grid.Row="6" />
-
 
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Solicitudes de Adquisicion" FontSize="20"  Grid.Row="7"/>
                         <Button  x:Name="AbrirBuscadorSolicitudesAdquisicion"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar de Solicitudes" FontSize="20"  Grid.Row="8"/>
@@ -170,7 +168,6 @@
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Cotizaciones" FontSize="20"  Grid.Row="13"/>
                         <Button x:Name="AbrirNuevaCotizacion"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo Cotizacion" FontSize="20"  Grid.Row="14"/>
                         <Button x:Name="AbrirBuscarCotizacion"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar Cotizaciones" FontSize="20"  Grid.Row="15"/>
-
 
                         <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Documentos de pago" FontSize="20"  Grid.Row="16"/>
                         <Button x:Name="AbrirRegistrarDocumentos"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nuevo doc. pago" FontSize="20"  Grid.Row="17"/>
@@ -221,7 +218,7 @@
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="8"/>
                         <Button x:Name="AbrirListadoDevoluciones"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="9"/>
                         <Button x:Name="AbrirRegistrarDevolucion"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="10"/>
-                        <!--<Button x:Name="AbrirListadoNotaCredito"   Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11"/>-->
+                        <!--<Button x:Name="AbrirListadoNotaCredito"   Background="Red" Foreground="white" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11"/>-->
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="12"/>
                         <Button x:Name="AbrirListadoPromoProducto"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13"/>
                         <Button x:Name="AbrirNuevaPromoProducto"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="14"/>
