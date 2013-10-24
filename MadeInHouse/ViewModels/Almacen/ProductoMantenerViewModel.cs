@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.DataObjects;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -58,10 +59,99 @@ namespace MadeInHouse.ViewModels.Almacen
                 this.NotifyOfPropertyChange(() => this.lstLineasProducto);
             }
         }
-            
+
+        private BindableCollection<SubLineaProducto> lstSubLineasProducto;
+
+        public BindableCollection<SubLineaProducto> LstSubLineasProducto
+        {
+            get { return lstSubLineasProducto; }
+            set
+            {
+                if (this.lstSubLineasProducto == value)
+                {
+                    return;
+                }
+                this.lstSubLineasProducto = value;
+                this.NotifyOfPropertyChange(() => this.lstSubLineasProducto);
+            }
+        }
+
+
+
+        private int selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set { selectedIndex = value; NotifyOfPropertyChange(() => SelectedIndex ); }
+        }
+
+
+        private int selectedValue;
+
+        public int SelectedValue
+        {
+            get { return selectedValue; }
+            set { 
+                   selectedValue = value;
+                   SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
+                   LstSubLineasProducto= slpSQL.ObtenerSubLineas(selectedValue);
+                   SelectedIndex = 0;
+                   
+            }
+        }
+
+        private int selectedValueSub;
+
+        public int SelectedValueSub
+        {
+            get { return selectedValueSub; }
+            set
+            {
+                selectedValueSub = value;
+            }
+        }
+
+        private LineaProducto GetLinea(int idLinea)
+        {
+            return (from lp in LstLineasProducto
+                    where lp.IdLinea == idLinea
+                    select lp).FirstOrDefault();
+        }
+        private SubLineaProducto GetSubLinea(int idSubLinea)
+        {
+            return (from lp in LstSubLineasProducto
+                    where lp.IdSubLinea == idSubLinea
+                    select lp).FirstOrDefault();
+        }
+
+
+        private ProductoSQL pSQL;
+
+        public void GuardarProducto()
+        {
+            pSQL = new ProductoSQL();
+            Producto p = new Producto();
+            p.Nombre = TxtNombre;
+            p.IdLinea = SelectedValue;
+            p.IdSubLinea = SelectedValueSub;
+            pSQL.AgregarProducto(p);
+
+        }
+
+        private string CodigoProducto()
+        {
+            UtilesSQL util = new UtilesSQL();
+            string cod = GetLinea(SelectedValue).Abreviatura;
+
+            return cod;
+        }
+
+
 
         public ProductoMantenerViewModel()
         {
+
             LineaProductoSQL slpSQL = new LineaProductoSQL();
             LstLineasProducto = slpSQL.ObtenerLineasProducto();
         }

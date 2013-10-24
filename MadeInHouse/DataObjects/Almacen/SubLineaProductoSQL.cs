@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data.SqlClient;
 using System.Data;
+using Caliburn.Micro;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -18,12 +19,12 @@ namespace MadeInHouse.DataObjects.Almacen
             db = new DBConexion();
         }
 
-        public List<SubLineaProducto> ObtenerSubLineas(int id)
+        public BindableCollection<SubLineaProducto> ObtenerSubLineas(int id)
         {
             db.cmd.CommandText = "SELECT * FROM SubLineaProducto WHERE idLinea=@idLinea";
             db.cmd.Parameters.AddWithValue("idLinea", id);
             SqlDataReader reader;
-            List<SubLineaProducto> lstSubLinea = new List<SubLineaProducto>();
+            BindableCollection<SubLineaProducto> lstSubLinea = new BindableCollection<SubLineaProducto>();
             try
             {
                 db.conn.Open();
@@ -37,6 +38,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     slp.Abreviatura = reader["Abreviatura"].ToString();
                     lstSubLinea.Add(slp);
                 }
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
 
             }
