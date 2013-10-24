@@ -331,6 +331,9 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
 
                         </Grid.RowDefinitions>
                         <Button x:Name="AbrirMantenerTienda"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="0"/>
@@ -339,6 +342,7 @@
                         <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
                         <Button x:Name="AbrirMantenerModulo"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Módulo" FontSize="20"  Grid.Row="5"/>
+                        <Button x:Name="AbrirMantenerMotivo"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6"/>
 
                     </Grid>
                 </Expander>
