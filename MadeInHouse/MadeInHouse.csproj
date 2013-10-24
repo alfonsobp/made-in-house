@@ -100,6 +100,7 @@
     <Compile Include="DataObjects\ReportesSQL.cs" />
     <Compile Include="DataObjects\RrhhSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccesoSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\RolSQL.cs" />
     <Compile Include="DataObjects\UtilesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\UsuarioSQL.cs" />
     <Compile Include="Models\Almacen\Almacen.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="ViewModels\RRHH\VerEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorModuloViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorUsuarioViewModel.cs" />
+    <Compile Include="ViewModels\Seguridad\CifrarAES.cs" />
     <Compile Include="ViewModels\Seguridad\ConfigurarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerModuloViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerUsuarioViewModel.cs" />
@@ -443,17 +445,11 @@
     <Compile Include="Views\Seguridad\ConfigurarUsuarioView.xaml.cs">
       <DependentUpon>ConfigurarUsuarioView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Seguridad\MantenerModuloView.xaml.cs">
-      <DependentUpon>MantenerModuloView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Seguridad\MantenerUsuarioView.xaml.cs">
       <DependentUpon>MantenerUsuarioView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Layouts\TitleBarTemplate.xaml.cs">
       <DependentUpon>TitleBarTemplate.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Seguridad\RegistrarModuloView.xaml.cs">
-      <DependentUpon>RegistrarModuloView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\RegistrarUsuarioView.xaml.cs">
       <DependentUpon>RegistrarUsuarioView.xaml</DependentUpon>
@@ -815,19 +811,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Seguridad\MantenerModuloView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Seguridad\MantenerUsuarioView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Layouts\TitleBarTemplate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Seguridad\RegistrarModuloView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
