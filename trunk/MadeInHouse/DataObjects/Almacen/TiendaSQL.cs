@@ -27,15 +27,8 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@direccion",p.Direccion);
             db.cmd.Parameters.AddWithValue("@ubigeo",p.Ubigeo.IdUbigeo);
-            
             db.cmd.Parameters.AddWithValue("@fechaReg", p.FechaReg.Date);
-
-/*          db.cmd.Parameters.AddWithValue("@tipoUso", p.TipoUso);
-            db.cmd.Parameters.AddWithValue("@abreviatura", p.Abreviatura);
-            db.cmd.Parameters.AddWithValue("@observaciones", p.Observaciones);
-            db.cmd.Parameters.AddWithValue("@idSubLinea", p.IdSubLinea);
-            db.cmd.Parameters.AddWithValue("@idLinea", p.IdLinea);
-            db.cmd.Parameters.AddWithValue("@estado", p.Estado);*/
+            db.cmd.Parameters.AddWithValue("@estado", p.Estado);
 
             try
             {

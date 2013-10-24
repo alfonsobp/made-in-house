@@ -120,6 +120,7 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return selectedValueSub; }
             set
             {
+                
                 selectedValueSub = value;
                 TxtCodigo=CodigoProducto();
             }
