@@ -16,7 +16,6 @@ namespace MadeInHouse.Models.Seguridad
             set { idUsuario = value; }
         }
 
-
         private string codUsuario;
 
         public string CodUsuario
@@ -34,6 +33,14 @@ namespace MadeInHouse.Models.Seguridad
         //private DateTime fechaReg { get; set; }
         //private DateTime fechaMod { get; set; }
 
+        private int idRol;
+
+        public int IdRol
+        {
+            get { return idRol; }
+            set { idRol = value; }
+        }
+
         int estado;
 
         public int Estado
@@ -46,12 +53,13 @@ namespace MadeInHouse.Models.Seguridad
             
         }
 
-        public Usuario(string codUsuario, string contrasenha, int estado) {
+        public Usuario(string codUsuario, string contrasenha, int estado, int idRol) {
 
             this.codUsuario = codUsuario;
             this.contrasenha = contrasenha;
             //this.fechaReg = fechaReg;
             //this.fechaMod = fechaMod;
+            this.idRol = idRol;
             this.estado = estado;
 
         }

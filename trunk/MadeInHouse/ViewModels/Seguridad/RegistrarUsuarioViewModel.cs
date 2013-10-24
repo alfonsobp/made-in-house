@@ -5,19 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Seguridad;
+using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.Seguridad;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Controls;
-
+using MadeInHouse.DataObjects.Seguridad;
 namespace MadeInHouse.ViewModels.Seguridad
 {
-    class RegistrarUsuarioViewModel : Screen
+    class RegistrarUsuarioViewModel : PropertyChangedBase
     {
 
         public RegistrarUsuarioViewModel()
         {
+            RolSQL rolSQL = new RolSQL();
+            LstRol = rolSQL.ListarRol();
         }
 
 
@@ -45,6 +48,30 @@ namespace MadeInHouse.ViewModels.Seguridad
             set { txtContrasenhaTB2 = value; NotifyOfPropertyChange(() => TxtContrasenhaTB2); }
         }
 
+        private int idRolValue;
+
+        public int IdRolValue
+        {
+            get { return idRolValue; }
+            set { idRolValue = value; NotifyOfPropertyChange(() => IdRolValue); }
+        }
+
+        private BindableCollection<Rol> lstRol;
+
+        public BindableCollection<Rol> LstRol
+        {
+            get { return lstRol; }
+            set
+            {
+                if (this.lstRol == value)
+                {
+                    return;
+                }
+                this.lstRol = value;
+                this.NotifyOfPropertyChange(() => this.lstRol);
+            }
+        }
+
         public void GuardarUsuario()
         {
             Trace.WriteLine("textooooooo");
@@ -58,9 +85,16 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                 int k;
 
+                CifrarAES cifradoAES = new CifrarAES();
+
+                string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "AjpdSoft_Frase_Encriptado",
+                        "AjpdSoft_Frase_Encriptado", "MD5", 22, "1234567891234567", 128);
+                Trace.WriteLine("<<<<" + ContrasenhaCifrada + ">>>>");
+
                 Usuario u = new Usuario();
                 u.CodUsuario = txtCodUsuario;
-                u.Contrasenha = TxtContrasenhaTB;
+                u.Contrasenha = ContrasenhaCifrada;
+                u.IdRol = IdRolValue;
                 u.Estado = 1;
 
                 k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Diagnostics;
 
 using MadeInHouse.Models.Seguridad;
 
@@ -17,19 +18,26 @@ namespace MadeInHouse.DataObjects.Seguridad
         //AGREGAR
         public static int agregarUsuario(Usuario u)
         {
+
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Usuario(codEmpleado,contrasenha,estado) " +
-            "VALUES (@codEmpleado,@contrasenha,@estado)";
+            cmd.CommandText = "INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (@codEmpleado,@contrasenha,@estado,@rol,getdate(),getdate())";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
+            Trace.WriteLine("Flag1");
+            Trace.WriteLine("<" + u.CodUsuario + ">");
+            Trace.WriteLine("<" + u.Contrasenha + ">");
+            Trace.WriteLine("<" + u.IdRol + ">");
+            Trace.WriteLine("<" + u.Estado + ">");
 
             cmd.Parameters.AddWithValue("@codEmpleado", u.CodUsuario);
             cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
+            cmd.Parameters.AddWithValue("@rol", u.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
+            
 
             try
             {
@@ -44,9 +52,46 @@ namespace MadeInHouse.DataObjects.Seguridad
             return k;
         }
 
-        public static int autenticarUsuario(string TxtUser, string TxtPasswordUser){
-
+        public static int autenticarUsuario(string CodUsuario, string Password)
+        {
             return 1;
+            //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            //SqlCommand cmd = new SqlCommand();
+            //SqlDataReader reader;
+
+            //cmd.CommandText = "SELECT contrasenha FROM Usuario WHERE codEmpleado = @codEmpleado ";
+            //cmd.CommandType = CommandType.Text;
+            //cmd.Connection = conn;
+
+            //cmd.Parameters.AddWithValue("@codEmpleado", CodUsuario);
+
+            //try
+            //{
+            //    conn.Open();
+            //    reader = cmd.ExecuteReader();
+
+            //    while (reader.Read())
+            //    {
+            //        string contrasenha;
+
+            //        //Servicio s = new Servicio();
+            //        //s.Codigo = reader["codServicio"].ToString();
+            //        //s.Nombre = reader["nombre"].ToString();
+            //        //s.Proveedor = getCODfromProv((int)(reader["idProveedor"]));
+            //        //s.Descripcion = reader["descripcion"].ToString();
+
+            //        //lstServicio.Add(s);
+            //    }
+
+            //    conn.Close();
+
+            //}
+            //catch (Exception e)
+            //{
+            //    MessageBox.Show(e.StackTrace.ToString());
+            //}
+
+            //return contrasenha;
 
         }
 
