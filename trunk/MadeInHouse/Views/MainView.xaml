@@ -246,6 +246,7 @@
                         <Button Background="gRAY" Foreground="white" BorderThickness="0" Content="Empleado" FontSize="20"  Grid.Row="0"/>
                         <Button x:Name="AbrirRegistrarEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1"/>
                         <Button x:Name="AbrirMantenerEmpleado"  Background="Black" Foreground="white" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2"/>
+                        <Button x:Name="AbrirMantenerRol"  Background="Black" Foreground="white" BorderThickness="0" Content="Mantenimiento de Rol" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirCargarOrganigrama"  Background="Black" Foreground="white" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="4"/>
                     </Grid>
                 </Expander>
@@ -337,7 +338,6 @@
                         <Button x:Name="AbrirMantenerTipoZona"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2"/>
                         <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
-                        <Button x:Name="AbrirMantenerModulo"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Módulo" FontSize="20"  Grid.Row="5"/>
                         <Button x:Name="AbrirMantenerMotivo"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6"/>
 
                     </Grid>
