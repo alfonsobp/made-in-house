@@ -1,4 +1,5 @@
-﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.MantenerGuiaDeRemisionView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  
+             x:Class="MadeInHouse.Views.Almacen.MantenerGuiaDeRemisionView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -33,7 +34,7 @@
                     <Button>
                         <Image Source="/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button x:Name="GuardarGuiaDeRemision">
                         <Image Source="/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -76,14 +77,14 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Código:" HorizontalAlignment="Left" Margin="17,25,0,0" VerticalAlignment="Top" Width="47" Height="20"/>
-                        <TextBox HorizontalAlignment="Left" Height="22" Margin="108,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+                        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="22" Margin="108,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
                         <TextBlock Text="Fecha:" HorizontalAlignment="Left" Margin="17,75,0,0" VerticalAlignment="Top" Width="62" Height="22"/>
                         <TextBlock Text="Tipo:" HorizontalAlignment="Left" Margin="17,50,0,0" VerticalAlignment="Top" Width="47" Height="20" RenderTransformOrigin="0.468,0.462"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="108,50,0,0" VerticalAlignment="Top" Width="160" Height="22">
+                        <ComboBox x:Name="CbTipo" HorizontalAlignment="Left" Margin="108,50,0,0" VerticalAlignment="Top" Width="160" Height="22">
                             <ComboBoxItem Content="GR-Traslado interno" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="GR-Traslado externo" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
-                        <DatePicker HorizontalAlignment="Left" Margin="108,77,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
+                        <DatePicker x:Name="TxtFechaReg" HorizontalAlignment="Left" Margin="108,77,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Grid.Column="2" Header="GroupBox" Margin="10,57,10,10">
@@ -91,23 +92,23 @@
                         <Label Content="Doc. Ref.:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="87" Margin="10,20,0,0"/>
                         <Label Content="Cliente/Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="87" Margin="10,51,0,0"/>
                         <Label Content="Dirección:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.079,0.385" Height="26" Width="60" Margin="10,82,0,0"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
-                        <TextBox HorizontalAlignment="Left" Margin="120,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="22"/>
-                        <TextBox HorizontalAlignment="Left" Margin="120,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="24"/>
+                        <TextBox x:Name="TxtDocRef" HorizontalAlignment="Left" Height="23" Margin="120,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154"/>
+                        <TextBox x:Name="TxtTienda" HorizontalAlignment="Left" Margin="120,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="22"/>
+                        <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Margin="120,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="24"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Información general" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
                     <Grid>
                         <Label Content="Almacen origen:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="103"/>
                         <Label Content="Inventario origen:" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397" />
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="192,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
+                        <TextBox x:Name="TxtDirPartida" HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397" />
+                        <TextBox x:Name="TxtDirLlegada" HorizontalAlignment="Left" Height="23" Margin="192,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
                         <Label Content="Fecha de traslado:" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.5" Height="26" Width="112"/>
                         <DatePicker HorizontalAlignment="Left" Margin="192,280,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
                         <Label Content="Camión:" HorizontalAlignment="Left" Margin="20,239,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
                         <Label Content="Conductor:" HorizontalAlignment="Left" Margin="20,199,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="192,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="192,243,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
+                        <TextBox x:Name="TxtConductor" HorizontalAlignment="Left" Height="23" Margin="192,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
+                        <ComboBox x:Name="CbCamion" HorizontalAlignment="Left" Margin="192,243,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
                         <Label Content="Dirección de partida:" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top" Width="126" Height="26"/>
                         <Label Content="Dirección de llegada:" HorizontalAlignment="Left" Margin="18,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.484,0.5" Width="126" Height="26"/>
                         <ComboBox HorizontalAlignment="Left" Margin="192,36,0,0" VerticalAlignment="Top" Width="397" Height="22"/>

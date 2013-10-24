@@ -147,8 +147,7 @@ namespace MadeInHouse.ViewModels.Compras
                                 "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
                                 txtTelefonoContacto + "\nDireccion = " + txtDireccion);
                  
-                       
-                
+                                       
 
             }
 
