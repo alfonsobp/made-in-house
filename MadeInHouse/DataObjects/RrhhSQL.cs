@@ -23,8 +23,8 @@ namespace MadeInHouse.DataObjects
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg) " +
-            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg)";
+            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,emailEmpresa) " +
+            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@emailEmpresa)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -36,6 +36,8 @@ namespace MadeInHouse.DataObjects
             cmd.Parameters.AddWithValue("@telefono", p.Telefono);
             cmd.Parameters.AddWithValue("@celular", p.Celular);
             cmd.Parameters.AddWithValue("@email", p.EmailEmpleado);
+            cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
+            cmd.Parameters.AddWithValue("@direccion", p.Direccion);
             //cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
 
             //cmd.Parameters.AddWithValue("@RUC", p.Ruc);
@@ -57,7 +59,7 @@ namespace MadeInHouse.DataObjects
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                //MessageBox.Show(e.StackTrace.ToString());
             }
 
 
