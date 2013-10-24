@@ -51,7 +51,7 @@
                             <Label Content="E-mail:" HorizontalAlignment="Left" Margin="451,224,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.043,0.538"/>
 
                             <TextBox x:Name="TxtCodEmp" HorizontalAlignment="Left" Height="23" Margin="137,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
-                            <TextBox x:Name="TxtDNI" HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" Text="46065492"/>
+                            <TextBox x:Name="TxtDni" HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" Text="46065492"/>
                             <TextBox x:Name="TxtNomb" HorizontalAlignment="Left" Height="23" Margin="137,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                             <TextBox x:Name="TxtApePat" HorizontalAlignment="Left" Height="23" Margin="137,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
                             <TextBox x:Name="TxtApeMat" HorizontalAlignment="Left" Height="23" Margin="137,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
