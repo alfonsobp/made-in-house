@@ -19,10 +19,10 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Motivo(motivo) VALUES (@motivo)";
+            cmd.CommandText = "INSERT INTO MotivoIS(nombre) VALUES (@motivo)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@motivo", m.motivo);
+            cmd.Parameters.AddWithValue("@motivo", m.NombreMotivo);
 
             try
             {
@@ -48,7 +48,7 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Motivo";
+            cmd.CommandText = "SELECT * FROM MotivoIS";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -60,8 +60,8 @@ namespace MadeInHouse.DataObjects.Almacen
                 while (reader.Read())
                 {
                     Motivo m = new Motivo();
-                    m.id = reader.IsDBNull(reader.GetOrdinal("idMotivo")) ? -1 : (int)reader["idMotivo"];
-                    m.motivo = reader.IsDBNull(reader.GetOrdinal("motivo")) ? null : reader["motivo"].ToString();
+                    m.Id = reader.IsDBNull(reader.GetOrdinal("idMotivo")) ? -1 : (int)reader["idMotivo"];
+                    m.NombreMotivo = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     listaMotivos.Add(m);
                 }
 

@@ -29,10 +29,10 @@
                 </ToolBar>
 
                 <DataGrid x:Name="LstMotivos" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
-                          HeadersVisibility="Column" Margin="10,91,10,10">
+                          HeadersVisibility="Column" Margin="10,91,10,10" AutoGenerateColumns="False" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Id}" Header="Codigo" Width="60"/>
-                        <DataGridTextColumn Binding="{Binding Path=Motivo}" Header="Motivo" Width="220"/>
+                        <DataGridTextColumn Binding="{Binding Path=NombreMotivo}" Header="Motivo" Width="220"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label Content="Motivo:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>

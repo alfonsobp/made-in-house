@@ -8,8 +8,8 @@ namespace MadeInHouse.Models.Almacen
 {
     class Motivo
     {
-        public int id { get; set; }
-        public string motivo { get; set; }
+        public int Id { get; set; }
+        public string NombreMotivo { get; set; }
 
         public Motivo() { }
     }
