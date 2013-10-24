@@ -20,13 +20,11 @@ namespace MadeInHouse.ViewModels
 {
     public class MainViewModel : Conductor<IScreen>.Collection.OneActive
     {
-        
         private MyWindowManager win = new MyWindowManager();
 
         public static List<List<Window>> MinWin = new List<List<Window>>();
 
         private Acceso accesoRol = new Acceso();
-        
 
         int[] accModulo = new int[7];
         int[,] accVentana = new int[7,50];
@@ -165,22 +163,6 @@ namespace MadeInHouse.ViewModels
                 win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
         }
 
-        //Ventana Externa: 0.12
-        public void AbrirMantenimientoInventarioViewModel()
-        {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 12]) == 1)
-            {
-                // ActivateItem(new Almacen.MantenimientoInventarioViewModel { DisplayName = "Mantenimiento inventario" });
-            }
-        }
-
-        //Ventana Externa: 0.13
-        public void AbrirAnularDocumentos()
-        {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 13]) == 1)
-                win.ShowWindow(new Almacen.AnularDocumentosViewModel());
-        }
-
         */
 
         //Ventana Externa: 0.0
@@ -271,221 +253,236 @@ namespace MadeInHouse.ViewModels
         {
                 win.ShowWindow(new Almacen.AnularDocumentosViewModel());
         }
-
-
-
+                
         #endregion Almacen
 
         #region Compras
 
-        public void AbrirBuscarDocumentos() {
-          
-            win.ShowWindow(new  Compras.BuscarDocumentoViewModel{ DisplayName = "Buscador Documentos de  Pago" });
-           
-        }
-
-        public void AbrirBuscarOrdenCompra()
+        //Ventana Externa: 1.0
+        public void AbrirBuscadorProveedor()
         {
-          
-            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel{ DisplayName = "Buscador Orden de compra" };
-            win.ShowWindow(obj);
-         
-        }
-
-      
-        public void AbrirBuscadorServicio()
-        {
-           
-            Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel { DisplayName = "Buscador de Servicios" };
-            win.ShowWindow(obj);
-        }
-
-        public void AbrirCatalogoProductoProveedor()
-        {
-
-          
-            Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel();
-            win.ShowWindow(obj);
-        }
-
-      
-
-        public void AbrirBuscadorProveedor() {
-           
             Compras.BuscadorProveedorViewModel obj = new Compras.BuscadorProveedorViewModel { DisplayName = "Buscar Proveedor" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirNuevoServicio()
+        //Ventana Externa: 1.1
+        public void AbrirMantenerProveedor()
         {
-     
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
-            win.ShowWindow(obj);
-        }
-
-  
-        public void AbrirGenerarOrdenCompra()
-        {
-           
-            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" };
-            win.ShowWindow(obj);
-        }
-    
-        public void AbrirMantenerProveedor() {
-
-          
             Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Proveedor" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirMantenerSolicitudesAdquisicion()
+        //Ventana Externa: 1.2
+        public void AbrirCatalogoProductoProveedor()
         {
-           
-            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Solicitudes de Adquisicion" };
+            Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel();
             win.ShowWindow(obj);
         }
 
+        //Ventana Externa: 1.3
+        public void AbrirNuevoServicio()
+        {
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
+            win.ShowWindow(obj);
+        }
+
+        //Ventana Externa: 1.4
+        public void AbrirBuscadorServicio()
+        {
+            Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel { DisplayName = "Buscador de Servicios" };
+            win.ShowWindow(obj);
+        }
+
+        //Ventana Externa: 1.5
         public void AbrirBuscadorSolicitudesAdquisicion()
         {
-         
             Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel { DisplayName = "Buscador de Solicitudes de Adquisicion" };
             win.ShowWindow(obj);
         }
-        
-        public void AbrirSeleccionDeProveedores() {
-            
+
+        //Ventana Externa: 1.6
+        public void AbrirSeleccionDeProveedores()
+        {
             Compras.SeleccionDeProveedoresViewModel obj = new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" };
             win.ShowWindow(obj);
         }
 
-        public void AbrirRegistrarDocumentos()
+        //Ventana Externa: 1.7
+        public void AbrirGenerarOrdenCompra()
         {
-            
-            Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel { DisplayName = "Registrar Documentos" };
-            win.ShowWindow(obj);
-            
-        }
-
-        public void AbrirBuscarCotizacion()
-        {
-          
-            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel{ DisplayName = "Buscador Cotizaciones" };
+            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" };
             win.ShowWindow(obj);
         }
 
+        //Ventana Externa: 1.8
+        public void AbrirBuscarOrdenCompra()
+        {
+            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel { DisplayName = "Buscador Orden de compra" };
+            win.ShowWindow(obj);
+        }
+
+        //Ventana Externa: 1.9
         public void AbrirNuevaCotizacion()
         {
-           
             Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel { DisplayName = "Cotizacion" };
             win.ShowWindow(obj);
         }
 
+        //Ventana Externa: 1.10
+        public void AbrirBuscarCotizacion()
+        {
+            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel { DisplayName = "Buscador Cotizaciones" };
+            win.ShowWindow(obj);
+        }
+
+        //Ventana Externa: 1.11
+        public void AbrirRegistrarDocumentos()
+        {
+            Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel { DisplayName = "Registrar Documentos" };
+            win.ShowWindow(obj);
+        }
+
+        //Ventana Externa: 1.12
+        public void AbrirBuscarDocumentos()
+        {
+            win.ShowWindow(new Compras.BuscarDocumentoViewModel { DisplayName = "Buscador Documentos de  Pago" });
+        }
+
+        //Ventana Externa: 1.13 - ESTA NO ESTÁ IMPLEMENTADA!
+        public void AbrirMantenerSolicitudesAdquisicion()
+        {
+            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Solicitudes de Adquisicion" };
+            win.ShowWindow(obj);
+        }
 
         #endregion Compras
         
         #region Ventas
+
+        //Ventana Externa: 2.0
         public void AbrirListadoCliente()
         {
             win.ShowWindow(new Ventas.ClienteBuscarViewModel());
         }
+
+        //Ventana Externa: 2.1
         public void AbrirNuevoCliente()
         {
             win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
         }
 
+        //Ventana Externa: 2.2
         public void AbrirListadoVenta()
         {
             win.ShowWindow(new Ventas.VentaBuscarViewModel());
         }
 
+        //Ventana Externa: 2.3
         public void AbrirNuevaVenta()
         {
             win.ShowWindow(new Ventas.VentaRegistrarViewModel());
         }
+
+        //Ventana Externa: 2.4
         public void AbrirNuevaVentaCajero()
         {
             win.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
         }
 
+        //Ventana Externa: 2.5
         public void AbrirProforma()
         {
             win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
         }
-        public void AbrirListadoPrecios()
-        {
-            win.ShowWindow(new Ventas.PreciosBuscarViewModel());
-        }
 
+        //Ventana Externa: 2.6
         public void AbrirListadoDevoluciones()
         {
             win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
         }
+
+        //Ventana Externa: 2.7
         public void AbrirRegistrarDevolucion()
         {
             win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
         }
 
-
+        //Ventana Externa: 2.8
         public void AbrirListadoNotaCredito()
         {
             win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
         }
 
+        //Ventana Externa: 2.9
         public void AbrirListadoPromoProducto()
         {
             win.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
         }
 
-        public void AbrirListadoPromoServicio()
-        {
-            win.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
-        }
-
-        public void AbrirNuevaPromoServicio()
-        {
-            win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
-        }
-
+        //Ventana Externa: 2.10
         public void AbrirNuevaPromoProducto()
         {
             win.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
         }
 
+        //Ventana Externa: 2.11
+        public void AbrirListadoPromoServicio()
+        {
+            win.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
+        }
+
+        //Ventana Externa: 2.12
+        public void AbrirNuevaPromoServicio()
+        {
+            win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
+        }
+
+        //Ventana Externa: 2.13
+        public void AbrirListadoPrecios()
+        {
+            win.ShowWindow(new Ventas.PreciosBuscarViewModel());
+        }
+
+
+        
+
+
+
         #endregion Ventas
 
         #region RRHH
 
+        //Ventana Externa: 3.0
         public void AbrirRegistrarEmpleado()
         {
             win.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { DisplayName = "Registrar Empleado" });
         }
 
+        //Ventana Externa: 3.1
         public void AbrirMantenerEmpleado()
         {
             win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantenimiento Empleado" });
         }
 
-        public void AbrirControlarAsistenciaEmpleado()
-        {
-            win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
-        }
-
+        //Ventana Externa: 3.2
         public void AbrirMantenerRol()
         {
             win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento de Roles" });
         }
 
-
+        //Ventana Externa: 3.3
         public void AbrirCargarOrganigrama()
         {
             win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Cargar Organigrama" });
         }
 
+        //Ventana Externa: 3.5
         public void AbrirBuscarEmpleado()
         {
             win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
         }
 
+        //Ventana Externa: 3.6
         public void AbrirBuscarOrganigrama()
         {
             win.ShowWindow(new RRHH.BuscarOrganigramaViewModel { DisplayName = "Buscar Organigrama" });
@@ -495,61 +492,90 @@ namespace MadeInHouse.ViewModels
         
         #region Seguridad
 
+        //Ventana Externa: 4.0
         public void AbrirRegistrarUsuario()
         {
             win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { DisplayName = "Registrar usuario" });
         }
 
+        //Ventana Externa: 4.1
         public void AbrirMantenerUsuario()
         {
             win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantenimiento de usuario" });
 
+        }
+
+        //Ventana Externa: 4.2
+        public void AbrirConfigurarUsuario()
+        {
+            win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
         }
         
         #endregion Seguridad
 
         #region Reportes
 
+        //Ventana Externa: 5.0
         public void AbrirReporteTardanzas()
         {
             win.ShowWindow(new Reportes.reporteTardanzasViewModel { DisplayName = "Reporte de Tardanzas" });
         }
-        public void AbrirReporteVentas()
-        {
-            win.ShowWindow(new Reportes.reporteVentasViewModel { DisplayName = "Reporte de Ventas" });
-        }
-        public void AbrirReporteServicios()
-        {
-            win.ShowWindow(new Reportes.reporteServiciosViewModel { DisplayName = "Reporte de Servicios" });
-        }
-        public void AbrirReporteDevoluciones()
-        {
-            win.ShowWindow(new Reportes.reporteDevolucionesViewModel { DisplayName = "Reporte de Devoluciones" });
-        }
+
+        //Ventana Externa: 5.1
         public void AbrirReporteAcciones()
         {
             win.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
         }
+
+        //Ventana Externa: 5.2
+        public void AbrirReporteVentas()
+        {
+            win.ShowWindow(new Reportes.reporteVentasViewModel { DisplayName = "Reporte de Ventas" });
+        }
+
+        //Ventana Externa: 5.3
+        public void AbrirReporteServicios()
+        {
+            win.ShowWindow(new Reportes.reporteServiciosViewModel { DisplayName = "Reporte de Servicios" });
+        }
+
+        //Ventana Externa: 5.4
+        public void AbrirReporteDevoluciones()
+        {
+            win.ShowWindow(new Reportes.reporteDevolucionesViewModel { DisplayName = "Reporte de Devoluciones" });
+        }
+
+        //Ventana Externa: 5.5
         public void AbrirReporteCompra()
         {
             win.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
         }
+
+        //Ventana Externa: 5.6
         public void AbrirReporteEntradaSalidaProd()
         {
             win.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
         }
+
+        //Ventana Externa: 5.7
         public void AbrirReporteSolicitudes()
         {
             win.ShowWindow(new Reportes.reporteSolicitudesViewModel { DisplayName = "Reporte de Solicitudes de compra" });
         }
+
+        //Ventana Externa: 5.8
         public void AbrirReporteStock()
         {
             win.ShowWindow(new Reportes.reporteStockViewModel { DisplayName = "Reporte de Stock de productos" });
         }
+
+        //Ventana Externa: 5.9
         public void AbrirReportePromocionesTop()
         {
             win.ShowWindow(new Reportes.reportePromocionesFrecuentesViewModel { DisplayName = "Reporte de Promociones Top" });
         }
+
+        //Ventana Externa: 5.10
         public void AbrirReporteProductosCanjePuntos()
         {
             win.ShowWindow(new Reportes.reporteProductosCanjePuntosViewModel { DisplayName = "Reporte de Productos canjeados por Puntos" });
@@ -558,38 +584,48 @@ namespace MadeInHouse.ViewModels
         #endregion
 
         #region Configuracion
-        public void AbrirConfigurarUsuario()
-        {
-            win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
-        }
-        public void AbrirMantenerTipoZona()
-        {
-            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
-        }
-        public void AbrirMantenerLineaProducto()
-        {
-            win.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
-        }
 
-        public void AbrirMantenerSubLineaProducto()
-        {
-            win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel());
-        }
+        //Ventana Externa: 6.0
         public void AbrirMantenerTienda()
         {
             win.ShowWindow(new Almacen.MantenerTiendaViewModel());
         }
 
+        //Ventana Externa: 6.1
+        public void AbrirControlarAsistenciaEmpleado()
+        {
+            win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
+        }
+
+        //Ventana Externa: 6.2
+        public void AbrirMantenerTipoZona()
+        {
+            win.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
+        }
+
+        //Ventana Externa: 6.3
+        public void AbrirMantenerLineaProducto()
+        {
+            win.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
+        }
+
+        //Ventana Externa: 6.4
+        public void AbrirMantenerSubLineaProducto()
+        {
+            win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel());
+        }
+
+        //Ventana Externa: 6.5
         public void AbrirMantenerModulo()
         {
             win.ShowWindow(new Seguridad.MantenerModuloViewModel());
         }
 
+        //Ventana Externa: 6.6
         public void AbrirMantenerMotivo()
         {
             win.ShowWindow(new Almacen.MantenerMotivoViewModel());
         }
-
         #endregion Configuracion
 
     }
