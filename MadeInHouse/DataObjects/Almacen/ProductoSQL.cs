@@ -21,19 +21,16 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public void AgregarProducto(Producto p)
         {
-            db.cmd.CommandText = "INSERT INTO Producto(codProducto, nombre, descripcion, unidadMedida, percepcion,tipoUso,abreviatura,observaciones,idSubLinea,idLinea,estado)" +
-            "VALUES (@codProveedor,@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefContacto,@email,@ruc)";
+            db.cmd.CommandText = "INSERT INTO Producto(codProducto, nombre, descripcion, percepcion,idSubLinea,idLinea,estado) " +
+            "VALUES (@codProducto,@nombre,@descripcion,@percepcion,@idSubLinea,@idLinea,@estado)";
             db.cmd.Parameters.AddWithValue("@codProducto", p.CodigoProd);
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@descripcion", p.Descripcion);
-            db.cmd.Parameters.AddWithValue("@unidadMedida", p.UnidadMedida);
+            //db.cmd.Parameters.AddWithValue("@unidadMedida", "unidad");
             db.cmd.Parameters.AddWithValue("@percepcion", p.Percepcion);
-            db.cmd.Parameters.AddWithValue("@tipoUso", p.TipoUso);
-            db.cmd.Parameters.AddWithValue("@abreviatura", p.Abreviatura);
-            db.cmd.Parameters.AddWithValue("@observaciones", p.Observaciones);
             db.cmd.Parameters.AddWithValue("@idSubLinea", p.IdSubLinea);
             db.cmd.Parameters.AddWithValue("@idLinea", p.IdLinea);
-            db.cmd.Parameters.AddWithValue("@estado", p.Estado);
+            db.cmd.Parameters.AddWithValue("@estado", 1);
 
             try
             {
@@ -125,7 +122,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
 
-        public List<Producto> BuscarProducto(String codigo, String tipoUso, int idLinea, int idSubLinea)
+        public List<Producto> BuscarProducto(String codigo, int idLinea, int idSubLinea)
         {
             List<Producto> listaProductos = null;
             
@@ -135,22 +132,18 @@ namespace MadeInHouse.DataObjects.Almacen
             if (!String.IsNullOrEmpty(codigo))
             {
                 where = where + " AND codProducto = @codigo ";
-                db.cmd.Parameters.Add(new SqlParameter("codProducto", codigo));
+                db.cmd.Parameters.AddWithValue("@codigo", codigo);
             }
-            if (!String.IsNullOrEmpty(tipoUso))
-            {
-                where = where + " AND tipoUso=@tipoUso ";
-                db.cmd.Parameters.Add(new SqlParameter("tipoUso", tipoUso));
-            }
-            if (idLinea != -1)
+            
+            if (idLinea != 0)
             {
                 where = where + " AND idLinea=@idLinea ";
-                db.cmd.Parameters.Add(new SqlParameter("idLinea", idLinea));
+                db.cmd.Parameters.AddWithValue("@idLinea", idLinea);
             }
-            if (idSubLinea != -1)
+            if (idSubLinea != 0)
             {
                 where = where + " AND idSubLinea=@idSubLinea ";
-                db.cmd.Parameters.Add(new SqlParameter("idSubLinea", idSubLinea));
+                db.cmd.Parameters.AddWithValue("@idSubLinea", idSubLinea);
             }
 
             db.cmd.CommandText = "SELECT * FROM Producto " + where;
@@ -165,12 +158,12 @@ namespace MadeInHouse.DataObjects.Almacen
                     if (listaProductos == null) listaProductos = new List<Producto>();
                     Producto p = new Producto();
                     p.CodigoProd = reader.IsDBNull(reader.GetOrdinal("codProducto")) ? null : reader["codProducto"].ToString();
-                    p.TipoUso = reader.IsDBNull(reader.GetOrdinal("tipoUso")) ? null : reader["tipoUso"].ToString();
                     p.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
                     p.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
+                    listaProductos.Add(p);
                     
                 }
-
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
             }
             catch (SqlException e)

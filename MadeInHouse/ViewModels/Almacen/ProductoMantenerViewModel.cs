@@ -34,14 +34,26 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtDescrip = value; NotifyOfPropertyChange(() => TxtDescrip); }
         }
 
-        private Dictionary<string, int> lineasProducto = new Dictionary<string, int>();
+        private bool percepcion;
 
-        public List<string> CmbLinea
+        public bool Percepcion
         {
-            get
-            {
-                return new List<string>(lineasProducto.Keys);
-            }
+            get { return percepcion; }
+            set { percepcion = value; }
+        }
+        private bool interno;
+
+        public bool Interno
+        {
+            get { return interno; }
+            set { interno = value; }
+        }
+        private bool venta;
+
+        public bool Venta
+        {
+            get { return venta; }
+            set { venta = value; }
         }
 
 
@@ -109,6 +121,7 @@ namespace MadeInHouse.ViewModels.Almacen
             set
             {
                 selectedValueSub = value;
+                TxtCodigo=CodigoProducto();
             }
         }
 
@@ -120,9 +133,9 @@ namespace MadeInHouse.ViewModels.Almacen
         }
         private SubLineaProducto GetSubLinea(int idSubLinea)
         {
-            return (from lp in LstSubLineasProducto
-                    where lp.IdSubLinea == idSubLinea
-                    select lp).FirstOrDefault();
+            return (from slp in LstSubLineasProducto
+                    where slp.IdSubLinea == idSubLinea
+                    select slp).FirstOrDefault();
         }
 
 
@@ -133,8 +146,11 @@ namespace MadeInHouse.ViewModels.Almacen
             pSQL = new ProductoSQL();
             Producto p = new Producto();
             p.Nombre = TxtNombre;
+            p.CodigoProd = TxtCodigo;
             p.IdLinea = SelectedValue;
             p.IdSubLinea = SelectedValueSub;
+            p.Percepcion = Percepcion==true ? 1:0;
+            p.Descripcion = TxtDescrip;
             pSQL.AgregarProducto(p);
 
         }
@@ -142,8 +158,7 @@ namespace MadeInHouse.ViewModels.Almacen
         private string CodigoProducto()
         {
             UtilesSQL util = new UtilesSQL();
-            string cod = GetLinea(SelectedValue).Abreviatura;
-
+            string cod = GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura+(util.ObtenerMaximoID("Producto","idProducto")+1).ToString();
             return cod;
         }
 
@@ -152,8 +167,8 @@ namespace MadeInHouse.ViewModels.Almacen
         public ProductoMantenerViewModel()
         {
 
-            LineaProductoSQL slpSQL = new LineaProductoSQL();
-            LstLineasProducto = slpSQL.ObtenerLineasProducto();
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
         }
 
 
