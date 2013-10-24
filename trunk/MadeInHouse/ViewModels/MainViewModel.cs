@@ -462,10 +462,17 @@ namespace MadeInHouse.ViewModels
         }
 
         //Ventana Externa: 3.2
+        public void AbrirMantenerRol()
+        {
+            win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Mantenimiento Rol" });
+        }
+
+        //Ventana Externa: 3.3
         public void AbrirCargarOrganigrama()
         {
             win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Cargar Organigrama" });
         }
+
         #endregion RRHH
 
         #region Clima_Laboral
@@ -609,12 +616,6 @@ namespace MadeInHouse.ViewModels
         }
 
         //Ventana Externa: 7.5
-        public void AbrirMantenerModulo()
-        {
-            win.ShowWindow(new Seguridad.MantenerModuloViewModel());
-        }
-
-        //Ventana Externa: 7.6
         public void AbrirMantenerMotivo()
         {
             win.ShowWindow(new Almacen.MantenerMotivoViewModel());
