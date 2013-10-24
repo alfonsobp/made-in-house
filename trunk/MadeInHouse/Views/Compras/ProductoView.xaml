@@ -40,7 +40,7 @@
                 <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
                 <TextBox Text="{Binding Cp.Proveedor.RazonSocial}"  HorizontalAlignment="Left" Height="38" Margin="23,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="250"/>
                 <TextBox  Text="{Binding Cp.Precio}" HorizontalAlignment="Left" Height="38" Margin="23,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <ComboBox SelectedItem="{Binding Cp.Estado, Mode=TwoWay}" ItemsSource="{Binding Estados, Mode=OneWay}"  HorizontalAlignment="Left" Margin="159,219,0,0" VerticalAlignment="Top" Width="114" Height="38"/>
+                <ComboBox SelectedItem="{Binding Cp.Estado, Mode=TwoWay}" ItemsSource="{Binding Estados, Mode=OneWay}"  HorizontalAlignment="Left" Margin="160,219,0,0" VerticalAlignment="Top" Width="114" Height="38"/>
                 <Label Content="Precio:" HorizontalAlignment="Left" Margin="24,188,0,0" VerticalAlignment="Top" Width="60"/>
                 <Label Content="Estado:" HorizontalAlignment="Left" Margin="159,188,0,0" VerticalAlignment="Top"/>
                 <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="24,112,0,0" VerticalAlignment="Top" Width="85"/>
