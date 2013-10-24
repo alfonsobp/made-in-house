@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -18,16 +19,15 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public Color BuscarZona(int codigo)
+        public Color BuscarZona(string codigo)
         {
             Color listaColor = new Color();
             
             string where = "WHERE 1=1 ";
 
-            where = where + " AND idColor=@idColor ";
-            db.cmd.Parameters.Add(new SqlParameter("idColor",codigo.ToString()));
+            where = where + " AND codHex=@codHex ";
+            db.cmd.Parameters.Add(new SqlParameter("codHex",codigo));
             
-
             db.cmd.CommandText = "SELECT * FROM Color " + where;
 
             try
@@ -41,7 +41,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     listaColor.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     listaColor.CodHex = reader.IsDBNull(reader.GetOrdinal("codHex")) ? null : reader["codHex"].ToString();
                 }
-
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -56,9 +56,9 @@ namespace MadeInHouse.DataObjects.Almacen
             return listaColor;
         }
 
-        public List<Color> BuscarZona()
+        public ObservableCollection<Color> BuscarZona()
         {
-            List<Color> listaColor = new List<Color>();
+            ObservableCollection<Color> listaColor = new ObservableCollection<Color>();
 
             string where = "WHERE 1=1 ";
 

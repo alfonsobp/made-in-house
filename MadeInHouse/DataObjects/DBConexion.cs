@@ -15,7 +15,7 @@ namespace MadeInHouse.DataObjects
 
         public DBConexion()
         {
-            conn = new SqlConnection(Properties.Settings.Default.localhost);
+            conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;

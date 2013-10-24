@@ -46,9 +46,10 @@
 
                         <DataGrid x:Name="ListaTipoZona" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,92,0,10" Width="550" AutoGenerateColumns="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="110" Binding="{Binding Path=IdTipoZona}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                                <DataGridTextColumn Width="110" Binding="{Binding Path=Nombre}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
-                                <DataGridTextColumn Width="110" Binding="{Binding Path=Color}" ClipboardContentBinding="{x:Null}" Header="Color"/>
+                                <DataGridTextColumn Width="110" Binding="{Binding Path=IdTipoZona}" Header="Codigo"/>
+                                <DataGridTextColumn Width="110" Binding="{Binding Path=Nombre}" Header="Descripcion"/>
+                                <DataGridTextColumn Width="110" Binding="{Binding Path=NombreColor}" Header="Color"/>
+                                
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

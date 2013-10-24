@@ -19,7 +19,7 @@
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="AgregarTipoZona">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>
@@ -35,11 +35,21 @@
         <GroupBox Header="Informacion Zona" HorizontalAlignment="Left" Margin="10,41,0,10" Width="375">
             <Grid Margin="0,0,0,-12">
                 <Label  Content="Codigo:" HorizontalAlignment="Left" Margin="24,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox x:Name="txtIdTipoZona" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                <TextBox x:Name="TxtIdTipoZona" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
                 <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,55,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="123,58,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                 <Label Content="Color:" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top"/>
-                <ComboBox x:Name="CmbColor" ItemsSource="{Binding Path=CmbColor}" SelectedItem="{Binding Path=CmbColorSelected}" Background="{ Binding Path=CmbColor.CodHex}" HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160"/>
+                <ComboBox ItemsSource="{Binding Path=CmbColor}" SelectedValuePath="CodHex" SelectedValue="{Binding Path=CmbColorSelected}"  HorizontalAlignment="Left" Margin="123,90,0,0" VerticalAlignment="Top" Width="160">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Width="20" Height="20" Margin="5" 
+			                    Background="{Binding Path=CodHex}"/>
+                                <TextBlock Text="{Binding Nombre}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
             </Grid>
         </GroupBox>
