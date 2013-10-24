@@ -22,7 +22,7 @@
                     <Button ToolTip="Modificar Producto">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Guardar Producto">
+                    <Button ToolTip="GuardarProducto">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Eliminar Producto">
@@ -37,30 +37,44 @@
                 </ToolBar>
                 
                     <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="469" Margin="0,41,0,-41">
-                        <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
-                        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="123,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                        <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,82,0,0" VerticalAlignment="Top" Width="94"/>
-                        <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,113,0,0" VerticalAlignment="Top" Width="94"/>
-                        <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,144,0,0" VerticalAlignment="Top" Width="94"/>
-                    <ComboBox  ItemsSource="{Binding Path=LstLineasProducto}"
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="14*"/>
+                        <ColumnDefinition Width="53*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="25,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" Grid.Column="1"/>
+                        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="25,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" Grid.Column="1"/>
+                        <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,82,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                        <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,113,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                        <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,144,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                    <ComboBox  SelectedIndex="0"  
+                               SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}"
+                               ItemsSource="{Binding Path=LstLineasProducto}"
                                DisplayMemberPath="Nombre"
                                SelectedValuePath="IdLinea" 
                                HorizontalAlignment="Left" 
-                               Margin="123,86,0,0" 
-                               VerticalAlignment="Top" Width="160"/>
-                        <ComboBox x:Name="CmbSubLinea" HorizontalAlignment="Left" Margin="123,117,0,0" VerticalAlignment="Top" Width="160"/>
-                        <ComboBox x:Name="CmdUniMedida" HorizontalAlignment="Left" Margin="123,148,0,0" VerticalAlignment="Top" Width="160"/>
-                        <CheckBox x:Name="ChkPercepcion" Content="Percepción" HorizontalAlignment="Left" Margin="123,183,0,0" VerticalAlignment="Top" />
-                        <CheckBox x:Name="ChkInterno" Content="Interno" HorizontalAlignment="Left" Margin="123,211,0,0" VerticalAlignment="Top"/>
-                        <CheckBox x:Name="ChkVenta" Content="Venta" HorizontalAlignment="Left" Margin="232,211,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,51,0,0" VerticalAlignment="Top" Width="94"/>
-                        <TextBox x:Name="TxtDescrip" HorizontalAlignment="Left" Height="84" Margin="123,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                               Margin="25,86,0,0" 
+                               VerticalAlignment="Top" Width="160" Grid.Column="1"/>
+                        
+                        <ComboBox  
+                            SelectedValue="{Binding Path=SelectedValueSub,Mode=OneWayToSource}"
+                            SelectedIndex="{Binding Path=SelectedIndex}"
+                            ItemsSource="{Binding Path=LstSubLineasProducto}"
+                            DisplayMemberPath="Nombre"
+                            SelectedValuePath="IdSubLinea" 
+                            
+                            HorizontalAlignment="Left" Margin="25,117,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1"/>
+                        <ComboBox x:Name="CmdUniMedida" HorizontalAlignment="Left" Margin="25,148,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1"/>
+                        <CheckBox x:Name="ChkPercepcion" Content="Percepción" HorizontalAlignment="Left" Margin="25,183,0,0" VerticalAlignment="Top" Grid.Column="1" />
+                        <CheckBox x:Name="ChkInterno" Content="Interno" HorizontalAlignment="Left" Margin="25,211,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <CheckBox x:Name="ChkVenta" Content="Venta" HorizontalAlignment="Left" Margin="134,211,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,51,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="TxtDescrip" HorizontalAlignment="Left" Height="84" Margin="25,243,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" Grid.Column="1"/>
                         <Label  Content="Descripcion:" HorizontalAlignment="Left" Margin="17,240,0,0" VerticalAlignment="Top"/>
-                        <Image  Source="/Assets/anonimo.png" HorizontalAlignment="Left" Height="182" Width="134" Margin="324,24,0,0" VerticalAlignment="Top"/>
-                        <Button Content="Ingresar Foto" Margin="324,211,23,0" VerticalAlignment="Top"/>
-                        <Label Content="Sujeto a:" HorizontalAlignment="Left" Margin="17,179,0,0" VerticalAlignment="Top" Width="87"/>
-                        <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,208,0,0" VerticalAlignment="Top" Width="87"/>
+                        <Image  Source="/Assets/anonimo.png" HorizontalAlignment="Left" Height="182" Width="134" Margin="226,24,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Button Content="Ingresar Foto" Margin="226,211,23,0" VerticalAlignment="Top" Grid.Column="1"/>
+                        <Label Content="Sujeto a:" HorizontalAlignment="Left" Margin="17,179,0,0" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2"/>
+                        <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,208,0,0" VerticalAlignment="Top" Width="87" Grid.ColumnSpan="2"/>
 
                     </Grid>
                 
