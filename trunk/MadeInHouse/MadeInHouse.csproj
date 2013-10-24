@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataObjects\Almacen\GuiaDeRemisionSQL.cs" />
     <Compile Include="DataObjects\Almacen\LineaProductoSQL.cs" />
     <Compile Include="DataObjects\Almacen\MotivoSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoSQL.cs" />

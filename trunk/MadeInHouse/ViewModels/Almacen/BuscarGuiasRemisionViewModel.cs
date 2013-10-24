@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.Views.Almacen;
+using System.Windows;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -11,8 +17,50 @@ namespace MadeInHouse.ViewModels.Almacen
 
     {
 
-
         private MyWindowManager win = new MyWindowManager();
+
+        private string txtCodigo;
+
+        public string TxtCodigo
+        {
+            get { return txtCodigo; }
+            set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
+        }
+
+        private string txtFecha;
+
+        public string TxtFecha
+        {
+            get { return txtFecha; }
+            set { txtFecha = value; NotifyOfPropertyChange(() => TxtFecha); }
+        }
+
+        private string cbTipo;
+
+        public string CbTipo
+        {
+            get { return cbTipo; }
+            set { cbTipo = value; NotifyOfPropertyChange(() => CbTipo); }
+        }
+
+
+        private List<GuiaRemision> lstGuiaDeRemision;
+
+        internal List<GuiaRemision> LstGuiaDeRemision
+        {
+            get { return lstGuiaDeRemision; }
+            set { lstGuiaDeRemision = value; NotifyOfPropertyChange(() => LstGuiaDeRemision); }
+        }
+
+        private GuiaRemision guiaSeleccionada;
+
+        public void SelectedItemChanged(object sender)
+        {
+            guiaSeleccionada = ((sender as DataGrid).SelectedItem as GuiaRemision);
+
+        }
+
+
 
         public void AbrirMantenerGuiaDeRemision()
         {
@@ -20,9 +68,19 @@ namespace MadeInHouse.ViewModels.Almacen
             Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel() ;
             win.ShowWindow(abrirGuiaView);
 
-
         }
 
 
+        public void BuscarGuiaDeRemision()
+        {
+            lstGuiaDeRemision = DataObjects.Almacen.GuiaDeRemisionSQL.BuscarGuiaDeRemision(null, DateTime.Now, null);
+            NotifyOfPropertyChange("LstGuiaDeRemision");
+        }
+
+        public void EditarGuiaDeRemision()
+        {
+            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel(guiaSeleccionada);
+            win.ShowWindow(abrirGuiaView);
+        }
     }
 }
