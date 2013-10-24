@@ -29,7 +29,7 @@
                 </ToolBar>
 
                 <DataGrid x:Name="LstUnidadesDeMedida" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
-                          HeadersVisibility="Column" Margin="10,91,10,10">
+                          HeadersVisibility="Column" Margin="10,91,10,10" AutoGenerateColumns="False"  >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Id}" Header="Codigo" Width="60"/>
                         <DataGridTextColumn Binding="{Binding Path=Nombre}" Header="Nombre" Width="220"/>

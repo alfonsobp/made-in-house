@@ -11,7 +11,7 @@ using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerMotivoViewModel : Screen
+    class MantenerMotivoViewModel : PropertyChangedBase
     {
         private Motivo motivoSeleccionado;
 
@@ -28,7 +28,7 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtMotivo = value; NotifyOfPropertyChange(() => TxtMotivo); }
         }
 
-        private List<Motivo> lstMotivos;
+        private List<Motivo> lstMotivos=null;
 
         public List<Motivo> LstMotivos
         {
@@ -40,7 +40,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             int k;
             Motivo m = new Motivo();
-            m.motivo = TxtMotivo;
+            m.NombreMotivo = TxtMotivo;
             k = DataObjects.Almacen.MotivoSQL.AgregarMotivo(m);
 
             if (k == 0)
@@ -54,7 +54,6 @@ namespace MadeInHouse.ViewModels.Almacen
         private void refrescar()
         {
             LstMotivos = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
-            NotifyOfPropertyChange("LstMotivos");
         }
     }
 }

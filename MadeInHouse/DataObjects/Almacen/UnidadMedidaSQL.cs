@@ -22,7 +22,7 @@ namespace MadeInHouse.DataObjects.Almacen
             cmd.CommandText = "INSERT INTO UnidadMedida(nombre) VALUES (@nombre)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@nombre", u.nombre);
+            cmd.Parameters.AddWithValue("@nombre", u.Nombre);
 
             try
             {
@@ -61,8 +61,8 @@ namespace MadeInHouse.DataObjects.Almacen
                  while (reader.Read())
                 {
                     UnidadMedida u = new UnidadMedida();
-                    u.id = reader.IsDBNull(reader.GetOrdinal("idUnidad")) ? -1 : (int)reader["idUnidad"];
-                    u.nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    u.Id = reader.IsDBNull(reader.GetOrdinal("idUnidad")) ? -1 : (int)reader["idUnidad"];
+                    u.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     listaUnidadMedidas.Add(u);
                 }
 
