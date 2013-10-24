@@ -6,9 +6,9 @@
              mc:Ignorable="d" 
              d:DesignWidth="458.209" d:DesignHeight="606.134">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
+        <StackPanel Margin="0,0,0,74">
             <Layouts:TitleBarTemplate title="Buscar productos" />
-            <Grid>
+            <Grid Height="573">
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -16,7 +16,7 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
+                    <Button >
                         <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -35,30 +35,40 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="258" Width="434">
-                    <Grid Margin="0,0,0,-277" HorizontalAlignment="Left" Width="428">
+                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="177" Width="423">
+                    <Grid Margin="0,0,-2,-2" HorizontalAlignment="Left" Width="413">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
-                        <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,100,0,0" VerticalAlignment="Top" Width="94"/>
-                        <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,138,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="123,142,0,0" VerticalAlignment="Top" Width="160"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="123,100,0,0" VerticalAlignment="Top" Width="160"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="123,60,0,0" VerticalAlignment="Top" Width="160"/>
-                        <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,60,0,0" VerticalAlignment="Top" Width="87"/>
+                        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
+                        <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,66,0,0" VerticalAlignment="Top" Width="94"/>
+                        <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,106,0,0" VerticalAlignment="Top" Width="94"/>
+                        <ComboBox  
+                               SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}"
+                               ItemsSource="{Binding Path=LstLineasProducto}"
+                               DisplayMemberPath="Nombre"
+                               SelectedValuePath="IdLinea" HorizontalAlignment="Left" Margin="123,70,0,0" VerticalAlignment="Top" Width="160"/>
 
-                        <DataGrid HorizontalAlignment="Left" Margin="10,251,0,20" Width="418">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Width="150" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                                <DataGridTextColumn Width="180" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Linea"/>
-                                <DataGridTextColumn Width="180" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Sublinea"/>
+                        <ComboBox  
+                            SelectedValue="{Binding Path=SelectedValueSub,Mode=OneWayToSource}"
+                            SelectedIndex="{Binding Path=SelectedIndex}"
+                            ItemsSource="{Binding Path=LstSubLineasProducto}"
+                            DisplayMemberPath="Nombre"
+                            SelectedValuePath="IdSubLinea" HorizontalAlignment="Left" Margin="123,110,0,0" VerticalAlignment="Top" Width="160"/>
 
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <Button Margin="315,26,44,0" VerticalAlignment="Top">
-                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="69"/>
+                        <Button x:Name="BuscarProductos" Margin="313,24,46,0" VerticalAlignment="Top" Height="26">
+                            <Image Source="/Assets/find.png" />
                         </Button>
                     </Grid>
+                    
                 </GroupBox>
+
+                <DataGrid x:Name="LstProductos" HorizontalAlignment="Left" Margin="10,253,0,110" Width="418">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="150" Binding="{Binding Path=CodigoProd}"  Header="Codigo"/>
+                        <DataGridTextColumn Width="180" Binding="{Binding Path=Linea}"  Header="Linea"/>
+                        <DataGridTextColumn Width="180" Binding="{Binding Path=SubLinea}"  Header="Sublinea"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
             </Grid>
         </StackPanel>
     </Border>
