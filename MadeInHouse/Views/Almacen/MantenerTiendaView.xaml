@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Width="366" Height="389.5">
+             mc:Ignorable="d" d:designWidth="366" d:designHeight="389.5">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel Margin="0,0,0,8">
+        <StackPanel Margin="0,0,0,8" Background="White">
             <Layouts:TitleBarTemplate title="Nueva tienda" />
             <Grid>
 
