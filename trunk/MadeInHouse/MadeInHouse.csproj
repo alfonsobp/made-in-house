@@ -88,6 +88,7 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\Almacen\LineaProductoSQL.cs" />
+    <Compile Include="DataObjects\Almacen\MotivoSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoSQL.cs" />
     <Compile Include="DataObjects\Almacen\SubLineaProductoSQL.cs" />
     <Compile Include="DataObjects\Almacen\ColorSQL.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Models\Almacen\Color.cs" />
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
+    <Compile Include="Models\Almacen\Motivo.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Almacen\Ubigeo.cs" />
     <Compile Include="Models\Compras\CatalogoProveedor.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerMotivoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerTiendaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ProductoBuscarViewModel.cs" />
@@ -247,6 +250,9 @@
     </Compile>
     <Compile Include="Views\Almacen\MantenerLineaProductoView.xaml.cs">
       <DependentUpon>MantenerLineaProductoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\MantenerMotivoView.xaml.cs">
+      <DependentUpon>MantenerMotivoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\MantenerSubLineaProductoView.xaml.cs">
       <DependentUpon>MantenerSubLineaProductoView.xaml</DependentUpon>
@@ -551,6 +557,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\MantenerLineaProductoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\MantenerMotivoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -493,6 +493,11 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new Seguridad.MantenerModuloViewModel());
         }
 
+        public void AbrirMantenerMotivo()
+        {
+            win.ShowWindow(new Almacen.MantenerMotivoViewModel());
+        }
+
         #endregion Configuracion
 
     }
