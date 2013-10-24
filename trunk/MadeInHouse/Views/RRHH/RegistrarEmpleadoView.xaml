@@ -20,7 +20,7 @@
                     <Button x:Name="GuardarEmpleado" ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar ventana">
+                    <Button x:Name="LimpiarVentana" ToolTip="Limpiar ventana">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Refrescar ventana" Height="30" Width="30">
@@ -103,7 +103,7 @@
                                 <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
                             </ComboBox>
                             <Label Content="E-mail Empresa:" HorizontalAlignment="Left" Margin="408,10,0,0" VerticalAlignment="Top" Width="96"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="558,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+                            <TextBox x:Name="TxtEmailEmpresa" HorizontalAlignment="Left" Height="23" Margin="558,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
                             <Button Height="25" Margin="634,130,79,0" VerticalAlignment="Top">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="56" />
                             </Button>
