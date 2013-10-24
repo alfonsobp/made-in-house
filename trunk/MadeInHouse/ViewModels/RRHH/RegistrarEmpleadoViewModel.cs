@@ -130,13 +130,23 @@ namespace MadeInHouse.ViewModels.RRHH
         private string txtEmail;
 
         public string TxtEmail
-        {
+        {   
             get { return txtEmail; }
             set { txtEmail = value; NotifyOfPropertyChange(() => TxtEmail); }
+
+        }
+
+        private string txtEmailEmpresa;
+
+        public string TxtEmailEmpresa
+        {
+            get { return txtEmailEmpresa; }
+            set { txtEmailEmpresa = value; NotifyOfPropertyChange(() => TxtEmail); }
         }
 
         public void GuardarEmpleado()
         {
+            
             int k;
             Empleado p = new Empleado();
             p.Dni = txtDni;
@@ -147,7 +157,8 @@ namespace MadeInHouse.ViewModels.RRHH
             p.Telefono = txtTelef;
             p.Celular = txtCel;
             p.EmailEmpleado = txtEmail;
-            //p.EmailEmpresa = "hola@k.ase";
+            p.EmailEmpresa = txtEmailEmpresa;
+            p.Direccion = txtDir;
 
             // p.Ruc = null;
             //p.CuentaBancaria = null;
@@ -164,7 +175,7 @@ namespace MadeInHouse.ViewModels.RRHH
             if (k == 0)
                 MessageBox.Show("Ocurrio un error");
             else
-                MessageBox.Show("Sus datos han sido guardados exitosamente");
+                MessageBox.Show("Los datos han sido guardados exitosamente");
 
         }
 
