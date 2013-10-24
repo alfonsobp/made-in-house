@@ -192,7 +192,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 0.1
         public void AbrirNuevoProducto()
         {
-                win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel());
+                win.ShowWindow(new Almacen.ProductoMantenerViewModel());
         }
 
         //Ventana Externa: 0.2

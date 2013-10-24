@@ -55,7 +55,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button Margin="315,26,44,0" VerticalAlignment="Top">
-                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="84"/>
+                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="69"/>
                         </Button>
                     </Grid>
                 </GroupBox>

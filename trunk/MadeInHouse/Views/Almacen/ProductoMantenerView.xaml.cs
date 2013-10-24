@@ -18,9 +18,9 @@ namespace MadeInHouse.Views.Almacen
     /// <summary>
     /// Lógica de interacción para FormularioProducto.xaml
     /// </summary>
-    public partial class MantenerNuevoProductoView : UserControl
+    public partial class ProductoMantenerView : UserControl
     {
-        public MantenerNuevoProductoView()
+        public ProductoMantenerView()
         {
             InitializeComponent();
         }
