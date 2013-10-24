@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Diagnostics;
-
+using MadeInHouse.ViewModels.Seguridad;
 using MadeInHouse.Models.Seguridad;
 
 namespace MadeInHouse.DataObjects.Seguridad
@@ -51,47 +51,55 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
             return k;
         }
-
-        public static int autenticarUsuario(string CodUsuario, string Password)
+        
+        public static string buscarPass(string codEmpleado)
         {
-            return 1;
-            //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            //SqlCommand cmd = new SqlCommand();
-            //SqlDataReader reader;
+            string passEnc="";
 
-            //cmd.CommandText = "SELECT contrasenha FROM Usuario WHERE codEmpleado = @codEmpleado ";
-            //cmd.CommandType = CommandType.Text;
-            //cmd.Connection = conn;
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
 
-            //cmd.Parameters.AddWithValue("@codEmpleado", CodUsuario);
+            cmd.CommandText = "SELECT contrasenha FROM Usuario WHERE codEmpleado=@codEmpleado ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
 
-            //try
-            //{
-            //    conn.Open();
-            //    reader = cmd.ExecuteReader();
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
 
-            //    while (reader.Read())
-            //    {
-            //        string contrasenha;
+                if (reader.Read())
+                    passEnc = (reader["contrasenha"]).ToString();
+                else
+                    //MessageBox.Show("No se encontro contrasenha");
 
-            //        //Servicio s = new Servicio();
-            //        //s.Codigo = reader["codServicio"].ToString();
-            //        //s.Nombre = reader["nombre"].ToString();
-            //        //s.Proveedor = getCODfromProv((int)(reader["idProveedor"]));
-            //        //s.Descripcion = reader["descripcion"].ToString();
+                conn.Close();
 
-            //        //lstServicio.Add(s);
-            //    }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
 
-            //    conn.Close();
+            return passEnc;
+        }
 
-            //}
-            //catch (Exception e)
-            //{
-            //    MessageBox.Show(e.StackTrace.ToString());
-            //}
 
-            //return contrasenha;
+
+        public static int autenticarUsuario(string codEmpleado, string password)
+        {
+            CifrarAES cifradoAES = new CifrarAES();
+
+            string ContrasenhaDescifrada = cifradoAES.descifrarTextoAES(buscarPass(codEmpleado), "MadeInHouse",
+                     "MadeInHouse", "MD5", 22, "1234567891234567", 128);
+
+            Trace.WriteLine("<<<<Descifrada" + ContrasenhaDescifrada + ">>>>");
+            if (String.Compare(password, ContrasenhaDescifrada)==0)
+
+                return 1;
+            else return 0;
 
         }
 

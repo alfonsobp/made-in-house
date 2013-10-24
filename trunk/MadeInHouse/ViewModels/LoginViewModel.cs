@@ -27,31 +27,27 @@ namespace MadeInHouse.ViewModels
             set { txtPasswordUser = value; NotifyOfPropertyChange(() => TxtPasswordUser); }
         }
         
-
-
         public void enter()
         {
-            int k;
+            if (!String.IsNullOrWhiteSpace(TxtUser) && !String.IsNullOrWhiteSpace(TxtPasswordUser))
+            {
+                int k;
 
-            k = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
+                k = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
+                //k = 1;
+                if (k == 0)
+                    MessageBox.Show("Contraseña o usuario incorrectos");
+                else
+                {
+                    MessageBox.Show("¡Bienvenido!");
 
-            if (k == 0)
-                MessageBox.Show("Ocurrio un error");
-            else{
-                //MessageBox.Show("¡Bienvenido!");
+                    WindowManager win = new WindowManager();
 
-                WindowManager win = new WindowManager();
-
-                MainViewModel main = new MainViewModel();
-                win.ShowWindow(main);
-                this.TryClose();
+                    MainViewModel main = new MainViewModel();
+                    win.ShowWindow(main);
+                    this.TryClose();
+                }
             }
-
-            //Trace.WriteLine("textooooooo");
-            //Trace.WriteLine("<" + TxtUser + ">");
-            //Trace.WriteLine("<" + TxtPasswordUser + ">");
-
-
         }
     }
 }

@@ -87,8 +87,8 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                 CifrarAES cifradoAES = new CifrarAES();
 
-                string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "AjpdSoft_Frase_Encriptado",
-                        "AjpdSoft_Frase_Encriptado", "MD5", 22, "1234567891234567", 128);
+                string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
+                        "MadeInHouse", "MD5", 22, "1234567891234567", 128);
                 Trace.WriteLine("<<<<" + ContrasenhaCifrada + ">>>>");
 
                 Usuario u = new Usuario();
