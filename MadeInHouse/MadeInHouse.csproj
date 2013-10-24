@@ -137,7 +137,6 @@
     <Compile Include="ViewModels\Almacen\BuscarTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ListaOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerAlmacenViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\MantenerNuevoProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerTipoZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
@@ -209,7 +208,7 @@
     <Compile Include="ViewModels\Almacen\MantenerNotaDeIngresoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerNotaDeSalidaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\AnularDocumentosViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\NuevoProductoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\ProductoMantenerViewModel.cs" />
     <Compile Include="ViewModels\Compras\agregarServicioViewModel.cs" />
     <Compile Include="ViewModels\Compras\CatalogoProductoProveedorViewModel.cs" />
     <Compile Include="ViewModels\Compras\editarProveedorViewModel.cs" />
@@ -217,7 +216,6 @@
     <Compile Include="ViewModels\Compras\generarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscadorProveedorViewModel.cs" />
     <Compile Include="ViewModels\Compras\ListadoServicioViewModel.cs" />
-    <Compile Include="ViewModels\Compras\MantenerProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\MantenerProveedorViewModel.cs" />
     <Compile Include="ViewModels\Compras\mantenerSolicitudesAdquisicionViewModel.cs" />
     <Compile Include="ViewModels\Compras\registrarDocumentosViewModel.cs" />
@@ -269,8 +267,8 @@
     <Compile Include="Views\Almacen\MantenerAlmacenView.xaml.cs">
       <DependentUpon>MantenerAlmacenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\MantenerProductoView.xaml.cs">
-      <DependentUpon>MantenerProductoView.xaml</DependentUpon>
+    <Compile Include="Views\Almacen\ProductoMantenerView.xaml.cs">
+      <DependentUpon>ProductoMantenerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\MantenerTipoZonaView.xaml.cs">
       <DependentUpon>MantenerTipoZonaView.xaml</DependentUpon>
@@ -592,7 +590,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\MantenerProductoView.xaml">
+    <Page Include="Views\Almacen\ProductoMantenerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

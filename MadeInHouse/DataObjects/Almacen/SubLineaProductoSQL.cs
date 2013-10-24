@@ -18,6 +18,41 @@ namespace MadeInHouse.DataObjects.Almacen
             db = new DBConexion();
         }
 
+        public List<SubLineaProducto> ObtenerSubLineas(int id)
+        {
+            db.cmd.CommandText = "SELECT * FROM SubLineaProducto WHERE idLinea=@idLinea";
+            db.cmd.Parameters.AddWithValue("idLinea", id);
+            SqlDataReader reader;
+            List<SubLineaProducto> lstSubLinea = new List<SubLineaProducto>();
+            try
+            {
+                db.conn.Open();
+                reader=db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    SubLineaProducto slp = new SubLineaProducto();
+                    slp.IdLinea = id;
+                    slp.Nombre=reader["Nombre"].ToString();
+                    slp.IdSubLinea = Int32.Parse(reader["IdSubLinea"].ToString());
+                    slp.Abreviatura = reader["Abreviatura"].ToString();
+                    lstSubLinea.Add(slp);
+                }
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+            return lstSubLinea;
+
+        }
+
         public void AgregarSubLineaProducto(SubLineaProducto slp,int idLinea)
         {
             

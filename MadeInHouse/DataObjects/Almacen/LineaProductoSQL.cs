@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data.SqlClient;
+using Caliburn.Micro;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -16,6 +17,40 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             db = new DBConexion();
         }
+
+
+        public BindableCollection<LineaProducto> ObtenerLineasProducto()
+        {
+            SqlDataReader reader;
+            BindableCollection<LineaProducto> lstLineasProducto = new BindableCollection<LineaProducto>();
+            db.cmd.CommandText = "SELECT * FROM LineaProducto";
+
+            try
+            {
+                db.conn.Open();
+                reader=db.cmd.ExecuteReader();
+                while(reader.Read()) 
+                {
+                    LineaProducto lp= new LineaProducto();
+                    lp.IdLinea=Int32.Parse(reader["idLinea"].ToString());
+                    lp.Nombre=reader["Nombre"].ToString();
+                    lp.Abreviatura=reader["Abreviatura"].ToString();
+                    lstLineasProducto.Add(lp);   
+                }
+                db.conn.Close();
+
+            }
+            catch (SqlException e )
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+            return lstLineasProducto;
+        }
+
 
         public void AgregarLineaProducto(LineaProducto lp)
         {

@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.MantenerNuevoProductoView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.ProductoMantenerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -35,15 +35,20 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Información Producto" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="399" Width="491">
-                    <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="481" Margin="0,0,-2,0">
+                
+                    <Grid Height="377" VerticalAlignment="Top" HorizontalAlignment="Left" Width="469" Margin="0,41,0,-41">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                         <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
                         <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="123,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,82,0,0" VerticalAlignment="Top" Width="94"/>
                         <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,113,0,0" VerticalAlignment="Top" Width="94"/>
                         <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,144,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox x:Name="CmbLinea" HorizontalAlignment="Left" Margin="123,86,0,0" VerticalAlignment="Top" Width="160"/>
+                    <ComboBox  ItemsSource="{Binding Path=LstLineasProducto}"
+                               DisplayMemberPath="Nombre"
+                               SelectedValuePath="IdLinea" 
+                               HorizontalAlignment="Left" 
+                               Margin="123,86,0,0" 
+                               VerticalAlignment="Top" Width="160"/>
                         <ComboBox x:Name="CmbSubLinea" HorizontalAlignment="Left" Margin="123,117,0,0" VerticalAlignment="Top" Width="160"/>
                         <ComboBox x:Name="CmdUniMedida" HorizontalAlignment="Left" Margin="123,148,0,0" VerticalAlignment="Top" Width="160"/>
                         <CheckBox x:Name="ChkPercepcion" Content="Percepción" HorizontalAlignment="Left" Margin="123,183,0,0" VerticalAlignment="Top" />
@@ -58,7 +63,7 @@
                         <Label Content="Tipo de uso:" HorizontalAlignment="Left" Margin="17,208,0,0" VerticalAlignment="Top" Width="87"/>
 
                     </Grid>
-                </GroupBox>
+                
             </Grid>
         </StackPanel>
     </Border>
