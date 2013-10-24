@@ -38,7 +38,6 @@ namespace MadeInHouse.ViewModels
         //MODULO ALMACÉN: 0
         #region Almacen
         //Ventana Externa: 0.0
-
         public void CargarAccesosRol(Usuario u, out Acceso accRol)
         {
             /*
@@ -63,6 +62,8 @@ namespace MadeInHouse.ViewModels
                     accRol.AccVentana[i, j] = accVentana[i, j];
     
         }
+
+/*
 
         //Ventana Externa: 0.0
         public void AbrirMantenimientoAlmacen()
@@ -177,6 +178,97 @@ namespace MadeInHouse.ViewModels
         public void AbrirAnularDocumentos()
         {
             if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 13]) == 1)
+                win.ShowWindow(new Almacen.AnularDocumentosViewModel());
+        }
+
+        */
+
+        //Ventana Externa: 0.0
+        public void AbrirMantenimientoAlmacen()
+        {
+               win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
+        }
+
+        //Ventana Externa: 0.1
+        public void AbrirNuevoProducto()
+        {
+                win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel());
+        }
+
+        //Ventana Externa: 0.2
+        public void AbrirBuscarProducto()
+        {
+                win.ShowWindow(new Almacen.ProductoBuscarViewModel());
+        }
+
+        //Ventana Externa: 0.3
+        public void AbrirBuscarGuiaDeRemision()
+        {
+                Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
+                win.ShowWindow(buscarGuiaView);
+        }
+
+        //Ventana Externa: 0.4
+        public void AbrirMantenerGuiaDeRemision()
+        {
+                Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();
+                win.ShowWindow(abrirGuiaView);
+        }
+
+        //Ventana Externa: 0.5
+        public void AbrirBuscarNotas()
+        {
+                win.ShowWindow(new Almacen.BuscarNotasViewModel());
+        }
+
+        //Ventana Externa: 0.6
+        public void AbrirMantenerNotaDeIngreso()
+        {
+                Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel();
+                win.ShowWindow(abrirNotaIView);
+        }
+
+        //Ventana Externa: 0.7
+        public void AbrirMantenerNotaDeSalida()
+        {
+                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
+                win.ShowWindow(abrirNotaIView);
+        }
+
+        //Ventana Externa: 0.8
+        public void AbrirBuscarZona()
+        {
+                Almacen.BuscarZonaViewModel buscarZona = new Almacen.BuscarZonaViewModel();
+                win.ShowWindow(buscarZona);
+        }
+
+        //Ventana Externa: 0.9
+        public void AbrirSolicitudAbConsolidar()
+        {
+                win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
+        }
+
+        //Ventana Externa: 0.10
+        public void AbrirSolicitudAbDetalle()
+        {
+                win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
+        }
+
+        //Ventana Externa: 0.11
+        public void AbrirMovimientos()
+        {
+                win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+        }
+
+        //Ventana Externa: 0.12
+        public void AbrirMantenimientoInventarioViewModel()
+        {
+                // ActivateItem(new Almacen.MantenimientoInventarioViewModel { DisplayName = "Mantenimiento inventario" });
+        }
+
+        //Ventana Externa: 0.13
+        public void AbrirAnularDocumentos()
+        {
                 win.ShowWindow(new Almacen.AnularDocumentosViewModel());
         }
 
