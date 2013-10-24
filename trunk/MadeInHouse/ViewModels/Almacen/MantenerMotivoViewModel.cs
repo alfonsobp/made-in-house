@@ -13,13 +13,6 @@ namespace MadeInHouse.ViewModels.Almacen
 {
     class MantenerMotivoViewModel : Screen
     {
-        private WindowManager win = new WindowManager();
-
-        public void AbrirMantenerMotivo()
-        {
-            win.ShowWindow(new Almacen.MantenerMotivoViewModel());
-        }
-
         private Motivo motivoSeleccionado;
 
         public void SelectedItemChanged(object sender)
@@ -35,9 +28,9 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtMotivo = value; NotifyOfPropertyChange(() => TxtMotivo); }
         }
 
-        private string lstMotivos;
+        private List<Motivo> lstMotivos;
 
-        public string LstMotivos
+        public List<Motivo> LstMotivos
         {
             get { return lstMotivos; }
             set { lstMotivos = value; NotifyOfPropertyChange(() => LstMotivos); }
@@ -47,7 +40,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             int k;
             Motivo m = new Motivo();
-            m.motivo = txtMotivo;
+            m.motivo = TxtMotivo;
             k = DataObjects.Almacen.MotivoSQL.AgregarMotivo(m);
 
             if (k == 0)
@@ -55,8 +48,13 @@ namespace MadeInHouse.ViewModels.Almacen
             else
                 MessageBox.Show("Motivo: = " + txtMotivo + " registrado con éxtio");
 
-            NotifyOfPropertyChange("LstMotivos");
+            refrescar();
         }
 
+        private void refrescar()
+        {
+            LstMotivos = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
+            NotifyOfPropertyChange("LstMotivos");
+        }
     }
 }

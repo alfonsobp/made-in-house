@@ -95,6 +95,7 @@
     <Compile Include="DataObjects\Almacen\ColorSQL.cs" />
     <Compile Include="DataObjects\Almacen\TipoZonaSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbigeoSQL.cs" />
+    <Compile Include="DataObjects\Almacen\UnidadMedidaSQL.cs" />
     <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="DataObjects\ReportesSQL.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Models\Almacen\Motivo.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Almacen\Ubigeo.cs" />
+    <Compile Include="Models\Almacen\UnidadMedida.cs" />
     <Compile Include="Models\Compras\CatalogoProveedor.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="ViewModels\Almacen\MantenerMotivoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerTiendaViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerUnidadMedidaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ProductoBuscarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarGuiasRemisionViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarNotasViewModel.cs" />
@@ -261,6 +264,9 @@
     </Compile>
     <Compile Include="Views\Almacen\MantenerTiendaView.xaml.cs">
       <DependentUpon>MantenerTiendaView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\MantenerUnidadMedidaView.xaml.cs">
+      <DependentUpon>MantenerUnidadMedidaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\ProductoBuscarView.xaml.cs">
       <DependentUpon>ProductoBuscarView.xaml</DependentUpon>
@@ -569,6 +575,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\MantenerTiendaView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\MantenerUnidadMedidaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -622,6 +622,11 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Almacen.MantenerMotivoViewModel());
         }
+        public void AbrirMantenerUnidadMedida()
+        {
+            win.ShowWindow(new Almacen.MantenerUnidadMedidaViewModel());
+        }
+
         #endregion Configuracion
 
     }

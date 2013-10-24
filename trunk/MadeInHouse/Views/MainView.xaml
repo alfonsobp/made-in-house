@@ -339,6 +339,7 @@
                         <Button x:Name="AbrirMantenerLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4"/>
                         <Button x:Name="AbrirMantenerMotivo"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6"/>
+                        <Button x:Name="AbrirMantenerUnidadMedida"  Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="7"/>
 
                     </Grid>
                 </Expander>
