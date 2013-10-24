@@ -40,12 +40,13 @@ namespace MadeInHouse.DataObjects.Almacen
                     g.CodGuiaRem = reader["codGuiaRem"].ToString();
                     g.DirPartida = reader["dirPartida"].ToString();
                     g.DirLlegada = reader["dirLlegada"].ToString();
-                    //g.Camion = reader["camion"].ToString();
+                    g.Camion = reader["camion"].ToString();
                     //g.FechaReg = (DateTime)(reader["fechaReg"]);
                     g.Tipo = reader["tipo"].ToString();
                     g.Observaciones = reader["observaciones"].ToString();
                    
                     lstGuiaDeRemision.Add(g);
+                    MessageBox.Show(g.CodGuiaRem + " desde: " + g.DirLlegada);
                 }
 
                 conn.Close();

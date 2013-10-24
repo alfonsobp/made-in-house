@@ -18,18 +18,18 @@ namespace MadeInHouse.ViewModels.Almacen
 
             txtCodigo = g.CodGuiaRem;
             txtFechaReg = g.FechaReg;
-            cbTipo = g.Tipo;
+            SeleccionadoTipo=g.Tipo;
             txtDireccion = g.DirLlegada;
             txtDirPartida = g.DirPartida;
             txtDirLlegada = g.DirLlegada;
             txtConductor = g.Conductor;
-            cbCamion = g.Camion;
+            SeleccionadoCamion = g.Camion;
             txtObservaciones = g.Observaciones;
             //Doc Ref ?
             //Tienda ?
 
 
-            indicador = 2; 
+            indicador = 2;
         }
 
 
@@ -57,13 +57,15 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-        private string cbTipo;
+        private List<string> cbTipo = new List<string>() { "GR-TRASLADO INTERNO", "GR-TRASLADO EXTERNO" };
 
-        public string CbTipo
+        public List<string> CbTipo
         {
             get { return cbTipo; }
             set { cbTipo = value; NotifyOfPropertyChange(() => CbTipo); }
         }
+
+     
 
         private DateTime txtFechaReg;
 
@@ -122,9 +124,9 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtConductor = value; NotifyOfPropertyChange(() => TxtConductor); }
         }
 
-        private string cbCamion;
+        private List<string> cbCamion = new List<string>() { "Camion pesado", "Camion liviano" };
 
-        public string CbCamion
+        public List<string> CbCamion
         {
             get { return cbCamion; }
             set { cbCamion = value; NotifyOfPropertyChange(() => CbCamion); }
@@ -138,6 +140,21 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtObservaciones = value; NotifyOfPropertyChange(() => TxtObservaciones); }
         }
 
+        private string seleccionadoTipo;
+
+        public string SeleccionadoTipo
+        {
+            get { return seleccionadoTipo; }
+            set { seleccionadoTipo = value; NotifyOfPropertyChange(() => SeleccionadoTipo); }
+        }
+
+        private string seleccionadoCamion;
+        
+        public string SeleccionadoCamion
+        {
+            get { return seleccionadoCamion; }
+            set { seleccionadoCamion = value; NotifyOfPropertyChange(() => SeleccionadoCamion); }
+        }
 
         public void GuardarGuiaDeRemision()
         {
@@ -145,24 +162,24 @@ namespace MadeInHouse.ViewModels.Almacen
             GuiaRemision g = new GuiaRemision();
             g.CodGuiaRem = txtCodigo;
             g.FechaReg = txtFechaReg;
-            g.Tipo = cbTipo;
+            g.Tipo = SeleccionadoTipo;
             g.Conductor = txtConductor;
-            g.Camion = cbCamion;
+            g.Camion = SeleccionadoCamion;
             g.DirPartida = txtDirPartida;
             g.DirLlegada = txtDirLlegada;
             g.Observaciones = txtObservaciones;
 
             if (indicador == 1)
             {
-                MessageBox.Show("codGuia :" + g.CodGuiaRem + " fechaReg: " + g.FechaReg + " tipoGuia: " + g.Tipo + " Camion: " + g.Camion);
+                MessageBox.Show("codGuia :" + g.CodGuiaRem + " fechaReg: " + g.FechaReg + " tipoGuia: " + seleccionadoTipo + " Camion: " + seleccionadoCamion);
                  k = DataObjects.Almacen.GuiaDeRemisionSQL.agregarGuiaDeRemision(g);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
                 else
                     MessageBox.Show("Guia de Remision Registrada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
-                                    "\nDireccion Llegada = " + txtDirLlegada + "\nTipo Guia = " + cbTipo + "\nConductor = " + txtConductor + "\nCamion= " +
-                                    cbCamion + "\nObservaciones = " + txtObservaciones);
+                                    "\nDireccion Llegada = " + txtDirLlegada + "\nTipo Guia = " + seleccionadoTipo + "\nConductor = " + txtConductor + "\nCamion= " +
+                                    seleccionadoCamion + "\nObservaciones = " + txtObservaciones);
                  
                                        
 
@@ -183,5 +200,6 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             
         }
+
     }
 }

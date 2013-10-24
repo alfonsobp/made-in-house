@@ -54,14 +54,14 @@
                             <ComboBoxItem Content="Traslado interno" />
                             <ComboBoxItem Content="Traslado externo" />
                         </ComboBox>
-                        <Button x:Name="BuscarGuiaDeRemision" Background="Transparent" Margin="278,0,0,76" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Bottom">
+                        <Button x:Name="BuscarGuiaRemision" Background="Transparent" Margin="278,0,0,76" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Bottom">
                             <Image Source="/Assets/find.png" />
                         </Button>
                     </Grid>
                 </GroupBox>
                 <DataGrid x:Name="LstGuiaDeRemision" 
                           cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
-                          Margin="10,3,17,0" Grid.Row="2" HeadersVisibility="All" Height="241" VerticalAlignment="Top" >
+                          Margin="10,3,17,0" Grid.Row="2" HeadersVisibility="All" Height="241" VerticalAlignment="Top" AutoGenerateColumns="false" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodGuiaRem}" Header="Código" Width="120"/>
                         <DataGridTextColumn Binding="{Binding Path=FechaReg}" Header="Fecha" Width="100"/>

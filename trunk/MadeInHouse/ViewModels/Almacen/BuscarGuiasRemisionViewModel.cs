@@ -46,7 +46,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private List<GuiaRemision> lstGuiaDeRemision;
 
-        internal List<GuiaRemision> LstGuiaDeRemision
+        public List<GuiaRemision> LstGuiaDeRemision
         {
             get { return lstGuiaDeRemision; }
             set { lstGuiaDeRemision = value; NotifyOfPropertyChange(() => LstGuiaDeRemision); }
@@ -71,10 +71,10 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-        public void BuscarGuiaDeRemision()
+        public void BuscarGuiaRemision()
         {
-            lstGuiaDeRemision = DataObjects.Almacen.GuiaDeRemisionSQL.BuscarGuiaDeRemision(null, DateTime.Now, null);
-            NotifyOfPropertyChange("LstGuiaDeRemision");
+            LstGuiaDeRemision = DataObjects.Almacen.GuiaDeRemisionSQL.BuscarGuiaDeRemision(null, DateTime.Now, null);
+            
         }
 
         public void EditarGuiaDeRemision()
