@@ -1,0 +1,47 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.MantenerUnidadMedidaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Mantener Unidades de Medida"/>
+            <Grid Margin="1" Height="264">
+                <ToolBar VerticalAlignment="Top" Height="41" Loaded="ToolBar_Loaded">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button>
+                        <Image Source="/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+
+                <DataGrid x:Name="LstUnidadesDeMedida" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
+                          HeadersVisibility="Column" Margin="10,91,10,10">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Id}" Header="Codigo" Width="60"/>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" Header="Nombre" Width="220"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="65,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+                <Button x:Name="AgregarUnidadDeMedida" HorizontalAlignment="Left" Height="23" Margin="250,54,0,0" VerticalAlignment="Top" Width="34">
+                    <Image Source="/Assets/add.png" Height="20" Width="24" />
+                </Button>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>
+

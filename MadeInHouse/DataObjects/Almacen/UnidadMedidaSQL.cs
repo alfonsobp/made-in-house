@@ -10,19 +10,19 @@ using System.Windows;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
-    class MotivoSQL
+    class UnidadMedidaSQL
     {
 
-        public static int AgregarMotivo(Motivo m)
+        public static int AgregarUnidadMedida(UnidadMedida u)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
-
-            cmd.CommandText = "INSERT INTO Motivo(motivo) VALUES (@motivo)";
+            
+            cmd.CommandText = "INSERT INTO UnidadMedida(nombre) VALUES (@nombre)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@motivo", m.motivo);
+            cmd.Parameters.AddWithValue("@nombre", u.nombre);
 
             try
             {
@@ -41,28 +41,29 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
         }
 
-        public static List<Motivo> BuscarMotivos()
+        public static List<UnidadMedida> BuscarUnidadMedida()
         {
-            List<Motivo> listaMotivos = new List<Motivo>(); ;
+
+            List<UnidadMedida> listaUnidadMedidas = new List<UnidadMedida>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Motivo";
+            cmd.CommandText = "SELECT * FROM UnidadMedida";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
             try
             {
-                conn.Open();
-                reader = cmd.ExecuteReader();
+                 conn.Open();
+                 reader = cmd.ExecuteReader();
 
-                while (reader.Read())
+                 while (reader.Read())
                 {
-                    Motivo m = new Motivo();
-                    m.id = reader.IsDBNull(reader.GetOrdinal("idMotivo")) ? -1 : (int)reader["idMotivo"];
-                    m.motivo = reader.IsDBNull(reader.GetOrdinal("motivo")) ? null : reader["motivo"].ToString();
-                    listaMotivos.Add(m);
+                    UnidadMedida u = new UnidadMedida();
+                    u.id = reader.IsDBNull(reader.GetOrdinal("idUnidad")) ? -1 : (int)reader["idUnidad"];
+                    u.nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    listaUnidadMedidas.Add(u);
                 }
 
                 conn.Close();
@@ -72,7 +73,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
-            return listaMotivos;
+            return listaUnidadMedidas;
         }
     }
 }
