@@ -13,6 +13,57 @@ namespace MadeInHouse.DataObjects
 {
     class RrhhSQL
     {
+
+
+        /******************************************AGREGAR EMPLEADO ************************************/
+        public static int agregarEmpleado(Empleado p)
+        {
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg) " +
+            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@DNI", p.Dni);
+            cmd.Parameters.AddWithValue("@sexo", p.Sexo);
+            cmd.Parameters.AddWithValue("@nombre", p.Nombre);
+            cmd.Parameters.AddWithValue("@apePaterno", p.ApePaterno);
+            cmd.Parameters.AddWithValue("@apeMaterno", p.ApeMaterno);
+            cmd.Parameters.AddWithValue("@telefono", p.Telefono);
+            cmd.Parameters.AddWithValue("@celular", p.Celular);
+            cmd.Parameters.AddWithValue("@email", p.EmailEmpleado);
+            //cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
+
+            //cmd.Parameters.AddWithValue("@RUC", p.Ruc);
+            //cmd.Parameters.AddWithValue("@cuentaBancaria", p.CuentaBancaria);
+            cmd.Parameters.AddWithValue("@estado", p.Estado);
+            cmd.Parameters.AddWithValue("@fechaReg", p.FechaReg);
+            //cmd.Parameters.AddWithValue("@idPuesto", p.IdPuesto);
+            //cmd.Parameters.AddWithValue("@idCategoria", p.IdCategoria);
+            //cmd.Parameters.AddWithValue("@idEmpleado", p.IdEmpleado);
+            //cmd.Parameters.AddWithValue("@semVacacion", p.SemVacacion);
+            //cmd.Parameters.AddWithValue("@foto", p.RefFoto);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+
+            return k;
+        }
         /****************************************** EMPLEADO ************************************/
         public static List<Empleado> BuscarEmpleado(string codigo, string dni, string nombre, string apePaterno, string tienda, string area, string puesto)
         {
