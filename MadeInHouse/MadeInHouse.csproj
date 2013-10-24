@@ -103,6 +103,7 @@
     <Compile Include="DataObjects\RrhhSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccesoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\ModuloSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\ModuloVentana.cs" />
     <Compile Include="DataObjects\Seguridad\RolSQL.cs" />
     <Compile Include="DataObjects\UtilesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\UsuarioSQL.cs" />
