@@ -18,7 +18,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private UbigeoSQL gateway = new UbigeoSQL();
 
-
         private string txtCodigo;
 
         public string TxtCodigo
@@ -40,6 +39,28 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return txtDir; }
             set { txtDir = value; }
+        }
+        private int selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return selectedIndex; }
+            set { selectedIndex = value; }
+        }
+
+        private string selectedValue;
+
+        public string SelectedValue
+        {
+            get { return selectedValue; }
+            set
+            {
+                selectedValue = value;
+
+                cmbProv = gateway.BuscarProv(selectedValue);
+                SelectedIndex = 0;
+
+            }
         }
 
         private List<Ubigeo> cmbDpto;
@@ -120,7 +141,6 @@ namespace MadeInHouse.ViewModels.Almacen
             seleccionado = gateway.buscarUbigeo(cmbDistSeleccionado.CodDpto, cmbDptoSeleccionado.CodProv, cmbProvSeleccionado.CodDist);
             tienda.Ubigeo = seleccionado;
             tienda.FechaReg = DateTime.Today;
-
             TiendaSQL gw = new TiendaSQL();
             gw.AgregarTienda(tienda);
 

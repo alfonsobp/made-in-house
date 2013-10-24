@@ -43,9 +43,24 @@
                         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,57,0,0" VerticalAlignment="Top" Width="94"/>
                         <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="117,57,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Departamento:" HorizontalAlignment="Left" Margin="17,90,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox x:Name="cmbDpto" HorizontalAlignment="Left" Margin="117,90,0,0" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox ItemsSource="{Binding Path=CmbDpto}"
+                                  SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}"
+                                  DisplayMemberPath="Nombre"
+                                  SelectedValuePath="CodDpto"
+                                  HorizontalAlignment="Left" 
+                                  Margin="117,90,0,0" 
+                                  VerticalAlignment="Top" 
+                                  Width="160"
+                                  SelectedIndex="0"
+                                  />
                         <Label Content="Provincia:" HorizontalAlignment="Left" Margin="17,123,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox x:Name="cmbProv" HorizontalAlignment="Left" Margin="117,123,0,0" VerticalAlignment="Top" Width="160"/>
+                        <ComboBox 
+                            SelectedValue="{Binding Path=SelectedValueSub,Mode=OneWayToSource}"
+                            SelectedIndex="{Binding Path=SelectedIndex}"
+                            ItemsSource="{Binding Path=CmbProv}"
+                            DisplayMemberPath="Nombre"
+                            SelectedValuePath="CodProv" 
+                            HorizontalAlignment="Left" Margin="117,123,0,0" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Distrito:" HorizontalAlignment="Left" Margin="17,156,0,0" VerticalAlignment="Top" Width="94"/>
                         <ComboBox x:Name="cmbDist" HorizontalAlignment="Left" Margin="117,156,0,0" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Dirección:" HorizontalAlignment="Left" Margin="17,189,0,0" VerticalAlignment="Top" Width="94"/>
