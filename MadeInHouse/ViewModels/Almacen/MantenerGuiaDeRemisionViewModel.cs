@@ -154,7 +154,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             if (indicador == 1)
             {
-
+                MessageBox.Show("codGuia :" + g.CodGuiaRem + " fechaReg: " + g.FechaReg + " tipoGuia: " + g.Tipo + " Camion: " + g.Camion);
                  k = DataObjects.Almacen.GuiaDeRemisionSQL.agregarGuiaDeRemision(g);
 
                 if (k == 0)

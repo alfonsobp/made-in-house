@@ -40,8 +40,8 @@ namespace MadeInHouse.DataObjects.Almacen
                     g.CodGuiaRem = reader["codGuiaRem"].ToString();
                     g.DirPartida = reader["dirPartida"].ToString();
                     g.DirLlegada = reader["dirLlegada"].ToString();
-                    g.Camion = reader["camion"].ToString();
-                    g.FechaReg = (DateTime)(reader["fechaReg"]);
+                    //g.Camion = reader["camion"].ToString();
+                    //g.FechaReg = (DateTime)(reader["fechaReg"]);
                     g.Tipo = reader["tipo"].ToString();
                     g.Observaciones = reader["observaciones"].ToString();
                    
@@ -69,8 +69,13 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO GuiaRemision(codGuiaRem,dirPartida,dirLlegada,camion,conductor,fechaReg,tipo,observaciones) " +
-            "VALUES (@codGuiaRem,@dirPartida,@dirLlegada,@camion,@conductor,@fechaReg,@tipo,@observaciones)";
+            cmd.CommandText = 
+            //"INSERT INTO GuiaRemision(codGuiaRem,dirPartida,dirLlegada,camion,conductor,fechaReg,tipo,observaciones) " +
+            //"VALUES (@codGuiaRem,@dirPartida,@dirLlegada,@camion,@conductor,@fechaReg,@tipo,@observaciones)";
+
+            "INSERT INTO GuiaRemision(codGuiaRem,dirPartida,dirLlegada) " +
+            "VALUES (@codGuiaRem,@dirPartida,@dirLlegada)";
+
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -79,9 +84,9 @@ namespace MadeInHouse.DataObjects.Almacen
             cmd.Parameters.AddWithValue("@dirLlegada", g.DirLlegada);
             cmd.Parameters.AddWithValue("@camion", g.Camion);
             cmd.Parameters.AddWithValue("@conductor", g.Conductor);
-            cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
-            cmd.Parameters.AddWithValue("@tipo", g.Tipo);
-            cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
+            //cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
+            //cmd.Parameters.AddWithValue("@tipo", g.Tipo);
+            //cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
 
             try
             {

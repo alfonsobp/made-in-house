@@ -62,7 +62,7 @@ namespace MadeInHouse.DataObjects
        } 
 
 
-       public static int  agregarProveedor(Proveedor p )
+       public static int  agregarProveedor(Proveedor p)
        {
 
          SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
