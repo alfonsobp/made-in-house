@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.RRHH
 {
-    class Modulo
+    public class Modulo
     {
-        int idModulo;
+        private int idModulo;
 
         public int IdModulo
         {
@@ -16,15 +16,15 @@ namespace MadeInHouse.Models.RRHH
             set { idModulo = value; }
         }
 
-        string nombreModulo;
+        //string nombreModulo;
 
-        public string NombreModulo
-        {
-            get { return nombreModulo; }
-            set { nombreModulo = value; }
-        }
+        //public string NombreModulo
+        //{
+        //    get { return nombreModulo; }
+        //    set { nombreModulo = value; }
+        //}
 
-        string descripcion;
+        private string descripcion;
 
         public string Descripcion
         {
@@ -32,7 +32,7 @@ namespace MadeInHouse.Models.RRHH
             set { descripcion = value; }
         }
 
-        int estado;
+        private int estado;
 
         public int Estado
         {
@@ -45,11 +45,12 @@ namespace MadeInHouse.Models.RRHH
 
         }
 
-        public Modulo(int idModulo, string nombreModulo, string descripcion)
+        public Modulo(int idModulo, string descripcion, int estado)
         {
             this.idModulo = idModulo;
-            this.nombreModulo = nombreModulo;
+            //this.nombreModulo = nombreModulo;
             this.descripcion = descripcion;
+            this.estado = estado;
         }
     }
 }

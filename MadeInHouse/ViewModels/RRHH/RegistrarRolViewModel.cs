@@ -10,7 +10,7 @@ using System.ComponentModel.Composition;
 using MadeInHouse.Models;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.RRHH;
-
+using MadeInHouse.DataObjects.Seguridad;
 namespace MadeInHouse.ViewModels.RRHH
 {
     public class RegistrarRolViewModel : Conductor<IScreen>.Collection.OneActive
@@ -42,9 +42,9 @@ namespace MadeInHouse.ViewModels.RRHH
             set { txtDesc = value; NotifyOfPropertyChange(() => TxtDesc); }
         }
 
-        private string cmbModulo;
+        private int cmbModulo;
 
-        public string CmbModulo
+        public int CmbModulo
         {
             get { return cmbModulo; }
             set { cmbModulo = value; NotifyOfPropertyChange(() => CmbModulo); }
@@ -64,6 +64,9 @@ namespace MadeInHouse.ViewModels.RRHH
         public RegistrarRolViewModel()
         {
             indicador = 1;
+
+            ModuloSQL moduloSQL = new ModuloSQL();
+            LstModulo = moduloSQL.ListarModulo();
         }
 
         //Editar:
@@ -73,9 +76,34 @@ namespace MadeInHouse.ViewModels.RRHH
 
             txtNombRol = r.NombRol;
             txtDesc = r.Descripcion;
-            cmbModulo = r.Modulo;
-//            estado = r.Estado;
+            //estado = r.Estado;
         }
+
+        private int idModuloValue;
+
+        public int IdModuloValue
+        {
+            get { return idModuloValue; }
+            set { idModuloValue = value; NotifyOfPropertyChange(() => IdModuloValue); }
+        }
+
+        private BindableCollection<Modulo> lstModulo;
+
+        public BindableCollection<Modulo> LstModulo
+        {
+            get { return lstModulo; }
+            set
+            {
+                if (this.lstModulo == value)
+                {
+                    return;
+                }
+                this.lstModulo = value;
+
+                this.NotifyOfPropertyChange(() => this.lstModulo);
+            }
+        }
+
 
         public void GuardarRol()
         {
@@ -85,7 +113,7 @@ namespace MadeInHouse.ViewModels.RRHH
             //idRol: autogenerado
             r.NombRol = txtNombRol;
             r.Descripcion = txtDesc;
-            r.Modulo = cmbModulo;
+            //r.Modulo = IdModuloValue;
             r.Estado = 1;   //Existencia Lógica
 
 
@@ -97,8 +125,12 @@ namespace MadeInHouse.ViewModels.RRHH
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
                 else
+                {
                     MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
                                 "\n Módulo = " + "HARDCODEADO xD");
+                    int maxIdRol = DataObjects.RrhhSQL.ObtenerMaximoID("Rol","idRol");
+                    int j = DataObjects.RrhhSQL.insertarRolxAccModulo(maxIdRol, IdModuloValue);
+                }
             }
 
             //ACTUALIZA UN MÓDULO:

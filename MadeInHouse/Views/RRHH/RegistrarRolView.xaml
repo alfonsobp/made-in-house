@@ -37,14 +37,13 @@
                         <Label Content="Descripción:" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="TxtDesc" HorizontalAlignment="Left" Height="57" Margin="111,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
                         <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="10,114,0,0"/>
-                        <ComboBox x:Name="CmbModulo" HorizontalAlignment="Left" Margin="111,114,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="General" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="RRHH" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
+                        <ComboBox ItemsSource="{Binding Path=LstModulo}"
+                               DisplayMemberPath="Descripcion"
+                               SelectedValuePath="IdModulo" 
+                               SelectedValue="{Binding Path=IdModuloValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="111,114,0,0" 
+                               VerticalAlignment="Top" Width="135"/>
                     </Grid>
                 </GroupBox>
 

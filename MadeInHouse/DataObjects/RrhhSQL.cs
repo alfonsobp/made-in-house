@@ -150,15 +150,14 @@ namespace MadeInHouse.DataObjects
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Rol(nombre,descripcion,estado)" +
+            cmd.CommandText = "INSERT INTO Rol(nombre,descripcion,estado) " +
             "VALUES (@nombre,@descripcion,@estado)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
-
             cmd.Parameters.AddWithValue("@nombre", r.NombRol);
             cmd.Parameters.AddWithValue("@descripcion", r.Descripcion);
-            cmd.Parameters.AddWithValue("@estado", r.Estado);  
+            cmd.Parameters.AddWithValue("@estado", r.Estado);
 
             try
             {
@@ -171,6 +170,67 @@ namespace MadeInHouse.DataObjects
                 MessageBox.Show(e.StackTrace.ToString());
             }
             return k;
+        }
+
+        public static int insertarRolxAccModulo(int idRol, int idModulo)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "INSERT INTO RolxAccModulo(idAccModulo,idRol) " +
+            "VALUES (@idAccModulo,@idRol)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@idRol", idRol);
+            cmd.Parameters.AddWithValue("@idAccModulo", idModulo);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        //MAXIMO ID ROL
+
+        public static int ObtenerMaximoID (string nombreTabla, string nombreID) 
+        {
+            int id=0;
+
+            SqlDataReader reader;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "SELECT MAX("+nombreID+") FROM "+nombreTabla;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                //k = cmd.ExecuteNonQuery();
+                reader = cmd.ExecuteReader();
+                if(reader.Read())
+                    id=reader.GetInt32(0);
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return id;
         }
         
         //ACTUALIZAR:
@@ -261,7 +321,7 @@ namespace MadeInHouse.DataObjects
                 {
                     Modulo m = new Modulo();
 
-                    m.NombreModulo = reader["nombre"].ToString();
+                    //m.NombreModulo = reader["nombre"].ToString();
                     m.Descripcion = reader["descripcion"].ToString();
                     //DESPUÉS DE AGREGAR EL CAMPO "estado" A LA TABLA ModuloSistema, DESCOMENTAR LA LÍNEA DE ABAJO
                     //m.Estado = Convert.ToInt32(reader["estado"].ToString());
@@ -293,7 +353,7 @@ namespace MadeInHouse.DataObjects
             cmd.Connection = conn;
 
 
-            cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
+            //cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
             cmd.Parameters.AddWithValue("@descripcion", m.Descripcion);
             //cmd.Parameters.AddWithValue("@estado", m.Estado);
 
@@ -324,7 +384,7 @@ namespace MadeInHouse.DataObjects
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
-            cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
+            //cmd.Parameters.AddWithValue("@nombre", m.NombreModulo);
             cmd.Parameters.AddWithValue("@descripcion", m.Descripcion);
             cmd.Parameters.AddWithValue("@idModulo", m.IdModulo);
 
