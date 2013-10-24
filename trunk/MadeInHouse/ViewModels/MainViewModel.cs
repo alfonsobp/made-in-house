@@ -463,7 +463,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 4.3
         public void AbrirMantenerRol()
         {
-            win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Mantenimiento Rol" });
+            win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento Rol" });
         }
 
         //Ventana Externa: 4.4

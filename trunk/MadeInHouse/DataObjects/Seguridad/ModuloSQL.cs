@@ -13,18 +13,17 @@ using MadeInHouse.Models.RRHH;
 
 namespace MadeInHouse.DataObjects.Seguridad
 {
-    class RolSQL
+    class ModuloSQL
     {
-
-        public BindableCollection<Rol> ListarRol()
+        public  BindableCollection<Modulo> ListarModulo()
         {
 
-            BindableCollection<Rol> lstRol = new BindableCollection<Rol>();
+            BindableCollection<Modulo> lstModulo = new BindableCollection<Modulo>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Rol ";
+            cmd.CommandText = "SELECT * FROM AccModulo ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -35,18 +34,17 @@ namespace MadeInHouse.DataObjects.Seguridad
 
                 while (reader.Read())
                 {
-                    Rol r = new Rol();
-                    r.IdRol = Int32.Parse("" + reader["idRol"]);
-                    r.NombRol = reader["nombre"].ToString();
-                    r.Descripcion = reader["descripcion"].ToString();
-                    r.Estado = Int32.Parse("" + reader["estado"]);
+                    Modulo m = new Modulo();
+                    m.IdModulo = Int32.Parse("" + reader["idAccModulo"]);
+                    m.Descripcion = reader["descripcion"].ToString();
+                    m.Estado = Int32.Parse("" + reader["estado"]);
 
-                    Trace.Write("<<" + r.IdRol + ">>");
-                    Trace.Write("<<" + r.NombRol + ">>");
-                    Trace.Write("<<" + r.Descripcion + ">>");
-                    Trace.Write("<<" + r.Estado + ">>");
+                    Trace.Write("MODULO");
+                    Trace.Write("<<" + m.IdModulo + ">>");
+                    Trace.Write("<<" + m.Descripcion + ">>");
+                    Trace.Write("<<" + m.Estado + ">>");
 
-                    lstRol.Add(r);
+                    lstModulo.Add(m);
                 }
 
                 conn.Close();
@@ -57,9 +55,10 @@ namespace MadeInHouse.DataObjects.Seguridad
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
-            return lstRol;
+            return lstModulo;
 
         }
 
     }
+    
 }

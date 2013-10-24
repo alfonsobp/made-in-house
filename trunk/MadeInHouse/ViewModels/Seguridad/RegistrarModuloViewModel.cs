@@ -48,7 +48,6 @@ namespace MadeInHouse.ViewModels.Seguridad
         {
             indicador = 2;
 
-            txtNombModulo = m.NombreModulo;
             txtDescripcion = m.Descripcion;
         }
 
@@ -58,7 +57,6 @@ namespace MadeInHouse.ViewModels.Seguridad
             Modulo m = new Modulo();
 
             //idModulo: autogenerado
-            m.NombreModulo = txtNombModulo;
             m.Descripcion = txtDescripcion;
             m.Estado = 1;   //Existencia Lógica
 
