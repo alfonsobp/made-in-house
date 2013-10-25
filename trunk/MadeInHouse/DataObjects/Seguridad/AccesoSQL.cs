@@ -37,11 +37,10 @@ namespace MadeInHouse.DataObjects.Seguridad
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
-                int k= 0;
                 while (reader.Read())
                 {
-                    accModulo[k] = Convert.ToInt32(reader["idRol"].ToString());
-                    k++;
+                    //accModulo[k] = Convert.ToInt32(reader["idRol"].ToString());
+                    accModulo[Convert.ToInt32(reader["idAccModulo"].ToString())]= 1;
                 }
                 conn.Close();
             }

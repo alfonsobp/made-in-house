@@ -48,44 +48,51 @@ namespace MadeInHouse.ViewModels
             
             //Obtener la lista de Módulos permitidos:
             DataObjects.Seguridad.AccesoSQL.buscarModulos(idRol, out accModulo);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 10; i++)
                 accRol.AccModulo[i] = accModulo[i];
             
             //Obtener la lista de Acceso a Ventanas Permitidas:
             DataObjects.Seguridad.AccesoSQL.buscarVentanas(accModulo, out accVentana);
-            for (int i = 0; i < 7; i++)
+            for (int i = 0; i < 10; i++)
                 for (int j = 0; j < 30; j++)
                     accRol.AccVentana[i, j] = accVentana[i, j];
-    
         }
 
 /*
-        //Ventana Externa: 1.1
+        //Ventana Externa: 0.0
         public void AbrirMantenimientoAlmacen()
         {
             CargarAccesosRol(u, out accesoRol);
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 0]) == 1)
+            if (accModulo[1] == 1)
                 win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
         }
-        
+  
+ 
+         //Ventana Externa: 1.1
+        public void AbrirMantenimientoAlmacen()
+        {
+            CargarAccesosRol(u, out accesoRol);
+            if (accModulo[1] == 1)
+                win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
+        }       
         //Ventana Externa: 1.2
         public void AbrirNuevoProducto()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 1]) == 1)
-                win.ShowWindow(new Almacen.MantenerNuevoProductoViewModel());
+            if (accModulo[1] == 1)
+                win.ShowWindow(new Almacen.ProductoMantenerViewModel());
         }
 
         //Ventana Externa: 1.3
         public void AbrirBuscarProducto()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 2]) == 1)
+            if (accModulo[1] == 1)
                 win.ShowWindow(new Almacen.ProductoBuscarViewModel());
         }
         
         //Ventana Externa: 1.4
         public void AbrirBuscarGuiaDeRemision()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 3]) == 1)
+            if (accModulo[1] == 1)
             {
                 Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
                 win.ShowWindow(buscarGuiaView);
@@ -95,7 +102,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.5
         public void AbrirMantenerGuiaDeRemision()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 4]) == 1)
+            if (accModulo[1] == 1)
             {
                 Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();
                 win.ShowWindow(abrirGuiaView);
@@ -105,14 +112,14 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.6
         public void AbrirBuscarNotas()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 5]) == 1)
+            if (accModulo[1] == 1)
                 win.ShowWindow(new Almacen.BuscarNotasViewModel());
         }
 
         //Ventana Externa: 1.7
         public void AbrirMantenerNotaDeIngreso()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 6]) == 1)
+            if (accModulo[1] == 1)
             {
                 Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel();
                 win.ShowWindow(abrirNotaIView);
@@ -122,7 +129,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.8
         public void AbrirMantenerNotaDeSalida()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 7]) == 1)
+            if (accModulo[1] == 1)
             {
                 Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
                 win.ShowWindow(abrirNotaIView);
@@ -132,7 +139,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.9
         public void AbrirBuscarZona()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 8]) == 1)
+            if (accModulo[1] == 1)
             {
                 Almacen.BuscarZonaViewModel buscarZona = new Almacen.BuscarZonaViewModel();
                 win.ShowWindow(buscarZona);
@@ -142,25 +149,25 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.10
         public void AbrirSolicitudAbConsolidar()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 9]) == 1)
+            if (accModulo[1] == 1)
                 win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
         }
 
         //Ventana Externa: 1.11
         public void AbrirSolicitudAbDetalle()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 10]) == 1)
+            if (accModulo[1] == 1)
                 win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
         }
 
         //Ventana Externa: 1.12
         public void AbrirMovimientos()
         {
-            if ((accesoRol.AccModulo[0] == 1) && (accesoRol.AccVentana[0, 11]) == 1)
+            if (accModulo[1] == 1)
                 win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
         }
 
-        */
+*/
 
         //Ventana Externa: 2.1
         public void AbrirMantenimientoAlmacen()
