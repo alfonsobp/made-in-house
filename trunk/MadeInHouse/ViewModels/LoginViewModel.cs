@@ -29,12 +29,21 @@ namespace MadeInHouse.ViewModels
         
         public void enter()
         {
+
+            WindowManager win = new WindowManager();
+
+            MainViewModel main = new MainViewModel();
+            win.ShowWindow(main);
+            this.TryClose();
+
+/*
             if (!String.IsNullOrWhiteSpace(TxtUser) && !String.IsNullOrWhiteSpace(TxtPasswordUser))
             {
                 int k;
 
 
                 k = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
+                
                 
                 if ((String.Compare(TxtUser, "ADMIN") == 0) && (String.Compare(TxtPasswordUser, "1234") == 0))
                     k = 1;
@@ -51,7 +60,11 @@ namespace MadeInHouse.ViewModels
                     win.ShowWindow(main);
                     this.TryClose();
                 }
+
+
             }
+  
+*/
         }
     }
 }
