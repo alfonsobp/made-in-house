@@ -165,7 +165,7 @@ namespace MadeInHouse.Models.RRHH
 
 
         public Empleado(string dni, string sexo, string nombre, string apePaterno, string apeMaterno, string telefono,
-                        string celular, string emailEmpleado, string emailEmpresa, string ruc,
+                        string celular, string emailEmpleado, string ruc,
                         string cuentaBancaria, int estado, string fechaReg, string idPuesto, string idCategoria,
                         string idEmpleado, int semVacacion, string refFoto, string direccion)
         {
@@ -187,7 +187,7 @@ namespace MadeInHouse.Models.RRHH
             this.semVacacion = semVacacion;
             this.refFoto = refFoto;
             this.Direccion = direccion;
-            this.emailEmpresa = emailEmpresa;
+            //this.emailEmpresa = emailEmpresa;
             
         }
 

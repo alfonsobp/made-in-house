@@ -71,12 +71,12 @@ namespace MadeInHouse.ViewModels.RRHH
             set { txtFechNac = value; NotifyOfPropertyChange(() => TxtFechNac); }
         }
 
-        private string txtRdbMasc;
+        private bool rdbMasc;
 
-        public string TxtRdbMasc
+        public bool RdbMasc
         {
-            get { return txtRdbMasc; }
-            set { txtRdbMasc = value; NotifyOfPropertyChange(() => TxtRdbMasc); }
+            get { return rdbMasc; }
+            set { rdbMasc = value; NotifyOfPropertyChange(() => rdbMasc); }
         }
 
         private string txtRdbFem;
@@ -146,27 +146,24 @@ namespace MadeInHouse.ViewModels.RRHH
 
         public void GuardarEmpleado()
         {
-            
             int k;
             Empleado p = new Empleado();
             p.Dni = txtDni;
-            p.Sexo = "M";
+            if (RdbMasc) p.Sexo = "M"; else p.Sexo = "F";
             p.Nombre = txtNomb;
             p.ApePaterno = txtApePat;
             p.ApeMaterno = txtApeMat;
             p.Telefono = txtTelef;
             p.Celular = txtCel;
             p.EmailEmpleado = txtEmail;
-            p.EmailEmpresa = txtEmailEmpresa;
-            p.Direccion = txtDir;
-
-            // p.Ruc = null;
-            //p.CuentaBancaria = null;
-            p.Estado = 1;
             p.FechaReg = "01/03/2013";
+            p.Estado = 1;
+
+            //p.EmailEmpresa = "hola@k.ase";
+            // p.Ruc = null;
+            //p.CuentaBancaria = null;                      
             //p.IdPuesto = "2";
             // p.IdCategoria = null;
-            //p.IdEmpleado = null;
             //p.SemVacacion = 1;
             //p.RefFoto = null;
 
@@ -175,7 +172,7 @@ namespace MadeInHouse.ViewModels.RRHH
             if (k == 0)
                 MessageBox.Show("Ocurrio un error");
             else
-                MessageBox.Show("Los datos han sido guardados exitosamente");
+                MessageBox.Show("holi");
 
         }
 
