@@ -95,6 +95,14 @@ namespace MadeInHouse.Models.RRHH
             set { cuentaBancaria = value; }
         }
 
+        string banco;
+
+        public string Banco
+        {
+            get { return banco; }
+            set { banco = value; }
+        }
+
         int estado;
 
         public int Estado
@@ -162,6 +170,48 @@ namespace MadeInHouse.Models.RRHH
         public Empleado()
         {
         }
+
+        string referencia;
+
+        public string Referecia
+        {
+            get { return referencia; }
+            set { referencia = value; }
+        }
+
+        string fechNacimiento;
+
+        public string FechNacimiento
+        {
+            get { return fechNacimiento; }
+            set { fechNacimiento = value; }
+        }
+
+        string tienda;
+        public string Tienda
+        {
+            get { return tienda; }
+            set { tienda = value; }
+        }
+        string puesto;
+        public string Puesto
+        {
+            get { return puesto; }
+            set { puesto = value; }
+        }
+        string area;
+        public string Area
+        {
+            get { return area; }
+            set { area = value; }
+        }
+        decimal sueldo;
+        public decimal Sueldo
+        {
+            get { return sueldo; }
+            set { sueldo = value; }
+        }
+
 
 
         public Empleado(string dni, string sexo, string nombre, string apePaterno, string apeMaterno, string telefono,
