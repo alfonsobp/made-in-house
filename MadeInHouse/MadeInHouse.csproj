@@ -88,6 +88,9 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="Manager\AccModuloManager.cs" />
     <Compile Include="Manager\AccVentanaManager.cs" />
     <Compile Include="Manager\AccVentanaInternaManager.cs" />
@@ -158,7 +161,6 @@
     <Compile Include="DataObjects\ReportesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccesoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\ModuloSQL.cs" />
-    <Compile Include="DataObjects\Seguridad\ModuloVentana.cs" />
     <Compile Include="DataObjects\Seguridad\RolSQL.cs" />
     <Compile Include="DataObjects\UtilesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\UsuarioSQL.cs" />
@@ -175,9 +177,12 @@
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />
+    <Compile Include="Models\Seguridad\AccModulo.cs" />
+    <Compile Include="Models\Seguridad\AccVentana.cs" />
     <Compile Include="Models\Seguridad\Modulo.cs" />
     <Compile Include="Models\Seguridad\Rol.cs" />
     <Compile Include="Models\Seguridad\Acceso.cs" />
+    <Compile Include="Models\Seguridad\RolxAccVentana.cs" />
     <Compile Include="Models\Ventas\Cliente.cs" />
     <Compile Include="Models\Ventas\ClienteGateway.cs" />
     <Compile Include="Models\MyWindowManager.cs" />

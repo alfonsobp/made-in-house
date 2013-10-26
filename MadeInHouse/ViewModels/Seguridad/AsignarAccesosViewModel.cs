@@ -23,32 +23,32 @@ namespace MadeInHouse.ViewModels.Seguridad
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
 
-            RolSQL moduloSQL = new RolSQL();
-            //LstModulo = mo
+            AccModuloSQL moduloSQL = new AccModuloSQL();
+            LstAccModulo = moduloSQL.ListarAccModulo();
         }
 
-        private int idModuloValue;
+        private int idAccModuloValue;
 
-        public int IdModuloValue
+        public int IdAccModuloValue
         {
-            get { return idModuloValue; }
-            set { idModuloValue = value; }
+            get { return idAccModuloValue; }
+            set { idAccModuloValue = value; }
         }
 
-        private BindableCollection<Modulo> lstModulo;
+        private BindableCollection<AccModulo> lstAccModulo;
 
-        public BindableCollection<Modulo> LstModulo
+        public BindableCollection<AccModulo> LstAccModulo
         {
-            get { return lstModulo; }
+            get { return lstAccModulo; }
             set
             {
-                if (this.lstModulo == value)
+                if (this.lstAccModulo == value)
                 {
                     return;
                 }
-                this.lstModulo = value;
+                this.lstAccModulo = value;
 
-                this.NotifyOfPropertyChange(() => this.lstModulo);
+                this.NotifyOfPropertyChange(() => this.lstAccModulo);
             }
         }
 

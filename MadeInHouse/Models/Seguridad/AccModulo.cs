@@ -6,32 +6,22 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.Seguridad
 {
-    public class Rol
+    public class AccModulo
     {
-        int idRol;
+        int idAccModulo;
 
-        public int IdRol
+        public int IdAccModulo
         {
-            get { return idRol; }
-            set { idRol = value; }
+            get { return idAccModulo; }
+            set { idAccModulo = value; }
         }
-
-        private string nombre;
+        string nombre;
 
         public string Nombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
-        
-        string descripcion;
-
-        public string Descripcion
-        {
-            get { return descripcion; }
-            set { descripcion = value; }
-        }
-
         int estado;
 
         public int Estado
@@ -40,9 +30,10 @@ namespace MadeInHouse.Models.Seguridad
             set { estado = value; }
         }
 
-        public Rol()
+        public AccModulo()
         {
 
         }
     }
+    
 }
