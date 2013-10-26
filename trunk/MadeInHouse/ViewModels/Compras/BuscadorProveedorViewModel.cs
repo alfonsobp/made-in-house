@@ -52,7 +52,7 @@ namespace MadeInHouse.ViewModels.Compras
             get { return fechaIni; }
             set { fechaIni = value; NotifyOfPropertyChange(() => FechaIni); }
         }
-
+       
         private string fechaFin;
 
         public string FechaFin
@@ -108,10 +108,10 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void BuscarProveedor() 
         {
-
+            
     
-            EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
-            LstProveedor = eM.Buscar(null) as List<Proveedor>;
+            
+            LstProveedor = eM.Buscar() as List<Proveedor>;
             NotifyOfPropertyChange("LstProveedor");
 
         }
