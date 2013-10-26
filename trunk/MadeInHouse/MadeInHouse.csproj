@@ -290,6 +290,7 @@
     <Compile Include="ViewModels\RRHH\RegistrarEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\RegistrarRolViewModel.cs" />
     <Compile Include="ViewModels\RRHH\VerEmpleadoViewModel.cs" />
+    <Compile Include="ViewModels\Seguridad\AsignarAccesosViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorModuloViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\BuscadorUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\CifrarAES.cs" />
@@ -551,6 +552,9 @@
     </Compile>
     <Compile Include="Views\RRHH\VerEmpleadoView.xaml.cs">
       <DependentUpon>VerEmpleadoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Seguridad\AsignarAccesosView.xaml.cs">
+      <DependentUpon>AsignarAccesosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Seguridad\BuscadorModuloView.xaml.cs">
       <DependentUpon>BuscadorModuloView.xaml</DependentUpon>
@@ -916,6 +920,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RRHH\VerEmpleadoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Seguridad\AsignarAccesosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

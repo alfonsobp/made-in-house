@@ -467,13 +467,7 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantenimiento Empleado" });
         }
 
-        //Ventana Externa: 4.3
-        public void AbrirMantenerRol()
-        {
-            win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento Rol" });
-        }
-
-        //Ventana Externa: 4.4
+         //Ventana Externa: 4.3
         public void AbrirCargarOrganigrama()
         {
             win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Cargar Organigrama" });
@@ -513,10 +507,24 @@ namespace MadeInHouse.ViewModels
         }
 
         //Ventana Externa: 6.3
+        public void AbrirMantenerRol()
+        {
+            win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento Rol" });
+        }
+
+        //Ventana Externa: 6.4
+        public void AsignarAccesos()
+        {
+            win.ShowWindow(new Seguridad.AsignarAccesosViewModel { });
+        }
+
+        //Ventana Externa: 6.5
         public void AbrirConfigurarUsuario()
         {
             win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
         }
+
+
         
         #endregion Seguridad
 

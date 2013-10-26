@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="463" Width="500"
+             mc:Ignorable="d" Height="421.209" Width="500"
              >
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="500" Height="420" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="420" VerticalAlignment="Top">
@@ -40,27 +40,9 @@
                     </Button>
                 </ToolBar>
 
-                <GroupBox Header="Buscar Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="93" Width="480">
-                    <Grid Margin="0,10,15,3">
-                        <Label Content="Módulo:" HorizontalAlignment="Left" Margin="136,19,0,0" VerticalAlignment="Top" Width="56"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="197,22,0,0" VerticalAlignment="Top" Width="120">
-                            <ComboBoxItem Content="TODOS" HorizontalAlignment="Left" Width="118" Selector.IsSelected="True" />
-                            <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="RRHH" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Seguridad" HorizontalAlignment="Left" Width="118"/>
-                        </ComboBox>
-                        <Button Height="22" Margin="367,19,234,0" VerticalAlignment="Top">
-                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
-                        </Button>
-
-                    </Grid>
-                </GroupBox>
-
                 <DataGrid x:Name="LstModuloVentana" 
                           cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
-                          Margin="10,158,10,0" Height="198" VerticalAlignment="Top" AutoGenerateColumns="false">
+                          Margin="10,60,10,0" AutoGenerateColumns="false" Height="317" VerticalAlignment="Top">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=IdAccModulo}" Width="100" Header="Rol"/>
                         <DataGridTextColumn Binding="{Binding Path=IdAccVentana}" Width="370" Header="Descripción"/>
