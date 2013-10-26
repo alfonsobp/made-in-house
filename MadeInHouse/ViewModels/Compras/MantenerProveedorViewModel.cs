@@ -26,12 +26,13 @@ namespace MadeInHouse.ViewModels.Compras
             txtRuc = p.Ruc;
             txtRazonSocial = p.RazonSocial;
             txtEmail = p.Email;
-
+            Id = p.IdProveedor;
             //Editar
             indicador = 2;
              
         }
 
+        int Id;
 
         public MantenerProveedorViewModel()
         {
@@ -127,6 +128,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
             int k;
             Proveedor p = new Proveedor();
+            p.IdProveedor = Id;
             p.CodProveedor = txtCodigo;
             p.Contacto = txtContacto;
             p.Direccion = txtDireccion;
@@ -136,6 +138,7 @@ namespace MadeInHouse.ViewModels.Compras
             p.Ruc = txtRuc;
             p.Telefono = TxtTelefono;
             p.TelefonoContacto = txtTelefonoContacto;
+         
 
             eM = new TableManager().getInstance(EntityName.Proveedor);
             
