@@ -40,13 +40,13 @@
                                Margin="232,37,0,0" 
                                VerticalAlignment="Top" Width="135"/>
                         <Label Content="Rol:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,10,0,0"/>
-                        <ComboBox ItemsSource="{Binding LstModulo}"
-                        	DisplayMemberPath="Descripcion"
-                        	SelectedValuePath="IdModulo" 
-                        	SelectedValue="{Binding IdModuloValue}"
-                        	HorizontalAlignment="Left" 
-                        	Margin="232,10,0,0" 
-                        	VerticalAlignment="Top" Width="135"/>
+                        <ComboBox ItemsSource="{Binding Path=LstRol}"
+                               DisplayMemberPath="NombRol"
+                               SelectedValuePath="IdRol" 
+                               SelectedValue="{Binding Path=IdRolValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="232,10,0,0" 
+                               VerticalAlignment="Top" Width="135"/>
                     </Grid>
                 </GroupBox>
 
