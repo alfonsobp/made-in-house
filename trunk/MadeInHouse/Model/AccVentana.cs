@@ -15,6 +15,7 @@ namespace MadeInHouse.Model
             get { return idAccVentana; }
             set { idAccVentana = value; }
         }
+
         string descripcion;
 
         public string Descripcion
@@ -22,6 +23,7 @@ namespace MadeInHouse.Model
             get { return descripcion; }
             set { descripcion = value; }
         }
+
         int estado;
 
         public int Estado
@@ -29,12 +31,18 @@ namespace MadeInHouse.Model
             get { return estado; }
             set { estado = value; }
         }
+
         AccModulo accModulo;
 
         internal AccModulo AccModulo
         {
             get { return accModulo; }
             set { accModulo = value; }
+        }
+
+        public AccVentana()
+        {
+
         }
     }
 }
