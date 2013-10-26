@@ -23,8 +23,8 @@ namespace MadeInHouse.DataObjects
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg) " +
-            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg)";
+            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco) " +
+            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -38,16 +38,16 @@ namespace MadeInHouse.DataObjects
             cmd.Parameters.AddWithValue("@email", p.EmailEmpleado);
             cmd.Parameters.AddWithValue("@fechaReg", p.FechaReg);
             cmd.Parameters.AddWithValue("@estado", p.Estado);
-
-            //cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
-            //cmd.Parameters.AddWithValue("@RUC", p.Ruc);
-            //cmd.Parameters.AddWithValue("@cuentaBancaria", p.CuentaBancaria);            
-            //cmd.Parameters.AddWithValue("@idPuesto", p.IdPuesto);
-            //cmd.Parameters.AddWithValue("@idCategoria", p.IdCategoria);
-            //cmd.Parameters.AddWithValue("@idEmpleado", p.IdEmpleado);
-            //cmd.Parameters.AddWithValue("@semVacacion", p.SemVacacion);
-            //cmd.Parameters.AddWithValue("@foto", p.RefFoto);
-
+            cmd.Parameters.AddWithValue("@direccion", p.Direccion);
+            cmd.Parameters.AddWithValue("@referencia", p.Referecia);
+            cmd.Parameters.AddWithValue("@fechaNac", p.FechNacimiento);
+            cmd.Parameters.AddWithValue("@tienda", p.Tienda);
+            cmd.Parameters.AddWithValue("@area", p.Area);
+            cmd.Parameters.AddWithValue("@puesto", p.Puesto);
+            cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
+            cmd.Parameters.AddWithValue("@sueldo", p.Sueldo);
+            cmd.Parameters.AddWithValue("@cuentaBancaria", p.CuentaBancaria);
+            cmd.Parameters.AddWithValue("@banco", p.Banco);
             try
             {
                 conn.Open();
