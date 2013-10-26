@@ -50,7 +50,7 @@
                       cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
                       Margin="27,201,32,0" Height="191" VerticalAlignment="Top" AutoGenerateColumns="false">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=Codigo}" Width="130" Header="Código de Servicio"/>
+                <DataGridTextColumn Binding="{Binding Path=CodServicio}" Width="130" Header="Código de Servicio"/>
                 <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="280" Header="Descripcion"/>
                 <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="130" Header="Nombre"/>
             </DataGrid.Columns>
