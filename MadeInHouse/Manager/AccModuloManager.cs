@@ -1,4 +1,4 @@
-﻿using MadeInHouse.Model.Seguridad;
+﻿using MadeInHouse.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace MadeInHouse.Manager.Seguridad
+namespace MadeInHouse.Manager
 {
     class AccModuloManager:EntityManager
     {
