@@ -16,6 +16,8 @@ namespace MadeInHouse.ViewModels.Seguridad
 {
     public class AsignarAccesosViewModel : Conductor<IScreen>.Collection.OneActive
     {
+
+
         private MyWindowManager win = new MyWindowManager();
 
         public AsignarAccesosViewModel()
@@ -25,6 +27,8 @@ namespace MadeInHouse.ViewModels.Seguridad
 
             AccModuloSQL moduloSQL = new AccModuloSQL();
             LstAccModulo = moduloSQL.ListarAccModulo();
+
+            ActualizarListaAccVentanaAccModulo(); 
         }
 
         private int idAccModuloValue;
@@ -75,6 +79,25 @@ namespace MadeInHouse.ViewModels.Seguridad
                 this.NotifyOfPropertyChange(() => this.lstRol);
             }
         }
+
+        //GRILLA
+
+        private List<AccVentana> lstAccVentanaAccModulo;
+
+        public List<AccVentana> LstAccVentanaAccModulo
+        {
+            get { return lstAccVentanaAccModulo; }
+            set { lstAccVentanaAccModulo = value; NotifyOfPropertyChange(() => LstAccVentanaAccModulo); }
+        }
+
+        public void ActualizarListaAccVentanaAccModulo()
+        {
+            LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentana();
+            //LstAccVentanaAccModulo = A
+                //BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
+            NotifyOfPropertyChange("LstAccVentanaAccModulo");
+        }
+
 
     }
 
