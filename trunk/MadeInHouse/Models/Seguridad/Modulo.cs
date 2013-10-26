@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadeInHouse.Models.RRHH
+namespace MadeInHouse.Models.Seguridad
 {
     public class Modulo
     {
