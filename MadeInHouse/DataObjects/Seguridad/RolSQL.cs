@@ -94,5 +94,136 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
+        public static int buscarIdRol(Usuario u)
+        {
+            int idRolEnc = 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT idRol FROM Usuario WHERE idUsuario=@idUsuario ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                    idRolEnc = (int)(reader["idRol"]);
+                else
+                    MessageBox.Show("Usuario no válido, revisar datos");
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return idRolEnc;
+        }
+
+        //INSERTAR:
+        public static int insertarRol(Rol r)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "INSERT INTO Rol(nombre,descripcion,estado) " +
+            "VALUES (@nombre,@descripcion,@estado)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@nombre", r.NombRol);
+            cmd.Parameters.AddWithValue("@descripcion", r.Descripcion);
+            cmd.Parameters.AddWithValue("@estado", r.Estado);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        //ACTUALIZAR:
+        public static int actualizarRol(Rol r)
+        {
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE Rol " +
+            "SET nombre= @nombre, descripcion= @descripcion" +
+            " WHERE idRol= @idRol ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@nombre", r.NombRol);
+            cmd.Parameters.AddWithValue("@descripcion", r.Descripcion);
+            cmd.Parameters.AddWithValue("@idRol", r.IdRol);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+        //ELIMINAR:
+        public static int eliminarRol(Rol r)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE Rol " +
+            "SET estado= @estado" +
+            " WHERE idRol= @idRol ";
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@estado", 0);  //0: Eliminado Lógico
+            cmd.Parameters.AddWithValue("@idRol", r.IdRol);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+
+        }
+
+
     }
 }

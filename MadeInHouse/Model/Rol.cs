@@ -15,6 +15,14 @@ namespace MadeInHouse.Model
             get { return idRol; }
             set { idRol = value; }
         }
+
+        private string nombre;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
         string descripcion;
 
         public string Descripcion
@@ -22,6 +30,7 @@ namespace MadeInHouse.Model
             get { return descripcion; }
             set { descripcion = value; }
         }
+
         int estado;
 
         public int Estado
@@ -29,19 +38,18 @@ namespace MadeInHouse.Model
             get { return estado; }
             set { estado = value; }
         }
-        string nombre;
 
-        public string Nombre
+        private List<AccVentana> lstAccVentana;
+
+        private List<AccVentana> LstAccVentana
         {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return lstAccVentana; }
+            set { lstAccVentana = value; }
         }
-        List<AccModulo> lstAccesos;
 
-        internal List<AccModulo> LstAccesos
+        public Rol()
         {
-            get { return lstAccesos; }
-            set { lstAccesos = value; }
+
         }
     }
 }

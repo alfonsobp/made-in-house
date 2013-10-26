@@ -30,5 +30,9 @@ namespace MadeInHouse.Model
             set { estado = value; }
         }
 
+        public AccModulo()
+        {
+
+        }
     }
 }
