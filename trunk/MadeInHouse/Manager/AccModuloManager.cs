@@ -26,7 +26,7 @@ namespace MadeInHouse.Manager
             //SqlCommand cmd = new SqlCommand();
             DBConexion db = new DBConexion();
             SqlDataReader reader;
-            
+
             db.cmd.CommandText = "SELECT * FROM AccModulo ";
             db.cmd.CommandType = CommandType.Text;
             //db.cmd.Connection = conn;
