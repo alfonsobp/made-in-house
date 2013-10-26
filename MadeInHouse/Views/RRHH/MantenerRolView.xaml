@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="463" Width="424.667"
+             mc:Ignorable="d" Height="463" Width="500"
              >
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="500" Height="420" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="420" VerticalAlignment="Top">
