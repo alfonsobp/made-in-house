@@ -22,6 +22,7 @@ namespace MadeInHouse.Model
         string sexo;
         string telefono;
         List<Tarjeta> lstTarjeta;
+    
 
     }
 }

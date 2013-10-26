@@ -16,7 +16,10 @@ namespace MadeInHouse.Manager
 
                if (indexTable == EntityName.Proveedor )
                     eM = new ProveedorManager();
-       
+
+               if (indexTable == EntityName.MotivoIS)
+                   eM = new MotivoISManager();
+                
         
 
             return eM;
