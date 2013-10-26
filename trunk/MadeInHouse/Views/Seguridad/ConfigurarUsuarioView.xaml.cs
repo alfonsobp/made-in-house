@@ -24,5 +24,20 @@ namespace MadeInHouse.Views.Seguridad
         {
             InitializeComponent();
         }
+
+        private void psbPassActual_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            TxtPassActual.Text = psbPassActual.Password;
+        }
+
+        private void psbPassNuevo1_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            TxtPassNuevo1.Text = psbPassNuevo1.Password;
+        }
+
+        private void psbPassNuevo2_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            TxtPassNuevo2.Text = psbPassNuevo2.Password;
+        }
     }
 }

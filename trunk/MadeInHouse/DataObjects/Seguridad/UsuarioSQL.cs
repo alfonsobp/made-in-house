@@ -23,19 +23,19 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (@codEmpleado,@contrasenha,@estado,@rol,getdate(),getdate())";
+            cmd.CommandText = "INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (@codEmpleado,@contrasenha,@estado,@idRol,getdate(),getdate())";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
             Trace.WriteLine("Flag1");
-            Trace.WriteLine("<" + u.CodUsuario + ">");
+            Trace.WriteLine("<" + u.CodEmpleado + ">");
             Trace.WriteLine("<" + u.Contrasenha + ">");
             Trace.WriteLine("<" + u.IdRol + ">");
             Trace.WriteLine("<" + u.Estado + ">");
 
-            cmd.Parameters.AddWithValue("@codEmpleado", u.CodUsuario);
+            cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
             cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
-            cmd.Parameters.AddWithValue("@rol", u.IdRol);
+            cmd.Parameters.AddWithValue("@idRol", u.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
             
 
@@ -86,8 +86,6 @@ namespace MadeInHouse.DataObjects.Seguridad
             return passEnc;
         }
 
-
-
         public static int autenticarUsuario(string codEmpleado, string password)
         {
             CifrarAES cifradoAES = new CifrarAES();
@@ -103,46 +101,123 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
+        public static Usuario buscarUsuarioPorCodEmpleado(string codEmpleado)
+        {
+            Usuario u = null;
 
-        //public static List<Usuario> BuscarUsuario(string codUsuario, string producto)
-        //{
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
 
-        //    List<Servicio> lstServicio = new List<Servicio>();
-        //    SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-        //    SqlCommand cmd = new SqlCommand();
-        //    SqlDataReader reader;
+            cmd.CommandText = "SELECT * FROM Usuario WHERE codEmpleado=@codEmpleado ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
 
-        //    cmd.CommandText = "SELECT * FROM Servicio ";
-        //    cmd.CommandType = CommandType.Text;
-        //    cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
 
-        //    try
-        //    {
-        //        conn.Open();
-        //        reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    u = new Usuario();
 
-        //        while (reader.Read())
-        //        {
-        //            Servicio s = new Servicio();
-        //            s.Codigo = reader["codServicio"].ToString();
-        //            s.Nombre = reader["nombre"].ToString();
-        //            s.Proveedor = getCODfromProv((int)(reader["idProveedor"]));
-        //            s.Descripcion = reader["descripcion"].ToString();
+                    u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
+                    u.CodEmpleado = reader["codEmpleado"].ToString();
+                    u.Contrasenha = reader["contrasenha"].ToString();
+                    u.IdRol = Int32.Parse(reader["idUsuario"].ToString());
+                    u.Estado = Int32.Parse(reader["idUsuario"].ToString());
+                    u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
+                    u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+                }
+                else
+                    conn.Close();
 
-        //            lstServicio.Add(s);
-        //        }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
 
-        //        conn.Close();
+            return u;
+        }
 
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.StackTrace.ToString());
-        //    }
+        public static int editarUsuario(Usuario u)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
 
-        //    return lstServicio;
+            cmd.CommandText = "UPDATE Usuario " +
+                              "SET contrasenha= @contrasenha,idRol= @idRol, estado = @estado, fechaMod = @fechaMod " +
+                              "WHERE idUsuario= @idUsuario";
 
-        //}
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
+            cmd.Parameters.AddWithValue("@idRol", u.IdRol);
+            cmd.Parameters.AddWithValue("@estado", u.Estado);
+            cmd.Parameters.AddWithValue("@fechaMod", u.FechaMod);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+        public static List<Usuario> BuscarUsuario(string codEmpleado, int idRol, DateTime fechaRegIni, DateTime fechaRegFin)
+        {
+
+            List<Usuario> lstUsuario = new List<Usuario>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Usuario ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Usuario u = new Usuario();
+                    u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
+                    u.CodEmpleado = reader["codEmpleado"].ToString();
+                    u.IdRol = Int32.Parse(reader["idRol"].ToString());
+                    u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
+                    u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+
+                    lstUsuario.Add(u);
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lstUsuario;
+
+        }
 
        
 

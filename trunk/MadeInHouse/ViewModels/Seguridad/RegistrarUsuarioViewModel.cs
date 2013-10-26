@@ -12,6 +12,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Controls;
 using MadeInHouse.DataObjects.Seguridad;
+
 namespace MadeInHouse.ViewModels.Seguridad
 {
     class RegistrarUsuarioViewModel : PropertyChangedBase
@@ -81,7 +82,6 @@ namespace MadeInHouse.ViewModels.Seguridad
 
             if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) )
             {
-                MessageBox.Show("Contraseñas iguales");
 
                 int k;
 
@@ -89,10 +89,9 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                 string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
                         "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-                Trace.WriteLine("<<<<" + ContrasenhaCifrada + ">>>>");
 
                 Usuario u = new Usuario();
-                u.CodUsuario = txtCodUsuario;
+                u.CodEmpleado = txtCodUsuario;
                 u.Contrasenha = ContrasenhaCifrada;
                 u.IdRol = IdRolValue;
                 u.Estado = 1;
