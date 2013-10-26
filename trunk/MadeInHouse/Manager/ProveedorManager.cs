@@ -15,33 +15,32 @@ namespace MadeInHouse.Manager
 
         public int Agregar(object entity)
         {
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
+            DBConexion db = new DBConexion();
             int k = 0;
             Proveedor p = entity as Proveedor;
-            cmd.CommandText = "INSERT INTO Proveedor(codProveedor,razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,RUC)" +
-            "VALUES (@codProveedor,@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefonoContacto,@email,@ruc)";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
+            db.cmd.CommandText = "INSERT INTO Proveedor(razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,RUC)" +
+            "VALUES (@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefonoContacto,@email,@ruc)";
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.Connection = db.conn;
 
-            cmd.Parameters.AddWithValue("@codProveedor", p.CodProveedor);
-            cmd.Parameters.AddWithValue("@razonSocial", p.RazonSocial);
-            cmd.Parameters.AddWithValue("@contacto", p.Contacto);
-            cmd.Parameters.AddWithValue("@direccion", p.Direccion);
-            cmd.Parameters.AddWithValue("@fax", p.Fax);
-            cmd.Parameters.AddWithValue("@telefono", p.Telefono);
-            cmd.Parameters.AddWithValue("@telefonoContacto", p.TelefonoContacto);
-            cmd.Parameters.AddWithValue("@email", p.Email);
-            cmd.Parameters.AddWithValue("@ruc", p.Ruc);
+            //db.cmd.Parameters.AddWithValue("@codProveedor", p.CodProveedor);
+            db.cmd.Parameters.AddWithValue("@razonSocial", p.RazonSocial);
+            db.cmd.Parameters.AddWithValue("@contacto", p.Contacto);
+            db.cmd.Parameters.AddWithValue("@direccion", p.Direccion);
+            db.cmd.Parameters.AddWithValue("@fax", p.Fax);
+            db.cmd.Parameters.AddWithValue("@telefono", p.Telefono);
+            db.cmd.Parameters.AddWithValue("@telefonoContacto", p.TelefonoContacto);
+            db.cmd.Parameters.AddWithValue("@email", p.Email);
+            db.cmd.Parameters.AddWithValue("@ruc", p.Ruc);
 
             try
             {
-                conn.Open();
+                db.conn.Open();
 
 
-                k = cmd.ExecuteNonQuery();
+                k = db.cmd.ExecuteNonQuery();
 
-                conn.Close();
+                db.conn.Close();
 
             }
             catch (Exception e)
@@ -58,19 +57,18 @@ namespace MadeInHouse.Manager
         {
             
             List<Proveedor> lstProveedor = new List<Proveedor>();
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
+            DBConexion db = new DBConexion();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Proveedor ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
+            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE estado = 1 ";
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.Connection = db.conn;
 
             try
             {
-                conn.Open();
+                db.conn.Open();
 
-                reader = cmd.ExecuteReader();
+                reader = db.cmd.ExecuteReader();
 
 
                 while (reader.Read())
@@ -90,7 +88,7 @@ namespace MadeInHouse.Manager
                     lstProveedor.Add(p);
                 }
 
-                conn.Close();
+                db.conn.Close();
 
             }
             catch (Exception e)
@@ -111,11 +109,11 @@ namespace MadeInHouse.Manager
             Proveedor p = entity as Proveedor;
             cmd.CommandText = "UPDATE Proveedor  " +
             "SET razonSocial= @razonSocial,contacto= @contacto,direccion= @direccion,fax= @fax,telefono= @telefono ,telefonoContacto= @telefonoContacto,email= @email ,ruc = @ruc " +
-            " WHERE codProveedor= @codProveedor ";
+            " WHERE idProveedor = @IdProveedor ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             
-            cmd.Parameters.AddWithValue("@codProveedor", p.CodProveedor);
+            cmd.Parameters.AddWithValue("@IdProveedor", p.IdProveedor);
             cmd.Parameters.AddWithValue("@razonSocial", p.RazonSocial);
             cmd.Parameters.AddWithValue("@contacto", p.Contacto);
             cmd.Parameters.AddWithValue("@direccion", p.Direccion);
