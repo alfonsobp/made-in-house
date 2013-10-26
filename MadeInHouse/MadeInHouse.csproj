@@ -1165,6 +1165,7 @@
     <Resource Include="Assets\warning.png" />
     <Resource Include="Assets\gear.png" />
     <Resource Include="Assets\minimize.png" />
+    <Content Include="Assets\addServicio.png" />
     <Content Include="Libraries\Caliburn.Micro.dll" />
     <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Libraries\RibbonControlsLibrary.dll" />

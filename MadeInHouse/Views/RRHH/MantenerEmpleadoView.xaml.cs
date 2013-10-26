@@ -12,17 +12,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MadeInHouse.Models.RRHH;
 
 namespace MadeInHouse.Views.RRHH
 {
     /// <summary>
     /// Lógica de interacción para MantenerEmpleadoView.xaml
     /// </summary>
+    /// 
+
+
     public partial class MantenerEmpleadoView : UserControl
     {
         public MantenerEmpleadoView()
         {
             InitializeComponent();
+
+            List<Empleado> grid = new List<Empleado>();
+
+            grid = DataObjects.RrhhSQL.BuscarEmpleado();
+
+
+            Lista.ItemsSource = grid;
+            Lista.Items.Refresh();            
         }
+
+        public void Refrescar(object sender, RoutedEventArgs e)
+        {
+            List<Empleado> grid = new List<Empleado>();
+
+            grid = DataObjects.RrhhSQL.BuscarEmpleado();
+
+
+            Lista.ItemsSource = grid;
+            Lista.Items.Refresh();
+        }
+
     }
 }

@@ -33,18 +33,22 @@ namespace MadeInHouse.DataObjects
             cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             cmd.Parameters.AddWithValue("@apePaterno", p.ApePaterno);
             cmd.Parameters.AddWithValue("@apeMaterno", p.ApeMaterno);
+
             cmd.Parameters.AddWithValue("@telefono", p.Telefono);
             cmd.Parameters.AddWithValue("@celular", p.Celular);
             cmd.Parameters.AddWithValue("@email", p.EmailEmpleado);
+            cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
+
             cmd.Parameters.AddWithValue("@fechaReg", p.FechaReg);
-            cmd.Parameters.AddWithValue("@estado", p.Estado);
+            cmd.Parameters.AddWithValue("@fechaNac", p.FechNacimiento);            
             cmd.Parameters.AddWithValue("@direccion", p.Direccion);
             cmd.Parameters.AddWithValue("@referencia", p.Referecia);
-            cmd.Parameters.AddWithValue("@fechaNac", p.FechNacimiento);
+
+            cmd.Parameters.AddWithValue("@estado", p.Estado);
             cmd.Parameters.AddWithValue("@tienda", p.Tienda);
             cmd.Parameters.AddWithValue("@area", p.Area);
             cmd.Parameters.AddWithValue("@puesto", p.Puesto);
-            cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
+            
             cmd.Parameters.AddWithValue("@sueldo", p.Sueldo);
             cmd.Parameters.AddWithValue("@cuentaBancaria", p.CuentaBancaria);
             cmd.Parameters.AddWithValue("@banco", p.Banco);
@@ -65,7 +69,7 @@ namespace MadeInHouse.DataObjects
             return k;
         }
         /****************************************** EMPLEADO ************************************/
-        public static List<Empleado> BuscarEmpleado(string codigo, string dni, string nombre, string apePaterno, string tienda, string area, string puesto)
+        public static List<Empleado> BuscarEmpleado()
         {
             List<Empleado> lstEmpleado = new List<Empleado>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
@@ -88,19 +92,28 @@ namespace MadeInHouse.DataObjects
                     e.ApePaterno = reader["apePaterno"].ToString();
                     e.Nombre = reader["nombre"].ToString();
                     e.ApeMaterno = reader["apeMaterno"].ToString();
+
                     e.Telefono = reader["telefono"].ToString();
                     e.Celular = reader["celular"].ToString();
                     e.EmailEmpleado = reader["email"].ToString();
                     e.EmailEmpresa = reader["emailEmpresa"].ToString();
-                    e.Ruc = reader["RUC"].ToString();
-                    e.CuentaBancaria = reader["cuentaBancaria"].ToString();
+
+                    e.FechaReg = reader["fechaReg"].ToString();
+                    e.FechNacimiento = reader["fechaNac"].ToString();
+                    e.Direccion = reader["direccion"].ToString();
+                    e.Referecia = reader["referencia"].ToString();
+
                     e.Estado = Convert.ToInt32(reader["estado"].ToString());
-                    e.FechaReg = reader["fecharReg"].ToString();
-                    e.IdPuesto = reader["idPuesto"].ToString();
-                    e.IdCategoria = reader["idCategoria"].ToString();
+                    e.Tienda = reader["tienda"].ToString();
+                    e.Area = reader["area"].ToString();
+                    e.Puesto = reader["puesto"].ToString();
+
+                    e.Sueldo = Convert.ToDecimal(reader["sueldo"].ToString());
+                    e.CuentaBancaria = reader["cuentaBancaria"].ToString();
+                    e.Banco = reader["banco"].ToString();
+
                     e.IdEmpleado = reader["idEmpleado"].ToString();
-                    e.SemVacacion = Convert.ToInt32(reader["semVacacion"].ToString());
-                    e.RefFoto = reader["foto"].ToString();
+                   
 
                     lstEmpleado.Add(e);
                 }
