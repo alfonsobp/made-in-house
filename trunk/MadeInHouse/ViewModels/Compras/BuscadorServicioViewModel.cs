@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Caliburn.Micro;
-using MadeInHouse.Models;
-using MadeInHouse.Models.Compras;
-using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using Caliburn.Micro;
+using MadeInHouse.Manager;
+using MadeInHouse.Model;
+using MadeInHouse.Views.Compras;
+
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -49,6 +50,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         }
 
+        EntityManager eM = new TableManager().getInstance(EntityName.Servicio);
 
         public void NuevoServicio()
         {
@@ -63,22 +65,20 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void EliminarServicio()
         {
-            MessageBox.Show("Servicio Eliminado \n\nCodigo = " + servicioSeleccionado.Codigo + "\nombre = " + servicioSeleccionado.Nombre +
-                            "\nProveedor = " + servicioSeleccionado.Proveedor + "\nDescripcion = " + servicioSeleccionado.Descripcion);
-            DataObjects.ComprasSQL.eliminarServicio(servicioSeleccionado);
+            
         }
 
         public void BuscarServicio()
         {
-            lstServicio = DataObjects.ComprasSQL.BuscarServicio(null, null);
+            lstServicio = eM.Buscar(null) as List<Servicio>;
             NotifyOfPropertyChange("LstServicio");
+
 
         }
 
         public void ActualizarServicio()
         {
-            lstServicio = DataObjects.ComprasSQL.BuscarServicio(null, null);
-            NotifyOfPropertyChange("LstServicio");
+           
         }
     }
 }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using MadeInHouse.Models;
-using MadeInHouse.Models.Compras;
+using MadeInHouse.Model;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
+using MadeInHouse.Manager;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -18,9 +18,9 @@ namespace MadeInHouse.ViewModels.Compras
         public agregarServicioViewModel(Servicio s)
         {
 
-            txtCodigo = s.Codigo;
+            txtCodigo = s.CodServicio;
             txtNombre = s.Nombre;
-            txtProveedor = s.Proveedor;
+            txtProveedor = Manager.ServicioManager.getCODfromProv(s.IdProveedor);
             txtDescripcion = s.Descripcion;
 
             //Editar servicio 
@@ -34,7 +34,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 1;
         }
 
-
+        EntityManager eM = new TableManager().getInstance(EntityName.Servicio);
         private int indicador;
 
         private string txtCodigo;
@@ -70,15 +70,19 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
 
+
         public void GuardarServicio()
         {
             int k;
-            Servicio s = new Servicio(txtCodigo, txtNombre, txtDescripcion, txtProveedor);
-
+            Servicio s = new Servicio();
+            s.IdProveedor = Manager.ServicioManager.getIDfromProv(TxtProveedor);
+            s.Nombre = TxtNombre;
+            s.Descripcion = TxtDescripcion;
+            s.CodServicio = TxtCodigo;
 
             if (indicador == 1)
             {
-                k = DataObjects.ComprasSQL.agregarServicio(s);
+                k = eM.Agregar(s);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
@@ -89,8 +93,8 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (indicador == 2)
             {
-
-                k = DataObjects.ComprasSQL.editarServicio(s);
+                
+                k = eM.Actualizar(s);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");

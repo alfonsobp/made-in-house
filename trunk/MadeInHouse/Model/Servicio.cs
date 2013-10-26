@@ -15,6 +15,7 @@ namespace MadeInHouse.Model
             get { return idServicio; }
             set { idServicio = value; }
         }
+
         string codServicio;
 
         public string CodServicio
@@ -22,6 +23,7 @@ namespace MadeInHouse.Model
             get { return codServicio; }
             set { codServicio = value; }
         }
+
         string descripcion;
 
         public string Descripcion
@@ -29,6 +31,7 @@ namespace MadeInHouse.Model
             get { return descripcion; }
             set { descripcion = value; }
         }
+
         int idProveedor;
 
         public int IdProveedor
@@ -36,6 +39,7 @@ namespace MadeInHouse.Model
             get { return idProveedor; }
             set { idProveedor = value; }
         }
+
         string nombre;
 
         public string Nombre
@@ -43,9 +47,10 @@ namespace MadeInHouse.Model
             get { return nombre; }
             set { nombre = value; }
         }
+
         List<ServicioxProducto> lstProductos;
 
-        internal List<ServicioxProducto> LstProductos
+        public List<ServicioxProducto> LstProductos
         {
             get { return lstProductos; }
             set { lstProductos = value; }
