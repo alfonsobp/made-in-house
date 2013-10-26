@@ -21,7 +21,7 @@ namespace MadeInHouse.DataObjects
              SqlCommand cmd = new SqlCommand();
              SqlDataReader reader;
 
-             cmd.CommandText = "SELECT * FROM Servicios ";
+             cmd.CommandText = "SELECT * FROM Proveedor ";
              cmd.CommandType = CommandType.Text;
              cmd.Connection = conn;
 
@@ -69,7 +69,7 @@ namespace MadeInHouse.DataObjects
          SqlCommand cmd = new SqlCommand();
          int k = 0;
 
-         cmd.CommandText = "INSERT INTO Proveedor(codProveedor,razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,ruc)" +
+         cmd.CommandText = "INSERT INTO Proveedor(codProveedor,razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,RUC)" +
          "VALUES (@codProveedor,@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefonoContacto,@email,@ruc)";
          cmd.CommandType = CommandType.Text;
          cmd.Connection = conn;
