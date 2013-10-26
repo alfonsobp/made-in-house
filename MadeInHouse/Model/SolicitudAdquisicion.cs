@@ -9,10 +9,46 @@ namespace MadeInHouse.Model
     class SolicitudAdquisicion
     {
         int idSolicitudAD;
+
+        public int IdSolicitudAD
+        {
+            get { return idSolicitudAD; }
+            set { idSolicitudAD = value; }
+        }
         int estado;
+
+        public int Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
         DateTime fechaAtencion;
+
+        public DateTime FechaAtencion
+        {
+            get { return fechaAtencion; }
+            set { fechaAtencion = value; }
+        }
         DateTime fechaReg;
+
+        public DateTime FechaReg
+        {
+            get { return fechaReg; }
+            set { fechaReg = value; }
+        }
         Almacen almacen;
+
+        public Almacen Almacen
+        {
+            get { return almacen; }
+            set { almacen = value; }
+        }
         List<ProductoxSolicitudAd> lstProductos;
+
+        internal List<ProductoxSolicitudAd> LstProductos
+        {
+            get { return lstProductos; }
+            set { lstProductos = value; }
+        }
     }
 }
