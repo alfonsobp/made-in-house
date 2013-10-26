@@ -297,7 +297,6 @@
     <Compile Include="ViewModels\Seguridad\ConfigurarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerModuloViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\MantenerUsuarioViewModel.cs" />
-    <Compile Include="ViewModels\Seguridad\RegistrarModuloViewModel.cs" />
     <Compile Include="ViewModels\Seguridad\RegistrarUsuarioViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\Ventas\DetalleVentaViewModel.cs" />

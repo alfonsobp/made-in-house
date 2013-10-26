@@ -7,7 +7,7 @@ using System.Data.SqlClient;
 
 namespace MadeInHouse.DataObjects
 {
-    class UtilesSQL
+    public class UtilesSQL
     {
         private DBConexion db = null;
         public UtilesSQL()

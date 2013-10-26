@@ -11,6 +11,9 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.RRHH;
 using MadeInHouse.DataObjects.Seguridad;
+
+using MadeInHouse.Models.Seguridad;
+
 namespace MadeInHouse.ViewModels.RRHH
 {
     public class RegistrarRolViewModel : Conductor<IScreen>.Collection.OneActive
@@ -120,7 +123,7 @@ namespace MadeInHouse.ViewModels.RRHH
             //INSERTAR NUEVO MÓDULO:
             if (indicador == 1)
             {
-                k = DataObjects.RrhhSQL.insertarRol(r);
+                k = DataObjects.Seguridad.RolSQL.insertarRol(r);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
@@ -128,15 +131,15 @@ namespace MadeInHouse.ViewModels.RRHH
                 {
                     MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
                                 "\n Módulo = " + "HARDCODEADO xD");
-                    int maxIdRol = DataObjects.RrhhSQL.ObtenerMaximoID("Rol","idRol");
-                    int j = DataObjects.RrhhSQL.insertarRolxAccModulo(maxIdRol, IdModuloValue);
+                    //int maxIdRol = DataObjects.UtilesSQL.ObtenerMaximoID("Rol","idRol");
+                    //int j = DataObjects.RrhhSQL.insertarRolxAccModulo(maxIdRol, IdModuloValue);
                 }
             }
 
             //ACTUALIZA UN MÓDULO:
             if (indicador == 2)
             {
-                k = DataObjects.RrhhSQL.actualizarRol(r);
+                k = DataObjects.Seguridad.RolSQL.actualizarRol(r);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");

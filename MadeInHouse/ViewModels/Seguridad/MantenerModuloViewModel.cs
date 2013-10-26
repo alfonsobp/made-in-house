@@ -16,7 +16,7 @@ namespace MadeInHouse.ViewModels.Seguridad
         private MyWindowManager win = new MyWindowManager();
         public void AbrirRegistrarModulo()
         {
-            win.ShowWindow(new Seguridad.RegistrarModuloViewModel { });
+            //win.ShowWindow(new Seguridad.RegistrarModuloViewModel { });
         }
     }
 
