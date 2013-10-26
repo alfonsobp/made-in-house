@@ -4,12 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="600">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="600" Height="500" VerticalAlignment="Top">
-        <DockPanel Margin="0,0,-2,0" Height="500" VerticalAlignment="Top">
+             d:DesignHeight="250" d:DesignWidth="370">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="370" Height="250" VerticalAlignment="Top">
+        <DockPanel Margin="0,0,-2,0" Height="250" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Registrar Rol" DockPanel.Dock="Top"/>
 
-            <Grid Height="500" VerticalAlignment="Top" Width="600">
+            <Grid Height="230" VerticalAlignment="Top" Width="370">
 
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
@@ -29,8 +29,8 @@
                     </Button>
                 </ToolBar>
 
-                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="185" Width="580">
-                    <Grid Margin="0,10,-2,3">
+                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="185" Width="370">
+                    <Grid Margin="0,0,-2,13">
 
                         <Label Content="Nombre Rol:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="96"/>
                         <TextBox x:Name="TxtNombRol" HorizontalAlignment="Left" Height="23" Margin="111,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
