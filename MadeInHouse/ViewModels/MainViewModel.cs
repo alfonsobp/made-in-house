@@ -266,14 +266,14 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.1
         public void AbrirBuscadorProveedor()
         {
-            Compras.BuscadorProveedorViewModel obj = new Compras.BuscadorProveedorViewModel { DisplayName = "Buscar Proveedor" };
+            Compras.BuscadorProveedorViewModel obj = new Compras.BuscadorProveedorViewModel ();
             win.ShowWindow(obj);
         }
 
         //Ventana Externa: 2.2
         public void AbrirMantenerProveedor()
         {
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Proveedor" };
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel();
             win.ShowWindow(obj);
         }
 

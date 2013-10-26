@@ -4,20 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using MadeInHouse.Models;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using MadeInHouse.Manager;
+using MadeInHouse.Model;
 
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class BuscadorProveedorViewModel : Screen
+    class BuscadorProveedorViewModel : PropertyChangedBase
     {
         private MyWindowManager win = new MyWindowManager();
 
-      
+        EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
+
         private string txtRuc;
 
         public string TxtRuc
@@ -79,13 +81,13 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void test() {
 
-            MessageBox.Show("El proveedor tiene Codigo = " + proveedorSeleccionado.Codigo + " , Ruc = " + proveedorSeleccionado.Ruc + 
+            MessageBox.Show("El proveedor tiene Codigo = " + proveedorSeleccionado.CodProveedor + " , Ruc = " + proveedorSeleccionado.Ruc + 
                             " , Razon Social = " + proveedorSeleccionado.RazonSocial);
         }
      
         public void NuevoProveedor()
         {        
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel { DisplayName = "Nuevo Proveedor" };   
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel();   
             win.ShowWindow(obj);  
         }
 
@@ -97,11 +99,11 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void EliminarProveedor()
         {
-            MessageBox.Show("Proveedor Eliminado \n\nCodigo = " + proveedorSeleccionado.Codigo + "\nRazon social = " + proveedorSeleccionado.RazonSocial + 
+            MessageBox.Show("Proveedor Eliminado \n\nCodigo = " + proveedorSeleccionado.CodProveedor + "\nRazon social = " + proveedorSeleccionado.RazonSocial + 
                             "\nRuc = " + proveedorSeleccionado.Ruc + "\nTelefono = " + proveedorSeleccionado.Telefono + "\nFax = " + proveedorSeleccionado.Fax + 
                             "\nContacto = " + proveedorSeleccionado.Contacto + "\nTelefono contacto = " + proveedorSeleccionado.TelefonoContacto + 
                             "\nDireccion = " + proveedorSeleccionado.Direccion);
-            DataObjects.ComprasSQL.eliminarProveedor(proveedorSeleccionado);
+            eM.Eliminar(proveedorSeleccionado);
         }
 
         public void BuscarProveedor() 
@@ -117,15 +119,15 @@ namespace MadeInHouse.ViewModels.Compras
           //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
 
          //   lstProveedor = e;
-
-            LstProveedor = DataObjects.ComprasSQL.BuscarProveedor(null,null,null,null,null);
+            EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
+            LstProveedor = eM.Buscar(null) as List<Proveedor>;
             NotifyOfPropertyChange("LstProveedor");
 
         }
 
         public void ActualizarProveedor()
         {
-            lstProveedor = DataObjects.ComprasSQL.BuscarProveedor(null, null, null, null, null);
+            lstProveedor = eM.Buscar(null) as List<Proveedor>;
             NotifyOfPropertyChange("LstProveedor");
         }
 

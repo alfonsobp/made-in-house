@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using MadeInHouse.Models;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
+using MadeInHouse.Model;
+using MadeInHouse.Manager;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class MantenerProveedorViewModel:Screen
+    class MantenerProveedorViewModel: PropertyChangedBase
     {
 
         public MantenerProveedorViewModel(Proveedor p) {
 
-            txtCodigo = p.Codigo;
+            txtCodigo = p.CodProveedor;
             txtContacto = p.Contacto;
             txtDireccion = p.Direccion;
             txtFax = p.Fax;
@@ -42,6 +43,8 @@ namespace MadeInHouse.ViewModels.Compras
         private int indicador;
         //indicador = 1 para insertar
         //indicador = 2 para editar
+
+        private EntityManager eM;
 
         public int Indicador
         {
@@ -124,7 +127,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
             int k;
             Proveedor p = new Proveedor();
-            p.Codigo = txtCodigo;
+            p.CodProveedor = txtCodigo;
             p.Contacto = txtContacto;
             p.Direccion = txtDireccion;
             p.Email = txtEmail;
@@ -134,11 +137,13 @@ namespace MadeInHouse.ViewModels.Compras
             p.Telefono = TxtTelefono;
             p.TelefonoContacto = txtTelefonoContacto;
 
+            eM = new TableManager().getInstance(EntityName.Proveedor);
+            
             if (indicador == 1)
             {
                 
 
-                 k = DataObjects.ComprasSQL.agregarProveedor(p);
+                 k = eM.Agregar(p);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
@@ -154,7 +159,7 @@ namespace MadeInHouse.ViewModels.Compras
             if (indicador == 2)
             {
 
-                k = DataObjects.ComprasSQL.editarProveedor(p);
+                k = eM.Actualizar(p) ;
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");

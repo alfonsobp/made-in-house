@@ -16,7 +16,7 @@
                           Margin="10,188,10,0" Height="234" VerticalAlignment="Top" AutoGenerateColumns="false">
                    
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Codigo}"  Width="100" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=CodProveedor}"  Width="100" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding Path=RazonSocial}"  Width="330" Header="Razón Social"/>
                         <DataGridTextColumn Binding="{Binding Path=Ruc}"  Width="150" Header="RUC"/>
                     </DataGrid.Columns>
