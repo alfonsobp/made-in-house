@@ -73,7 +73,7 @@ namespace MadeInHouse.Views.RRHH
             else
             {
                 int k;
-                k = DataObjects.RrhhSQL.agregarEmpleado(emp);
+                k = DataObjects.RRHH.EmpleadoSQL.agregarEmpleado(emp);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");

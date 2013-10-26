@@ -50,14 +50,19 @@ namespace MadeInHouse.Model
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        Rol roles;
 
-        internal Rol Roles
+        private Rol rol;
+
+        public Rol Rol
         {
-            get { return roles; }
-            set { roles = value; }
+            get { return rol; }
+            set { rol = value; }
         }
 
+        public Usuario()
+        {
+
+        }
 
     }
 }

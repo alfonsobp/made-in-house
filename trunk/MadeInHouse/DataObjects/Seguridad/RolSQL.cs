@@ -9,6 +9,7 @@ using System.Windows;
 using System.Diagnostics;
 using Caliburn.Micro;
 
+using MadeInHouse.Models.Seguridad;
 using MadeInHouse.Models.RRHH;
 
 namespace MadeInHouse.DataObjects.Seguridad

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+using MadeInHouse.Models.Seguridad;
+
+
 namespace MadeInHouse.Models.Seguridad
 {
     public class Usuario
@@ -46,12 +50,21 @@ namespace MadeInHouse.Models.Seguridad
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        Rol roles;
 
-        internal Rol Roles
+        private Rol rol;
+
+        public Rol Rol
         {
-            get { return roles; }
-            set { roles = value; }
+            get { return rol; }
+            set { rol = value; }
+        }
+
+        private int idRol;
+
+        public int IdRol
+        {
+            get { return idRol; }
+            set { idRol = value; }
         }
 
         int estado;

@@ -30,7 +30,7 @@ namespace MadeInHouse.Views.RRHH
 
             List<Empleado> grid = new List<Empleado>();
 
-            grid = DataObjects.RrhhSQL.BuscarEmpleado();
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado();
 
 
             Lista.ItemsSource = grid;
@@ -41,7 +41,7 @@ namespace MadeInHouse.Views.RRHH
         {
             List<Empleado> grid = new List<Empleado>();
 
-            grid = DataObjects.RrhhSQL.BuscarEmpleado();
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado();
 
 
             Lista.ItemsSource = grid;

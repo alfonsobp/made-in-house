@@ -44,7 +44,7 @@ namespace MadeInHouse.ViewModels
             accRol = new Acceso();
 
             //obtener el idRol que pertenece el usuario
-            idRol = DataObjects.RrhhSQL.buscarIdRol(u); 
+            idRol = DataObjects.Seguridad.RolSQL.buscarIdRol(u); 
             
             //Obtener la lista de Módulos permitidos:
             DataObjects.Seguridad.AccesoSQL.buscarModulos(idRol, out accModulo);
