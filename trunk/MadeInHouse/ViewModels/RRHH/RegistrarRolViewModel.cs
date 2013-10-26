@@ -68,8 +68,8 @@ namespace MadeInHouse.ViewModels.RRHH
         {
             indicador = 1;
 
-            ModuloSQL moduloSQL = new ModuloSQL();
-            LstModulo = moduloSQL.ListarModulo();
+            AccModuloSQL moduloSQL = new AccModuloSQL();
+            LstModulo = moduloSQL.ListarAccModulo();
         }
 
         //Editar:
@@ -77,7 +77,7 @@ namespace MadeInHouse.ViewModels.RRHH
         {
             indicador = 2;
 
-            txtNombRol = r.NombRol;
+            txtNombRol = r.Nombre;
             txtDesc = r.Descripcion;
             //estado = r.Estado;
         }
@@ -90,9 +90,9 @@ namespace MadeInHouse.ViewModels.RRHH
             set { idModuloValue = value; NotifyOfPropertyChange(() => IdModuloValue); }
         }
 
-        private BindableCollection<Modulo> lstModulo;
+        private BindableCollection<AccModulo> lstModulo;
 
-        public BindableCollection<Modulo> LstModulo
+        public BindableCollection<AccModulo> LstModulo
         {
             get { return lstModulo; }
             set
@@ -114,7 +114,7 @@ namespace MadeInHouse.ViewModels.RRHH
             Rol r = new Rol();
 
             //idRol: autogenerado
-            r.NombRol = txtNombRol;
+            r.Nombre = txtNombRol;
             r.Descripcion = txtDesc;
             //r.Modulo = IdModuloValue;
             r.Estado = 1;   //Existencia Lógica

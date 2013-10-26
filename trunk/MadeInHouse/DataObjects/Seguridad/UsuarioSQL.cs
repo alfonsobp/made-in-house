@@ -195,14 +195,19 @@ namespace MadeInHouse.DataObjects.Seguridad
                 conn.Open();
                 reader = cmd.ExecuteReader();
 
+                Trace.WriteLine("<Rol flag0: ");
                 while (reader.Read())
                 {
                     Usuario u = new Usuario();
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
                     u.IdRol = Int32.Parse(reader["idRol"].ToString());
+                    Trace.WriteLine("<Rol flag1: ");
+                    u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+
+                    Trace.WriteLine("<Flag: " + u.Rol.Nombre);
 
                     lstUsuario.Add(u);
                 }

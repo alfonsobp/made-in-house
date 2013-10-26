@@ -29,21 +29,13 @@
                     </Button>
                 </ToolBar>
 
-                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="185" Width="370">
-                    <Grid Margin="0,0,-2,13">
+                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="159" Width="350">
+                    <Grid Margin="0,0,-2,-12">
 
                         <Label Content="Nombre Rol:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="96"/>
                         <TextBox x:Name="TxtNombRol" HorizontalAlignment="Left" Height="23" Margin="111,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                         <Label Content="Descripción:" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="TxtDesc" HorizontalAlignment="Left" Height="57" Margin="111,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="225"/>
-                        <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="10,114,0,0"/>
-                        <ComboBox ItemsSource="{Binding Path=LstModulo}"
-                               DisplayMemberPath="Descripcion"
-                               SelectedValuePath="IdModulo" 
-                               SelectedValue="{Binding Path=IdModuloValue}"
-                               HorizontalAlignment="Left" 
-                               Margin="111,114,0,0" 
-                               VerticalAlignment="Top" Width="135"/>
+                        <TextBox x:Name="TxtDesc" HorizontalAlignment="Left" Height="75" Margin="111,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
                     </Grid>
                 </GroupBox>
 

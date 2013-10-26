@@ -59,7 +59,7 @@
                                   Height="183" VerticalAlignment="Top" Margin="10,149,10,0" AutoGenerateColumns="false">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=CodEmpleado}" Width="100" Header="ID Usuario"/>
-                                <DataGridTextColumn Binding="{Binding Path=IdRol}" Width="120" Header="Rol"/>
+                                 <DataGridTextColumn Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Rol"/>
                                 <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Fecha registro"/>
                                 <DataGridTextColumn Binding="{Binding Path=FechaMod}" Width="150" Header="Fecha última modificación"/>
                             </DataGrid.Columns>

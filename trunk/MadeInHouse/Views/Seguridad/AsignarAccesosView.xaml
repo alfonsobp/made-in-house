@@ -32,20 +32,21 @@
                 <GroupBox Header="Privilegios" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="103" Width="580">
                     <Grid Margin="0,0,-2,0" Height="79" VerticalAlignment="Top">
                         <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,37,0,0"/>
-                        <ComboBox ItemsSource="{Binding Path=LstModulo}"
-                               DisplayMemberPath="Descripcion"
-                               SelectedValuePath="IdModulo" 
-                               SelectedValue="{Binding Path=IdModuloValue}"
-                               HorizontalAlignment="Left" 
-                               Margin="232,37,0,0" 
-                               VerticalAlignment="Top" Width="135"/>
+                        
                         <Label Content="Rol:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,10,0,0"/>
                         <ComboBox ItemsSource="{Binding Path=LstRol}"
-                               DisplayMemberPath="NombRol"
+                               DisplayMemberPath="Nombre"
                                SelectedValuePath="IdRol" 
                                SelectedValue="{Binding Path=IdRolValue}"
                                HorizontalAlignment="Left" 
                                Margin="232,10,0,0" 
+                               VerticalAlignment="Top" Width="135"/>
+                        <ComboBox ItemsSource="{Binding Path=LstAccModulo}"
+                               DisplayMemberPath="Nombre"
+                               SelectedValuePath="IdAccModulo" 
+                               SelectedValue="{Binding Path=IdAccModuloValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="232,37,0,0" 
                                VerticalAlignment="Top" Width="135"/>
                     </Grid>
                 </GroupBox>
