@@ -16,13 +16,14 @@ namespace MadeInHouse.Models.Seguridad
             set { idUsuario = value; }
         }
 
-        private string codUsuario;
+        private string codEmpleado;
 
-        public string CodUsuario
+        public string CodEmpleado
         {
-            get { return codUsuario; }
-            set { codUsuario = value; }
+            get { return codEmpleado; }
+            set { codEmpleado = value; }
         }
+
         private string contrasenha;
 
         public string Contrasenha
@@ -30,8 +31,22 @@ namespace MadeInHouse.Models.Seguridad
             get { return contrasenha; }
             set { contrasenha = value; }
         }
-        //private DateTime fechaReg { get; set; }
-        //private DateTime fechaMod { get; set; }
+
+        private DateTime fechaReg;
+
+        public DateTime FechaReg
+        {
+            get { return fechaReg; }
+            set { fechaReg = value; }
+        }
+
+        private DateTime fechaMod;
+
+        public DateTime FechaMod
+        {
+            get { return fechaMod; }
+            set { fechaMod = value; }
+        }
 
         private int idRol;
 
@@ -53,9 +68,10 @@ namespace MadeInHouse.Models.Seguridad
             
         }
 
-        public Usuario(string codUsuario, string contrasenha, int estado, int idRol) {
+        public Usuario(string codEmpleado, string contrasenha, int estado, int idRol)
+        {
 
-            this.codUsuario = codUsuario;
+            this.codEmpleado = codEmpleado;
             this.contrasenha = contrasenha;
             //this.fechaReg = fechaReg;
             //this.fechaMod = fechaMod;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Diagnostics;
 using System.Windows;
+using System.Security.Principal;
 
 namespace MadeInHouse.ViewModels
 {
@@ -26,33 +27,66 @@ namespace MadeInHouse.ViewModels
             get { return txtPasswordUser; }
             set { txtPasswordUser = value; NotifyOfPropertyChange(() => TxtPasswordUser); }
         }
+
+        private string lblError;
+
+        public string LblError
+        {
+            get { return lblError; }
+            set { lblError = value; NotifyOfPropertyChange(() => LblError); }
+        }
+
+        string response;
+
+        public string Response
+        {
+
+            get { return this.response; }
+
+            set
+            {
+                if (this.response == value)
+                    return;
+
+                this.response = value;
+                NotifyOfPropertyChange("Response");
+            }
+        }
+  
         
         public void enter()
         {
 
-            WindowManager win = new WindowManager();
-
-            MainViewModel main = new MainViewModel();
-            win.ShowWindow(main);
-            this.TryClose();
-
-/*
-            if (!String.IsNullOrWhiteSpace(TxtUser) && !String.IsNullOrWhiteSpace(TxtPasswordUser))
+            if (String.IsNullOrWhiteSpace(TxtUser) || String.IsNullOrWhiteSpace(TxtPasswordUser))
             {
-                int k;
+                //ENTRAR SIN CLAVE
 
+                WindowManager win = new WindowManager();
 
-                k = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
-                
-                
-                if ((String.Compare(TxtUser, "ADMIN") == 0) && (String.Compare(TxtPasswordUser, "1234") == 0))
-                    k = 1;
-                //k = 1;
-                if (k == 0)
-                    MessageBox.Show("Contraseña o usuario incorrectos");
-                else
+                MainViewModel main = new MainViewModel();
+                win.ShowWindow(main);
+                this.TryClose();
+            }
+
+            else
+            {
+                int verificado;
+
+                verificado = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
+                //0 = Incorrecto
+                //1 = Correcto
+
+                if (verificado == 1)
                 {
-                    MessageBox.Show("¡Bienvenido!");
+                    AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
+
+                    IIdentity usuario = new GenericIdentity(TxtUser,"Database");
+
+                    string[] rol = {"idRolAllenar","otrorol"};
+
+                    GenericPrincipal credencial = new GenericPrincipal(usuario,rol);
+
+                    System.Threading.Thread.CurrentPrincipal = credencial;
 
                     WindowManager win = new WindowManager();
 
@@ -61,10 +95,12 @@ namespace MadeInHouse.ViewModels
                     this.TryClose();
                 }
 
-
+                else
+                {
+                    Response = "Datos incorrectos";
+                }
             }
-  
-*/
+        
         }
     }
 }
