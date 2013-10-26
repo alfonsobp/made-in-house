@@ -16,7 +16,7 @@ namespace MadeInHouse.Manager
         public static int Asistencia = 6;
         public static int Ausencia = 7;
         public static  int Beneficio = 8;
-        public static  int CategoriaSaliarial = 9;
+        public static  int CategoriaSalarial = 9;
         public static  int Cliente = 10;
         public static  int Color = 11;
         public static  int Cotizacion = 12;
