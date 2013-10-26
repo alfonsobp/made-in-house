@@ -1,10 +1,11 @@
 ﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.RRHH.MantenerRolView"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="420" d:DesignWidth="500">
+             mc:Ignorable="d" Height="463" Width="424.667"
+             >
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="500" Height="420" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="420" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Mantenimiento de Rol" DockPanel.Dock="Top"/>
@@ -57,21 +58,13 @@
                     </Grid>
                 </GroupBox>
 
-                <DataGrid Margin="10,158,10,0" Height="198" VerticalAlignment="Top">
+                <DataGrid x:Name="LstModuloVentana" 
+                          cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
+                          Margin="10,158,10,0" Height="198" VerticalAlignment="Top" AutoGenerateColumns="false">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Rol"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="370" Header="Descripción"/>
+                        <DataGridTextColumn Binding="{Binding Path=IdAccModulo}" Width="100" Header="Rol"/>
+                        <DataGridTextColumn Binding="{Binding Path=IdAccVentana}" Width="370" Header="Descripción"/>
                     </DataGrid.Columns>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
                 </DataGrid>
             </Grid>
         </DockPanel>

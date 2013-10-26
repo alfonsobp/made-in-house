@@ -52,12 +52,12 @@
 
                         <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="186" Width="546" >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Módulo"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Ventana"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Ventana interna"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="240" Header="Módulo"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="240" Header="Ventana"/>
+                                <!--<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Ventana interna"/>
                                 <DataGridCheckBoxColumn  Header="Lectura" CanUserReorder="False"/>
                                 <DataGridCheckBoxColumn  Header="Escritura" CanUserReorder="False" />
-                                <DataGridCheckBoxColumn  Header="Mostrar" CanUserReorder="False" />
+                                <DataGridCheckBoxColumn  Header="Mostrar" CanUserReorder="False" />-->
                                 
                             </DataGrid.Columns>
                             <Button />

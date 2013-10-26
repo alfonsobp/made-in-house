@@ -41,11 +41,6 @@ namespace MadeInHouse.DataObjects.Seguridad
                     r.Descripcion = reader["descripcion"].ToString();
                     r.Estado = Int32.Parse("" + reader["estado"]);
 
-                    Trace.Write("<<" + r.IdRol + ">>");
-                    Trace.Write("<<" + r.NombRol + ">>");
-                    Trace.Write("<<" + r.Descripcion + ">>");
-                    Trace.Write("<<" + r.Estado + ">>");
-
                     lstRol.Add(r);
                 }
 
