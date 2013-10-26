@@ -286,10 +286,6 @@
                         <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Perfiles" FontSize="20"  Grid.Row="3"/>
                         <Button x:Name="AbrirMantenerRol" Background="Black" Foreground="White" BorderThickness="0" Content="Administrar Rol" FontSize="20"  Grid.Row="4"/>
                         <Button x:Name="AsignarAccesos" Background="Black" Foreground="White" BorderThickness="0" Content="Asignar Accesos" FontSize="20"  Grid.Row="5"/>
-                        
-                        
-                        
-
                     </Grid>
                 </Expander>
                 <Expander Header="Reportes"     Foreground="Gray" FontSize="40" Style="{StaticResource ExpanderStyle}">

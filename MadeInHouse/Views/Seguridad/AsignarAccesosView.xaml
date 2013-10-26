@@ -59,8 +59,8 @@
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="240" Header="Ventana"/>
                                 <!--<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Ventana interna"/>
                                 <DataGridCheckBoxColumn  Header="Lectura" CanUserReorder="False"/>
-                                <DataGridCheckBoxColumn  Header="Escritura" CanUserReorder="False" />
-                                <DataGridCheckBoxColumn  Header="Mostrar" CanUserReorder="False" />-->
+                                <DataGridCheckBoxColumn  Header="Escritura" CanUserReorder="False" />-->
+                                <DataGridCheckBoxColumn  Header="Mostrar" CanUserReorder="False" />
 
                             </DataGrid.Columns>
                             <Button />
