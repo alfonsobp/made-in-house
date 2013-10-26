@@ -1,0 +1,84 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts" x:Class="MadeInHouse.Views.Seguridad.AsignarAccesosView" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="600">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="600" Height="500" VerticalAlignment="Top">
+        <DockPanel Margin="0,0,-2,0" Height="500" VerticalAlignment="Top">
+            <Layouts:TitleBarTemplate title="Asignar Accesos" DockPanel.Dock="Top"/>
+
+            <Grid Height="509" VerticalAlignment="Top" Width="612" Margin="0,0,0,-39">
+
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button x:Name="GuardarRol" ToolTip="Guardar cambios">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Limpiar ventana" Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+                    </Button>
+                    <Button ToolTip="Refrescar ventana" Height="50" Width="50">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+                    </Button>
+                </ToolBar>
+
+                <GroupBox Header="Privilegios" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="103" Width="580">
+                    <Grid Margin="0,0,-2,0" Height="79" VerticalAlignment="Top">
+                        <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,37,0,0"/>
+                        <ComboBox ItemsSource="{Binding Path=LstModulo}"
+                               DisplayMemberPath="Descripcion"
+                               SelectedValuePath="IdModulo" 
+                               SelectedValue="{Binding Path=IdModuloValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="232,37,0,0" 
+                               VerticalAlignment="Top" Width="135"/>
+                        <Label Content="Rol:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,10,0,0"/>
+                        <ComboBox ItemsSource="{Binding LstModulo}"
+                        	DisplayMemberPath="Descripcion"
+                        	SelectedValuePath="IdModulo" 
+                        	SelectedValue="{Binding IdModuloValue}"
+                        	HorizontalAlignment="Left" 
+                        	Margin="232,10,0,0" 
+                        	VerticalAlignment="Top" Width="135"/>
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Asignación de accesos a ventanas" HorizontalAlignment="Left" Margin="10,0,0,48" VerticalAlignment="Bottom" Height="298" Width="580">
+                    <Grid Margin="0,0,-2,-12">
+
+                        <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="186" Width="546" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="240" Header="Módulo"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="240" Header="Ventana"/>
+                                <!--<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="120" Header="Ventana interna"/>
+                                <DataGridCheckBoxColumn  Header="Lectura" CanUserReorder="False"/>
+                                <DataGridCheckBoxColumn  Header="Escritura" CanUserReorder="False" />
+                                <DataGridCheckBoxColumn  Header="Mostrar" CanUserReorder="False" />-->
+
+                            </DataGrid.Columns>
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+                            <Button />
+
+
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+        </DockPanel>
+    </Border>
+</UserControl>
