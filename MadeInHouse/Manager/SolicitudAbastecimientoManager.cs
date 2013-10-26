@@ -6,8 +6,28 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Manager
 {
-    class SolicitudAbastecimientoManager:EntityManager
+    class SolicitudAbastecimientoManager : EntityManager
     {
-        
+
+
+        public int Agregar(object entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public object Buscar(params object[] filters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Actualizar(object entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Eliminar(object entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
