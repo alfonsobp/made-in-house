@@ -31,7 +31,7 @@
                     <Button ToolTip="Limpiar ventana" >
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Refrescar ventana" Height="30" Width="30">
+                    <Button ToolTip="Refrescar ventana" Height="30" Width="30" Click="Refrescar">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
@@ -81,34 +81,10 @@
                             </Grid>
                         </GroupBox>
 
-                        <DataGrid Margin="10,182,10,0">
+                        <DataGrid Name="Lista" Margin="10,182,10,0">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="Código"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="DNI"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="85" Header="Ape. Paterno"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="85" Header="Ape. Materno"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Nombre"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Sucursal"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Área"/>
-                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="70" Header="Puesto"/>
-                            </DataGrid.Columns>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
-                            <Button/>
+                                <!-- aqui van las columnas en caso no kiera mostrar todas -->
+                            </DataGrid.Columns>                            
                         </DataGrid>
                     </Grid>
                 </GroupBox>
