@@ -17,5 +17,6 @@ namespace MadeInHouse.Model
         double montoBruto;
         string observaciones;
         Almacen almacen;
+        List<ProductoxOrdenCompra> lstProducto;
     }
 }
