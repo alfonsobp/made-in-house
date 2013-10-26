@@ -45,7 +45,7 @@
                         <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,88,0,0" VerticalAlignment="Top" Width="94"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="117,90,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
                         <Label Content="Zonas:" HorizontalAlignment="Left" Margin="17,221,0,0" VerticalAlignment="Top" Width="94"/>
-                        <DataGrid HorizontalAlignment="Left" Margin="41,251,0,0" VerticalAlignment="Top" Height="131" Width="260">
+                        <DataGrid HorizontalAlignment="Left" Margin="41,254,0,0" VerticalAlignment="Top" Height="131" Width="260">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="100" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
                                 <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripcion"/>
