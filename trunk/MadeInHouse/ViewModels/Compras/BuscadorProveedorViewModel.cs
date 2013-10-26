@@ -109,16 +109,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void BuscarProveedor() 
         {
 
-          //  MessageBox.Show("Proveedor Buscado \n\nCodigo =" + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc + 
-          //                "\n Fecha Inicial = " + fechaIni + "\n Fecha Fin = " + fechaFin);
-
-          //  List<Proveedor> e = new List<Proveedor>();
-          //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
-         //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
-          //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
-          //  e.Add(new Proveedor("121212", "Ladrillos San Jorge", "999999991", "986689107", "Fax", "KK@gmail", "Carloncho", "555-555", "Jr Hola"));
-
-         //   lstProveedor = e;
+    
             EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
             LstProveedor = eM.Buscar(null) as List<Proveedor>;
             NotifyOfPropertyChange("LstProveedor");

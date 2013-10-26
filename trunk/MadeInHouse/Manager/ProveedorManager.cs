@@ -56,6 +56,7 @@ namespace MadeInHouse.Manager
 
         public object Buscar(params object[] filters)
         {
+            
             List<Proveedor> lstProveedor = new List<Proveedor>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
