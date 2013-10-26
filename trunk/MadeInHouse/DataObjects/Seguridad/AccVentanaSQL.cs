@@ -15,10 +15,10 @@ namespace MadeInHouse.DataObjects.Seguridad
 {
     class AccVentanaSQL
     {
-        public BindableCollection<AccVentana> ListarAccVentana()
+        public static List<AccVentana> ListarAccVentana()
         {
 
-            BindableCollection<AccVentana> lstAccVentana = new BindableCollection<AccVentana>();
+            List<AccVentana> lstAccVentana = new List<AccVentana>();
 
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -40,7 +40,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     av.Nombre = reader["nombre"].ToString();
                     av.Estado = Int32.Parse("" + reader["estado"]);
                     av.AccModulo= new AccModuloSQL().BuscarModuloPorId(Int32.Parse(reader["idAccModulo"].ToString()));
-
+ 
                     lstAccVentana.Add(av);
                 }
 

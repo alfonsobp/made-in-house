@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.Seguridad
 {
-    class AccVentana
+     public class AccVentana
     {
         int idAccVentana;
 
@@ -34,7 +34,7 @@ namespace MadeInHouse.Models.Seguridad
 
         AccModulo accModulo;
 
-        internal AccModulo AccModulo
+        public AccModulo AccModulo
         {
             get { return accModulo; }
             set { accModulo = value; }
