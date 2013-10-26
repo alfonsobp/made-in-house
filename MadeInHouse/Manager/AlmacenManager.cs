@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Manager
 {
-    class AlmacenManagerManager : EntityManager
+    class AlmacenManager : EntityManager
     {
 
         public int Agregar(object entity)

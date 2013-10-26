@@ -90,7 +90,7 @@
     <Compile Include="Manager\AccModuloManager.cs" />
     <Compile Include="Manager\AccVentanaManager.cs" />
     <Compile Include="Manager\AccVentanaInternaManager.cs" />
-    <Compile Include="Manager\AlmacenManagerManager.cs" />
+    <Compile Include="Manager\AlmacenManager.cs" />
     <Compile Include="Manager\AlmacenxProductoManager.cs" />
     <Compile Include="Manager\AsistenciaManager.cs" />
     <Compile Include="Manager\AusenciaManager.cs" />

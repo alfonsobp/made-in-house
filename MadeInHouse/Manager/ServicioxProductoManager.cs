@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Manager
 {
-    class ServicioxProductoManager
+    class ServicioxProductoManager:EntityManager
     {
       
     }
