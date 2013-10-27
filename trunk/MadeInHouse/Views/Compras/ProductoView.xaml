@@ -38,21 +38,19 @@
                 </ToolBar>
                 <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
                 <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
-                <TextBox Text="{Binding Cp.Proveedor.RazonSocial}"  HorizontalAlignment="Left" Height="38" Margin="23,142,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="250"/>
                 <TextBox  Text="{Binding Cp.Precio}" HorizontalAlignment="Left" Height="38" Margin="23,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <ComboBox SelectedItem="{Binding Cp.Estado, Mode=TwoWay}" ItemsSource="{Binding Estados, Mode=OneWay}"  HorizontalAlignment="Left" Margin="160,219,0,0" VerticalAlignment="Top" Width="114" Height="38"/>
+                <ComboBox SelectedItem="{Binding Estado, Mode=TwoWay}" ItemsSource="{Binding Estados, Mode=OneWay}"  HorizontalAlignment="Left" Margin="160,219,0,0" VerticalAlignment="Top" Width="114" Height="38"/>
                 <Label Content="Precio:" HorizontalAlignment="Left" Margin="24,188,0,0" VerticalAlignment="Top" Width="60"/>
                 <Label Content="Estado:" HorizontalAlignment="Left" Margin="159,188,0,0" VerticalAlignment="Top"/>
-                <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="24,112,0,0" VerticalAlignment="Top" Width="85"/>
                 <Label Content="Codigo Comercial" HorizontalAlignment="Left" Margin="24,276,0,0" VerticalAlignment="Top"/>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->
         </StackPanel>
-        <TextBox IsReadOnly="true" Height="38" Margin="24,98,25,0" TextWrapping="Wrap" Text="{Binding Cp.CodigoProducto}" VerticalAlignment="Top"/>
+        <TextBox IsReadOnly="true" Height="38" Margin="24,98,25,0" TextWrapping="Wrap" Text="{Binding Cp.Producto.CodProducto}" VerticalAlignment="Top"/>
         <TextBox   HorizontalAlignment="Left" Height="44" Margin="24,413,0,0" TextWrapping="Wrap" Text="{Binding Cp.Descripcion}" VerticalAlignment="Top" Width="251"/>
         <Label Content="Codigo Producto:" HorizontalAlignment="Left" Margin="24,67,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox   HorizontalAlignment="Left" Height="44" Margin="26,329,0,0" TextWrapping="Wrap" Text="{Binding Cp.CodigoComercial}" VerticalAlignment="Top" Width="251"/>
+        <TextBox   HorizontalAlignment="Left" Height="44" Margin="26,329,0,0" TextWrapping="Wrap" Text="{Binding Cp.CodComercial}" VerticalAlignment="Top" Width="251"/>
         <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,382,0,0" VerticalAlignment="Top"/>
 
     </Grid>

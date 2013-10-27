@@ -17,7 +17,7 @@ namespace MadeInHouse.Model
         }
         Producto producto;
 
-        internal Producto Producto
+        public Producto Producto
         {
             get { return producto; }
             set { producto = value; }
@@ -42,6 +42,7 @@ namespace MadeInHouse.Model
         {
             get { return estado; }
             set { estado = value; }
+
         }
         double precio;
 
@@ -49,6 +50,29 @@ namespace MadeInHouse.Model
         {
             get { return precio; }
             set { precio = value; }
+        }
+
+        DateTime fechaReg;
+
+        public DateTime FechaReg
+        {
+            get { return fechaReg; }
+            set { fechaReg = value; }
+        }
+        DateTime fechaAct;
+
+        public DateTime FechaAct
+        {
+            get { return fechaAct; }
+            set { fechaAct = value; }
+        }
+
+        private string estadoVisible;
+
+        public string EstadoVisible
+        {
+            get { return estadoVisible; }
+            set { estadoVisible = value; }
         }
 
     }

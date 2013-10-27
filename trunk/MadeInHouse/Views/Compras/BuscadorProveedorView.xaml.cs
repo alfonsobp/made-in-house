@@ -26,10 +26,6 @@ namespace MadeInHouse.Views.Compras
             InitializeComponent();
         }
 
-        private void AbrirMantenerProveedorViewModel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-           
-
-        }
+     
     }
 }
