@@ -7,11 +7,29 @@ using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
     class ProductoMantenerViewModel : PropertyChangedBase
     {
+
+
+        private string txtAbreviatura;
+
+        public string TxtAbreviatura
+        {
+            get { return txtAbreviatura; }
+            set { txtAbreviatura = value; 
+                NotifyOfPropertyChange(() => TxtAbreviatura);
+
+                txtCodigo = CodigoProducto();
+                NotifyOfPropertyChange(() => TxtCodigo);
+            }
+        }
+
+        
+
         private string txtNombre;
 
         public string TxtNombre
@@ -41,21 +59,7 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return percepcion; }
             set { percepcion = value; }
         }
-        private bool interno;
-
-        public bool Interno
-        {
-            get { return interno; }
-            set { interno = value; }
-        }
-        private bool venta;
-
-        public bool Venta
-        {
-            get { return venta; }
-            set { venta = value; }
-        }
-
+     
 
         private BindableCollection<LineaProducto> lstLineasProducto;
 
@@ -85,6 +89,32 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
                 this.lstSubLineasProducto = value;
                 this.NotifyOfPropertyChange(() => this.lstSubLineasProducto);
+            }
+        }
+
+        private List<UnidadMedida> lstUnidadMedida;
+
+        public List<UnidadMedida> LstUnidadMedida
+        {
+            get { return lstUnidadMedida; }
+            set
+            {
+                if (this.lstUnidadMedida == value)
+                {
+                    return;
+                }
+                this.lstUnidadMedida = value;
+                this.NotifyOfPropertyChange(() => this.lstUnidadMedida);
+            }
+        }
+
+
+        private int selectedValueUnid;
+
+        public int SelectedValueUnid
+        {
+            get { return selectedValueUnid; }
+            set { selectedValueUnid = value;
             }
         }
 
@@ -140,26 +170,76 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-        private ProductoSQL pSQL;
+        private ProductoSQL pSQL = new ProductoSQL();
+
+        private bool editar = true;
+
+        private int estado = 0;
+
+        public bool Editar
+        {
+            get { return editar; }
+            set { editar = value; NotifyOfPropertyChange(() => Editar); }
+        }
 
         public void GuardarProducto()
         {
-            pSQL = new ProductoSQL();
-            Producto p = new Producto();
-            p.Nombre = TxtNombre;
-            p.CodigoProd = TxtCodigo;
-            p.IdLinea = SelectedValue;
-            p.IdSubLinea = SelectedValueSub;
-            p.Percepcion = Percepcion==true ? 1:0;
-            p.Descripcion = TxtDescrip;
-            pSQL.AgregarProducto(p);
+            if (TxtNombre == null || TxtNombre.Equals(""))
+            {
+                MessageBox.Show("Debe ingresar el nombre del producto");
+            }
+            else if (TxtAbreviatura == null || TxtAbreviatura.Equals(""))
+            {
+                MessageBox.Show("Debe ingresar la abreviatura del nombre");
+            }
+            else
+            {
+                
+                Producto p = new Producto();
+                
+                p.Nombre = TxtNombre;
+                p.Abreviatura = TxtAbreviatura;
+                p.CodigoProd = TxtCodigo;
+                p.IdLinea = SelectedValue;
+                p.IdSubLinea = SelectedValueSub;
+                p.IdUnidad = SelectedValueUnid;
+                p.Percepcion = Percepcion == true ? 1 : 0;
+                p.Descripcion = TxtDescrip;
+                if (estado == 0)
+                {
+                    pSQL.AgregarProducto(p);
+                    MessageBox.Show("Se agregó el producto correctamente");
+                    TxtAbreviatura = "";
+                    TxtNombre = "";
+                    Percepcion = false;
+                    TxtDescrip = "";
+                }
+                else
+                {
+                    p.IdProducto = estado;
+                    pSQL.ActualizarProducto(p);
+                    MessageBox.Show("Se actualizó el producto correctamente");
+                }
 
+
+                
+            }
+
+        }
+
+        public void EditarProducto()
+        {
+            Editar = true;
+            
         }
 
         private string CodigoProducto()
         {
             UtilesSQL util = new UtilesSQL();
-            string cod = GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura+(util.ObtenerMaximoID("Producto","idProducto")+1).ToString();
+            string cod=null;
+            
+            cod= GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura + txtAbreviatura;
+          
             return cod;
         }
 
@@ -169,20 +249,26 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             LineaProductoSQL lpSQL = new LineaProductoSQL();
+            UnidadMedidaSQL umSQL = new UnidadMedidaSQL();
             LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            LstUnidadMedida = umSQL.BuscarUnidadMedida();
         }
 
+        public ProductoMantenerViewModel(Producto p)
+        {
 
-
-
-
-
-
-
-
-
-
-
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            UnidadMedidaSQL umSQL = new UnidadMedidaSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            LstUnidadMedida = umSQL.BuscarUnidadMedida();
+            TxtNombre = p.Nombre;
+            TxtCodigo = p.CodigoProd;
+            txtAbreviatura = p.Abreviatura;
+            TxtDescrip = p.Descripcion;
+            Percepcion = p.Percepcion==0 ? false:true;
+            Editar = false;
+            estado = p.IdProducto;
+        }
 
 
     }

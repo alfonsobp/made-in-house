@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignWidth="458.209" d:DesignHeight="606.134">
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" d:DesignHeight="606.134" Width="585">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel Margin="0,0,0,74">
             <Layouts:TitleBarTemplate title="Buscar productos" />
@@ -35,8 +35,8 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="177" Width="423">
-                    <Grid Margin="0,0,-2,-2" HorizontalAlignment="Left" Width="413">
+                <GroupBox Header="Criterios de Búsqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="177" Width="548">
+                    <Grid Margin="38,0,0,-2" HorizontalAlignment="Left" Width="458">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                         <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="123,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522"/>
                         <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,66,0,0" VerticalAlignment="Top" Width="94"/>
@@ -61,11 +61,17 @@
                     
                 </GroupBox>
 
-                <DataGrid x:Name="LstProductos" HorizontalAlignment="Left" Margin="10,253,0,110" Width="418">
+                <DataGrid 
+                    
+                    cal:Message.Attach="[Event MouseDoubleClick] = [Action Actualizar()]"
+                    x:Name="LstProductos" 
+                    SelectedItem="{Binding ProductoSel, Mode=TwoWay}"
+                    HorizontalAlignment="Left" Margin="10,253,0,110" Width="548" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="150" Binding="{Binding Path=CodigoProd}"  Header="Codigo"/>
-                        <DataGridTextColumn Width="180" Binding="{Binding Path=Linea}"  Header="Linea"/>
-                        <DataGridTextColumn Width="180" Binding="{Binding Path=SubLinea}"  Header="Sublinea"/>
+                        <DataGridTextColumn Width="100" Binding="{Binding Path=CodigoProd}"  Header="Código"/>
+                        <DataGridTextColumn Width="150" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
+                        <DataGridTextColumn Width="150" Binding="{Binding Path=Linea}"  Header="Linea"/>
+                        <DataGridTextColumn Width="150" Binding="{Binding Path=SubLinea}"  Header="Sublinea"/>
 
                     </DataGrid.Columns>
                 </DataGrid>

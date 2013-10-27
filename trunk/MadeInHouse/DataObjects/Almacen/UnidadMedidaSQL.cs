@@ -13,7 +13,7 @@ namespace MadeInHouse.DataObjects.Almacen
     class UnidadMedidaSQL
     {
 
-        public static int AgregarUnidadMedida(UnidadMedida u)
+        public int AgregarUnidadMedida(UnidadMedida u)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -41,7 +41,7 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
         }
 
-        public static List<UnidadMedida> BuscarUnidadMedida()
+        public List<UnidadMedida> BuscarUnidadMedida()
         {
 
             List<UnidadMedida> listaUnidadMedidas = new List<UnidadMedida>();
@@ -61,7 +61,7 @@ namespace MadeInHouse.DataObjects.Almacen
                  while (reader.Read())
                 {
                     UnidadMedida u = new UnidadMedida();
-                    u.Id = reader.IsDBNull(reader.GetOrdinal("idUnidad")) ? -1 : (int)reader["idUnidad"];
+                    u.IdUnidad = reader.IsDBNull(reader.GetOrdinal("idUnidad")) ? -1 : (int)reader["idUnidad"];
                     u.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     listaUnidadMedidas.Add(u);
                 }
