@@ -1178,11 +1178,11 @@
     <Resource Include="Assets\gear.png" />
     <Resource Include="Assets\minimize.png" />
     <Content Include="Assets\addServicio.png" />
-    <Content Include="Libraries\Caliburn.Micro.dll" />
-    <Content Include="Libraries\Microsoft.Windows.Shell.dll" />
-    <Content Include="Libraries\RibbonControlsLibrary.dll" />
-    <Content Include="Libraries\System.ComponentModel.Composition.dll" />
-    <Content Include="Libraries\System.Windows.Interactivity.dll" />
+    <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
+    <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
+    <Content Include="Dictionary\Libraries\RibbonControlsLibrary.dll" />
+    <Content Include="Dictionary\Libraries\System.ComponentModel.Composition.dll" />
+    <Content Include="Dictionary\Libraries\System.Windows.Interactivity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -23,11 +23,19 @@ namespace MadeInHouse.ViewModels.Compras
         
         }
 
+        CatalogoProductoProveedorViewModel p;
+        public BuscadorProveedorViewModel(CatalogoProductoProveedorViewModel p) {
+
+            this.p = p;
+            ActualizarProveedor();
+        }
+
         private MyWindowManager win = new MyWindowManager();
 
         EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
 
         private string txtRuc;
+
 
         public string TxtRuc
         {
@@ -84,7 +92,11 @@ namespace MadeInHouse.ViewModels.Compras
         public void SelectedItemChanged(object sender)
         {
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
-            
+
+            if (p != null) {
+                p.Prov = proveedorSeleccionado;
+                
+            }
         }
 
 

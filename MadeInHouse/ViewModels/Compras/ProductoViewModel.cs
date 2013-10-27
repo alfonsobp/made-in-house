@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using MadeInHouse.Models.Compras;
+using MadeInHouse.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +19,29 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
 
-        CatalogoProveedor cp;
+        ProveedorxProducto cp;
 
-        public  CatalogoProveedor Cp
+        public ProveedorxProducto Cp
         {
             get { return cp; }
-            set { cp = value; NotifyOfPropertyChange("Cp"); }
+            set { cp = value; }
+        
         }
 
-        public ProductoViewModel(CatalogoProveedor cp) {
+        private string estado;
+
+        public string Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
+
+        public ProductoViewModel(ProveedorxProducto cp) {
 
             Cp=cp;
+
+            Estado = (Cp.Estado == 1) ? "ACTIVO" : "INACTIVO";
+            
         }
 
     

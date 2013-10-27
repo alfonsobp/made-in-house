@@ -6,30 +6,30 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Data.OleDb;
 using System.Data;
-using MadeInHouse.Models.Compras;
 using System.Windows;
-using MadeInHouse.Models;
+using MadeInHouse.Model;
+using MadeInHouse.Manager;
+
 
 
 namespace MadeInHouse.ViewModels.Compras
 {
     class CatalogoProductoProveedorViewModel : PropertyChangedBase
     {
-        CatalogoProveedor seleccionado;
+        List<ProveedorxProducto> lstProducto;
 
-        public  CatalogoProveedor Seleccionado
+        public List<ProveedorxProducto> LstProducto
+        {
+            get { return lstProducto; }
+            set { lstProducto = value; NotifyOfPropertyChange(() => LstProducto); }
+        }
+
+        private ProveedorxProducto seleccionado;
+
+        public ProveedorxProducto Seleccionado
         {
             get { return seleccionado; }
             set { seleccionado = value; NotifyOfPropertyChange(() => Seleccionado); }
-        }
-
-
-        List<CatalogoProveedor> tblCatalogo;
-
-        public List<CatalogoProveedor> TblCatalogo
-        {
-            get { return tblCatalogo; }
-            set { tblCatalogo = value; NotifyOfPropertyChange(() => TblCatalogo); }
         }
 
 
@@ -42,6 +42,23 @@ namespace MadeInHouse.ViewModels.Compras
             set { path = value; NotifyOfPropertyChange(() => Path); }
         }
 
+        Proveedor prov;
+
+        public Proveedor Prov
+        {
+            get { return prov; }
+            set { prov = value; NotifyOfPropertyChange(() => Prov); }
+        }
+
+        ProveedorxProductoManager eM = new ProveedorxProductoManager();
+
+        public void Refrescar() {
+
+            if (prov != null)
+                LstProducto = eM.Buscar(prov.IdProveedor) as List<ProveedorxProducto>;
+        }
+
+        
 
         public void Cargar()
         {
@@ -49,7 +66,7 @@ namespace MadeInHouse.ViewModels.Compras
             if (path != "")
             {
 
-                List<CatalogoProveedor> lista = new List<CatalogoProveedor>();
+                List<ProveedorxProducto> lista = new List<ProveedorxProducto>();
 
                 String name = "Catalogo";
                 String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
@@ -64,19 +81,22 @@ namespace MadeInHouse.ViewModels.Compras
 
                 while (ds.Read())
                 {
-                    CatalogoProveedor cp = new CatalogoProveedor();
-
-
-                    cp.CodigoProducto = ds["Codigo"].ToString();
-                    cp.CodigoComercial = ds["Codigo Comercial"].ToString();
+                   ProveedorxProducto cp = new ProveedorxProducto();
+                   cp.IdProveedor = Prov.IdProveedor;
+                    cp.Producto = new Producto();
+                    cp.Producto.CodProducto= ds["Codigo"].ToString();
+                    cp.CodComercial = ds["Codigo Comercial"].ToString();
                     cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
                     cp.Descripcion = ds["Descripcion"].ToString();
-                    lista.Add(cp);
+                    cp.FechaAct = DateTime.Now;
+                    cp.FechaReg = DateTime.Now;
+                    ProveedorxProductoManager pp = new ProveedorxProductoManager();
+                     int k = pp.Insertar(cp);
 
+                    
                 }
 
-                TblCatalogo = lista;
-
+              
 
             }
 
@@ -102,29 +122,48 @@ namespace MadeInHouse.ViewModels.Compras
                 // Open document
                 string filename = dlg.FileName;
                 Path = filename;
-
+                
             }
 
         }
 
-        public  void BuscarCatalogo(){
+        public void Importar(){
 
-            MessageBox.Show(Seleccionado.CodigoComercial);
+            if (prov != null)
+            {
+
+                BuscarPath();
+
+                MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
+
+                if (r == MessageBoxResult.Yes)
+                {
+
+                    Cargar();
+                }
+          
+            }
         }
+
+        public void BuscarProveedor() { 
+        MyWindowManager w = new MyWindowManager();
+        w.ShowWindow(new BuscadorProveedorViewModel(this)); 
+        
+        }
+
+       
 
         public void EditarProducto() {
             MyWindowManager win = new MyWindowManager();
-            seleccionado.Proveedor = new Proveedor();
-            seleccionado.Proveedor.RazonSocial="CLIENTE ABC";
+          
             win.ShowWindow(new Compras.ProductoViewModel(seleccionado) );
         }
 
         public void NuevoProducto() {
 
             MyWindowManager win = new MyWindowManager();
-            Seleccionado = new CatalogoProveedor();
-            seleccionado.Proveedor = new Proveedor();
-            seleccionado.Proveedor.RazonSocial="CLIENTE ABC";
+            Seleccionado  = new ProveedorxProducto();
+            Seleccionado.IdProveedor = Prov.IdProveedor;
             win.ShowWindow(new Compras.ProductoViewModel(seleccionado));
         
         }
