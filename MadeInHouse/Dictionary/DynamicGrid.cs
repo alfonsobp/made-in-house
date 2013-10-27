@@ -105,6 +105,7 @@ namespace MadeInHouse.Dictionary
         public void onClickChange(object sender, RoutedEventArgs e)
         {
             (sender as Button).Background = this.Background;
+            char letra =(sender as Button).Name[0];
 
         }
 
