@@ -16,6 +16,13 @@ namespace MadeInHouse.ViewModels.Compras
 {
     class BuscadorProveedorViewModel : PropertyChangedBase
     {
+
+        public BuscadorProveedorViewModel(){
+
+            ActualizarProveedor();
+        
+        }
+
         private MyWindowManager win = new MyWindowManager();
 
         EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
@@ -45,7 +52,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-        private DateTime fechaIni=DateTime.Now;
+        private DateTime fechaIni=new DateTime(DateTime.Now.Year, 1,1);
 
         public DateTime FechaIni
         {
@@ -54,7 +61,7 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
 
-        private DateTime fechaFin=DateTime.Now;
+        private DateTime fechaFin=new DateTime(DateTime.Now.Year,12,31);
 
         public DateTime FechaFin
         {
@@ -107,6 +114,7 @@ namespace MadeInHouse.ViewModels.Compras
                             "\nContacto = " + proveedorSeleccionado.Contacto + "\nTelefono contacto = " + proveedorSeleccionado.TelefonoContacto + 
                             "\nDireccion = " + proveedorSeleccionado.Direccion);
             eM.Eliminar(proveedorSeleccionado);
+            ActualizarProveedor();
         }
 
         public void BuscarProveedor() 
@@ -115,16 +123,15 @@ namespace MadeInHouse.ViewModels.Compras
     
             
             LstProveedor = eM.Buscar(TxtCodigo,TxtRuc,TxtRazonSocial,FechaIni,FechaFin) as List<Proveedor>;
-            MessageBox.Show(txtCodigo);
-            MessageBox.Show(fechaIni + " " +fechaFin);
-            NotifyOfPropertyChange("LstProveedor");
+           
+ 
 
         }
 
         public void ActualizarProveedor()
         {
-            lstProveedor = eM.Buscar(null) as List<Proveedor>;
-            NotifyOfPropertyChange("LstProveedor");
+            LstProveedor = eM.Buscar() as List<Proveedor>;
+           
         }
 
     }
