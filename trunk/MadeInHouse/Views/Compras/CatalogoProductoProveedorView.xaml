@@ -13,7 +13,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <DataGrid    IsReadOnly="True"   SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,136,10,26" BorderBrush="#FF14191D" Background="White" >
+                <DataGrid    IsReadOnly="True"   SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,213,10,26" BorderBrush="#FF14191D" Background="White" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Producto.CodProducto }" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding CodComercial}"  Header="Código Comercial"/>
@@ -23,10 +23,10 @@
                         <DataGridTextColumn Binding="{Binding Precio}" Header="Precio (S/.)" Width="180"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="Proveedor:" Margin="23,86,544,338"/>
-                <TextBox IsReadOnly="True"  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  Margin="110,86,271,0" TextWrapping="Wrap" Height="23" 
+                <Label Content="Proveedor:" Margin="10,41,557,383" RenderTransformOrigin="0.493,-0.514"/>
+                <TextBox IsReadOnly="True"  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  Margin="159,67,222,0" TextWrapping="Wrap" Height="23" 
                   cal:Message.Attach="[Event TextChanged]=[Action Refrescar]"       VerticalAlignment="Top"  />
-                <Button x:Name="BuscarProveedor" Margin="0,83,177,0"  HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
+                <Button x:Name="BuscarProveedor" Margin="0,65,84,0"  HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
                 </Button>
                 <ToolBar VerticalAlignment="Top" Height="41">
@@ -43,7 +43,7 @@
                     <Button x:Name="EditarProducto">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button x:Name="Eliminar">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
                     <Button/>
@@ -58,6 +58,20 @@
                         <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                 </ToolBar>
+                <TextBox IsReadOnly="True"  Text="{Binding Prov.RazonSocial, Mode=TwoWay}"  Margin="158,98,223,0" TextWrapping="Wrap" Height="23" 
+                	       VerticalAlignment="Top"  />
+                <Label Content="Codigo:" Margin="91,65,476,359" RenderTransformOrigin="0.493,-0.514"/>
+                <Label Content="Razon Social:" Margin="61,96,492,328" RenderTransformOrigin="0.493,-0.514"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="442,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="69"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="443,173,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="69"/>
+                <DatePicker HorizontalAlignment="Left" Margin="145,176,0,0" VerticalAlignment="Top"/>
+                <DatePicker HorizontalAlignment="Left" Margin="144,143,0,0" VerticalAlignment="Top"/>
+                <Label Content="Precio" HorizontalAlignment="Left" Margin="320,138,0,0" VerticalAlignment="Top"/>
+                <Label Content="Desde" HorizontalAlignment="Left" Margin="382,141,0,0" VerticalAlignment="Top"/>
+                <Label Content="Hasta" HorizontalAlignment="Left" Margin="387,169,0,0" VerticalAlignment="Top"/>
+                <Label Content="Fecha Act" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top"/>
+                <Label Content="Desde" HorizontalAlignment="Left" Margin="83,143,0,0" VerticalAlignment="Top"/>
+                <Label Content="Hasta" HorizontalAlignment="Left" Margin="85,173,0,0" VerticalAlignment="Top"/>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->
