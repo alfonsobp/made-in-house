@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Banco = TxtBanco.Text;
             emp.CuentaBancaria = TxtCuentaBancaria.Text;
 
-            if (emp.Dni == "") { MessageBox.Show("Inserte un DNI valido");}
+            if (!Regex.IsMatch(emp.Dni, "^[0-9]{8}$")) { MessageBox.Show("Inserte un DNI valido"); }
             else if (emp.Nombre == "") { MessageBox.Show("Inserte un nombre valido"); }
             else if (emp.ApePaterno == "") { MessageBox.Show("Inserte un apellido paterno valido"); }
             else if (emp.ApeMaterno == "") { MessageBox.Show("Inserte un apellido materno valido"); }
