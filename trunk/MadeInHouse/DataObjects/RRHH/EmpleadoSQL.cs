@@ -69,14 +69,14 @@ namespace MadeInHouse.DataObjects.RRHH
             return k;
         }
         /****************************************** EMPLEADO ************************************/
-        public static List<Empleado> BuscarEmpleado()
+        public static List<Empleado> BuscarEmpleado(string nombre,string paterno,string dni,string area,string puesto,string tienda)
         {
             List<Empleado> lstEmpleado = new List<Empleado>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Empleado ";
+            cmd.CommandText = "SELECT * FROM Empleado where nombre like '" + nombre + "%' and apePaterno like '" + paterno + "%' and DNI like '" + dni + "%' and tienda like '" + tienda + "%' and area like '" + area + "%' and puesto like '" + puesto + "%'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 

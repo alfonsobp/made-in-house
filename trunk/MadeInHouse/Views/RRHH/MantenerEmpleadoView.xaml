@@ -28,7 +28,7 @@
                     <Button ToolTip="Eliminar" x:Name="AbrirEliminarVenta" >
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar ventana" >
+                    <Button ToolTip="Limpiar ventana" Click="Limpiar">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Refrescar ventana" Height="30" Width="30" Click="Refrescar">
@@ -44,28 +44,28 @@
                                 <Label Content="DNI:" HorizontalAlignment="Left" Margin="15,45,0,0" VerticalAlignment="Top" Width="59"/>
                                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="15,76,0,0" VerticalAlignment="Top" Width="59"/>
                                 <Label Content="A. Paterno:" HorizontalAlignment="Left" Margin="15,107,0,0" VerticalAlignment="Top" Width="70"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="101,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="101,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtDni" HorizontalAlignment="Left" Height="23" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtApePaterno" HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
 
                                 <Label Content="Tienda:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="49"/>
                                 <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="96"/>
                                 <Label Content="Puesto:" HorizontalAlignment="Left" Margin="334,74,0,0" VerticalAlignment="Top" Width="49"/>
 
-                                <ComboBox HorizontalAlignment="Left" Margin="447,17,0,0" VerticalAlignment="Top" Width="120">
+                                <ComboBox Name="CmbTienda" HorizontalAlignment="Left" Margin="447,17,0,0" VerticalAlignment="Top" Width="120">
                                     <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
                                 </ComboBox>
-                                <ComboBox HorizontalAlignment="Left" Margin="447,47,0,0" VerticalAlignment="Top" Width="120">
+                                <ComboBox Name="CmbArea" HorizontalAlignment="Left" Margin="447,47,0,0" VerticalAlignment="Top" Width="120">
                                     <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                                 </ComboBox>
-                                <ComboBox HorizontalAlignment="Left" Margin="447,78,0,0" VerticalAlignment="Top" Width="120">
+                                <ComboBox Name="CmbPuesto" HorizontalAlignment="Left" Margin="447,78,0,0" VerticalAlignment="Top" Width="120">
                                     <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
                                     <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>
@@ -74,7 +74,7 @@
                                     <ComboBoxItem Content="Asistente de Ventas" HorizontalAlignment="Left" Width="118"/>
                                 </ComboBox>
 
-                                <Button Height="25" Margin="503,110,70,0" VerticalAlignment="Top">
+                                <Button Height="25" Margin="503,110,70,0" VerticalAlignment="Top" Click="Buscar">
                                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                                 </Button>
                                 <!--<Button x:Name="AbrirArmarHorario" Content="Armar Horario" HorizontalAlignment="Left" Margin="546,59,0,0" VerticalAlignment="Top" Width="90"/>-->

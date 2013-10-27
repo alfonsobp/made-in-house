@@ -30,7 +30,7 @@ namespace MadeInHouse.Views.RRHH
 
             List<Empleado> grid = new List<Empleado>();
 
-            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado();
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("","","","","","");
 
 
             Lista.ItemsSource = grid;
@@ -41,11 +41,33 @@ namespace MadeInHouse.Views.RRHH
         {
             List<Empleado> grid = new List<Empleado>();
 
-            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado();
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("","","","","","");
 
 
             Lista.ItemsSource = grid;
             Lista.Items.Refresh();
+        }
+
+        public void Buscar(object sender, RoutedEventArgs e)
+        {
+            List<Empleado> grid = new List<Empleado>();
+
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado(TxtNombre.Text, TxtApePaterno.Text,TxtDni.Text,CmbArea.Text,CmbPuesto.Text,CmbTienda.Text);
+
+
+            Lista.ItemsSource = grid;
+            Lista.Items.Refresh();
+        }
+
+        public void Limpiar(object sender, RoutedEventArgs e)
+        {
+            TxtNombre.Text = "";
+            TxtApePaterno.Text = "";
+            TxtDni.Text = "";
+            CmbArea.Text = "";
+            CmbPuesto.Text = "";
+            CmbTienda.Text = "";
+                
         }
 
     }

@@ -79,14 +79,6 @@ namespace MadeInHouse.Models.RRHH
             set { emailEmpresa = value; }
         }
 
-        string ruc;
-
-        public string Ruc
-        {
-            get { return ruc; }
-            set { ruc = value; }
-        }
-
         string cuentaBancaria;
 
         public string CuentaBancaria
@@ -142,15 +134,6 @@ namespace MadeInHouse.Models.RRHH
             get { return idEmpleado; }
             set { idEmpleado = value; }
         }
-
-        int semVacacion;
-
-        public int SemVacacion
-        {
-            get { return semVacacion; }
-            set { semVacacion = value; }
-        }
-
         string refFoto;
 
         public string RefFoto
@@ -215,9 +198,9 @@ namespace MadeInHouse.Models.RRHH
 
 
         public Empleado(string dni, string sexo, string nombre, string apePaterno, string apeMaterno, string telefono,
-                        string celular, string emailEmpleado, string ruc,
+                        string celular, string emailEmpleado, 
                         string cuentaBancaria, int estado, string fechaReg, string idPuesto, string idCategoria,
-                        string idEmpleado, int semVacacion, string refFoto, string direccion)
+                        string idEmpleado, string refFoto, string direccion)
         {
             this.dni = dni;
             this.sexo = sexo;
@@ -227,14 +210,12 @@ namespace MadeInHouse.Models.RRHH
             this.telefono = telefono;
             this.celular = celular;
             this.emailEmpleado = emailEmpleado;
-            this.ruc = ruc;
             this.cuentaBancaria = cuentaBancaria;
             this.estado = estado;
             this.fechaReg = fechaReg;
             this.idPuesto = idPuesto;
             this.idCategoria = idCategoria;
             this.idEmpleado = idEmpleado;
-            this.semVacacion = semVacacion;
             this.refFoto = refFoto;
             this.Direccion = direccion;
             //this.emailEmpresa = emailEmpresa;
