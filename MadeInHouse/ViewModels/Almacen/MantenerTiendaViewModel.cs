@@ -18,20 +18,34 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private UbigeoSQL gateway = new UbigeoSQL();
 
-        private string txtCodigo;
+        private string txtNumColumns;
 
-        public string TxtCodigo
+        public string TxtNumColumns
         {
-            get { return txtCodigo; }
-            set { txtCodigo = value; }
+            get { return txtNumColumns; }
+            set { txtNumColumns = value;
+            
+            }
         }
-        private string txtNombre;
+        private string txtNumRows;
 
-        public string TxtNombre
+        public string TxtNumRows
         {
-            get { return txtNombre; }
-            set { txtNombre = value; }
+            get { return txtNumRows; }
+            set { txtNumRows = value;
+            
+
+            }
         }
+
+        public void Refrescar(object sender)
+        {
+            
+            NumColumns = Int32.Parse(TxtNumColumns);
+            NumRows = Int32.Parse(TxtNumRows);
+            (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
+        }
+
 
         private string txtDir;
 
@@ -135,7 +149,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             Tienda tienda = new Tienda();
             tienda.Estado = 1;
-            tienda.Nombre = this.txtNombre;
+           // tienda.Nombre = this.txtNombre;
             tienda.Direccion = this.txtDir;
             Ubigeo seleccionado = new Ubigeo();
             seleccionado = gateway.buscarUbigeo(cmbDistSeleccionado.CodDpto, cmbDptoSeleccionado.CodProv, cmbProvSeleccionado.CodDist);
@@ -146,6 +160,45 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         }
+
+        private string fondo;
+
+        public string Fondo
+        {
+            get { return fondo; }
+            set { fondo = value;
+            NotifyOfPropertyChange(() => Fondo);
+            }
+        }
+
+        private int numColumns;
+
+        public int NumColumns
+        {
+            get { return numColumns; }
+            set { numColumns = value;
+            NotifyOfPropertyChange(() => NumColumns);
+            }
+        }
+
+        private int numRows;
+
+        public int NumRows
+        {
+            get { return numRows; }
+            set { numRows = value;
+            NotifyOfPropertyChange(() => NumRows);
+            
+            }
+        }
+
+
+
+        public void OnClick()
+        {
+            Fondo = "Red";
+        }
+
 
     }
 }
