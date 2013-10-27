@@ -45,7 +45,14 @@ namespace MadeInHouse.Dictionary
 
             while (numRows > currentNumRows)
             {
+                Button btnTest = new Button();
+                btnTest.Name = "Button"+currentNumRows;
+                btnTest.Content = "Button"+currentNumRows;
+                Grid.SetRow(btnTest, currentNumRows);
+                Grid.SetColumn(btnTest, currentNumRows);
+                this.Children.Add(btnTest);
                 RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+                
                 currentNumRows++;
             }
 
