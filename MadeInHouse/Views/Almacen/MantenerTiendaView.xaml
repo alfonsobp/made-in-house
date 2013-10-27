@@ -1,56 +1,84 @@
-﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:grid="clr-namespace:MadeInHouse.Dictionary" xmlns:cal="http://www.caliburnproject.org" xmlns:local="clr-namespace:MadeInHouse.Views.Almacen" x:Class="MadeInHouse.Views.Almacen.MantenerTiendaView" mc:Ignorable="d" d:designHeight="345" d:designWidth="390" Width="975">
-    <Grid Height="513">
-        <ToolBar Height="47" VerticalAlignment="Top">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button x:Name="AbrirMantenerZona" Margin="0,3" VerticalAlignment="Stretch" >
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-            </Button>
-        </ToolBar>
-        <TabControl Margin="0,47,0,0">
-            <TabItem Header="Información general">
-                <Grid Background="#FFE5E5E5" Margin="0,0,0,-3">
-                    <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                    <TextBox x:Name="TxtNumRows" HorizontalAlignment="Left" Height="23" Margin="172,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60" />
-                    <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,41,0,0" VerticalAlignment="Top" Width="94"/>
-                    <TextBox x:Name="TxtNumColumns" HorizontalAlignment="Left" Height="23" Margin="172,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
-                    <Label Content="Departamento:" HorizontalAlignment="Left" Margin="78,139,0,0" VerticalAlignment="Top" Width="94"/>
-                    <ComboBox ItemsSource="{Binding CmbDpto}" SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}" DisplayMemberPath="Nombre" SelectedValuePath="CodDpto" HorizontalAlignment="Left" Margin="172,139,0,0" VerticalAlignment="Top" Width="160" SelectedIndex="0" />
-                    <Label Content="Provincia:" HorizontalAlignment="Left" Margin="73,166,0,0" VerticalAlignment="Top" Width="94"/>
-                    <ComboBox SelectedValue="{Binding SelectedValueSub, Mode=OneWayToSource}" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding CmbProv}" DisplayMemberPath="Nombre" SelectedValuePath="CodProv" HorizontalAlignment="Left" Margin="172,166,0,0" VerticalAlignment="Top" Width="160"/>
-                    <Label Content="Distrito:" HorizontalAlignment="Left" Margin="73,193,0,0" VerticalAlignment="Top" Width="94"/>
-                    <ComboBox x:Name="cmbDist" HorizontalAlignment="Left" Margin="172,193,0,0" VerticalAlignment="Top" Width="160"/>
-                    <Label Content="Dirección:" HorizontalAlignment="Left" Margin="73,253,0,0" VerticalAlignment="Top" Width="94"/>
-                    <TextBox x:Name="txtDir" HorizontalAlignment="Left" Height="66" Margin="172,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                    <grid:DynamicGrid x:Name="Dynamic" NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}" Background="{Binding Fondo}" ShowGridLines="True" HorizontalAlignment="Left" Height="307" Margin="437,45,0,0" VerticalAlignment="Top" Width="472">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Cick2">
-                                <cal:ActionMessage MethodName="Pintar" >
-                                    <cal:Parameter Value="{Binding ElementName=Dynamic}" />
-                                </cal:ActionMessage>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </grid:DynamicGrid>
-                    <Button Content="Refrescar Grilla" HorizontalAlignment="Left" Margin="252,25,0,0" VerticalAlignment="Top" Width="100" Height="42">
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:local="clr-namespace:MadeInHouse.Views.Almacen"  x:Class="MadeInHouse.Views.Almacen.MantenerTiendaView" 
+             mc:Ignorable="d" d:designHeight="345" d:designWidth="390" Width="975">
+    
+            <Grid Height="513">
+
+                <ToolBar Height="47" VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="AbrirMantenerZona" Margin="0,3" VerticalAlignment="Stretch" >
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                <TabControl Margin="0,47,0,0">
+                    <TabItem Header="Información general">
+                        <Grid Background="#FFE5E5E5" Margin="0,0,0,-3">
+                            <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,15,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                            <TextBox x:Name="TxtNumRows" HorizontalAlignment="Left" Height="23" Margin="172,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60" />
+                            <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,41,0,0" VerticalAlignment="Top" Width="94"/>
+                            <TextBox x:Name="TxtNumColumns" HorizontalAlignment="Left" Height="23" Margin="172,45,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="60"/>
+                            <Label Content="Departamento:" HorizontalAlignment="Left" Margin="78,139,0,0" VerticalAlignment="Top" Width="94"/>
+                            <ComboBox ItemsSource="{Binding CmbDpto}"
+        						SelectedValue="{Binding SelectedValue, Mode=OneWayToSource}"
+        						DisplayMemberPath="Nombre"
+        						SelectedValuePath="CodDpto"
+        						HorizontalAlignment="Left" 
+        						Margin="172,139,0,0" 
+        						VerticalAlignment="Top" 
+        						Width="160"
+        						SelectedIndex="0"
+                                  />
+                            <Label Content="Provincia:" HorizontalAlignment="Left" Margin="73,166,0,0" VerticalAlignment="Top" Width="94"/>
+                            <ComboBox 
+        						SelectedValue="{Binding SelectedValueSub, Mode=OneWayToSource}"
+        						SelectedIndex="{Binding SelectedIndex}"
+        						ItemsSource="{Binding CmbProv}"
+        						DisplayMemberPath="Nombre"
+        						SelectedValuePath="CodProv" 
+        						HorizontalAlignment="Left" Margin="172,166,0,0" VerticalAlignment="Top" Width="160"/>
+                            <Label Content="Distrito:" HorizontalAlignment="Left" Margin="73,193,0,0" VerticalAlignment="Top" Width="94"/>
+                            <ComboBox x:Name="cmbDist" HorizontalAlignment="Left" Margin="172,193,0,0" VerticalAlignment="Top" Width="160"/>
+                            <Label Content="Dirección:" HorizontalAlignment="Left" Margin="73,253,0,0" VerticalAlignment="Top" Width="94"/>
+                            <TextBox x:Name="txtDir" HorizontalAlignment="Left" Height="66" Margin="172,233,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                    
+                            <grid:DynamicGrid  x:Name="Dynamic" NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Background="{Binding Fondo}" ShowGridLines="True" HorizontalAlignment="Left" Height="307" Margin="437,45,0,0" VerticalAlignment="Top" Width="472">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Cick2">
+                                        <cal:ActionMessage MethodName="Pintar" >
+                                            <cal:Parameter Value="{Binding ElementName=Dynamic}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </grid:DynamicGrid>
+                    <Button Content="Refrescar Grilla" 
+                            HorizontalAlignment="Left" Margin="252,25,0,0" VerticalAlignment="Top" Width="100" Height="42">
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
                                 <cal:ActionMessage MethodName="Refrescar" >
@@ -59,16 +87,24 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <ComboBox ItemsSource="{Binding CmbColores}" SelectedValue="{Binding SelectedColor, Mode=OneWayToSource}" HorizontalAlignment="Left" Margin="172,82,0,0" VerticalAlignment="Top" Width="115"/>
+
+                    <ComboBox
+                        ItemsSource="{Binding CmbColores}"
+        			    SelectedValue="{Binding SelectedColor, Mode=OneWayToSource}"
+                        HorizontalAlignment="Left" Margin="172,82,0,0" VerticalAlignment="Top" Width="115"/>
                     <Label Content="Color" HorizontalAlignment="Left" Margin="52,82,0,0" VerticalAlignment="Top" Width="75"/>
                 </Grid>
-            </TabItem>
-            <TabItem Header="Anaqueles">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="Depósito">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+                    </TabItem>
+                    <TabItem Header="Anaqueles">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                    <TabItem Header="Depósito">
+                        <Grid Background="#FFE5E5E5"/>
+                    </TabItem>
+                </TabControl>
+
+
+
+            </Grid>
+    
 </UserControl>
