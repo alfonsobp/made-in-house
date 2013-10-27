@@ -175,6 +175,7 @@
     <Compile Include="Models\Almacen\UnidadMedida.cs" />
     <Compile Include="Models\Compras\CatalogoProveedor.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
+    <Compile Include="Model\prueba.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />
