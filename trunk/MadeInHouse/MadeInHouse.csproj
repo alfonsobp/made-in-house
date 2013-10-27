@@ -91,6 +91,7 @@
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
+    <Compile Include="Dictionary\DynamicGrid.cs" />
     <Compile Include="Manager\AccModuloManager.cs" />
     <Compile Include="Manager\AccVentanaManager.cs" />
     <Compile Include="Manager\AccVentanaInternaManager.cs" />
