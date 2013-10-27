@@ -43,16 +43,14 @@ namespace MadeInHouse.Dictionary
             int numRows = NumRows;
             int currentNumRows = RowDefinitions.Count;
 
+            int currentNumCols = ColumnDefinitions.Count;
+            int numCols = NumColumns;
+
+            this.Children.Clear();
+                
             while (numRows > currentNumRows)
             {
-                Button btnTest = new Button();
-                btnTest.Name = "Button"+currentNumRows;
-                btnTest.Content = "Button"+currentNumRows;
-                Grid.SetRow(btnTest, currentNumRows);
-                Grid.SetColumn(btnTest, currentNumRows);
-                this.Children.Add(btnTest);
                 RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
-                
                 currentNumRows++;
             }
 
@@ -62,11 +60,12 @@ namespace MadeInHouse.Dictionary
                 RowDefinitions.RemoveAt(currentNumRows);
             }
 
-            int numCols = NumColumns;
-            int currentNumCols = ColumnDefinitions.Count;
+            
+
 
             while (numCols > currentNumCols)
             {
+
                 ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
                 currentNumCols++;
             }
@@ -75,7 +74,21 @@ namespace MadeInHouse.Dictionary
             {
                 currentNumCols--;
                 ColumnDefinitions.RemoveAt(currentNumCols);
+                
             }
+            for (int i = 0; i < numCols;i++)
+                for (int j = 0; j < numRows; j++)
+                {
+                        Button btnTest = new Button();
+                        btnTest.Name = "Button" + i + j; //X,Y Columna,Fila
+                        btnTest.Content = "Button" + i + j;
+
+                        Grid.SetRow(btnTest, j);
+                        Grid.SetColumn(btnTest, i);
+                        this.Children.Add(btnTest);
+
+                  
+                }
 
             UpdateLayout();
 
