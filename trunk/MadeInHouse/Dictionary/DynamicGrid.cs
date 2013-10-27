@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,9 +11,14 @@ namespace MadeInHouse.Dictionary
 {
     class DynamicGrid : Grid
     {
+        /*public static readonly DependencyProperty BackgroundCellProperty = 
+            DependencyProperty.Register("BackgroundCell",typeof(Brush),;
+
+        public Brush BackgroundCell { get; set; } */
+
         public static readonly DependencyProperty NumColumnsProperty =
-           DependencyProperty.Register("NumColumns", typeof(Int32), 
-           typeof(DynamicGrid),new PropertyMetadata(0,new PropertyChangedCallback(OnNumRowsOrColumnsChanged)) );
+           DependencyProperty.Register("NumColumns", typeof(Int32),
+           typeof(DynamicGrid), new PropertyMetadata(0, new PropertyChangedCallback(OnNumRowsOrColumnsChanged)));
 
         public Int32 NumColumns
         {
@@ -23,7 +29,7 @@ namespace MadeInHouse.Dictionary
 
         public static readonly DependencyProperty NumRowsProperty =
             DependencyProperty.Register("NumRows", typeof(Int32),
-            typeof(DynamicGrid),new PropertyMetadata(0,new PropertyChangedCallback(OnNumRowsOrColumnsChanged)));
+            typeof(DynamicGrid), new PropertyMetadata(0, new PropertyChangedCallback(OnNumRowsOrColumnsChanged)));
 
         public Int32 NumRows
         {
@@ -47,7 +53,7 @@ namespace MadeInHouse.Dictionary
             int numCols = NumColumns;
 
             this.Children.Clear();
-                
+
             while (numRows > currentNumRows)
             {
                 RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -60,7 +66,7 @@ namespace MadeInHouse.Dictionary
                 RowDefinitions.RemoveAt(currentNumRows);
             }
 
-            
+
 
 
             while (numCols > currentNumCols)
@@ -74,25 +80,34 @@ namespace MadeInHouse.Dictionary
             {
                 currentNumCols--;
                 ColumnDefinitions.RemoveAt(currentNumCols);
-                
+
             }
-            for (int i = 0; i < numCols;i++)
+            for (int i = 0; i < numCols; i++)
                 for (int j = 0; j < numRows; j++)
                 {
-                        Button btnTest = new Button();
-                        btnTest.Name = "Button" + i + j; //X,Y Columna,Fila
-                        btnTest.Content = "Button" + i + j;
+                    Button btnTest = new Button();
+                    btnTest.Name = "Button" + i + j; //X,Y Columna,Fila
+                    btnTest.Content = "Button" + i + j;
+                    btnTest.Click += new RoutedEventHandler(onClickChange);
+                    //btnTest.Click();
 
-                        Grid.SetRow(btnTest, j);
-                        Grid.SetColumn(btnTest, i);
-                        this.Children.Add(btnTest);
+                    Grid.SetRow(btnTest, j);
+                    Grid.SetColumn(btnTest, i);
+                    this.Children.Add(btnTest);
 
-                  
+
                 }
 
             UpdateLayout();
 
         }
+
+        public void onClickChange(object sender, RoutedEventArgs e)
+        {
+            (sender as Button).Background = this.Background;
+
+        }
+
 
         protected override void OnInitialized(EventArgs e)
         {

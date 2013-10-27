@@ -13,6 +13,10 @@ namespace MadeInHouse.ViewModels.Almacen
     {
 
         public MantenerTiendaViewModel() {
+            this.CmbColores = new List<string>();
+            this.CmbColores.Add("Red");
+            this.CmbColores.Add("Blue");
+            this.CmbColores.Add("Green");
             this.cmbDpto=gateway.BuscarDpto();
         }
 
@@ -45,6 +49,25 @@ namespace MadeInHouse.ViewModels.Almacen
             NumRows = Int32.Parse(TxtNumRows);
             (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
         }
+
+        private List<string> cmbColores;
+
+        public List<string> CmbColores
+        {
+            get { return cmbColores; }
+            set { cmbColores = value; }
+        }
+
+        private string selectedColor;
+
+        public string SelectedColor
+        {
+            get { return selectedColor; }
+            set { selectedColor = value;
+            Fondo = selectedColor;
+            }
+        }
+
 
 
         private string txtDir;
@@ -194,7 +217,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
 
-        public void OnClick()
+        public void Pintar(object sender)
         {
             Fondo = "Red";
         }
