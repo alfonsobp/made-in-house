@@ -41,7 +41,7 @@ namespace MadeInHouse.ViewModels.Almacen
             int k;
             UnidadMedida u = new UnidadMedida();
             u.Nombre = TxtNombre;
-            k = DataObjects.Almacen.UnidadMedidaSQL.AgregarUnidadMedida(u);
+            k = new DataObjects.Almacen.UnidadMedidaSQL().AgregarUnidadMedida(u);
 
             if (k == 0)
                 MessageBox.Show("Ocurrio un error");
@@ -52,7 +52,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private void refrescar()
         {
-            LstUnidadesDeMedida = DataObjects.Almacen.UnidadMedidaSQL.BuscarUnidadMedida();
+            LstUnidadesDeMedida = new DataObjects.Almacen.UnidadMedidaSQL().BuscarUnidadMedida();
           
         }
     }

@@ -8,9 +8,19 @@ namespace MadeInHouse.Models.Almacen
 {
     class UnidadMedida
     {
-        public int Id { get; set; }
-        public string Nombre { get; set; }
+        int idUnidad;
 
-        public UnidadMedida() { }
+        public int IdUnidad
+        {
+            get { return idUnidad; }
+            set { idUnidad = value; }
+        }
+        string nombre;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
     }
 }

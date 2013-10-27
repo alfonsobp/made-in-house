@@ -21,8 +21,10 @@ namespace MadeInHouse.ViewModels.Almacen
 
     class ProductoBuscarViewModel : PropertyChangedBase
     {
-        
-        
+
+
+        private MadeInHouse.Models.MyWindowManager win = new MadeInHouse.Models.MyWindowManager();
+
 
         public ProductoBuscarViewModel()
         {
@@ -121,6 +123,14 @@ namespace MadeInHouse.ViewModels.Almacen
             { selectedValueSub = value; }
         }
 
+        private Producto productoSel;
+
+        public Producto ProductoSel
+        {
+            get { return productoSel; }
+            set { productoSel = value; }
+        }
+
         private LineaProducto GetLinea(int idLinea)
         {
             return (from lp in LstLineasProducto
@@ -134,36 +144,64 @@ namespace MadeInHouse.ViewModels.Almacen
                     select slp).FirstOrDefault();
         }
 
+        
+
+
         private ProductoSQL pSQL = new ProductoSQL();
+        private LineaProductoSQL lsql;
+        private SubLineaProductoSQL ssql;
 
         public void BuscarProductos()
         {
              List<Producto> lp;
              lp=pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub);
-             LstProductos = new List<ExtendedProduct>();
+             List<ExtendedProduct> LstProductosAux = new List<ExtendedProduct>();
+
              if (lp != null)
              {
                  foreach (Producto p in lp)
                  {
                      ExtendedProduct exp = new ExtendedProduct();
+                     exp.IdProducto = p.IdProducto;
                      exp.CodigoProd = p.CodigoProd;
-                     if (SelectedValue != 0) exp.Linea = GetLinea(SelectedValue).Nombre;
-                     else exp.Linea = GetLinea(p.IdLinea).Nombre;
+                     exp.Nombre = p.Nombre;
+                     exp.Descripcion = p.Descripcion;
+                     exp.Abreviatura = p.Abreviatura;
+                     exp.Percepcion = p.Percepcion;
+                     if (SelectedValue != 0) 
+                         exp.Linea = GetLinea(SelectedValue).Nombre;
+
+                     else
+                         exp.Linea = GetLinea(p.IdLinea).Nombre;
+
                      if (SelectedValueSub != 0) exp.SubLinea = GetSubLinea(SelectedValueSub).Nombre;
                      else
                      {
+                         SelectedIndex = -1;
                          SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
                          LstSubLineasProducto = slpSQL.ObtenerSubLineas(p.IdLinea);
                          exp.SubLinea = GetSubLinea(p.IdSubLinea).Nombre;
                      }
-                     LstProductos.Add(exp);
+                     LstProductosAux.Add(exp);
                  }
+                 LstProductos = LstProductosAux;
              }
              else
              {
+                 LstProductos = null;
                  System.Windows.Forms.MessageBox.Show("No se encontro ningún producto");
              }
+             
         }
+
+        public void Actualizar()
+        {
+            ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
+            win.ShowWindow(pmVM);
+
+
+        }
+
 
 
 

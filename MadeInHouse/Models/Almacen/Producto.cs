@@ -95,9 +95,13 @@ namespace MadeInHouse.Models.Almacen
             set { estado = value; }
         }
 
+        int idUnidad;
 
-
-
+        public int IdUnidad
+        {
+            get { return idUnidad; }
+            set { idUnidad = value; }
+        }
 
     }
 
