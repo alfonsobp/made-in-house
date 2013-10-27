@@ -204,15 +204,15 @@
     <Compile Include="Model\Beneficio.cs" />
     <Compile Include="Model\CategoriaSalarial.cs" />
     <Compile Include="Model\MyWindowManager.cs" />
-    <Compile Include="Model\ProductoxOrdenCompra.cs" />
+    <Compile Include="Model\Compras\ProductoxOrdenCompra.cs" />
     <Compile Include="Model\Ventas\Cliente.cs" />
     <Compile Include="Model\Color.cs" />
-    <Compile Include="Model\Cotizacion.cs" />
-    <Compile Include="Model\CotizacionxProducto.cs" />
+    <Compile Include="Model\Compras\Cotizacion.cs" />
+    <Compile Include="Model\Compras\CotizacionxProducto.cs" />
     <Compile Include="Model\DetalleDevolucion.cs" />
     <Compile Include="Model\Ventas\DetalleVenta.cs" />
     <Compile Include="Model\Ventas\Devolucion.cs" />
-    <Compile Include="Model\DocPagoProveedor.cs" />
+    <Compile Include="Model\Compras\DocPagoProveedor.cs" />
     <Compile Include="Model\Empleado.cs" />
     <Compile Include="Model\GuiaRemision.cs" />
     <Compile Include="Model\Horario.cs" />
@@ -221,22 +221,22 @@
     <Compile Include="Model\ModoPago.cs" />
     <Compile Include="Model\MotivoIS.cs" />
     <Compile Include="Model\NotaIS.cs" />
-    <Compile Include="Model\OrdenCompra.cs" />
+    <Compile Include="Model\Compras\OrdenCompra.cs" />
     <Compile Include="Model\Ventas\Pago.cs" />
     <Compile Include="Model\Producto.cs" />
     <Compile Include="Model\ProductoxGuiaRemision.cs" />
     <Compile Include="Model\ProductoxNotaIS.cs" />
     <Compile Include="Model\ProductoxSolicitudAb.cs" />
-    <Compile Include="Model\ProductoxSolicitudAd.cs" />
-    <Compile Include="Model\Proveedor.cs" />
-    <Compile Include="Model\ProveedorxProducto.cs" />
+    <Compile Include="Model\Compras\ProductoxSolicitudAd.cs" />
+    <Compile Include="Model\Compras\Proveedor.cs" />
+    <Compile Include="Model\Compras\ProveedorxProducto.cs" />
     <Compile Include="Model\Puesto.cs" />
     <Compile Include="Model\Ventas\Puntos.cs" />
     <Compile Include="Model\Rol.cs" />
-    <Compile Include="Model\Servicio.cs" />
-    <Compile Include="Model\ServicioxProducto.cs" />
+    <Compile Include="Model\Compras\Servicio.cs" />
+    <Compile Include="Model\Compras\ServicioxProducto.cs" />
     <Compile Include="Model\SolicitudAbastecimiento.cs" />
-    <Compile Include="Model\SolicitudAdquisicion.cs" />
+    <Compile Include="Model\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Model\SubLineaProducto.cs" />
     <Compile Include="Model\Ventas\Tarjeta.cs" />
     <Compile Include="Model\Tienda.cs" />
@@ -1081,7 +1081,11 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\Almacen\" />
+    <Folder Include="Model\RRHH\" />
+    <Folder Include="Model\Seguridad\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\check.png" />
     <Resource Include="Assets\conf.png" />
