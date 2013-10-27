@@ -60,9 +60,50 @@ namespace MadeInHouse.Manager
             DBConexion db = new DBConexion();
             SqlDataReader reader;
 
-            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE estado = 1 ";
+            String where="";
+
+           
+            string codigo = Convert.ToString( filters[0])  ;
+            string ruc =Convert.ToString( filters[1] );
+            string razonSocial = Convert.ToString(filters[2]);
+            DateTime fechaIni = Convert.ToDateTime(filters[3]);
+            DateTime fechaFin = Convert.ToDateTime(filters[4]);
+
+            if (codigo != "") {
+                where += " and codProveedor = '" + codigo + "' ";
+            }
+
+            if (ruc != "") {
+                where += " and ruc = '" + ruc + "' ";
+            }
+
+            if (razonSocial != "") {
+                where += " and razonSocial LIKE  '%" + razonSocial + "%' ";
+            }
+            
+            if (fechaIni != null) {
+               
+              
+                where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd")+ "')   <=  CONVERT(DATE,fechaReg,103) ";
+                
+            }
+
+            if (fechaFin != null) {
+
+                where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaReg,103) ";
+            }
+
+
+
+           // MessageBox.Show("SELECT * FROM Proveedor WHERE  estado = 1 " + where);
+           
+            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE  estado = 1   "+ where ;
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
+
+           
+
+
 
             try
             {

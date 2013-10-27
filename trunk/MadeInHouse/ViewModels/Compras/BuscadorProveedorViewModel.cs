@@ -45,21 +45,24 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-        private string fechaIni;
+        private DateTime fechaIni=DateTime.Now;
 
-        public string FechaIni
+        public DateTime FechaIni
         {
             get { return fechaIni; }
             set { fechaIni = value; NotifyOfPropertyChange(() => FechaIni); }
         }
-       
-        private string fechaFin;
 
-        public string FechaFin
+
+        private DateTime fechaFin=DateTime.Now;
+
+        public DateTime FechaFin
         {
             get { return fechaFin; }
             set { fechaFin = value; NotifyOfPropertyChange(() => FechaFin); }
         }
+
+        
 
         private List<Proveedor> lstProveedor;
 
@@ -111,7 +114,9 @@ namespace MadeInHouse.ViewModels.Compras
             
     
             
-            LstProveedor = eM.Buscar() as List<Proveedor>;
+            LstProveedor = eM.Buscar(TxtCodigo,TxtRuc,TxtRazonSocial,FechaIni,FechaFin) as List<Proveedor>;
+            MessageBox.Show(txtCodigo);
+            MessageBox.Show(fechaIni + " " +fechaFin);
             NotifyOfPropertyChange("LstProveedor");
 
         }
