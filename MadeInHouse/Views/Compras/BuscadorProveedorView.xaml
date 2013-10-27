@@ -11,7 +11,7 @@
         <StackPanel>
             <Layouts:TitleBarTemplate  title="Listado de proveedores" />
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-                <DataGrid x:Name="LstProveedor"   
+                <DataGrid IsReadOnly="True" x:Name="LstProveedor"   
                           cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
                           Margin="10,188,10,0" Height="234" VerticalAlignment="Top" AutoGenerateColumns="false">
                    
@@ -63,6 +63,9 @@
                     </Button>
                     <Button x:Name="ActualizarProveedor" Height="50" Width="50">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+                    </Button>
+                    <Button x:Name="Importar" Height="50" Width="50">
+                    <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,1,0,3" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                 </ToolBar>
 

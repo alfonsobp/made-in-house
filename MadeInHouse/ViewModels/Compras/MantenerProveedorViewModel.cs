@@ -15,7 +15,7 @@ namespace MadeInHouse.ViewModels.Compras
     class MantenerProveedorViewModel: PropertyChangedBase
     {
 
-        public MantenerProveedorViewModel(Proveedor p) {
+        public MantenerProveedorViewModel(Proveedor p,BuscadorProveedorViewModel model) {
 
             txtCodigo = p.CodProveedor;
             txtContacto = p.Contacto;
@@ -29,17 +29,24 @@ namespace MadeInHouse.ViewModels.Compras
             Id = p.IdProveedor;
             //Editar
             indicador = 2;
+            this.model = model;
              
         }
 
         int Id;
-
-        public MantenerProveedorViewModel()
+        BuscadorProveedorViewModel model;
+        public MantenerProveedorViewModel(BuscadorProveedorViewModel model)
         {
+            this.model = model;
             //Insertar
             indicador = 1;
         }
 
+        public MantenerProveedorViewModel() {
+
+            //Insertar
+            indicador = 1;
+        }
 
         private int indicador;
         //indicador = 1 para insertar
@@ -124,52 +131,74 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtEmail = value; NotifyOfPropertyChange(() => TxtEmail); }
         }
 
+        public Boolean validar(Proveedor p) {
+
+            if (p.Telefono ==null || p.Contacto == null|| p.Direccion == null || p.Email==null || p.Fax == null || p.RazonSocial == null || p.Ruc == null || p.TelefonoContacto == null)
+            {
+                MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
+                return false;
+            }
+            else
+            {
+                return true;  
+            }
+        }
+        
         public void GuardarProveedor()
         {
             int k;
             Proveedor p = new Proveedor();
-            p.IdProveedor = Id;
-            p.CodProveedor = txtCodigo;
-            p.Contacto = txtContacto;
-            p.Direccion = txtDireccion;
-            p.Email = txtEmail;
-            p.Fax = txtFax;
-            p.RazonSocial = txtRazonSocial;
-            p.Ruc = txtRuc;
-            p.Telefono = TxtTelefono;
-            p.TelefonoContacto = txtTelefonoContacto;
-         
 
-            eM = new TableManager().getInstance(EntityName.Proveedor);
-            
-            if (indicador == 1)
-            {
-                
+           
+                p.IdProveedor = Id;
+                p.Contacto = TxtContacto;
+                p.Direccion = TxtDireccion;
+                p.Email =TxtEmail;
+                p.Fax = TxtFax;
+                p.RazonSocial = TxtRazonSocial;
+                p.Ruc = TxtRuc;
+                p.Telefono = TxtTelefono;
+                p.TelefonoContacto = TxtTelefonoContacto;
 
-                 k = eM.Agregar(p);
+             if (validar(p) == true) {
 
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
-                else
-                    MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
-                                txtTelefonoContacto + "\nDireccion = " + txtDireccion);
-                 
-                                       
+                eM = new TableManager().getInstance(EntityName.Proveedor);
 
-            }
+                if (indicador == 1)
+                {
 
-            if (indicador == 2)
-            {
 
-                k = eM.Actualizar(p) ;
+                    k = eM.Agregar(p);
 
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
-                else
-                MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto + 
-                                "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+                    if (k == 0)
+                        MessageBox.Show("Ocurrio un error");
+                    else
+                        MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
+                                    "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
+                                    txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+
+
+
+                }
+
+                if (indicador == 2)
+                {
+
+                    k = eM.Actualizar(p);
+
+                    if (k == 0)
+                        MessageBox.Show("Ocurrio un error");
+                    else
+                        MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
+                                        "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto +
+                                        "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+
+                }
+
+                if (model != null)
+                {
+                    model.ActualizarProveedor();
+                }
 
             }
             

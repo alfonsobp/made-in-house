@@ -10,6 +10,8 @@ using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using MadeInHouse.Manager;
 using MadeInHouse.Model;
+using System.Data.OleDb;
+using System.Data;
 
 
 namespace MadeInHouse.ViewModels.Compras
@@ -101,21 +103,17 @@ namespace MadeInHouse.ViewModels.Compras
 
 
 
-        public void test() {
-
-            MessageBox.Show("El proveedor tiene Codigo = " + proveedorSeleccionado.CodProveedor + " , Ruc = " + proveedorSeleccionado.Ruc + 
-                            " , Razon Social = " + proveedorSeleccionado.RazonSocial);
-        }
+       
      
         public void NuevoProveedor()
         {        
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel();   
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(this);   
             win.ShowWindow(obj);  
         }
 
         public void EditarProveedor()
         {
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorSeleccionado);
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorSeleccionado,this);
             win.ShowWindow(obj);
         }
 
@@ -144,6 +142,93 @@ namespace MadeInHouse.ViewModels.Compras
         {
             LstProveedor = eM.Buscar() as List<Proveedor>;
            
+        }
+
+        string Path;
+
+        public void BuscarPath()
+        {
+
+            // Create OpenFileDialog
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            // Set filter for file extension and default file extension
+            dlg.DefaultExt = ".txt";
+            dlg.Filter = "Text documents (.xlsx)|*.xlsx";
+
+            // Display OpenFileDialog by calling ShowDialog method
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Get the selected file name and display in a TextBox
+            if (result == true)
+            {
+                // Open document
+                string filename = dlg.FileName;
+                Path = filename;
+
+            }
+
+        }
+
+        public void Cargar()
+        {
+
+            if (Path != "")
+            {
+
+                List<ProveedorxProducto> lista = new List<ProveedorxProducto>();
+
+                String name = "Proveedor";
+                String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
+                OleDbConnection con = new OleDbConnection(constr);
+                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+                con.Open();
+
+                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+                DataTable data = new DataTable();
+                sda.Fill(data);
+                DataTableReader ds = data.CreateDataReader();
+
+                while (ds.Read())
+                {
+                    Proveedor p = new Proveedor();
+                    p.Contacto = ds["Contacto"].ToString();
+                    p.Direccion = ds["Direccion"].ToString();
+                    p.Email = ds["Email"].ToString();
+                    p.RazonSocial = ds["RazonSocial"].ToString();
+                    p.Fax = ds["Fax"].ToString();
+                    p.Telefono = ds["Telefono"].ToString();
+                    p.Ruc = ds["Ruc"].ToString();
+                    p.TelefonoContacto = ds["TelefonoContacto"].ToString();
+                    p.Email = ds["Email"].ToString();
+
+                    new ProveedorManager().Agregar(p);
+
+                }
+
+
+
+            }
+
+
+        }
+
+        public void Importar() {
+
+
+            BuscarPath();
+
+            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
+
+            if (r == MessageBoxResult.Yes)
+            {
+
+                Cargar();
+                MessageBox.Show("Se importó satisfactoriamente los proveedores");
+                LstProveedor = new ProveedorManager().Buscar() as List<Proveedor>;
+            }
+        
+        
         }
 
     }

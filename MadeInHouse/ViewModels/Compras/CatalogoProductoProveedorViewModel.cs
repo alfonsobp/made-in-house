@@ -58,6 +58,14 @@ namespace MadeInHouse.ViewModels.Compras
                 LstProducto = eM.Buscar(prov.IdProveedor) as List<ProveedorxProducto>;
         }
 
+        public void Eliminar() {
+
+            if (prov != null) {
+                new ProveedorxProductoManager().Eliminar(seleccionado);
+                Refrescar();
+            }
+        
+        }
         
 
         public void Cargar()
@@ -154,18 +162,25 @@ namespace MadeInHouse.ViewModels.Compras
        
 
         public void EditarProducto() {
-            MyWindowManager win = new MyWindowManager();
-          
-            win.ShowWindow(new Compras.ProductoViewModel(seleccionado) );
+            if (prov != null  && seleccionado != null)
+            {
+                MyWindowManager win = new MyWindowManager();
+                ProveedorxProducto pp;
+                pp = seleccionado;
+                win.ShowWindow(new Compras.ProductoViewModel(pp, this));
+            }
         }
 
         public void NuevoProducto() {
-
-            MyWindowManager win = new MyWindowManager();
-            Seleccionado  = new ProveedorxProducto();
-            Seleccionado.IdProveedor = Prov.IdProveedor;
-            win.ShowWindow(new Compras.ProductoViewModel(seleccionado));
-        
+            if (prov != null)
+            {
+                MyWindowManager win = new MyWindowManager();
+                ProveedorxProducto pp = new ProveedorxProducto();
+                pp.Producto = new Producto();
+                pp.IdProveedor = Prov.IdProveedor;
+                win.ShowWindow(new Compras.ProductoViewModel(pp, this));
+            }
         }
+     
     }
 }

@@ -39,7 +39,7 @@ namespace MadeInHouse.Manager
             SqlDataReader reader;
 
 
-            cmd.CommandText = "SELECT * FROM ProveedorxProducto WHERE  estado = 1   " + where + " ORDER BY fechaAct ";
+            cmd.CommandText = "SELECT * FROM ProveedorxProducto WHERE  estado = 1   " + where + " ORDER BY fechaReg DESC ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             List<ProveedorxProducto> lstProductos = new List<ProveedorxProducto>();
@@ -88,8 +88,51 @@ namespace MadeInHouse.Manager
 
         public int Eliminar(object entity)
         {
+            ProveedorxProducto pp = entity as ProveedorxProducto;
+            int k = 0;
 
-            throw new NotImplementedException();  
+          
+
+                DBConexion DB = new DBConexion();
+
+                SqlConnection conn = DB.conn;
+                SqlCommand cmd = DB.cmd;
+              
+
+                cmd.CommandText = "UPDATE ProveedorxProducto set estado = 0 " +
+                                    " where idProveedor = @idProveedor and idProducto = @idProducto ";
+
+                cmd.Parameters.AddWithValue("@idProveedor", pp.IdProveedor);
+                cmd.Parameters.AddWithValue("@idProducto", pp.Producto.IdProducto);
+
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = conn;
+
+
+
+
+                try
+                {
+                    conn.Open();
+
+
+                    k = cmd.ExecuteNonQuery();
+
+
+                    cmd.ExecuteNonQuery();
+
+                    conn.Close();
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.StackTrace.ToString());
+                }
+
+            
+            return k;
+  
+
         }
 
         public int Insertar(ProveedorxProducto pp) {
@@ -109,10 +152,10 @@ namespace MadeInHouse.Manager
                
                 cmd.CommandText =  "IF NOT EXISTS(SELECT 1 from ProveedorxProducto where idProveedor = @idProveedor and idProducto = @idProducto  )"+
                                    "Insert into ProveedorxProducto(idProducto,idProveedor,codComercial,precio, estado,descripcion,fechaReg,fechaAct) "+
-                                   "VALUES (@idProducto,@idProveedor,@codComercial,@precio,@estado,@descripcion,@fechaReg,@fechaAct)"+
+                                   "VALUES (@idProducto,@idProveedor,@codComercial,@precio,@estado,@descripcion,GETDATE(),GETDATE() )"+
                                     " else " +
-                                    "UPDATE ProveedorxProducto set fechaAct = @fechaAct , precio = @precio , descripcion = @descripcion ,codComercial  = @codComercial "+
-                                    " where idProveedor = @idProveedor and idProducto = @idProducto ";
+                                    "UPDATE ProveedorxProducto set fechaAct = GETDATE() , precio = @precio , descripcion = @descripcion ,codComercial  = @codComercial "+
+                                    " , estado = @estado where idProveedor = @idProveedor and idProducto = @idProducto ";
 
                 cmd.Parameters.AddWithValue("@idProveedor", pp.IdProveedor);
                 cmd.Parameters.AddWithValue("@idProducto", p.IdProducto);
