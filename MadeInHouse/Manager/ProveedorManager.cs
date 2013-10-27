@@ -63,46 +63,55 @@ namespace MadeInHouse.Manager
             String where="";
 
            
-            string codigo = Convert.ToString( filters[0])  ;
-            string ruc =Convert.ToString( filters[1] );
-            string razonSocial = Convert.ToString(filters[2]);
-            DateTime fechaIni = Convert.ToDateTime(filters[3]);
-            DateTime fechaFin = Convert.ToDateTime(filters[4]);
 
-            if (codigo != "") {
-                where += " and codProveedor = '" + codigo + "' ";
+            if (filters.Length > 1 && filters.Length <= 5)
+            {
+
+                string codigo = Convert.ToString(filters[0]);
+                string ruc = Convert.ToString(filters[1]);
+                string razonSocial = Convert.ToString(filters[2]);
+                DateTime fechaIni = Convert.ToDateTime(filters[3]);
+                DateTime fechaFin = Convert.ToDateTime(filters[4]);
+
+                if (codigo != "")
+                {
+                    where += " and codProveedor = '" + codigo + "' ";
+                }
+
+                if (ruc != "")
+                {
+                    where += " and ruc = '" + ruc + "' ";
+                }
+
+                if (razonSocial != "")
+                {
+                    where += " and razonSocial LIKE  '%" + razonSocial + "%' ";
+                }
+
+                if (fechaIni != null)
+                {
+
+
+                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATE,fechaReg,103) ";
+
+                }
+
+                if (fechaFin != null)
+                {
+
+                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaReg,103) ";
+                }
+
             }
 
-            if (ruc != "") {
-                where += " and ruc = '" + ruc + "' ";
-            }
+                // MessageBox.Show("SELECT * FROM Proveedor WHERE  estado = 1 " + where);
 
-            if (razonSocial != "") {
-                where += " and razonSocial LIKE  '%" + razonSocial + "%' ";
-            }
+                db.cmd.CommandText = "SELECT * FROM Proveedor WHERE  estado = 1   " + where;
+                db.cmd.CommandType = CommandType.Text;
+                db.cmd.Connection = db.conn;
+
+
             
-            if (fechaIni != null) {
-               
-              
-                where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd")+ "')   <=  CONVERT(DATE,fechaReg,103) ";
-                
-            }
-
-            if (fechaFin != null) {
-
-                where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaReg,103) ";
-            }
-
-
-
-           // MessageBox.Show("SELECT * FROM Proveedor WHERE  estado = 1 " + where);
-           
-            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE  estado = 1   "+ where ;
-            db.cmd.CommandType = CommandType.Text;
-            db.cmd.Connection = db.conn;
-
-           
-
 
 
             try
@@ -144,8 +153,10 @@ namespace MadeInHouse.Manager
 
         public int Actualizar(object entity)
         {
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
             int k = 0;
             Proveedor p = entity as Proveedor;
             cmd.CommandText = "UPDATE Proveedor  " +
@@ -184,7 +195,37 @@ namespace MadeInHouse.Manager
 
         public int Eliminar(object entity)
         {
-            throw new NotImplementedException();
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+            int k = 0;
+            Proveedor p = entity as Proveedor;
+            cmd.CommandText = "UPDATE Proveedor  " +
+            "SET estado = @estado" +
+            " WHERE idProveedor = @IdProveedor ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+         
+            cmd.Parameters.AddWithValue("@estado", 0);
+            cmd.Parameters.AddWithValue("@IdProveedor", p.IdProveedor);
+            try
+            {
+                conn.Open();
+
+                k = cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
         }
     }
 }
