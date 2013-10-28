@@ -22,26 +22,12 @@
                 <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtProveedor" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                <DataGrid HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
+                        <DataGrid IsReadOnly="True"   SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto" Width="110"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Precio" Width="100"/>
-                            </DataGrid.Columns>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
-                    <Button/>
+                                <DataGridTextColumn Binding="{Binding Path=Producto.CodProducto }" Header="Codigo"/>
+                                <DataGridTextColumn Binding="{Binding Path=Producto.Nombre }" Header="Producto" Width="110"/>
+                                <DataGridTextColumn Binding="{Binding Precio}" Header="Precio" Width="100"/>
+                </DataGrid.Columns>
                 </DataGrid>
                 <Label Content="Productos soportados" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top"/>
                 <Button HorizontalAlignment="Left" Height="38" Margin="534,106,0,0" VerticalAlignment="Top" Width="34">
@@ -72,16 +58,17 @@
             <Button x:Name="GuardarServicio">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
+            <Button/>
+                    <Button Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
             <Button Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
-        </ToolBar>
+            <Button x:Name="Importar" Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
+                </ToolBar>
     </Grid>
     </StackPanel>
     </Border>

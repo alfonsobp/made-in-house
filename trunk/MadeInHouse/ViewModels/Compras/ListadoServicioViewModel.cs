@@ -14,11 +14,11 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void AbrirAgregarServicio()
         {
-            win.ShowWindow(new Compras.agregarServicioViewModel { DisplayName = "Agregar Servicio" });
+            win.ShowWindow(new Compras.agregarServicioViewModel());
         }
         public void AbrirEditarServicio()
         {
-            win.ShowWindow(new Compras.editarServicioViewModel { DisplayName = "Editar Servicio" });
+            win.ShowWindow(new Compras.editarServicioViewModel());
         }
     }
 }

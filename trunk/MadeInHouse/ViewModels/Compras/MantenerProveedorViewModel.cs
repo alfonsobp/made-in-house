@@ -15,7 +15,7 @@ namespace MadeInHouse.ViewModels.Compras
     class MantenerProveedorViewModel: PropertyChangedBase
     {
 
-        public MantenerProveedorViewModel(Proveedor p,BuscadorProveedorViewModel model) {
+        public MantenerProveedorViewModel(Proveedor p, BuscadorProveedorViewModel model) {
 
             txtCodigo = p.CodProveedor;
             txtContacto = p.Contacto;
@@ -35,6 +35,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         int Id;
         BuscadorProveedorViewModel model;
+
         public MantenerProveedorViewModel(BuscadorProveedorViewModel model)
         {
             this.model = model;
@@ -51,6 +52,8 @@ namespace MadeInHouse.ViewModels.Compras
         private int indicador;
         //indicador = 1 para insertar
         //indicador = 2 para editar
+
+        private MyWindowManager win = new MyWindowManager();
 
         private EntityManager eM;
 
@@ -141,6 +144,18 @@ namespace MadeInHouse.ViewModels.Compras
             else
             {
                 return true;  
+            }
+        }
+
+        public void AgregarServicio()
+        {
+            if (indicador == 1)
+            {
+                List<Proveedor> lstProveedor = new TableManager().getInstance(EntityName.Proveedor).Buscar() as List<Proveedor>;
+                txtCodigo = lstProveedor[lstProveedor.Count - 1].CodProveedor;
+
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(txtCodigo);
+                win.ShowWindow(obj);
             }
         }
         

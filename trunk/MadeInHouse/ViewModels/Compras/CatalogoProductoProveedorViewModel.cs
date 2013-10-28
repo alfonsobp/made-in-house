@@ -90,7 +90,7 @@ namespace MadeInHouse.ViewModels.Compras
                 while (ds.Read())
                 {
                    ProveedorxProducto cp = new ProveedorxProducto();
-                   cp.IdProveedor = Prov.IdProveedor;
+                    cp.IdProveedor = Prov.IdProveedor;
                     cp.Producto = new Producto();
                     cp.Producto.CodProducto= ds["Codigo"].ToString();
                     cp.CodComercial = ds["Codigo Comercial"].ToString();

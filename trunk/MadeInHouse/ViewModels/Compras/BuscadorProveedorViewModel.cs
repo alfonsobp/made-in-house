@@ -96,14 +96,12 @@ namespace MadeInHouse.ViewModels.Compras
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
 
             if (p != null) {
-                p.Prov = proveedorSeleccionado;
-                
+                p.Prov = proveedorSeleccionado;                
             }
         }
 
 
 
-       
      
         public void NuevoProveedor()
         {        
@@ -130,11 +128,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void BuscarProveedor() 
         {
             
-    
-            
-            LstProveedor = eM.Buscar(TxtCodigo,TxtRuc,TxtRazonSocial,FechaIni,FechaFin) as List<Proveedor>;
-           
- 
+            LstProveedor = eM.Buscar(TxtCodigo,TxtRuc,TxtRazonSocial,FechaIni,FechaFin) as List<Proveedor>;           
 
         }
 
