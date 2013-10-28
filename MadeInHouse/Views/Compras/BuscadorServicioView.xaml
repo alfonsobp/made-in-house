@@ -33,19 +33,14 @@
             <Button x:Name="EliminarServicio">
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
+            <Button/>
             <Button Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
             <Button x:Name="ActualizarServicio" Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
-        </ToolBar>
+            </ToolBar>
             <DataGrid x:Name="LstServicio" 
                       cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
                       Margin="27,201,32,0" Height="191" VerticalAlignment="Top" AutoGenerateColumns="false">
@@ -59,10 +54,12 @@
         <Button x:Name="BuscarServicio" Height="25" Margin="463,90,74,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="146,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <Label Content="Producto:" HorizontalAlignment="Left" Margin="27,123,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtProveedor" HorizontalAlignment="Left" Height="23" Margin="146,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <Label Content="Producto:" HorizontalAlignment="Left" Margin="27,153,0,0" VerticalAlignment="Top"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,92,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="146,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox x:Name="TxtProducto" HorizontalAlignment="Left" Height="23" Margin="146,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <Label Content="Nombre Serv:" HorizontalAlignment="Left" Margin="27,123,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="146,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
             </Grid>
         </StackPanel>
     </Border>

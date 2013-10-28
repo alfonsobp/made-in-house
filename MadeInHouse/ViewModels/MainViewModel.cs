@@ -287,14 +287,14 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.4
         public void AbrirNuevoServicio()
         {
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel();
             win.ShowWindow(obj);
         }
 
         //Ventana Externa: 2.5
         public void AbrirBuscadorServicio()
         {
-            Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel { DisplayName = "Buscador de Servicios" };
+            Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel();
             win.ShowWindow(obj);
         }
 

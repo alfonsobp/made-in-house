@@ -1,11 +1,12 @@
-﻿using System;
-using System.Windows;
+﻿using MadeInHouse.Model;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MadeInHouse.Model;
-using System.Data.SqlClient;
+using System.Windows;
 
 
 namespace MadeInHouse.Manager
@@ -80,10 +81,10 @@ namespace MadeInHouse.Manager
             int k = 0;
             Servicio s = entity as Servicio;
 
-            db.cmd.CommandText = "INSERT INTO Servicio(codServicio,idProveedor,nombre,descripcion)" +
-                                 "VALUES (@codServicio,@idProveedor,@nombre,@descripcion)";
+            db.cmd.CommandText = "INSERT INTO Servicio(idProveedor,nombre,descripcion)" +
+                                 "VALUES (@idProveedor,@nombre,@descripcion)";
 
-            db.cmd.Parameters.AddWithValue("@codServicio", s.CodServicio);
+            //db.cmd.Parameters.AddWithValue("@codServicio", s.CodServicio);
             db.cmd.Parameters.AddWithValue("@idProveedor", s.IdProveedor);
             db.cmd.Parameters.AddWithValue("@nombre", s.Nombre);
             db.cmd.Parameters.AddWithValue("@descripcion", s.Descripcion);
@@ -109,19 +110,58 @@ namespace MadeInHouse.Manager
             DBConexion db = new DBConexion();
             SqlDataReader reader;
 
-            db.cmd.CommandText = "SELECT * FROM Servicio ";
+            String where = "";
+
+
+            if (filters.Length > 0 && filters.Length <= 3)
+            {
+
+                string proveedor = Convert.ToString(filters[0]);
+                string nombre = Convert.ToString(filters[1]);
+                string producto = Convert.ToString(filters[2]);
+
+                if (proveedor != "")
+                {
+                    int idProveedor = getIDfromProv(proveedor);
+                    where += " and idProveedor = '" + idProveedor.ToString() + "' ";
+                }
+
+                if (nombre != "")
+                {
+                    where += " and nombre LIKE  '%" + nombre + "%' ";
+                }
+
+                //if (producto != "")
+                //{
+                    //where += " and razonSocial LIKE  '%" + producto + "%' ";
+                //}
+
+
+            }
+
+
+            db.cmd.CommandText = "SELECT * FROM Servicio WHERE  estado = 1   " + where;
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.Connection = db.conn;
+
+
 
             try
             {
                 db.conn.Open();
+
                 reader = db.cmd.ExecuteReader();
+
 
                 while (reader.Read())
                 {
+
                     Servicio s = new Servicio();
+
+                    s.IdServicio = Convert.ToInt32(reader["idServicio"].ToString());
+                    s.IdProveedor = Convert.ToInt32(reader["idProveedor"].ToString());
                     s.CodServicio = reader["codServicio"].ToString();
                     s.Nombre = reader["nombre"].ToString();
-                    s.IdProveedor = (int)(reader["idProveedor"]);
                     s.Descripcion = reader["descripcion"].ToString();
 
                     lstServicio.Add(s);
@@ -134,6 +174,7 @@ namespace MadeInHouse.Manager
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
+
 
             return lstServicio;
         }
