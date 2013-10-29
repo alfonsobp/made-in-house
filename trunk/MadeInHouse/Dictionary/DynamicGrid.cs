@@ -23,7 +23,9 @@ namespace MadeInHouse.Dictionary {
         } 
         
         static void OnNumRowsOrColumnsChanged(object sender, DependencyPropertyChangedEventArgs e) {
-            ((DynamicGrid)sender).RecreateGridCells(); } public void RecreateGridCells() { 
+            ((DynamicGrid)sender).RecreateGridCells(); } 
+        
+        public void RecreateGridCells() { 
                 int numRows = NumRows; 
                 int currentNumRows = RowDefinitions.Count;
                 int currentNumCols = ColumnDefinitions.Count;

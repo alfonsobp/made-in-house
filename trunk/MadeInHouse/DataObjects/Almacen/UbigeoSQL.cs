@@ -28,7 +28,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
             
             db.cmd.CommandText = "SELECT * FROM Ubigeo " + where;
-            Console.WriteLine(db.cmd.CommandText.ToString());
+            
 
             try
             {
@@ -46,7 +46,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
                     listaDpto.Add(p);
                 }
-
+                
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -65,8 +65,8 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             List<Ubigeo> listaProv = new List<Ubigeo>();
 
-            string where = "WHERE codDist='00' AND  codDpto=@codDpto ";
-            db.cmd.Parameters.Add(new SqlParameter("codDpto", codDpto));
+            string where = "WHERE codDist='00' AND  codDpto=@codDpto AND codProv<>'00'";
+            db.cmd.Parameters.AddWithValue("@codDpto", codDpto);
 
             db.cmd.CommandText = "SELECT * FROM Ubigeo " + where;
             Console.WriteLine(db.cmd.CommandText.ToString());
@@ -87,7 +87,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
                     listaProv.Add(p);
                 }
-
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -106,9 +106,9 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             List<Ubigeo> listaDist = new List<Ubigeo>();
 
-            string where = "WHERE codDpto=@codDpto AND codProv=@codProv ";
-            db.cmd.Parameters.Add(new SqlParameter("codDpto", codDpto));
-            db.cmd.Parameters.Add(new SqlParameter("codProv", codProv));
+            string where = "WHERE codDpto=@codDpto AND codProv=@codProv  AND codDist<>'00' ";
+            db.cmd.Parameters.AddWithValue("@codDpto", codDpto);
+            db.cmd.Parameters.AddWithValue("@codProv", codProv);
 
             db.cmd.CommandText = "SELECT * FROM Ubigeo " + where;
             Console.WriteLine(db.cmd.CommandText.ToString());
@@ -130,6 +130,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     listaDist.Add(p);
                 }
 
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -151,9 +152,9 @@ namespace MadeInHouse.DataObjects.Almacen
             Ubigeo ubigeo = new Ubigeo();
 
             string where = "WHERE codDpto=@codDpto AND codProv=@codProv AND codDist=@codDist";
-            db.cmd.Parameters.Add(new SqlParameter("codDpto", codDpto));
-            db.cmd.Parameters.Add(new SqlParameter("codProv", codProv));
-            db.cmd.Parameters.Add(new SqlParameter("codDist", codDist));
+            db.cmd.Parameters.AddWithValue("@codDpto", codDpto);
+            db.cmd.Parameters.AddWithValue("@codProv", codProv);
+            db.cmd.Parameters.AddWithValue("@codDist", codDist);
 
             db.cmd.CommandText = "SELECT * FROM Ubigeo " + where;
             Console.WriteLine(db.cmd.CommandText.ToString());
