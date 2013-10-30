@@ -23,8 +23,6 @@ namespace MadeInHouse.ViewModels
 
         public static List<List<Window>> MinWin = new List<List<Window>>();
 
-        //private Acceso accesoRol = new Acceso();
-
         int[] accVentana = new int[100];
 
         public void CargarAccesosRol(out int[] ventana)
@@ -37,6 +35,7 @@ namespace MadeInHouse.ViewModels
             DataObjects.Seguridad.AccesoSQL.cargarAccVentana(u.Rol.IdRol, out ventana);
         }
 
+//***************************************************************************************************************
 /*
         //MODULO ALMACÉN: 1
         #region Almacen
