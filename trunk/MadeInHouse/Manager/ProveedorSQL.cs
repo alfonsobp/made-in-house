@@ -1,4 +1,4 @@
-﻿using MadeInHouse.Model;
+﻿using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace MadeInHouse.Manager
 {
-    class ProveedorManager : EntityManager
+    class ProveedorSQL : EntityManager
     {
 
         public int Agregar(object entity)

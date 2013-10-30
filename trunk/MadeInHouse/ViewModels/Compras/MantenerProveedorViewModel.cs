@@ -7,8 +7,9 @@ using Caliburn.Micro;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
-using MadeInHouse.Model;
 using MadeInHouse.Manager;
+using MadeInHouse.Models.Compras;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Compras
 {

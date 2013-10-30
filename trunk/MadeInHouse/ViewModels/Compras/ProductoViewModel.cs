@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
-using MadeInHouse.Manager;
-using MadeInHouse.Model;
+using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,7 @@ namespace MadeInHouse.ViewModels.Compras
             descripcion = c.Descripcion;
             codComercial = c.CodComercial;
             precio = c.Precio.ToString();
-            codProducto = c.Producto.CodProducto;
+            codProducto = c.Producto.CodigoProd;
             idProveedor = c.IdProveedor;
         }
 
@@ -62,7 +64,7 @@ CatalogoProductoProveedorViewModel cp;
 
 public void guardar() { 
 
-Producto p = new ProductoManager().Buscar_por_CodigoProducto(codProducto);
+Producto p = new ProductoSQL().Buscar_por_CodigoProducto(codProducto);
 if(p != null ) {
 ProveedorxProducto pp = new ProveedorxProducto();
 pp.Producto = p;
@@ -71,7 +73,8 @@ pp.CodComercial = codComercial;
 pp.Precio = Convert.ToDouble(Precio);
 pp.Descripcion = Descripcion;
 
-new ProveedorxProductoManager().Insertar(pp);
+
+new ProveedorxProductoSQL().Insertar(pp);
 cp.Refrescar();
 MessageBox.Show("Ha ingresado adecuadamente el Producto al catalogo del Proveedor");
 }

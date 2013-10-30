@@ -87,6 +87,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
+    <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />
+    <Compile Include="DataObjects\Compras\ServicioSQL.cs" />
+    <Compile Include="DataObjects\Compras\ServicioxProductoSQL.cs" />
+    <Compile Include="DataObjects\EntitySQL.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
@@ -121,21 +126,21 @@
     <Compile Include="Manager\ModoPagoManager.cs" />
     <Compile Include="Manager\MotivoISManager.cs" />
     <Compile Include="Manager\NotaISManager.cs" />
-    <Compile Include="Manager\OrdenCompraManager.cs" />
+    <Compile Include="Manager\OrdenCompraSQL.cs" />
     <Compile Include="Manager\PagoManager.cs" />
-    <Compile Include="Manager\ProductoManager.cs" />
+    <Compile Include="Manager\ProductoSQL.cs" />
     <Compile Include="Manager\ProductoxGuiaRemisionManager.cs" />
     <Compile Include="Manager\ProductoxNotaISManager.cs" />
-    <Compile Include="Manager\ProductoxOrdenCompraManager.cs" />
+    <Compile Include="Manager\ProductoxOrdenCompraSQL.cs" />
     <Compile Include="Manager\ProductoxSolicitudAbManager.cs" />
-    <Compile Include="Manager\ProductoxSolicitudAdManager.cs" />
-    <Compile Include="Manager\ProveedorManager.cs" />
-    <Compile Include="Manager\ProveedorxProductoManager.cs" />
+    <Compile Include="Manager\ProductoxSolicitudAdSQL.cs" />
+    <Compile Include="Manager\ProveedorSQL.cs" />
+    <Compile Include="Manager\ProveedorxProductoSQL.cs" />
     <Compile Include="Manager\PuestoManager.cs" />
     <Compile Include="Manager\PuntosManager.cs" />
     <Compile Include="Manager\RolManager.cs" />
     <Compile Include="Manager\ServicioManager.cs" />
-    <Compile Include="Manager\ServicioxProductoManager.cs" />
+    <Compile Include="Manager\ServicioxProductoSQL.cs" />
     <Compile Include="Manager\SolicitudAbastecimientoManager.cs" />
     <Compile Include="Manager\SolicitudAdquisicionManager.cs" />
     <Compile Include="Manager\SubLineaProductoManager.cs" />
@@ -157,7 +162,6 @@
     <Compile Include="DataObjects\Almacen\TipoZonaSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbigeoSQL.cs" />
     <Compile Include="DataObjects\Almacen\UnidadMedidaSQL.cs" />
-    <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="DataObjects\ReportesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccesoSQL.cs" />
@@ -173,8 +177,17 @@
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Almacen\Ubigeo.cs" />
     <Compile Include="Models\Almacen\UnidadMedida.cs" />
-    <Compile Include="Models\Compras\CatalogoProveedor.cs" />
+    <Compile Include="Models\Compras\Cotizacion.cs" />
+    <Compile Include="Models\Compras\CotizacionxProducto.cs" />
+    <Compile Include="Models\Compras\DocPagoProveedor.cs" />
+    <Compile Include="Models\Compras\OrdenCompra.cs" />
+    <Compile Include="Models\Compras\ProductoxOrdenCompra.cs" />
+    <Compile Include="Models\Compras\ProductoxSolicitudAd.cs" />
+    <Compile Include="Models\Compras\Proveedor.cs" />
+    <Compile Include="Models\Compras\ProveedorxProducto.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
+    <Compile Include="Models\Compras\ServicioxProducto.cs" />
+    <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Model\prueba.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
@@ -192,7 +205,6 @@
     <Compile Include="Models\Almacen\Tienda.cs" />
     <Compile Include="Models\Almacen\TipoZona.cs" />
     <Compile Include="Models\Almacen\Ubicacion.cs" />
-    <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Seguridad\Usuario.cs" />
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="Model\AccModulo.cs" />

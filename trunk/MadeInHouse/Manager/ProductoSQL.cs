@@ -1,4 +1,5 @@
-﻿using MadeInHouse.Model;
+﻿using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows;
 
 namespace MadeInHouse.Manager
 {
-    class ProductoManager:EntityManager
+    class ProductoSQL:EntityManager
     {
 
         public int Agregar(object entity)
@@ -69,7 +70,7 @@ namespace MadeInHouse.Manager
                     p = new Producto();
                     p.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
                     p.Nombre = reader["nombre"].ToString();
-                    p.CodProducto = reader["codProducto"].ToString();
+                    p.CodigoProd = reader["codProducto"].ToString();
                 }
 
                 conn.Close();
@@ -120,7 +121,7 @@ namespace MadeInHouse.Manager
                     p = new Producto();
                     p.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
                     p.Nombre = reader["nombre"].ToString();
-                    p.CodProducto = reader["codProducto"].ToString();
+                    p.CodigoProd = reader["codProducto"].ToString();
                 }
 
                 conn.Close();

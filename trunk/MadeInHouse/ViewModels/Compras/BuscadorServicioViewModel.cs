@@ -8,10 +8,11 @@ using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using MadeInHouse.Manager;
-using MadeInHouse.Model;
 using System.Data.OleDb;
 using System.Data;
+using MadeInHouse.Models.Compras;
+using MadeInHouse.Models;
+using MadeInHouse.DataObjects.Compras;
 
 
 namespace MadeInHouse.ViewModels.Compras
@@ -32,9 +33,8 @@ namespace MadeInHouse.ViewModels.Compras
         private MyWindowManager win = new MyWindowManager();
 
         private Servicio servicioSeleccionado;
-        
-        EntityManager eM = new TableManager().getInstance(EntityName.Servicio);
 
+        ServicioSQL eM = new ServicioSQL();
         
 
 

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadeInHouse.Manager
+namespace MadeInHouse.DataObjects.Compras
 {
-    class ProductoxOrdenCompraManager:EntityManager
+    class ServicioxProductoSQL:EntitySQL
     {
         public int Agregar(object entity)
         {

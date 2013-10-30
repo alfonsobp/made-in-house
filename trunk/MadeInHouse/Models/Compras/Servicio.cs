@@ -9,20 +9,20 @@ namespace MadeInHouse.Models.Compras
     class Servicio
     {
 
-        string codigo;
+        int idServicio;
 
-        public string Codigo
+        public int IdServicio
         {
-            get { return codigo; }
-            set { codigo = value; }
+            get { return idServicio; }
+            set { idServicio = value; }
         }
 
-        string nombre;
+        string codServicio;
 
-        public string Nombre
+        public string CodServicio
         {
-            get { return nombre; }
-            set { nombre = value; }
+            get { return codServicio; }
+            set { codServicio = value; }
         }
 
         string descripcion;
@@ -33,27 +33,28 @@ namespace MadeInHouse.Models.Compras
             set { descripcion = value; }
         }
 
-        string proveedor;
+        int idProveedor;
 
-        public string Proveedor
+        public int IdProveedor
         {
-            get { return proveedor; }
-            set { proveedor = value; }
+            get { return idProveedor; }
+            set { idProveedor = value; }
         }
 
-        public Servicio()
-        {
+        string nombre;
 
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
         }
 
-        public Servicio(string codigo, string nombre, string descripcion,
-                        string proveedor)
-        {
-            this.codigo = codigo;
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-            this.proveedor = proveedor;
-        }
+        List<ServicioxProducto> lstProductos;
 
+        public List<ServicioxProducto> LstProductos
+        {
+            get { return lstProductos; }
+            set { lstProductos = value; }
+        }
     }
 }

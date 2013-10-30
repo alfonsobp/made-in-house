@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Manager
 {
-    class OrdenCompraManager:EntityManager
+    class OrdenCompraSQL:EntityManager
     {
 
 

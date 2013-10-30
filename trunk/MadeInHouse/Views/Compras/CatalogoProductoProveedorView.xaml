@@ -15,7 +15,7 @@
                 </Grid.RowDefinitions>
                 <DataGrid    IsReadOnly="True"   SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,213,10,26" BorderBrush="#FF14191D" Background="White" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Producto.CodProducto }" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd }" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding CodComercial}"  Header="Código Comercial"/>
                         <DataGridTextColumn Binding="{Binding Descripcion}" Header="Descripción" Width="130"/>
                         <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="70"/>

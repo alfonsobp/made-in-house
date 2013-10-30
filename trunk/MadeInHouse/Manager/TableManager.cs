@@ -15,7 +15,7 @@ namespace MadeInHouse.Manager
           
 
             if (indexTable == EntityName.Proveedor )
-                eM = new ProveedorManager();
+                eM = new ProveedorSQL();
             if (indexTable == EntityName.MotivoIS)
                 eM = new MotivoISManager();
             if (indexTable == EntityName.AccModulo)
@@ -70,23 +70,23 @@ namespace MadeInHouse.Manager
             if (indexTable == EntityName.NotaIS)
                 eM = new NotaISManager();
             if (indexTable == EntityName.OrdenCompra)
-                eM = new OrdenCompraManager();
+                eM = new OrdenCompraSQL();
             if (indexTable == EntityName.Pago)
                 eM = new PagoManager();
             if (indexTable == EntityName.Producto)
-                eM = new ProductoManager();
+                eM = new ProductoSQL();
             if (indexTable == EntityName.ProductoxGuiaRemision)
                 eM = new ProductoxGuiaRemisionManager();
             if (indexTable == EntityName.ProductoxNotaIS)
                 eM = new ProductoxNotaISManager();
             if (indexTable == EntityName.ProductoxOrdenCompra)
-                eM = new ProductoxOrdenCompraManager();
+                eM = new ProductoxOrdenCompraSQL();
             if (indexTable == EntityName.ProductoxSolicitudAb)
                 eM = new ProductoxSolicitudAbManager();
             if (indexTable == EntityName.ProductoxSolicitudAd)
-                eM = new ProductoxSolicitudAdManager();
+                eM = new ProductoxSolicitudAdSQL();
             if (indexTable == EntityName.Puesto)
-                eM = new ProductoManager();
+                eM = new ProductoSQL();
             if (indexTable == EntityName.Puntos)
                 eM = new PuntosManager();
             if (indexTable == EntityName.Rol)
@@ -94,7 +94,7 @@ namespace MadeInHouse.Manager
             if (indexTable == EntityName.Servicio)
                 eM = new ServicioManager();
             if (indexTable == EntityName.ServicioxProducto)
-                eM = new ServicioxProductoManager();
+                eM = new ServicioxProductoSQL();
             if (indexTable == EntityName.SolicitudAbastecimiento)
                 eM = new SolicitudAbastecimientoManager();
             if (indexTable == EntityName.SolicitudAdquisicion)
