@@ -288,5 +288,56 @@ namespace MadeInHouse.DataObjects.Almacen
             return p;
 
         }
+
+        public List<Producto> BuscarProducto(string txtNombre)
+        {
+            List<Producto> listaProductos=new List<Producto>();
+            string  where = "";
+            if (!String.IsNullOrEmpty(txtNombre))
+            {
+                where = where + "AND  nombre like @nombre ";
+                db.cmd.Parameters.AddWithValue("@nombre","%"+txtNombre+"%");
+            }
+
+                 db.cmd.CommandText = "SELECT * FROM Producto Where estado = 1 " + where;
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                   
+                    Producto p = new Producto();
+                    p.IdProducto = Int32.Parse(reader["idProducto"].ToString());
+                    p.CodigoProd = reader.IsDBNull(reader.GetOrdinal("codProducto")) ? null : reader["codProducto"].ToString();
+                    p.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    p.Abreviatura = reader.IsDBNull(reader.GetOrdinal("abreviatura")) ? null : reader["abreviatura"].ToString();
+                    p.Descripcion = reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? null : reader["descripcion"].ToString();
+                    p.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
+                    p.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
+                    p.Percepcion = Int32.Parse(reader["percepcion"].ToString());
+                    listaProductos.Add(p);
+                    
+                }
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+            return listaProductos;
+        }
+
+
+
+        }
     }
 }
