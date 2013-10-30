@@ -218,7 +218,7 @@
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="8"/>
                         <Button x:Name="AbrirListadoDevoluciones"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="9"/>
                         <Button x:Name="AbrirRegistrarDevolucion"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="10"/>
-                        <!--<Button x:Name="AbrirListadoNotaCredito"   Background="Red" Foreground="white" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11"/>-->
+                        <Button x:Name="AbrirListadoNotaCredito"   Background="Black" Foreground="white" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11"/>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="12"/>
                         <Button x:Name="AbrirListadoPromoProducto"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13"/>
                         <Button x:Name="AbrirNuevaPromoProducto"   Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="14"/>
