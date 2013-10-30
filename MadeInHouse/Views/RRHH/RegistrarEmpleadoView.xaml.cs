@@ -33,7 +33,7 @@ namespace MadeInHouse.Views.RRHH
         {
             Empleado emp;
             emp = new Empleado();
-
+            emp.CodEmpleado = TxtCodEmp.Text;
             emp.Dni = TxtDni.Text;
             emp.Nombre = TxtNomb.Text;
             emp.ApePaterno = TxtApePat.Text;
@@ -60,6 +60,7 @@ namespace MadeInHouse.Views.RRHH
             emp.CuentaBancaria = TxtCuentaBancaria.Text;
 
             if (!Regex.IsMatch(emp.Dni, "^[0-9]{8}$")) { MessageBox.Show("Inserte un DNI valido"); }
+            else if (emp.CodEmpleado == "") { MessageBox.Show("Inserte un codigo valido"); }
             else if (emp.Nombre == "") { MessageBox.Show("Inserte un nombre valido"); }
             else if (emp.ApePaterno == "") { MessageBox.Show("Inserte un apellido paterno valido"); }
             else if (emp.ApeMaterno == "") { MessageBox.Show("Inserte un apellido materno valido"); }
