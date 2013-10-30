@@ -14,7 +14,41 @@ namespace MadeInHouse.DataObjects.Seguridad
     class AccesoSQL
     {
         public static int NUM_MODULOS = 7;
-        public static int NUM_VENTANAS = 30; //Máximo de ventas externas por módulo
+        public static int NUM_VENTANAS = 100; //Máximo de ventas externas por módulo
+
+        public static void cargarAccVentana(int idRol, out int [] ventana)
+        {
+            ventana = new int [NUM_VENTANAS];
+
+            //inicializando en 0's
+            for (int i= 0; i < NUM_VENTANAS; i++)
+                ventana[i]= 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = " SELECT idAccVentana FROM RolxAccVentana " + 
+                              " WHERE idRol = @idRol ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idRol", idRol);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ventana[Convert.ToInt32(reader["idAccVentana"].ToString())]= 1;
+                }
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+        }
 
 
         public static void buscarModulos(int idRol, out int[] accModulo)
