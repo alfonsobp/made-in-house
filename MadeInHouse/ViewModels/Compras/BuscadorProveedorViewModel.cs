@@ -102,7 +102,14 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
 
-
+        public void Limpiar() {
+            TxtCodigo = null;
+            TxtRuc = null;
+            TxtRazonSocial = null;
+            LstProveedor = null;
+            FechaIni = new DateTime(DateTime.Now.Year, 1, 1);
+            FechaFin = new DateTime(DateTime.Now.Year, 12, 31);
+        }
      
         public void NuevoProveedor()
         {        
@@ -210,20 +217,20 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void Importar() {
 
-
+       
             BuscarPath();
 
-            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
+            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? \n"+Path, "Importar", MessageBoxButton.YesNo);
 
             if (r == MessageBoxResult.Yes)
             {
 
                 Cargar();
-                MessageBox.Show("Se importó satisfactoriamente los proveedores");
+                MessageBox.Show("Se importó satisfactoriamente los proveedores ...");
                 LstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
             }
         
-        
+         
         }
 
     }

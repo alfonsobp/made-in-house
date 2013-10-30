@@ -7,9 +7,9 @@ using Caliburn.Micro;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
-using MadeInHouse.Manager;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.Models;
+using MadeInHouse.DataObjects.Compras;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -56,7 +56,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         private MyWindowManager win = new MyWindowManager();
 
-        private EntityManager eM;
+        private ProveedorSQL eM;
 
         public int Indicador
         {
@@ -152,7 +152,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
             if (indicador == 1)
             {
-                List<Proveedor> lstProveedor = new TableManager().getInstance(EntityName.Proveedor).Buscar() as List<Proveedor>;
+                List<Proveedor> lstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
                 txtCodigo = lstProveedor[lstProveedor.Count - 1].CodProveedor;
 
                 Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(txtCodigo);
@@ -178,7 +178,7 @@ namespace MadeInHouse.ViewModels.Compras
 
              if (validar(p) == true) {
 
-                eM = new TableManager().getInstance(EntityName.Proveedor);
+                eM =  new ProveedorSQL();
 
                 if (indicador == 1)
                 {
