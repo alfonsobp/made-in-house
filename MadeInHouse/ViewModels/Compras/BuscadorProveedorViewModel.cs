@@ -33,6 +33,14 @@ namespace MadeInHouse.ViewModels.Compras
             ActualizarProveedor();
         }
 
+        agregarServicioViewModel s;
+        public BuscadorProveedorViewModel(agregarServicioViewModel s)
+        {
+
+            this.s = s;
+            ActualizarProveedor();
+        }
+
         private MyWindowManager win = new MyWindowManager();
 
         ProveedorSQL eM = new ProveedorSQL();
@@ -98,6 +106,11 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (p != null) {
                 p.Prov = proveedorSeleccionado;                
+            }
+
+            if (s != null)
+            {
+                s.Prov = proveedorSeleccionado;
             }
         }
 
