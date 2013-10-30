@@ -29,7 +29,7 @@ namespace MadeInHouse.ViewModels
 
         //MODULO ALMACÉN: 1
         #region Almacen
-
+/*
         public void CargarAccesosRol(out int [] ventana)
         {
             ventana = new int[100];
@@ -152,7 +152,7 @@ namespace MadeInHouse.ViewModels
                 win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
         }
 
-/*
+*/
 
         //Ventana Externa: 2.1
         public void AbrirMantenimientoAlmacen()
@@ -242,7 +242,7 @@ namespace MadeInHouse.ViewModels
         {
                 win.ShowWindow(new Almacen.AnularDocumentosViewModel());
         }
-  */              
+            
         #endregion Almacen
 
         //MODULO COMPRAS: 2
