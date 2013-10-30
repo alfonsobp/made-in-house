@@ -52,7 +52,6 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
 
             return lstAccVentana;
-
         }
 
         public static List<AccVentana> ListarAccVentanaPorRol(List<AccVentana> lstAccVentana, int idRol)
@@ -84,7 +83,6 @@ namespace MadeInHouse.DataObjects.Seguridad
                     {
                         if (lstAccVentana[i].IdAccVentana == rav.AccVentana)
                         {
-
                             lstAccVentana[i].Estado = 1;
                         }
                     }
@@ -99,6 +97,71 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
 
             return lstAccVentana;
+
+        }
+
+        public static void QuitarAccesosVentana(int idRol)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = " DELETE FROM RolxAccVentana WHERE idRol= @idRol ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idRol", idRol);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+        }
+
+        public static void AgregarAcceso(int idRol, int idAccVentana)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandText = " INSERT INTO RolxAccVentana(idRol,idAccVentana) " +
+            "VALUES (@idRol,@idAccVentana)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@idRol", idRol);
+            cmd.Parameters.AddWithValue("@idAccVentana", idAccVentana);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+        }
+
+        public static void AsignarAccesosVentana(List<AccVentana> lstAccVentana, int idRol)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            //Trace.WriteLine("Cantidad de Checks: " + lstAccVentana.Count);
+            for (int i = 0; i < lstAccVentana.Count; i++)
+            {
+                if (lstAccVentana[i].Estado == 1)
+                {
+                    Trace.WriteLine("idAccVentana: " + lstAccVentana[i].IdAccVentana + ", estado: " + lstAccVentana[i].Estado);
+                    AgregarAcceso(idRol, lstAccVentana[i].IdAccVentana);
+                }
+            }
 
         }
 

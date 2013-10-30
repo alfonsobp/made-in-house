@@ -95,10 +95,23 @@ namespace MadeInHouse.ViewModels.Seguridad
             set { lstAccVentanaAccModulo = value; NotifyOfPropertyChange(() => LstAccVentanaAccModulo); }
         }
 
+
+
+
+
         public void GuardarRol()
         {
-            DataObjects.Seguridad.AccVentanaSQL.ActualizarRol(LstAccVentanaAccModulo, IdRolValue);
+            //DataObjects.Seguridad.AccVentanaSQL.ActualizarRol(LstAccVentanaAccModulo, IdRolValue);
+            DataObjects.Seguridad.AccVentanaSQL.QuitarAccesosVentana(IdRolValue);
+            DataObjects.Seguridad.AccVentanaSQL.AsignarAccesosVentana(LstAccVentanaAccModulo, IdRolValue);
+
         }
+
+
+
+
+
+
 
         public void ActualizarLstAccesos()
         {
