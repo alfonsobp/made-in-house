@@ -10,6 +10,8 @@ using System.Windows;
 using System.Data.OleDb;
 using System.Collections.ObjectModel;
 using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.DataObjects;
+using MadeInHouse.Models;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.Models.Almacen;
 
@@ -40,8 +42,11 @@ namespace MadeInHouse.ViewModels.Compras
             //Servicio para editar del buscador
             txtCodigo = s.CodServicio;
             txtNombre = s.Nombre;
-            txtProveedor = Manager.ServicioManager.getCODfromProv(s.IdProveedor);
+            txtProveedor = DataObjects.Compras.ServicioSQL.getCODfromProv(s.IdProveedor);
             txtDescripcion = s.Descripcion;
+
+            LstProducto = sp.Buscar(s.IdServicio) as List<ServicioxProducto>;
+
             indicador = 2;
             model = m;
         }
@@ -62,9 +67,13 @@ namespace MadeInHouse.ViewModels.Compras
 
         BuscadorServicioViewModel model;
 
-      
-
         private int indicador;
+
+        ServicioxProductoSQL sp = new ServicioxProductoSQL();
+
+        UtilesSQL usql = new UtilesSQL();
+
+
 
 
 
@@ -117,6 +126,14 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtDescripcion = value; NotifyOfPropertyChange(() => TxtDescripcion); }
         }
 
+        private Proveedor prov;
+
+        public Proveedor Prov
+        {
+            get { return prov; }
+            set { prov = value; NotifyOfPropertyChange(() => Prov); }
+        }
+
         List<ServicioxProducto> lstProducto;
 
         public List<ServicioxProducto> LstProducto
@@ -129,6 +146,13 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         //Funciones de la clase
+
+
+        public void BuscarProveedor()
+        {
+            MyWindowManager w = new MyWindowManager();
+            w.ShowWindow(new BuscadorProveedorViewModel(this));
+        }
 
         public Boolean validar(Servicio s)
         {
@@ -146,10 +170,14 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void GuardarServicio()
         {
-            int k;
+            int k, y, i;
             Servicio s = new Servicio();
 
             s.IdServicio = Id;
+
+            if (TxtProveedor == null)
+                TxtProveedor = Prov.CodProveedor;
+
             s.IdProveedor = ServicioSQL.getIDfromProv(TxtProveedor);
             s.Nombre = TxtNombre;
             s.Descripcion = TxtDescripcion;
@@ -161,6 +189,16 @@ namespace MadeInHouse.ViewModels.Compras
                 if (indicador == 1)
                 {
                     k = new ServicioSQL().Agregar(s);
+                    Id = usql.ObtenerMaximoID("Servicio", "idServicio");
+
+                    if (LstProducto != null)
+                    {
+                        for (i = 0; i < LstProducto.Count; i++)
+                        {
+                            LstProducto[i].IdServicio = Id;
+                            y = sp.InsertarValidado(LstProducto[i]);
+                        }
+                    }
 
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
@@ -216,26 +254,17 @@ namespace MadeInHouse.ViewModels.Compras
 
                     ServicioxProducto cs = new ServicioxProducto();
 
-                     
                     cs.Producto = new Producto();
                     cs.Producto.CodigoProd = ds["Codigo"].ToString();
                     cs.Producto.Nombre = ds["Nombre"].ToString();
                     cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
 
-                    ServicioxProductoSQL sp = new ServicioxProductoSQL();
 
                     lista.Add(cs);
-                    
-
-                    //int k = sp.Agregar(cs);
-                    
-                    //int k = pp.Insertar(cp);
-
-
+                  
                 }
 
                 LstProducto = lista;
-
             }
 
 
@@ -275,7 +304,7 @@ namespace MadeInHouse.ViewModels.Compras
                 if (r == MessageBoxResult.Yes)
                 {
 
-                    Cargar();
+                Cargar();
                 }
 
             

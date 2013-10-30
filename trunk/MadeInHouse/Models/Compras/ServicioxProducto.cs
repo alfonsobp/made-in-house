@@ -19,7 +19,7 @@ namespace MadeInHouse.Models.Compras
         }
         Producto producto;
 
-        internal Producto Producto
+        public Producto Producto
         {
             get { return producto; }
             set { producto = value; }
