@@ -17,7 +17,6 @@ namespace MadeInHouse.ViewModels.Seguridad
     public class AsignarAccesosViewModel : Conductor<IScreen>.Collection.OneActive
     {
 
-
         private MyWindowManager win = new MyWindowManager();
 
         public AsignarAccesosViewModel()
@@ -94,11 +93,8 @@ namespace MadeInHouse.ViewModels.Seguridad
         {
             LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentana();
             //LstAccVentanaAccModulo = A
-                //BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
+                   //BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
             NotifyOfPropertyChange("LstAccVentanaAccModulo");
         }
-
-
     }
-
 }
