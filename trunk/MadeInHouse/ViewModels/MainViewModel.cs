@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Caliburn.Micro;
 using MadeInHouse.Models;
 using System.Windows;
@@ -12,7 +13,7 @@ using MadeInHouse.Models.Seguridad;
 using MadeInHouse.Views.Seguridad;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.RRHH;
-
+using System.Diagnostics;
 
 namespace MadeInHouse.ViewModels
 {
@@ -22,77 +23,53 @@ namespace MadeInHouse.ViewModels
 
         public static List<List<Window>> MinWin = new List<List<Window>>();
 
-        private Acceso accesoRol = new Acceso();
+        //private Acceso accesoRol = new Acceso();
 
-        int[] accModulo = new int[7];
-        int[,] accVentana = new int[7,50];
-        int[,,] accVentanaInt = new int[7,50,10];
-
-        Usuario u;
-        int idRol;
+        int[] accVentana = new int[100];
 
         //MODULO ALMACÉN: 1
         #region Almacen
 
-        public void CargarAccesosRol(Usuario u, out Acceso accRol)
+        public void CargarAccesosRol(out int [] ventana)
         {
-            /*
-            int k = 0;
-            k = DataObjects.Seguridad.AccesoSQL.;
-            */
-            int idRol;
-            accRol = new Acceso();
+            ventana = new int[100];
+            
+            Usuario u = new Usuario();
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(Thread.CurrentPrincipal.Identity.Name);
 
-            //obtener el idRol que pertenece el usuario
-            idRol = DataObjects.Seguridad.RolSQL.buscarIdRol(u); 
-            
-            //Obtener la lista de Módulos permitidos:
-            DataObjects.Seguridad.AccesoSQL.buscarModulos(idRol, out accModulo);
-            for (int i = 0; i < 10; i++)
-                accRol.AccModulo[i] = accModulo[i];
-            
-            //Obtener la lista de Acceso a Ventanas Permitidas:
-            DataObjects.Seguridad.AccesoSQL.buscarVentanas(accModulo, out accVentana);
-            for (int i = 0; i < 10; i++)
-                for (int j = 0; j < 30; j++)
-                    accRol.AccVentana[i, j] = accVentana[i, j];
+            DataObjects.Seguridad.AccesoSQL.cargarAccVentana(u.IdRol, out ventana);
         }
 
-/*
-        //Ventana Externa: 0.0
-        public void AbrirMantenimientoAlmacen()
-        {
-            CargarAccesosRol(u, out accesoRol);
-            if (accModulo[1] == 1)
-                win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
-        }
-  
- 
+
          //Ventana Externa: 1.1
         public void AbrirMantenimientoAlmacen()
         {
-            CargarAccesosRol(u, out accesoRol);
-            if (accModulo[1] == 1)
+            //CargarAccesosRol(u, out accesoRol);
+            CargarAccesosRol(out accVentana);
+            if (accVentana[1] == 1)
                 win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
         }       
         //Ventana Externa: 1.2
         public void AbrirNuevoProducto()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[2] == 1)
                 win.ShowWindow(new Almacen.ProductoMantenerViewModel());
         }
 
         //Ventana Externa: 1.3
         public void AbrirBuscarProducto()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[3] == 1)
                 win.ShowWindow(new Almacen.ProductoBuscarViewModel());
         }
         
         //Ventana Externa: 1.4
         public void AbrirBuscarGuiaDeRemision()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[4] == 1)
             {
                 Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
                 win.ShowWindow(buscarGuiaView);
@@ -102,7 +79,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.5
         public void AbrirMantenerGuiaDeRemision()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[5] == 1)
             {
                 Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();
                 win.ShowWindow(abrirGuiaView);
@@ -112,14 +90,16 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.6
         public void AbrirBuscarNotas()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[6] == 1)
                 win.ShowWindow(new Almacen.BuscarNotasViewModel());
         }
 
         //Ventana Externa: 1.7
         public void AbrirMantenerNotaDeIngreso()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[7] == 1)
             {
                 Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel();
                 win.ShowWindow(abrirNotaIView);
@@ -129,7 +109,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.8
         public void AbrirMantenerNotaDeSalida()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[8] == 1)
             {
                 Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
                 win.ShowWindow(abrirNotaIView);
@@ -139,7 +120,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.9
         public void AbrirBuscarZona()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[9] == 1)
             {
                 Almacen.BuscarZonaViewModel buscarZona = new Almacen.BuscarZonaViewModel();
                 win.ShowWindow(buscarZona);
@@ -149,25 +131,28 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.10
         public void AbrirSolicitudAbConsolidar()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[10] == 1)
                 win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
         }
 
         //Ventana Externa: 1.11
         public void AbrirSolicitudAbDetalle()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[11] == 1)
                 win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
         }
 
         //Ventana Externa: 1.12
         public void AbrirMovimientos()
         {
-            if (accModulo[1] == 1)
+            CargarAccesosRol(out accVentana);
+            if (accVentana[12] == 1)
                 win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
         }
 
-*/
+/*
 
         //Ventana Externa: 2.1
         public void AbrirMantenimientoAlmacen()
@@ -257,7 +242,7 @@ namespace MadeInHouse.ViewModels
         {
                 win.ShowWindow(new Almacen.AnularDocumentosViewModel());
         }
-                
+  */              
         #endregion Almacen
 
         //MODULO COMPRAS: 2

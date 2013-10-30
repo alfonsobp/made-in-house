@@ -126,7 +126,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
                     u.Contrasenha = reader["contrasenha"].ToString();
-                    u.IdRol = Int32.Parse(reader["idUsuario"].ToString());
+                    u.IdRol = Int32.Parse(reader["idRol"].ToString());
                     u.Estado = Int32.Parse(reader["idUsuario"].ToString());
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
