@@ -69,6 +69,21 @@ namespace MadeInHouse.Views.RRHH
             CmbTienda.Text = "";
                 
         }
+        
+        public void EliminarEmpleado(object sender, RoutedEventArgs e)
+        {
+            List<Empleado> grid = new List<Empleado>();
+            int indice, k;
+
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
+            indice = Lista.SelectedIndex;
+
+            MessageBox.Show(grid[indice].Dni + "");
+
+            k = DataObjects.RRHH.EmpleadoSQL.EliminarEmpleado(grid[indice].Dni);
+            Refrescar(sender, e);
+
+        }
 
     }
 }

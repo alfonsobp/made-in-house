@@ -129,6 +129,34 @@ namespace MadeInHouse.DataObjects.RRHH
             return lstEmpleado;
         }
 
+        public static int EliminarEmpleado(string dni)
+        {
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "update Empleado set estado = 0 where DNI = " + dni;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+
+            return k;
+        }
+
 
     }
 }
