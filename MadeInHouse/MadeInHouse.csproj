@@ -286,6 +286,7 @@
     <Compile Include="ViewModels\Compras\BuscarCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
+    <Compile Include="ViewModels\Compras\BuscarProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
@@ -464,6 +465,9 @@
     </Compile>
     <Compile Include="Views\Compras\BuscarOrdenCompraView.xaml.cs">
       <DependentUpon>BuscarOrdenCompraView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\BuscarProductoView.xaml.cs">
+      <DependentUpon>BuscarProductoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\CatalogoProductoProveedorView.xaml.cs">
       <DependentUpon>CatalogoProductoProveedorView.xaml</DependentUpon>
@@ -802,6 +806,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\BuscarOrdenCompraView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\BuscarProductoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
