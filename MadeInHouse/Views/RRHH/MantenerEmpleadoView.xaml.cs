@@ -78,11 +78,15 @@ namespace MadeInHouse.Views.RRHH
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
             indice = Lista.SelectedIndex;
 
-            MessageBox.Show(grid[indice].Dni + "");
+            MessageBoxButton button = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBoxResult result = MessageBox.Show("Esta seguro que desea eliminar a " + grid[indice].Nombre + " " + grid[indice].ApePaterno + " " +grid[indice].ApeMaterno, "Alerta", button, icon);
 
-            k = DataObjects.RRHH.EmpleadoSQL.EliminarEmpleado(grid[indice].Dni);
-            Refrescar(sender, e);
-
+            if (result == MessageBoxResult.Yes)
+            {
+                k = DataObjects.RRHH.EmpleadoSQL.EliminarEmpleado(grid[indice].Dni);
+                Refrescar(sender, e);
+            }
         }
 
     }
