@@ -23,19 +23,19 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (@codEmpleado,@contrasenha,@estado,@idRol,getdate(),getdate())";
+            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (@codEmpleado,@contrasenha,@estado,@idRol,getdate(),getdate()) ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
             Trace.WriteLine("Flag1");
             Trace.WriteLine("<" + u.CodEmpleado + ">");
             Trace.WriteLine("<" + u.Contrasenha + ">");
-            Trace.WriteLine("<" + u.IdRol + ">");
+            Trace.WriteLine("<" + u.Rol.IdRol + ">");
             Trace.WriteLine("<" + u.Estado + ">");
 
             cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
             cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
-            cmd.Parameters.AddWithValue("@idRol", u.IdRol);
+            cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
             
 
@@ -126,8 +126,8 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
                     u.Contrasenha = reader["contrasenha"].ToString();
-                    u.IdRol = Int32.Parse(reader["idRol"].ToString());
-                    u.Estado = Int32.Parse(reader["idUsuario"].ToString());
+                    u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
+                    u.Estado = Int32.Parse(reader["estado"].ToString());
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                 }
@@ -145,28 +145,34 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         public static int editarUsuario(Usuario u)
         {
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            DBConexion db = new DBConexion();
+            //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
+            Trace.WriteLine("Editar Usuario 1");
 
-            cmd.CommandText = "UPDATE Usuario " +
-                              "SET contrasenha= @contrasenha,idRol= @idRol, estado = @estado, fechaMod = @fechaMod " +
-                              "WHERE idUsuario= @idUsuario";
+            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate() WHERE codEmpleado = @codEmpleado ";
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
+            //db.cmd.Parameters.AddWithValue("@codEmpleado", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
+            db.cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
+            db.cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
+            db.cmd.Parameters.AddWithValue("@estado", u.Estado);
 
-            cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
-            cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
-            cmd.Parameters.AddWithValue("@idRol", u.IdRol);
-            cmd.Parameters.AddWithValue("@estado", u.Estado);
-            cmd.Parameters.AddWithValue("@fechaMod", u.FechaMod);
+            Trace.WriteLine("<" + u.IdUsuario + ">");
+            Trace.WriteLine("<" + u.CodEmpleado + ">");
+            Trace.WriteLine("<" + u.Contrasenha + ">");
+            Trace.WriteLine("<" + u.Rol.IdRol + ">");
+            Trace.WriteLine("<" + u.Estado + ">");
 
+
+            Trace.WriteLine("Editar Usuario 2");
             try
             {
-                conn.Open();
-                k = cmd.ExecuteNonQuery();
-                conn.Close();
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+                Trace.WriteLine("Editar Usuario 3");
 
             }
 
@@ -201,7 +207,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     Usuario u = new Usuario();
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
-                    u.IdRol = Int32.Parse(reader["idRol"].ToString());
+                    //u.IdRol = Int32.Parse(reader["idRol"].ToString());
                     Trace.WriteLine("<Rol flag1: ");
                     u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());

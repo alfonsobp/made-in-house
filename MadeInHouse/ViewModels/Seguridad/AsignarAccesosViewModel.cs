@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Seguridad;
@@ -10,6 +11,7 @@ using System.Windows.Input;
 using System.ComponentModel.Composition;
 using MadeInHouse.Models;
 using MadeInHouse.DataObjects.Seguridad;
+using System.Diagnostics;
 
 
 namespace MadeInHouse.ViewModels.Seguridad
@@ -19,8 +21,12 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         private MyWindowManager win = new MyWindowManager();
 
+        private Usuario u = new Usuario();
+
         public AsignarAccesosViewModel()
         {
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(Thread.CurrentPrincipal.Identity.Name);
+
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
 
@@ -89,12 +95,24 @@ namespace MadeInHouse.ViewModels.Seguridad
             set { lstAccVentanaAccModulo = value; NotifyOfPropertyChange(() => LstAccVentanaAccModulo); }
         }
 
+        public void GuardarRol()
+        {
+            DataObjects.Seguridad.AccVentanaSQL.ActualizarRol(LstAccVentanaAccModulo, IdRolValue);
+        }
+
+        public void ActualizarLstAccesos()
+        {
+            LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentanaPorRol(LstAccVentanaAccModulo, IdRolValue);
+            NotifyOfPropertyChange("LstAccVentanaAccModulo");
+        }
+
         public void ActualizarListaAccVentanaAccModulo()
         {
             LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentana();
-            //LstAccVentanaAccModulo = A
-                   //BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
             NotifyOfPropertyChange("LstAccVentanaAccModulo");
         }
+
+
     }
+
 }
