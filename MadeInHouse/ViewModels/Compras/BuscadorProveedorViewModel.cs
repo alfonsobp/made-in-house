@@ -8,10 +8,11 @@ using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using MadeInHouse.Manager;
-using MadeInHouse.Model;
+using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models;
 using System.Data.OleDb;
 using System.Data;
+using MadeInHouse.Models.Compras;
 
 
 namespace MadeInHouse.ViewModels.Compras
@@ -34,7 +35,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         private MyWindowManager win = new MyWindowManager();
 
-        EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
+        ProveedorSQL eM = new ProveedorSQL();
 
         private string txtRuc;
 
@@ -196,7 +197,7 @@ namespace MadeInHouse.ViewModels.Compras
                     p.TelefonoContacto = ds["TelefonoContacto"].ToString();
                     p.Email = ds["Email"].ToString();
 
-                    new ProveedorManager().Agregar(p);
+                    new ProveedorSQL().Agregar(p);
 
                 }
 
@@ -219,7 +220,7 @@ namespace MadeInHouse.ViewModels.Compras
 
                 Cargar();
                 MessageBox.Show("Se importó satisfactoriamente los proveedores");
-                LstProveedor = new ProveedorManager().Buscar() as List<Proveedor>;
+                LstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
             }
         
         

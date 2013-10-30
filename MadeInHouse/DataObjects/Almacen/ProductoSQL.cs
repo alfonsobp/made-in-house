@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data.SqlClient;
+using System.Windows;
+using System.Data;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -182,6 +184,109 @@ namespace MadeInHouse.DataObjects.Almacen
             }
 
             return listaProductos;
+        }
+
+
+        public Producto Buscar_por_CodigoProducto(string codProducto)
+        {
+
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+            SqlDataReader reader;
+
+            Producto p = null;
+
+            cmd.CommandText = "SELECT * from Producto where codProducto = @codProducto and estado = 1 ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@codProducto", codProducto);
+
+
+            try
+            {
+                conn.Open();
+
+
+
+
+
+                reader = cmd.ExecuteReader();
+
+
+                if (reader.Read())
+                {
+
+                    p = new Producto();
+                    p.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
+                    p.Nombre = reader["nombre"].ToString();
+                    p.CodigoProd = reader["codProducto"].ToString();
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return p;
+
+        }
+
+        public Producto Buscar_por_CodigoProducto(int IdProducto)
+        {
+
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+            SqlDataReader reader;
+
+            Producto p = null;
+
+            cmd.CommandText = "SELECT * from Producto where idProducto = @idProducto and estado = 1 ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@idProducto", IdProducto);
+
+
+            try
+            {
+                conn.Open();
+
+
+
+
+
+                reader = cmd.ExecuteReader();
+
+
+                if (reader.Read())
+                {
+
+                    p = new Producto();
+                    p.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
+                    p.Nombre = reader["nombre"].ToString();
+                    p.CodigoProd = reader["codProducto"].ToString();
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return p;
+
         }
     }
 }

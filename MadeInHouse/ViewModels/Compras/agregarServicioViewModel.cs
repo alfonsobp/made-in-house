@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using MadeInHouse.Model;
 using System.Data;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Data.OleDb;
 using System.Collections.ObjectModel;
-using MadeInHouse.Manager;
+using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models.Compras;
+using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -61,7 +62,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         BuscadorServicioViewModel model;
 
-        EntityManager eM = new TableManager().getInstance(EntityName.Servicio);
+      
 
         private int indicador;
 
@@ -149,7 +150,7 @@ namespace MadeInHouse.ViewModels.Compras
             Servicio s = new Servicio();
 
             s.IdServicio = Id;
-            s.IdProveedor = Manager.ServicioManager.getIDfromProv(TxtProveedor);
+            s.IdProveedor = ServicioSQL.getIDfromProv(TxtProveedor);
             s.Nombre = TxtNombre;
             s.Descripcion = TxtDescripcion;
             s.CodServicio = TxtCodigo;
@@ -159,7 +160,7 @@ namespace MadeInHouse.ViewModels.Compras
             {
                 if (indicador == 1)
                 {
-                    k = eM.Agregar(s);
+                    k = new ServicioSQL().Agregar(s);
 
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
@@ -171,7 +172,7 @@ namespace MadeInHouse.ViewModels.Compras
                 if (indicador == 2)
                 {
 
-                    k = eM.Actualizar(s);
+                    k = new ServicioSQL().Actualizar(s);
 
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
@@ -217,11 +218,11 @@ namespace MadeInHouse.ViewModels.Compras
 
                      
                     cs.Producto = new Producto();
-                    cs.Producto.CodProducto = ds["Codigo"].ToString();
+                    cs.Producto.CodigoProd = ds["Codigo"].ToString();
                     cs.Producto.Nombre = ds["Nombre"].ToString();
                     cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
 
-                    ServicioxProductoManager sp = new ServicioxProductoManager();
+                    ServicioxProductoSQL sp = new ServicioxProductoSQL();
 
                     lista.Add(cs);
                     

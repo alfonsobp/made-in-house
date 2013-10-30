@@ -7,8 +7,10 @@ using Caliburn.Micro;
 using System.Data.OleDb;
 using System.Data;
 using System.Windows;
-using MadeInHouse.Model;
-using MadeInHouse.Manager;
+using MadeInHouse.Models.Compras;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models;
+using MadeInHouse.DataObjects.Compras;
 
 
 
@@ -50,7 +52,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { prov = value; NotifyOfPropertyChange(() => Prov); }
         }
 
-        ProveedorxProductoManager eM = new ProveedorxProductoManager();
+        ProveedorxProductoSQL eM = new ProveedorxProductoSQL();
 
         public void Refrescar() {
 
@@ -61,7 +63,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void Eliminar() {
 
             if (prov != null) {
-                new ProveedorxProductoManager().Eliminar(seleccionado);
+                new ProveedorxProductoSQL().Eliminar(seleccionado);
                 Refrescar();
             }
         
@@ -92,13 +94,13 @@ namespace MadeInHouse.ViewModels.Compras
                    ProveedorxProducto cp = new ProveedorxProducto();
                     cp.IdProveedor = Prov.IdProveedor;
                     cp.Producto = new Producto();
-                    cp.Producto.CodProducto= ds["Codigo"].ToString();
+                    cp.Producto.CodigoProd= ds["Codigo"].ToString();
                     cp.CodComercial = ds["Codigo Comercial"].ToString();
                     cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
                     cp.Descripcion = ds["Descripcion"].ToString();
                     cp.FechaAct = DateTime.Now;
                     cp.FechaReg = DateTime.Now;
-                    ProveedorxProductoManager pp = new ProveedorxProductoManager();
+                    ProveedorxProductoSQL pp = new ProveedorxProductoSQL();
                      int k = pp.Insertar(cp);
 
                     
@@ -148,6 +150,7 @@ namespace MadeInHouse.ViewModels.Compras
                 {
 
                     Cargar();
+                    Refrescar();
                 }
           
             }
