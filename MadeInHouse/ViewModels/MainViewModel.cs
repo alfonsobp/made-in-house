@@ -37,9 +37,10 @@ namespace MadeInHouse.ViewModels
             DataObjects.Seguridad.AccesoSQL.cargarAccVentana(u.Rol.IdRol, out ventana);
         }
 
+/*
         //MODULO ALMACÉN: 1
         #region Almacen
-/*
+
          //Ventana Externa: 1.1
         public void AbrirMantenimientoAlmacen()
         {
@@ -150,8 +151,10 @@ namespace MadeInHouse.ViewModels
             if (accVentana[12] == 1)
                 win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
         }
-  
-         //MODULO COMPRAS: 2
+
+        #endregion Almacen
+
+        //MODULO COMPRAS: 2
         #region Compras
 
         //Ventana Externa: 2.1
@@ -513,7 +516,7 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[44] == 1)
             {
-                win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { DisplayName = "Registrar usuario" });
+                win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel {  });
             }
         }
 
@@ -765,9 +768,11 @@ namespace MadeInHouse.ViewModels
         } 
   
         
-
 */
 
+//***************************************************************************************************************
+        //MODULO ALMACÉN: 1
+        #region Almacen
         //Ventana Externa: 1.1
         public void AbrirMantenimientoAlmacen()
         {
@@ -1095,7 +1100,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 6.1
         public void AbrirRegistrarUsuario()
         {
-            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { /* DisplayName = "Registrar usuario" */ });
+            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel {  });
         }
 
         //Ventana Externa: 6.2
@@ -1244,35 +1249,6 @@ namespace MadeInHouse.ViewModels
         }
 
         #endregion Configuracion
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }
