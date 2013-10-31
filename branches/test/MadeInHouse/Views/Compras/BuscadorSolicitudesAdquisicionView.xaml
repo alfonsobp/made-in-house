@@ -1,0 +1,89 @@
+﻿<UserControl 
+     xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+    x:Class="MadeInHouse.Views.Compras.BuscadorSolicitudesAdquisicionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="562">
+    <!-- COPIAR DESDE AKI -->
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Listado Solicitudes de Adquisicion" />
+            <!-- CAMBIAR NOMBREEEE -->
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="418">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <ToolBar Margin="0,0,0,371">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button
+                 x:Name="NuevaSolicitud" >
+                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+            </Button>
+            <Button x:Name="EditarSolicitud">
+                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button>
+                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+            </Button>
+            <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            </Button>
+            <Button Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
+        </ToolBar>
+        <DataGrid Margin="11,201,0,0" Height="172" VerticalAlignment="Top" HorizontalAlignment="Left" Width="527">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Almacén"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Estado"/>
+                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Fecha Registro"/>
+            </DataGrid.Columns>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+            <Button/>
+        </DataGrid>
+        <TextBox Text="ALM-001" HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <GroupBox Header="Criterios de Búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="528"/>
+        <Button Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+        </Button>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293" Text="SOL-ADQ-0001"/>
+        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="28,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="Código:" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="123,127,0,0" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem Content="Atendido" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
+            <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
+        </ComboBox>
+        <Label Content="Estado:" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top"/>
+        <DatePicker HorizontalAlignment="Left" Margin="126,161,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="31,161,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top"/>
+    </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,57 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+             x:Class="MadeInHouse.Views.Compras.MantenerProveedorView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:DesignWidth="379.403" d:DesignHeight="479.303" >
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Proveedor" />
+            <!-- CAMBIAR NOMBREEEE -->
+
+            <Grid RenderTransformOrigin="0.482,0.483">
+        <Label Content="Código:" HorizontalAlignment="Left" Height="38" Margin="35,81,0,0" VerticalAlignment="Top" Width="51"/>
+        <Label Content="Razón Social:" HorizontalAlignment="Left" Height="38" Margin="35,161,0,0" VerticalAlignment="Top" Width="85"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Height="41" Margin="35,380,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="Email:" HorizontalAlignment="Left" Height="23" Margin="35,350,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="Teléfono:" HorizontalAlignment="Left" Height="23" Margin="35,202,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="Telf Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,318,0,0" VerticalAlignment="Top" Width="85"/>
+        <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
+        <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
+        <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
+        <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
+        <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
+        <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="ladrillosD@gmail.com"/>
+        <TextBox x:Name="TxtTelefonoContacto" HorizontalAlignment="Left" Height="23" Margin="125,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
+        <TextBox x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2222222"/>
+        <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2312"/>
+        <TextBox x:Name="TxtFax" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="RAUL GONZALES"/>
+        <TextBox x:Name="TxtContacto" HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="121212121212"/>
+        <GroupBox Header="Nuevo Proveedor" HorizontalAlignment="Left" Height="385" Margin="11,46,0,0" VerticalAlignment="Top" Width="356"/>
+        <ToolBar VerticalAlignment="Top">
+            <ToolBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                    <GradientStop Color="Snow" Offset="1"/>
+                </LinearGradientBrush>
+            </ToolBar.Background>
+            <Button/>
+                    <Button/>
+                    <Button>
+                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+            </Button>
+            <Button x:Name="GuardarProveedor">
+                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+            </Button>
+            <Button/>
+                    <Button Height="30" Width="30">
+                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            </Button>
+            <Button Height="50" Width="50"/>
+                </ToolBar>
+    </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,77 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts" 
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Almacen="clr-namespace:MadeInHouse.Views.Almacen" 
+            x:Class="MadeInHouse.ViewModels.Almacen.BuscarGuiasRemisionView" 
+             mc:Ignorable="d" Height="463" Width="424.667">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Buscar guias" />
+            <Grid HorizontalAlignment="Left" Width="425" Height="463" VerticalAlignment="Top">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="146*"/>
+                    <RowDefinition Height="286*"/>
+                </Grid.RowDefinitions>
+                <ToolBar VerticalAlignment="Top" Height="41" Grid.RowSpan="2">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button x:Name="AbrirMantenerGuiaDeRemision">
+                        <Image Source="/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="EditarGuiaDeRemision">
+                        <Image Source="/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                <GroupBox Header="Criterios de búsqueda" Margin="10,17,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="398" Height="127" VerticalAlignment="Top">
+
+                    <Grid HorizontalAlignment="Left" Width="381" Height="109" VerticalAlignment="Top" Margin="0,0,0,-4">
+                        <Label Content="Código:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="71" Margin="10,10,0,0" />
+                        <Label Content="Tipo:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="58"  Margin="10,67,0,0"/>
+                        <Label Content="Fecha:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="61"  Margin="10,37,0,0"/>
+                        <TextBox x:Name="TxtCodigo" Margin="71,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195"/>
+                        <DatePicker x:Name="TxtFecha" Margin="71,38,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195"/>
+                        <ComboBox x:Name="CbTipo" Margin="71,70,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
+                            <ComboBoxItem Content="Traslado interno" />
+                            <ComboBoxItem Content="Traslado externo" />
+                        </ComboBox>
+                        <Button x:Name="BuscarGuiaRemision" Background="Transparent" Margin="278,0,0,76" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Bottom">
+                            <Image Source="/Assets/find.png" />
+                        </Button>
+                    </Grid>
+                </GroupBox>
+                <DataGrid x:Name="LstGuiaDeRemision" 
+                          cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
+                          Margin="10,3,17,0" Grid.Row="2" HeadersVisibility="All" Height="241" VerticalAlignment="Top" AutoGenerateColumns="false" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=CodGuiaRem}" Header="Código" Width="120"/>
+                        <DataGridTextColumn Binding="{Binding Path=FechaReg}" Header="Fecha" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path=Tipo}" Header="Tipo" Width="100"/>
+                        <DataGridTextColumn Binding="{Binding Path=DirLlegada}" Header="Tienda" Width="200"/>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

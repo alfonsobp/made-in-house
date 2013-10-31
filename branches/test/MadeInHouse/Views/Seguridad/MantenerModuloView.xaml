@@ -1,0 +1,58 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Seguridad.MantenerModuloView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Width="498.508" Height="270.746">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="497" Height="268" VerticalAlignment="Top" Margin="0,0,-7,0">
+        <DockPanel Height="263" VerticalAlignment="Top" HorizontalAlignment="Left" Width="495" Margin="0,0,-2,0">
+            <Layouts:TitleBarTemplate title="Mantenimiento de Módulo" DockPanel.Dock="Top" Loaded="TitleBarTemplate_Loaded_1"/>
+
+            <Grid Height="236" VerticalAlignment="Top" Width="479">
+
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button ToolTip="Nuevo módulo"
+        		        x:Name="AbrirRegistrarModulo" >
+                        <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Editar módulo">
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Eliminar módulo">
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Guardar cambios">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Limpiar ventana" Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+                    </Button>
+                    <Button ToolTip="Refrescar ventana" Height="50" Width="50">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+                    </Button>
+                </ToolBar>
+                <DataGrid Margin="10,60,10,0" Height="167" VerticalAlignment="Top">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="100" Header="Módulo"/>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="350" Header="Descripción"/>
+                    </DataGrid.Columns>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+    </Border>
+</UserControl>
+<!--ALGO-->

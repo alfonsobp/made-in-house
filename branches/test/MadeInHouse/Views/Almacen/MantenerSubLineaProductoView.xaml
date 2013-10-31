@@ -1,0 +1,52 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.MantenerSubLineaProductoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" d:designWidth="347" d:designHeight="199">
+   
+    
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Nueva sublinea de producto"/>
+            <Grid Margin="0" Height="183" Width="310">
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="GuardarSubLinea">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                        <Label Content="Pertenece a la Línea:" HorizontalAlignment="Left" Margin="17,61,0,0" VerticalAlignment="Top" Height="26" Width="121"/>
+                <ComboBox x:Name="cmbLineaProducto" SelectedIndex="0" IsEnabled="{Binding Estado}"
+                            HorizontalAlignment="Left" Height="23" Margin="143,64,0,0" VerticalAlignment="Top" Width="140"/>
+                        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="17,89,0,0" VerticalAlignment="Top" Width="94"/>
+                        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="143,92,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="140"/>
+                <Label Content="Abreviatura:" HorizontalAlignment="Left" Margin="17,123,0,0" VerticalAlignment="Top"/>
+                <TextBox x:Name="TxtAbrv" HorizontalAlignment="Left" Height="23" Margin="143,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"/>
+
+
+
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>
