@@ -1,15 +1,14 @@
-﻿using MadeInHouse.Models.Almacen;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.Models.Compras
 {
     class ServicioxProducto
     {
-
         int idServicio;
 
         public int IdServicio
