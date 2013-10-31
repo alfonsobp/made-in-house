@@ -93,6 +93,7 @@
     <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />
     <Compile Include="DataObjects\Compras\ServicioSQL.cs" />
     <Compile Include="DataObjects\Compras\ServicioxProductoSQL.cs" />
+    <Compile Include="DataObjects\Compras\SolicitudAdquisicionSQL.cs" />
     <Compile Include="DataObjects\EntitySQL.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
@@ -100,7 +101,7 @@
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
-    <Compile Include="Dictionary\DynamicGrid.cs" />
+    <Compile Include="Models\Dictionary\DynamicGrid.cs" />
     <Compile Include="Manager\AccModuloManager.cs" />
     <Compile Include="Manager\AccVentanaManager.cs" />
     <Compile Include="Manager\AccVentanaInternaManager.cs" />
@@ -193,6 +194,7 @@
     <Compile Include="Models\Compras\Proveedor.cs" />
     <Compile Include="Models\Compras\ProveedorxProducto.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
+    <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
     <Compile Include="Models\Ventas\Venta.cs" />
     <Compile Include="Model\prueba.cs" />
@@ -673,7 +675,7 @@
     <Compile Include="Views\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Dictionary\estilos.xaml">
+    <Page Include="Models\Dictionary\estilos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1207,11 +1209,11 @@
     <Resource Include="Assets\gear.png" />
     <Resource Include="Assets\minimize.png" />
     <Content Include="Assets\addServicio.png" />
-    <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
-    <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
-    <Content Include="Dictionary\Libraries\RibbonControlsLibrary.dll" />
-    <Content Include="Dictionary\Libraries\System.ComponentModel.Composition.dll" />
-    <Content Include="Dictionary\Libraries\System.Windows.Interactivity.dll" />
+    <Content Include="Models\Dictionary\Libraries\Caliburn.Micro.dll" />
+    <Content Include="Models\Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
+    <Content Include="Models\Dictionary\Libraries\RibbonControlsLibrary.dll" />
+    <Content Include="Models\Dictionary\Libraries\System.ComponentModel.Composition.dll" />
+    <Content Include="Models\Dictionary\Libraries\System.Windows.Interactivity.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

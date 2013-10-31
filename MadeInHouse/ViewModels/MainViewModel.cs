@@ -635,7 +635,7 @@ namespace MadeInHouse.ViewModels
             {
                 win.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
             }
-        }
+        }                
 
         //Ventana Externa: 7.8
         public void AbrirReporteSolicitudes()
@@ -903,8 +903,10 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.6
         public void AbrirBuscadorSolicitudesAdquisicion()
         {
-            Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel { DisplayName = "Buscador de Solicitudes de Adquisicion" };
+           
+            Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel();
             win.ShowWindow(obj);
+            
         }
 
         //Ventana Externa: 2.7
@@ -912,7 +914,7 @@ namespace MadeInHouse.ViewModels
         {
             Compras.SeleccionDeProveedoresViewModel obj = new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" };
             win.ShowWindow(obj);
-        }
+        } 
 
         //Ventana Externa: 2.8
         public void AbrirGenerarOrdenCompra()
@@ -958,8 +960,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.14 - ESTA NO ESTÁ IMPLEMENTADA!
         public void AbrirMantenerSolicitudesAdquisicion()
         {
-            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Solicitudes de Adquisicion" };
-            win.ShowWindow(obj);
+          //  Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel();
+           // win.ShowWindow(obj);
         }
 
         #endregion Compras

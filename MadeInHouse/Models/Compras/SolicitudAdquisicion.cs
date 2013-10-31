@@ -1,23 +1,13 @@
-﻿using MadeInHouse.Models.Almacen;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace MadeInHouse.Models.Compras
 {
     class SolicitudAdquisicion
     {
-
-        int idSolicitudAD;
-
-        public int IdSolicitudAD
-        {
-            get { return idSolicitudAD; }
-            set { idSolicitudAD = value; }
-        }
         int estado;
 
         public int Estado
@@ -25,12 +15,12 @@ namespace MadeInHouse.Models.Compras
             get { return estado; }
             set { estado = value; }
         }
-        DateTime fechaAtencion;
+        int idSolicitudAD;
 
-        public DateTime FechaAtencion
+        public int IdSolicitudAD
         {
-            get { return fechaAtencion; }
-            set { fechaAtencion = value; }
+            get { return idSolicitudAD; }
+            set { idSolicitudAD = value; }
         }
         DateTime fechaReg;
 
@@ -39,19 +29,46 @@ namespace MadeInHouse.Models.Compras
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        Almacen.Almacen almacen;
+        DateTime fechaAtencion;
 
-        public Almacen.Almacen Almacen
+        public DateTime FechaAtencion
         {
-            get { return almacen; }
-            set { almacen = value; }
+            get { return fechaAtencion; }
+            set { fechaAtencion = value; }
         }
+       
+        int idAlmacen;
+
+        public int IdAlmacen
+        {
+            get { return idAlmacen; }
+            set { idAlmacen = value; }
+        }
+
         List<ProductoxSolicitudAd> lstProductos;
 
-        internal List<ProductoxSolicitudAd> LstProductos
+        public List<ProductoxSolicitudAd> LstProductos
         {
             get { return lstProductos; }
             set { lstProductos = value; }
         }
+
+        string est;
+
+        public string Est
+        {
+            get { return est; }
+            set { est = value; }
+        }
+
+        string codigo;
+
+        public string Codigo
+        {
+            get { return codigo; }
+            set { codigo = value; }
+        }
+
+
     }
 }

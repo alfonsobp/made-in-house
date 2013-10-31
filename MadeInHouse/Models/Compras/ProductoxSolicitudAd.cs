@@ -25,7 +25,12 @@ namespace MadeInHouse.Models.Compras
             get { return producto; }
             set { producto = value; }
         }
+
+
+        
+
         int cantidad;
+
 
         public int Cantidad
         {

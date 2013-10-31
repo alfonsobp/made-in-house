@@ -17,6 +17,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd }" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding CodComercial}"  Header="Código Comercial"/>
+                        <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}"  Header="Nombre"/>
                         <DataGridTextColumn Binding="{Binding Descripcion}" Header="Descripción" Width="130"/>
                         <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="70"/>
                         <DataGridTextColumn Binding="{Binding FechaAct}"  Header="Ultima Actualización" Width="80"/>
