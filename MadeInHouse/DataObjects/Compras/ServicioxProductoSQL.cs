@@ -1,4 +1,5 @@
 ﻿using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Model;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Compras;
 using System;
@@ -57,7 +58,7 @@ namespace MadeInHouse.DataObjects.Compras
 
                     ServicioxProducto p = new ServicioxProducto();
                     p.IdServicio = Convert.ToInt32(reader["idServicio"].ToString());
-                    p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
+                    //p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
                     p.Precio = Convert.ToDouble(reader["precio"].ToString());
 
 
@@ -88,7 +89,8 @@ namespace MadeInHouse.DataObjects.Compras
         public int InsertarValidado(ServicioxProducto sp)
         {
 
-            Producto p = new ProductoSQL().Buscar_por_CodigoProducto(sp.Producto.CodigoProd);
+            //Producto p = new ProductoSQL().Buscar_por_CodigoProducto(sp.Producto.CodigoProd);
+            MadeInHouse.Model.Producto p = null;
             //MessageBox.Show("IdServicio = " + sp.IdServicio + " IdProducto = " + p.IdProducto + " Precio = " + sp.Precio);
             int k = 0;
             

@@ -14,6 +14,7 @@ using MadeInHouse.DataObjects;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.Model;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -35,7 +36,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 1;
         }
 
-
+        /*
         public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m)
         {
 
@@ -50,7 +51,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 2;
             model = m;
         }
-
+        */
 
         public agregarServicioViewModel(BuscadorServicioViewModel m)
         {
@@ -126,9 +127,9 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtDescripcion = value; NotifyOfPropertyChange(() => TxtDescripcion); }
         }
 
-        private Proveedor prov;
+        private MadeInHouse.Models.Compras.Proveedor prov;
 
-        public Proveedor Prov
+        public MadeInHouse.Models.Compras.Proveedor Prov
         {
             get { return prov; }
             set { prov = value; NotifyOfPropertyChange(() => Prov); }
@@ -150,11 +151,11 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void BuscarProveedor()
         {
-            MyWindowManager w = new MyWindowManager();
+            MadeInHouse.Models.MyWindowManager w = new MadeInHouse.Models.MyWindowManager();
             w.ShowWindow(new BuscadorProveedorViewModel(this));
         }
 
-        public Boolean validar(Servicio s)
+        public Boolean validar(MadeInHouse.Models.Compras.Servicio s)
         {
 
             if (s.Descripcion == null || s.Nombre == null)
@@ -171,7 +172,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void GuardarServicio()
         {
             int k, y, i;
-            Servicio s = new Servicio();
+            MadeInHouse.Models.Compras.Servicio s = null;//new Servicio();
 
             s.IdServicio = Id;
 
@@ -254,10 +255,10 @@ namespace MadeInHouse.ViewModels.Compras
 
                     ServicioxProducto cs = new ServicioxProducto();
 
-                    cs.Producto = new Producto();
-                    cs.Producto.CodigoProd = ds["Codigo"].ToString();
-                    cs.Producto.Nombre = ds["Nombre"].ToString();
-                    cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
+                    //cs.Producto = new Producto();
+                    //cs.Producto.CodigoProd = ds["Codigo"].ToString();
+                    //cs.Producto.Nombre = ds["Nombre"].ToString();
+                    //cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
 
 
                     lista.Add(cs);
