@@ -103,15 +103,6 @@ namespace MadeInHouse.Models.Almacen
             set { idUnidad = value; }
         }
 
-        private double precio;
-
-        public double Precio
-        {
-            get { return precio; }
-            set { precio = value; }
-        }
-        
-
     }
 
 }

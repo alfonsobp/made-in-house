@@ -12,150 +12,40 @@ namespace MadeInHouse.ViewModels.Almacen
     class MantenerTiendaViewModel : PropertyChangedBase
     {
 
+        public MantenerTiendaViewModel() {
+            this.cmbDpto=gateway.BuscarDpto();
+        }
 
-        private UbigeoSQL uSQL;
-        private TiendaSQL tSQL;
+        private UbigeoSQL gateway = new UbigeoSQL();
 
         private string txtNumColumns;
 
         public string TxtNumColumns
         {
             get { return txtNumColumns; }
-            set
-            {
-                txtNumColumns = value;
+            set { txtNumColumns = value;
+            
             }
         }
-
         private string txtNumRows;
 
         public string TxtNumRows
         {
             get { return txtNumRows; }
-            set
-            {
-                txtNumRows = value;
+            set { txtNumRows = value;
+            
+
             }
         }
 
-        private string txtNombre;
-
-        public string TxtNombre
+        public void Refrescar(object sender)
         {
-            get { return txtNombre; }
-            set { txtNombre = value; }
+            
+            NumColumns = Int32.Parse(TxtNumColumns);
+            NumRows = Int32.Parse(TxtNumRows);
+            (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
         }
 
-
-        private string txtAdmin;
-
-        public string TxtAdmin
-        {
-            get { return txtAdmin; }
-            set { txtAdmin = value; }
-        }
-
-        private string txtTelef;
-
-        public string TxtTelef
-        {
-            get { return txtTelef; }
-            set { txtTelef = value; }
-        }
-
-        private List<Ubigeo> cmbDpto;
-
-        public List<Ubigeo> CmbDpto
-        {
-            get { return this.cmbDpto; }
-            private set
-            {
-
-                if (this.cmbDpto == value)
-                {
-                    return;
-                }
-                this.cmbDpto = value;
-                this.NotifyOfPropertyChange(() => this.cmbDpto);
-            }
-
-        }
-        private string selectedDpto;
-
-        public string SelectedDpto
-        {
-            get { return selectedDpto; }
-            set
-            {
-                selectedDpto = value;
-                UbigeoSQL usql = new UbigeoSQL();
-                CmbProv = usql.BuscarProv(selectedDpto);
-                SelectedIndex = 0;
-            }
-        }
-
-
-        private List<Ubigeo> cmbProv;
-
-        public List<Ubigeo> CmbProv
-        {
-            get { return this.cmbProv; }
-            private set
-            {
-
-                if (this.cmbProv == value)
-                {
-                    return;
-                }
-                this.cmbProv = value;
-                this.NotifyOfPropertyChange(() => this.cmbProv);
-
-                
-            }
-
-        }
-
-        private string selectedProv;
-
-        public string SelectedProv
-        {
-          get { return selectedProv; }
-          set 
-          { 
-              selectedProv = value;
-              UbigeoSQL usql = new UbigeoSQL();
-              CmbDist = usql.BuscarDist(selectedDpto, selectedProv);
-              SelectedIndex = 0;
-          }
-        }
-
-        private List<Ubigeo> cmbDist;
-
-        public List<Ubigeo> CmbDist
-        {
-            get { return this.cmbDist; }
-            private set
-            {
-                if (this.cmbDist == value)
-                {
-                    return;
-                }
-                this.cmbDist = value;
-                this.NotifyOfPropertyChange(() => this.cmbDist);
-
-                
-            }
-
-        }
-
-
-        private string selectedDist;
-
-        public string SelectedDist
-        {
-            get { return selectedDist; }
-            set { selectedDist = value; }
-        }
 
         private string txtDir;
 
@@ -164,142 +54,95 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return txtDir; }
             set { txtDir = value; }
         }
-
-
-
-        /*Parametros para distribucion*/
-
-        /*Anaqueles*/
-        private string txtNumRowsAnq;
-
-        public string TxtNumRowsAnq
-        {
-            get { return txtNumRowsAnq; }
-            set { txtNumRowsAnq = value; 
-                    NotifyOfPropertyChange(()=>TxtNumRowsAnq);
-            }
-        }
-
-        private string txtNumColumnsAnq;
-
-        public string TxtNumColumnsAnq
-        {
-            get { return txtNumColumnsAnq; }
-            set { txtNumColumnsAnq = value; 
-                NotifyOfPropertyChange(()=>TxtNumColumnsAnq);
-            }
-        }
-
-        private string txtAlturaAnq;
-
-        public string TxtAlturaAnq
-        {
-            get { return txtAlturaAnq; }
-            set { txtAlturaAnq = value; }
-        }
-
-        /*Deposito*/
-        private string txtNumRowsDto;
-
-        public string TxtNumRowsDto
-        {
-            get { return txtNumRowsDto; }
-            set
-            {
-                txtNumRowsDto = value;
-                NotifyOfPropertyChange(() => TxtNumRowsDto);
-            }
-        }
-
-        private string txtNumColumnsDto;
-
-        public string TxtNumColumnsDto
-        {
-            get { return txtNumColumnsDto; }
-            set
-            {
-                txtNumColumnsDto = value;
-                NotifyOfPropertyChange(() => TxtNumColumnsDto);
-            }
-        }
-
-        private string txtAlturaDto;
-
-        public string TxtAlturaDto
-        {
-            get { return txtAlturaDto; }
-            set { txtAlturaDto = value; }
-        }
-
-        private string fondo;
-
-        public string Fondo
-        {
-            get { return fondo; }
-            set
-            {
-                fondo = value;
-                NotifyOfPropertyChange(() => Fondo);
-            }
-        }
-
-
-        public void Distribuir(object sender, int tipo)
-        {
-            if (tipo == 0)
-            {
-                NumColumns = Int32.Parse(TxtNumColumnsAnq);
-                NumRows = Int32.Parse(TxtNumRowsAnq);
-                (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
-            }
-            else
-            {
-                NumColumns = Int32.Parse(TxtNumColumnsDto);
-                NumRows = Int32.Parse(TxtNumRowsDto);
-                (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
-            }
-            
-            
-        }
-
-        private List<string> cmbColores;
-
-        public List<string> CmbColores
-        {
-            get { return cmbColores; }
-            set { cmbColores = value; }
-        }
-
-        private string selectedColor;
-
-        public string SelectedColor
-        {
-            get { return selectedColor; }
-            set
-            {
-                selectedColor = value;
-                Fondo = selectedColor;
-            }
-        }
-
-        
-        public MantenerTiendaViewModel() {
-            uSQL = new UbigeoSQL();
-            tSQL = new TiendaSQL();
-            this.CmbColores = new List<string>();
-            this.CmbColores.Add("Red");
-            this.CmbColores.Add("Blue");
-            this.CmbColores.Add("Green");
-            CmbDpto=uSQL.BuscarDpto();
-        }
-
-
         private int selectedIndex;
 
         public int SelectedIndex
         {
             get { return selectedIndex; }
             set { selectedIndex = value; }
+        }
+
+        private string selectedValue;
+
+        public string SelectedValue
+        {
+            get { return selectedValue; }
+            set
+            {
+                selectedValue = value;
+
+                cmbProv = gateway.BuscarProv(selectedValue);
+                SelectedIndex = 0;
+
+            }
+        }
+
+        private List<Ubigeo> cmbDpto;
+
+        public List<Ubigeo> CmbDpto
+        {
+            get { return this.cmbDpto; }
+            private set { 
+            if (this.cmbDpto == value) return;
+            this.cmbDpto = value;
+            this.cmbProv = gateway.BuscarProv(this.cmbDptoSeleccionado.CodDpto);
+            this.NotifyOfPropertyChange(() => this.CmbDpto);
+            this.NotifyOfPropertyChange(() => this.CmbProv);
+            }
+            
+        }
+        private List<Ubigeo> cmbProv;
+
+        public List<Ubigeo> CmbProv
+        {
+            get { return this.cmbProv; }
+            private set
+            {
+                if (this.cmbProv == value) return;
+                this.cmbProv = value;
+                this.cmbDist = gateway.BuscarDist(this.cmbDptoSeleccionado.CodDpto, this.cmbProvSeleccionado.CodProv);
+                this.NotifyOfPropertyChange(() => this.CmbDist);
+                this.NotifyOfPropertyChange(() => this.CmbProv);
+            }
+            
+        }
+        private List<Ubigeo> cmbDist;
+
+        public List<Ubigeo> CmbDist
+        {
+            get { return this.cmbDist; }
+            private set
+            {
+                if (this.cmbDist == value) return;
+                this.cmbDist = value;
+                this.NotifyOfPropertyChange(() => this.CmbDist);
+            }
+            
+        }
+
+
+        private Ubigeo cmbDptoSeleccionado;
+
+        public Ubigeo CmbDptoSeleccionado
+        {
+            get { return cmbDptoSeleccionado; }
+            set { cmbDptoSeleccionado = value; }
+        }
+
+        private Ubigeo cmbProvSeleccionado;
+
+        public Ubigeo CmbProvSeleccionado
+        {
+            get { return cmbProvSeleccionado; }
+            set { cmbProvSeleccionado = value; }
+        }
+
+        private Ubigeo cmbDistSeleccionado;
+
+        public Ubigeo CmbDistSeleccionado
+        {
+            get { return cmbDistSeleccionado; }
+            set { cmbDistSeleccionado = value; }
         }
 
         public void GuardarTienda() {
@@ -309,7 +152,7 @@ namespace MadeInHouse.ViewModels.Almacen
            // tienda.Nombre = this.txtNombre;
             tienda.Direccion = this.txtDir;
             Ubigeo seleccionado = new Ubigeo();
-            seleccionado = uSQL.buscarUbigeo(selectedDpto, selectedProv, selectedDist);
+            seleccionado = gateway.buscarUbigeo(cmbDistSeleccionado.CodDpto, cmbDptoSeleccionado.CodProv, cmbProvSeleccionado.CodDist);
             tienda.Ubigeo = seleccionado;
             tienda.FechaReg = DateTime.Today;
             TiendaSQL gw = new TiendaSQL();
@@ -318,7 +161,15 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
-        
+        private string fondo;
+
+        public string Fondo
+        {
+            get { return fondo; }
+            set { fondo = value;
+            NotifyOfPropertyChange(() => Fondo);
+            }
+        }
 
         private int numColumns;
 
@@ -335,12 +186,17 @@ namespace MadeInHouse.ViewModels.Almacen
         public int NumRows
         {
             get { return numRows; }
-            set
-            {
-                numRows = value;
-                NotifyOfPropertyChange(() => NumRows);
-
+            set { numRows = value;
+            NotifyOfPropertyChange(() => NumRows);
+            
             }
+        }
+
+
+
+        public void OnClick()
+        {
+            Fondo = "Red";
         }
 
 

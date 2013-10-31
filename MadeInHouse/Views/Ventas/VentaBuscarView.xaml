@@ -1,6 +1,5 @@
 ﻿<UserControl x:Class="MadeInHouse.Views.Ventas.VentaBuscarView"
              xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
-             xmlns:cal="http://www.caliburnproject.org"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -63,39 +62,34 @@
                                 <ColumnDefinition Width="10*" />
                                 <ColumnDefinition Width="150*" />
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="BuscarVentas"  HorizontalAlignment="Right" Height="22" VerticalAlignment="Bottom" Width="60" Grid.Column="10" Grid.Row="3">
+                            <Button  HorizontalAlignment="Right" Height="22" VerticalAlignment="Bottom" Width="60" Grid.Column="10" Grid.Row="3">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                             </Button>
                             <TextBlock TextWrapping="Wrap" Text="Doc. pago:" VerticalAlignment="Center" />
-                            <TextBox x:Name="TxtDocPago" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="2"/>
+                            <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="2"/>
                             <TextBlock TextWrapping="Wrap" Text="Fechas: desde" VerticalAlignment="Center" Grid.Column="4"/>
-                            <DatePicker x:Name="FechaInicio" VerticalAlignment="Center" Grid.Column="6"/>
+                            <DatePicker VerticalAlignment="Center" Grid.Column="6"/>
                             <TextBlock TextWrapping="Wrap" Text="hasta" Grid.Column="8" VerticalAlignment="Center" />
-                            <DatePicker x:Name="FechaFin" VerticalAlignment="Center" Grid.Column="10"/>
+                            <DatePicker VerticalAlignment="Center" Grid.Column="10"/>
                             <TextBlock TextWrapping="Wrap" Text="DNI/RUC:" Grid.Row="1" VerticalAlignment="Center" />
-                            <TextBox x:Name="DniRuc" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" />
+                            <TextBox TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" />
                             <TextBlock TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
-                            <TextBox x:Name="TxtCliente" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="5" Margin="0,8,79,9"/>
+                            <TextBox TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="5"/>
                             <TextBlock TextWrapping="Wrap" Text="Estado:" VerticalAlignment="Center" Grid.Row="2"/>
-                            <ComboBox x:Name="CmbEstado" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" />
+                            <ComboBox Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="4" Grid.Row="2" TextWrapping="Wrap" Text="Monto: desde" VerticalAlignment="Center"/>
-                            <TextBox x:Name="TxtMontoMin" Grid.Column="6" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-                            <TextBox x:Name="TxtMontoMax" Grid.Column="10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="6" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="8" Grid.Row="2" TextWrapping="Wrap" Text="hasta" VerticalAlignment="Center"/>
-                            <Button x:Name="AbrirBuscarCliente"  HorizontalAlignment="Right" Height="17" VerticalAlignment="Bottom" Width="60" Grid.Column="10" Grid.Row="1" Margin="0,0,0,10">
-                                <Image Source="/MadeInHouse;component/Assets/find.png" Height="17" Width="50" />
-                            </Button>
                         </Grid>
                     </GroupBox>
-                    <DataGrid x:Name="LstVentas" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]" 
-                              Margin="10" Grid.Row="1" MaxHeight="400" AutoGenerateColumns="False">
+                    <DataGrid Margin="10" Grid.Row="1" MaxHeight="400">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=IdVenta}" Width="85" Header="ID Venta"/>
-                            <DataGridTextColumn Binding="{Binding Path=IdCliente}" Width="85" Header="ID Cliente"/>
-                            <DataGridTextColumn Binding="{Binding Path=NombreCliente}" Width="350" Header="Nombre Cliente"/>
-                            <DataGridTextColumn Binding="{Binding Path=FechaEmision}" Width="110" Header="Fecha de emisión"/>
-                            <DataGridTextColumn Binding="{Binding Path=MontoToal}" Width="110" Header="Monto Total"/>
-                            <DataGridTextColumn Binding="{Binding Path=Estado}" Width="80" Header="Estado"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Venta"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Cliente"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Nombre Cliente"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha de emisión"/>
+                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Estado"/>
                         </DataGrid.Columns>
                     </DataGrid>
 

@@ -16,7 +16,7 @@
                     <Image Source="/Assets/find.png" Height="20" Width="50" />
                 </Button>
 
-                <GroupBox Header="Criterio Busqueda" HorizontalAlignment="Left" Margin="366,59,0,0" VerticalAlignment="Top" Height="347" Width="224">
+                <GroupBox Header="Criterio Busqueda" HorizontalAlignment="Left" Margin="366,59,0,0" VerticalAlignment="Top" Height="381" Width="224">
                     <DataGrid Margin="20,122,-2,93" SelectionChanged="DataGrid_SelectionChanged_1" HorizontalAlignment="Center" Width="194">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
@@ -31,7 +31,7 @@
                 <Label Content="Tipo" HorizontalAlignment="Left" Margin="22,110,0,0" VerticalAlignment="Top"/>
                 <TextBox IsEnabled="False" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="163" Margin="100,110,0,0"/>
 
-                <GroupBox Header="Mantener Almacenes" HorizontalAlignment="Left" Height="347" Margin="2,59,0,0" VerticalAlignment="Top" Width="359"/>
+                <GroupBox Header="Mantener Almacenes" HorizontalAlignment="Left" Height="387" Margin="2,59,0,0" VerticalAlignment="Top" Width="359"/>
                 <Label Content="Eliminar" HorizontalAlignment="Left" Margin="22,200,0,0" VerticalAlignment="Top"/>
 
                 <ToolBar VerticalAlignment="Top">

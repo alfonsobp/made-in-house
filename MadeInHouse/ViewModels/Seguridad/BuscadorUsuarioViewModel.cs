@@ -23,7 +23,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void AbrirRegistrarUsuario()
         {
-            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel());
+            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { });
         }
     }
 }

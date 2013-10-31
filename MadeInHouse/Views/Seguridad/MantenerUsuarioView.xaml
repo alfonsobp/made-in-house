@@ -19,10 +19,10 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button x:Name="AbrirRegistrarUsuario" ToolTip="Nuevo usuario" >
+                    <Button ToolTip="Nuevo usuario" x:Name="AbrirRegistrarUsuario" >
                         <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
-                    <Button x:Name="AbrirEditarUsuario" ToolTip="Editar usuario">
+                    <Button ToolTip="Editar usuario">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
 

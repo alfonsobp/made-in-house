@@ -3,63 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Caliburn.Micro;
-using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using System.Data.OleDb;
-using System.Data;
-using MadeInHouse.Models.Compras;
-using MadeInHouse.Models;
-using MadeInHouse.DataObjects.Compras;
+using Caliburn.Micro;
+using MadeInHouse.Manager;
+using MadeInHouse.Model;
+using MadeInHouse.Views.Compras;
 
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class BuscadorServicioViewModel : PropertyChangedBase
+    class BuscadorServicioViewModel:Screen
     {
-        //Constructores de la clase
-
-        public BuscadorServicioViewModel()
-        {
-            ActualizarServicio();
-        }
-
-
-
-        //Atributos de la clase
-
         private MyWindowManager win = new MyWindowManager();
 
-        private Servicio servicioSeleccionado;
+        private string proveedor;
 
-        ServicioSQL eM = new ServicioSQL();
-        
-
-
-        private string txtProveedor;
-
-        public string TxtProveedor
+        public string Proveedor
         {
-            get { return txtProveedor; }
-            set { txtProveedor = value; NotifyOfPropertyChange(() => TxtProveedor); }
+            get { return proveedor; }
+            set { proveedor = value; NotifyOfPropertyChange(() => Proveedor); }
         }
 
-        private string txtNombre;
+        private string producto;
 
-        public string TxtNombre
+        public string Producto
         {
-            get { return txtNombre; }
-            set { txtNombre = value; NotifyOfPropertyChange(() => TxtNombre); }
-        }
-
-        private string txtProducto;
-
-        public string TxtProducto
-        {
-            get { return txtProducto; }
-            set { txtProducto = value; NotifyOfPropertyChange(() => TxtProducto); }
+            get { return producto; }
+            set { producto = value; NotifyOfPropertyChange(() => Producto); }
         }
 
         private List<Servicio> lstServicio;
@@ -70,10 +42,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstServicio = value; NotifyOfPropertyChange(() => LstServicio); }
         }
 
-
-
-
-        //Funciones de la clase
+        private Servicio servicioSeleccionado;
 
         public void SelectedItemChanged(object sender)
         {
@@ -81,35 +50,35 @@ namespace MadeInHouse.ViewModels.Compras
 
         }
 
+        EntityManager eM = new TableManager().getInstance(EntityName.Servicio);
 
         public void NuevoServicio()
         {
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(this);
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel { DisplayName = "Nuevo Servicio" };
             win.ShowWindow(obj);
         }
-
         public void EditarServicio()
         {
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado) { DisplayName = "Editar Servicio" };
             win.ShowWindow(obj);
         }
-
 
         public void EliminarServicio()
         {
-            eM.Eliminar(servicioSeleccionado);
-            ActualizarServicio();
+            
         }
 
         public void BuscarServicio()
         {
-            LstServicio = eM.Buscar(TxtProveedor, TxtNombre, TxtProducto) as List<Servicio>;
+            lstServicio = eM.Buscar(null) as List<Servicio>;
+            NotifyOfPropertyChange("LstServicio");
+
 
         }
 
         public void ActualizarServicio()
         {
-            LstServicio = eM.Buscar() as List<Servicio>;
+           
         }
     }
 }

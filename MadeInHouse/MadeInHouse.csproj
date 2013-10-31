@@ -87,17 +87,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
-    <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
-    <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />
-    <Compile Include="DataObjects\Compras\ServicioSQL.cs" />
-    <Compile Include="DataObjects\Compras\ServicioxProductoSQL.cs" />
-    <Compile Include="DataObjects\EntitySQL.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
-    <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
-    <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\DynamicGrid.cs" />
     <Compile Include="Manager\AccModuloManager.cs" />
     <Compile Include="Manager\AccVentanaManager.cs" />
@@ -128,21 +121,21 @@
     <Compile Include="Manager\ModoPagoManager.cs" />
     <Compile Include="Manager\MotivoISManager.cs" />
     <Compile Include="Manager\NotaISManager.cs" />
-    <Compile Include="Manager\OrdenCompraSQL.cs" />
+    <Compile Include="Manager\OrdenCompraManager.cs" />
     <Compile Include="Manager\PagoManager.cs" />
-    <Compile Include="Manager\ProductoSQL.cs" />
+    <Compile Include="Manager\ProductoManager.cs" />
     <Compile Include="Manager\ProductoxGuiaRemisionManager.cs" />
     <Compile Include="Manager\ProductoxNotaISManager.cs" />
-    <Compile Include="Manager\ProductoxOrdenCompraSQL.cs" />
+    <Compile Include="Manager\ProductoxOrdenCompraManager.cs" />
     <Compile Include="Manager\ProductoxSolicitudAbManager.cs" />
-    <Compile Include="Manager\ProductoxSolicitudAdSQL.cs" />
-    <Compile Include="Manager\ProveedorSQL.cs" />
-    <Compile Include="Manager\ProveedorxProductoSQL.cs" />
+    <Compile Include="Manager\ProductoxSolicitudAdManager.cs" />
+    <Compile Include="Manager\ProveedorManager.cs" />
+    <Compile Include="Manager\ProveedorxProductoManager.cs" />
     <Compile Include="Manager\PuestoManager.cs" />
     <Compile Include="Manager\PuntosManager.cs" />
     <Compile Include="Manager\RolManager.cs" />
     <Compile Include="Manager\ServicioManager.cs" />
-    <Compile Include="Manager\ServicioxProductoSQL.cs" />
+    <Compile Include="Manager\ServicioxProductoManager.cs" />
     <Compile Include="Manager\SolicitudAbastecimientoManager.cs" />
     <Compile Include="Manager\SolicitudAdquisicionManager.cs" />
     <Compile Include="Manager\SubLineaProductoManager.cs" />
@@ -164,6 +157,7 @@
     <Compile Include="DataObjects\Almacen\TipoZonaSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbigeoSQL.cs" />
     <Compile Include="DataObjects\Almacen\UnidadMedidaSQL.cs" />
+    <Compile Include="DataObjects\ComprasSQL.cs" />
     <Compile Include="DataObjects\DBConexion.cs" />
     <Compile Include="DataObjects\ReportesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccesoSQL.cs" />
@@ -179,16 +173,8 @@
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Almacen\Ubigeo.cs" />
     <Compile Include="Models\Almacen\UnidadMedida.cs" />
-    <Compile Include="Models\Compras\Cotizacion.cs" />
-    <Compile Include="Models\Compras\CotizacionxProducto.cs" />
-    <Compile Include="Models\Compras\DocPagoProveedor.cs" />
-    <Compile Include="Models\Compras\OrdenCompra.cs" />
-    <Compile Include="Models\Compras\ProductoxOrdenCompra.cs" />
-    <Compile Include="Models\Compras\ProductoxSolicitudAd.cs" />
-    <Compile Include="Models\Compras\Proveedor.cs" />
-    <Compile Include="Models\Compras\ProveedorxProducto.cs" />
+    <Compile Include="Models\Compras\CatalogoProveedor.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
-    <Compile Include="Model\prueba.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />
@@ -205,6 +191,7 @@
     <Compile Include="Models\Almacen\Tienda.cs" />
     <Compile Include="Models\Almacen\TipoZona.cs" />
     <Compile Include="Models\Almacen\Ubicacion.cs" />
+    <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\Seguridad\Usuario.cs" />
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="Model\AccModulo.cs" />
@@ -217,15 +204,15 @@
     <Compile Include="Model\Beneficio.cs" />
     <Compile Include="Model\CategoriaSalarial.cs" />
     <Compile Include="Model\MyWindowManager.cs" />
-    <Compile Include="Model\Compras\ProductoxOrdenCompra.cs" />
+    <Compile Include="Model\ProductoxOrdenCompra.cs" />
     <Compile Include="Model\Ventas\Cliente.cs" />
     <Compile Include="Model\Color.cs" />
-    <Compile Include="Model\Compras\Cotizacion.cs" />
-    <Compile Include="Model\Compras\CotizacionxProducto.cs" />
+    <Compile Include="Model\Cotizacion.cs" />
+    <Compile Include="Model\CotizacionxProducto.cs" />
     <Compile Include="Model\DetalleDevolucion.cs" />
     <Compile Include="Model\Ventas\DetalleVenta.cs" />
     <Compile Include="Model\Ventas\Devolucion.cs" />
-    <Compile Include="Model\Compras\DocPagoProveedor.cs" />
+    <Compile Include="Model\DocPagoProveedor.cs" />
     <Compile Include="Model\Empleado.cs" />
     <Compile Include="Model\GuiaRemision.cs" />
     <Compile Include="Model\Horario.cs" />
@@ -234,22 +221,22 @@
     <Compile Include="Model\ModoPago.cs" />
     <Compile Include="Model\MotivoIS.cs" />
     <Compile Include="Model\NotaIS.cs" />
-    <Compile Include="Model\Compras\OrdenCompra.cs" />
+    <Compile Include="Model\OrdenCompra.cs" />
     <Compile Include="Model\Ventas\Pago.cs" />
     <Compile Include="Model\Producto.cs" />
     <Compile Include="Model\ProductoxGuiaRemision.cs" />
     <Compile Include="Model\ProductoxNotaIS.cs" />
     <Compile Include="Model\ProductoxSolicitudAb.cs" />
-    <Compile Include="Model\Compras\ProductoxSolicitudAd.cs" />
-    <Compile Include="Model\Compras\Proveedor.cs" />
-    <Compile Include="Model\Compras\ProveedorxProducto.cs" />
+    <Compile Include="Model\ProductoxSolicitudAd.cs" />
+    <Compile Include="Model\Proveedor.cs" />
+    <Compile Include="Model\ProveedorxProducto.cs" />
     <Compile Include="Model\Puesto.cs" />
     <Compile Include="Model\Ventas\Puntos.cs" />
     <Compile Include="Model\Rol.cs" />
-    <Compile Include="Model\Compras\Servicio.cs" />
-    <Compile Include="Model\Compras\ServicioxProducto.cs" />
+    <Compile Include="Model\Servicio.cs" />
+    <Compile Include="Model\ServicioxProducto.cs" />
     <Compile Include="Model\SolicitudAbastecimiento.cs" />
-    <Compile Include="Model\Compras\SolicitudAdquisicion.cs" />
+    <Compile Include="Model\SolicitudAdquisicion.cs" />
     <Compile Include="Model\SubLineaProducto.cs" />
     <Compile Include="Model\Ventas\Tarjeta.cs" />
     <Compile Include="Model\Tienda.cs" />
@@ -286,7 +273,6 @@
     <Compile Include="ViewModels\Compras\BuscarCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
-    <Compile Include="ViewModels\Compras\BuscarProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
@@ -465,9 +451,6 @@
     </Compile>
     <Compile Include="Views\Compras\BuscarOrdenCompraView.xaml.cs">
       <DependentUpon>BuscarOrdenCompraView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Compras\BuscarProductoView.xaml.cs">
-      <DependentUpon>BuscarProductoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\CatalogoProductoProveedorView.xaml.cs">
       <DependentUpon>CatalogoProductoProveedorView.xaml</DependentUpon>
@@ -809,10 +792,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Compras\BuscarProductoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Compras\CatalogoProductoProveedorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1102,6 +1081,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\check.png" />
     <Resource Include="Assets\conf.png" />

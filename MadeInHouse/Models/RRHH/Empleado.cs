@@ -8,11 +8,6 @@ namespace MadeInHouse.Models.RRHH
 {
     class Empleado
     {
-        public string CodEmpleado
-        {
-            get { return codEmpleado; }
-            set { codEmpleado = value; }
-        }
         string dni;
 
         public string Dni
@@ -20,7 +15,13 @@ namespace MadeInHouse.Models.RRHH
             get { return dni; }
             set { dni = value; }
         }
-        
+        string sexo;
+
+        public string Sexo
+        {
+            get { return sexo; }
+            set { sexo = value; }
+        }
 
         string nombre;
 
@@ -60,13 +61,7 @@ namespace MadeInHouse.Models.RRHH
             get { return celular; }
             set { celular = value; }
         }
-        string sexo;
 
-        public string Sexo
-        {
-            get { return sexo; }
-            set { sexo = value; }
-        }
 
         string emailEmpleado;
 
@@ -199,8 +194,7 @@ namespace MadeInHouse.Models.RRHH
             get { return sueldo; }
             set { sueldo = value; }
         }
-        string codEmpleado;
-        
+
 
 
         public Empleado(string dni, string sexo, string nombre, string apePaterno, string apeMaterno, string telefono,

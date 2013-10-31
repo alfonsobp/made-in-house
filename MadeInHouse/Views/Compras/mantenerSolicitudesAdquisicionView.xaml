@@ -78,7 +78,10 @@
         <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="527,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="527,257,0,0" VerticalAlignment="Top"/>
         <GroupBox Header="Ingresar Detalles" HorizontalAlignment="Left" Margin="503,209,0,0" VerticalAlignment="Top" Width="167" Height="227"/>
-                <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="28,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Text="SOL-ADQ-9800121"/>
+        <Button  HorizontalAlignment="Left" Height="25" Margin="299,79,0,0" VerticalAlignment="Top" Width="64">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+        </Button>
+        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="28,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="262" Text="SOL-ADQ-9800121"/>
         <ToolBar VerticalAlignment="Top" Height="41">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

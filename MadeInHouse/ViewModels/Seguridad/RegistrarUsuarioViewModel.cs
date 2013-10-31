@@ -17,51 +17,13 @@ namespace MadeInHouse.ViewModels.Seguridad
 {
     class RegistrarUsuarioViewModel : PropertyChangedBase
     {
+
         public RegistrarUsuarioViewModel()
         {
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
-            indicador = 1;
         }
 
-
-        public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m)
-        {
-            RolSQL rolSQL = new RolSQL();
-            LstRol = rolSQL.ListarRol();
-            indicador = 1;
-
-        }
-
-        public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m, Usuario u)
-        {
-            RolSQL rolSQL = new RolSQL();
-            LstRol = rolSQL.ListarRol();
-            txtCodUsuario = u.CodEmpleado.ToString();
-            //Deshabilitar escritura en txtCodUsuario
-            //BTxtCodUsuario = u.CodEmpleado;
-            IdRolValue = u.Rol.IdRol;
-            indicador = 2;
-        }
-
-        private int indicador = 0;
-        //Binding TxtCodUsuario
-        string bTxtCodUsuario;
-
-        public string BTxtCodUsuario
-        {
-
-            get { return this.bTxtCodUsuario; }
-
-            set
-            {
-                if (this.bTxtCodUsuario == value)
-                    return;
-
-                this.bTxtCodUsuario = value;
-                NotifyOfPropertyChange("BTxtCodUsuario");
-            }
-        }
 
         private string txtCodUsuario;
 
@@ -113,43 +75,34 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void GuardarUsuario()
         {
-            //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
-            if (true)
+            Trace.WriteLine("textooooooo");
+            Trace.WriteLine("<"+txtCodUsuario+">");
+            Trace.WriteLine("<" + TxtContrasenhaTB + ">");
+            Trace.WriteLine("<" + TxtContrasenhaTB2 + ">");
+
+            if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) )
             {
 
-                int k =0;
+                int k;
 
                 CifrarAES cifradoAES = new CifrarAES();
 
                 string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
                         "MadeInHouse", "MD5", 22, "1234567891234567", 128);
 
-
                 Usuario u = new Usuario();
                 u.CodEmpleado = txtCodUsuario;
                 u.Contrasenha = ContrasenhaCifrada;
-                //u.IdRol = IdRolValue;
-                MessageBox.Show(""+IdRolValue);
-                u.Rol = RolSQL.buscarRolPorId(IdRolValue);
-                MessageBox.Show(""+u.Rol.IdRol);
+                u.IdRol = IdRolValue;
                 u.Estado = 1;
 
-                //REGISTRAR USUARIO
-                if (indicador == 1)
-                {
-                    k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
-
-                }
-                //EDITAR USUARIO
-                if(indicador == 2)
-                {
-                    k = DataObjects.Seguridad.UsuarioSQL.editarUsuario(u);
-                }
+                k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
                 else
                     MessageBox.Show("Usuario Registrado \n\nCodigo = " + txtCodUsuario + "\nContraseña = " + TxtContrasenhaTB);
+
             }
 
             else

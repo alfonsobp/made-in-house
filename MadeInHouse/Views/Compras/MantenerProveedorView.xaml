@@ -49,10 +49,8 @@
                     <Button Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
-            <Button x:Name="AgregarServicio" Height="50" Width="50">
-                <Image Source="/MadeInHouse;component/Assets/modificarEmpleado.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-            </Button>
-        </ToolBar>
+            <Button Height="50" Width="50"/>
+                </ToolBar>
     </Grid>
         </StackPanel>
     </Border>

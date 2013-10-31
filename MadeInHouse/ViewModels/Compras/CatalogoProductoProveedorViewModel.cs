@@ -7,10 +7,8 @@ using Caliburn.Micro;
 using System.Data.OleDb;
 using System.Data;
 using System.Windows;
-using MadeInHouse.Models.Compras;
-using MadeInHouse.Models.Almacen;
-using MadeInHouse.Models;
-using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Model;
+using MadeInHouse.Manager;
 
 
 
@@ -52,7 +50,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { prov = value; NotifyOfPropertyChange(() => Prov); }
         }
 
-        ProveedorxProductoSQL eM = new ProveedorxProductoSQL();
+        ProveedorxProductoManager eM = new ProveedorxProductoManager();
 
         public void Refrescar() {
 
@@ -63,7 +61,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void Eliminar() {
 
             if (prov != null) {
-                new ProveedorxProductoSQL().Eliminar(seleccionado);
+                new ProveedorxProductoManager().Eliminar(seleccionado);
                 Refrescar();
             }
         
@@ -92,15 +90,15 @@ namespace MadeInHouse.ViewModels.Compras
                 while (ds.Read())
                 {
                    ProveedorxProducto cp = new ProveedorxProducto();
-                    cp.IdProveedor = Prov.IdProveedor;
+                   cp.IdProveedor = Prov.IdProveedor;
                     cp.Producto = new Producto();
-                    cp.Producto.CodigoProd= ds["Codigo"].ToString();
+                    cp.Producto.CodProducto= ds["Codigo"].ToString();
                     cp.CodComercial = ds["Codigo Comercial"].ToString();
                     cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
                     cp.Descripcion = ds["Descripcion"].ToString();
                     cp.FechaAct = DateTime.Now;
                     cp.FechaReg = DateTime.Now;
-                    ProveedorxProductoSQL pp = new ProveedorxProductoSQL();
+                    ProveedorxProductoManager pp = new ProveedorxProductoManager();
                      int k = pp.Insertar(cp);
 
                     
@@ -150,7 +148,6 @@ namespace MadeInHouse.ViewModels.Compras
                 {
 
                     Cargar();
-                    Refrescar();
                 }
           
             }

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Manager
 {
-    class ProductoxOrdenCompraSQL:EntityManager
+    class ProductoxSolicitudAdManager:EntityManager
     {
+
         public int Agregar(object entity)
         {
             throw new NotImplementedException();

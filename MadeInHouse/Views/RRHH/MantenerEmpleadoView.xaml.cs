@@ -69,25 +69,6 @@ namespace MadeInHouse.Views.RRHH
             CmbTienda.Text = "";
                 
         }
-        
-        public void EliminarEmpleado(object sender, RoutedEventArgs e)
-        {
-            List<Empleado> grid = new List<Empleado>();
-            int indice, k;
-
-            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
-            indice = Lista.SelectedIndex;
-
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBoxResult result = MessageBox.Show("Esta seguro que desea eliminar a " + grid[indice].Nombre + " " + grid[indice].ApePaterno + " " +grid[indice].ApeMaterno, "Alerta", button, icon);
-
-            if (result == MessageBoxResult.Yes)
-            {
-                k = DataObjects.RRHH.EmpleadoSQL.EliminarEmpleado(grid[indice].Dni);
-                Refrescar(sender, e);
-            }
-        }
 
     }
 }

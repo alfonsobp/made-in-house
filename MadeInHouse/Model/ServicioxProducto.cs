@@ -17,7 +17,7 @@ namespace MadeInHouse.Model
         }
         Producto producto;
 
-        public Producto Producto
+        internal Producto Producto
         {
             get { return producto; }
             set { producto = value; }

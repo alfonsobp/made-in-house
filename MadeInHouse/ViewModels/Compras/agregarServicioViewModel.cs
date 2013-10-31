@@ -4,95 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using System.Data;
+using MadeInHouse.Model;
 using MadeInHouse.Views.Compras;
 using System.Windows;
-using System.Data.OleDb;
 using System.Collections.ObjectModel;
-using MadeInHouse.DataObjects.Compras;
-using MadeInHouse.DataObjects;
-using MadeInHouse.Models;
-using MadeInHouse.Models.Compras;
-using MadeInHouse.Models.Almacen;
+using MadeInHouse.Manager;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class agregarServicioViewModel : PropertyChangedBase
+    class agregarServicioViewModel : Screen
     {
 
-        //Constructores de la clase
+        public agregarServicioViewModel(Servicio s)
+        {
+
+            txtCodigo = s.CodServicio;
+            txtNombre = s.Nombre;
+            txtProveedor = Manager.ServicioManager.getCODfromProv(s.IdProveedor);
+            txtDescripcion = s.Descripcion;
+
+            //Editar servicio 
+            indicador = 2;
+        }
+
 
         public agregarServicioViewModel()
         {
-            //Servicio agregado desde la ventana principal
+            //Insertar servicio
             indicador = 1;
         }
 
-        public agregarServicioViewModel(string codProveedor)
-        {
-            //Servicio agregado desde la ventana mantenimiento de proveedor
-            txtProveedor = codProveedor;
-            indicador = 1;
-        }
-
-
-        public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m)
-        {
-
-            //Servicio para editar del buscador
-            txtCodigo = s.CodServicio;
-            txtNombre = s.Nombre;
-            txtProveedor = DataObjects.Compras.ServicioSQL.getCODfromProv(s.IdProveedor);
-            txtDescripcion = s.Descripcion;
-
-            LstProducto = sp.Buscar(s.IdServicio) as List<ServicioxProducto>;
-
-            indicador = 2;
-            model = m;
-        }
-
-
-        public agregarServicioViewModel(BuscadorServicioViewModel m)
-        {
-            //Servicio para insertar desde la ventana principal o del buscador
-            indicador = 1;
-            model = m;
-        }
-
-
-
-        //Atributos de la clase
-
-        int Id;
-
-        BuscadorServicioViewModel model;
-
+        EntityManager eM = new TableManager().getInstance(EntityName.Servicio);
         private int indicador;
-
-        ServicioxProductoSQL sp = new ServicioxProductoSQL();
-
-        UtilesSQL usql = new UtilesSQL();
-
-
-
-
-
-        private ServicioxProducto seleccionado;
-
-        public ServicioxProducto Seleccionado
-        {
-            get { return seleccionado; }
-            set { seleccionado = value; NotifyOfPropertyChange(() => Seleccionado); }
-        }
-
-        string path;
-
-        public string Path
-        {
-            get { return path; }
-            set { path = value; NotifyOfPropertyChange(() => Path); }
-        }
-
 
         private string txtCodigo;
 
@@ -126,188 +69,46 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtDescripcion = value; NotifyOfPropertyChange(() => TxtDescripcion); }
         }
 
-        private Proveedor prov;
 
-        public Proveedor Prov
-        {
-            get { return prov; }
-            set { prov = value; NotifyOfPropertyChange(() => Prov); }
-        }
-
-        List<ServicioxProducto> lstProducto;
-
-        public List<ServicioxProducto> LstProducto
-        {
-            get { return lstProducto; }
-            set { lstProducto = value; NotifyOfPropertyChange(() => LstProducto); }
-        }
-
-
-
-
-        //Funciones de la clase
-
-
-        public void BuscarProveedor()
-        {
-            MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new BuscadorProveedorViewModel(this));
-        }
-
-        public Boolean validar(Servicio s)
-        {
-
-            if (s.Descripcion == null || s.Nombre == null)
-            {
-                MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
 
         public void GuardarServicio()
         {
-            int k, y, i;
+            int k;
             Servicio s = new Servicio();
-
-            s.IdServicio = Id;
-
-            if (TxtProveedor == null)
-                TxtProveedor = Prov.CodProveedor;
-
-            s.IdProveedor = ServicioSQL.getIDfromProv(TxtProveedor);
+            s.IdProveedor = Manager.ServicioManager.getIDfromProv(TxtProveedor);
             s.Nombre = TxtNombre;
             s.Descripcion = TxtDescripcion;
             s.CodServicio = TxtCodigo;
 
-
-            if (validar(s) == true)
+            if (indicador == 1)
             {
-                if (indicador == 1)
-                {
-                    k = new ServicioSQL().Agregar(s);
-                    Id = usql.ObtenerMaximoID("Servicio", "idServicio");
+                k = eM.Agregar(s);
 
-                    if (LstProducto != null)
-                    {
-                        for (i = 0; i < LstProducto.Count; i++)
-                        {
-                            LstProducto[i].IdServicio = Id;
-                            y = sp.InsertarValidado(LstProducto[i]);
-                        }
-                    }
-
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Servicio Registrado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
-                                        "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
-                }
-
-                if (indicador == 2)
-                {
-
-                    k = new ServicioSQL().Actualizar(s);
-
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Servicio Editado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
-                                        "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
-
-                }
-
-                if (model != null)
-                    model.ActualizarServicio();
-            }
-            
-        }
-
-
-
-        //Funciones de carga masiva de datos desde Excel
-
-        public void Cargar()
-        {
-
-            if (path != "")
-            {
-
-                List<ServicioxProducto> lista = new List<ServicioxProducto>();
-
-                String name = "Catalogo-Serv";
-                String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
-                OleDbConnection con = new OleDbConnection(constr);
-                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-                con.Open();
-
-                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-                DataTable data = new DataTable();
-                sda.Fill(data);
-                DataTableReader ds = data.CreateDataReader();
-
-                while (ds.Read())
-                {
-
-                    ServicioxProducto cs = new ServicioxProducto();
-
-                    cs.Producto = new Producto();
-                    cs.Producto.CodigoProd = ds["Codigo"].ToString();
-                    cs.Producto.Nombre = ds["Nombre"].ToString();
-                    cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
-
-
-                    lista.Add(cs);
-                  
-                }
-
-                LstProducto = lista;
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                    MessageBox.Show("Servicio Registrado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
+                                    "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
             }
 
-
-        }
-
-        public void BuscarPath()
-        {
-
-            // Create OpenFileDialog
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-
-            // Set filter for file extension and default file extension
-            dlg.DefaultExt = ".txt";
-            dlg.Filter = "Text documents (.xlsx)|*.xlsx";
-
-            // Display OpenFileDialog by calling ShowDialog method
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Get the selected file name and display in a TextBox
-            if (result == true)
+            if (indicador == 2)
             {
-                // Open document
-                string filename = dlg.FileName;
-                Path = filename;
+                
+                k = eM.Actualizar(s);
+
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                    MessageBox.Show("Servicio Editado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
+                                    "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
 
             }
 
         }
 
-        public void Importar()
+        public void EliminarServicio()
         {
 
-                BuscarPath();
-
-                MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
-
-                if (r == MessageBoxResult.Yes)
-                {
-
-                Cargar();
-                }
-
-            
         }
 
     }

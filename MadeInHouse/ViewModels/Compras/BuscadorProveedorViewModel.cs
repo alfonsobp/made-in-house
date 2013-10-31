@@ -8,11 +8,10 @@ using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
-using MadeInHouse.DataObjects.Compras;
-using MadeInHouse.Models;
+using MadeInHouse.Manager;
+using MadeInHouse.Model;
 using System.Data.OleDb;
 using System.Data;
-using MadeInHouse.Models.Compras;
 
 
 namespace MadeInHouse.ViewModels.Compras
@@ -33,17 +32,9 @@ namespace MadeInHouse.ViewModels.Compras
             ActualizarProveedor();
         }
 
-        agregarServicioViewModel s;
-        public BuscadorProveedorViewModel(agregarServicioViewModel s)
-        {
-
-            this.s = s;
-            ActualizarProveedor();
-        }
-
         private MyWindowManager win = new MyWindowManager();
 
-        ProveedorSQL eM = new ProveedorSQL();
+        EntityManager eM = new TableManager().getInstance(EntityName.Proveedor);
 
         private string txtRuc;
 
@@ -105,24 +96,14 @@ namespace MadeInHouse.ViewModels.Compras
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
 
             if (p != null) {
-                p.Prov = proveedorSeleccionado;                
-            }
-
-            if (s != null)
-            {
-                s.Prov = proveedorSeleccionado;
+                p.Prov = proveedorSeleccionado;
+                
             }
         }
 
 
-        public void Limpiar() {
-            TxtCodigo = null;
-            TxtRuc = null;
-            TxtRazonSocial = null;
-            LstProveedor = null;
-            FechaIni = new DateTime(DateTime.Now.Year, 1, 1);
-            FechaFin = new DateTime(DateTime.Now.Year, 12, 31);
-        }
+
+       
      
         public void NuevoProveedor()
         {        
@@ -149,7 +130,11 @@ namespace MadeInHouse.ViewModels.Compras
         public void BuscarProveedor() 
         {
             
-            LstProveedor = eM.Buscar(TxtCodigo,TxtRuc,TxtRazonSocial,FechaIni,FechaFin) as List<Proveedor>;           
+    
+            
+            LstProveedor = eM.Buscar(TxtCodigo,TxtRuc,TxtRazonSocial,FechaIni,FechaFin) as List<Proveedor>;
+           
+ 
 
         }
 
@@ -217,7 +202,7 @@ namespace MadeInHouse.ViewModels.Compras
                     p.TelefonoContacto = ds["TelefonoContacto"].ToString();
                     p.Email = ds["Email"].ToString();
 
-                    new ProveedorSQL().Agregar(p);
+                    new ProveedorManager().Agregar(p);
 
                 }
 
@@ -230,20 +215,20 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void Importar() {
 
-       
+
             BuscarPath();
 
-            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? \n"+Path, "Importar", MessageBoxButton.YesNo);
+            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
 
             if (r == MessageBoxResult.Yes)
             {
 
                 Cargar();
-                MessageBox.Show("Se importó satisfactoriamente los proveedores ...");
-                LstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
+                MessageBox.Show("Se importó satisfactoriamente los proveedores");
+                LstProveedor = new ProveedorManager().Buscar() as List<Proveedor>;
             }
         
-         
+        
         }
 
     }

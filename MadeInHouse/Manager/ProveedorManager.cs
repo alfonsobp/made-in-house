@@ -1,4 +1,4 @@
-﻿using MadeInHouse.Models.Compras;
+﻿using MadeInHouse.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace MadeInHouse.Manager
 {
-    class ProveedorSQL : EntityManager
+    class ProveedorManager : EntityManager
     {
 
         public int Agregar(object entity)
@@ -18,7 +18,6 @@ namespace MadeInHouse.Manager
             DBConexion db = new DBConexion();
             int k = 0;
             Proveedor p = entity as Proveedor;
-
             db.cmd.CommandText = "INSERT INTO Proveedor(razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,RUC)" +
             "VALUES (@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefonoContacto,@email,@ruc)";
             db.cmd.CommandType = CommandType.Text;
@@ -63,6 +62,7 @@ namespace MadeInHouse.Manager
 
             String where="";
 
+           
 
             if (filters.Length > 1 && filters.Length <= 5)
             {
@@ -110,6 +110,8 @@ namespace MadeInHouse.Manager
                 db.cmd.CommandType = CommandType.Text;
                 db.cmd.Connection = db.conn;
 
+
+            
 
 
             try

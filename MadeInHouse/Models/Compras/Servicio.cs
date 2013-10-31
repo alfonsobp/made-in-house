@@ -9,36 +9,12 @@ namespace MadeInHouse.Models.Compras
     class Servicio
     {
 
-        int idServicio;
+        string codigo;
 
-        public int IdServicio
+        public string Codigo
         {
-            get { return idServicio; }
-            set { idServicio = value; }
-        }
-
-        string codServicio;
-
-        public string CodServicio
-        {
-            get { return codServicio; }
-            set { codServicio = value; }
-        }
-
-        string descripcion;
-
-        public string Descripcion
-        {
-            get { return descripcion; }
-            set { descripcion = value; }
-        }
-
-        int idProveedor;
-
-        public int IdProveedor
-        {
-            get { return idProveedor; }
-            set { idProveedor = value; }
+            get { return codigo; }
+            set { codigo = value; }
         }
 
         string nombre;
@@ -49,12 +25,35 @@ namespace MadeInHouse.Models.Compras
             set { nombre = value; }
         }
 
-        List<ServicioxProducto> lstProductos;
+        string descripcion;
 
-        public List<ServicioxProducto> LstProductos
+        public string Descripcion
         {
-            get { return lstProductos; }
-            set { lstProductos = value; }
+            get { return descripcion; }
+            set { descripcion = value; }
         }
+
+        string proveedor;
+
+        public string Proveedor
+        {
+            get { return proveedor; }
+            set { proveedor = value; }
+        }
+
+        public Servicio()
+        {
+
+        }
+
+        public Servicio(string codigo, string nombre, string descripcion,
+                        string proveedor)
+        {
+            this.codigo = codigo;
+            this.nombre = nombre;
+            this.descripcion = descripcion;
+            this.proveedor = proveedor;
+        }
+
     }
 }

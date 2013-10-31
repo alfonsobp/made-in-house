@@ -7,16 +7,15 @@ using Caliburn.Micro;
 using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
-using MadeInHouse.Models.Compras;
-using MadeInHouse.Models;
-using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Model;
+using MadeInHouse.Manager;
 
 namespace MadeInHouse.ViewModels.Compras
 {
     class MantenerProveedorViewModel: PropertyChangedBase
     {
 
-        public MantenerProveedorViewModel(Proveedor p, BuscadorProveedorViewModel model) {
+        public MantenerProveedorViewModel(Proveedor p,BuscadorProveedorViewModel model) {
 
             txtCodigo = p.CodProveedor;
             txtContacto = p.Contacto;
@@ -36,7 +35,6 @@ namespace MadeInHouse.ViewModels.Compras
 
         int Id;
         BuscadorProveedorViewModel model;
-
         public MantenerProveedorViewModel(BuscadorProveedorViewModel model)
         {
             this.model = model;
@@ -54,9 +52,7 @@ namespace MadeInHouse.ViewModels.Compras
         //indicador = 1 para insertar
         //indicador = 2 para editar
 
-        private MyWindowManager win = new MyWindowManager();
-
-        private ProveedorSQL eM;
+        private EntityManager eM;
 
         public int Indicador
         {
@@ -147,18 +143,6 @@ namespace MadeInHouse.ViewModels.Compras
                 return true;  
             }
         }
-
-        public void AgregarServicio()
-        {
-            if (indicador == 1)
-            {
-                List<Proveedor> lstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
-                txtCodigo = lstProveedor[lstProveedor.Count - 1].CodProveedor;
-
-                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(txtCodigo);
-                win.ShowWindow(obj);
-            }
-        }
         
         public void GuardarProveedor()
         {
@@ -178,7 +162,7 @@ namespace MadeInHouse.ViewModels.Compras
 
              if (validar(p) == true) {
 
-                eM =  new ProveedorSQL();
+                eM = new TableManager().getInstance(EntityName.Proveedor);
 
                 if (indicador == 1)
                 {

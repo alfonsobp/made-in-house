@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Manager
 {
-    class ProductoxSolicitudAdSQL:EntityManager
+    class ServicioxProductoManager:EntityManager
     {
 
         public int Agregar(object entity)

@@ -36,7 +36,7 @@
                         <Label Content="Código Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="59,22,0,0"/>
                         <Label Content="Confirmar Contraseña" HorizontalAlignment="Left" Margin="59,105,0,0" VerticalAlignment="Top" Width="131"/>
                         <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="59,62,0,0" VerticalAlignment="Top" Width="78"/>
-                        <TextBox x:Name="TxtCodUsuario"  IsEnabled="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="215,22,0,0"/>
+                        <TextBox x:Name="TxtCodUsuario" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="215,22,0,0"/>
                         <PasswordBox x:Name="TxtContrasenha" HorizontalAlignment="Left" Height="22" Margin="215,66,0,0" VerticalAlignment="Top" Width="135" PasswordChanged="TxtContrasenha_PasswordChanged"/>
                         <PasswordBox x:Name="TxtContrasenha2" HorizontalAlignment="Left" Height="22" Margin="215,109,0,0" VerticalAlignment="Top" Width="135" PasswordChanged="TxtContrasenha2_PasswordChanged"/>
                         <TextBox x:Name="TxtContrasenhaTB" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="297,48,0,0" Visibility="Hidden"/>

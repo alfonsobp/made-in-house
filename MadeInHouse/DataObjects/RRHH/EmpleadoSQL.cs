@@ -23,11 +23,11 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado) " +
-            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado)";
+            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco) " +
+            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@codEmpleado", p.CodEmpleado);
+
             cmd.Parameters.AddWithValue("@DNI", p.Dni);
             cmd.Parameters.AddWithValue("@sexo", p.Sexo);
             cmd.Parameters.AddWithValue("@nombre", p.Nombre);
@@ -87,7 +87,6 @@ namespace MadeInHouse.DataObjects.RRHH
                 while (reader.Read())
                 {
                     Empleado e = new Empleado();
-                    e.CodEmpleado = reader["codEmpleado"].ToString();
                     e.Dni = reader["DNI"].ToString();
                     e.Sexo = reader["sexo"].ToString();
                     e.ApePaterno = reader["apePaterno"].ToString();
@@ -127,34 +126,6 @@ namespace MadeInHouse.DataObjects.RRHH
             }
 
             return lstEmpleado;
-        }
-
-        public static int EliminarEmpleado(string dni)
-        {
-
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
-            int k = 0;
-
-            cmd.CommandText = "update Empleado set estado = 0 where DNI = " + dni;
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
-
-            try
-            {
-                conn.Open();
-                k = cmd.ExecuteNonQuery();
-                conn.Close();
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.StackTrace.ToString());
-            }
-
-
-
-            return k;
         }
 
 

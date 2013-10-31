@@ -57,6 +57,44 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
+        //public static List<ModuloVentana> BuscarModuloVentana(string idAccModulo, string idAccVentana)
+        //{
+
+        //    List<ModuloVentana> lstModuloVentana = new List<ModuloVentana>();
+        //    SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+        //    SqlCommand cmd = new SqlCommand();
+        //    SqlDataReader reader;
+
+        //    cmd.CommandText = "SELECT * FROM AccModulo";
+        //    cmd.CommandType = CommandType.Text;
+        //    cmd.Connection = conn;
+
+        //    try
+        //    {
+        //        conn.Open();
+        //        reader = cmd.ExecuteReader();
+
+        //        while (reader.Read())
+        //        {
+        //            ModuloVentana mv = new ModuloVentana();
+        //            mv.IdAccModulo = (int)reader["idAccModulo"];
+        //            mv.IdAccVentana = (int)reader["idAccVentana"];
+
+        //            lstModuloVentana.Add(mv);
+        //        }
+
+        //        conn.Close();
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        MessageBox.Show(e.StackTrace.ToString());
+        //    }
+
+        //    return lstModuloVentana;
+
+        //}
+
         public static int buscarIdRol(Usuario u)
         {
             int idRolEnc = 0;
@@ -93,6 +131,8 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         public static Rol buscarRolPorId(int idRol)
         {
+
+            Trace.WriteLine("<Flag0: leeguee! ");
             Rol r = null;
 
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
@@ -103,6 +143,8 @@ namespace MadeInHouse.DataObjects.Seguridad
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@idRol", idRol);
+
+            Trace.WriteLine("<Flag: leeguee! ");
 
             try
             {
