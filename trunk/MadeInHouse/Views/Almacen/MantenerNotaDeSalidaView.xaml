@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            mc:Ignorable="d" d:designHeight="444.197" d:designWidth="748.059">
+            mc:Ignorable="d" d:designHeight="444.197" d:designWidth="748.059" Height="451">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate  title="Nueva nota de salida"/>
@@ -24,7 +24,7 @@
                     <Button>
                         <Image Source="/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button x:Name="AgregarNotaSalida">
                         <Image Source="/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -40,42 +40,48 @@
 
                 <GroupBox Header="Datos Generales" HorizontalAlignment="Left" Margin="17,55,0,0" Width="345" Height="354" VerticalAlignment="Top">
                     <Grid Margin="2,-9,-12,-12" HorizontalAlignment="Left" Width="343">
-
-
-                        <Label Content="Fecha:" HorizontalAlignment="Left" Margin="17,119,0,0" VerticalAlignment="Top" Width="62" Height="26"/>
                         <Label Content="Doc. Ref.:" HorizontalAlignment="Left" Margin="17,86,0,0" VerticalAlignment="Top" Width="62" Height="26"/>
-                        <Button x:Name="AbrirListarOrdenesCompra" HorizontalAlignment="Left" Margin="287,86,0,0" VerticalAlignment="Top" Width="24" Height="26">
-                            <Image Source="/Assets/find.png" />
+                        <Button x:Name="CargarProductos" HorizontalAlignment="Left" Margin="287,86,0,0" VerticalAlignment="Top" Width="24" Height="26">
+                            <Image Source="/Assets/Lightning.png" />
                         </Button>
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
                         <Label Content="Motivo:" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Height="26" Width="50"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="120,55,0,0" VerticalAlignment="Top" Width="155" Height="22">
-                            <ComboBoxItem Content="Orden de despacho" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Traslado" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Robo" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Desperfectos" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Otros" HorizontalAlignment="Left" Width="118"/>
+                        <TextBox x:Name="TxtCod" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
+                        <TextBox x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" IsEnabled="{Binding Estado}"/>
+                        <ComboBox  ItemsSource="{Binding CmbMotivo}"
+        						SelectedValue="{Binding SelectedMotivo, Mode=OneWayToSource}"
+        						DisplayMemberPath="NombreMotivo"
+                                SelectedIndex="0"
+        						SelectedValuePath="Id"
+                                HorizontalAlignment="Left" 
+                                Margin="120,55,0,0" 
+                                VerticalAlignment="Top" 
+                                Width="155" 
+                                Height="22">
+
+                            
+
                         </ComboBox>
-                        <DatePicker HorizontalAlignment="Left" Margin="118,119,0,0" VerticalAlignment="Top" Width="157" Height="24"/>
-                        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="17,150,0,0" VerticalAlignment="Top"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="120,154,0,0" VerticalAlignment="Top" Width="193"/>
-                        <Label Content="Responsable:" HorizontalAlignment="Left" Margin="17,184,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="120,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
-                        <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="17,215,0,0" VerticalAlignment="Top"/>
-                        <TextBox Height="104" Margin="118,215,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="17,117,0,0" VerticalAlignment="Top"/>
+                        <ComboBox 
+                            ItemsSource="{Binding Almacen}"
+        				    DisplayMemberPath="Nombre"
+                            SelectedIndex="0"
+        				    SelectedValuePath="IdAlmacen"
+                            HorizontalAlignment="Left" Margin="120,121,0,0" VerticalAlignment="Top" Width="193"
+                            IsEnabled="False"/>
+                        <Label Content="Responsable:" HorizontalAlignment="Left" Margin="17,151,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="Responsable" HorizontalAlignment="Left" Height="23" Margin="120,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
+                        <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="17,182,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="Observaciones" Height="104" Margin="118,190,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                     </Grid>
                 </GroupBox>
 
-
-
-
-                <DataGrid x:Name="productos" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top">
+                <DataGrid x:Name="LstProductos" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Codigo" Width="120"/>
-                        <DataGridTextColumn Header="Nombre" Width="180"/>
-                        <DataGridTextColumn Header="Cantidad" Width="200"/>
+                        <DataGridTextColumn Binding="{Binding Path=ProId}" Header="Codigo" Width="120"/>
+                        <DataGridTextColumn Binding="{Binding Path=ProNombre}" Header="Nombre" Width="180"/>
+                        <DataGridTextColumn Binding="{Binding Path=Can}" Header="Cantidad" Width="200"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
@@ -83,17 +89,17 @@
                 <GroupBox Header="Productos" Margin="0,55,17,0" Height="153" VerticalAlignment="Top" HorizontalAlignment="Right" Width="364">
                     <Grid Margin="-3,0,-2,-3" HorizontalAlignment="Right" Width="357" Height="134" VerticalAlignment="Top">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="75"/>
-                        <TextBox HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
+                        <TextBox x:Name="TxtCodPro" HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
                         <Label Content="Cantidad Real:" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" Width="90"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                        <TextBox x:Name="TxtCantPro" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                         <Button x:Name="AbrirPosicionProducto" Content="Ubicar" HorizontalAlignment="Left" Margin="256,95,0,0" VerticalAlignment="Top" Width="91" Height="26"/>
-                        <Button  HorizontalAlignment="Left" Margin="261,10,0,0" VerticalAlignment="Top" Width="24" Height="26">
+                        <Button x:Name="BuscarProducto"  HorizontalAlignment="Left" Margin="261,10,0,0" VerticalAlignment="Top" Width="24" Height="26">
                             <Image Source="/Assets/find.png" />
                         </Button>
-                        <Button HorizontalAlignment="Left" Margin="308,10,0,0" VerticalAlignment="Top" Width="39" Height="26">
+                        <Button x:Name="AgregarProducto" HorizontalAlignment="Left" Margin="308,10,0,0" VerticalAlignment="Top" Width="39" Height="26">
                             <Image Source="/Assets/add.png" />
                         </Button>
-                        <Button HorizontalAlignment="Left" Margin="308,50,0,0" VerticalAlignment="Top" Width="39" Height="26">
+                        <Button x:Name="QuitarProducto" HorizontalAlignment="Left" Margin="308,50,0,0" VerticalAlignment="Top" Width="39" Height="26">
                             <Image Source="/Assets/minus.png" />
                         </Button>
 
