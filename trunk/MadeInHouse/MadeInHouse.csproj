@@ -250,7 +250,7 @@
     <Compile Include="Model\Ventas\Puntos.cs" />
     <Compile Include="Model\Rol.cs" />
     <Compile Include="Model\Compras\Servicio.cs" />
-    <Compile Include="Model\Compras\ServicioxProducto.cs" />
+    <Compile Include="Models\Compras\ServicioxProducto.cs" />
     <Compile Include="Model\SolicitudAbastecimiento.cs" />
     <Compile Include="Model\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Model\SubLineaProducto.cs" />

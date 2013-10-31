@@ -47,7 +47,7 @@ namespace MadeInHouse.Model
             get { return nombre; }
             set { nombre = value; }
         }
-
+        /*
         List<ServicioxProducto> lstProductos;
 
         public List<ServicioxProducto> LstProductos
@@ -55,5 +55,6 @@ namespace MadeInHouse.Model
             get { return lstProductos; }
             set { lstProductos = value; }
         }
+         */
     }
 }

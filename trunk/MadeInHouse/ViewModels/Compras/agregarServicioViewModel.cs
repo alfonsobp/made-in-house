@@ -11,9 +11,8 @@ using System.Data.OleDb;
 using System.Collections.ObjectModel;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.DataObjects;
-using MadeInHouse.Model;
 using MadeInHouse.Models.Almacen;
-using MadeInHouse.Model;
+using MadeInHouse.Models.Compras;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -35,7 +34,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 1;
         }
 
-        /*
+        
         public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m)
         {
 
@@ -50,7 +49,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 2;
             model = m;
         }
-        */
+        
 
         public agregarServicioViewModel(BuscadorServicioViewModel m)
         {
@@ -171,7 +170,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void GuardarServicio()
         {
             int k, y, i;
-            MadeInHouse.Models.Compras.Servicio s = null;//new Servicio();
+            Servicio s = new Servicio();
 
             s.IdServicio = Id;
 
@@ -220,8 +219,8 @@ namespace MadeInHouse.ViewModels.Compras
 
                 }
 
-                //if (model != null)
-                  //  model.ActualizarServicio();
+                if (model != null)
+                    model.ActualizarServicio();
             }
             
         }
@@ -254,10 +253,10 @@ namespace MadeInHouse.ViewModels.Compras
 
                     ServicioxProducto cs = new ServicioxProducto();
 
-                    //cs.Producto = new Producto();
-                    //cs.Producto.CodigoProd = ds["Codigo"].ToString();
-                    //cs.Producto.Nombre = ds["Nombre"].ToString();
-                    //cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
+                    cs.Producto = new Producto();
+                    cs.Producto.CodigoProd = ds["Codigo"].ToString();
+                    cs.Producto.Nombre = ds["Nombre"].ToString();
+                    cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
 
 
                     lista.Add(cs);
