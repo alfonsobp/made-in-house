@@ -11,8 +11,7 @@ using System.Data.OleDb;
 using System.Collections.ObjectModel;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.DataObjects;
-using MadeInHouse.Models;
-using MadeInHouse.Models.Compras;
+using MadeInHouse.Model;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Model;
 
@@ -221,8 +220,8 @@ namespace MadeInHouse.ViewModels.Compras
 
                 }
 
-                if (model != null)
-                    model.ActualizarServicio();
+                //if (model != null)
+                  //  model.ActualizarServicio();
             }
             
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using MadeInHouse.Models.Ventas;
+using MadeInHouse.Model.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.Models.Almacen;
 using System.Windows.Controls;

@@ -171,6 +171,7 @@
     <Compile Include="DataObjects\Seguridad\RolSQL.cs" />
     <Compile Include="DataObjects\UtilesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\UsuarioSQL.cs" />
+    <Compile Include="DataObjects\Ventas\ClienteSQL.cs" />
     <Compile Include="Models\Almacen\Almacen.cs" />
     <Compile Include="Models\Almacen\Color.cs" />
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
@@ -199,7 +200,7 @@
     <Compile Include="Models\Seguridad\Acceso.cs" />
     <Compile Include="Models\Seguridad\RolxAccVentana.cs" />
     <Compile Include="Models\Ventas\Cliente.cs" />
-    <Compile Include="Models\Ventas\ClienteGateway.cs" />
+    <Compile Include="Models\Ventas\ClienteModel.cs" />
     <Compile Include="Models\MyWindowManager.cs" />
     <Compile Include="Models\Almacen\SubLineaProducto.cs" />
     <Compile Include="Models\Almacen\Tienda.cs" />
