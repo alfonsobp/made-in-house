@@ -8,7 +8,6 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.Model.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using System.Windows.Controls;
-using MadeInHouse.Model.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -29,6 +28,7 @@ namespace MadeInHouse.ViewModels.Ventas
            subt = 0;
            desc = 0;
            igv_total = 0;
+           total = 0;
         }
 
 
@@ -123,7 +123,7 @@ namespace MadeInHouse.ViewModels.Ventas
             dv.Descripcion = p.Nombre;
             dv.Descuento = 0;
             dv.Precio = p.Precio;
-            dv.SubTotal = p.Precio * Convert.ToDouble(TxtCantidad);
+            dv.SubTotal = p.Precio * Convert.ToInt32(TxtCantidad);
             dv.Cantidad = Convert.ToInt32(TxtCantidad);
 
             List<DetalleVenta> aux = new List<DetalleVenta>();
@@ -138,8 +138,9 @@ namespace MadeInHouse.ViewModels.Ventas
             TxtSubTotal = subt.ToString();
             desc += dv.Descuento;
             TxtDescuentoTotal = desc.ToString();
-            igv_total = (subt - desc) *  IGV;
-            total += (subt - desc) * (1 - IGV);
+            igv_total += (subt - desc) *  IGV;
+            TxtIGVTotal = igv_total.ToString();
+            total += (subt - desc) * (1 + IGV);
             TxtTotal = total.ToString();
         }
 

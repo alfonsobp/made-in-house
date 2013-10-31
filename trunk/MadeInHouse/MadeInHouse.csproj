@@ -189,6 +189,8 @@
     <Compile Include="Models\Compras\Proveedor.cs" />
     <Compile Include="Models\Compras\ProveedorxProducto.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
+    <Compile Include="Models\Ventas\DetalleVenta.cs" />
+    <Compile Include="Models\Ventas\Venta.cs" />
     <Compile Include="Model\prueba.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />

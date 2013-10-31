@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using MadeInHouse.Model.Ventas;
 using MadeInHouse.Models.Almacen;
 using System.Windows;
-using MadeInHouse.Model.Ventas;
 
 namespace MadeInHouse.DataObjects.Ventas
 {

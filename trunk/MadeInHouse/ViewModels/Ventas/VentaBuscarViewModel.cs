@@ -40,6 +40,23 @@ namespace MadeInHouse.ViewModels.Ventas
             ventaSeleccionada = ((sender as DataGrid).SelectedItem as Venta);
         }
 
+        private DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 1);
+
+        public DateTime FechaInicio
+        {
+            get { return fechaInicio; }
+            set { fechaInicio = value; NotifyOfPropertyChange(() => FechaInicio); }
+        }
+
+
+        private DateTime fechaFin = new DateTime(DateTime.Now.Year, 12, 31);
+
+        public DateTime FechaFin
+        {
+            get { return fechaFin; }
+            set { fechaFin = value; NotifyOfPropertyChange(() => FechaFin); }
+        }
+
         private string txtDocPago;
 
         public string TxtDocPago
