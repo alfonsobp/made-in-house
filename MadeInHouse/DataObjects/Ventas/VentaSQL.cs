@@ -5,18 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using MadeInHouse.Model.Ventas;
+using MadeInHouse.Models.Ventas;
 
-namespace MadeInHouse.Manager
+namespace MadeInHouse.DataObjects.Ventas
 {
-    class VentaManager:EntityManager
+    class VentaSQL
     {
 
-
-        public int Agregar(object entity)
+        public int Agregar(Venta v)
         {
             DBConexion db = new DBConexion();
-            Venta v = entity as Venta;
             int k = 0;
 
             db.cmd.CommandText = "INSERT INTO Venta(numDocPago,tipoDocPago,monto,descuento,IGV,ptsGanados,fechaReg,estado,idUsuario,idCliente)" +
@@ -27,7 +25,7 @@ namespace MadeInHouse.Manager
             db.cmd.Parameters.AddWithValue("@descuento", v.Descuento);
             db.cmd.Parameters.AddWithValue("@IGV", v.Igv);
             db.cmd.Parameters.AddWithValue("@ptsGanados", 0);
-            db.cmd.Parameters.AddWithValue("@fechaReg", new DateTime());
+            db.cmd.Parameters.AddWithValue("@fechaReg", v.FechaReg);
             db.cmd.Parameters.AddWithValue("@estado",   1);
             db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
             db.cmd.Parameters.AddWithValue("@idCliente", v.IdCliente);
@@ -45,7 +43,7 @@ namespace MadeInHouse.Manager
                 v.IdVenta = Convert.ToInt32(rs["idVenta"].ToString());
 
                 //guardar el detalle de la venta
-                DetalleVentaManager dvm = new DetalleVentaManager();
+                DetalleVentaSQL dvm = new DetalleVentaSQL();
                 foreach (DetalleVenta dv in v.LstDetalle)
                 {
                     dvm.Agregar(v,dv);
