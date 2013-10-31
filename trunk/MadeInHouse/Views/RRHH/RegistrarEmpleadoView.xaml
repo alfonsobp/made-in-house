@@ -50,8 +50,8 @@
                             <Label Content="Celular:" HorizontalAlignment="Left" Margin="451,193,0,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="1.17,0.385"/>
                             <Label Content="E-mail:" HorizontalAlignment="Left" Margin="451,224,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.043,0.538"/>
 
-                            <TextBox Name="TxtCodEmp" HorizontalAlignment="Left" Height="23" Margin="137,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
-                            <TextBox Name="TxtDni" HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" Text="46065492"/>
+                            <TextBox Name="TxtCodEmp" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="137,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
+                            <TextBox Name="TxtDni" HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" />
                             <TextBox Name="TxtNomb" HorizontalAlignment="Left" Height="23" Margin="137,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="135"/>
                             <TextBox Name="TxtApePat" HorizontalAlignment="Left" Height="23" Margin="137,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>
                             <TextBox Name="TxtApeMat" HorizontalAlignment="Left" Height="23" Margin="137,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="107"/>

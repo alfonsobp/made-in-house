@@ -24,11 +24,14 @@ namespace MadeInHouse.Views.RRHH
 
     public partial class MantenerEmpleadoView : UserControl
     {
+        static public string INDICEMP;
+        private List<Empleado> grid;
+
         public MantenerEmpleadoView()
         {
             InitializeComponent();
 
-            List<Empleado> grid = new List<Empleado>();
+            grid = new List<Empleado>();
 
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("","","","","","");
 
@@ -72,7 +75,7 @@ namespace MadeInHouse.Views.RRHH
         
         public void EliminarEmpleado(object sender, RoutedEventArgs e)
         {
-            List<Empleado> grid = new List<Empleado>();
+            grid = new List<Empleado>();
             int indice, k;
 
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
@@ -89,5 +92,11 @@ namespace MadeInHouse.Views.RRHH
             }
         }
 
+        public void ActualizarEMP(object sender, RoutedEventArgs e)
+        {
+            if (Lista.SelectedIndex == -1) INDICEMP = grid[0].Dni;
+            else INDICEMP = grid[Lista.SelectedIndex].Dni;
+            
+        }
     }
 }

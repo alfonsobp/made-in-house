@@ -19,7 +19,7 @@
                     <Button ToolTip="Nuevo empleado" x:Name="AbrirRegistrarEmpleado" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,3" >
                         <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
                     </Button>
-                    <Button ToolTip="Editar empleado" x:Name="AbrirEditarEmpleado" >
+                    <Button ToolTip="Editar empleado" x:Name="AbrirEditarEmpleado" Click="ActualizarEMP">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
                     <Button ToolTip="Guardar cambios">
@@ -81,8 +81,8 @@
                             </Grid>
                         </GroupBox>
 
-                        <DataGrid Name="Lista" Margin="10,182,10,0">
-                            <DataGrid.Columns>
+                        <DataGrid Name="Lista" Margin="10,182,10,0" >
+                            <DataGrid.Columns >
                                 <!-- aqui van las columnas en caso no kiera mostrar todas -->
                             </DataGrid.Columns>                            
                         </DataGrid>
