@@ -87,6 +87,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
+    <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />
     <Compile Include="DataObjects\Compras\ServicioSQL.cs" />
@@ -177,7 +179,9 @@
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />
     <Compile Include="Models\Almacen\Motivo.cs" />
+    <Compile Include="Models\Almacen\NotaIS.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
+    <Compile Include="Models\Almacen\ProductoCant.cs" />
     <Compile Include="Models\Almacen\Ubigeo.cs" />
     <Compile Include="Models\Almacen\UnidadMedida.cs" />
     <Compile Include="Models\Compras\Cotizacion.cs" />
@@ -278,6 +282,7 @@
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ProductoMovimientosViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />

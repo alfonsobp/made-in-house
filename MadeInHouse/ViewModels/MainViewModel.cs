@@ -110,9 +110,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[8] == 1)
-            {
-                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
-                win.ShowWindow(abrirNotaIView);
+            { 
+                win.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
+        
             }
         }
 
@@ -769,7 +769,7 @@ namespace MadeInHouse.ViewModels
         
 */
 
-//***************************************************************************************************************
+        //***************************************************************************************************************
         //MODULO ALMACÉN: 1
         #region Almacen
         //Ventana Externa: 1.1
@@ -820,8 +820,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.8
         public void AbrirMantenerNotaDeSalida()
         {
-                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
-                win.ShowWindow(abrirNotaIView);
+                win.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
         }
 
         //Ventana Externa: 1.9
