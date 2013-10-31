@@ -90,7 +90,8 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void EditarServicio()
         {
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
+            //Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
+            Compras.agregarServicioViewModel obj = null;
             win.ShowWindow(obj);
         }
 

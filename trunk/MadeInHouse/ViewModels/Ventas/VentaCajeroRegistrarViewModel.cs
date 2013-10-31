@@ -8,6 +8,7 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using System.Windows.Controls;
+using MadeInHouse.Model.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
