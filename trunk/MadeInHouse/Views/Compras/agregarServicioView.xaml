@@ -27,7 +27,7 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="70" Header="Cod. Prod"/>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Width="100" Header="Nomb. Prod"/>
-                                <DataGridTextColumn Binding="{Binding Path=Precio}" Width="800" Header="Precio"/>
+                                <DataGridTextColumn Binding="{Binding Path=Precio}" Width="80" Header="Precio"/>
                             </DataGrid.Columns>
                         </DataGrid>
                 <Label Content="Productos soportados" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top"/>
