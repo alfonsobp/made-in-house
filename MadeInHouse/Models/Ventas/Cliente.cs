@@ -11,9 +11,11 @@ namespace MadeInHouse.Models.Ventas
     {
         public int id { get; set; }
         public string dni { get; set; }
+        public string documento { get; set; }
         public string nombre { get; set; }
         public string apePaterno { get; set; }
         public string apeMaterno { get; set; }
+        public string nombreCompleto { get; set; }
         public int sexo { get; set; }
         public string fecNacimiento { get; set; }
         public string direccion { get; set; }

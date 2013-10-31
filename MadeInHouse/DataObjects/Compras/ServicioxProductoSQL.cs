@@ -1,7 +1,7 @@
 ﻿using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Model;
 using MadeInHouse.Models.Almacen;
-using MadeInHouse.Models.Compras;
+using MadeInHouse.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;

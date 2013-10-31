@@ -7,12 +7,14 @@ using Caliburn.Micro;
 using System.Windows;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Ventas;
+using MadeInHouse.DataObjects.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
     class ClienteBuscarViewModel : PropertyChangedBase
     {
-        private ClienteGateway cliGateway;
+        private ClienteModel cliGateway;
+        private ClienteSQL cliSQL;
         private MyWindowManager win = new MyWindowManager();
 
         public void AbrirRegistrarcliente()
@@ -27,8 +29,9 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public ClienteBuscarViewModel()
         {
-            cliGateway = new ClienteGateway();
-            Clientes = cliGateway.BuscarClientes();
+            cliSQL = new ClienteSQL();
+            Clientes = cliSQL.BuscarClientes();
+
             
             Console.WriteLine(Clientes);
         }
@@ -54,23 +57,23 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
-        private Dictionary<string, int> sexo = new Dictionary<string, int>()
+        private Dictionary<string, int> tipoCliente = new Dictionary<string, int>()
         {
-            { "Seleccionar", -1 }, { "No sabe", 0 }, { "Masculino", 1 }, { "Femenino", 2 }, { "No aplica", 9 }
+            { "Seleccionar", -1 }, { "Persona", 0 }, { "Empresa", 1 }
         };
 
-        public BindableCollection<string> cmbSexo
+        public BindableCollection<string> cmbTipoCliente
         {
             get
             {
-                return new BindableCollection<string>(sexo.Keys);
+                return new BindableCollection<string>(tipoCliente.Keys);
             }
         }
 
-        public void RealizarBusqueda(string tarjeta, string dni, string telefono, string nombre, string cmbSexo, string ruc, string razonSocial, string registroDesde, string registroHasta)
+        public void RealizarBusqueda(string dni, string nombre, string cmbTipoCliente, string registroDesde, string registroHasta)
         {
-            cliGateway = new ClienteGateway();
-            Clientes = cliGateway.BuscarClientes(tarjeta, dni, telefono, nombre, sexo[cmbSexo], ruc, razonSocial, registroDesde, registroHasta);
+            cliSQL = new ClienteSQL();
+            Clientes = cliSQL.BuscarClientes(dni, nombre, tipoCliente[cmbTipoCliente], registroDesde, registroHasta);
         }
     }
 }

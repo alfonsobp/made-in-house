@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using MadeInHouse.Models.Ventas;
+using MadeInHouse.Model.Ventas;
 using MadeInHouse.Models.Almacen;
 using System.Windows;
 using MadeInHouse.Model.Ventas;

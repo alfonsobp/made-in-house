@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using MadeInHouse.Models.Ventas;
+using MadeInHouse.Model.Ventas;
 using MadeInHouse.Model.Ventas;
 
 namespace MadeInHouse.DataObjects.Ventas
