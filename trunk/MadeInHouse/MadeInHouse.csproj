@@ -96,6 +96,8 @@
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
+    <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
+    <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\DynamicGrid.cs" />
     <Compile Include="Manager\AccModuloManager.cs" />
     <Compile Include="Manager\AccVentanaManager.cs" />
@@ -186,8 +188,6 @@
     <Compile Include="Models\Compras\Proveedor.cs" />
     <Compile Include="Models\Compras\ProveedorxProducto.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
-    <Compile Include="Models\Compras\ServicioxProducto.cs" />
-    <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Model\prueba.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
@@ -1101,11 +1101,6 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Model\Almacen\" />
-    <Folder Include="Model\RRHH\" />
-    <Folder Include="Model\Seguridad\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\check.png" />

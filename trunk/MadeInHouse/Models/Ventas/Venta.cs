@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadeInHouse.Model.Ventas
+namespace MadeInHouse.Models.Ventas
 {
     class Venta
     {
@@ -27,77 +27,77 @@ namespace MadeInHouse.Model.Ventas
             get { return idVenta; }
             set { idVenta = value; }
         }
-        
+
 
         public int CodTarjeta
         {
             get { return codTarjeta; }
             set { codTarjeta = value; }
         }
-        
+
 
         public double Descuento
         {
             get { return descuento; }
             set { descuento = value; }
         }
-        
+
 
         public int Estado
         {
             get { return estado; }
             set { estado = value; }
         }
-        
+
 
         public DateTime FechaMod
         {
             get { return fechaMod; }
             set { fechaMod = value; }
         }
-        
+
 
         public DateTime FechaReg
         {
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        
+
 
         public int IdUsuario
         {
             get { return idUsuario; }
             set { idUsuario = value; }
         }
-        
+
 
         public double Igv
         {
             get { return igv; }
             set { igv = value; }
         }
-        
+
 
         public double Monto
         {
             get { return monto; }
             set { monto = value; }
         }
-        
+
 
         public string NumDocPago
         {
             get { return numDocPago; }
             set { numDocPago = value; }
         }
-        
+
 
         public int PtosGanados
         {
             get { return ptosGanados; }
             set { ptosGanados = value; }
         }
-        
+
 
         public string TipoDocPago
         {

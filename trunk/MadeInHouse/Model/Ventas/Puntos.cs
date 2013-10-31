@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MadeInHouse.Model
+namespace MadeInHouse.Model.Ventas
 {
     class Puntos
     {
