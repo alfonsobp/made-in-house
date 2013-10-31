@@ -24,12 +24,9 @@
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
                 <DataGrid IsReadOnly="True"   SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
-                    <DataGrid.Columns>
-                          <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd }" Header="Código"/>
-                          <DataGridTextColumn Binding="{Binding Path=Producto.Nombre }" Header="Producto" Width="110"/>
-                          <DataGridTextColumn Binding="{Binding Precio}" Header="Precio" Width="100"/>
-                </DataGrid.Columns>
-                </DataGrid>
+                            <DataGrid.Columns>
+                            </DataGrid.Columns>
+                        </DataGrid>
                 <Label Content="Productos soportados" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top"/>
                 <Button HorizontalAlignment="Left" Height="38" Margin="534,106,0,0" VerticalAlignment="Top" Width="34">
                     <Image Source="/Assets/add.png" Height="20" Width="50" />
