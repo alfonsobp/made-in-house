@@ -23,14 +23,24 @@ namespace MadeInHouse.Views.RRHH
     /// </summary>
     public partial class RegistrarEmpleadoView : UserControl
     {
+        private List<Empleado> grid;
+
         public RegistrarEmpleadoView()
         {
             InitializeComponent();
+
+            grid = new List<Empleado>();
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
+
+            MessageBox.Show(TxtCodEmp.Text = "EMP-" + grid.Count);
+             
+            
         }
 
 
         public void GuardarDatos(object sender, RoutedEventArgs e)
-        {
+        {   
+
             Empleado emp;
             emp = new Empleado();
             emp.CodEmpleado = TxtCodEmp.Text;
@@ -58,7 +68,7 @@ namespace MadeInHouse.Views.RRHH
             else emp.Sueldo = 0;
             emp.Banco = TxtBanco.Text;
             emp.CuentaBancaria = TxtCuentaBancaria.Text;
-
+            
             if (!Regex.IsMatch(emp.Dni, "^[0-9]{8}$")) { MessageBox.Show("Inserte un DNI valido"); }
             else if (emp.CodEmpleado == "") { MessageBox.Show("Inserte un codigo valido"); }
             else if (emp.Nombre == "") { MessageBox.Show("Inserte un nombre valido"); }
@@ -70,8 +80,7 @@ namespace MadeInHouse.Views.RRHH
             else if (emp.Puesto == "") { MessageBox.Show("Inserte un puesto valido"); }
             else if (emp.Area == "") { MessageBox.Show("Inserte una area valida"); }
             else if (emp.Banco == "") { MessageBox.Show("Inserte un banco valido"); }
-            else if (emp.CuentaBancaria == "") { MessageBox.Show("Inserte una cuenta bancaria valida"); }
-            
+            else if (emp.CuentaBancaria == "") { MessageBox.Show("Inserte una cuenta bancaria valida"); }            
             else
             {
                 int k;
@@ -91,7 +100,8 @@ namespace MadeInHouse.Views.RRHH
 
         public void Limpiar(object sender, RoutedEventArgs e)
         {
-            TxtCodEmp.Text = "";
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
+            TxtCodEmp.Text = TxtCodEmp.Text = "EMP-" + grid.Count;
             TxtDni.Text = "";
             TxtNomb.Text = "";
 
@@ -115,7 +125,16 @@ namespace MadeInHouse.Views.RRHH
 
         }
         
-
+        
+        private bool revisarDNI(Empleado emp)
+        {
+            grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
+            for (int i = 0; grid.Count < i;i++ )
+            {
+                if (grid[i].Dni.CompareTo(emp.Dni) == 0) return false;
+            }
+            return true;
+        }
 
 
     }
