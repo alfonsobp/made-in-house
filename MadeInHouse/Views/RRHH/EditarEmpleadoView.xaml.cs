@@ -123,10 +123,8 @@ namespace MadeInHouse.Views.RRHH
 
         public void Limpiar(object sender, RoutedEventArgs e)
         {
-            TxtCodEmp.Text = "";
-            TxtDni.Text = "";
+           
             TxtNomb.Text = "";
-
             TxtApePat.Text = "";
             TxtApeMat.Text = "";
             TxtDir.Text = "";
@@ -143,7 +141,10 @@ namespace MadeInHouse.Views.RRHH
 
             TxtBanco.Text = "";
             TxtBanco.Text = "";
-
+            CmbArea.Text = "";
+            CmbPuesto.Text = "";
+            CmbTienda.Text = "";
+            TxtCuentaBancaria.Text = "";
 
         }
         

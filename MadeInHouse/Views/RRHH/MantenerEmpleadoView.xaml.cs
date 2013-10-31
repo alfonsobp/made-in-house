@@ -64,6 +64,7 @@ namespace MadeInHouse.Views.RRHH
 
         public void Limpiar(object sender, RoutedEventArgs e)
         {
+            TxtCodigo.Text = "";
             TxtNombre.Text = "";
             TxtApePaterno.Text = "";
             TxtDni.Text = "";
