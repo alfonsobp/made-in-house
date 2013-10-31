@@ -89,6 +89,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
+    <Compile Include="DataObjects\Compras\ProductoxSolicitudAdSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />
     <Compile Include="DataObjects\Compras\ServicioSQL.cs" />

@@ -20,49 +20,49 @@ namespace MadeInHouse.DataObjects.Compras
 
         public object Buscar(params object[] filters)
         {
-          int id =  Convert.ToInt32( filters[0]);
+            int id = Convert.ToInt32(filters[0]);
 
 
-          DBConexion DB = new DBConexion();
+            DBConexion DB = new DBConexion();
 
-          SqlConnection conn = DB.conn;
-          SqlCommand cmd = DB.cmd;
-          SqlDataReader reader;
-
-
-          cmd.CommandText = "SELECT * FROM  ProductoxSolicitudAd where idSolicitudAD = "+id ;
-          cmd.CommandType = CommandType.Text;
-          cmd.Connection = conn;
-          List<ProductoxSolicitudAd> lstProductos = new List<ProductoxSolicitudAd>();
-
-          try
-          {
-              conn.Open();
-
-              reader = cmd.ExecuteReader();
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+            SqlDataReader reader;
 
 
-              while (reader.Read())
-              {
+            cmd.CommandText = "SELECT * FROM  ProductoxSolicitudAd where idSolicitudAD = " + id;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            List<ProductoxSolicitudAd> lstProductos = new List<ProductoxSolicitudAd>();
 
-                  ProductoxSolicitudAd p = new ProductoxSolicitudAd();
+            try
+            {
+                conn.Open();
 
-                  p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
-                  p.IdSolicitudAD = Convert.ToInt32(reader["idSolicitudAD"].ToString());
-                  p.Cantidad = Convert.ToInt32(reader["cantidad"].ToString());                             
-                  p.CantidadAtendida =  reader.IsDBNull(reader.GetOrdinal("CantidadAtendida")) ? p.Cantidad:Convert.ToInt32(reader["cantidadAtendida"]);
-                  lstProductos.Add(p);
-              }
+                reader = cmd.ExecuteReader();
 
-              conn.Close();
 
-          }
-          catch (Exception e)
-          {
-              MessageBox.Show(e.StackTrace.ToString());
-          }
+                while (reader.Read())
+                {
 
-          return lstProductos;
+                    ProductoxSolicitudAd p = new ProductoxSolicitudAd();
+
+                    p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
+                    p.IdSolicitudAD = Convert.ToInt32(reader["idSolicitudAD"].ToString());
+                    p.Cantidad = Convert.ToInt32(reader["cantidad"].ToString());
+                    p.CantidadAtendida = reader.IsDBNull(reader.GetOrdinal("CantidadAtendida")) ? p.Cantidad : Convert.ToInt32(reader["cantidadAtendida"]);
+                    lstProductos.Add(p);
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lstProductos;
 
         }
 
@@ -71,7 +71,7 @@ namespace MadeInHouse.DataObjects.Compras
             int k = 0;
 
             ProductoxSolicitudAd pp = entity as ProductoxSolicitudAd;
-           
+
 
 
 
