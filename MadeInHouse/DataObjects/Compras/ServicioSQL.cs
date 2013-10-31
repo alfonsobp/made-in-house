@@ -1,4 +1,6 @@
 ﻿using MadeInHouse.Models.Compras;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.DataObjects.Almacen;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -110,14 +112,15 @@ namespace MadeInHouse.DataObjects.Compras
             SqlDataReader reader;
 
             String where = "";
-
+            string codProducto = "";
 
             if (filters.Length > 0 && filters.Length <= 3)
             {
 
                 string proveedor = Convert.ToString(filters[0]);
                 string nombre = Convert.ToString(filters[1]);
-                string producto = Convert.ToString(filters[2]);
+                codProducto = Convert.ToString(filters[2]);
+
 
                 if (proveedor != "")
                 {
@@ -129,11 +132,6 @@ namespace MadeInHouse.DataObjects.Compras
                 {
                     where += " and nombre LIKE  '%" + nombre + "%' ";
                 }
-
-                //if (producto != "")
-                //{
-                //where += " and razonSocial LIKE  '%" + producto + "%' ";
-                //}
 
 
             }
@@ -163,7 +161,21 @@ namespace MadeInHouse.DataObjects.Compras
                     s.Nombre = reader["nombre"].ToString();
                     s.Descripcion = reader["descripcion"].ToString();
 
-                    lstServicio.Add(s);
+                    if (codProducto != "")
+                    {
+                        ServicioxProductoSQL spSQL = new ServicioxProductoSQL();
+                        Producto p = new ProductoSQL().Buscar_por_CodigoProducto(codProducto);
+                        
+                        if (p != null)
+                        {
+                            MessageBox.Show("idServ = " + s.IdServicio + " IdProd = " + p.IdProducto);
+                            if (spSQL.productoPertenece(s.IdServicio, p.IdProducto) == true)
+                                lstServicio.Add(s);
+                        }
+                    }
+
+                    else
+                        lstServicio.Add(s);
                 }
 
                 db.conn.Close();

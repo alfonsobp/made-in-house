@@ -43,6 +43,7 @@ namespace MadeInHouse.DataObjects.Compras
             cmd.CommandText = "SELECT * FROM ServicioxProducto WHERE " + where;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
+
             List<ServicioxProducto> lstServicios = new List<ServicioxProducto>();
 
             try
@@ -59,7 +60,6 @@ namespace MadeInHouse.DataObjects.Compras
                     p.IdServicio = Convert.ToInt32(reader["idServicio"].ToString());
                     p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
                     p.Precio = Convert.ToDouble(reader["precio"].ToString());
-
 
                     lstServicios.Add(p);
                 }
@@ -139,6 +139,21 @@ namespace MadeInHouse.DataObjects.Compras
             }
             return k;
 
+        }
+
+        public Boolean productoPertenece(int idServicio, int idProducto)
+        {
+            List<ServicioxProducto> list = new List<ServicioxProducto>();
+            list = this.Buscar(idServicio) as List<ServicioxProducto>;
+
+            if (list != null)
+            {
+                for (int i = 0; i < list.Count(); i++)
+                    if (list[i].Producto.IdProducto == idProducto)
+                        return true;
+            }
+
+            return false;
         }
 
     }
