@@ -8,8 +8,8 @@ using MadeInHouse.Model.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.Models.Almacen;
 using System.Windows.Controls;
-using MadeInHouse.Model.Ventas;
-
+using MadeInHouse.Models;
+using MadeInHouse.ViewModels.Almacen;
 namespace MadeInHouse.ViewModels.Ventas
 {
     class VentaRegistrarViewModel : PropertyChangedBase
@@ -186,7 +186,8 @@ namespace MadeInHouse.ViewModels.Ventas
             desc += dv.Descuento;
             TxtDescuentoTotal = desc.ToString();
             igv_total = (subt - desc) * IGV;
-            total += (subt - desc) * (1 - IGV);
+            TxtIGVTotal = igv_total.ToString();
+            total += (subt - desc) * (1 + IGV);
             TxtTotal = total.ToString();
         }
 
@@ -212,6 +213,27 @@ namespace MadeInHouse.ViewModels.Ventas
             //insertar en la base de datos
             VentaSQL vsql = new VentaSQL();
             vsql.Agregar(v);
+        }
+
+        public void BuscarProducto()
+        {
+            MyWindowManager w = new MyWindowManager();
+            w.ShowWindow(new ProductoBuscarViewModel(this));
+        }
+
+        public void Limpiar()
+        {
+            TxtIGVTotal = null;
+            TxtPagaCon = null;
+            TxtProducto = null;
+            TxtCantidad = null;
+            TxtCliente = null;
+            TxtDescuentoTotal = null;
+            TxtDireccion = null;
+            TxtRazolSocial = null;
+            TxtRuc = null;
+            TxtTelefono = null;
+            LstVenta = null;
         }
 
     }

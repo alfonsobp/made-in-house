@@ -34,6 +34,14 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
+        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel)
+        {
+            this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
+        }
+
         private string txtCodigo;
 
         public string TxtCodigo
@@ -150,6 +158,7 @@ namespace MadeInHouse.ViewModels.Almacen
         private ProductoSQL pSQL = new ProductoSQL();
         private LineaProductoSQL lsql;
         private SubLineaProductoSQL ssql;
+        
 
         public void BuscarProductos()
         {
