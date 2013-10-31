@@ -102,6 +102,7 @@ namespace MadeInHouse.Views.RRHH
         {
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
             TxtCodEmp.Text = TxtCodEmp.Text = "EMP-" + grid.Count;
+            TxtCuentaBancaria.Text = "";
             TxtDni.Text = "";
             TxtNomb.Text = "";
 
@@ -121,7 +122,9 @@ namespace MadeInHouse.Views.RRHH
 
             TxtBanco.Text = "";
             TxtBanco.Text = "";
-            
+            CmbArea.Text = "";
+            CmbPuesto.Text = "";
+            CmbTienda.Text = "";
 
         }
         
