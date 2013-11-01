@@ -20,7 +20,7 @@
         <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
         <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
+        <TextBox x:Name="TxtCodigo" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
         <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
         <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
         <TextBox x:Name="TxtEmail" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="ladrillosD@gmail.com"/>

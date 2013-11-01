@@ -13,7 +13,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <DataGrid    IsReadOnly="True"   SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,213,10,26" BorderBrush="#FF14191D" Background="White" >
+                <DataGrid    IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,213,10,26" BorderBrush="#FF14191D" Background="White" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd }" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding CodComercial}"  Header="Código Comercial"/>
