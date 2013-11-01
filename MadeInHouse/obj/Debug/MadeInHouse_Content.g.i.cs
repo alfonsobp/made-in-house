@@ -9,6 +9,13 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/addservicio.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/caliburn.micro.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/madeinhouse.exe")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/madeinhouse.pdb")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/madeinhouse.vshost.exe")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/microsoft.windows.shell.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/ribboncontrolslibrary.dll")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("bin/debug/system.windows.interactivity.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dictionary/libraries/caliburn.micro.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dictionary/libraries/microsoft.windows.shell.dll")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dictionary/libraries/ribboncontrolslibrary.dll")]
