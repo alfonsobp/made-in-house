@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
+using System.Data;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -19,16 +20,18 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public void AgregarTienda(Tienda p)
+        public int AgregarTienda(Tienda p)
         {
-            db.cmd.CommandText = "INSERT INTO Tienda(idTienda,nombre,direccion,ubigeo,fechaReg,estado) " +
-            "VALUES (null,@nombre,@direccion,@ubigeo,@fechaReg,@estado)";
-
+            db.cmd.CommandText = "sp_AgregarTienda";
+            db.cmd.CommandType = CommandType.StoredProcedure;
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
-            db.cmd.Parameters.AddWithValue("@direccion",p.Direccion);
-            db.cmd.Parameters.AddWithValue("@ubigeo",p.Ubigeo.IdUbigeo);
-            db.cmd.Parameters.AddWithValue("@fechaReg", p.FechaReg.Date);
-            db.cmd.Parameters.AddWithValue("@estado", p.Estado);
+            db.cmd.Parameters.AddWithValue("@direccion", p.Direccion);
+            db.cmd.Parameters.AddWithValue("@admin", p.Administrador);
+            db.cmd.Parameters.AddWithValue("@telefono", p.Telefono);
+            db.cmd.Parameters.AddWithValue("@idUbigeo", p.IdUbigeo);
+            db.cmd.Parameters.Add("@idTienda", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+            int idtienda=-1;
 
             try
             {
@@ -36,7 +39,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
                 db.cmd.ExecuteNonQuery();
-
+                idtienda = Convert.ToInt32(db.cmd.Parameters["@idTienda"].Value);    
                 db.conn.Close();
 
             }
@@ -48,6 +51,9 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 Console.WriteLine(e.StackTrace.ToString());
             }
+
+            return idtienda;
+
         }
 
     }

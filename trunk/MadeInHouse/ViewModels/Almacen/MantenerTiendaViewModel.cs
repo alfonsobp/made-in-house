@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
+using System.Collections.ObjectModel;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -175,9 +176,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumRowsAnq
         {
             get { return txtNumRowsAnq; }
-            set { txtNumRowsAnq = value; 
-                    NotifyOfPropertyChange(()=>TxtNumRowsAnq);
-            }
+            set { txtNumRowsAnq = value; }
         }
 
         private string txtNumColumnsAnq;
@@ -185,10 +184,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumColumnsAnq
         {
             get { return txtNumColumnsAnq; }
-            set { txtNumColumnsAnq = value; 
-                NotifyOfPropertyChange(()=>TxtNumColumnsAnq);
-            }
+            set { txtNumColumnsAnq = value; }
         }
+
+
 
         private string txtAlturaAnq;
 
@@ -198,17 +197,16 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtAlturaAnq = value; }
         }
 
+        
+        
+
         /*Deposito*/
         private string txtNumRowsDto;
 
         public string TxtNumRowsDto
         {
             get { return txtNumRowsDto; }
-            set
-            {
-                txtNumRowsDto = value;
-                NotifyOfPropertyChange(() => TxtNumRowsDto);
-            }
+            set { txtNumRowsDto = value; }
         }
 
         private string txtNumColumnsDto;
@@ -216,11 +214,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumColumnsDto
         {
             get { return txtNumColumnsDto; }
-            set
-            {
-                txtNumColumnsDto = value;
-                NotifyOfPropertyChange(() => TxtNumColumnsDto);
-            }
+            set { txtNumColumnsDto = value; }
         }
 
         private string txtAlturaDto;
@@ -243,56 +237,122 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private int numColumnsAnq;
 
-        public void Distribuir(object sender, int tipo)
+        public int NumColumnsAnq
+        {
+            get { return numColumnsAnq; }
+            set
+            {
+                numColumnsAnq = value;
+                NotifyOfPropertyChange(() => NumColumnsAnq);
+            }
+        }
+
+        private int numRowsAnq;
+
+        public int NumRowsAnq
+        {
+            get { return numRowsAnq; }
+            set
+            {
+                numRowsAnq = value;
+                NotifyOfPropertyChange(() => NumRowsAnq);
+
+            }
+        }
+
+        private int numColumnsDto;
+
+        public int NumColumnsDto
+        {
+            get { return numColumnsDto; }
+            set
+            {
+                numColumnsDto = value;
+                NotifyOfPropertyChange(() => NumColumnsDto);
+            }
+        }
+
+        private int numRowsDto;
+
+        public int NumRowsDto
+        {
+            get { return numRowsDto; }
+            set
+            {
+                numRowsDto = value;
+                NotifyOfPropertyChange(() => NumRowsDto);
+
+            }
+        }
+
+        public void Distribuir(int tipo)
         {
             if (tipo == 0)
             {
-                NumColumns = Int32.Parse(TxtNumColumnsAnq);
-                NumRows = Int32.Parse(TxtNumRowsAnq);
-                (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
+                NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
+                NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
+                //(sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
             }
             else
             {
-                NumColumns = Int32.Parse(TxtNumColumnsDto);
-                NumRows = Int32.Parse(TxtNumRowsDto);
-                (sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
+                NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
+                NumRowsDto = Int32.Parse(TxtNumRowsDto);
+                //(sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
             }
             
             
         }
 
-        private List<string> cmbColores;
+        private int zonaAnaquel;
 
-        public List<string> CmbColores
+        public int ZonaAnaquel
         {
-            get { return cmbColores; }
-            set { cmbColores = value; }
+            get { return zonaAnaquel; }
+            set { zonaAnaquel = value;
+            NotifyOfPropertyChange(() => ZonaAnaquel);
+            }
         }
 
-        private string selectedColor;
+        private int zonaDeposito;
 
-        public string SelectedColor
+        public int ZonaDeposito
         {
-            get { return selectedColor; }
+            get { return zonaDeposito; }
+            set { zonaDeposito = value;
+            NotifyOfPropertyChange(() => ZonaDeposito);
+            }
+        }
+
+
+
+
+        private ObservableCollection<TipoZona> cmbZonas;
+
+        public ObservableCollection<TipoZona> CmbZonas
+        {
+            get { return cmbZonas; }
+            set { cmbZonas = value; }
+        }
+
+        private TipoZona selectedZona;
+
+        public TipoZona SelectedZona
+        {
+            get { return selectedZona; }
             set
             {
-                selectedColor = value;
-                Fondo = selectedColor;
+                if (selectedZona == value)
+                {
+                    return;
+                }
+                selectedZona = value;
+                Fondo = selectedZona.Color;
+                ZonaDeposito = selectedZona.IdTipoZona;
+                ZonaAnaquel = selectedZona.IdTipoZona;
             }
         }
-
-        
-        public MantenerTiendaViewModel() {
-            uSQL = new UbigeoSQL();
-            tSQL = new TiendaSQL();
-            this.CmbColores = new List<string>();
-            this.CmbColores.Add("Red");
-            this.CmbColores.Add("Blue");
-            this.CmbColores.Add("Green");
-            CmbDpto=uSQL.BuscarDpto();
-        }
-
 
         private int selectedIndex;
 
@@ -302,47 +362,143 @@ namespace MadeInHouse.ViewModels.Almacen
             set { selectedIndex = value; }
         }
 
-        public void GuardarTienda() {
 
+        
+        public MantenerTiendaViewModel() {
+            uSQL = new UbigeoSQL();
+            tSQL = new TiendaSQL();
+            CmbZonas = (new TipoZonaSQL()).BuscarZona();
+            CmbDpto=uSQL.BuscarDpto();
+        }
+
+
+        public List<int> ObtenerListaZonas(MadeInHouse.Dictionary.DynamicGrid objeto) 
+        {
+            List<int> lista= new List<int>();
+
+            bool encontrado = false;
+            for (int i = 0; i < objeto.Ubicaciones.Count; i++)
+            {
+                
+                for (int j = 0; j < objeto.Ubicaciones[i].Count; j++)
+                {
+                    for(int k=0;k<lista.Count;k++) {
+                        if (lista[k]==objeto.Ubicaciones[i][j].IdTipoZona) 
+                        {
+                            encontrado=true;
+                            break;
+                        }
+                    }
+                    if (!encontrado)
+                        lista.Add(objeto.Ubicaciones[i][j].IdTipoZona);
+                    encontrado = false;
+                }
+            }
+            return lista;
+        }
+
+
+        public void GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
+        {
+
+            /*saco todos los idTipoZona*/
+            List<int> zonasAnaquel=ObtenerListaZonas(anaquel);
+            List<int> zonasDeposito=ObtenerListaZonas(deposito);
+
+
+            /*Agrega una tienda*/
             Tienda tienda = new Tienda();
             tienda.Estado = 1;
-           // tienda.Nombre = this.txtNombre;
-            tienda.Direccion = this.txtDir;
+            tienda.Nombre = txtNombre;
+            tienda.Direccion = txtDir;
+            tienda.Telefono = txtTelef;
+            tienda.Administrador = txtAdmin;
             Ubigeo seleccionado = new Ubigeo();
             seleccionado = uSQL.buscarUbigeo(selectedDpto, selectedProv, selectedDist);
-            tienda.Ubigeo = seleccionado;
+            tienda.IdUbigeo = seleccionado.IdUbigeo;
             tienda.FechaReg = DateTime.Today;
             TiendaSQL gw = new TiendaSQL();
-            gw.AgregarTienda(tienda);
+            int idTienda=gw.AgregarTienda(tienda);
+
+            /*Se agregan las dos partes de la tienda*/
+             AlmacenSQL aSQL = new AlmacenSQL();
+                
+             /*anaquel*/
+             Almacenes ana = new Almacenes();
+             ana.CodAlmacen = "ANA00" + idTienda.ToString();
+             ana.IdTienda = idTienda;
+             ana.Nombre = "Anaquel de TIENDA" + idTienda.ToString();
+             ana.Telefono = tienda.Telefono;
+             ana.Direccion = tienda.Direccion;
+             ana.Tipo = "ANAQUEL";
+             int idAnaquel=aSQL.Agregar(ana);
+
+             /*deposito*/
+             Almacenes dto = new Almacenes();
+             dto.CodAlmacen = "DTO00" + idTienda.ToString();
+             dto.IdTienda = idTienda;
+             dto.Nombre = "Deposito de TIENDA" + idTienda.ToString();
+             dto.Telefono = tienda.Telefono;
+             dto.Direccion = tienda.Direccion;
+             dto.Tipo = "DEPOSITO";
+             int idDeposito=aSQL.Agregar(dto);
+             UbicacionSQL ubSQL = new UbicacionSQL();
+
+             /*Agrego las zonas por almacen*/
+             for (int i = 0; i < zonasAnaquel.Count; i++)
+             {
+                 aSQL.AgregarZonas(zonasAnaquel[i], idAnaquel);
+             }
+
+             for (int i = 0; i < zonasDeposito.Count; i++)
+             {
+                 aSQL.AgregarZonas(zonasDeposito[i], idDeposito);
+             }
+
+
+             /*Ubicaciones del anaquel*/
+             for (int m = 0; m < anaquel.Ubicaciones.Count; m++)
+             {
+                 for (int n = 0; n < anaquel.Ubicaciones[m].Count; n++)
+                 {
+                     anaquel.Ubicaciones[m][n].IdAlmacen = idAnaquel;
+                     anaquel.Ubicaciones[m][n].CordX = m;
+                     anaquel.Ubicaciones[m][n].CordY = n;
+                     anaquel.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaAnq);
+                     ubSQL.Agregar(anaquel.Ubicaciones[m][n]);
+                 }
+
+             }
+            /*Ubicaciones del deposito*/
+
+             for (int m = 0; m < deposito.Ubicaciones.Count; m++)
+             {
+                 for (int n = 0; n < deposito.Ubicaciones[m].Count; n++)
+                 {
+                     deposito.Ubicaciones[m][n].IdAlmacen = idDeposito;
+                     deposito.Ubicaciones[m][n].CordX = m;
+                     deposito.Ubicaciones[m][n].CordY = n;
+                     deposito.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaDto);
+                     ubSQL.Agregar(deposito.Ubicaciones[m][n]);
+                 }
+
+             }
+
+
+
+             System.Windows.MessageBox.Show("Se creo correctamente la tienda con id: " + idTienda.ToString() +" con anaquel id: " + idAnaquel.ToString()+ " y con deposito id :"+ idDeposito.ToString() );
+            
+
+            }
+
 
 
         }
 
         
 
-        private int numColumns;
-
-        public int NumColumns
-        {
-            get { return numColumns; }
-            set { numColumns = value;
-            NotifyOfPropertyChange(() => NumColumns);
-            }
-        }
-
-        private int numRows;
-
-        public int NumRows
-        {
-            get { return numRows; }
-            set
-            {
-                numRows = value;
-                NotifyOfPropertyChange(() => NumRows);
-
-            }
-        }
+        
 
 
     }
-}
+

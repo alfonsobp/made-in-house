@@ -16,17 +16,17 @@ namespace MadeInHouse.Models.Almacen
             set { idUbicacion = value; }
         }
 
-        private TipoZona idTipoZona;
+        private int idTipoZona;
 
-        public TipoZona IdTipoZona
+        public int IdTipoZona
         {
             get { return idTipoZona; }
             set { idTipoZona = value; }
         }
 
-        private Almacen idAlmacen;
+        private int idAlmacen;
 
-        public Almacen IdAlmacen
+        public int IdAlmacen
         {
             get { return idAlmacen; }
             set { idAlmacen = value; }
@@ -56,9 +56,9 @@ namespace MadeInHouse.Models.Almacen
             set { cordZ = value; }
         }
 
-        private Producto idProducto;
+        private int idProducto;
 
-        public Producto IdProducto
+        public int IdProducto
         {
             get { return idProducto; }
             set { idProducto = value; }

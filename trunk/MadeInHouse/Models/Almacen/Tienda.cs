@@ -33,12 +33,28 @@ namespace MadeInHouse.Models.Almacen
             set { direccion = value; }
         }
 
-        private Ubigeo ubigeo;
+        private string telefono;
 
-        public Ubigeo Ubigeo
+        public string Telefono
         {
-            get { return ubigeo; }
-            set { ubigeo = value; }
+            get { return telefono; }
+            set { telefono = value; }
+        }
+
+        private string administrador;
+
+        public string Administrador
+        {
+            get { return administrador; }
+            set { administrador = value; }
+        }
+
+        private int  idUbigeo;
+
+        public int  IdUbigeo
+        {
+            get { return idUbigeo; }
+            set { idUbigeo = value; }
         }
 
         private DateTime fechaReg;
@@ -55,6 +71,21 @@ namespace MadeInHouse.Models.Almacen
         {
             get { return estado; }
             set { estado = value; }
+        }
+
+        private Almacenes anaqueles;
+
+        public Almacenes Anaqueles
+        {
+            get { return anaqueles; }
+            set { anaqueles = value; }
+        }
+        private Almacenes deposito;
+
+        public Almacenes Deposito
+        {
+            get { return deposito; }
+            set { deposito = value; }
         }
 
         
