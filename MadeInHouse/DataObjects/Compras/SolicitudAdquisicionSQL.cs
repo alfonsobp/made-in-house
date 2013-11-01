@@ -58,19 +58,19 @@ namespace MadeInHouse.DataObjects.Compras
                 {
 
 
-                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATE,fechaReg,103) ";
+                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATETIME,fechaReg,103) ";
 
                 }
 
                 if (fechaFin != null)
                 {
 
-                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaReg,103) ";
+                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATETIME,fechaReg,103) ";
                 }
 
             }
 
-          //   MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  estado <> 0 " + where);
+             MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  estado <> 0 " + where);
 
             db.cmd.CommandText = "SELECT * FROM SolicitudAdquisicion WHERE  1=1   " + where;
             db.cmd.CommandType = CommandType.Text;
@@ -93,7 +93,7 @@ namespace MadeInHouse.DataObjects.Compras
                    p.IdAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
                    p.IdSolicitudAD = Convert.ToInt32 (reader["idSolicitudAD"].ToString());
                    p.FechaReg  =Convert.ToDateTime (reader["fechaReg"]);
-                   p.FechaAtencion = Convert.ToDateTime(reader["fechaAtencion"]);
+                  // p.FechaAtencion = Convert.ToDateTime((reader["fechaAtencion"] ));
                    p.Codigo = "SOL-"+Convert.ToString(10000000 + p.IdSolicitudAD);
                    p.LstProductos = new ProductoxSolicitudAdSQL().Buscar(p.IdSolicitudAD) as List<ProductoxSolicitudAd>;
                    p.Est = (p.Estado == 1)?"NO ATENDIDA":"ATENDIDA";
@@ -129,7 +129,7 @@ namespace MadeInHouse.DataObjects.Compras
             SqlCommand cmd = DB.cmd;
 
 
-            cmd.CommandText = "UPDATE SolicitudAdquisicion set estado = 2  " +
+            cmd.CommandText = "UPDATE SolicitudAdquisicion set estado = 2 , fechaAtencion = GETDATE()  " +
                                 " where idSolicitudAD =  "+ pp.IdSolicitudAD;
 
            
