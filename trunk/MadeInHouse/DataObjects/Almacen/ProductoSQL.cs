@@ -349,10 +349,10 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             List<ProductoxAlmacen> prodAlmacen = null;
 
-            if (idAlmacen != null && idAlmacen > 0)
+            if (idAlmacen > 0)
             {
                 string where = "";
-                if (idProducto != null && idProducto > 0)
+                if (idProducto > 0)
                 {
                     where = " AND idProducto = @idProducto ";
                     db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
