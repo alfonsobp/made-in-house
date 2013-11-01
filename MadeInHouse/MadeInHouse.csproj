@@ -184,6 +184,7 @@
     <Compile Include="Models\Almacen\NotaIS.cs" />
     <Compile Include="Models\Almacen\Producto.cs" />
     <Compile Include="Models\Almacen\ProductoCant.cs" />
+    <Compile Include="Models\Almacen\ProductoxAlmacen.cs" />
     <Compile Include="Models\Almacen\Ubigeo.cs" />
     <Compile Include="Models\Almacen\UnidadMedida.cs" />
     <Compile Include="Models\Compras\Cotizacion.cs" />
