@@ -58,7 +58,7 @@
         <Setter Property="ContentTemplate">
             <Setter.Value>
                 <DataTemplate>
-                    <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding}" TextAlignment="Center" ></TextBlock>
+                    <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding}"></TextBlock>
                 </DataTemplate>
             </Setter.Value>
         </Setter>
