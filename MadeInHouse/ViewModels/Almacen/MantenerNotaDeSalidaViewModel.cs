@@ -25,8 +25,8 @@ namespace MadeInHouse.ViewModels.Almacen
                             <ComboBoxItem Content="Otros" HorizontalAlignment="Left" Width="118"/>
              */
             AlmacenSQL aGW = new AlmacenSQL();
-            Models.Almacen.Almacen a = aGW.BuscarAlmacen(4);
-            List <Models.Almacen.Almacen> al = new List<Models.Almacen.Almacen>();
+            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(4);
+            List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
            //lstProductos = gateWay.ListaProductos("1");
@@ -71,9 +71,9 @@ namespace MadeInHouse.ViewModels.Almacen
             set { selectedProducto = value; }
         }
         
-        List<Models.Almacen.Almacen> almacen;
+        List<Models.Almacen.Almacenes> almacen;
 
-        public List<Models.Almacen.Almacen> Almacen
+        public List<Models.Almacen.Almacenes> Almacen
         {
             get { return almacen; }
             set { almacen = value; }

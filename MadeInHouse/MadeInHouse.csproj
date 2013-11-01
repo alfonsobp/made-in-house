@@ -89,6 +89,7 @@
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
+    <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
     <Compile Include="DataObjects\Compras\ConsolidadoSQL.cs" />
     <Compile Include="DataObjects\Compras\ProductoxSolicitudAdSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
+    <Compile Include="Models\Almacen\Almacenes.cs" />
     <Compile Include="Models\Almacen\EntityManager.cs" />
     <Compile Include="Models\Almacen\EntityName.cs" />
     <Compile Include="Models\Almacen\MotivoISManager.cs" />
@@ -126,7 +128,6 @@
     <Compile Include="DataObjects\UtilesSQL.cs" />
     <Compile Include="DataObjects\Seguridad\UsuarioSQL.cs" />
     <Compile Include="DataObjects\Ventas\ClienteSQL.cs" />
-    <Compile Include="Models\Almacen\Almacen.cs" />
     <Compile Include="Models\Almacen\Color.cs" />
     <Compile Include="Models\Almacen\GuiaRemision.cs" />
     <Compile Include="Models\Almacen\LineaProducto.cs" />

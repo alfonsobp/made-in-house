@@ -27,8 +27,16 @@
                     <Button>
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button x:Name="AbrirMantenerZona" Margin="0,3" VerticalAlignment="Stretch" >
+                    <Button Margin="0,3" VerticalAlignment="Stretch" >
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="GuardarTienda" >
+                                    <cal:Parameter Value="{Binding ElementName=Anaquel}" />
+                                    <cal:Parameter Value="{Binding ElementName=Deposito}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                     </Button>
                     <Button>
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
@@ -41,8 +49,8 @@
                     </Button>
                 </ToolBar>
                 <TabControl Margin="0,47,0,0">
-                    <TabItem Header="Información general">
-                        <Grid Background="#FFE5E5E5" Margin="0,0,0,-3">
+                    <TabItem Header="Información general" Background="White">
+                        <Grid Background="White" Margin="0,0,0,-3">
                             <Label Content="Nombre:" HorizontalAlignment="Left" Margin="49,57,0,0" VerticalAlignment="Top"/>
                             <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="142,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
                             <Label Content="Administrador:" HorizontalAlignment="Left" Margin="46,100,0,0" VerticalAlignment="Top" Width="96"/>
@@ -84,39 +92,35 @@
                     </TabItem>
 
                     <TabItem Header="Anaqueles">
-                        <Grid Background="#FFE5E5E5">
+                        <Grid Background="White">
                             <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
                             <TextBox x:Name="TxtNumRowsAnq" HorizontalAlignment="Left" Height="23" Margin="172,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" />
                             <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top" Width="94"/>
                             <TextBox x:Name="TxtNumColumnsAnq" HorizontalAlignment="Left" Height="23" Margin="172,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
                             <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94"/>
                             <TextBox x:Name="TxtAlturaAnq" HorizontalAlignment="Left" Height="23" Margin="172,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
-                            <Button Content="Generar distribución" 
-                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <cal:ActionMessage MethodName="Distribuir" >
-                                            <cal:Parameter Value="{Binding ElementName=Anaquel}" />
-                                            <cal:Parameter Value="0" />
-                                        </cal:ActionMessage>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Button>
 
+                            <Button x:Name="boton1" Content="Generar distribución" 
+                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42"
+                                cal:Message.Attach="[Event Click] = [Action Distribuir(0)]" />
                             <ComboBox
-                        ItemsSource="{Binding CmbColores}"
-        			    SelectedValue="{Binding SelectedColor, Mode=OneWayToSource}"
+                        ItemsSource="{Binding CmbZonas}"
+        			    SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
+                        DisplayMemberPath="Nombre"
                         HorizontalAlignment="Left" Margin="392,26,0,0" VerticalAlignment="Top" Width="450"/>
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top" Width="75"/>
-                            <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
-                                <grid:DynamicGrid  x:Name="Anaquel"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" Height="408" VerticalAlignment="Top" Width="570">
+
+                            <ScrollViewer  HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
+                                <grid:DynamicGrid x:Name="Anaquel"  IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" NumColumns="{Binding NumColumnsAnq}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 </grid:DynamicGrid>
                             </ScrollViewer>
+                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530"/>
+
 
                         </Grid>
                     </TabItem>
                     <TabItem Header="Depósito">
-                        <Grid Background="#FFE5E5E5">
+                        <Grid Background="White">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="71*"/>
                                 <ColumnDefinition Width="366*"/>
@@ -125,28 +129,22 @@
                             <TextBox x:Name="TxtNumRowsDto" HorizontalAlignment="Left" Height="23" Margin="30,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1" />
                             <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
                             <TextBox x:Name="TxtNumColumnsDto" HorizontalAlignment="Left" Height="23" Margin="30,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                            <Button Content="Generar distribución" 
-                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42" Grid.ColumnSpan="2">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <cal:ActionMessage MethodName="Distribuir" >
-                                            <cal:Parameter Value="{Binding ElementName=Deposito}" />
-                                            <cal:Parameter Value="1" />
-                                        </cal:ActionMessage>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Button>
+                            <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="TxtAlturaDto" HorizontalAlignment="Left" Height="23" Margin="30,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                            <Button x:Name="boton2" Content="Generar distribución" 
+                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42" Grid.ColumnSpan="2"
+                                cal:Message.Attach="[Event Click] = [Action Distribuir(1)]" />
 
                             <ComboBox
-                        ItemsSource="{Binding CmbColores}"
-        			    SelectedValue="{Binding SelectedColor, Mode=OneWayToSource}"
+                        ItemsSource="{Binding CmbZonas}"
+        			    SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
+                        DisplayMemberPath="Nombre"
                         HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top" Width="450" Grid.Column="1"/>
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
                             <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible" Grid.Column="1">
-                                <grid:DynamicGrid x:Name="Deposito"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Background="{Binding Fondo,FallbackValue=Red}" ShowGridLines="True" HorizontalAlignment="Left" Height="408" VerticalAlignment="Top" Width="570"/>
+                                <grid:DynamicGrid x:Name="Deposito" IdZona="{Binding ZonaDeposito}"  NumRows="{Binding NumRowsDto}" NumColumns="{Binding NumColumnsDto}"  Background="{Binding Fondo,FallbackValue=Red}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             </ScrollViewer>
-                            <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="30,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

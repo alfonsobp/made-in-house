@@ -73,9 +73,9 @@ namespace MadeInHouse.Models.Compras
         }
 
 
-        MadeInHouse.Models.Almacen.Almacen alm;
+        MadeInHouse.Models.Almacen.Almacenes alm;
 
-        internal MadeInHouse.Models.Almacen.Almacen Alm
+        internal MadeInHouse.Models.Almacen.Almacenes Alm
         {
             get { return alm; }
             set { alm = value; }

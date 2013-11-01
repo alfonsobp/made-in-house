@@ -1,8 +1,14 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+using MadeInHouse.Models.Almacen;
+using System.Data;
+using System.Data.SqlClient;
+
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -15,11 +21,76 @@ namespace MadeInHouse.DataObjects.Almacen
             db = new DBConexion();
         }
 
-        internal Models.Almacen.Almacen BuscarAlmacen(int idAlmacen)
-        {
-            
 
-            Models.Almacen.Almacen almacen = new Models.Almacen.Almacen();
+        public void AgregarZonas(int idTipoZona,int idAlmacen) 
+        {
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona,idAlmacen) VALUES (@idTipoZona,@idAlmacen)" ;
+            db.cmd.Parameters.AddWithValue("@idTipoZona", idTipoZona);
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+        }
+
+
+        public int Agregar(Almacenes alm)
+        {
+            db.cmd.CommandText = "sp_AgregarAlmacen";
+            db.cmd.CommandType = CommandType.StoredProcedure;
+            db.cmd.Parameters.AddWithValue("@nombre", alm.Nombre);
+            db.cmd.Parameters.AddWithValue("@codAlmacen",alm.CodAlmacen);
+            db.cmd.Parameters.AddWithValue("@direccion", alm.Direccion);
+            db.cmd.Parameters.AddWithValue("@tipo", alm.Tipo);
+            db.cmd.Parameters.AddWithValue("@idTienda", alm.IdTienda);
+            db.cmd.Parameters.AddWithValue("@telefono", alm.Telefono);
+
+            db.cmd.Parameters.Add("@idAlmacen", SqlDbType.Int).Direction = ParameterDirection.Output;
+
+            int idalmacen = -1;
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                idalmacen = Convert.ToInt32(db.cmd.Parameters["@idAlmacen"].Value);
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+            return idalmacen;
+
+        }
+
+        internal Models.Almacen.Almacenes BuscarAlmacen(int idAlmacen)
+        {
+
+
+            Models.Almacen.Almacenes almacen = new Models.Almacen.Almacenes();
 
             string where = "WHERE 1=1 ";
 
@@ -27,7 +98,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
             db.cmd.CommandText = "SELECT * FROM Almacen " + where;
 
-            db.cmd.Parameters.AddWithValue("@idAlmacen",idAlmacen);
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             try
             {
                 db.conn.Open();
@@ -47,7 +118,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     almacen.NroColumnas = reader.IsDBNull(reader.GetOrdinal("nroColumnas")) ? -1 : int.Parse(reader["nroColumnas"].ToString());
                     almacen.NroFilas = reader.IsDBNull(reader.GetOrdinal("nroFilas")) ? -1 : int.Parse(reader["nroFilas"].ToString());
                     almacen.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? null : reader["tipo"].ToString();
-                    
+
                 }
                 db.cmd.Parameters.Clear();
                 db.conn.Close();
@@ -64,5 +135,10 @@ namespace MadeInHouse.DataObjects.Almacen
             return almacen;
 
         }
+
+
+
+
+
     }
 }
