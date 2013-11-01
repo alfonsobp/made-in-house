@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:v="clr-namespace:MadeInHouse.Views.RRHH"
+             xmlns:vm="clr-namespace:MadeInHouse.ViewModels.RRHH"
              mc:Ignorable="d" Height="623.5" Width="709">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="696" Height="608" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="604" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Ver Organigrama" DockPanel.Dock="Top"/>
-
-            <Grid Height="574" VerticalAlignment="Top" Width="689">
-
+            
+            <Grid Height="574" VerticalAlignment="Top" Width="689" > 
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -31,8 +32,7 @@
 
                         <Label Content="Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="51" Margin="10,3,0,0"/>
                         <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="351,3,0,0" VerticalAlignment="Top" Width="105"/>
-
-                        <ComboBox HorizontalAlignment="Left" Margin="135,3,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBox x:Name="Tienda" HorizontalAlignment="Left" Margin="135,3,0,0" VerticalAlignment="Top" Width="120" >
                             <ComboBoxItem Content="CORPORATIVA" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
@@ -40,12 +40,12 @@
                             <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
-                        <ComboBox HorizontalAlignment="Left" Margin="461,3,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBox x:Name="AreaTrabajo" HorizontalAlignment="Left" Margin="461,3,0,0" VerticalAlignment="Top" Width="120">
                             <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                         </ComboBox>
-                        <Button Height="22" Margin="301,34,300,0" VerticalAlignment="Top">
+                        <Button x:Name="BuscarOrganigrama" Height="22" Margin="301,34,300,0" VerticalAlignment="Top">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="16" Width="50" />
                         </Button>
 

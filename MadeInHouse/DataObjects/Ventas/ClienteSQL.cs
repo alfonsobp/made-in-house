@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Ventas;
 using System.Data.SqlClient;
+using System.Data;
+using System.Windows;
 
 namespace MadeInHouse.DataObjects.Ventas
 {
@@ -19,6 +21,8 @@ namespace MadeInHouse.DataObjects.Ventas
 
         public List<Tarjeta> BuscarClientes(string dni = null, string nombre = null, int tipoCliente = -1, string registroDesde = null, string registroHasta = null)
         {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
             List<Tarjeta> clientes = null;
 
             string where = "";
@@ -30,12 +34,12 @@ namespace MadeInHouse.DataObjects.Ventas
                 if (dni.Length == 8)
                 {
                     where = where + " DNI = @dni ";
-                    db.cmd.Parameters.Add(new SqlParameter("dni", dni));
+                    cmd.Parameters.Add(new SqlParameter("dni", dni));
                 }
                 else
                 {
                     where = where + " RUC = @ruc ";
-                    db.cmd.Parameters.Add(new SqlParameter("ruc", dni));
+                    cmd.Parameters.Add(new SqlParameter("ruc", dni));
                 }
             }
 
@@ -46,12 +50,12 @@ namespace MadeInHouse.DataObjects.Ventas
                 if (tipoCliente == 0)
                 {
                     where = where + " ( (nombre + ' ' + apePaterno + ' ' + apeMaterno) like @nombre OR (apePaterno + ' ' + apeMaterno + ', ' + nombre) like @nombre ) ";
-                    db.cmd.Parameters.Add(new SqlParameter("nombre", '%' + nombre + '%'));
+                    cmd.Parameters.Add(new SqlParameter("nombre", '%' + nombre + '%'));
                 }
                 else
                 {
                     where = where + " ( razonSocial like @nombre ) ";
-                    db.cmd.Parameters.Add(new SqlParameter("nombre", '%' + nombre + '%'));
+                    cmd.Parameters.Add(new SqlParameter("nombre", '%' + nombre + '%'));
                 }
             }
 
@@ -60,7 +64,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 if (where.Equals("")) where += " WHERE ";
                 else where += " AND ";
                 where = where + " convert (char, fechaReg, 103) >= @registroDesde ";
-                db.cmd.Parameters.Add(new SqlParameter("registroDesde", registroDesde));
+                cmd.Parameters.Add(new SqlParameter("registroDesde", registroDesde));
             }
             
             if (!String.IsNullOrEmpty(registroHasta))
@@ -68,15 +72,16 @@ namespace MadeInHouse.DataObjects.Ventas
                 if (where.Equals("")) where += " WHERE ";
                 else where += " AND ";
                 where = where + " convert (char, fechaReg, 103) <= @registroHasta ";
-                db.cmd.Parameters.Add(new SqlParameter("registroHasta", registroHasta));
+                cmd.Parameters.Add(new SqlParameter("registroHasta", registroHasta));
             }
 
-            db.cmd.CommandText = "SELECT c.*, t.* FROM Cliente c LEFT JOIN Tarjeta t ON c.idCliente = t.idCliente AND t.estado = 1 " + where;
-            
+            cmd.CommandText = "SELECT c.*, t.* FROM Cliente c LEFT JOIN Tarjeta t ON c.idCliente = t.idCliente AND t.estado = 1 " + where;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
             try
             {
-                db.conn.Open();
-                SqlDataReader reader = db.cmd.ExecuteReader();
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
@@ -96,7 +101,7 @@ namespace MadeInHouse.DataObjects.Ventas
                     clientes.Add(tarj);
                 }
 
-                db.conn.Close();
+                conn.Close();
             }
             catch(SqlException e)
             {
@@ -108,6 +113,105 @@ namespace MadeInHouse.DataObjects.Ventas
             }
 
             return clientes;
+        }
+
+        public static int agregarCliente(Cliente a,DateTime hoy)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "INSERT INTO Cliente(DNI,nombre,apePaterno,apeMaterno,RUC,sexo,razonSocial,direccion,telefono,estado,distrito) " +
+            "VALUES (@DNI,@nombre,@apePaterno,@apeMaterno,@RUC,@sexo,@razonSocial,@direccion,@telefono,@estado,@distrito)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@DNI", a.dni);
+            cmd.Parameters.AddWithValue("@nombre", a.nombre);
+            cmd.Parameters.AddWithValue("@apePaterno", a.apePaterno);
+            cmd.Parameters.AddWithValue("@apeMaterno", a.apeMaterno);
+            cmd.Parameters.AddWithValue("@RUC", a.ruc);
+            cmd.Parameters.AddWithValue("@sexo", 'M');//a.sexo
+            cmd.Parameters.AddWithValue("@razonSocial", a.razonSocial);
+            cmd.Parameters.AddWithValue("@direccion", a.direccion);
+            cmd.Parameters.AddWithValue("@telefono", a.telefono);
+            cmd.Parameters.AddWithValue("@estado", a.estado);
+            cmd.Parameters.AddWithValue("@distrito", a.distrito);
+            //cmd.Parameters.AddWithValue("@fechaReg", hoy);
+            //cmd.Parameters.AddWithValue("@fechaNac", a.fechaNacimiento);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        public static int buscarIDCliente(Cliente a)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            int k = 0;
+
+            cmd.CommandText = "SELECT idCliente FROM Cliente WHERE DNI=@DNI";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@DNI", a.dni);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    k = Int32.Parse(reader["idCliente"].ToString());
+                }
+                else
+                    conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        public static int RegistrarTarjeta(Int32 id, DateTime date, String codt)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "INSERT INTO Tarjeta(fechaEmi,codTarjeta,estado,idCliente) " +
+            "VALUES (@fechaEmi,@codTarjeta,@estado,@idCliente)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@fechaEmi", date);
+            cmd.Parameters.AddWithValue("@codTarjeta", codt);
+            cmd.Parameters.AddWithValue("@estado", 1);
+            cmd.Parameters.AddWithValue("@idCliente", id);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
         }
     }
 }
