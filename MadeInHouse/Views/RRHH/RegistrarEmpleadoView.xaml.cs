@@ -31,9 +31,7 @@ namespace MadeInHouse.Views.RRHH
 
             grid = new List<Empleado>();
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
-
-            MessageBox.Show(TxtCodEmp.Text = "EMP-" + grid.Count);
-             
+            TxtCodEmp.Text = TxtCodEmp.Text = "EMP-" + grid.Count;
             
         }
 
@@ -70,7 +68,7 @@ namespace MadeInHouse.Views.RRHH
             emp.CuentaBancaria = TxtCuentaBancaria.Text;
             
             if (!Regex.IsMatch(emp.Dni, "^[0-9]{8}$")) { MessageBox.Show("Inserte un DNI valido"); }
-            else if (emp.CodEmpleado == "") { MessageBox.Show("Inserte un codigo valido"); }
+            else if (revisarDNI(emp.Dni)) { MessageBox.Show("El DNI ya existe"); }
             else if (emp.Nombre == "") { MessageBox.Show("Inserte un nombre valido"); }
             else if (emp.ApePaterno == "") { MessageBox.Show("Inserte un apellido paterno valido"); }
             else if (emp.ApeMaterno == "") { MessageBox.Show("Inserte un apellido materno valido"); }
@@ -129,14 +127,20 @@ namespace MadeInHouse.Views.RRHH
         }
         
         
-        private bool revisarDNI(Empleado emp)
+        private bool revisarDNI(string dni)
         {
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
-            for (int i = 0; grid.Count < i;i++ )
-            {
-                if (grid[i].Dni.CompareTo(emp.Dni) == 0) return false;
+            int i = 0;
+            for (i = 0; i<grid.Count ;i++ )
+            {                
+                if (grid[i].Dni == dni)
+                {
+                    
+                    return true;
+                }
             }
-            return true;
+            
+            return false;
         }
 
 
