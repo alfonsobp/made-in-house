@@ -71,10 +71,6 @@ namespace MadeInHouse.DataObjects.Compras
             int k = 0;
 
             ProductoxSolicitudAd pp = entity as ProductoxSolicitudAd;
-
-
-
-
             DBConexion DB = new DBConexion();
 
             SqlConnection conn = DB.conn;
@@ -84,7 +80,7 @@ namespace MadeInHouse.DataObjects.Compras
             cmd.CommandText = "UPDATE ProductoxSolicitudAd set cantidadAtendida = @cantidadAtendida  " +
                                 " where idSolicitudAD = @idSolicitudAD and  idProducto = @idProducto ";
 
-            MessageBox.Show(" " + pp.IdSolicitudAD + " " + pp.Producto.IdProducto + " " + pp.CantidadAtendida);
+            //MessageBox.Show(" " + pp.IdSolicitudAD + " " + pp.Producto.IdProducto + " " + pp.CantidadAtendida);
             cmd.Parameters.AddWithValue("@idSolicitudAD", pp.IdSolicitudAD);
             cmd.Parameters.AddWithValue("@idProducto", pp.Producto.IdProducto);
             cmd.Parameters.AddWithValue("@cantidadAtendida", pp.CantidadAtendida);

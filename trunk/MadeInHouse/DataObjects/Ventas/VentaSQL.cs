@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using MadeInHouse.DataObjects.Ventas;
-using MadeInHouse.Model.Ventas;
+using MadeInHouse.Models.Ventas;
 
 namespace MadeInHouse.DataObjects.Ventas
 {

@@ -70,7 +70,7 @@ namespace MadeInHouse.DataObjects.Compras
 
             }
 
-             MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  estado <> 0 " + where);
+          //   MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  estado <> 0 " + where);
 
             db.cmd.CommandText = "SELECT * FROM SolicitudAdquisicion WHERE  1=1   " + where;
             db.cmd.CommandType = CommandType.Text;
@@ -98,7 +98,7 @@ namespace MadeInHouse.DataObjects.Compras
                    p.LstProductos = new ProductoxSolicitudAdSQL().Buscar(p.IdSolicitudAD) as List<ProductoxSolicitudAd>;
                    p.Est = (p.Estado == 1)?"NO ATENDIDA":"ATENDIDA";
                    lstSolicitud.Add(p);
-                   MessageBox.Show("id = " + p.Codigo);
+                  // MessageBox.Show("id = " + p.Codigo);
                 }
 
                 db.conn.Close();
@@ -155,6 +155,7 @@ namespace MadeInHouse.DataObjects.Compras
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
+            
             }
 
 
