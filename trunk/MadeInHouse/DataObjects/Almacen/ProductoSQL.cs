@@ -125,12 +125,13 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
 
-        public List<Producto> BuscarProducto(String codigo, int idLinea, int idSubLinea)
+        public List<Producto> BuscarProducto(String codigo, int idLinea, int idSubLinea, int idAlmacen)
         {
             List<Producto> listaProductos = null;
             
             
             string where = "WHERE 1=1 ";
+            string from = "";
 
             if (!String.IsNullOrEmpty(codigo))
             {
@@ -148,8 +149,14 @@ namespace MadeInHouse.DataObjects.Almacen
                 where = where + " AND idSubLinea=@idSubLinea ";
                 db.cmd.Parameters.AddWithValue("@idSubLinea", idSubLinea);
             }
+            if (idAlmacen > 0)
+            {
+                from = " p, AlmacenxProducto ap ";
+                where = where + " AND p.idProducto = ap.idProducto AND idAlmacen = @idAlmacen ";
+                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            }
 
-            db.cmd.CommandText = "SELECT * FROM Producto " + where;
+            db.cmd.CommandText = "SELECT * FROM Producto " + from + where;
 
             try
             {
@@ -336,8 +343,63 @@ namespace MadeInHouse.DataObjects.Almacen
             return listaProductos;
         }
 
+        #region Almacen
 
+        public List<ProductoxAlmacen> BuscarProductoxAlmacen(int idAlmacen, int idProducto)
+        {
+            List<ProductoxAlmacen> prodAlmacen = null;
 
+            if (idAlmacen != null && idAlmacen > 0)
+            {
+                string where = "";
+                if (idProducto != null && idProducto > 0)
+                {
+                    where = " AND idProducto = @idProducto ";
+                    db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                }
+                db.cmd.CommandText = " SELECT * FROM AlmacenxProducto WHERE idAlmacen = @idAlmacen " + where;
+                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+
+                try
+                {
+                    db.conn.Open();
+                    SqlDataReader reader = db.cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        if (prodAlmacen == null) prodAlmacen = new List<ProductoxAlmacen>();
+                        ProductoxAlmacen prod = new ProductoxAlmacen();
+                        int posIdAlmacen = reader.GetOrdinal("idAlmacen");
+                        int posIdProducto = reader.GetOrdinal("idProducto");
+                        int posStockMin = reader.GetOrdinal("stockMinimo");
+                        int posStock = reader.GetOrdinal("stockActual");
+                        prod.idAlmacen = reader.IsDBNull(posIdAlmacen)? -1 : reader.GetInt32(posIdAlmacen);
+                        prod.idProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
+                        prod.stockMin = reader.IsDBNull(posStockMin) ? -1 : reader.GetInt32(posStockMin);
+                        prod.stock = reader.IsDBNull(posStock) ? -1 : reader.GetInt32(posStock);
+                        prod.sugerido = prod.stockMin > prod.stock? prod.stockMin - prod.stock : 0;
+                        prod.pedido = prod.sugerido;
+
+                        prodAlmacen.Add(prod);
+                    }
+
+                    db.conn.Close();
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace.ToString());
+                }
+            }
+
+            return prodAlmacen;
         }
+
+        #endregion
+
     }
+}
 

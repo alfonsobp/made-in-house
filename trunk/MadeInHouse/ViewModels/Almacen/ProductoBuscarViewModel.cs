@@ -21,10 +21,9 @@ namespace MadeInHouse.ViewModels.Almacen
 
     class ProductoBuscarViewModel : PropertyChangedBase
     {
-
-
         private MadeInHouse.Models.MyWindowManager win = new MadeInHouse.Models.MyWindowManager();
 
+        #region constructores
 
         public ProductoBuscarViewModel()
         {
@@ -35,12 +34,23 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
-        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel)
+        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel) : this()
         {
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
-            LineaProductoSQL lpSQL = new LineaProductoSQL();
-            LstLineasProducto = lpSQL.ObtenerLineasProducto();
         }
+
+        private SolicitudAbRegistrarViewModel solicitudView = null;
+        public ProductoBuscarViewModel(SolicitudAbRegistrarViewModel solicitudView) : this()
+        {
+            this.solicitudView = solicitudView;
+            idAlmacen = solicitudView.idAlmacen;
+        }
+
+        #endregion
+
+        #region atributos
+
+        public int idAlmacen { get; set; }
 
         private string txtCodigo;
 
@@ -139,6 +149,10 @@ namespace MadeInHouse.ViewModels.Almacen
             set { productoSel = value; }
         }
 
+        #endregion
+
+        #region metodos
+
         private LineaProducto GetLinea(int idLinea)
         {
             return (from lp in LstLineasProducto
@@ -163,7 +177,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void BuscarProductos()
         {
              List<Producto> lp;
-             lp=pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub);
+             lp=pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, idAlmacen);
              List<ExtendedProduct> LstProductosAux = new List<ExtendedProduct>();
 
              if (lp != null)
@@ -205,14 +219,25 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Actualizar()
         {
-            ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
-            win.ShowWindow(pmVM);
-
-
+            if (solicitudView != null)
+            {
+                ProductoSQL pSQL = new ProductoSQL();
+                ProductoxAlmacen prodPedido = new ProductoxAlmacen();
+                prodPedido.idProducto = productoSel.IdProducto;
+                prodPedido.producto = productoSel.Nombre;
+                List<ProductoxAlmacen> prod = pSQL.BuscarProductoxAlmacen(idAlmacen, productoSel.IdProducto);
+                prodPedido.stock = prod.ElementAt(0).stock;
+                prodPedido.sugerido = prod.ElementAt(0).stockMin - prod.ElementAt(0).stock;
+                prodPedido.pedido = prodPedido.sugerido;
+                solicitudView.addProducto(prodPedido);
+            }
+            else
+            {
+                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
+                win.ShowWindow(pmVM);
+            }
         }
-
-
-
-
+        
+        #endregion
     }
 }
