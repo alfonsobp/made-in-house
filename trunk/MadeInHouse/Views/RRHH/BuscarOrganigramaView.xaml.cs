@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MadeInHouse.ViewModels.RRHH;
 
 namespace MadeInHouse.Views.RRHH
 {
@@ -23,6 +24,9 @@ namespace MadeInHouse.Views.RRHH
         public BuscarOrganigramaView()
         {
             InitializeComponent();
+            DataContext = new BuscarOrganigramaViewModel();
         }
+
+
     }
 }

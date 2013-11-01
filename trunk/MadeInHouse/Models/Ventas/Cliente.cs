@@ -24,8 +24,10 @@ namespace MadeInHouse.Models.Ventas
         public string razonSocial { get; set; }
         public int estado { get; set; }
         public string fecRegistro { get; set; }
+        public string distrito { get; set; }
+        public DateTime fechaNacimiento { get; set; }
 
-        private Cliente() { }
+       // private Cliente() { }
 
         public Cliente(SqlDataReader reader)
         {
@@ -42,6 +44,12 @@ namespace MadeInHouse.Models.Ventas
             this.razonSocial = reader.IsDBNull(reader.GetOrdinal("razonSocial"))? null : (string)reader["razonSocial"];
             this.estado = reader.IsDBNull(reader.GetOrdinal("estado"))? -1 : (int)reader["estado"];
             this.fecRegistro = reader.IsDBNull(reader.GetOrdinal("fechaReg"))? null : (string)reader["fechaReg"].ToString();
+            this.distrito = reader.IsDBNull(reader.GetOrdinal("distrito")) ? null : (string)reader["distrito"].ToString();
+        }
+
+        public Cliente()
+        {
+            // TODO: Complete member initialization
         }
     }
 }
