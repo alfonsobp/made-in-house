@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="300">
         <StackPanel Margin="2,0,0,0" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298">
-            <Layouts:TitleBarTemplate title="Seleccione Producto" />
+            <Layouts:TitleBarTemplate title="Costo por Proveedor" />
             <Grid   Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"  RenderTransformOrigin="0.444,0.693" Height="270" Margin="2,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -16,17 +16,15 @@
                 <Label Content="Proveedor:" Margin="23,86,544,338"/>
                 <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
                 <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
-                <DataGrid HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Height="159" Width="276">
+                <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="235" Width="276">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="120" Header="Codigo" />
-                        <DataGridTextColumn Width="170" Header="Descripcion"/>
+                        <DataGridTextColumn Width="120" Header="Razon Social" />
+                        <DataGridTextColumn Width="170" Header="Costo Unitario ( S/. )"/>
                     </DataGrid.Columns>
                 </DataGrid>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->
         </StackPanel>
-        <TextBox  Height="38" Margin="10,64,10,0" TextWrapping="Wrap" x:Name="CodProducto" VerticalAlignment="Top"/>
-        <Label Content="Nombre Producto:" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </UserControl>

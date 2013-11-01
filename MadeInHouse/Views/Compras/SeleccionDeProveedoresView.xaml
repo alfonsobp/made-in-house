@@ -4,129 +4,167 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="561.892" d:DesignWidth="600">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Seleccion de Proveedores" />
+             mc:Ignorable="d" Width="748" Height="679" 
+            >
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="748" Margin="0,123,0,0">
+        <StackPanel Margin="0,0,0,-138">
+            <Layouts:TitleBarTemplate title="Generar Ordenes de Compra" Height="31" />
+            <TabControl Height="520" >
+                <TabItem Header="Elegir Proveedores" BorderBrush="#FFF9F5F5" Margin="-2,0,-2,-2">
+                    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Margin="0,-2,-5,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ToolBar VerticalAlignment="Top">
+                            <ToolBar.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                                    <GradientStop Color="Snow" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ToolBar.Background>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                            </Button>
+                            <Button Height="30" Width="30">
+                                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                            </Button>
+                        </ToolBar>
+                        <DataGrid  SelectedItem="{Binding ConsolidadoSelected, Mode=TwoWay}" ItemsSource="{Binding LstConsolidado, Mode=OneWay}"  HorizontalAlignment="Left" IsReadOnly="True"     Height="219" Margin="25,69,0,0" VerticalAlignment="Top"  Width="361">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="180"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="110"/>
+
+                            </DataGrid.Columns>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                        </DataGrid>
+                        <Label Content="Código:" HorizontalAlignment="Left" Margin="416,185,0,0" VerticalAlignment="Top"/>
+                        <TextBox Text="{Binding Path=ConsolidadoSelected.CodigoProd}" IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="482,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
+                        <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="392,217,0,0" VerticalAlignment="Top"/>
+                        <TextBox IsEnabled="false" Text="{Binding Path=Prov.CodProveedor}"  HorizontalAlignment="Left" Height="23" Margin="481,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="216"/>
+                        <Button  HorizontalAlignment="Left" Height="25" Margin="637,185,0,0" VerticalAlignment="Top" Width="55">
+                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="43" />
+                        </Button>
+                        <DataGrid   Height="160" SelectedItem="{Binding RespuestaSeleced, Mode=TwoWay}" ItemsSource="{Binding LstRespuesta, Mode=OneWay}"  Margin="27,307,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="680">
+                            <DataGrid.Columns >
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código" Width="130"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="180"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="100"/>
+                                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor" Width="250"/>
+
+                            </DataGrid.Columns>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                            <Button/>
+                        </DataGrid>
+                        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="396,254,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="Cantidad" IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="478,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
+                        <ToolBar VerticalAlignment="Top" Height="41">
+                            <ToolBar.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                                    <GradientStop Color="Snow" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ToolBar.Background>
+                            <Button
+        						x:Name="AbrirMantenerProveedorViewModel" >
+                                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+                            </Button>
+                            <Button Height="30" Width="30">
+                                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+                            </Button>
+                            <Button Height="50" Width="50">
+                                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+                            </Button>
+                        </ToolBar>
+                        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="400,73,0,0" VerticalAlignment="Top"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="482,65,0,0" VerticalAlignment="Top" Width="196" Height="40"/>
+
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Medio de Pago">
+                    <TabItem.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TabItem.BorderBrush>
+                    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
+                        <ToolBar VerticalAlignment="Top">
+                            <ToolBar.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                    <GradientStop Color="#FF535050" Offset="0.073"/>
+                                    <GradientStop Color="Snow" Offset="1"/>
+                                </LinearGradientBrush>
+                            </ToolBar.Background>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                            </Button>
+                            <Button>
+                                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                            </Button>
+                            <Button Height="30" Width="30">
+                                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                            </Button>
+                        </ToolBar>
+
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+
             <!-- CAMBIAR NOMBREEEE -->
-
-            <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
-        <ToolBar VerticalAlignment="Top">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-            </Button>
-        </ToolBar>
-        <DataGrid  Height="219" Margin="25,69,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="308">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="180"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="180"/>
-              
-            </DataGrid.Columns>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-        </DataGrid>
-        <Label Content="Código:" HorizontalAlignment="Left" Margin="360,106,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="360,137,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144"/>
-        <Button  HorizontalAlignment="Left" Height="25" Margin="520,199,0,0" VerticalAlignment="Top" Width="55">
-            <Image Source="/MadeInHouse;component/Assets/find.png" Height="22" Width="43" />
-        </Button>
-        <DataGrid Height="160" Margin="25,334,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="549">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="180"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" Width="100"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Proveedor" Width="200"/>
-               
-            </DataGrid.Columns>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-        </DataGrid>
-        <GroupBox Header="Consolidado de Productos a comprar" Margin="619,66,-599,0" VerticalAlignment="Top" Height="264"/>
-        <GroupBox Header="Resultados" Margin="10,310,0,0" HorizontalAlignment="Left" Width="580" Height="202" VerticalAlignment="Top"/>
-        <Button Margin="466,245,0,0" VerticalAlignment="Top"  Height="43" HorizontalAlignment="Left" Width="49">
-            <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="50" />
-        </Button>
-        <Button Margin="526,245,0,0" VerticalAlignment="Top" Height="43" HorizontalAlignment="Left" Width="49">
-            <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="50" />
-        </Button>
-        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="360,168,0,0" VerticalAlignment="Top"/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="23" Margin="432,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" RenderTransformOrigin="0.511,0.682"/>
-        <ToolBar VerticalAlignment="Top" Height="41">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button
-        		x:Name="AbrirMantenerProveedorViewModel" >
-                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
-            </Button>
-            <Button Height="50" Width="50">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-            </Button>
-        </ToolBar>
-                <Label Content="Almacén:" HorizontalAlignment="Left" Margin="360,65,0,0" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Left" Margin="432,69,0,0" VerticalAlignment="Top" Width="120"/>
-
-            </Grid>
         </StackPanel>
     </Border>
 </UserControl>
