@@ -33,6 +33,13 @@ namespace MadeInHouse.ViewModels.Compras
             ActualizarProveedor();
         }
 
+        NuevaCotizacionViewModel cp;
+        public BuscadorProveedorViewModel(NuevaCotizacionViewModel cp)
+        {
+            this.cp = cp;
+            ActualizarProveedor();
+        }
+
         agregarServicioViewModel s;
         public BuscadorProveedorViewModel(agregarServicioViewModel s)
         {
@@ -111,6 +118,11 @@ namespace MadeInHouse.ViewModels.Compras
             if (s != null)
             {
                 s.Prov = proveedorSeleccionado;
+            }
+
+            if (cp != null)
+            {
+                cp.Prov = proveedorSeleccionado;
             }
         }
 

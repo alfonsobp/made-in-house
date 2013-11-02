@@ -168,7 +168,7 @@ namespace MadeInHouse.DataObjects.Compras
                         
                         if (p != null)
                         {
-                            MessageBox.Show("idServ = " + s.IdServicio + " IdProd = " + p.IdProducto);
+                            //MessageBox.Show("idServ = " + s.IdServicio + " IdProd = " + p.IdProducto);
                             if (spSQL.productoPertenece(s.IdServicio, p.IdProducto) == true)
                                 lstServicio.Add(s);
                         }

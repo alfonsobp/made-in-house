@@ -11,58 +11,37 @@
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Margin="1" Height="404">
-        <ToolBar Margin="0,0,-1,0" Height="52" VerticalAlignment="Top">
+        <ToolBar Margin="0,0,-1,0" Height="46" VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF535050" Offset="0.073"/>
                     <GradientStop Color="Snow" Offset="1"/>
                 </LinearGradientBrush>
             </ToolBar.Background>
-            <Button
-    			x:Name="NuevaCotizacion" >
-                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button x:Name="EditarCotizacion">
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
+            <Button x:Name="EliminarCotizacion">
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="GuardarCotizacion">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+            <Button x:Name="EnviarCorreo" Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/mail32.png" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            <Button x:Name="Importar" Height="50" Width="50">
+                <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
-            <Button Height="50" Width="50">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-            </Button>
-        </ToolBar>
-        <DataGrid Margin="25,213,72,0" Height="115" VerticalAlignment="Top">
+                </ToolBar>
+                <DataGrid IsReadOnly="True"  AutoGenerateColumns="False" ItemsSource="{Binding LstProducto, Mode=OneWay}" Margin="25,213,72,0" Height="115" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="80" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="140" Header="Descripcion"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="Cant"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="103" Header="P.Cant"/>
-
+                        <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="80" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Width="160" Header="Descripcion"/>
+                        <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="60" Header="Cant"/>
+                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="103" Header="Precio Esp. Cant"/>
             </DataGrid.Columns>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
         </DataGrid>
-        <TextBox  Text="PROV-0012" HorizontalAlignment="Left" Height="23" Margin="110,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
+        <TextBox  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="110,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
         <GroupBox Header="Cotización:" Margin="10,46,14,0" Height="172" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261" Text="COT-000123"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="25,99,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Width="52"/>
         <ComboBox HorizontalAlignment="Left" Height="23" Margin="110,127,0,0" VerticalAlignment="Top" Width="106">
@@ -70,7 +49,10 @@
             <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
             <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
         </ComboBox>
-        <Label Content="Estado:" HorizontalAlignment="Left" Margin="28,130,0,0" VerticalAlignment="Top" Width="49"/>
+        <Button x:Name="BuscarProveedor" HorizontalAlignment="Left" Height="23" Margin="345,99,0,0" VerticalAlignment="Top" Width="26">
+              <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="20" />
+        </Button>
+                <Label Content="Estado:" HorizontalAlignment="Left" Margin="28,130,0,0" VerticalAlignment="Top" Width="49"/>
         <Label Content="Observacion:" Margin="27,346,389,20"/>
         <Button HorizontalAlignment="Left" Height="38" Margin="441,222,0,0" VerticalAlignment="Top" Width="34">
             <Image Source="/MadeInHouse;component/Assets/add.png" Height="20" Width="50" />
@@ -78,11 +60,11 @@
         <Button  HorizontalAlignment="Left" Height="38" Margin="441,264,0,0" VerticalAlignment="Top" Width="34">
             <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
         </Button>
-        <DatePicker HorizontalAlignment="Left" Margin="131,163,0,0" VerticalAlignment="Top" Width="93"/>
+        <DatePicker x:Name="TxtFechaResp" HorizontalAlignment="Left" Margin="131,163,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="Fecha Respuesta:" HorizontalAlignment="Left" Margin="25,161,0,0" VerticalAlignment="Top" Width="106"/>
-        <TextBox Margin="110,346,94,0" TextWrapping="Wrap" Height="39" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="334,132,0,0" VerticalAlignment="Top" Width="93"/>
-        <DatePicker HorizontalAlignment="Left" Margin="334,161,0,0" VerticalAlignment="Top" Width="93"/>
+        <TextBox x:Name="TxtObservacion" Margin="110,346,94,0" TextWrapping="Wrap" Height="39" VerticalAlignment="Top"/>
+        <DatePicker x:Name="TxtFechaIni" HorizontalAlignment="Left" Margin="334,132,0,0" VerticalAlignment="Top" Width="93"/>
+        <DatePicker x:Name="TxtFechaFin" HorizontalAlignment="Left" Margin="334,161,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="Desde:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,130,0,0"/>
         <Label Content="Hasta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,159,0,0"/>
 

@@ -15,6 +15,7 @@ namespace MadeInHouse.Models.Compras
             get { return idCotizacion; }
             set { idCotizacion = value; }
         }
+
         int estado;
 
         public int Estado
@@ -22,20 +23,28 @@ namespace MadeInHouse.Models.Compras
             get { return estado; }
             set { estado = value; }
         }
-        int fechaFin;
+        DateTime fechaFin;
 
-        public int FechaFin
+        public DateTime FechaFin
         {
             get { return fechaFin; }
             set { fechaFin = value; }
         }
-        int fechaInicio;
+        DateTime fechaInicio;
 
-        public int FechaInicio
+        public DateTime FechaInicio
         {
             get { return fechaInicio; }
             set { fechaInicio = value; }
         }
+        DateTime fechaRespuesta;
+
+        public DateTime FechaRespuesta
+        {
+            get { return fechaRespuesta; }
+            set { fechaRespuesta = value; }
+        }
+
         Proveedor proveedor;
 
         public Proveedor Proveedor
@@ -50,6 +59,7 @@ namespace MadeInHouse.Models.Compras
             get { return observacion; }
             set { observacion = value; }
         }
+
         List<CotizacionxProducto> lstProdCotizacion;
 
         public List<CotizacionxProducto> LstProdCotizacion
