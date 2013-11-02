@@ -91,6 +91,8 @@
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
     <Compile Include="DataObjects\Compras\ConsolidadoSQL.cs" />
+    <Compile Include="DataObjects\Compras\CotizacionSQL.cs" />
+    <Compile Include="DataObjects\Compras\CotizacionxProductoSQL.cs" />
     <Compile Include="DataObjects\Compras\ProductoxSolicitudAdSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />

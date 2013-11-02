@@ -938,14 +938,14 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.10
         public void AbrirNuevaCotizacion()
         {
-            Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel { DisplayName = "Cotizacion" };
+            Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel();
             win.ShowWindow(obj);
         }
 
         //Ventana Externa: 2.11
         public void AbrirBuscarCotizacion()
         {
-            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel { DisplayName = "Buscador Cotizaciones" };
+            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel();
             win.ShowWindow(obj);
         }
 

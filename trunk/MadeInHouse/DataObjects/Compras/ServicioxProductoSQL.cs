@@ -100,7 +100,8 @@ namespace MadeInHouse.DataObjects.Compras
 
                 SqlConnection conn = DB.conn;
                 SqlCommand cmd = DB.cmd;
-
+                sp.Producto.IdProducto = p.IdProducto;
+                sp.Producto.Nombre = p.Nombre;
 
                 cmd.CommandText = "IF NOT EXISTS(SELECT 1 from ServicioxProducto where idServicio = @idServicio and idProducto = @idProducto) " +
                                    "Insert into ServicioxProducto(idServicio, idProducto, precio) " +
@@ -110,7 +111,7 @@ namespace MadeInHouse.DataObjects.Compras
                                     "where idServicio = @idServicio and idProducto = @idProducto ";
 
                 cmd.Parameters.AddWithValue("@idServicio", sp.IdServicio);
-                cmd.Parameters.AddWithValue("@idProducto", p.IdProducto);
+                cmd.Parameters.AddWithValue("@idProducto", sp.Producto.IdProducto);
                 cmd.Parameters.AddWithValue("@precio", sp.Precio);
                 
 
