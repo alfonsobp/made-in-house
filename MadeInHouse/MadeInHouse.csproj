@@ -108,6 +108,7 @@
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
+    <Compile Include="Dictionary\ExcelUtiles.cs" />
     <Compile Include="Models\Almacen\Almacenes.cs" />
     <Compile Include="Models\Almacen\EntityManager.cs" />
     <Compile Include="Models\Almacen\EntityName.cs" />

@@ -90,7 +90,61 @@
 
                         </Grid>
                     </TabItem>
+                    
+                    <TabItem Header="Productos" >
+                        <Grid Background="White" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="401*"/>
+                                <ColumnDefinition Width="469*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Código:" HorizontalAlignment="Left" Margin="32,55,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
+                            
+                            <Button x:Name="BuscarProductos" HorizontalAlignment="Left" Margin="331,55,0,0" VerticalAlignment="Top" Width="36" Height="23">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/Assets/find.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <Label Content="Stock inicial:" HorizontalAlignment="Left" Margin="32,93,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+                            <Label Content="Sotck mínimo:" HorizontalAlignment="Left" Margin="32,127,0,0" VerticalAlignment="Top" Height="26" Width="85"/>
+                            <Label Content="Stock máximo:" HorizontalAlignment="Left" Margin="32,161,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
+                            <Label Content="Precio de venta (S/.):" HorizontalAlignment="Left" Margin="32,199,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+                            <CheckBox x:Name="ChkVigente" Content="Vigente" HorizontalAlignment="Left" Margin="32,243,0,0" VerticalAlignment="Top" Height="15" Width="61"/>
+                            <DataGrid EnableRowVirtualization="False"  x:Name="LstProductos" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                                Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="48,93,0,0" VerticalAlignment="Top" Height="260" Width="392">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}" Width="130" />
+                                    <DataGridTextColumn Header="Stock actual" Binding="{Binding Path=StockActual}" />
+                                    <DataGridTextColumn Header="Stock min." Binding="{Binding Path=StockMin}"/>
+                                    <DataGridTextColumn Header="Stock max." Binding="{Binding Path=StockMax}"/>
+                                    <DataGridTextColumn Header="Precio" Binding="{Binding Path=PrecioVenta}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <Button x:Name="Agregar"  Grid.Column="1" HorizontalAlignment="Left" Margin="336,55,0,0" VerticalAlignment="Top" Width="40" Height="28">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/Assets/add.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <Button x:Name="Quitar"  Grid.Column="1" HorizontalAlignment="Left" Margin="397,55,0,0" VerticalAlignment="Top" Width="40" Height="28">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/Assets/minus.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <TextBox  x:Name="TxtCodProducto" HorizontalAlignment="Left" Height="23" Margin="184,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                            <TextBox x:Name="TxtStockIni" HorizontalAlignment="Left" Height="23" Margin="184,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                            <TextBox x:Name="TxtStockMin" HorizontalAlignment="Left" Height="23" Margin="184,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                            <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="23" Margin="184,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                            <TextBox x:Name="TxtPrecioV" HorizontalAlignment="Left" Height="23" Margin="184,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                            <Button x:Name="Importar" Grid.Column="1" HorizontalAlignment="Left" Margin="48,55,0,0" VerticalAlignment="Top" Width="40" Height="28">
+                                <Button.Background>
+                                    <ImageBrush ImageSource="/Assets/importar.png" Stretch="Uniform" />
+                                </Button.Background>
+                            </Button>
+                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="409" Margin="0,19,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="1"/>
 
+
+                        </Grid>
+                     </TabItem>
+                    
                     <TabItem Header="Anaqueles">
                         <Grid Background="White">
                             <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94"/>

@@ -35,6 +35,14 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private int ventanaAccion = 0;
+        
+        private Almacen.MantenerTiendaViewModel mantenerTiendaViewModel;
+        public ProductoBuscarViewModel(Almacen.MantenerTiendaViewModel mantenerTiendaViewModel, int ventanaAccion):this()
+        {
+            this.mantenerTiendaViewModel = mantenerTiendaViewModel;
+            this.ventanaAccion = ventanaAccion;
+        }        
+
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
         public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
         {
@@ -224,16 +232,25 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Acciones(object sender)
         {
-            if (ventanaAccion != 1)
+            if (ventanaAccion == 0)
             {
                 Actualizar();
             }
-            else
+            else if (ventanaAccion==1)
             {
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
                 if (ventaRegistrarViewModel != null)
                 {
                     ventaRegistrarViewModel.Prod = productoSel;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 2)
+            {
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (mantenerTiendaViewModel != null)
+                {
+                    mantenerTiendaViewModel.TxtCodProducto = productoSel.CodigoProd;
                     this.TryClose();
                 }
             }
