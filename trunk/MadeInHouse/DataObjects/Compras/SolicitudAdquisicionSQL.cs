@@ -33,7 +33,7 @@ namespace MadeInHouse.DataObjects.Compras
             {
 
                 string idAlmacen = Convert.ToString(filters[0]);
-                string estado = Convert.ToString(filters[1]);
+                int  estado = Convert.ToInt32(filters[1]);
                 DateTime fechaIni = Convert.ToDateTime(filters[2]);
                 DateTime fechaFin = Convert.ToDateTime(filters[3]);
 
@@ -42,15 +42,17 @@ namespace MadeInHouse.DataObjects.Compras
                     where += " and idAlmacen = " + idAlmacen;
                 }
 
-                if (!string.IsNullOrEmpty (estado )){
-                  string i="";
+               
 
-                  if(estado == "NO ATENDIDA") i="1"; 
-                  if(estado == "ATENDIDA") i ="2";
-                  if(estado == "TODOS") i ="estado";
+                    if (estado != 4)
+                    {
 
-                  where += " and estado = " + i;
-                }
+                        where += " and estado = " + estado;
+                    }
+                    else { 
+                     where += " and estado <> 0 ";
+                    }
+                
 
               
 
@@ -70,7 +72,7 @@ namespace MadeInHouse.DataObjects.Compras
 
             }
 
-             MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  estado <> 0 " + where);
+           //  MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  " + where);
 
             db.cmd.CommandText = "SELECT * FROM SolicitudAdquisicion WHERE  1=1   " + where;
             db.cmd.CommandType = CommandType.Text;
@@ -96,7 +98,7 @@ namespace MadeInHouse.DataObjects.Compras
                   // p.FechaAtencion = Convert.ToDateTime((reader["fechaAtencion"] ));
                    p.Codigo = "SOL-"+Convert.ToString(10000000 + p.IdSolicitudAD);
                    p.LstProductos = new ProductoxSolicitudAdSQL().Buscar(p.IdSolicitudAD) as List<ProductoxSolicitudAd>;
-                   p.Est = (p.Estado == 1)?"NO ATENDIDA":"ATENDIDA";
+                   p.Est = getEstado(p.Estado);
                    lstSolicitud.Add(p);
                   // MessageBox.Show("id = " + p.Codigo);
                 }
@@ -112,6 +114,17 @@ namespace MadeInHouse.DataObjects.Compras
 
             return lstSolicitud;
 
+        }
+
+        public String getEstado(int i) {
+
+            if (i == 1) return "NO ATENDIDA";
+
+            if (i == 2) return "ATENDIENDO";
+
+            if (i == 3) return "ATENDIDA";
+
+            return "";
         }
 
         public int Actualizar(object entity)
@@ -167,6 +180,35 @@ namespace MadeInHouse.DataObjects.Compras
         public int Eliminar(object entity)
         {
             throw new NotImplementedException();
+        }
+
+
+        public void TerminarSolicitudes(int idAlmacen) {
+
+            DBConexion db = new DBConexion();
+
+
+
+            db.cmd.CommandText = "UPDATE SolicitudAdquisicion " +
+                                 "SET fechaCierre = GETDATE(),estado = 3 where estado = 2 and idAlmacen = @idAlmacen ";
+
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+       
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+           
+
         }
     }
 }

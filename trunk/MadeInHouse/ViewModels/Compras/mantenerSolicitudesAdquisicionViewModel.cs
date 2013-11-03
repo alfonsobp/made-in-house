@@ -7,10 +7,11 @@ using Caliburn.Micro;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.DataObjects.Compras;
 using System.Windows;
+using MadeInHouse.Validacion;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class mantenerSolicitudesAdquisicionViewModel : PropertyChangedBase
+    class mantenerSolicitudesAdquisicionViewModel : Screen
     {
         BuscadorSolicitudesAdquisicionViewModel model;
 
@@ -29,27 +30,107 @@ namespace MadeInHouse.ViewModels.Compras
 
             this.P = p;
             this.model = model;
+            Lst = p.LstProductos;
 
         }
+
+        string cantidad;
+
+        public string Cantidad
+        {
+            get { return cantidad; }
+            set { cantidad = value; NotifyOfPropertyChange("Cantidad"); }
+        }
+
+        List<ProductoxSolicitudAd> lst;
+
+        public List<ProductoxSolicitudAd> Lst
+        {
+            get { return lst; }
+            set { lst = value; NotifyOfPropertyChange("Lst"); }
+        }
+
+       
+
+        ProductoxSolicitudAd seleccionado;
+
+        public ProductoxSolicitudAd Seleccionado
+        {
+            get { return seleccionado; }
+            set { seleccionado = value; NotifyOfPropertyChange("Seleccionado"); }
+        }
+
 
         public void Guardar() {
 
-        ProductoxSolicitudAdSQL m = new ProductoxSolicitudAdSQL();
+            if (EsValido())
+            {
+                ProductoxSolicitudAdSQL m = new ProductoxSolicitudAdSQL();
 
-        foreach (ProductoxSolicitudAd pi in P.LstProductos ){
+                foreach (ProductoxSolicitudAd pi in Lst)
+                {
 
-            
-            
-            m.Actualizar(pi);
-            
 
+
+                    m.Actualizar(pi);
+
+                }
+
+
+                new SolicitudAdquisicionSQL().Actualizar(P);
+
+                MessageBox.Show("Los datos fuerons Actualizados Satisfactoriamente ", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                model.Buscar();
+                this.TryClose();
+
+            }
         }
 
-        new  SolicitudAdquisicionSQL().Actualizar(P);
+        public void Agregar() {
+            if (EsValido()){
+               
+                    if (seleccionado != null) {
 
-        MessageBox.Show("Los datos fuerons Actualizados Satisfactoriamente ");
+                        if ( Validar()) {
 
-        model.Buscar();
+                            Seleccionado.CantidadAtendida = Convert.ToInt32(Cantidad);
+                            Lst = new List<ProductoxSolicitudAd>(lst);
+                        }
+            
+                    }
+
+            }
+        
+        }
+
+        public bool Validar() {
+
+            Evaluador e = new Evaluador();
+
+            if (!e.esNumeroEntero(Cantidad)) {
+                MessageBox.Show(Error.esNumero.mensaje, Error.esNumero.titulo, MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+
+            }
+
+            if(!e.esPositivo( Convert.ToInt32(Cantidad))){
+            MessageBox.Show(Error.esNegativo.mensaje, Error.esNegativo.titulo, MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true ;
+
+           
+        }
+
+        public bool EsValido() {
+
+            if (p.Estado == 1)
+                return true;
+            else
+                return false;
+        
         }
 
     }

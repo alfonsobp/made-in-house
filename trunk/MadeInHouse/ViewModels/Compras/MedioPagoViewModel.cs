@@ -61,11 +61,11 @@ namespace MadeInHouse.ViewModels.Compras
             OrdenCompraSQL oSQL = new OrdenCompraSQL();
             OrdenCompraxProductoSQL opSQL = new OrdenCompraxProductoSQL();
             UtilesSQL u = new UtilesSQL();
-
+            SolicitudAdquisicionSQL sSQL = new SolicitudAdquisicionSQL();
        foreach (Proveedor p in LstProveedor){
 
            OrdenCompra o = new OrdenCompra(idAlmacen, p, "Entregar a la brevedad posible");
-
+           
            oSQL.Agregar(o);
 
            int idOrden = u.ObtenerMaximoID("OrdenCompra", "idOrden");
@@ -85,7 +85,7 @@ namespace MadeInHouse.ViewModels.Compras
 
 
        }
-
+       sSQL.TerminarSolicitudes(idAlmacen);
        MessageBox.Show( "Fueron generadas satisfactoriamente las Orden de compra","OBSERVACION", MessageBoxButton.OK, MessageBoxImage.Information);
        m.TryClose();
          
