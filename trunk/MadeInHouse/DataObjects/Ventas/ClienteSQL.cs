@@ -7,19 +7,13 @@ using MadeInHouse.Models.Ventas;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows;
+using System.Diagnostics;
 
 namespace MadeInHouse.DataObjects.Ventas
 {
     class ClienteSQL
     {
-        private DBConexion db;
-
-        public ClienteSQL()
-        {
-            db = new DBConexion();
-        }
-
-        public List<Tarjeta> BuscarClientes(string dni = null, string nombre = null, int tipoCliente = -1, string registroDesde = null, string registroHasta = null)
+        public static List<Tarjeta> BuscarClientes(string dni = null, string nombre = null, int tipoCliente = -1, string registroDesde = null, string registroHasta = null)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -66,7 +60,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 where = where + " convert (char, fechaReg, 103) >= @registroDesde ";
                 cmd.Parameters.Add(new SqlParameter("registroDesde", registroDesde));
             }
-            
+
             if (!String.IsNullOrEmpty(registroHasta))
             {
                 if (where.Equals("")) where += " WHERE ";
@@ -75,7 +69,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 cmd.Parameters.Add(new SqlParameter("registroHasta", registroHasta));
             }
 
-            cmd.CommandText = "SELECT c.*, t.* FROM Cliente c LEFT JOIN Tarjeta t ON c.idCliente = t.idCliente AND t.estado = 1 " + where;
+            cmd.CommandText = "SELECT c.*, t.* FROM Cliente c RIGHT JOIN Tarjeta t ON c.idCLiente = t.idCLiente AND t.estado = 1 " + where + " ORDER by c.idCLiente";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             try
@@ -83,27 +77,56 @@ namespace MadeInHouse.DataObjects.Ventas
                 conn.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
 
+                clientes = new List<Tarjeta>();
                 while (reader.Read())
                 {
-                    if (clientes == null) clientes = new List<Tarjeta>();
-                    Tarjeta tarj = new Tarjeta(reader);
-                    Cliente cli = tarj.cliente;
-                    if (String.IsNullOrEmpty(cli.razonSocial))
+                    Cliente cli = new Cliente();
+                    cli.Id = Int32.Parse(reader["idCLiente"].ToString());
+                    cli.Dni = reader["DNI"].ToString();
+                    cli.Nombre = reader["nombre"].ToString();
+                    cli.ApePaterno = reader["apePaterno"].ToString();
+                    cli.ApeMaterno = reader["apeMaterno"].ToString();
+                    cli.NombreCompleto = cli.Nombre + " " + cli.ApePaterno + " " + cli.ApeMaterno;
+                    if (reader["sexo"].ToString().Equals("M"))
                     {
-                        cli.nombreCompleto = cli.nombre + ' ' + cli.apePaterno + ' ' + cli.apeMaterno;
-                        cli.documento = cli.dni;
+                        cli.Sexo = 1;
                     }
                     else
                     {
-                        cli.nombreCompleto = cli.razonSocial;
-                        cli.documento = cli.ruc;
+                        cli.Sexo = 0;
                     }
+                    cli.FecNacimiento = reader["fechaNac"].ToString();
+                    cli.Direccion = reader["direccion"].ToString();
+                    cli.Telefono = reader["telefono"].ToString();
+                    cli.Ruc = reader["RUC"].ToString();
+                    cli.RazonSocial = reader["razonSocial"].ToString();
+                    cli.Estado = Int32.Parse(reader["estado"].ToString());
+                    cli.FecRegistro = reader["fechaReg"].ToString();
+                    cli.Distrito = reader["distrito"].ToString();
+                    cli.Documento = cli.Dni;
+                    Tarjeta tarj = new Tarjeta();
+                    tarj.CodTarjeta = reader["codTarjeta"].ToString();
+                    MessageBox.Show(tarj.CodTarjeta + "");
+                    tarj.FecEmision = reader["fechaEmi"].ToString();
+                    tarj.FecAnulado = reader["fechaAnu"].ToString();
+                    tarj.Estado = Int32.Parse(reader["estado"].ToString());
+                    tarj.Cliente = cli;
+                    /*if (String.IsNullOrEmpty(cli.RazonSocial))
+                    {
+                        cli.NombreCompleto = cli.Nombre + ' ' + cli.ApePaterno + ' ' + cli.ApeMaterno;
+                        cli.Documento = cli.Dni;
+                    }
+                    else
+                    {
+                        cli.NombreCompleto = cli.RazonSocial;
+                        cli.Documento = cli.Ruc;
+                    }*/
                     clientes.Add(tarj);
                 }
 
                 conn.Close();
             }
-            catch(SqlException e)
+            catch (SqlException e)
             {
                 Console.WriteLine(e);
             }
@@ -115,7 +138,7 @@ namespace MadeInHouse.DataObjects.Ventas
             return clientes;
         }
 
-        public static int agregarCliente(Cliente a,DateTime hoy)
+        public static int agregarCliente(Cliente a, DateTime hoy)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -126,17 +149,17 @@ namespace MadeInHouse.DataObjects.Ventas
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
-            cmd.Parameters.AddWithValue("@DNI", a.dni);
-            cmd.Parameters.AddWithValue("@nombre", a.nombre);
-            cmd.Parameters.AddWithValue("@apePaterno", a.apePaterno);
-            cmd.Parameters.AddWithValue("@apeMaterno", a.apeMaterno);
-            cmd.Parameters.AddWithValue("@RUC", a.ruc);
+            cmd.Parameters.AddWithValue("@DNI", a.Dni);
+            cmd.Parameters.AddWithValue("@nombre", a.Nombre);
+            cmd.Parameters.AddWithValue("@apePaterno", a.ApePaterno);
+            cmd.Parameters.AddWithValue("@apeMaterno", a.ApeMaterno);
+            cmd.Parameters.AddWithValue("@RUC", a.Ruc);
             cmd.Parameters.AddWithValue("@sexo", 'M');//a.sexo
-            cmd.Parameters.AddWithValue("@razonSocial", a.razonSocial);
-            cmd.Parameters.AddWithValue("@direccion", a.direccion);
-            cmd.Parameters.AddWithValue("@telefono", a.telefono);
-            cmd.Parameters.AddWithValue("@estado", a.estado);
-            cmd.Parameters.AddWithValue("@distrito", a.distrito);
+            cmd.Parameters.AddWithValue("@razonSocial", a.RazonSocial);
+            cmd.Parameters.AddWithValue("@direccion", a.Direccion);
+            cmd.Parameters.AddWithValue("@telefono", a.Telefono);
+            cmd.Parameters.AddWithValue("@estado", a.Estado);
+            cmd.Parameters.AddWithValue("@distrito", a.Distrito);
             //cmd.Parameters.AddWithValue("@fechaReg", hoy);
             //cmd.Parameters.AddWithValue("@fechaNac", a.fechaNacimiento);
 
@@ -153,18 +176,18 @@ namespace MadeInHouse.DataObjects.Ventas
             return k;
         }
 
-        public static int buscarIDCliente(Cliente a)
+        public static int BuscarIDCliente(Cliente a)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
             int k = 0;
 
-            cmd.CommandText = "SELECT idCliente FROM Cliente WHERE DNI=@DNI";
+            cmd.CommandText = "SELECT idCLiente FROM Cliente WHERE DNI=@DNI";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
-            cmd.Parameters.AddWithValue("@DNI", a.dni);
+            cmd.Parameters.AddWithValue("@DNI", a.Dni);
 
             try
             {
@@ -173,7 +196,7 @@ namespace MadeInHouse.DataObjects.Ventas
 
                 if (reader.Read())
                 {
-                    k = Int32.Parse(reader["idCliente"].ToString());
+                    k = Int32.Parse(reader["idCLiente"].ToString());
                 }
                 else
                     conn.Close();
@@ -183,6 +206,67 @@ namespace MadeInHouse.DataObjects.Ventas
                 MessageBox.Show(e.StackTrace.ToString());
             }
             return k;
+        }
+
+        public static Tarjeta BuscarClientePorId(int id)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+            Tarjeta tarje = null;
+
+            cmd.CommandText = "SELECT c.*,t.estado as estadotarjeta FROM Cliente c, Tarjeta t WHERE c.idCLiente=t.idCLiente and c.idCLiente=@idCLiente";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@idCLiente", id);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Cliente cli = new Cliente();
+                    cli.Id = Int32.Parse(reader["idCLiente"].ToString());
+                    cli.Dni = reader["DNI"].ToString();
+                    cli.Nombre = reader["nombre"].ToString();
+                    cli.ApePaterno = reader["apePaterno"].ToString();
+                    cli.ApeMaterno = reader["apeMaterno"].ToString();
+                    if (reader["sexo"].ToString().Equals("M"))
+                    {
+                        cli.Sexo = 1;
+                    }
+                    else
+                    {
+                        cli.Sexo = 0;
+                    }
+                    cli.FecNacimiento = reader["fechaNac"].ToString();
+                    if (!cli.FecNacimiento.Equals("") && cli.FecNacimiento != null)
+                    {
+                        cli.FechaNacimiento = DateTime.Parse(reader["fechaNac"].ToString());
+                    }
+                    cli.Direccion = reader["direccion"].ToString();
+                    cli.Telefono = reader["telefono"].ToString();
+                    cli.Ruc = reader["RUC"].ToString();
+                    cli.RazonSocial = reader["razonSocial"].ToString();
+                    cli.Estado = Int32.Parse(reader["estado"].ToString());
+                    cli.FecRegistro = reader["fechaReg"].ToString();
+                    cli.Distrito = reader["distrito"].ToString();
+                    cli.Documento = cli.Dni;
+                    tarje = new Tarjeta();
+                    tarje.Estado = Int32.Parse(reader["estadotarjeta"].ToString());
+                    tarje.Cliente = cli;
+                }
+                else
+                    conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return tarje;
         }
 
         public static int RegistrarTarjeta(Int32 id, DateTime date, String codt)
@@ -211,6 +295,56 @@ namespace MadeInHouse.DataObjects.Ventas
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
+            return k;
+        }
+
+        public static int editarCliente(Cliente a, int id)
+        {
+            //DBConexion db = new DBConexion();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+            Trace.WriteLine("Editar Usuario 1");
+
+            cmd.CommandText = "UPDATE Cliente SET DNI = @DNI, nombre = @nombre, apePaterno = @apePaterno, apeMaterno = @apeMaterno, RUC = @RUC, sexo = @sexo, razonSocial = @razonSocial, direccion = @direccion, telefono = @telefono, distrito=@distrito WHERE idCLiente = @idCLiente ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            //db.cmd.Parameters.AddWithValue("@codEmpleado", u.IdUsuario);
+            cmd.Parameters.AddWithValue("@DNI", a.Dni);
+            cmd.Parameters.AddWithValue("@nombre", a.Nombre);
+            cmd.Parameters.AddWithValue("@apePaterno", a.ApePaterno);
+            cmd.Parameters.AddWithValue("@apeMaterno", a.ApeMaterno);
+            cmd.Parameters.AddWithValue("@RUC", a.Ruc);
+            cmd.Parameters.AddWithValue("@sexo", 'M');//a.sexo
+            cmd.Parameters.AddWithValue("@razonSocial", a.RazonSocial);
+            cmd.Parameters.AddWithValue("@direccion", a.Direccion);
+            cmd.Parameters.AddWithValue("@telefono", a.Telefono);
+            cmd.Parameters.AddWithValue("@distrito", a.Distrito);
+            cmd.Parameters.AddWithValue("@idCLiente", id);
+
+            Trace.WriteLine("<" + a.Dni + ">");
+            Trace.WriteLine("<" + a.Nombre + ">");
+            Trace.WriteLine("<" + a.ApePaterno + ">");
+            Trace.WriteLine("<" + a.ApeMaterno + ">");
+            Trace.WriteLine("<" + a.Estado + ">");
+
+
+            Trace.WriteLine("Editar Usuario 2");
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+                Trace.WriteLine("Editar Usuario 3");
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
             return k;
         }
     }

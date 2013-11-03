@@ -7,15 +7,15 @@ using Caliburn.Micro;
 using System.Windows;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Ventas;
+using System.Windows.Controls;
 using MadeInHouse.DataObjects.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
     class ClienteBuscarViewModel : PropertyChangedBase
     {
-        //private ClienteModel cliGateway;
-        private ClienteSQL cliSQL;
         private MyWindowManager win = new MyWindowManager();
+
 
         public void AbrirRegistrarcliente()
         {
@@ -24,36 +24,34 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirEditarcliente()
         {
-            win.ShowWindow(new Ventas.ClienteEditarViewModel { DisplayName = "Editar Cliente" });
+            MessageBox.Show("Cliente seleccionado " + clienteSeleccionado.Cliente.NombreCompleto);
+            win.ShowWindow(new Ventas.ClienteRegistrarViewModel(this, clienteSeleccionado.Cliente.Id) { DisplayName = "Editar Cliente" });
         }
 
         public ClienteBuscarViewModel()
         {
-            cliSQL = new ClienteSQL();
-            Clientes = cliSQL.BuscarClientes();
-
-            
-            Console.WriteLine(Clientes);
+            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes();
+            NotifyOfPropertyChange("Clientes");
+            //Console.WriteLine(Clientes);
         }
-        
+
         private List<Tarjeta> clientes;
 
         public List<Tarjeta> Clientes
         {
             get
             {
-                return this.clientes;
+                return clientes;
             }
 
-            private set
+            set
             {
-                if (this.clientes == value)
+                if (clientes == value)
                 {
                     return;
                 }
-
-                this.clientes = value;
-                this.NotifyOfPropertyChange(() => this.Clientes);
+                clientes = value;
+                NotifyOfPropertyChange(() => Clientes);
             }
         }
 
@@ -70,10 +68,18 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private Tarjeta clienteSeleccionado;
+
+        public void SelectedItemChanged(object sender)
+        {
+            clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
+
+        }
+
         public void RealizarBusqueda(string dni, string nombre, string cmbTipoCliente, string registroDesde, string registroHasta)
         {
-            cliSQL = new ClienteSQL();
-            Clientes = cliSQL.BuscarClientes(dni, nombre, tipoCliente[cmbTipoCliente], registroDesde, registroHasta);
+            Clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(dni, nombre, tipoCliente[cmbTipoCliente], registroDesde, registroHasta);
+            NotifyOfPropertyChange("Clientes");
         }
     }
 }

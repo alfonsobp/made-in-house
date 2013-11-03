@@ -17,8 +17,10 @@ namespace MadeInHouse.ViewModels.Ventas
 {
     class ClienteRegistrarViewModel : PropertyChangedBase
     {
-        //private ClienteSQL VentasSQ;
+
         private MyWindowManager win = new MyWindowManager();
+
+        private int ind = 0;
 
         private string txtDNI;
 
@@ -26,6 +28,33 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             get { return txtDNI; }
             set { txtDNI = value; NotifyOfPropertyChange(() => TxtDNI); }
+        }
+
+        public ClienteRegistrarViewModel(ClienteBuscarViewModel m, int idcliente)
+        {
+            Tarjeta t = DataObjects.Ventas.ClienteSQL.BuscarClientePorId(idcliente);
+            //LstRol = clienteSQL.ListarRol();
+            txtDNI = t.Cliente.Dni;
+            txtNombre = t.Cliente.Nombre;
+            txtApPat = t.Cliente.ApePaterno;
+            txtApMat = t.Cliente.ApeMaterno;
+            txtRUC = t.Cliente.Ruc;
+            txtRazonSocial = t.Cliente.RazonSocial;
+            txtTelf = t.Cliente.Telefono;
+            txtDist = t.Cliente.Distrito;
+            txtDireccion = t.Cliente.Direccion;
+            fecNacimiento = t.Cliente.FechaNacimiento;
+
+            //txtCodUsuario = t.CodEmpleado.ToString();
+            //Deshabilitar escritura en txtCodUsuario
+            //BTxtCodUsuario = u.CodEmpleado;
+            ind = 2;
+        }
+
+        public ClienteRegistrarViewModel()
+        {
+            // TODO: Complete member initialization
+            ind = 1;
         }
 
         private string txtNombre;
@@ -44,13 +73,13 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtApPat = value; NotifyOfPropertyChange(() => TxtApPat); }
         }
 
-       /* private string txtSexo;
+        /* private string txtSexo;
 
-        public string TxtSexo
-        {
-            get { return txtSexo; }
-            set { txtSexo = value; NotifyOfPropertyChange(() => TxtSexo); }
-        }*/
+         public string TxtSexo
+         {
+             get { return txtSexo; }
+             set { txtSexo = value; NotifyOfPropertyChange(() => TxtSexo); }
+         }*/
 
         private string txtRUC;
 
@@ -120,31 +149,49 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             Cliente a = new Cliente();
 
-            a.dni = txtDNI;
-            a.nombre = txtNombre;
-            a.apePaterno = txtApPat;
-            a.apeMaterno = txtApMat;
+            a.Dni = txtDNI;
+            a.Nombre = txtNombre;
+            a.ApePaterno = txtApPat;
+            a.ApeMaterno = txtApMat;
             //a.sexo = Int32.Parse(txtSexo);
-            a.direccion = txtDireccion;
-            a.telefono = txtTelf;
-            a.ruc = txtRUC;
-            a.razonSocial = txtRazonSocial;
-            a.estado = 1;
-            a.distrito = txtDist;
-            a.fechaNacimiento = fecNacimiento;
-            a.fecNacimiento = fecNacimiento.ToString();
-            MessageBox.Show(a.fecNacimiento);
+            a.Direccion = txtDireccion;
+            a.Telefono = txtTelf;
+            a.Ruc = txtRUC;
+            a.RazonSocial = txtRazonSocial;
+            a.Estado = 1;
+            a.Distrito = txtDist;
+            a.FechaNacimiento = fecNacimiento;
+            a.FecNacimiento = fecNacimiento.ToString();
+            MessageBox.Show(a.FecNacimiento + " " + a.Dni);
 
-            int k = DataObjects.Ventas.ClienteSQL.agregarCliente(a, DateTime.Today);
-            if (k == 0)
-                MessageBox.Show("Ocurrio un error");
+            if (ind == 1)
+            {
+                int k = DataObjects.Ventas.ClienteSQL.agregarCliente(a, DateTime.Today);
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                {
+                    Int32 id = DataObjects.Ventas.ClienteSQL.BuscarIDCliente(a);
+                    //MessageBox.Show("Cliente Registrado \n\n Nombre = " + id);
+                    int j = DataObjects.Ventas.ClienteSQL.RegistrarTarjeta(id, DateTime.Today, a.Dni);
+                    MessageBox.Show("Cliente Registrado \n\n Nombre = " + txtNombre);
+                }
+            }
             else
             {
-                Int32 id = DataObjects.Ventas.ClienteSQL.buscarIDCliente(a);
-                //MessageBox.Show("Cliente Registrado \n\n Nombre = " + id);
-                int j = DataObjects.Ventas.ClienteSQL.RegistrarTarjeta(id,DateTime.Today,a.dni);
-                MessageBox.Show("Cliente Registrado \n\n Nombre = " + txtNombre);
+                Int32 id = DataObjects.Ventas.ClienteSQL.BuscarIDCliente(a);
+                int k = DataObjects.Ventas.ClienteSQL.editarCliente(a, id);
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
+                else
+                {
+                    //MessageBox.Show("Cliente Registrado \n\n Nombre = " + id);
+                    //int j = DataObjects.Ventas.ClienteSQL.ActualizarEstadoTarjeta(id);
+                    MessageBox.Show("Cliente Actualizado \n\n Nombre = " + txtNombre);
+                }
             }
         }
+
+        public string DisplayName { get; set; }
     }
 }
