@@ -26,11 +26,9 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button
-            			x:Name="NuevoDocumento" />
-                    <Button x:Name="EditarDocumento"/>
+                   
                     <Button/>
-                    <Button>
+                    <Button x:Name="Guardar">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
