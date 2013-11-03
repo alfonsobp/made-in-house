@@ -5,7 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="524.189" Width="637.568">
+             mc:Ignorable="d" Height="524.189" Width="742.046">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-49" Height="523" VerticalAlignment="Top">
         <StackPanel Margin="0,6,0,-6">
             <Layouts:TitleBarTemplate title="Catalogo de productos" />
@@ -19,12 +19,12 @@
                         <DataGridTextColumn Binding="{Binding CodComercial}"  Header="Código Comercial"/>
                         <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}"  Header="Nombre"/>
                         <DataGridTextColumn Binding="{Binding Descripcion}" Header="Descripción" Width="130"/>
-                        <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="70"/>
-                        <DataGridTextColumn Binding="{Binding FechaAct}"  Header="Ultima Actualización" Width="80"/>
-                        <DataGridTextColumn Binding="{Binding Precio}" Header="Precio (S/.)" Width="180"/>
+                        <DataGridTextColumn Binding="{Binding Precio}" Header="Precio (S/.)" Width="80"/>
+                        <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="150"/>
+                        <DataGridTextColumn Binding="{Binding FechaAct}"  Header="Ultima Actualización" Width="150"/>
+                       
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="Proveedor:" Margin="10,41,557,383" RenderTransformOrigin="0.493,-0.514"/>
                 <TextBox IsReadOnly="True"  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  Margin="159,67,222,0" TextWrapping="Wrap" Height="23" 
                   cal:Message.Attach="[Event TextChanged]=[Action Refrescar]"       VerticalAlignment="Top"  />
                 <Button x:Name="BuscarProveedor" Margin="0,65,84,0"  HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
@@ -63,16 +63,7 @@
                 	       VerticalAlignment="Top"  />
                 <Label Content="Codigo:" Margin="91,65,476,359" RenderTransformOrigin="0.493,-0.514"/>
                 <Label Content="Razon Social:" Margin="61,96,492,328" RenderTransformOrigin="0.493,-0.514"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="442,141,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="69"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="443,173,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="69"/>
-                <DatePicker HorizontalAlignment="Left" Margin="145,176,0,0" VerticalAlignment="Top"/>
-                <DatePicker HorizontalAlignment="Left" Margin="144,143,0,0" VerticalAlignment="Top"/>
-                <Label Content="Precio" HorizontalAlignment="Left" Margin="320,138,0,0" VerticalAlignment="Top"/>
-                <Label Content="Desde" HorizontalAlignment="Left" Margin="382,141,0,0" VerticalAlignment="Top"/>
-                <Label Content="Hasta" HorizontalAlignment="Left" Margin="387,169,0,0" VerticalAlignment="Top"/>
-                <Label Content="Fecha Act" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top"/>
-                <Label Content="Desde" HorizontalAlignment="Left" Margin="83,143,0,0" VerticalAlignment="Top"/>
-                <Label Content="Hasta" HorizontalAlignment="Left" Margin="85,173,0,0" VerticalAlignment="Top"/>
+                <GroupBox Header="Proveedor" HorizontalAlignment="Left" Height="141" Margin="10,46,0,0" VerticalAlignment="Top" Width="718"/>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->

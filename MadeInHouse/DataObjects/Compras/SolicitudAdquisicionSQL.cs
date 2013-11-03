@@ -94,8 +94,8 @@ namespace MadeInHouse.DataObjects.Compras
                    p.Estado =  Convert.ToInt32(reader["estado"].ToString());
                    p.IdAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
                    p.IdSolicitudAD = Convert.ToInt32 (reader["idSolicitudAD"].ToString());
-                   p.FechaReg  =Convert.ToDateTime (reader["fechaReg"]);
-                  // p.FechaAtencion = Convert.ToDateTime((reader["fechaAtencion"] ));
+                   p.FechaReg  =reader["fechaReg"].ToString();               
+                    p.FechaAtencion = reader.IsDBNull(reader.GetOrdinal("fechaAtencion")) ? "" :reader["fechaAtencion"].ToString();
                    p.Codigo = "SOL-"+Convert.ToString(10000000 + p.IdSolicitudAD);
                    p.LstProductos = new ProductoxSolicitudAdSQL().Buscar(p.IdSolicitudAD) as List<ProductoxSolicitudAd>;
                    p.Est = getEstado(p.Estado);

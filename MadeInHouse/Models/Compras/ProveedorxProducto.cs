@@ -55,16 +55,18 @@ namespace MadeInHouse.Models.Compras
             set { precio = value; }
         }
 
-        DateTime fechaReg;
+        string fechaReg;
 
-        public DateTime FechaReg
+        public string FechaReg
         {
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        DateTime fechaAct;
 
-        public DateTime FechaAct
+
+        string fechaAct;
+
+        public string FechaAct
         {
             get { return fechaAct; }
             set { fechaAct = value; }

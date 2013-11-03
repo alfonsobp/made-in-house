@@ -60,8 +60,8 @@ namespace MadeInHouse.DataObjects.Compras
                     p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
                     p.Precio = Convert.ToDouble(reader["precio"].ToString());
                     p.IdProveedor = Convert.ToInt32(reader["idProveedor"].ToString());
-                    p.FechaAct = Convert.ToDateTime(reader["fechaAct"].ToString());
-                    p.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
+                    p.FechaAct = (reader["fechaAct"].ToString());
+                    p.FechaReg = (reader["fechaReg"].ToString());
                     p.CodComercial = reader["codComercial"].ToString();
                     p.Descripcion = reader["descripcion"].ToString();
 

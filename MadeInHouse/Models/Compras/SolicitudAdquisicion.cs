@@ -22,20 +22,27 @@ namespace MadeInHouse.Models.Compras
             get { return idSolicitudAD; }
             set { idSolicitudAD = value; }
         }
-        DateTime fechaReg;
 
-        public DateTime FechaReg
+
+        string fechaReg;
+
+        public string FechaReg
         {
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        DateTime fechaAtencion;
 
-        public DateTime FechaAtencion
+       
+
+        string fechaAtencion;
+
+        public string FechaAtencion
         {
             get { return fechaAtencion; }
             set { fechaAtencion = value; }
         }
+
+       
        
         int idAlmacen;
 
