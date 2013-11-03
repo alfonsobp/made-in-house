@@ -5,9 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using System.Windows.Controls;
-using MadeInHouse.Models.Ventas;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -48,6 +49,15 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtProducto = value; NotifyOfPropertyChange(() => TxtProducto); }
         }
 
+        private string txtCliente;
+
+        public string TxtCliente
+        {
+            get { return txtCliente; }
+            set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
+        }
+
+
         private string txtCantidad;
 
         public string TxtCantidad
@@ -55,7 +65,6 @@ namespace MadeInHouse.ViewModels.Ventas
             get { return txtCantidad; }
             set { txtCantidad = value; NotifyOfPropertyChange(() => TxtCantidad); }
         }
-
 
         private List<DetalleVenta> lstVenta;
 
@@ -102,7 +111,27 @@ namespace MadeInHouse.ViewModels.Ventas
         public string TxtPagaCon
         {
             get { return txtPagaCon; }
-            set { txtPagaCon = value; NotifyOfPropertyChange(() => TxtPagaCon); }
+            set {
+                txtPagaCon = value; 
+                NotifyOfPropertyChange(() => TxtPagaCon);
+
+                try
+                {
+                    if (!txtPagaCon.Equals(""))
+                    {
+                        txtVuelto = (Convert.ToDouble(txtPagaCon) - Convert.ToDouble(txtTotal)).ToString();
+                        NotifyOfPropertyChange(() => TxtVuelto);
+                    }
+                    else
+                    {
+                        txtVuelto = ""; NotifyOfPropertyChange(() => TxtVuelto);
+                    }
+                }
+                catch (FormatException e)
+                {
+                    Console.Write(e.ToString());
+                }
+            }
         }
 
         private string txtVuelto;
@@ -147,13 +176,18 @@ namespace MadeInHouse.ViewModels.Ventas
         public void GuardarVenta()
         {
             Venta v = new Venta();
+            v.LstDetalle = new List<DetalleVenta>();
             //guardar datos de la venta
             //completar
+            v.NumDocPago = null;
+            v.TipoDocPago = null;
             v.Estado = 1;
             v.FechaReg = System.DateTime.Now;
+            //idCliente desde la tarjeta de este si es que hay
+            v.IdCliente = Convert.ToInt32(TxtCliente);
 
             //guardar detalle de la venta
-            foreach (DetalleVenta dv in LstVenta)
+            foreach (DetalleVenta dv in lstVenta)
             {
                 v.LstDetalle.Add(dv);
             }
@@ -161,9 +195,33 @@ namespace MadeInHouse.ViewModels.Ventas
             v.Descuento = desc;
             v.Igv = igv_total;
 
+            v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+
             //insertar en la base de datos
             VentaSQL vsql = new VentaSQL();
-            vsql.Agregar(v);
+            int k = vsql.Agregar(v,"tienda");
+            if (k != 0)
+            {
+                MessageBox.Show("Venta Realizada con Exito");
+                Limpiar();
+            }
+        }
+
+        public void Limpiar()
+        {
+            TxtIGVTotal = "";
+            TxtSubTotal = "";
+            TxtTotal = "";
+            TxtPagaCon = "";
+            TxtProducto = "";
+            TxtCantidad = "";
+            TxtCliente = "";
+            TxtDescuentoTotal = "";
+            LstVenta = null;
+            subt = 0;
+            desc = 0;
+            igv_total = 0;
+            lstVenta = new List<DetalleVenta>();
         }
 
     }

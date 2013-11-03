@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.DataObjects;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -19,7 +20,7 @@ namespace MadeInHouse.ViewModels.Almacen
     }
 
 
-    class ProductoBuscarViewModel : PropertyChangedBase
+    class ProductoBuscarViewModel : Screen
     {
         private MadeInHouse.Models.MyWindowManager win = new MadeInHouse.Models.MyWindowManager();
 
@@ -33,10 +34,14 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        private int ventanaAccion = 0;
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
-        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel) : this()
+        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
         {
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            this.ventanaAccion = ventanaAccion;
         }
 
         private SolicitudAbRegistrarViewModel solicitudView = null;
@@ -217,25 +222,30 @@ namespace MadeInHouse.ViewModels.Almacen
              
         }
 
-        public void Actualizar()
+        public void Acciones(object sender)
         {
-            if (solicitudView != null)
+            if (ventanaAccion != 1)
             {
-                ProductoSQL pSQL = new ProductoSQL();
-                ProductoxAlmacen prodPedido = new ProductoxAlmacen();
-                prodPedido.idProducto = productoSel.IdProducto;
-                prodPedido.producto = productoSel.Nombre;
-                List<ProductoxAlmacen> prod = pSQL.BuscarProductoxAlmacen(idAlmacen, productoSel.IdProducto);
-                prodPedido.stock = prod.ElementAt(0).stock;
-                prodPedido.sugerido = prod.ElementAt(0).stockMin - prod.ElementAt(0).stock;
-                prodPedido.pedido = prodPedido.sugerido;
-                solicitudView.addProducto(prodPedido);
+                Actualizar();
             }
             else
             {
-                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
-                win.ShowWindow(pmVM);
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (ventaRegistrarViewModel != null)
+                {
+                    ventaRegistrarViewModel.Prod = productoSel;
+                    this.TryClose();
+                }
             }
+        }
+
+
+        public void Actualizar()
+        {
+            ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
+            win.ShowWindow(pmVM);
+
+
         }
         
         #endregion
