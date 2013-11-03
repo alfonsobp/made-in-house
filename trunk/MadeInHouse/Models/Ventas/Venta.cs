@@ -14,6 +14,20 @@ namespace MadeInHouse.Models.Ventas
         int estado;
         DateTime fechaMod;
         DateTime fechaReg;
+        DateTime fechaDespacho;
+
+        public DateTime FechaDespacho
+        {
+            get { return fechaDespacho; }
+            set { fechaDespacho = value; }
+        }
+        string tipoVenta;
+
+        public string TipoVenta
+        {
+            get { return tipoVenta; }
+            set { tipoVenta = value; }
+        }
         int idUsuario;
         double igv;
         double monto;

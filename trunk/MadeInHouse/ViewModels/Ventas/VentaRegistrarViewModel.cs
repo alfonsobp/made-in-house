@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Caliburn.Micro;
+using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.Models.Almacen;
 using System.Windows.Controls;
 using MadeInHouse.Models;
 using MadeInHouse.ViewModels.Almacen;
-using MadeInHouse.Models.Ventas;
+using System.Windows;
 namespace MadeInHouse.ViewModels.Ventas
 {
     class VentaRegistrarViewModel : PropertyChangedBase
@@ -25,6 +27,7 @@ namespace MadeInHouse.ViewModels.Ventas
         public VentaRegistrarViewModel()
         {
             lstVenta = new List<DetalleVenta>();
+            prod = new Producto();
             IGV = 0.18;
             PUNTO = 30;
             subt = 0;
@@ -48,9 +51,9 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
         }
 
-        private int idCliente;
+        private string idCliente;
 
-        public int IdCliente
+        public string IdCliente
         {
             get { return idCliente; }
             set { idCliente = value; NotifyOfPropertyChange(() => IdCliente); }
@@ -149,7 +152,28 @@ namespace MadeInHouse.ViewModels.Ventas
         public string TxtPagaCon
         {
             get { return txtPagaCon; }
-            set { txtPagaCon = value; NotifyOfPropertyChange(() => TxtPagaCon); }
+            set
+            {
+                txtPagaCon = value;
+                NotifyOfPropertyChange(() => TxtPagaCon);
+
+                try
+                {
+                    if (!txtPagaCon.Equals(""))
+                    {
+                        txtVuelto = (Convert.ToDouble(txtPagaCon) - Convert.ToDouble(txtTotal)).ToString();
+                        NotifyOfPropertyChange(() => TxtVuelto);
+                    }
+                    else
+                    {
+                        txtVuelto = ""; NotifyOfPropertyChange(() => TxtVuelto);
+                    }
+                }
+                catch (FormatException e)
+                {
+                    Console.Write(e.ToString());
+                }
+            }
         }
 
         private string txtVuelto;
@@ -160,17 +184,24 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtVuelto = value; NotifyOfPropertyChange(() => TxtVuelto); }
         }
 
+        private DateTime fechaDespacho = new DateTime(DateTime.Now.Year, 1, 1);
+
+        public DateTime FechaDespacho
+        {
+            get { return fechaDespacho; }
+            set { fechaDespacho = value; NotifyOfPropertyChange(() => FechaDespacho); }
+        }
 
         public void AgregarDetalle()
         {
             DetalleVenta dv = new DetalleVenta();
-            Producto p = new DetalleVentaSQL().Buscar(TxtProducto);
-            dv.IdProducto = p.IdProducto;
-            dv.CodProducto = p.CodigoProd;
-            dv.Descripcion = p.Nombre;
+            //Producto p = new DetalleVentaSQL().Buscar(TxtProducto);
+            dv.IdProducto = prod.IdProducto;
+            dv.CodProducto = prod.CodigoProd;
+            dv.Descripcion = prod.Nombre;
             dv.Descuento = 0;
-            dv.Precio = p.Precio;
-            dv.SubTotal = p.Precio * Convert.ToDouble(TxtCantidad);
+            dv.Precio = prod.Precio;
+            dv.SubTotal = prod.Precio * Convert.ToDouble(TxtCantidad);
             dv.Cantidad = Convert.ToInt32(TxtCantidad);
 
             List<DetalleVenta> aux = new List<DetalleVenta>();
@@ -194,15 +225,16 @@ namespace MadeInHouse.ViewModels.Ventas
         public void GuardarVenta()
         {
             Venta v = new Venta();
+            v.LstDetalle = new List<DetalleVenta>();                
             //guardar datos de la venta
             //completar
-            v.Estado = 1;
-            v.FechaReg = System.DateTime.Now;
-            v.IdCliente = IdCliente;
-            
+            v.NumDocPago = null;
+            v.TipoDocPago = null;
+            //v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
+            v.IdCliente = Convert.ToInt32(TxtCliente);
 
             //guardar detalle de la venta
-            foreach (DetalleVenta dv in LstVenta)
+            foreach (DetalleVenta dv in lstVenta)
             {
                 v.LstDetalle.Add(dv);
             }
@@ -210,30 +242,56 @@ namespace MadeInHouse.ViewModels.Ventas
             v.Descuento = desc;
             v.Igv = igv_total;
 
+            v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+
+            v.FechaReg = System.DateTime.Now;
+            v.FechaDespacho = fechaDespacho;
+
+            v.Estado = 1;
+
             //insertar en la base de datos
             VentaSQL vsql = new VentaSQL();
-            vsql.Agregar(v);
+            int k = vsql.Agregar(v, "obra");
+            if (k != 0)
+            {
+                MessageBox.Show("Venta Realizada con Exito");
+                Limpiar();
+            }
+        }
+
+        Producto prod;
+
+        public Producto Prod
+        {
+            get { return prod; }
+            set { prod = value; NotifyOfPropertyChange(() => Prod); TxtProducto = prod.Nombre; }
         }
 
         public void BuscarProducto()
         {
             MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new ProductoBuscarViewModel(this));
+            w.ShowWindow(new ProductoBuscarViewModel(this,1));
         }
 
         public void Limpiar()
         {
-            TxtIGVTotal = null;
-            TxtPagaCon = null;
-            TxtProducto = null;
-            TxtCantidad = null;
-            TxtCliente = null;
-            TxtDescuentoTotal = null;
-            TxtDireccion = null;
-            TxtRazolSocial = null;
-            TxtRuc = null;
-            TxtTelefono = null;
+            TxtIGVTotal = "";
+            TxtSubTotal = "";
+            TxtTotal = "";
+            TxtPagaCon = "";
+            TxtProducto = "";
+            TxtCantidad = "";
+            TxtCliente = "";
+            TxtDescuentoTotal = "";
+            TxtDireccion = "";
+            TxtRazolSocial = "";
+            TxtRuc = "";
+            TxtTelefono = "";
             LstVenta = null;
+            subt = 0;
+            desc = 0;
+            igv_total = 0;
+            lstVenta = new List<DetalleVenta>();
         }
 
     }

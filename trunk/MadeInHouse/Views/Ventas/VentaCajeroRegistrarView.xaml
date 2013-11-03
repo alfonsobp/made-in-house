@@ -41,7 +41,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <DataGrid x:Name="LstVenta" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
-                                  Margin="10,40,0,10" HorizontalAlignment="Left" Width="574" AutoGenerateColumns="False">
+                                  Margin="10,40,0,10" HorizontalAlignment="Left" Width="574" AutoGenerateColumns="False" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="70" Header="Código"/>
                                 <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="180" Header="Descripción"/>
@@ -57,14 +57,21 @@
                         <TextBox x:Name="TxtProducto" HorizontalAlignment="Left" Height="23" Margin="88,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="221"/>
                         <TextBox x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="454,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="87"/>
                         <Button x:Name="AgregarDetalle" ToolTip="Agregar Producto" Content="" HorizontalAlignment="Left" Margin="556,10,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="3.452,0.609">
+                            
+                            
                             <Button.Background>
                                 <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
+                        <TextBox x:Name="TxtPagaCon" HorizontalAlignment="Left" Height="22" Margin="78,324,0,-51" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                        
+                        
                     </Grid>
                 </GroupBox>
+                
+                <TextBox x:Name="TxtVuelto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="117,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total (Sin dcto):" VerticalAlignment="Top" Width="86" Margin="436,477,0,0"/>
-                <TextBox x:Name="TxtSubtotal" HorizontalAlignment="Left" Height="23" Margin="536,477,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <TextBox x:Name="TxtSubTotal" HorizontalAlignment="Left" Height="23" Margin="536,477,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Descuento:" VerticalAlignment="Top" Width="73" Margin="436,505,0,0"/>
                 <TextBox x:Name="TxtDescuentoTotal" HorizontalAlignment="Left" Height="23" Margin="536,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="IGV:" VerticalAlignment="Top" Width="86" Margin="436,533,0,0"/>
@@ -72,9 +79,9 @@
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="436,561,0,0"/>
                 <TextBox x:Name="TxtTotal" HorizontalAlignment="Left" Height="23" Margin="536,561,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="35,477,0,0"/>
-                <TextBox x:Name="TxtPagaCon" HorizontalAlignment="Left" Height="23" Margin="117,477,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+               
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="35,505,0,0"/>
-                <TextBox x:Name="TxtVuelto" HorizontalAlignment="Left" Height="23" Margin="117,505,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                
 
                 <TextBlock HorizontalAlignment="Left" Margin="203,68,0,0" TextWrapping="Wrap" Text="Razón Social:" VerticalAlignment="Top"/>
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="283,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="343"/>
@@ -82,7 +89,7 @@
                 <RadioButton Content="Factura" HorizontalAlignment="Left" Margin="132,108,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.236,0.556"/>
                 <TextBlock HorizontalAlignment="Left" Margin="434,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.348,0.647"><Run Language="es-pe" Text="Modo pago:"/></TextBlock>
                 <ComboBox HorizontalAlignment="Left" Margin="514,26,0,0" VerticalAlignment="Top" Width="112" Height="23"/>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="283,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.269,0.565"/>
+                <TextBox x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="283,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.269,0.565"/>
                 <TextBlock HorizontalAlignment="Left" Margin="234,28,0,0" TextWrapping="Wrap" Text="Tarjeta:" VerticalAlignment="Top" RenderTransformOrigin="2.872,0.438"/>
 
             </Grid>

@@ -13,35 +13,48 @@ namespace MadeInHouse.DataObjects.Ventas
     class VentaSQL
     {
 
-        public int Agregar(Venta v)
+        public int Agregar(Venta v, string tipo)
         {
             DBConexion db = new DBConexion();
             int k = 0;
 
-            db.cmd.CommandText = "INSERT INTO Venta(numDocPago,tipoDocPago,monto,descuento,IGV,ptsGanados,fechaReg,estado,idUsuario,idCliente)" +
-                                  " VALUES (@numDocPago,@tipoDocPago,@monto,@descuento,@IGV,@ptsGanados,@fechaReg,@estado,@idUsuario,@idCliente)";
-            db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
-            db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
+            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,idCliente,tipoVenta,fechaReg,fechaDespacho)" +
+                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@idCliente,@tipoVenta,@fechaReg,@fechaDespacho)";
+            //db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
+            //db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
             db.cmd.Parameters.AddWithValue("@monto", v.Monto);
             db.cmd.Parameters.AddWithValue("@descuento", v.Descuento);
             db.cmd.Parameters.AddWithValue("@IGV", v.Igv);
-            db.cmd.Parameters.AddWithValue("@ptsGanados", 0);
+            db.cmd.Parameters.AddWithValue("@ptsGanados", v.PtosGanados);
             db.cmd.Parameters.AddWithValue("@fechaReg", v.FechaReg);
-            db.cmd.Parameters.AddWithValue("@estado",   1);
-            db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
+            //db.cmd.Parameters.AddWithValue("@fechaMod", null);
+            db.cmd.Parameters.AddWithValue("@estado", v.Estado);
+            //db.cmd.Parameters.AddWithValue("@idUsuario", null);
             db.cmd.Parameters.AddWithValue("@idCliente", v.IdCliente);
+            db.cmd.Parameters.AddWithValue("@tipoVenta", tipo);
+
+            if (tipo.Equals("obra"))
+                db.cmd.Parameters.AddWithValue("@fechaDespacho", v.FechaDespacho);
+            else
+                db.cmd.Parameters.AddWithValue("@fechaDespacho", DateTime.Now);
+            
 
             try
             {
                 db.conn.Open();
                 k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
 
+                
                 //sacar la ultima insersion
-                db.cmd.CommandText = "SELECT @@Identity";
-                SqlDataReader rs = db.cmd.ExecuteReader();
-                rs = db.cmd.ExecuteReader();
+                DBConexion db2 = new DBConexion();
+
+                db2.cmd.CommandText = "SELECT MAX (idVenta) as id FROM Venta";
+
+                db2.conn.Open();
+                SqlDataReader rs = db2.cmd.ExecuteReader();
                 rs.Read();
-                v.IdVenta = Convert.ToInt32(rs["idVenta"].ToString());
+                v.IdVenta = Convert.ToInt32(rs["id"].ToString());
 
                 //guardar el detalle de la venta
                 DetalleVentaSQL dvm = new DetalleVentaSQL();
@@ -50,7 +63,7 @@ namespace MadeInHouse.DataObjects.Ventas
                     dvm.Agregar(v,dv);
                 }
 
-                db.conn.Close();
+                db2.conn.Close();
 
             }
             catch (SqlException e)
