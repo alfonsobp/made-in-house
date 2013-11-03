@@ -144,6 +144,7 @@
     <Compile Include="Models\Compras\CotizacionxProducto.cs" />
     <Compile Include="Models\Compras\DocPagoProveedor.cs" />
     <Compile Include="Models\Compras\OrdenCompra.cs" />
+    <Compile Include="Models\Compras\PrecioProductoProveedor.cs" />
     <Compile Include="Models\Compras\ProductoxOrdenCompra.cs" />
     <Compile Include="Models\Compras\ProductoxSolicitudAd.cs" />
     <Compile Include="Models\Compras\Proveedor.cs" />
@@ -171,6 +172,8 @@
     <Compile Include="Models\Seguridad\Usuario.cs" />
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="Models\Compras\ServicioxProducto.cs" />
+    <Compile Include="Validacion\Error.cs" />
+    <Compile Include="Validacion\Evaluador.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerMotivoViewModel.cs" />
@@ -201,6 +204,8 @@
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarProductoViewModel.cs" />
+    <Compile Include="ViewModels\Compras\BuscarProveedorViewModel.cs" />
+    <Compile Include="ViewModels\Compras\MedioPagoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
@@ -383,6 +388,9 @@
     <Compile Include="Views\Compras\BuscarProductoView.xaml.cs">
       <DependentUpon>BuscarProductoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Compras\BuscarProveedorView.xaml.cs">
+      <DependentUpon>BuscarProveedorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Compras\CatalogoProductoProveedorView.xaml.cs">
       <DependentUpon>CatalogoProductoProveedorView.xaml</DependentUpon>
     </Compile>
@@ -397,6 +405,9 @@
     </Compile>
     <Compile Include="Views\Compras\mantenerSolicitudesAdquisicionView.xaml.cs">
       <DependentUpon>mantenerSolicitudesAdquisicionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\MedioPagoView.xaml.cs">
+      <DependentUpon>MedioPagoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\NuevaCotizacionView.xaml.cs">
       <DependentUpon>NuevaCotizacionView.xaml</DependentUpon>
@@ -583,6 +594,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Dictionary\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Almacen\BuscarGuiasRemisionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -727,6 +742,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Compras\BuscarProveedorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Compras\CatalogoProductoProveedorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -744,6 +763,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\mantenerSolicitudesAdquisicionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\MedioPagoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
