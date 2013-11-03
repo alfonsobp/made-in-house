@@ -18,6 +18,15 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         #region ATRIBUTOS
+
+        string almacen;
+
+        public string Almacen
+        {
+            get { return almacen; }
+            set { almacen = value; NotifyOfPropertyChange("Almacen"); }
+        }
+
         Consolidado respuestaSelected;
 
         public Consolidado RespuestaSelected
@@ -78,7 +87,9 @@ namespace MadeInHouse.ViewModels.Compras
         #region METODOS
         public SeleccionDeProveedoresViewModel() {
 
+            Almacen = "ALM-" + (1000000 + 4);
             LstConsolidado = new ConsolidadoSQL().Buscar(4) as List<Consolidado>;
+
         }
 
 

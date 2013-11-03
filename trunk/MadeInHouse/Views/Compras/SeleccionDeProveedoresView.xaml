@@ -91,12 +91,11 @@
                             </Button>
                 </ToolBar>
                         <Label Content="Almacén &#xD;&#xA;Central:" HorizontalAlignment="Left" Margin="407,49,0,0" VerticalAlignment="Top"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="482,50,0,0" VerticalAlignment="Top" Width="196" Height="40"/>
-                        <Button x:Name="Agregar" Content="+" HorizontalAlignment="Left" Margin="478,254,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
+                <Button x:Name="Agregar" Content="+" HorizontalAlignment="Left" Margin="478,254,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
                         <Button x:Name="Quitar" Content="-" HorizontalAlignment="Left" Margin="563,254,0,0" VerticalAlignment="Top" Width="75" Height="30"/>
                 <GroupBox Header="Resultados" HorizontalAlignment="Left" Margin="21,313,0,0" VerticalAlignment="Top" Height="190" Width="703"/>
                 <GroupBox Header="Seleccionar Proveedor y Cantidad:" HorizontalAlignment="Left" Margin="369,121,0,0" VerticalAlignment="Top" Height="174" Width="372"/>
-                <Button Content="OK" HorizontalAlignment="Left" Margin="684,51,0,0" VerticalAlignment="Top" Width="35" Height="38"/>
+                <TextBox IsReadOnly="True" x:Name="Almacen" HorizontalAlignment="Left" Height="27" Margin="483,55,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="215"/>
 
 
             </Grid>

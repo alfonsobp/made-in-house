@@ -97,9 +97,7 @@ namespace MadeInHouse.ViewModels.Compras
                     cp.Producto.CodigoProd= ds["Codigo"].ToString();
                     cp.CodComercial = ds["Codigo Comercial"].ToString();
                     cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
-                    cp.Descripcion = ds["Descripcion"].ToString();
-                    cp.FechaAct = DateTime.Now;
-                    cp.FechaReg = DateTime.Now;
+                    cp.Descripcion = ds["Descripcion"].ToString();                  
                     ProveedorxProductoSQL pp = new ProveedorxProductoSQL();
                      int k = pp.Insertar(cp);
 

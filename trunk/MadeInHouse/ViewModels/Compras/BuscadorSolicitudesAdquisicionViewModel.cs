@@ -39,7 +39,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstEstado = value; NotifyOfPropertyChange("LstEstado"); }
         }
 
-        string idAlmacen;
+        string idAlmacen = "ALM-" + (1000000 + 4);
 
         public string IdAlmacen
         {
@@ -47,6 +47,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { idAlmacen = value; NotifyOfPropertyChange("IdAlmacen"); }
         }
 
+    
         private string estadoSelected="TODOS";
 
         public string EstadoSelected
@@ -71,9 +72,13 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstSolicitud = value; NotifyOfPropertyChange("LstSolicitud"); }
         }
 
+        public BuscadorSolicitudesAdquisicionViewModel() {
+            LstSolicitud = new SolicitudAdquisicionSQL().Buscar("4", getEstado(EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
+        }
+
         public void Buscar() {
 
-            LstSolicitud = new SolicitudAdquisicionSQL().Buscar(IdAlmacen,getEstado( EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
+            LstSolicitud = new SolicitudAdquisicionSQL().Buscar("4",getEstado( EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
         
         }
 
