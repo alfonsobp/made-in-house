@@ -100,5 +100,26 @@ namespace MadeInHouse.Models.Compras
             get { return lstProducto; }
             set { lstProducto = value; }
         }
+
+        
+
+        //boleta, factura
+        bool esFactura;
+
+        public bool EsFactura
+        {
+            get { return esFactura; }
+            set { esFactura = value; }
+        }
+
+        bool esBoleta;
+
+        public bool EsBoleta
+        {
+            get { return esBoleta; }
+            set { esBoleta = value; }
+        }
+
+
     }
 }

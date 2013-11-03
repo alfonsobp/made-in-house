@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.ViewModels.Compras
 {
+
+
     class BuscarProductoViewModel :PropertyChangedBase
     {
         string txtNombre;

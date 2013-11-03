@@ -23,7 +23,7 @@ namespace MadeInHouse.Models.Compras
         public Producto Producto
         {
             get { return producto; }
-            set { producto = value; }
+            set { producto = value;}
         }
 
         int cantidad;
@@ -34,12 +34,12 @@ namespace MadeInHouse.Models.Compras
             set { cantidad = value; }
         }
 
-        Proveedor p;
+        Proveedor prov;
 
-        public Proveedor P
+        public Proveedor Prov
         {
-            get { return p; }
-            set { p = value; }
+            get { return prov; }
+            set { prov = value; }
         }
 
     }

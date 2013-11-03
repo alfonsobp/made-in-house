@@ -41,7 +41,7 @@ namespace MadeInHouse.DataObjects.Compras
             //MessageBox.Show("IdServicio = " + sp.IdServicio + " IdProducto = " + p.IdProducto + " Precio = " + sp.Precio);
             int k = 0;
 
-            cp.Producto.IdProducto = p.IdProducto;
+            ////cp.Producto.IdProducto = p.IdProducto;
             cp.Producto.Nombre = p.Nombre;
 
             if (p != null)

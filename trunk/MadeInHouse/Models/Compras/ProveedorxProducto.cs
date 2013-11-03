@@ -9,6 +9,7 @@ namespace MadeInHouse.Models.Compras
 {
     class ProveedorxProducto
     {
+       
 
         int idProveedor;
 

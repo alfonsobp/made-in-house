@@ -57,7 +57,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void Refrescar() {
 
             if (prov != null)
-                LstProducto = eM.Buscar(prov.IdProveedor) as List<ProveedorxProducto>;
+                LstProducto = eM.Buscar(Prov.IdProveedor) as List<ProveedorxProducto>;
         }
 
         public void Eliminar() {

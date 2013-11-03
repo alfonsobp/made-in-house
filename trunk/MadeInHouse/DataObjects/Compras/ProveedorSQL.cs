@@ -226,6 +226,56 @@ namespace MadeInHouse.DataObjects.Compras
             return k;
         }
 
+       public Proveedor BuscarPorCodigo(int id) {
+            
+            DBConexion db = new DBConexion();
+            SqlDataReader reader;
+            Proveedor p=null;
+
+
+            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE  estado = 1 and idProveedor = @idProveedor";
+            db.cmd.Parameters.AddWithValue("@idProveedor", id);
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.Connection = db.conn;
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+
+                if (reader.Read())
+                {
+
+                     p = new Proveedor();
+                    p.IdProveedor = Convert.ToInt32(reader["idProveedor"].ToString());
+                    p.CodProveedor = reader["codProveedor"].ToString();
+                    p.RazonSocial = reader["razonSocial"].ToString();
+                    p.Contacto = reader["contacto"].ToString();
+                    p.Direccion = reader["direccion"].ToString();
+                    p.Fax = reader["fax"].ToString();
+                    p.Telefono = reader["telefono"].ToString();
+                    p.TelefonoContacto = reader["telefonoContacto"].ToString();
+                    p.Email = reader["email"].ToString();
+                    p.Ruc = reader["Ruc"].ToString();
+                   
+                }
+
+                db.conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return p;
+        
+        
+        }
+
 
     }
 }
