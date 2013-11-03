@@ -31,7 +31,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { fechaFin = value; NotifyOfPropertyChange("FechaFin"); }
         }
 
-        List<String> lstEstado = new List<string> {"TODOS","NO ATENDIDA","ATENDIDA"} ;
+        List<String> lstEstado = new List<string> {"TODOS","NO ATENDIDA","ATENDIDA","ATENDIENDO"} ;
 
         public List<String> LstEstado
         {
@@ -73,8 +73,19 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void Buscar() {
 
-            LstSolicitud = new SolicitudAdquisicionSQL().Buscar(IdAlmacen, EstadoSelected, FechaIni, FechaFin) as List<SolicitudAdquisicion>;
+            LstSolicitud = new SolicitudAdquisicionSQL().Buscar(IdAlmacen,getEstado( EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
         
+        }
+
+        public int getEstado(String n) { 
+        
+         if(n== "TODOS") return 4;
+         if (n == "NO ATENDIDA") return 1;
+         if (n == "ATENDIDA") return 3;
+         if (n == "ATENDIENDO") return 2;
+
+         return 0;
+
         }
 
         public void NuevaSolicitud()

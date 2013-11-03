@@ -8,10 +8,10 @@ namespace MadeInHouse.Validacion
 {
     class Error
     {
-        public static TipoError esNumero = new TipoError(1, "Existe un valor que no es número entero");
-        public static TipoError esReal = new TipoError(2, "Existe un valor que no es número real");
-        public static TipoError esInvalidoCadena = new TipoError(3, "La cadena introducida no cumple el tamaño estandar");
-
+        public static TipoError esNumero = new TipoError(1, "Existe un valor que no es número entero..");
+        public static TipoError esReal = new TipoError(2, "Existe un valor que no es número real..");
+        public static TipoError esInvalidoCadena = new TipoError(3, "La cadena introducida no cumple el tamaño estandar..");
+        public static TipoError esNegativo = new TipoError(4, "Es un numero negativo el que intenta introducir..");
 
     }
 
