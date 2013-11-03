@@ -41,7 +41,7 @@ namespace MadeInHouse.Models.Compras
         }
         Proveedor proveedor;
 
-        internal Proveedor Proveedor
+        public Proveedor Proveedor
         {
             get { return proveedor; }
             set { proveedor = value; }
@@ -73,12 +73,35 @@ namespace MadeInHouse.Models.Compras
         }
 
 
-        MadeInHouse.Models.Almacen.Almacenes alm;
+        int idAlmacen;
 
-        internal MadeInHouse.Models.Almacen.Almacenes Alm
+        public int IdAlmacen
         {
-            get { return alm; }
-            set { alm = value; }
+            get { return idAlmacen; }
+            set { idAlmacen = value; }
         }
+
+        string medioPago;
+
+        public string MedioPago
+        {
+            get { return medioPago; }
+            set { medioPago = value; }
+        }
+
+
+        public OrdenCompra(int idAlmacen, Proveedor p,String observaciones) {
+
+            this.idAlmacen = idAlmacen;
+            this.proveedor = p;
+            this.observaciones = observaciones;
+            this.MedioPago = (p.EsBoleta) ? "BOLETA" : "FACTURA";
+
+        
+        }
+
+        public OrdenCompra(){}
+
+
     }
 }

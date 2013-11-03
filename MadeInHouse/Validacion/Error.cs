@@ -23,7 +23,7 @@ namespace MadeInHouse.Validacion
         public TipoError(int i,string msg){
         
             titulo="ERROR | ERR-" + (1920000+i);
-            mensaje = "DETALLE ERROR:\n --------------- \n"+msg;
+            mensaje = "DETALLE ERROR:\n"+msg;
         
         }
     

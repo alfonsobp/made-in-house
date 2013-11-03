@@ -243,7 +243,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void MedioPago() {
 
             List<Proveedor> lstProveedor = Seleccion();
-            MedioPagoViewModel obj = new MedioPagoViewModel(lstProveedor, LstRespuesta, 4);
+            MedioPagoViewModel obj = new MedioPagoViewModel(lstProveedor, LstRespuesta, 4,this);
             MyWindowManager win = new MyWindowManager();
             win.ShowWindow(obj);
             //TryClose();

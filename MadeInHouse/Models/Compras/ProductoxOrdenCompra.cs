@@ -10,9 +10,17 @@ namespace MadeInHouse.Models.Compras
     class ProductoxOrdenCompra
     {
 
+        private int idOrden;
+
+        public int IdOrden
+        {
+            get { return idOrden; }
+            set { idOrden = value; }
+        }
+
         Producto producto;
 
-        internal Producto Producto
+        public Producto Producto
         {
             get { return producto; }
             set { producto = value; }
@@ -26,10 +34,24 @@ namespace MadeInHouse.Models.Compras
         }
         double monto;
 
-        public double Monto
+        private double precioUnitario;
+
+        public double PrecioUnitario
         {
-            get { return monto; }
-            set { monto = value; }
+            get { return precioUnitario; }
+            set { precioUnitario = value; }
         }
+
+
+        public ProductoxOrdenCompra(Consolidado c,int idOrden) {
+
+            this.cantidad = c.Cantidad;
+            this.producto = c.Producto;
+            this.idOrden = idOrden;
+        
+        }
+
+        public ProductoxOrdenCompra() { }
+
     }
 }
