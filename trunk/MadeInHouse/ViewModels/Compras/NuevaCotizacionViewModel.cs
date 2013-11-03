@@ -243,7 +243,7 @@ namespace MadeInHouse.ViewModels.Compras
 
                     //Send the message.
 
-                    var client = new SmtpClient("smtp.gmail.com", 587)
+                    var client = new SmtpClient("smtp.gmail.com",587 )
                     {
                         // Add credentials if the SMTP server requires them.
                         Credentials = new NetworkCredential("alonsodp2692@gmail.com", "adp980407912"),
@@ -256,6 +256,7 @@ namespace MadeInHouse.ViewModels.Compras
                         client.Send(message);
                         MessageBox.Show("Mensaje enviado satisfactoriamente");
                     }
+
                     catch (Exception e)
                     {
                         MessageBox.Show(e.StackTrace.ToString());

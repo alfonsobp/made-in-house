@@ -58,7 +58,7 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 foreach (ProductoxAlmacen item in Productos)
                 {
-                    if (prod.idProducto != item.idProducto)
+                    if (prod.IdProducto != item.IdProducto)
                         aux.Add(item);
                 }
             }

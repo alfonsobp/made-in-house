@@ -16,6 +16,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private UbigeoSQL uSQL;
         private TiendaSQL tSQL;
+        private ProductoSQL pxaSQL;
 
         private string txtNumColumns;
 
@@ -166,6 +167,79 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtDir = value; }
         }
 
+        /*Configuracion de productos en tienda*/
+
+        private string txtCodProducto;
+
+        public string TxtCodProducto
+        {
+            get { return txtCodProducto; }
+            set { txtCodProducto = value;
+            NotifyOfPropertyChange(() => TxtCodProducto);
+            }
+        }
+
+        private string txtStockIni;
+
+        public string TxtStockIni
+        {
+            get { return txtStockIni; }
+            set { txtStockIni = value;
+            NotifyOfPropertyChange(() => TxtStockIni);
+
+            }
+        }
+
+        private string txtStockMin;
+
+        public string TxtStockMin
+        {
+            get { return txtStockMin; }
+            set { txtStockMin = value;
+            NotifyOfPropertyChange(() => TxtStockMin);
+            }
+        }
+
+        private string txtStockMax;
+
+        public string TxtStockMax
+        {
+            get { return txtStockMax; }
+            set { txtStockMax = value;
+            NotifyOfPropertyChange(() => TxtStockMax);
+            }
+        }
+
+        private string txtPrecioV;
+
+        public string TxtPrecioV
+        {
+            get { return txtPrecioV; }
+            set { txtPrecioV = value;
+            NotifyOfPropertyChange(() => TxtPrecioV);
+            }
+        }
+
+
+        private bool chkVigente;
+
+        public bool ChkVigente
+        {
+            get { return chkVigente; }
+            set { chkVigente = value;
+            NotifyOfPropertyChange(() => ChkVigente);
+            }
+        }
+
+        private List<ProductoxAlmacen> lstProductos;
+
+        public List<ProductoxAlmacen> LstProductos
+        {
+            get { return lstProductos; }
+            set { lstProductos = value;
+            NotifyOfPropertyChange(() => LstProductos);
+            }
+        }
 
 
         /*Parametros para distribucion*/
@@ -287,23 +361,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        public void Distribuir(int tipo)
-        {
-            if (tipo == 0)
-            {
-                NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
-                NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
-                //(sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
-            }
-            else
-            {
-                NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
-                NumRowsDto = Int32.Parse(TxtNumRowsDto);
-                //(sender as MadeInHouse.Dictionary.DynamicGrid).RecreateGridCells();
-            }
-            
-            
-        }
+        
 
         private int zonaAnaquel;
 
@@ -324,9 +382,6 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => ZonaDeposito);
             }
         }
-
-
-
 
         private ObservableCollection<TipoZona> cmbZonas;
 
@@ -362,13 +417,107 @@ namespace MadeInHouse.ViewModels.Almacen
             set { selectedIndex = value; }
         }
 
+        private ProductoxAlmacen selectedItem;
+
+        public ProductoxAlmacen SelectedItem
+        {
+            get { return selectedItem; }
+            set { selectedItem = value; }
+        }
+
 
         
         public MantenerTiendaViewModel() {
             uSQL = new UbigeoSQL();
             tSQL = new TiendaSQL();
+            pxaSQL= new ProductoSQL();
+            
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
             CmbDpto=uSQL.BuscarDpto();
+            //LstProductos = pxaSQL.BuscarProductoxAlmacen();
+            
+
+        }
+
+
+        public void Distribuir(int tipo)
+        {
+            if (tipo == 0)
+            {
+                NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
+                NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
+            }
+            else
+            {
+                NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
+                NumRowsDto = Int32.Parse(TxtNumRowsDto);
+            }
+
+
+        }
+
+
+
+        public void BuscarProductos()
+        {
+            MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+            wm.ShowWindow(new ProductoBuscarViewModel(this,2));
+        }
+
+        public void Agregar()
+        {
+
+            if (TxtCodProducto == null || TxtStockIni == null || TxtStockMax == null || TxtStockMin == null || TxtPrecioV == null)
+            {
+                System.Windows.MessageBox.Show("Debe completar todos los campos"); 
+            }
+            else
+            {
+                ProductoxAlmacen pxa;
+                List<Producto> lstAux = null;
+                lstAux = pxaSQL.BuscarProducto(TxtCodProducto);
+
+                if (lstAux != null)
+                {
+                    if (LstProductos == null) LstProductos = new List<ProductoxAlmacen>();
+                    else if ((pxa = LstProductos.Find(x => x.IdProducto == lstAux[0].IdProducto)) == null)
+                    {
+                        pxa = new ProductoxAlmacen();
+                        pxa.IdProducto = lstAux[0].IdProducto;
+                        pxa.Nombre = lstAux[0].Nombre;
+                        pxa.StockActual = Int32.Parse(TxtStockIni);
+                        pxa.StockMin = Int32.Parse(TxtStockMin);
+                        pxa.StockMax = Int32.Parse(TxtStockMax);
+                        pxa.PrecioVenta = float.Parse(txtPrecioV);
+                        pxa.Vigente = (ChkVigente ==true) ? 1:0;
+                        LstProductos.Add(pxa);
+                        LstProductos = new List<ProductoxAlmacen>(LstProductos);
+                    }
+                    else
+                    {
+                        System.Windows.MessageBox.Show("El producto que se quiere registrar ya existe en la tienda");
+                    }
+
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("El código proporcionado no existe");
+                }
+            }
+        }
+
+        public void Quitar() {
+            if (SelectedItem != null)
+            {
+                LstProductos.Remove(SelectedItem);
+                LstProductos = new List<ProductoxAlmacen>(LstProductos);
+            }
+        }
+
+        public void Importar()
+        {
+          System.Data.DataTableReader dt=  MadeInHouse.Dictionary.ExcelUtiles.Importar("Productos");
+          if (dt != null) System.Windows.MessageBox.Show("Bien");
         }
 
 

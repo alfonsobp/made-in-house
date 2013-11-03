@@ -8,11 +8,68 @@ namespace MadeInHouse.Models.Almacen
 {
     class ProductoxAlmacen
     {
-        public int idAlmacen { get; set; }
-        public int idProducto { get; set; }
-        public string producto { get; set; }
-        public int stock { get; set; }
-        public int stockMin { get; set; }
+        private int idAlmacen;
+
+        public int IdAlmacen
+        {
+            get { return idAlmacen; }
+            set { idAlmacen = value; }
+        }
+        private int idProducto;
+
+        public int IdProducto
+        {
+            get { return idProducto; }
+            set { idProducto = value; }
+        }
+
+
+        private string nombre;
+
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+        
+        private int stockActual;
+
+        public int StockActual
+        {
+            get { return stockActual; }
+            set { stockActual = value; }
+        }
+        private int stockMin;
+
+        public int StockMin
+        {
+            get { return stockMin; }
+            set { stockMin = value; }
+        }
+        private int stockMax;
+
+        public int StockMax
+        {
+            get { return stockMax; }
+            set { stockMax = value; }
+        }
+
+        private float precioVenta;
+
+        public float PrecioVenta
+        {
+            get { return precioVenta; }
+            set { precioVenta = value; }
+        }
+        private int vigente;
+
+        public int Vigente
+        {
+            get { return vigente; }
+            set { vigente = value; }
+        }
+
+
         public int sugerido { get; set; }
         public int pedido { get; set; }
     }
