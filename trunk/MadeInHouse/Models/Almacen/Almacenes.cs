@@ -16,9 +16,9 @@ namespace MadeInHouse.Models.Almacen
             set { idAlmacen = value; }
         }
                 
-        private string tipo;
+        private int tipo;
 
-        public string Tipo
+        public int Tipo
         {
             get { return tipo; }
             set { tipo = value; }

@@ -117,7 +117,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     almacen.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     almacen.NroColumnas = reader.IsDBNull(reader.GetOrdinal("nroColumnas")) ? -1 : int.Parse(reader["nroColumnas"].ToString());
                     almacen.NroFilas = reader.IsDBNull(reader.GetOrdinal("nroFilas")) ? -1 : int.Parse(reader["nroFilas"].ToString());
-                    almacen.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? null : reader["tipo"].ToString();
+                    almacen.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? -1: int.Parse(reader["tipo"].ToString());
 
                 }
                 db.cmd.Parameters.Clear();

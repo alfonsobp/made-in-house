@@ -22,7 +22,20 @@ namespace MadeInHouse.Dictionary
             MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? \n" + Path, "Importar", MessageBoxButton.YesNo);
             if (r == MessageBoxResult.Yes)
             {
-                 return Cargar(name);   
+                if (Path != "")
+                {
+                    constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
+                    OleDbConnection con = new OleDbConnection(constr);
+                    OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+                    con.Open();
+
+                    OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+                    DataTable data = new DataTable();
+                    sda.Fill(data);
+                    DataTableReader ds = data.CreateDataReader();
+                    return ds;
+                    
+                } 
             }
             return null;
         }
@@ -50,26 +63,7 @@ namespace MadeInHouse.Dictionary
             }
         }
 
-        private static DataTableReader Cargar(string name)
-        {
-
-            if (Path != "")
-            {
-
-                constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
-                OleDbConnection con = new OleDbConnection(constr);
-                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-                con.Open();
-
-                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-                DataTable data = new DataTable();
-                sda.Fill(data);
-                DataTableReader ds = data.CreateDataReader();
-                return ds;
-            }
-            return null;
-
-        }
+        
 
     }
 }
