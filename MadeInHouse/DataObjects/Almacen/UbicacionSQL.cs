@@ -11,13 +11,22 @@ namespace MadeInHouse.DataObjects.Almacen
     class UbicacionSQL
     {
         private DBConexion db;
+        private bool tipo=true;
 
-        public UbicacionSQL()
+        public UbicacionSQL(DBConexion db=null)
         {
-            db = new DBConexion();
-        }
 
-        public void Agregar(Ubicacion u)
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else {
+                this.db=db;
+                tipo=false;
+            }
+            
+        }
+        public int Agregar(Ubicacion u)
         {
             db.cmd.CommandText = "INSERT INTO Ubicacion (idTipoZona,idAlmacen,cordX,cordY,cordZ) VALUES (@idTipoZona,@idAlmacen,@cordX,@cordY,@cordZ)";
             db.cmd.Parameters.AddWithValue("@idTipoZona", u.IdTipoZona);
@@ -28,21 +37,24 @@ namespace MadeInHouse.DataObjects.Almacen
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if(tipo) db.conn.Close();
+
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                return -1;
             }
 
-
+            return 1;
         }
 
 
