@@ -59,7 +59,15 @@ namespace MadeInHouse.ViewModels
 
             if (String.IsNullOrWhiteSpace(TxtUser) || String.IsNullOrWhiteSpace(TxtPasswordUser))
             {
-                //ENTRAR SIN CLAVE
+                AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
+
+                IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado("ADMIN").IdUsuario, "Database");
+
+                string[] rol = { "idRolAllenar", "otrorol" };
+
+                GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
+
+                System.Threading.Thread.CurrentPrincipal = credencial;
 
                 WindowManager win = new WindowManager();
 
