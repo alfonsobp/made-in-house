@@ -21,17 +21,17 @@ namespace MadeInHouse.DataObjects.Almacen
         public int insertarAbastecimiento(int idDeposito)
         {
             int idSolicitud = -1;
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = db.conn;
-            cmd.Transaction = db.trans;
-            cmd.CommandText = " INSERT INTO SolicitudAbastecimiento(estado,fechaReg,fechaAtencion,idOrden,idDeposito) " +
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.Connection = db.conn;
+            //cmd.Transaction = db.trans;
+            db.cmd.CommandText = " INSERT INTO SolicitudAbastecimiento(estado,fechaReg,fechaAtencion,idOrden,idDeposito) " +
                                  " output INSERTED.idSolicitudAB " +
                                  " VALUES (1, GETDATE(), NULL, NULL, @idDeposito) ";
-            cmd.Parameters.AddWithValue("@idDeposito", idDeposito);
+            db.cmd.Parameters.AddWithValue("@idDeposito", idDeposito);
 
             try
             {
-                idSolicitud = (int) cmd.ExecuteScalar();
+                idSolicitud = (int) db.cmd.ExecuteScalar();
             }
             catch (SqlException e)
             {
@@ -50,9 +50,9 @@ namespace MadeInHouse.DataObjects.Almacen
         public bool insertarProductosAbastecimiento(int idSolicitud, List<AbastecimientoProducto> prod)
         {
             int result = 0;
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = db.conn;
-            cmd.Transaction = db.trans;
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.Connection = db.conn;
+            //cmd.Transaction = db.trans;
             string values = "";
             if (prod != null && prod.Count > 0)
             {
@@ -62,11 +62,11 @@ namespace MadeInHouse.DataObjects.Almacen
                     values += " (@idSolicitudAB, " + item.idProducto + " , " + item.pedido + " , " + item.atendido + " ) ";
                 }
 
-                cmd.CommandText = " INSERT INTO ProductoxSolicitudAb (idSolicitudAB , idProducto , cantidad , cantidadAtendida) " +
+                db.cmd.CommandText = " INSERT INTO ProductoxSolicitudAb (idSolicitudAB , idProducto , cantidad , cantidadAtendida) " +
                                      " VALUES " + values;
-                cmd.Parameters.AddWithValue("@idSolicitudAB", idSolicitud);
+                db.cmd.Parameters.AddWithValue("@idSolicitudAB", idSolicitud);
 
-                result = cmd.ExecuteNonQuery();
+                result = db.cmd.ExecuteNonQuery();
             }
 
             return (result > 0) ? true : false;
