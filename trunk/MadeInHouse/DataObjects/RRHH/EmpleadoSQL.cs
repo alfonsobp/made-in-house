@@ -22,7 +22,6 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
-
             cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado) " +
             "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado)";
             cmd.CommandType = CommandType.Text;
@@ -129,7 +128,94 @@ namespace MadeInHouse.DataObjects.RRHH
             return lstEmpleado;
         }
 
-        ////////////////////////////////ELIMINAR UN EMPLEADO
+        public static Empleado DatosBasicosEmpleado(string codEmpleado)
+        {
+            Empleado emp = new Empleado();
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = " SELECT idEmpleado, codEmpleado, nombre, apePaterno, apeMaterno FROM Empleado WHERE codEmpleado=@codEmpleado ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    emp.IdEmpleado = reader["idEmpleado"].ToString();
+                    emp.CodEmpleado = reader["codEmpleado"].ToString();
+                    emp.Nombre = reader["nombre"].ToString();
+                    emp.ApePaterno = reader["apePaterno"].ToString();
+                    emp.ApeMaterno = reader["apeMaterno"].ToString();
+                }
+                else
+                    conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+            return emp;
+        }
+
+        public static Empleado BuscarEmpleadoPorCodigo(string codEmpleado)
+        {
+            Empleado e = new Empleado();
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Empleado WHERE codEmpleado=@codEmpleado ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                e.Dni = reader["DNI"].ToString();
+                e.Sexo = reader["sexo"].ToString();
+                e.ApePaterno = reader["apePaterno"].ToString();
+                e.Nombre = reader["nombre"].ToString();
+                e.ApeMaterno = reader["apeMaterno"].ToString();
+
+                e.Telefono = reader["telefono"].ToString();
+                e.Celular = reader["celular"].ToString();
+                e.EmailEmpleado = reader["email"].ToString();
+                e.EmailEmpresa = reader["emailEmpresa"].ToString();
+
+                e.FechaReg = reader["fechaReg"].ToString();
+                e.FechNacimiento = reader["fechaNac"].ToString();
+                e.Direccion = reader["direccion"].ToString();
+                e.Referecia = reader["referencia"].ToString();
+
+                e.Estado = Convert.ToInt32(reader["estado"].ToString());
+                e.Tienda = reader["tienda"].ToString();
+                e.Area = reader["area"].ToString();
+                e.Puesto = reader["puesto"].ToString();
+
+                e.Sueldo = Convert.ToDecimal(reader["sueldo"].ToString());
+                e.CuentaBancaria = reader["cuentaBancaria"].ToString();
+                e.Banco = reader["banco"].ToString();
+
+                e.IdEmpleado = reader["idEmpleado"].ToString();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return e;
+        }
+
 
         public static int EliminarEmpleado(string dni)
         {

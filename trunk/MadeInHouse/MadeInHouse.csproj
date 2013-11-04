@@ -196,7 +196,6 @@
     <Compile Include="ViewModels\Almacen\MantenerZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ProductoMovimientosViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />
@@ -210,8 +209,6 @@
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarProductoViewModel.cs" />
-    <Compile Include="ViewModels\Compras\BuscarProveedorViewModel.cs" />
-    <Compile Include="ViewModels\Compras\MedioPagoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />

@@ -7,7 +7,6 @@ using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.DataObjects;
-using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -20,11 +19,12 @@ namespace MadeInHouse.ViewModels.Almacen
     }
 
 
-    class ProductoBuscarViewModel : Screen
+    class ProductoBuscarViewModel : PropertyChangedBase
     {
+
+
         private MadeInHouse.Models.MyWindowManager win = new MadeInHouse.Models.MyWindowManager();
 
-        #region constructores
 
         public ProductoBuscarViewModel()
         {
@@ -33,37 +33,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         }
-
-        private int ventanaAccion = 0;
-        
-        private Almacen.MantenerTiendaViewModel mantenerTiendaViewModel;
-        public ProductoBuscarViewModel(Almacen.MantenerTiendaViewModel mantenerTiendaViewModel, int ventanaAccion):this()
-        {
-            this.mantenerTiendaViewModel = mantenerTiendaViewModel;
-            this.ventanaAccion = ventanaAccion;
-        }        
-
-        private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
-        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
-        {
-            this.ventaRegistrarViewModel = ventaRegistrarViewModel;
-            LineaProductoSQL lpSQL = new LineaProductoSQL();
-            LstLineasProducto = lpSQL.ObtenerLineasProducto();
-            this.ventanaAccion = ventanaAccion;
-        }
-
-        private SolicitudAbRegistrarViewModel solicitudView = null;
-        public ProductoBuscarViewModel(SolicitudAbRegistrarViewModel solicitudView) : this()
-        {
-            this.solicitudView = solicitudView;
-            idAlmacen = solicitudView.idAlmacen;
-        }
-
-        #endregion
-
-        #region atributos
-
-        public int idAlmacen { get; set; }
 
         private string txtCodigo;
 
@@ -162,10 +131,6 @@ namespace MadeInHouse.ViewModels.Almacen
             set { productoSel = value; }
         }
 
-        #endregion
-
-        #region metodos
-
         private LineaProducto GetLinea(int idLinea)
         {
             return (from lp in LstLineasProducto
@@ -183,14 +148,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         private ProductoSQL pSQL = new ProductoSQL();
-        //private LineaProductoSQL lsql;
-        //private SubLineaProductoSQL ssql;
-        
+        private LineaProductoSQL lsql;
+        private SubLineaProductoSQL ssql;
 
         public void BuscarProductos()
         {
              List<Producto> lp;
-             lp=pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, idAlmacen);
+             lp=pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub);
              List<ExtendedProduct> LstProductosAux = new List<ExtendedProduct>();
 
              if (lp != null)
@@ -230,54 +194,16 @@ namespace MadeInHouse.ViewModels.Almacen
              
         }
 
-        public void Acciones(object sender)
-        {
-            if (ventanaAccion == 0)
-            {
-                Actualizar();
-            }
-            else if (ventanaAccion==1)
-            {
-                productoSel = ((sender as DataGrid).SelectedItem as Producto);
-                if (ventaRegistrarViewModel != null)
-                {
-                    ventaRegistrarViewModel.Prod = productoSel;
-                    this.TryClose();
-                }
-            }
-            else if (ventanaAccion == 2)
-            {
-                productoSel = ((sender as DataGrid).SelectedItem as Producto);
-                if (mantenerTiendaViewModel != null)
-                {
-                    mantenerTiendaViewModel.TxtCodProducto = productoSel.CodigoProd;
-                    this.TryClose();
-                }
-            }
-        }
-
-
         public void Actualizar()
         {
-            if (solicitudView != null)
-            {
-                ProductoSQL pSQL = new ProductoSQL();
-                AbastecimientoProducto prodPedido = new AbastecimientoProducto();
-                prodPedido.idProducto = productoSel.IdProducto;
-                prodPedido.nombre = productoSel.Nombre;
-                List<ProductoxAlmacen> prod = pSQL.BuscarProductoxAlmacen(idAlmacen, productoSel.IdProducto);
-                prodPedido.stock = prod.ElementAt(0).StockActual;
-                prodPedido.sugerido = prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual;
-                prodPedido.pedido = prodPedido.sugerido;
-                solicitudView.addProducto(prodPedido);
-            }
-            else
-            {
-                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
-                win.ShowWindow(pmVM);
-            }
+            ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
+            win.ShowWindow(pmVM);
+
+
         }
-        
-        #endregion
+
+
+
+
     }
 }

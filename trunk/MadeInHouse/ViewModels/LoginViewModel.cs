@@ -80,7 +80,7 @@ namespace MadeInHouse.ViewModels
                 {
                     AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                    IIdentity usuario = new GenericIdentity(TxtUser,"Database");
+                    IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
 
                     string[] rol = {"idRolAllenar","otrorol"};
 
@@ -93,6 +93,7 @@ namespace MadeInHouse.ViewModels
                     MainViewModel main = new MainViewModel();
                     win.ShowWindow(main);
                     this.TryClose();
+
                 }
 
                 else

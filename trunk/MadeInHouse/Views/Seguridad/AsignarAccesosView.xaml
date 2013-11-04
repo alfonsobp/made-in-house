@@ -58,7 +58,7 @@
                         <DataGrid x:Name="LstAccVentanaAccModulo"  Height="268" VerticalAlignment="Top" Margin="0,10,10,0" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=AccModulo.Nombre}" Width="120" Header="Módulo"/>
-                                <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="385" Header="Ventana"/>
+                                <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="365" Header="Ventana"/>
                                 <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Mostrar" CanUserReorder="False" />
                             </DataGrid.Columns>
 

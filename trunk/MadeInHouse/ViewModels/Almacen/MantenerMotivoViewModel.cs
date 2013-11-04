@@ -8,6 +8,8 @@ using MadeInHouse.Models.Almacen;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
+using MadeInHouse.Manager;
+using MadeInHouse.Model;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -39,8 +41,8 @@ namespace MadeInHouse.ViewModels.Almacen
         public void AgregarMotivo()
         {
             int k;
-            Motivo m = new Motivo();
-            //MotivoIS m = new MotivoIS();
+            //Motivo m = new Motivo();
+            MotivoIS m = new MotivoIS();
             m.Nombre = TxtMotivo;
             k = new TableManager().getInstance(EntityName.MotivoIS).Agregar(m);
 

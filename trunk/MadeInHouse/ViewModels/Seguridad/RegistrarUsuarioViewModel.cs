@@ -63,6 +63,20 @@ namespace MadeInHouse.ViewModels.Seguridad
             }
         }
 
+        private string lblError;
+
+        public string LblError
+        {
+            get { return lblError; }
+            set
+            {
+                if (lblError == value)
+                    return;
+                lblError = value; NotifyOfPropertyChange("LblError");
+            }
+        }
+        
+
         private string txtCodUsuario;
 
         public string TxtCodUsuario
@@ -111,12 +125,47 @@ namespace MadeInHouse.ViewModels.Seguridad
             }
         }
 
+        public void VerificarUsuario()
+        {
+            int k = 0;
+            Empleado e= new Empleado();
+            if (!String.IsNullOrWhiteSpace(TxtCodUsuario))
+            {
+                k = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
+
+                //Si el Empleado existe:
+                if (k == 1)
+                {
+                    int dis = 0;
+                    dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
+
+                    if (dis == 1)
+                    {
+                        //Está disponible
+                        e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
+                        MessageBox.Show("Enhora buena, está Disponible!\n\n" + "Empleado:\n\t" + e.Nombre + " " + e.ApePaterno + " " + e.ApeMaterno);
+                    }
+                    else
+                    {
+                        //NO Puede, ya está asociado a un usuario
+                        MessageBox.Show("El Empleado ya fue asignado a un usuario");
+                    }
+                }
+                else
+                    // k == 0:
+                    MessageBox.Show("NO existe un Empleado con ese Código.");
+            }
+            else
+                LblError = "Ingrese Código Usuario";
+
+        }
+
+
         public void GuardarUsuario()
         {
             //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
-            if (true)
+            if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue!=0)
             {
-
                 int k =0;
 
                 CifrarAES cifradoAES = new CifrarAES();
@@ -124,39 +173,66 @@ namespace MadeInHouse.ViewModels.Seguridad
                 string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
                         "MadeInHouse", "MD5", 22, "1234567891234567", 128);
 
-
                 Usuario u = new Usuario();
                 u.CodEmpleado = txtCodUsuario;
+
                 u.Contrasenha = ContrasenhaCifrada;
+
                 //u.IdRol = IdRolValue;
-                MessageBox.Show(""+IdRolValue);
+                //MessageBox.Show(""+IdRolValue);
                 u.Rol = RolSQL.buscarRolPorId(IdRolValue);
-                MessageBox.Show(""+u.Rol.IdRol);
+                //MessageBox.Show(""+u.Rol.IdRol);
                 u.Estado = 1;
 
                 //REGISTRAR USUARIO
                 if (indicador == 1)
                 {
-                    k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
+                    //debe existir y estar disponible
+
+                    int existe = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
+
+                    //Empleado existente:
+                    if (existe == 1)
+                    {
+                        int dis = 0;
+                        dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
+
+                        if (dis == 1)
+                        {
+                            //Está disponible
+                            MessageBox.Show("¡Empleado Generado con Éxito!");
+                            k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
+                        }
+                        else
+                            MessageBox.Show("El usario NO está disponible");
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Empleado NO Existe");
+                    }
 
                 }
                 //EDITAR USUARIO
                 if(indicador == 2)
                 {
-                    k = DataObjects.Seguridad.UsuarioSQL.editarUsuario(u);
+                    if (TxtContrasenhaTB == null || TxtContrasenhaTB2 == null)
+                        u.Contrasenha = DataObjects.Seguridad.UsuarioSQL.buscarPass(u.CodEmpleado);
+
+                    k = DataObjects.Seguridad.UsuarioSQL.EditarUsuario(u);
+                    if (k == 0)
+                        MessageBox.Show("Ocurrio un error");
                 }
 
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
-                else
-                    MessageBox.Show("Usuario Registrado \n\nCodigo = " + txtCodUsuario + "\nContraseña = " + TxtContrasenhaTB);
+
+                //else
+                    //MessageBox.Show("Usuario Registrado \n\nCodigo = " + txtCodUsuario + "\nContraseña = " + TxtContrasenhaTB);
             }
-/*
+
             else
             {
                 MessageBox.Show("Contraseñas diferentes o campos vacíos");
             }
-            */
+
             
         }
 

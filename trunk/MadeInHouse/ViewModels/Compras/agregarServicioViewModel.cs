@@ -11,8 +11,9 @@ using System.Data.OleDb;
 using System.Collections.ObjectModel;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.DataObjects;
-using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models;
 using MadeInHouse.Models.Compras;
+using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -34,7 +35,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 1;
         }
 
-        
+
         public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m)
         {
 
@@ -49,7 +50,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 2;
             model = m;
         }
-        
+
 
         public agregarServicioViewModel(BuscadorServicioViewModel m)
         {
@@ -125,9 +126,9 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtDescripcion = value; NotifyOfPropertyChange(() => TxtDescripcion); }
         }
 
-        private MadeInHouse.Models.Compras.Proveedor prov;
+        private Proveedor prov;
 
-        public MadeInHouse.Models.Compras.Proveedor Prov
+        public Proveedor Prov
         {
             get { return prov; }
             set { prov = value; NotifyOfPropertyChange(() => Prov); }
@@ -149,14 +150,14 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void BuscarProveedor()
         {
-            MadeInHouse.Models.MyWindowManager w = new MadeInHouse.Models.MyWindowManager();
+            MyWindowManager w = new MyWindowManager();
             w.ShowWindow(new BuscadorProveedorViewModel(this));
         }
 
-        public Boolean validar(MadeInHouse.Models.Compras.Servicio s)
+        public Boolean validar(Servicio s)
         {
 
-            if (s.Descripcion == null || s.Nombre == null || TxtProveedor == null)
+            if (s.Descripcion == null || s.Nombre == null)
             {
                 MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
                 return false;
