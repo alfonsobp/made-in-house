@@ -32,7 +32,7 @@
                 <Grid>
                     <DataGrid Margin="10" Grid.Row="1" Width="372" MinHeight="350" x:Name="Productos" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" AlternationCount="1" CanUserAddRows="False" EnableRowVirtualization="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Producto" Binding="{Binding Path=producto}" Width="*" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Producto" Binding="{Binding Path=nombre}" Width="*" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Stock" Binding="{Binding Path=stock}" Width="70" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Cantidad Sugerida" Binding="{Binding Path=sugerido}" Width="70" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Cantidad Pedida" Binding="{Binding Path=pedido}" Width="70"/>

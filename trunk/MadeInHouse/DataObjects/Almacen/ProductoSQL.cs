@@ -360,14 +360,12 @@ namespace MadeInHouse.DataObjects.Almacen
                         ProductoxAlmacen prod = new ProductoxAlmacen();
                         int posIdAlmacen = reader.GetOrdinal("idAlmacen");
                         int posIdProducto = reader.GetOrdinal("idProducto");
-                        int posStockMin = reader.GetOrdinal("stockMinimo");
+                        int posStockMin = reader.GetOrdinal("stockMin");
                         int posStock = reader.GetOrdinal("stockActual");
                         prod.IdAlmacen = reader.IsDBNull(posIdAlmacen)? -1 : reader.GetInt32(posIdAlmacen);
                         prod.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
                         prod.StockMin = reader.IsDBNull(posStockMin) ? -1 : reader.GetInt32(posStockMin);
                         prod.StockActual = reader.IsDBNull(posStock) ? -1 : reader.GetInt32(posStock);
-                        prod.sugerido = prod.StockMin > prod.StockActual? prod.StockMin - prod.StockActual : 0;
-                        prod.pedido = prod.sugerido;
 
                         prodAlmacen.Add(prod);
                     }

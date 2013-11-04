@@ -864,6 +864,11 @@ namespace MadeInHouse.ViewModels
         {
             win.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel());
         }
+
+        public void RegistrarSolicitudDespacho()
+        {
+            win.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel());
+        }
             
         #endregion Almacen
 

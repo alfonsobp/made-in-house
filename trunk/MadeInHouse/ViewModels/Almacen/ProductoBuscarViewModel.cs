@@ -259,10 +259,23 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Actualizar()
         {
-            ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
-            win.ShowWindow(pmVM);
-
-
+            if (solicitudView != null)
+            {
+                ProductoSQL pSQL = new ProductoSQL();
+                AbastecimientoProducto prodPedido = new AbastecimientoProducto();
+                prodPedido.idProducto = productoSel.IdProducto;
+                prodPedido.nombre = productoSel.Nombre;
+                List<ProductoxAlmacen> prod = pSQL.BuscarProductoxAlmacen(idAlmacen, productoSel.IdProducto);
+                prodPedido.stock = prod.ElementAt(0).StockActual;
+                prodPedido.sugerido = prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual;
+                prodPedido.pedido = prodPedido.sugerido;
+                solicitudView.addProducto(prodPedido);
+            }
+            else
+            {
+                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
+                win.ShowWindow(pmVM);
+            }
         }
         
         #endregion

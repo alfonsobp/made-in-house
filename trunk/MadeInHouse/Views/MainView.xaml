@@ -99,6 +99,7 @@
                             <RowDefinition />
                             <RowDefinition />
                             <RowDefinition />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
                         <Button x:Name="AbrirNuevoProducto" Background="Black" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="2" Foreground="#FFF9F5F5"/>
@@ -117,6 +118,7 @@
                         <Button  x:Name="AbrirSolicitudAbDetalle" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="Auto" Grid.Row="14"/>
                         <Button  x:Name="AbrirMovimientos" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15"/>
                         <Button  x:Name="RegistrarSolicitud" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Solicitar abastecimiento" FontSize="20" Height="Auto" Grid.Row="16"/>
+                        <Button  x:Name="RegistrarSolicitudDespacho" Background="Black" Foreground="DarkGray" BorderThickness="0" Content="Solicitar despacho" FontSize="20" Height="Auto" Grid.Row="17"/>
 
                     </Grid>
                 </Expander>

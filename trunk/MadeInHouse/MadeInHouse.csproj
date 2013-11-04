@@ -87,6 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="DataObjects\Almacen\AbastecimientoSQL.cs" />
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\ExcelUtiles.cs" />
+    <Compile Include="Models\Almacen\AbastecimientoModel.cs" />
+    <Compile Include="Models\Almacen\AbastecimientoProducto.cs" />
     <Compile Include="Models\Almacen\Almacenes.cs" />
     <Compile Include="Models\Almacen\EntityManager.cs" />
     <Compile Include="Models\Almacen\EntityName.cs" />
