@@ -10,6 +10,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Seguridad;
+using MadeInHouse.DataObjects.Seguridad;
 
 namespace MadeInHouse.ViewModels.Seguridad
 {
@@ -31,7 +32,6 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         private Usuario usuarioSeleccionado;
 
-
         public void SelectedItemChanged(object sender)
         {
             usuarioSeleccionado = ((sender as DataGrid).SelectedItem as Usuario);
@@ -45,15 +45,32 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void ActualizarListaUsuario()
         {
-            lstUsuario = DataObjects.Seguridad.UsuarioSQL.BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
+            lstUsuario = UsuarioSQL.BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
             NotifyOfPropertyChange("LstUsuario");
         }
 
         public void AbrirEditarUsuario()
         {
-            MessageBox.Show("Usuario seleccionado" + usuarioSeleccionado.CodEmpleado);
-            win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this,usuarioSeleccionado));
+            //MessageBox.Show("Usuario seleccionado" + usuarioSeleccionado.CodEmpleado);
+            if(usuarioSeleccionado != null)
+                win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this,usuarioSeleccionado));
 
         }
+
+
+        public void EliminarUsuarios()
+        {
+            for (int i = 0; i < LstUsuario.Count; i++)
+            {
+                if (lstUsuario[i].Estado == 1)
+                {
+                    lstUsuario[i].Estado = 0;
+                    UsuarioSQL.EliminarUsuarios(lstUsuario[i]);
+                }
+            }
+
+            ActualizarListaUsuario();
+        }
+        
     }
 }

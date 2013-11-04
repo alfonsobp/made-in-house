@@ -30,13 +30,14 @@ namespace MadeInHouse.ViewModels
             ventana = new int[100];
 
             Usuario u = new Usuario();
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(Thread.CurrentPrincipal.Identity.Name);
-            //DataObjects.Seguridad.AccesoSQL.cargarAccVentana(u.IdRol, out ventana);   //ANTIGUO
+
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+
             DataObjects.Seguridad.AccesoSQL.cargarAccVentana(u.Rol.IdRol, out ventana);
         }
 
 //***************************************************************************************************************
-/*
+
         //MODULO ALMACÉN: 1
         #region Almacen
 
@@ -110,9 +111,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[8] == 1)
-            { 
-                win.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
-        
+            {
+                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
+                win.ShowWindow(abrirNotaIView);
             }
         }
 
@@ -635,7 +636,7 @@ namespace MadeInHouse.ViewModels
             {
                 win.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
             }
-        }                
+        }
 
         //Ventana Externa: 7.8
         public void AbrirReporteSolicitudes()
@@ -767,9 +768,10 @@ namespace MadeInHouse.ViewModels
         } 
   
         
-*/
 
-        //***************************************************************************************************************
+
+//***************************************************************************************************************
+/*
         //MODULO ALMACÉN: 1
         #region Almacen
         //Ventana Externa: 1.1
@@ -820,7 +822,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.8
         public void AbrirMantenerNotaDeSalida()
         {
-                win.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
+                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
+                win.ShowWindow(abrirNotaIView);
         }
 
         //Ventana Externa: 1.9
@@ -858,16 +861,6 @@ namespace MadeInHouse.ViewModels
         public void AbrirAnularDocumentos()
         {
                 win.ShowWindow(new Almacen.AnularDocumentosViewModel());
-        }
-
-        public void RegistrarSolicitud()
-        {
-            win.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel());
-        }
-
-        public void RegistrarSolicitudDespacho()
-        {
-            win.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel());
         }
             
         #endregion Almacen
@@ -913,10 +906,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.6
         public void AbrirBuscadorSolicitudesAdquisicion()
         {
-           
-            Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel();
+            Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel { DisplayName = "Buscador de Solicitudes de Adquisicion" };
             win.ShowWindow(obj);
-            
         }
 
         //Ventana Externa: 2.7
@@ -924,7 +915,7 @@ namespace MadeInHouse.ViewModels
         {
             Compras.SeleccionDeProveedoresViewModel obj = new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" };
             win.ShowWindow(obj);
-        } 
+        }
 
         //Ventana Externa: 2.8
         public void AbrirGenerarOrdenCompra()
@@ -943,14 +934,14 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.10
         public void AbrirNuevaCotizacion()
         {
-            Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel();
+            Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel { DisplayName = "Cotizacion" };
             win.ShowWindow(obj);
         }
 
         //Ventana Externa: 2.11
         public void AbrirBuscarCotizacion()
         {
-            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel();
+            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel { DisplayName = "Buscador Cotizaciones" };
             win.ShowWindow(obj);
         }
 
@@ -970,8 +961,8 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 2.14 - ESTA NO ESTÁ IMPLEMENTADA!
         public void AbrirMantenerSolicitudesAdquisicion()
         {
-          //  Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel();
-           // win.ShowWindow(obj);
+            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel { DisplayName = "Solicitudes de Adquisicion" };
+            win.ShowWindow(obj);
         }
 
         #endregion Compras
@@ -1259,6 +1250,6 @@ namespace MadeInHouse.ViewModels
         }
 
         #endregion Configuracion
-
+*/
     }
 }

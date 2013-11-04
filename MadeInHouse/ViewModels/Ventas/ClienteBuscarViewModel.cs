@@ -7,15 +7,13 @@ using Caliburn.Micro;
 using System.Windows;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Ventas;
-using System.Windows.Controls;
-using MadeInHouse.DataObjects.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
     class ClienteBuscarViewModel : PropertyChangedBase
     {
+        private ClienteGateway cliGateway;
         private MyWindowManager win = new MyWindowManager();
-
 
         public void AbrirRegistrarcliente()
         {
@@ -24,61 +22,55 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirEditarcliente()
         {
-            win.ShowWindow(new Ventas.ClienteRegistrarViewModel(this, clienteSeleccionado.Cliente.Id) { DisplayName = "Editar Cliente" });
+            win.ShowWindow(new Ventas.ClienteEditarViewModel { DisplayName = "Editar Cliente" });
         }
 
         public ClienteBuscarViewModel()
         {
-            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null,null,-1,null,null);
-            NotifyOfPropertyChange("Clientes");
-            //Console.WriteLine(Clientes);
+            cliGateway = new ClienteGateway();
+            Clientes = cliGateway.BuscarClientes();
+            
+            Console.WriteLine(Clientes);
         }
-
+        
         private List<Tarjeta> clientes;
 
         public List<Tarjeta> Clientes
         {
             get
             {
-                return clientes;
+                return this.clientes;
             }
 
-            set
+            private set
             {
-                if (clientes == value)
+                if (this.clientes == value)
                 {
                     return;
                 }
-                clientes = value;
-                NotifyOfPropertyChange(() => Clientes);
+
+                this.clientes = value;
+                this.NotifyOfPropertyChange(() => this.Clientes);
             }
         }
 
-        private Dictionary<string, int> tipoCliente = new Dictionary<string, int>()
+        private Dictionary<string, int> sexo = new Dictionary<string, int>()
         {
-            { "Seleccionar", -1 }, { "Persona", 0 }, { "Empresa", 1 }
+            { "Seleccionar", -1 }, { "No sabe", 0 }, { "Masculino", 1 }, { "Femenino", 2 }, { "No aplica", 9 }
         };
 
-        public BindableCollection<string> cmbTipoCliente
+        public BindableCollection<string> cmbSexo
         {
             get
             {
-                return new BindableCollection<string>(tipoCliente.Keys);
+                return new BindableCollection<string>(sexo.Keys);
             }
         }
 
-        private Tarjeta clienteSeleccionado;
-
-        public void SelectedItemChanged(object sender)
+        public void RealizarBusqueda(string tarjeta, string dni, string telefono, string nombre, string cmbSexo, string ruc, string razonSocial, string registroDesde, string registroHasta)
         {
-            clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
-
-        }
-
-        public void RealizarBusqueda(string dni, string nombre, string cmbTipoCliente, string registroDesde, string registroHasta)
-        {
-            Clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(dni, nombre, tipoCliente[cmbTipoCliente], registroDesde, registroHasta);
-            NotifyOfPropertyChange("Clientes");
+            cliGateway = new ClienteGateway();
+            Clientes = cliGateway.BuscarClientes(tarjeta, dni, telefono, nombre, sexo[cmbSexo], ruc, razonSocial, registroDesde, registroHasta);
         }
     }
 }

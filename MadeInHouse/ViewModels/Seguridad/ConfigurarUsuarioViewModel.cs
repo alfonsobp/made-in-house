@@ -56,7 +56,6 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public int GuardarDatosUsuario(){
             //Validar campos
-
             if (!String.IsNullOrWhiteSpace(TxtPassActual) && !String.IsNullOrWhiteSpace(TxtPassNuevo1) && !String.IsNullOrWhiteSpace(TxtPassNuevo2))
             {
                 //Validar Conntrasenha actual
@@ -76,11 +75,12 @@ namespace MadeInHouse.ViewModels.Seguridad
                         string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtPassNuevo1, "MadeInHouse",
                                 "MadeInHouse", "MD5", 22, "1234567891234567", 128);
                         Usuario u = new Usuario();
-                        u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(Thread.CurrentPrincipal.Identity.Name);
+                        u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+
 
                         u.Contrasenha = ContrasenhaCifrada;
                         u.FechaMod = DateTime.Now;
-                        int k = DataObjects.Seguridad.UsuarioSQL.editarUsuario(u);
+                        int k = DataObjects.Seguridad.UsuarioSQL.EditarUsuario(u);
 
                         if (k == 0)
                             MessageBox.Show("Ocurrio un error");
@@ -109,7 +109,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                 Response = "Faltan datos";
             }
             Trace.WriteLine("PassActual: "+ TxtPassActual);
-            Trace.WriteLine(Thread.CurrentPrincipal.Identity.Name);    
+            Trace.WriteLine(""+Thread.CurrentPrincipal.Identity.Name);    
             
             return 1;
         }

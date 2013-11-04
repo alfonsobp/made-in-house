@@ -25,7 +25,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public AsignarAccesosViewModel()
         {
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(Thread.CurrentPrincipal.Identity.Name);
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
 
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
@@ -95,23 +95,12 @@ namespace MadeInHouse.ViewModels.Seguridad
             set { lstAccVentanaAccModulo = value; NotifyOfPropertyChange(() => LstAccVentanaAccModulo); }
         }
 
-
-
-
-
         public void GuardarRol()
         {
             //DataObjects.Seguridad.AccVentanaSQL.ActualizarRol(LstAccVentanaAccModulo, IdRolValue);
             DataObjects.Seguridad.AccVentanaSQL.QuitarAccesosVentana(IdRolValue);
             DataObjects.Seguridad.AccVentanaSQL.AsignarAccesosVentana(LstAccVentanaAccModulo, IdRolValue);
-
         }
-
-
-
-
-
-
 
         public void ActualizarLstAccesos()
         {

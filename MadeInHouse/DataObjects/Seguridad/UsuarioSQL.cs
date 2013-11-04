@@ -9,12 +9,12 @@ using System.Windows;
 using System.Diagnostics;
 using MadeInHouse.ViewModels.Seguridad;
 using MadeInHouse.Models.Seguridad;
+using MadeInHouse.Models.RRHH;
 
 namespace MadeInHouse.DataObjects.Seguridad
 {
     class UsuarioSQL
     {
-
         //AGREGAR
         public static int agregarUsuario(Usuario u)
         {
@@ -23,7 +23,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (@codEmpleado,@contrasenha,@estado,@idRol,getdate(),getdate()) ";
+            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate()) ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -51,7 +51,45 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
             return k;
         }
-        
+
+        public static int EditarUsuario(Usuario u)
+        {
+            DBConexion db = new DBConexion();
+            //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+            Trace.WriteLine("Editar Usuario 1");
+
+            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate() WHERE codEmpleado = @codEmpleado ";
+
+            db.cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
+            db.cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
+            db.cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
+            db.cmd.Parameters.AddWithValue("@estado", u.Estado);
+
+            Trace.WriteLine("<" + u.IdUsuario + ">");
+            Trace.WriteLine("<" + u.CodEmpleado + ">");
+            Trace.WriteLine("<" + u.Contrasenha + ">");
+            Trace.WriteLine("<" + u.Rol.IdRol + ">");
+            Trace.WriteLine("<" + u.Estado + ">");
+
+            Trace.WriteLine("Editar Usuario 2");
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+                Trace.WriteLine("Editar Usuario 3");
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
         public static string buscarPass(string codEmpleado)
         {
             string passEnc="";
@@ -143,46 +181,48 @@ namespace MadeInHouse.DataObjects.Seguridad
             return u;
         }
 
-        public static int editarUsuario(Usuario u)
+        public static Usuario buscarUsuarioPorIdUsuario(int idUsuario)
         {
-            DBConexion db = new DBConexion();
-            //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            Usuario u = null;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
-            int k = 0;
-            Trace.WriteLine("Editar Usuario 1");
+            SqlDataReader reader;
 
-            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate() WHERE codEmpleado = @codEmpleado ";
+            cmd.CommandText = "SELECT * FROM Usuario WHERE idUsuario=@idUsuario ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
-            //db.cmd.Parameters.AddWithValue("@codEmpleado", u.IdUsuario);
-            db.cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
-            db.cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
-            db.cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
-            db.cmd.Parameters.AddWithValue("@estado", u.Estado);
-
-            Trace.WriteLine("<" + u.IdUsuario + ">");
-            Trace.WriteLine("<" + u.CodEmpleado + ">");
-            Trace.WriteLine("<" + u.Contrasenha + ">");
-            Trace.WriteLine("<" + u.Rol.IdRol + ">");
-            Trace.WriteLine("<" + u.Estado + ">");
-
-
-            Trace.WriteLine("Editar Usuario 2");
             try
             {
-                db.conn.Open();
-                k = db.cmd.ExecuteNonQuery();
-                db.conn.Close();
-                Trace.WriteLine("Editar Usuario 3");
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    u = new Usuario();
+
+                    u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
+                    u.CodEmpleado = reader["codEmpleado"].ToString();
+                    u.Contrasenha = reader["contrasenha"].ToString();
+                    u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
+                    u.Estado = Int32.Parse(reader["estado"].ToString());
+                    u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
+                    u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+                }
+                else
+                    conn.Close();
 
             }
-
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
-            return k;
+            return u;
         }
+      
 
         public static List<Usuario> BuscarUsuario(string codEmpleado, int idRol, DateTime fechaRegIni, DateTime fechaRegFin)
         {
@@ -213,9 +253,13 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
 
+                    u.Estado = Int32.Parse(reader["estado"].ToString());
                     Trace.WriteLine("<Flag: " + u.Rol.Nombre);
-
-                    lstUsuario.Add(u);
+                    if (u.Estado == 1)
+                    {
+                        u.Estado = 0;
+                        lstUsuario.Add(u);
+                    }
                 }
 
                 conn.Close();
@@ -230,67 +274,160 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
-       
+        public static int BuscarUsuarioPorCodigo(string codEmpleado)
+        {
+            int idUsuario = 0;
+            int enc = 0;
+            Usuario u = new Usuario();
+            Empleado emp = new Empleado();
 
-        //public static int editarServicio(Servicio s)
-        //{
-        //    SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-        //    SqlCommand cmd = new SqlCommand();
-        //    int k = 0;
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
 
-        //    cmd.CommandText = "UPDATE Servicio " +
-        //                      "SET nombre= @nombre,descripcion= @descripcion " +
-        //                      "WHERE codServicio= @codServicio ";
+            //cmd.CommandText = "SELECT idUsuario FROM Usuario WHERE upper(codEmpleado) like '%" +"@codEmpleado"+"%' ";
+            cmd.CommandText = "SELECT * FROM Empleado WHERE upper(codEmpleado) = @codEmpleado";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
 
-        //    cmd.CommandType = CommandType.Text;
-        //    cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    enc = 1;
+                    idUsuario = (int)(reader["idEmpleado"]);
+                    //MessageBox.Show("idEmpleado" + idUsuario);
+                }
+                conn.Close();
 
-        //    cmd.Parameters.AddWithValue("@codServicio", s.Codigo);
-        //    cmd.Parameters.AddWithValue("@nombre", s.Nombre);
-        //    cmd.Parameters.AddWithValue("@descripcion", s.Descripcion);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
 
-        //    try
-        //    {
-        //        conn.Open();
-        //        k = cmd.ExecuteNonQuery();
-        //        conn.Close();
+            return enc;
+        }
 
-        //    }
+        public static int DisponibilidadUsuario(string codEmpleado)
+        {
+            int disp = 1;   //El usuario NO Existe; por tanto, está disponible
+            Empleado emp = new Empleado();
 
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.StackTrace.ToString());
-        //    }
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
 
-        //    return k;
-        //}
+            cmd.CommandText = "SELECT * FROM Usuario WHERE upper(codEmpleado) = upper(@codEmpleado) ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
 
-        //public static int eliminarServicio(Servicio s)
-        //{
-        //    SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-        //    SqlCommand cmd = new SqlCommand();
-        //    int k = 0;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    disp = 0;   //El usario ya existe
+                    //idUsuario = (int)(reader["idEmpleado"]);
+                }
 
-        //    cmd.CommandText = "DELETE FROM Servicio WHERE codServicio = @codServicio";
-        //    cmd.CommandType = CommandType.Text;
-        //    cmd.Connection = conn;
+                conn.Close();
 
-        //    cmd.Parameters.AddWithValue("@codServicio", s.Codigo);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
 
-        //    try
-        //    {
-        //        conn.Open();
-        //        k = cmd.ExecuteNonQuery();
-        //        conn.Close();
+            return disp;
+        }
 
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        MessageBox.Show(e.StackTrace.ToString());
-        //    }
+        public static int EliminarUsuarios(Usuario u)
+        {
+            DBConexion db = new DBConexion();
+            //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+            Trace.WriteLine("Editar Usuario 1");
 
-        //    return k;
-        //}
+            db.cmd.CommandText = "UPDATE Usuario SET estado = @estado, fechaMod = getdate() WHERE idUsuario = @idUsuario ";
+
+            db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@estado", u.Estado);
+
+            Trace.WriteLine("<" + u.IdUsuario + ">");
+            Trace.WriteLine("<" + u.CodEmpleado + ">");
+            Trace.WriteLine("<" + u.Rol.IdRol + ">");
+            Trace.WriteLine("<" + u.Estado + ">");
+
+            Trace.WriteLine("Editar Usuario 2");
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+                Trace.WriteLine("Editar Usuario 3");
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+
+        public static List<AccVentana> ListarAccVentanaPorRol(List<AccVentana> lstAccVentana, int idRol)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM RolxAccVentana WHERE idRol=@idRol ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            cmd.Parameters.AddWithValue("@idRol", idRol);
+
+            try
+            {
+                conn.Open();
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    RolxAccVentana rav = new RolxAccVentana();
+                    rav.IdRol = Int32.Parse(reader["idRol"].ToString());
+                    rav.AccVentana = Int32.Parse(reader["idAccVentana"].ToString());//AccVentana es el idAccVentana
+
+                    //Mejorar esta parte
+                    for (int i = 0; i < lstAccVentana.Count; i++)
+                    {
+                        if (lstAccVentana[i].IdAccVentana == rav.AccVentana)
+                        {
+                            lstAccVentana[i].Estado = 1;
+                        }
+                    }
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lstAccVentana;
+
+        }
 
     }
 }
