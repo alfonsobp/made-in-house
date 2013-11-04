@@ -142,13 +142,13 @@ namespace MadeInHouse.DataObjects.Almacen
         public int obtenerDeposito(int idUsuario)
         {
             int idDeposito = -1;
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = db.conn;
-            cmd.Transaction = db.trans;
-            cmd.CommandText = " SELECT * FROM Usuario u, AlmacenxTienda at WHERE idUsuario = @idUsuario AND u.idTienda = at.idTienda ";
-            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            //SqlCommand cmd = new SqlCommand();
+            //cmd.Connection = db.conn;
+            //cmd.Transaction = db.trans;
+            db.cmd.CommandText = " SELECT * FROM Usuario u, AlmacenxTienda at WHERE idUsuario = @idUsuario AND u.idTienda = at.idTienda ";
+            db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
-            SqlDataReader reader = cmd.ExecuteReader();
+            SqlDataReader reader = db.cmd.ExecuteReader();
 
             if (reader.Read())
             {

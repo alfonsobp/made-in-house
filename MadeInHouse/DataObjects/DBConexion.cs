@@ -12,7 +12,6 @@ namespace MadeInHouse.DataObjects
     {
         public SqlConnection conn { get; set; }
         public SqlCommand cmd { get; set; }
-        public SqlTransaction trans { get; set; }
 
         public DBConexion()
         {

@@ -17,7 +17,7 @@ namespace MadeInHouse.Models.Almacen
             DBConexion db = new DBConexion();
             db.conn.Open();
             SqlTransaction trans = db.conn.BeginTransaction();
-            db.trans = trans;
+            db.cmd.Transaction = trans;
             AbastecimientoSQL solSQL = new AbastecimientoSQL(db);
             AlmacenSQL almSQL = new AlmacenSQL(db);
             int idDeposito;
