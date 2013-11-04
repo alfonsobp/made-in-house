@@ -13,7 +13,7 @@ namespace MadeInHouse.DataObjects.Ventas
 {
     class ClienteSQL
     {
-        public static List<Tarjeta> BuscarClientes(string dni = null, string nombre = null, int tipoCliente = -1, string registroDesde = null, string registroHasta = null)
+        public static List<Tarjeta> BuscarClientes(string dni , string nombre , int tipoCliente , string registroDesde , string registroHasta )
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -86,7 +86,6 @@ namespace MadeInHouse.DataObjects.Ventas
                     cli.Nombre = reader["nombre"].ToString();
                     cli.ApePaterno = reader["apePaterno"].ToString();
                     cli.ApeMaterno = reader["apeMaterno"].ToString();
-                    cli.NombreCompleto = cli.Nombre + " " + cli.ApePaterno + " " + cli.ApeMaterno;
                     if (reader["sexo"].ToString().Equals("M"))
                     {
                         cli.Sexo = 1;
@@ -103,15 +102,7 @@ namespace MadeInHouse.DataObjects.Ventas
                     cli.Estado = Int32.Parse(reader["estado"].ToString());
                     cli.FecRegistro = reader["fechaReg"].ToString();
                     cli.Distrito = reader["distrito"].ToString();
-                    cli.Documento = cli.Dni;
-                    Tarjeta tarj = new Tarjeta();
-                    tarj.CodTarjeta = reader["codTarjeta"].ToString();
-                    MessageBox.Show(tarj.CodTarjeta + "");
-                    tarj.FecEmision = reader["fechaEmi"].ToString();
-                    tarj.FecAnulado = reader["fechaAnu"].ToString();
-                    tarj.Estado = Int32.Parse(reader["estado"].ToString());
-                    tarj.Cliente = cli;
-                    /*if (String.IsNullOrEmpty(cli.RazonSocial))
+                    if (String.IsNullOrEmpty(cli.RazonSocial))
                     {
                         cli.NombreCompleto = cli.Nombre + ' ' + cli.ApePaterno + ' ' + cli.ApeMaterno;
                         cli.Documento = cli.Dni;
@@ -120,8 +111,26 @@ namespace MadeInHouse.DataObjects.Ventas
                     {
                         cli.NombreCompleto = cli.RazonSocial;
                         cli.Documento = cli.Ruc;
-                    }*/
-                    clientes.Add(tarj);
+                    }
+                    Tarjeta tarj = new Tarjeta();
+                    tarj.CodTarjeta = reader["codTarjeta"].ToString();
+                    //MessageBox.Show(tarj.CodTarjeta + "");
+                    tarj.FecEmision = reader["fechaEmi"].ToString();
+                    tarj.FecAnulado = reader["fechaAnu"].ToString();
+                    tarj.Estado = Int32.Parse(reader["estado"].ToString());
+                    tarj.Cliente = cli;
+                    if ((tipoCliente == 0) && !String.IsNullOrWhiteSpace(cli.Nombre) && String.IsNullOrEmpty(cli.RazonSocial))
+                    {
+                        clientes.Add(tarj);
+                    }
+                    else if ((tipoCliente == 1) && !String.IsNullOrEmpty(cli.RazonSocial))
+                    {
+                        clientes.Add(tarj);
+                    }
+                    else if (tipoCliente == -1)
+                    {
+                        clientes.Add(tarj);
+                    }
                 }
 
                 conn.Close();
