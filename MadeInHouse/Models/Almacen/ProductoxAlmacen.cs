@@ -78,7 +78,6 @@ namespace MadeInHouse.Models.Almacen
         }
 
 
-        public int sugerido { get; set; }
-        public int pedido { get; set; }
+        
     }
 }

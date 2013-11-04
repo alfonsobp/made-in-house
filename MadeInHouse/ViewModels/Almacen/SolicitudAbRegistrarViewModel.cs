@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.DataObjects.Almacen;
+using System.Windows;
 
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class SolicitudAbRegistrarViewModel : PropertyChangedBase
+    class SolicitudAbRegistrarViewModel : Screen
     {
         private MyWindowManager win = new MyWindowManager();
 
@@ -18,9 +20,9 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public int idAlmacen = 4;
 
-        private List<ProductoxAlmacen> _productos;
+        private List<AbastecimientoProducto> _productos;
 
-        public List<ProductoxAlmacen> Productos
+        public List<AbastecimientoProducto> Productos
         {
             get
             {
@@ -46,19 +48,25 @@ namespace MadeInHouse.ViewModels.Almacen
             win.ShowDialog(new ProductoBuscarViewModel(this));
         }
 
-        public void GuardarProductos()
+        public void GuardarSolicitud()
         {
-
+            int idUsuario = 17;
+            AbastecimientoModel solModel = new AbastecimientoModel();
+            if (solModel.registrarAbastecimiento(idUsuario, Productos))
+            {
+                TryClose();
+                return;
+            }
         }
 
-        public void addProducto(ProductoxAlmacen prod)
+        public void addProducto(AbastecimientoProducto prod)
         {
-            List<ProductoxAlmacen> aux = new List<ProductoxAlmacen>();
+            List<AbastecimientoProducto> aux = new List<AbastecimientoProducto>();
             if (Productos != null)
             {
-                foreach (ProductoxAlmacen item in Productos)
+                foreach (AbastecimientoProducto item in Productos)
                 {
-                    if (prod.IdProducto != item.IdProducto)
+                    if (prod.idProducto != item.idProducto)
                         aux.Add(item);
                 }
             }

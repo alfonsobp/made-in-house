@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data;
 using System.Data.SqlClient;
+using MadeInHouse.DataObjects.Seguridad;
+using MadeInHouse.Models.Seguridad;
 
 
 namespace MadeInHouse.DataObjects.Almacen
@@ -16,9 +18,9 @@ namespace MadeInHouse.DataObjects.Almacen
     {
         private DBConexion db;
 
-        public AlmacenSQL()
+        public AlmacenSQL(DBConexion db = null)
         {
-            db = new DBConexion();
+            this.db = (db == null) ? new DBConexion() : db;
         }
 
 
@@ -137,8 +139,26 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
+        public int obtenerDeposito(int idUsuario)
+        {
+            int idDeposito = -1;
+            SqlCommand cmd = new SqlCommand();
+            cmd.Connection = db.conn;
+            cmd.Transaction = db.trans;
+            cmd.CommandText = " SELECT * FROM Usuario u, AlmacenxTienda at WHERE idUsuario = @idUsuario AND u.idTienda = at.idTienda ";
+            cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 
+            SqlDataReader reader = cmd.ExecuteReader();
 
+            if (reader.Read())
+            {
+                int posIdAlmacen = reader.GetOrdinal("idAlmacen");
+                idDeposito = reader.IsDBNull(posIdAlmacen) ? -1 : reader.GetInt32(posIdAlmacen);
+            }
+            reader.Close();
+
+            return idDeposito;
+        }
 
     }
 }
