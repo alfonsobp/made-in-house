@@ -24,13 +24,12 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirEditarcliente()
         {
-            MessageBox.Show("Cliente seleccionado " + clienteSeleccionado.Cliente.NombreCompleto);
             win.ShowWindow(new Ventas.ClienteRegistrarViewModel(this, clienteSeleccionado.Cliente.Id) { DisplayName = "Editar Cliente" });
         }
 
         public ClienteBuscarViewModel()
         {
-            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes();
+            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null,null,-1,null,null);
             NotifyOfPropertyChange("Clientes");
             //Console.WriteLine(Clientes);
         }
