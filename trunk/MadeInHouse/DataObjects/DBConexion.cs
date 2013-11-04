@@ -12,6 +12,7 @@ namespace MadeInHouse.DataObjects
     {
         public SqlConnection conn { get; set; }
         public SqlCommand cmd { get; set; }
+        public SqlTransaction transaction { get; set; }
 
         public DBConexion()
         {
@@ -19,6 +20,7 @@ namespace MadeInHouse.DataObjects
             cmd = new SqlCommand();
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
+            
         }
     }
 }

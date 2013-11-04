@@ -13,44 +13,57 @@ namespace MadeInHouse.DataObjects.Almacen
     {
 
         private DBConexion db;
+        private bool tipo=true;
 
-        public TiendaSQL()
+        public TiendaSQL(DBConexion db=null)
         {
-            db = new DBConexion();
+               if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else {
+                this.db=db;
+                tipo=false;
+            }
         }
 
 
         public int AgregarTienda(Tienda p)
         {
-            db.cmd.CommandText = "sp_AgregarTienda";
-            db.cmd.CommandType = CommandType.StoredProcedure;
+            //db.cmd.CommandText = "sp_AgregarTienda";
+            //db.cmd.CommandType = CommandType.StoredProcedure;
+            db.cmd.CommandText = "INSERT INTO Tienda (nombre,direccion,administrador,telefono,idUbigeo) " +
+                                "output INSERTED.idTienda "+
+                                " VALUES (@nombre,@direccion,@admin,@telefono,@idUbigeo)";
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@direccion", p.Direccion);
             db.cmd.Parameters.AddWithValue("@admin", p.Administrador);
             db.cmd.Parameters.AddWithValue("@telefono", p.Telefono);
             db.cmd.Parameters.AddWithValue("@idUbigeo", p.IdUbigeo);
-            db.cmd.Parameters.Add("@idTienda", SqlDbType.Int).Direction = ParameterDirection.Output;
+            //db.cmd.Parameters.Add("@idTienda", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             int idtienda=-1;
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
 
 
-                db.cmd.ExecuteNonQuery();
-                idtienda = Convert.ToInt32(db.cmd.Parameters["@idTienda"].Value);
+                idtienda= (int) db.cmd.ExecuteScalar();
+               // idtienda = Convert.ToInt32(db.cmd.Parameters["@idTienda"].Value);
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                return -1;
             }
 
             return idtienda;

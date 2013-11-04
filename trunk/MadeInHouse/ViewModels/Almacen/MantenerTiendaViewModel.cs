@@ -8,6 +8,9 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using MadeInHouse.DataObjects;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -122,7 +125,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 this.cmbProv = value;
                 this.NotifyOfPropertyChange(() => this.cmbProv);
 
-                
+
             }
 
         }
@@ -131,14 +134,14 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public string SelectedProv
         {
-          get { return selectedProv; }
-          set 
-          { 
-              selectedProv = value;
-              UbigeoSQL usql = new UbigeoSQL();
-              CmbDist = usql.BuscarDist(selectedDpto, selectedProv);
-              SelectedIndex = 0;
-          }
+            get { return selectedProv; }
+            set
+            {
+                selectedProv = value;
+                UbigeoSQL usql = new UbigeoSQL();
+                CmbDist = usql.BuscarDist(selectedDpto, selectedProv);
+                SelectedIndex = 0;
+            }
         }
 
         private List<Ubigeo> cmbDist;
@@ -155,7 +158,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 this.cmbDist = value;
                 this.NotifyOfPropertyChange(() => this.cmbDist);
 
-                
+
             }
 
         }
@@ -184,8 +187,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtCodProducto
         {
             get { return txtCodProducto; }
-            set { txtCodProducto = value;
-            NotifyOfPropertyChange(() => TxtCodProducto);
+            set
+            {
+                txtCodProducto = value;
+                NotifyOfPropertyChange(() => TxtCodProducto);
             }
         }
 
@@ -194,8 +199,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtStockIni
         {
             get { return txtStockIni; }
-            set { txtStockIni = value;
-            NotifyOfPropertyChange(() => TxtStockIni);
+            set
+            {
+                txtStockIni = value;
+                NotifyOfPropertyChange(() => TxtStockIni);
 
             }
         }
@@ -205,8 +212,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtStockMin
         {
             get { return txtStockMin; }
-            set { txtStockMin = value;
-            NotifyOfPropertyChange(() => TxtStockMin);
+            set
+            {
+                txtStockMin = value;
+                NotifyOfPropertyChange(() => TxtStockMin);
             }
         }
 
@@ -215,8 +224,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtStockMax
         {
             get { return txtStockMax; }
-            set { txtStockMax = value;
-            NotifyOfPropertyChange(() => TxtStockMax);
+            set
+            {
+                txtStockMax = value;
+                NotifyOfPropertyChange(() => TxtStockMax);
             }
         }
 
@@ -225,8 +236,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtPrecioV
         {
             get { return txtPrecioV; }
-            set { txtPrecioV = value;
-            NotifyOfPropertyChange(() => TxtPrecioV);
+            set
+            {
+                txtPrecioV = value;
+                NotifyOfPropertyChange(() => TxtPrecioV);
             }
         }
 
@@ -236,8 +249,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public bool ChkVigente
         {
             get { return chkVigente; }
-            set { chkVigente = value;
-            NotifyOfPropertyChange(() => ChkVigente);
+            set
+            {
+                chkVigente = value;
+                NotifyOfPropertyChange(() => ChkVigente);
             }
         }
 
@@ -246,8 +261,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public List<ProductoxAlmacen> LstProductos
         {
             get { return lstProductos; }
-            set { lstProductos = value;
-            NotifyOfPropertyChange(() => LstProductos);
+            set
+            {
+                lstProductos = value;
+                NotifyOfPropertyChange(() => LstProductos);
             }
         }
 
@@ -281,8 +298,8 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtAlturaAnq = value; }
         }
 
-        
-        
+
+
 
         /*Deposito*/
         private string txtNumRowsDto;
@@ -371,15 +388,17 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        
+
 
         private int zonaAnaquel;
 
         public int ZonaAnaquel
         {
             get { return zonaAnaquel; }
-            set { zonaAnaquel = value;
-            NotifyOfPropertyChange(() => ZonaAnaquel);
+            set
+            {
+                zonaAnaquel = value;
+                NotifyOfPropertyChange(() => ZonaAnaquel);
             }
         }
 
@@ -388,8 +407,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int ZonaDeposito
         {
             get { return zonaDeposito; }
-            set { zonaDeposito = value;
-            NotifyOfPropertyChange(() => ZonaDeposito);
+            set
+            {
+                zonaDeposito = value;
+                NotifyOfPropertyChange(() => ZonaDeposito);
             }
         }
 
@@ -436,18 +457,19 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-        
-        public MantenerTiendaViewModel() {
+
+        public MantenerTiendaViewModel()
+        {
             uSQL = new UbigeoSQL();
             tSQL = new TiendaSQL();
-            pxaSQL= new ProductoSQL();
-            
+            pxaSQL = new ProductoSQL();
+
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
-            CmbDpto=uSQL.BuscarDpto();
+            CmbDpto = uSQL.BuscarDpto();
             LstProductos = new List<ProductoxAlmacen>();
             LstProdAgregados = new List<ProductoxAlmacen>();
             //LstProductos = pxaSQL.BuscarProductoxAlmacen();
-            
+
 
         }
 
@@ -473,7 +495,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void BuscarProductos()
         {
             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-            wm.ShowWindow(new ProductoBuscarViewModel(this,2));
+            wm.ShowWindow(new ProductoBuscarViewModel(this, 2));
         }
 
         public void Agregar()
@@ -481,7 +503,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             if (TxtCodProducto == null || TxtStockIni == null || TxtStockMax == null || TxtStockMin == null || TxtPrecioV == null)
             {
-                System.Windows.MessageBox.Show("Debe completar todos los campos"); 
+                System.Windows.MessageBox.Show("Debe completar todos los campos");
             }
             else
             {
@@ -491,7 +513,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 if (lstAux != null)
                 {
-                    
+
                     if ((pxa = LstProductos.Find(x => x.IdProducto == lstAux[0].IdProducto)) == null)
                     {
 
@@ -503,7 +525,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.StockMin = Int32.Parse(TxtStockMin);
                         pxa.StockMax = Int32.Parse(TxtStockMax);
                         pxa.PrecioVenta = float.Parse(txtPrecioV);
-                        pxa.Vigente = (ChkVigente ==true) ? 1:0;
+                        pxa.Vigente = (ChkVigente == true) ? 1 : 0;
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoxAlmacen>(LstProductos);
                     }
@@ -520,7 +542,8 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        public void Quitar() {
+        public void Quitar()
+        {
             if (SelectedItem != null)
             {
                 LstProductos.Remove(SelectedItem);
@@ -531,55 +554,57 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Importar()
         {
-          System.Data.DataTableReader dt=  MadeInHouse.Dictionary.ExcelUtiles.Importar("Productos");
-          if (dt != null)
-          {
-              List<Producto> lstAux = null;
-              lstAux = pxaSQL.BuscarProducto();
-              bool exito = true;
-              LstProdAgregados.Clear();
+            System.Data.DataTableReader dt = MadeInHouse.Dictionary.ExcelUtiles.Importar("Productos");
+            if (dt != null)
+            {
+                List<Producto> lstAux = null;
+                lstAux = pxaSQL.BuscarProducto();
+                bool exito = true;
+                LstProdAgregados.Clear();
 
-              while (dt.Read())
-              {
-                  
-                  ProductoxAlmacen pxa = new ProductoxAlmacen();
-                  Producto pAux= (lstAux.Find(x => x.CodigoProd == dt["Codigo"].ToString()));
-                  if ( pAux== null)
-                  {
-                      System.Windows.MessageBox.Show("ERROR: No se pudo terminar la carga porque el producto " + dt["Codigo"].ToString() + " no ha sido registrado en la empresa");
-                      break;
-                  }
-                  else if ((LstProductos.Find(x => x.IdProducto == pAux.IdProducto)) == null)
-                  {
-                      pxa.CodProducto = pAux.CodigoProd;
-                      pxa.Nombre = pAux.Nombre;
-                      pxa.IdProducto = pAux.IdProducto;
-                      pxa.IdAlmacen = idAlmacen;
-                      pxa.StockActual = Convert.ToInt32(dt["StockActual"]);
-                      pxa.StockMin = Convert.ToInt32(dt["StockMin"]);
-                      pxa.StockMax = Convert.ToInt32(dt["StockMax"]);
-                      pxa.PrecioVenta = float.Parse(dt["PrecioVenta"].ToString());
-                      LstProdAgregados.Add(pxa);
-                  }
-                  else
-                  {
-                      
-                      System.Windows.MessageBox.Show("ERROR: No se pudo terminar la carga porque el producto " + dt["Codigo"].ToString() + " ya se registro para la empresa o se repite en su lista");
-                      exito = false;
-                      break;
-                  }
-              }
+                while (dt.Read())
+                {
 
-              if (exito)
-              {
-                  for(int i=0;i<LstProdAgregados.Count;i++) {
-                      LstProductos.Add(LstProdAgregados[i]);
-                  }
-                  LstProductos = new List<ProductoxAlmacen>(LstProductos);
-              }
+                    ProductoxAlmacen pxa = new ProductoxAlmacen();
+                    Producto pAux = (lstAux.Find(x => x.CodigoProd == dt["Codigo"].ToString()));
+                    if (pAux == null)
+                    {
+                        System.Windows.MessageBox.Show("ERROR: No se pudo terminar la carga porque el producto " + dt["Codigo"].ToString() + " no ha sido registrado en la empresa");
+                        exito = false;
+                        break;
+                    }
+                    else if ((LstProductos.Find(x => x.IdProducto == pAux.IdProducto)) == null && (LstProdAgregados.Find(x => x.IdProducto == pAux.IdProducto)) == null)
+                    {
+                        pxa.CodProducto = pAux.CodigoProd;
+                        pxa.Nombre = pAux.Nombre;
+                        pxa.IdProducto = pAux.IdProducto;
+                        pxa.IdAlmacen = idAlmacen;
+                        pxa.StockActual = Convert.ToInt32(dt["StockActual"]);
+                        pxa.StockMin = Convert.ToInt32(dt["StockMin"]);
+                        pxa.StockMax = Convert.ToInt32(dt["StockMax"]);
+                        pxa.PrecioVenta = float.Parse(dt["PrecioVenta"].ToString());
+                        LstProdAgregados.Add(pxa);
+                    }
+                    else
+                    {
+                        LstProdAgregados.Clear();
+                        System.Windows.MessageBox.Show("ERROR: No se pudo terminar la carga porque el producto " + dt["Codigo"].ToString() + " ya se registro para la empresa o se repite en su lista");
+                        exito = false;
+                        break;
+                    }
+                }
 
-              
-          }
+                if (exito)
+                {
+                    for (int i = 0; i < LstProdAgregados.Count; i++)
+                    {
+                        LstProductos.Add(LstProdAgregados[i]);
+                    }
+                    LstProductos = new List<ProductoxAlmacen>(LstProductos);
+                }
+
+
+            }
         }
 
         public void SelectedItemChanged(object sender)
@@ -599,7 +624,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Limpiar()
         {
-            TxtCodProducto=null;
+            TxtCodProducto = null;
             TxtStockMax = null;
             TxtStockIni = null;
             TxtStockMin = null;
@@ -607,20 +632,21 @@ namespace MadeInHouse.ViewModels.Almacen
             ChkVigente = false;
         }
 
-        public List<int> ObtenerListaZonas(MadeInHouse.Dictionary.DynamicGrid objeto) 
+        public List<int> ObtenerListaZonas(MadeInHouse.Dictionary.DynamicGrid objeto)
         {
-            List<int> lista= new List<int>();
+            List<int> lista = new List<int>();
 
             bool encontrado = false;
             for (int i = 0; i < objeto.Ubicaciones.Count; i++)
             {
-                
+
                 for (int j = 0; j < objeto.Ubicaciones[i].Count; j++)
                 {
-                    for(int k=0;k<lista.Count;k++) {
-                        if (lista[k]==objeto.Ubicaciones[i][j].IdTipoZona) 
+                    for (int k = 0; k < lista.Count; k++)
+                    {
+                        if (lista[k] == objeto.Ubicaciones[i][j].IdTipoZona)
                         {
-                            encontrado=true;
+                            encontrado = true;
                             break;
                         }
                     }
@@ -637,106 +663,149 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             /*saco todos los idTipoZona*/
-            List<int> zonasAnaquel=ObtenerListaZonas(anaquel);
-            List<int> zonasDeposito=ObtenerListaZonas(deposito);
+            List<int> zonasAnaquel = ObtenerListaZonas(anaquel);
+            List<int> zonasDeposito = ObtenerListaZonas(deposito);
+            int exito = 1;
 
-
-            /*Agrega una tienda*/
-            Tienda tienda = new Tienda();
-            tienda.Estado = 1;
-            tienda.Nombre = txtNombre;
-            tienda.Direccion = txtDir;
-            tienda.Telefono = txtTelef;
-            tienda.Administrador = txtAdmin;
-            Ubigeo seleccionado = new Ubigeo();
-            seleccionado = uSQL.buscarUbigeo(selectedDpto, selectedProv, selectedDist);
-            tienda.IdUbigeo = seleccionado.IdUbigeo;
-            tienda.FechaReg = DateTime.Today;
-            TiendaSQL gw = new TiendaSQL();
-            int idTienda=gw.AgregarTienda(tienda);
-
-            /*Se agregan las dos partes de la tienda*/
-             AlmacenSQL aSQL = new AlmacenSQL();
-                
-             /*anaquel*/
-             Almacenes ana = new Almacenes();
-             ana.CodAlmacen = "ANA00" + idTienda.ToString();
-             ana.IdTienda = idTienda;
-             ana.Nombre = "Anaquel de TIENDA" + idTienda.ToString();
-             ana.Telefono = tienda.Telefono;
-             ana.Direccion = tienda.Direccion;
-             ana.Tipo = 2;
-             int idAnaquel=aSQL.Agregar(ana);
-
-             /*deposito*/
-             Almacenes dto = new Almacenes();
-             dto.CodAlmacen = "DTO00" + idTienda.ToString();
-             dto.IdTienda = idTienda;
-             dto.Nombre = "Deposito de TIENDA" + idTienda.ToString();
-             dto.Telefono = tienda.Telefono;
-             dto.Direccion = tienda.Direccion;
-             dto.Tipo = 1;
-             int idDeposito=aSQL.Agregar(dto);
-             UbicacionSQL ubSQL = new UbicacionSQL();
-
-            /*Productos de la tienda*/
-             for (int i = 0; i < LstProductos.Count; i++)
-             {
-                 LstProductos[i].IdAlmacen = idDeposito;
-                 pxaSQL.AgregarProductoxAlmacen(LstProductos[i]);
-             }
-
-
-                 /*Agrego las zonas por almacen*/
-                 for (int i = 0; i < zonasAnaquel.Count; i++)
-                 {
-                     aSQL.AgregarZonas(zonasAnaquel[i], idAnaquel);
-                 }
-
-             for (int i = 0; i < zonasDeposito.Count; i++)
-             {
-                 aSQL.AgregarZonas(zonasDeposito[i], idDeposito);
-             }
-
-
-             /*Ubicaciones del anaquel*/
-             for (int m = 0; m < anaquel.Ubicaciones.Count; m++)
-             {
-                 for (int n = 0; n < anaquel.Ubicaciones[m].Count; n++)
-                 {
-                     anaquel.Ubicaciones[m][n].IdAlmacen = idAnaquel;
-                     anaquel.Ubicaciones[m][n].CordX = m;
-                     anaquel.Ubicaciones[m][n].CordY = n;
-                     anaquel.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaAnq);
-                     ubSQL.Agregar(anaquel.Ubicaciones[m][n]);
-                 }
-
-             }
-            /*Ubicaciones del deposito*/
-
-             for (int m = 0; m < deposito.Ubicaciones.Count; m++)
-             {
-                 for (int n = 0; n < deposito.Ubicaciones[m].Count; n++)
-                 {
-                     deposito.Ubicaciones[m][n].IdAlmacen = idDeposito;
-                     deposito.Ubicaciones[m][n].CordX = m;
-                     deposito.Ubicaciones[m][n].CordY = n;
-                     deposito.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaDto);
-                     ubSQL.Agregar(deposito.Ubicaciones[m][n]);
-                 }
-
-             }
-
-
-
-             System.Windows.MessageBox.Show("Se creo correctamente la tienda con id: " + idTienda.ToString() +" con anaquel id: " + idAnaquel.ToString()+ " y con deposito id :"+ idDeposito.ToString() );
+            DBConexion db = new DBConexion();
+            db.conn.Open();
+            SqlTransaction trans = db.conn.BeginTransaction();
+            db.cmd.Transaction = trans;
+            pxaSQL = new ProductoSQL(db);
+            
             
 
-            }
+                /*Agrega una tienda*/
+                Tienda tienda = new Tienda();
+                tienda.Estado = 1;
+                tienda.Nombre = txtNombre;
+                tienda.Direccion = txtDir;
+                tienda.Telefono = txtTelef;
+                tienda.Administrador = txtAdmin;
+                Ubigeo seleccionado = new Ubigeo();
+                seleccionado = uSQL.buscarUbigeo(selectedDpto, selectedProv, selectedDist);
+                tienda.IdUbigeo = seleccionado.IdUbigeo;
+                tienda.FechaReg = DateTime.Today;
+                TiendaSQL gw = new TiendaSQL(db);
+                int idTienda = gw.AgregarTienda(tienda);
+                if (idTienda > 0)
+                {
 
+                    /*Se agregan las dos partes de la tienda*/
+                    AlmacenSQL aSQL = new AlmacenSQL(db);
+
+                    /*anaquel*/
+                    Almacenes ana = new Almacenes();
+                    ana.CodAlmacen = "ANA00" + idTienda.ToString();
+                    ana.IdTienda = idTienda;
+                    ana.Nombre = "Anaquel de TIENDA" + idTienda.ToString();
+                    ana.Telefono = tienda.Telefono;
+                    ana.Direccion = tienda.Direccion;
+                    ana.Tipo = 2;
+                    int idAnaquel = aSQL.Agregar(ana);
+                    if (idAnaquel > 0)
+                    {
+
+                        /*deposito*/
+                        Almacenes dto = new Almacenes();
+                        dto.CodAlmacen = "DTO00" + idTienda.ToString();
+                        dto.IdTienda = idTienda;
+                        dto.Nombre = "Deposito de TIENDA" + idTienda.ToString();
+                        dto.Telefono = tienda.Telefono;
+                        dto.Direccion = tienda.Direccion;
+                        dto.Tipo = 1;
+                        int idDeposito = aSQL.Agregar(dto);
+                        if (idDeposito > 0)
+                        {
+
+                            /*Productos de la tienda*/
+                            for (int i = 0; i < LstProductos.Count; i++)
+                            {
+                                LstProductos[i].IdAlmacen = idDeposito;
+                                exito = pxaSQL.AgregarProductoxAlmacen(LstProductos[i]);
+                                if (exito<=0) break;
+                            }
+
+                            if (exito > 0)
+                            {
+                                /*Agrego las zonas por almacen*/
+                                for (int i = 0; i < zonasAnaquel.Count; i++)
+                                {
+                                    aSQL.AgregarZonas(zonasAnaquel[i], idAnaquel);
+                                }
+
+                                for (int i = 0; i < zonasDeposito.Count; i++)
+                                {
+                                    aSQL.AgregarZonas(zonasDeposito[i], idDeposito);
+                                }
+
+                                if (exito > 0)
+                                {
+
+                                    UbicacionSQL ubSQL = new UbicacionSQL(db);
+
+                                    /*Ubicaciones del anaquel*/
+                                    for (int m = 0; m < anaquel.Ubicaciones.Count; m++)
+                                    {
+                                        for (int n = 0; n < anaquel.Ubicaciones[m].Count; n++)
+                                        {
+                                            anaquel.Ubicaciones[m][n].IdAlmacen = idAnaquel;
+                                            anaquel.Ubicaciones[m][n].CordX = m;
+                                            anaquel.Ubicaciones[m][n].CordY = n;
+                                            anaquel.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaAnq);
+                                            ubSQL.Agregar(anaquel.Ubicaciones[m][n]);
+                                        }
+
+                                    }
+                                    /*Ubicaciones del deposito*/
+
+                                    for (int m = 0; m < deposito.Ubicaciones.Count; m++)
+                                    {
+                                        for (int n = 0; n < deposito.Ubicaciones[m].Count; n++)
+                                        {
+                                            deposito.Ubicaciones[m][n].IdAlmacen = idDeposito;
+                                            deposito.Ubicaciones[m][n].CordX = m;
+                                            deposito.Ubicaciones[m][n].CordY = n;
+                                            deposito.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaDto);
+                                            ubSQL.Agregar(deposito.Ubicaciones[m][n]);
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    trans.Rollback();
+                                }
+                            }
+                            else
+                            {
+                                trans.Rollback();
+                            }
+                        }
+                        else
+                        {
+                            trans.Rollback();
+                        }
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                    }
+
+
+                    trans.Commit();
+                }
+                else
+                {
+                    trans.Rollback();
+                }
+
+               // System.Windows.MessageBox.Show("Se creo correctamente la tienda con id: " + idTienda.ToString() + " con anaquel id: " + idAnaquel.ToString() + " y con deposito id :" + idDeposito.ToString());
 
 
         }
+
+    }
 
         
 

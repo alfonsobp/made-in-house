@@ -14,10 +14,19 @@ namespace MadeInHouse.DataObjects.Almacen
     {
 
         private DBConexion db;
+        private bool tipo = true;
 
-        public ProductoSQL()
+        public ProductoSQL(DBConexion db=null)
         {
-            db = new DBConexion();
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else
+            {
+                this.db = db;
+                tipo = false;
+            }
         }
 
 
@@ -385,8 +394,10 @@ namespace MadeInHouse.DataObjects.Almacen
             return prodAlmacen;
         }
 
-        public void AgregarProductoxAlmacen(ProductoxAlmacen pxa) 
+        public int AgregarProductoxAlmacen(ProductoxAlmacen pxa) 
         {
+
+           
             db.cmd.CommandText = "INSERT INTO AlmacenxProducto (idProducto,idAlmacen,stockActual,stockMin,stockMax,precioVenta,vigente) " +
                             "VALUES (@idProducto,@idAlmacen,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente) ";
             db.cmd.Parameters.AddWithValue("@idProducto", pxa.IdProducto);
@@ -399,23 +410,25 @@ namespace MadeInHouse.DataObjects.Almacen
 
             try
             {
-                db.conn.Open();
+                if(tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if(tipo) db.conn.Close();
                     
             }
             catch (SqlException e)
             {
                 System.Windows.MessageBox.Show("ERROR: Lo sentimos no se pudo realizar la operación");
                 Console.WriteLine(e);
+                return -1;
             }
             catch (Exception e){
                 System.Windows.MessageBox.Show("ERROR: Lo sentimos no se pudo realizar la operación");
                 Console.WriteLine(e.StackTrace.ToString());
+                return -1;
             }
 
-
+            return 1;
         }
 
         #endregion

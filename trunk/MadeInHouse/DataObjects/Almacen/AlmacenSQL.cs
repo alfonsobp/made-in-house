@@ -17,14 +17,25 @@ namespace MadeInHouse.DataObjects.Almacen
     class AlmacenSQL
     {
         private DBConexion db;
+        private bool tipo = true;
 
-        public AlmacenSQL(DBConexion db = null)
+        public AlmacenSQL();
+        public AlmacenSQL(DBConexion db=null)
         {
-            this.db = (db == null) ? new DBConexion() : db;
+            db = new DBConexion();
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else
+            {
+                this.db = db;
+                tipo = false;
+            }
         }
 
 
-        public void AgregarZonas(int idTipoZona,int idAlmacen) 
+        public int AgregarZonas(int idTipoZona,int idAlmacen) 
         {
             db.cmd.CommandType = CommandType.Text;
             db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona,idAlmacen) VALUES (@idTipoZona,@idAlmacen)" ;
@@ -33,28 +44,35 @@ namespace MadeInHouse.DataObjects.Almacen
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                return -1;
             }
+
+            return 1;
 
         }
 
 
         public int Agregar(Almacenes alm)
         {
-            db.cmd.CommandText = "sp_AgregarAlmacen";
-            db.cmd.CommandType = CommandType.StoredProcedure;
+            //db.cmd.CommandText = "sp_AgregarAlmacen";
+            //db.cmd.CommandType = CommandType.StoredProcedure;
+            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono) "+
+                                    "output INSERTED.idAlmacen "+
+                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono)";
             db.cmd.Parameters.AddWithValue("@nombre", alm.Nombre);
             db.cmd.Parameters.AddWithValue("@codAlmacen",alm.CodAlmacen);
             db.cmd.Parameters.AddWithValue("@direccion", alm.Direccion);
@@ -62,26 +80,28 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@idTienda", alm.IdTienda);
             db.cmd.Parameters.AddWithValue("@telefono", alm.Telefono);
 
-            db.cmd.Parameters.Add("@idAlmacen", SqlDbType.Int).Direction = ParameterDirection.Output;
+            //db.cmd.Parameters.Add("@idAlmacen", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             int idalmacen = -1;
 
             try
             {
-                db.conn.Open();
-                db.cmd.ExecuteNonQuery();
-                idalmacen = Convert.ToInt32(db.cmd.Parameters["@idAlmacen"].Value);
+                if (tipo)  db.conn.Open();
+                idalmacen = (int) db.cmd.ExecuteScalar();
+                //idalmacen = Convert.ToInt32(db.cmd.Parameters["@idAlmacen"].Value);
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo)  db.conn.Close();
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                return -1;
             }
 
             return idalmacen;
@@ -103,7 +123,7 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             try
             {
-                db.conn.Open();
+                if (tipo)  db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -123,7 +143,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 }
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo)  db.conn.Close();
             }
             catch (SqlException e)
             {
