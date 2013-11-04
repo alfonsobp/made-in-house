@@ -39,7 +39,8 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
                 db.cmd.ExecuteNonQuery();
-                idtienda = Convert.ToInt32(db.cmd.Parameters["@idTienda"].Value);    
+                idtienda = Convert.ToInt32(db.cmd.Parameters["@idTienda"].Value);
+                db.cmd.Parameters.Clear();
                 db.conn.Close();
 
             }

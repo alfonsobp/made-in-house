@@ -110,6 +110,7 @@
                             <Label Content="Precio de venta (S/.):" HorizontalAlignment="Left" Margin="32,199,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
                             <CheckBox x:Name="ChkVigente" Content="Vigente" HorizontalAlignment="Left" Margin="32,243,0,0" VerticalAlignment="Top" Height="15" Width="61"/>
                             <DataGrid EnableRowVirtualization="False"  x:Name="LstProductos" SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                                      cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
                                 Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="48,93,0,0" VerticalAlignment="Top" Height="260" Width="392">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}" Width="130" />

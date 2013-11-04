@@ -23,6 +23,14 @@ namespace MadeInHouse.Models.Almacen
             set { idProducto = value; }
         }
 
+        private string codProducto;
+
+        public string CodProducto
+        {
+            get { return codProducto; }
+            set { codProducto = value; }
+        }
+
 
         private string nombre;
 
