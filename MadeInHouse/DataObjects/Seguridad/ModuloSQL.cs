@@ -15,7 +15,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 {
     class ModuloSQL
     {
-        public  BindableCollection<Modulo> ListarModulo()
+        public BindableCollection<Modulo> ListarModulo()
         {
 
             BindableCollection<Modulo> lstModulo = new BindableCollection<Modulo>();
@@ -60,5 +60,5 @@ namespace MadeInHouse.DataObjects.Seguridad
         }
 
     }
-    
+
 }

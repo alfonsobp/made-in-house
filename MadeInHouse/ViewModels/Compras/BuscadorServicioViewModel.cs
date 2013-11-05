@@ -8,11 +8,11 @@ using MadeInHouse.Views.Compras;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models;
 using System.Data.OleDb;
 using System.Data;
 using MadeInHouse.Models.Compras;
-using MadeInHouse.Models;
-using MadeInHouse.DataObjects.Compras;
 
 
 namespace MadeInHouse.ViewModels.Compras
@@ -32,7 +32,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         private MyWindowManager win = new MyWindowManager();
 
-        private Servicio servicioSeleccionado;
+        private MadeInHouse.Models.Compras.Servicio servicioSeleccionado;
 
         ServicioSQL eM = new ServicioSQL();
         
@@ -62,9 +62,9 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtProducto = value; NotifyOfPropertyChange(() => TxtProducto); }
         }
 
-        private List<Servicio> lstServicio;
+        private List<MadeInHouse.Models.Compras.Servicio> lstServicio;
 
-        public List<Servicio> LstServicio
+        public List<MadeInHouse.Models.Compras.Servicio> LstServicio
         {
             get { return lstServicio; }
             set { lstServicio = value; NotifyOfPropertyChange(() => LstServicio); }
@@ -74,13 +74,13 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         //Funciones de la clase
-
+        
         public void SelectedItemChanged(object sender)
         {
             servicioSeleccionado = ((sender as DataGrid).SelectedItem as Servicio);
 
         }
-
+        
 
         public void NuevoServicio()
         {
@@ -100,7 +100,7 @@ namespace MadeInHouse.ViewModels.Compras
             eM.Eliminar(servicioSeleccionado);
             ActualizarServicio();
         }
-
+        
         public void BuscarServicio()
         {
             LstServicio = eM.Buscar(TxtProveedor, TxtNombre, TxtProducto) as List<Servicio>;
@@ -111,5 +111,6 @@ namespace MadeInHouse.ViewModels.Compras
         {
             LstServicio = eM.Buscar() as List<Servicio>;
         }
+        
     }
 }

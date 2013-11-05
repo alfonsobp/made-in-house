@@ -23,7 +23,7 @@ namespace MadeInHouse.Models.Seguridad
             get { return nombre; }
             set { nombre = value; }
         }
-        
+
         string descripcion;
 
         public string Descripcion

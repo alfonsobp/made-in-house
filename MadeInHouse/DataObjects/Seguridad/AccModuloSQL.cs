@@ -58,7 +58,8 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
-        public AccModulo BuscarModuloPorId (int idAccModulo){
+        public AccModulo BuscarModuloPorId(int idAccModulo)
+        {
 
             AccModulo am = null;
 

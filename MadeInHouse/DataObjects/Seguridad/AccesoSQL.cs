@@ -16,19 +16,19 @@ namespace MadeInHouse.DataObjects.Seguridad
         public static int NUM_MODULOS = 7;
         public static int NUM_VENTANAS = 100; //Máximo de ventas externas por módulo
 
-        public static void cargarAccVentana(int idRol, out int [] ventana)
+        public static void cargarAccVentana(int idRol, out int[] ventana)
         {
-            ventana = new int [NUM_VENTANAS];
+            ventana = new int[NUM_VENTANAS];
 
             //inicializando en 0's
-            for (int i= 0; i < NUM_VENTANAS; i++)
-                ventana[i]= 0;
+            for (int i = 0; i < NUM_VENTANAS; i++)
+                ventana[i] = 0;
 
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = " SELECT idAccVentana FROM RolxAccVentana " + 
+            cmd.CommandText = " SELECT idAccVentana FROM RolxAccVentana " +
                               " WHERE idRol = @idRol ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -40,7 +40,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    ventana[Convert.ToInt32(reader["idAccVentana"].ToString())]= 1;
+                    ventana[Convert.ToInt32(reader["idAccVentana"].ToString())] = 1;
                 }
                 conn.Close();
             }
@@ -61,7 +61,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = " SELECT idAccModulo FROM RolxAccModulo " + 
+            cmd.CommandText = " SELECT idAccModulo FROM RolxAccModulo " +
                               " WHERE idRol = @idRol ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -74,7 +74,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                 while (reader.Read())
                 {
                     //accModulo[k] = Convert.ToInt32(reader["idRol"].ToString());
-                    accModulo[Convert.ToInt32(reader["idAccModulo"].ToString())]= 1;
+                    accModulo[Convert.ToInt32(reader["idAccModulo"].ToString())] = 1;
                 }
                 conn.Close();
             }
@@ -85,15 +85,15 @@ namespace MadeInHouse.DataObjects.Seguridad
         }
 
 
-        public static void buscarVentanas(int [] idAccModulo, out int[,] accVentana)
+        public static void buscarVentanas(int[] idAccModulo, out int[,] accVentana)
         {
             accVentana = new int[NUM_MODULOS, NUM_VENTANAS];
 
             for (int i = 0; i < NUM_MODULOS; i++)
                 for (int j = 0; j < NUM_VENTANAS; j++)
-                    accVentana[i,j] = 0;
+                    accVentana[i, j] = 0;
 
-            for(int m= 0; m< NUM_MODULOS; m++)
+            for (int m = 0; m < NUM_MODULOS; m++)
                 if (idAccModulo[m] == 1)
                 {
                     SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);

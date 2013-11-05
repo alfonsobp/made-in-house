@@ -6,14 +6,14 @@
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
 
         <DockPanel>
-            
 
-            <Layouts:TitleBarTemplate title="Login" DockPanel.Dock="Top"/>   
-        <Grid>
+
+            <Layouts:TitleBarTemplate title="Login" DockPanel.Dock="Top"/>
+            <Grid>
                 <Grid.Background>
                     <ImageBrush ImageSource="/MadeInHouse;component/Assets/bg-login2.jpg"/>
                 </Grid.Background>
-            
+
                 <Label Content="Sistema MadeInHouse" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="185,36,0,0"/>
                 <Label x:Name="lblUser" Content="Usuario:" HorizontalAlignment="Left" Margin="135,87,0,0" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.471,0.077" Height="26"/>
                 <TextBox x:Name="TxtUser" HorizontalAlignment="Left" Height="22" Margin="228,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="139"/>
@@ -25,7 +25,7 @@
                 <Label x:Name="LblError" Content="{Binding Response}" Foreground="Red" HorizontalAlignment="Left" Margin="268,162,0,0" VerticalAlignment="Top"/>
 
             </Grid>
-        
-    </DockPanel>
+
+        </DockPanel>
     </Border>
 </Window>

@@ -75,7 +75,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                 lblError = value; NotifyOfPropertyChange("LblError");
             }
         }
-        
+
 
         private string txtCodUsuario;
 
@@ -128,7 +128,7 @@ namespace MadeInHouse.ViewModels.Seguridad
         public void VerificarUsuario()
         {
             int k = 0;
-            Empleado e= new Empleado();
+            Empleado e = new Empleado();
             if (!String.IsNullOrWhiteSpace(TxtCodUsuario))
             {
                 k = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
@@ -164,9 +164,9 @@ namespace MadeInHouse.ViewModels.Seguridad
         public void GuardarUsuario()
         {
             //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
-            if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue!=0)
+            if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue != 0)
             {
-                int k =0;
+                int k = 0;
 
                 CifrarAES cifradoAES = new CifrarAES();
 
@@ -213,7 +213,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                 }
                 //EDITAR USUARIO
-                if(indicador == 2)
+                if (indicador == 2)
                 {
                     if (TxtContrasenhaTB == null || TxtContrasenhaTB2 == null)
                         u.Contrasenha = DataObjects.Seguridad.UsuarioSQL.buscarPass(u.CodEmpleado);
@@ -225,7 +225,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
 
                 //else
-                    //MessageBox.Show("Usuario Registrado \n\nCodigo = " + txtCodUsuario + "\nContraseña = " + TxtContrasenhaTB);
+                //MessageBox.Show("Usuario Registrado \n\nCodigo = " + txtCodUsuario + "\nContraseña = " + TxtContrasenhaTB);
             }
 
             else
@@ -233,7 +233,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                 MessageBox.Show("Contraseñas diferentes o campos vacíos");
             }
 
-            
+
         }
 
     }
