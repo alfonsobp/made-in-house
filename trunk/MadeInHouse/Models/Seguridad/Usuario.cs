@@ -73,10 +73,11 @@ namespace MadeInHouse.Models.Seguridad
         {
             get { return estado; }
             set { estado = value; }
-        }   
+        }
 
-        public Usuario() { 
-            
+        public Usuario()
+        {
+
         }
 
     }

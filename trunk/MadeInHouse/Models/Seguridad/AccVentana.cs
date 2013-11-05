@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.Seguridad
 {
-     public class AccVentana
+    public class AccVentana
     {
         int idAccVentana;
 

@@ -11,14 +11,14 @@ using MadeInHouse.Models.Seguridad;
 
 namespace MadeInHouse.ViewModels.Seguridad
 {
-    class ConfigurarUsuarioViewModel:Screen
+    class ConfigurarUsuarioViewModel : Screen
     {
         private string txtPassActual;
 
         public string TxtPassActual
         {
-            get {return txtPassActual; }
-            set {txtPassActual=value; NotifyOfPropertyChange(() => TxtPassActual);}
+            get { return txtPassActual; }
+            set { txtPassActual = value; NotifyOfPropertyChange(() => TxtPassActual); }
         }
 
         private string txtPassNuevo1;
@@ -54,7 +54,8 @@ namespace MadeInHouse.ViewModels.Seguridad
             }
         }
 
-        public int GuardarDatosUsuario(){
+        public int GuardarDatosUsuario()
+        {
             //Validar campos
             if (!String.IsNullOrWhiteSpace(TxtPassActual) && !String.IsNullOrWhiteSpace(TxtPassNuevo1) && !String.IsNullOrWhiteSpace(TxtPassNuevo2))
             {
@@ -86,31 +87,31 @@ namespace MadeInHouse.ViewModels.Seguridad
                             MessageBox.Show("Ocurrio un error");
                         else
                             MessageBox.Show("Usuario modificado \n\nCodigo = " + Thread.CurrentPrincipal.Identity.Name + "\nContraseña = " + u.Contrasenha);
-                            //Response = "Usuario modificado con éxito";
+                        //Response = "Usuario modificado con éxito";
                     }
 
                     else
                     {
                         Response = "Contraseñas diferentes";
                     }
-                    
+
                 }
                 else
                 {
-                    
+
                     Response = "Contraseña incorrecta";
                 }
-                
-                
+
+
             }
 
             else
             {
                 Response = "Faltan datos";
             }
-            Trace.WriteLine("PassActual: "+ TxtPassActual);
-            Trace.WriteLine(""+Thread.CurrentPrincipal.Identity.Name);    
-            
+            Trace.WriteLine("PassActual: " + TxtPassActual);
+            Trace.WriteLine("" + Thread.CurrentPrincipal.Identity.Name);
+
             return 1;
         }
 

@@ -22,6 +22,7 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
+
             cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado) " +
             "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado)";
             cmd.CommandType = CommandType.Text;
@@ -216,6 +217,7 @@ namespace MadeInHouse.DataObjects.RRHH
             return e;
         }
 
+        ////////////////////////////////ELIMINAR UN EMPLEADO
 
         public static int EliminarEmpleado(string dni)
         {

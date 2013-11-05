@@ -33,7 +33,7 @@ namespace MadeInHouse.ViewModels.Seguridad
             AccModuloSQL moduloSQL = new AccModuloSQL();
             LstAccModulo = moduloSQL.ListarAccModulo();
 
-            ActualizarListaAccVentanaAccModulo(); 
+            ActualizarListaAccVentanaAccModulo();
         }
 
         private int idAccModuloValue;

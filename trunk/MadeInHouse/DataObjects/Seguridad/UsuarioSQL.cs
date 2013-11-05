@@ -37,7 +37,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
             cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
-            
+
 
             try
             {
@@ -92,7 +92,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         public static string buscarPass(string codEmpleado)
         {
-            string passEnc="";
+            string passEnc = "";
 
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -113,7 +113,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                 else
                     //MessageBox.Show("No se encontro contrasenha");
 
-                conn.Close();
+                    conn.Close();
 
             }
             catch (Exception e)
@@ -132,7 +132,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                      "MadeInHouse", "MD5", 22, "1234567891234567", 128);
 
             Trace.WriteLine("<<<<Descifrada" + ContrasenhaDescifrada + ">>>>");
-            if (String.Compare(password, ContrasenhaDescifrada)==0)
+            if (String.Compare(password, ContrasenhaDescifrada) == 0)
 
                 return 1;
             else return 0;
@@ -223,6 +223,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             return u;
         }
       
+
 
         public static List<Usuario> BuscarUsuario(string codEmpleado, int idRol, DateTime fechaRegIni, DateTime fechaRegFin)
         {

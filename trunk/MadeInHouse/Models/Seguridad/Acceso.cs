@@ -17,7 +17,7 @@ namespace MadeInHouse.Models.Seguridad
             set { accModulo = value; }
         }
 
-        
+
         int[,] accVentana = new int[5, 50];
 
         public int[,] AccVentana

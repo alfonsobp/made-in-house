@@ -209,6 +209,8 @@
     <Compile Include="ViewModels\Compras\BuscarDocumentoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarOrdenCompraViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarProductoViewModel.cs" />
+    <Compile Include="ViewModels\Compras\BuscarProveedorViewModel.cs" />
+    <Compile Include="ViewModels\Compras\MedioPagoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />

@@ -52,8 +52,8 @@ namespace MadeInHouse.ViewModels.Seguridad
         public void AbrirEditarUsuario()
         {
             //MessageBox.Show("Usuario seleccionado" + usuarioSeleccionado.CodEmpleado);
-            if(usuarioSeleccionado != null)
-                win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this,usuarioSeleccionado));
+            if (usuarioSeleccionado != null)
+                win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this, usuarioSeleccionado));
 
         }
 
@@ -71,6 +71,6 @@ namespace MadeInHouse.ViewModels.Seguridad
 
             ActualizarListaUsuario();
         }
-        
+
     }
 }

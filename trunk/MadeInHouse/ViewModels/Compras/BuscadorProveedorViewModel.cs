@@ -17,7 +17,7 @@ using MadeInHouse.Models.Compras;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class BuscadorProveedorViewModel : PropertyChangedBase
+    class BuscadorProveedorViewModel : Screen
     {
 
         public BuscadorProveedorViewModel(){
@@ -30,6 +30,14 @@ namespace MadeInHouse.ViewModels.Compras
         public BuscadorProveedorViewModel(CatalogoProductoProveedorViewModel p) {
 
             this.p = p;
+            ActualizarProveedor();
+        }
+
+        NuevaCotizacionViewModel cp;
+
+        public BuscadorProveedorViewModel(NuevaCotizacionViewModel cp)
+        {
+            this.cp = cp;
             ActualizarProveedor();
         }
 
@@ -99,18 +107,28 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private Proveedor proveedorSeleccionado;
-        
+
+
         public void SelectedItemChanged(object sender)
         {
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
 
-            if (p != null) {
-                p.Prov = proveedorSeleccionado;                
+            if (p != null)
+            {
+                p.Prov = proveedorSeleccionado;
+                TryClose();
             }
 
             if (s != null)
             {
                 s.Prov = proveedorSeleccionado;
+                TryClose();
+            }
+
+            if (cp != null)
+            {
+                cp.Prov = proveedorSeleccionado;
+                TryClose();
             }
         }
 

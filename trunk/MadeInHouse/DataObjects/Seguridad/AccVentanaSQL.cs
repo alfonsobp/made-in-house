@@ -38,8 +38,8 @@ namespace MadeInHouse.DataObjects.Seguridad
                     av.IdAccVentana = Int32.Parse("" + reader["idAccVentana"]);
                     av.Nombre = reader["nombre"].ToString();
                     av.Estado = Int32.Parse("" + reader["estado"]);
-                    av.AccModulo= new AccModuloSQL().BuscarModuloPorId(Int32.Parse(reader["idAccModulo"].ToString()));
- 
+                    av.AccModulo = new AccModuloSQL().BuscarModuloPorId(Int32.Parse(reader["idAccModulo"].ToString()));
+
                     lstAccVentana.Add(av);
                 }
 
@@ -178,7 +178,8 @@ namespace MadeInHouse.DataObjects.Seguridad
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@idRol", idRol);
 
-            try{
+            try
+            {
                 conn.Open();
                 //cmd.ExecuteNonQuery();
 
@@ -192,8 +193,8 @@ namespace MadeInHouse.DataObjects.Seguridad
                     if (lstAccVentana[i].Estado == 1)
                     {
                         cmd2.Parameters.AddWithValue("@idRol", idRol);
-                        cmd2.Parameters.AddWithValue("@idAccVentana",lstAccVentana[i].IdAccVentana);
-                        Trace.WriteLine("---" + idRol +" "+ lstAccVentana[i].IdAccVentana);
+                        cmd2.Parameters.AddWithValue("@idAccVentana", lstAccVentana[i].IdAccVentana);
+                        Trace.WriteLine("---" + idRol + " " + lstAccVentana[i].IdAccVentana);
                         cmd2.ExecuteNonQuery();
                         Trace.WriteLine("IdAccesoVentana");
                     }

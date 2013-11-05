@@ -52,8 +52,8 @@ namespace MadeInHouse.ViewModels
                 NotifyOfPropertyChange("Response");
             }
         }
-  
-        
+
+
         public void enter()
         {
 
@@ -90,9 +90,9 @@ namespace MadeInHouse.ViewModels
 
                     IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
 
-                    string[] rol = {"idRolAllenar","otrorol"};
+                    string[] rol = { "idRolAllenar", "otrorol" };
 
-                    GenericPrincipal credencial = new GenericPrincipal(usuario,rol);
+                    GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
 
                     System.Threading.Thread.CurrentPrincipal = credencial;
 
@@ -109,7 +109,7 @@ namespace MadeInHouse.ViewModels
                     Response = "Datos incorrectos";
                 }
             }
-        
+
         }
     }
 }
