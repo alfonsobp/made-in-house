@@ -12,29 +12,37 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Controls;
 using MadeInHouse.DataObjects.Seguridad;
-
 namespace MadeInHouse.ViewModels.Seguridad
 {
     class RegistrarUsuarioViewModel : PropertyChangedBase
     {
         public RegistrarUsuarioViewModel()
         {
+            //REGISTRAR USUARIO DESDE MENU
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
             indicador = 1;
+            Util util = new Util();
+            LstEstHabilitado = util.ListarEstados();
+            IsEnabledResetContrasenha = false;
+            IsEnabledCodEmpleado = true;
+            IsEnabledVerificar = true;
         }
-
-
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m)
         {
+            //REGISTRAR USUARIO DESDE MANTENIMIENTO
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
             indicador = 1;
-
+            Util util = new Util();
+            LstEstHabilitado = util.ListarEstados();
+            IsEnabledResetContrasenha = false;
+            IsEnabledCodEmpleado = true;
+            IsEnabledVerificar = true;
         }
-
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m, Usuario u)
         {
+            //EDITAR USUARIO
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
             txtCodUsuario = u.CodEmpleado.ToString();
@@ -42,29 +50,30 @@ namespace MadeInHouse.ViewModels.Seguridad
             //BTxtCodUsuario = u.CodEmpleado;
             IdRolValue = u.Rol.IdRol;
             indicador = 2;
+            Util util = new Util();
+            LstEstHabilitado = util.ListarEstados();
+            EstHabilitadoValue = u.EstadoHabilitado;
+            IsEnabledCodEmpleado = false;
+            IsEnabledResetContrasenha = true;
+            IsEnabledVerificar = false;
+            usuarioSeleccionado = u;
         }
-
+        private Usuario usuarioSeleccionado;
         private int indicador = 0;
         //Binding TxtCodUsuario
         string bTxtCodUsuario;
-
         public string BTxtCodUsuario
         {
-
             get { return this.bTxtCodUsuario; }
-
             set
             {
                 if (this.bTxtCodUsuario == value)
                     return;
-
                 this.bTxtCodUsuario = value;
                 NotifyOfPropertyChange("BTxtCodUsuario");
             }
         }
-
         private string lblError;
-
         public string LblError
         {
             get { return lblError; }
@@ -75,42 +84,31 @@ namespace MadeInHouse.ViewModels.Seguridad
                 lblError = value; NotifyOfPropertyChange("LblError");
             }
         }
-
-
         private string txtCodUsuario;
-
         public string TxtCodUsuario
         {
             get { return txtCodUsuario; }
             set { txtCodUsuario = value; NotifyOfPropertyChange(() => TxtCodUsuario); }
         }
-
         private string txtContrasenhaTB;
-
         public string TxtContrasenhaTB
         {
             get { return txtContrasenhaTB; }
             set { txtContrasenhaTB = value; NotifyOfPropertyChange(() => TxtContrasenhaTB); }
         }
-
         private string txtContrasenhaTB2;
-
         public string TxtContrasenhaTB2
         {
             get { return txtContrasenhaTB2; }
             set { txtContrasenhaTB2 = value; NotifyOfPropertyChange(() => TxtContrasenhaTB2); }
         }
-
         private int idRolValue;
-
         public int IdRolValue
         {
             get { return idRolValue; }
             set { idRolValue = value; NotifyOfPropertyChange(() => IdRolValue); }
         }
-
         private BindableCollection<Rol> lstRol;
-
         public BindableCollection<Rol> LstRol
         {
             get { return lstRol; }
@@ -124,7 +122,63 @@ namespace MadeInHouse.ViewModels.Seguridad
                 this.NotifyOfPropertyChange(() => this.lstRol);
             }
         }
-
+        private bool isEnabledResetContrasenha;
+        public bool IsEnabledResetContrasenha
+        {
+            get { return isEnabledResetContrasenha; }
+            set
+            {
+                if (isEnabledResetContrasenha == value)
+                    return;
+                isEnabledResetContrasenha = value;
+                NotifyOfPropertyChange("IsEnabledResetContrasenha");
+            }
+        }
+        private bool isEnabledCodEmpleado;
+        public bool IsEnabledCodEmpleado
+        {
+            get { return isEnabledCodEmpleado; }
+            set
+            {
+                if (isEnabledCodEmpleado == value)
+                    return;
+                isEnabledCodEmpleado = value;
+                NotifyOfPropertyChange("IsEnabledCodEmpleado");
+            }
+        }
+        private bool isEnabledVerificar;
+        public bool IsEnabledVerificar
+        {
+            get { return isEnabledVerificar; }
+            set
+            {
+                if (isEnabledVerificar == value)
+                    return;
+                isEnabledVerificar = value;
+                NotifyOfPropertyChange("IsEnabledVerificar");
+            }
+        }
+        
+        private List<EstadoHabilitado> lstEstHabilitado;
+        public List<EstadoHabilitado> LstEstHabilitado
+        {
+            get { return lstEstHabilitado; }
+            set
+            {
+                if (this.lstEstHabilitado == value)
+                {
+                    return;
+                }
+                this.lstEstHabilitado = value;
+                this.NotifyOfPropertyChange(() => this.lstEstHabilitado);
+            }
+        }
+        private int estHabilitadoValue;
+        public int EstHabilitadoValue
+        {
+            get { return estHabilitadoValue; }
+            set { estHabilitadoValue = value; NotifyOfPropertyChange(() => EstHabilitadoValue); }
+        }
         public void VerificarUsuario()
         {
             int k = 0;
@@ -132,13 +186,11 @@ namespace MadeInHouse.ViewModels.Seguridad
             if (!String.IsNullOrWhiteSpace(TxtCodUsuario))
             {
                 k = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
-
                 //Si el Empleado existe:
                 if (k == 1)
                 {
                     int dis = 0;
                     dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
-
                     if (dis == 1)
                     {
                         //Está disponible
@@ -157,50 +209,46 @@ namespace MadeInHouse.ViewModels.Seguridad
             }
             else
                 LblError = "Ingrese Código Usuario";
-
         }
-
-
+        public void ResetContrasenha()
+        {
+            Util util = new Util();
+            MessageBox.Show("PASS: "+util.generarContrasenha());
+            
+        }
         public void GuardarUsuario()
         {
             //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
+            Util util = new Util();
             int k = 0;
-
             CifrarAES cifradoAES = new CifrarAES();
-
-            string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
+            string contrasenha = util.generarContrasenha();
+            string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenha, "MadeInHouse",
                     "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-
+            MessageBox.Show("PASS: " + contrasenha);
             Usuario u = new Usuario();
             u.CodEmpleado = txtCodUsuario;
-
-            u.Contrasenha = ContrasenhaCifrada;
-
-            //u.IdRol = IdRolValue;
-            //MessageBox.Show(""+IdRolValue);
-            u.Rol = RolSQL.buscarRolPorId(IdRolValue);
-            //MessageBox.Show(""+u.Rol.IdRol);
+            u.EstadoHabilitado = 1;
+            u.Contrasenha = contrasenhaCifrada;
             u.Estado = 1;
-
-            //REGISTRAR USUARIO
+            u.Rol = RolSQL.buscarRolPorId(IdRolValue);
             if (indicador == 1)
             {
                 //debe existir y estar disponible
-                if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue != 0)
+                if (!String.IsNullOrWhiteSpace(TxtCodUsuario) && IdRolValue != 0)
                 {
                     int existe = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
-
                     //Empleado existente:
                     if (existe == 1)
                     {
                         int dis = 0;
                         dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
-
                         if (dis == 1)
                         {
                             //Está disponible
-                            MessageBox.Show("¡Empleado Generado con Éxito!");
+                            
                             k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
+                            if(k==1) MessageBox.Show("¡Empleado registrado con Éxito!");
                         }
                         else
                             MessageBox.Show("El usario NO está disponible");
@@ -218,25 +266,12 @@ namespace MadeInHouse.ViewModels.Seguridad
             //EDITAR USUARIO
             if (indicador == 2)
             {
-                if (TxtContrasenhaTB == null || TxtContrasenhaTB2 == null)
-                {
-                    u.Contrasenha = DataObjects.Seguridad.UsuarioSQL.buscarPass(u.CodEmpleado);
-                    k = DataObjects.Seguridad.UsuarioSQL.EditarUsuario(u);
-                    MessageBox.Show("¡Nuevo Rol Asignado!");
-                }
-                else
-                {
-                    if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue != 0)
-                        MessageBox.Show("La Contraseña ha sido Actualizada!");
-                    else
-                        MessageBox.Show("Contraseñas diferentes o campos vacíos");
-                }
-
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
+                usuarioSeleccionado.Contrasenha = UsuarioSQL.buscarPass(u.CodEmpleado);
+                usuarioSeleccionado.Rol.IdRol = IdRolValue;
+                usuarioSeleccionado.EstadoHabilitado = EstHabilitadoValue;
+                usuarioSeleccionado.Estado = 1;
+                UsuarioSQL.EditarUsuario(usuarioSeleccionado);
             }
-
         }
-
     }
 }

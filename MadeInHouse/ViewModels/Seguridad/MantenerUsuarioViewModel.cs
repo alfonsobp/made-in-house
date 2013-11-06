@@ -56,6 +56,31 @@ namespace MadeInHouse.ViewModels.Seguridad
                 win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this, usuarioSeleccionado));
         }
 
+        public void Guardar()
+        {
+            for (int i = 0; i < LstUsuario.Count; i++)
+            {
+                if (lstUsuario[i].Estado == 1)
+                {
+                    lstUsuario[i].Estado = 0;
+                    UsuarioSQL.EliminarUsuarios(lstUsuario[i]);
+                }
+            }
+
+            for (int i = 0; i < LstUsuario.Count; i++)
+            {
+                UsuarioSQL.DeshabilitarUsuario(lstUsuario[i]);
+
+                if (lstUsuario[i].EstadoHabilitado == 1)
+                    UsuarioSQL.HabilitarUsuario(lstUsuario[i]);
+
+            }
+
+
+            ActualizarListaUsuario();
+
+        }
+
         public void EliminarUsuarios()
         {
             for (int i = 0; i < LstUsuario.Count; i++)
