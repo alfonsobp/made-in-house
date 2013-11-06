@@ -137,7 +137,7 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = " SELECT idEmpleado, codEmpleado, nombre, apePaterno, apeMaterno FROM Empleado WHERE codEmpleado=@codEmpleado ";
+            cmd.CommandText = " SELECT idEmpleado, codEmpleado, nombre, apePaterno, apeMaterno, emailEmpresa FROM Empleado WHERE codEmpleado=@codEmpleado ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
@@ -153,6 +153,7 @@ namespace MadeInHouse.DataObjects.RRHH
                     emp.Nombre = reader["nombre"].ToString();
                     emp.ApePaterno = reader["apePaterno"].ToString();
                     emp.ApeMaterno = reader["apeMaterno"].ToString();
+                    emp.EmailEmpresa = reader["emailEmpresa"].ToString();
                 }
                 else
                     conn.Close();

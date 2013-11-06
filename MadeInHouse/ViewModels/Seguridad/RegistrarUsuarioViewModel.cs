@@ -11,6 +11,11 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Controls;
+
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
+
 using MadeInHouse.DataObjects.Seguridad;
 namespace MadeInHouse.ViewModels.Seguridad
 {
@@ -27,6 +32,7 @@ namespace MadeInHouse.ViewModels.Seguridad
             IsEnabledResetContrasenha = false;
             IsEnabledCodEmpleado = true;
             IsEnabledVerificar = true;
+
         }
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m)
         {
@@ -222,10 +228,10 @@ namespace MadeInHouse.ViewModels.Seguridad
             Util util = new Util();
             int k = 0;
             CifrarAES cifradoAES = new CifrarAES();
-            string contrasenha = util.generarContrasenha();
-            string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenha, "MadeInHouse",
+            string contrasenhaGenerada = util.generarContrasenha();
+            string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenhaGenerada, "MadeInHouse",
                     "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-            MessageBox.Show("PASS: " + contrasenha);
+            MessageBox.Show("PASS: " + contrasenhaGenerada);
             Usuario u = new Usuario();
             u.CodEmpleado = txtCodUsuario;
             u.EstadoHabilitado = 1;
@@ -246,9 +252,19 @@ namespace MadeInHouse.ViewModels.Seguridad
                         if (dis == 1)
                         {
                             //Está disponible
+
+                            //FALTA VALIDACION DE ENVIO DE CORREO
                             
                             k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
-                            if(k==1) MessageBox.Show("¡Empleado registrado con Éxito!");
+
+                            if (k == 1)
+                            {
+                                Empleado e = new Empleado();
+                                e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
+                                EnviarCorreo(e, contrasenhaGenerada);
+                                MessageBox.Show("¡Empleado registrado con Éxito!");
+                            }
+
                         }
                         else
                             MessageBox.Show("El usario NO está disponible");
@@ -273,5 +289,57 @@ namespace MadeInHouse.ViewModels.Seguridad
                 UsuarioSQL.EditarUsuario(usuarioSeleccionado);
             }
         }
+
+        //Funcion para mandar correo al proveedor
+        public void EnviarCorreo(Empleado empleado,  string contrasenha)
+        {
+
+                string time;
+
+                if (DateTime.Now.Hour >= 12)
+                    time = "tardes";
+                else
+                    time = "dias";
+
+                string bodyMessage = "Buenos/as " + time + " "+empleado.Nombre + "\nSu usuario es: "+ empleado.CodEmpleado + "\nSu contraseña es: " + contrasenha;
+
+
+                // Create a message and set up the recipients.
+
+                MailMessage message = new MailMessage("sw.grupo04@gmail.com", empleado.EmailEmpresa,
+                                                      "MadeInHouse - Contraseña generada", bodyMessage);
+
+                message.IsBodyHtml = true;
+
+                MessageBoxResult r = MessageBox.Show("¿Desea enviar el correo?", "EnviarCorreo",
+                                                     MessageBoxButton.YesNo);
+
+                if (r == MessageBoxResult.Yes)
+                {
+
+                    //Send the message.
+
+                    var client = new SmtpClient("smtp.gmail.com", 587)
+                    {
+                        // Add credentials if the SMTP server requires them.
+                        Credentials = new NetworkCredential("sw.grupo04@gmail.com", "insignia"),//adp980407912
+                        EnableSsl = true
+                    };
+
+
+                    try
+                    {
+                        client.Send(message);
+                        MessageBox.Show("Mensaje enviado satisfactoriamente");
+                    }
+
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.StackTrace.ToString());
+                    }
+                }
+
+            }
+
     }
 }
