@@ -23,16 +23,13 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
-
             cmd.CommandText = "SELECT * FROM Rol ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-
             try
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
-
                 while (reader.Read())
                 {
                     Rol r = new Rol();
@@ -40,20 +37,16 @@ namespace MadeInHouse.DataObjects.Seguridad
                     r.Nombre = reader["nombre"].ToString();
                     r.Descripcion = reader["descripcion"].ToString();
                     r.Estado = Int32.Parse("" + reader["estado"]);
-
-                    lstRol.Add(r);
+                    if (r.Estado == 1)
+                        lstRol.Add(r);
                 }
-
                 conn.Close();
-
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
-
             return lstRol;
-
         }
 
         //Lista de Roles:

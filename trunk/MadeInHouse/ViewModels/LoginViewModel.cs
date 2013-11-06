@@ -7,6 +7,9 @@ using Caliburn.Micro;
 using System.Diagnostics;
 using System.Windows;
 using System.Security.Principal;
+using MadeInHouse.DataObjects.Seguridad;
+using MadeInHouse.Models.Seguridad;
+using System.Threading;
 
 namespace MadeInHouse.ViewModels
 {
@@ -56,12 +59,15 @@ namespace MadeInHouse.ViewModels
 
         public void enter()
         {
+            Usuario u = new Usuario();
 
-            if (String.IsNullOrWhiteSpace(TxtUser) || String.IsNullOrWhiteSpace(TxtPasswordUser))
+            //INGRESO POR DEFECTO COMO USUARIO ADMIN
+            if (String.IsNullOrWhiteSpace(TxtUser) || String.IsNullOrWhiteSpace(TxtPasswordUser)) 
             {
                 AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
                 IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado("ADMIN").IdUsuario, "Database");
+                
 
                 string[] rol = { "idRolAllenar", "otrorol" };
 
@@ -81,27 +87,32 @@ namespace MadeInHouse.ViewModels
                 int verificado;
 
                 verificado = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
+                u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser);
                 //0 = Incorrecto
                 //1 = Correcto
 
                 if (verificado == 1)
                 {
-                    AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
+                    if (u.EstadoHabilitado == 1)
+                    {
+                        AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                    IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
+                        IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
 
-                    string[] rol = { "idRolAllenar", "otrorol" };
+                        string[] rol = { "idRolAllenar", "otrorol" };
 
-                    GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
+                        GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
 
-                    System.Threading.Thread.CurrentPrincipal = credencial;
+                        System.Threading.Thread.CurrentPrincipal = credencial;
 
-                    WindowManager win = new WindowManager();
+                        WindowManager win = new WindowManager();
 
-                    MainViewModel main = new MainViewModel();
-                    win.ShowWindow(main);
-                    this.TryClose();
-
+                        MainViewModel main = new MainViewModel();
+                        win.ShowWindow(main);
+                        this.TryClose();
+                    }
+                    else
+                        MessageBox.Show("Usted fue inhabilitado");
                 }
 
                 else
@@ -111,5 +122,7 @@ namespace MadeInHouse.ViewModels
             }
 
         }
+ 
+
     }
 }

@@ -59,13 +59,13 @@ namespace MadeInHouse.Models.Seguridad
             set { rol = value; }
         }
 
-        private int idRol;
+        //private int idRol;
 
-        public int IdRol
-        {
-            get { return idRol; }
-            set { idRol = value; }
-        }
+        //public int IdRol
+        //{
+        //    get { return idRol; }
+        //    set { idRol = value; }
+        //}
 
         int estado;
 
@@ -73,6 +73,22 @@ namespace MadeInHouse.Models.Seguridad
         {
             get { return estado; }
             set { estado = value; }
+        }
+
+        int idTienda;
+
+        public int IdTienda
+        {
+            get { return idTienda; }
+            set { idTienda = value; }
+        }
+
+        int estadoHabilitado;
+
+        public int EstadoHabilitado
+        {
+            get { return estadoHabilitado; }
+            set { estadoHabilitado = value; }
         }
 
         public Usuario()

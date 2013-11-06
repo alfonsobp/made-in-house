@@ -4,13 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" Height="336" Width="437">
-
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" HorizontalAlignment="Left" Width="436" Height="335" VerticalAlignment="Top">
         <StackPanel Margin="0,0,0,8">
             <Layouts:TitleBarTemplate title="Registrar Usuario" />
-
             <Grid Height="289">
-
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -18,11 +15,9 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-
                     <Button ToolTip="Guardar usuario" x:Name="GuardarUsuario">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-
                     <Button ToolTip="Limpiar celdas">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
@@ -30,35 +25,34 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-
                 <GroupBox Header="Datos de Usuario" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="243" Width="412">
                     <Grid Margin="0,10,-2,-12">
                         <Label Content="Código Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="-1,22,0,0"/>
-                        <Label Content="Confirmar Contraseña:" HorizontalAlignment="Left" Margin="-1,105,0,0" VerticalAlignment="Top" Width="131"/>
-                        <Label Content="Contraseña:" HorizontalAlignment="Left" Margin="-1,62,0,0" VerticalAlignment="Top" Width="78"/>
-                        <TextBox x:Name="TxtCodUsuario"  IsEnabled="True" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="131,22,0,0"/>
-                        <PasswordBox x:Name="TxtContrasenha" HorizontalAlignment="Left" Height="22" Margin="131,66,0,0" VerticalAlignment="Top" Width="135" PasswordChanged="TxtContrasenha_PasswordChanged"/>
-                        <PasswordBox x:Name="TxtContrasenha2" HorizontalAlignment="Left" Height="22" Margin="131,105,0,0" VerticalAlignment="Top" Width="135" PasswordChanged="TxtContrasenha2_PasswordChanged"/>
+                        <TextBox x:Name="TxtCodUsuario"  IsEnabled="{Binding IsEnabledCodEmpleado}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="131,22,0,0"/>
                         <TextBox x:Name="TxtContrasenhaTB" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="297,48,0,0" Visibility="Hidden"/>
                         <TextBox x:Name="TxtContrasenhaTB2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="297,78,0,0" Visibility="Hidden"/>
-                        <Label Content="Rol:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="32" Margin="-1,149,0,0"/>
+                        <Label Content="Rol:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="32" Margin="0,62,0,0"/>
                         <ComboBox ItemsSource="{Binding Path=LstRol}"
                                DisplayMemberPath="Nombre"
                                SelectedValuePath="IdRol" 
                                SelectedValue="{Binding Path=IdRolValue}"
                                HorizontalAlignment="Left" 
-                               Margin="131,149,0,0" 
+                               Margin="131,66,0,0" 
                                VerticalAlignment="Top" Width="135"/>
-                        <Button x:Name="VerificarUsuario" Content="Verificar" HorizontalAlignment="Left" Margin="304,22,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Label Content="Estado" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Margin="0,106,0,0"/>
+                        <ComboBox ItemsSource="{Binding Path=LstEstHabilitado}"
+                               DisplayMemberPath="Nombre"
+                               SelectedValuePath="Estado" 
+                               SelectedValue="{Binding Path=EstHabilitadoValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="131,110,0,0" 
+                               VerticalAlignment="Top" Width="135"/>
+                        <Button x:Name="VerificarUsuario" IsEnabled="{Binding IsEnabledVerificar}" Content="Verificar" HorizontalAlignment="Left" Margin="304,22,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button x:Name="ResetContrasenha" IsEnabled="{Binding IsEnabledResetContrasenha}" Content="Reinicializar contraseña" HorizontalAlignment="Left" Margin="131,160,0,0" VerticalAlignment="Top" Width="135" Height="36"/>
                         <Label x:Name="LblError" Foreground="Red" Content="" VerticalAlignment="Top" Margin="258,43,10,0"/>
-
                     </Grid>
                 </GroupBox>
-
-
-
             </Grid>
         </StackPanel>
     </Border>
-
 </UserControl>

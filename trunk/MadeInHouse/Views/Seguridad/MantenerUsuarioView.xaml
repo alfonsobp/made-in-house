@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="450" d:DesignWidth="665">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Mantenimiento de Usuario" />
@@ -25,7 +25,9 @@
                     <Button x:Name="AbrirEditarUsuario" ToolTip="Editar usuario">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-
+                    <Button x:Name="Guardar" ToolTip="Guardar cambios">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>                    
                     <Button x:Name="EliminarUsuarios" ToolTip="Eliminar usuario">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
@@ -46,11 +48,11 @@
                                 <TextBox HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
 
                                 <Label Content="Fecha de registro:" HorizontalAlignment="Left" Height="29" Margin="20,46,0,0" VerticalAlignment="Top" Width="109"/>
-                                <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="306,46,0,0" VerticalAlignment="Top" Width="48"/>
+                                <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="348,46,0,0" VerticalAlignment="Top" Width="48"/>
                                 <DatePicker HorizontalAlignment="Left" Margin="129,47,0,0" VerticalAlignment="Top" Width="113" Height="24"/>
-                                <DatePicker HorizontalAlignment="Left" Margin="383,47,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                                <DatePicker HorizontalAlignment="Left" Margin="425,47,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
 
-                                <Button Height="24" VerticalAlignment="Top" Margin="383,82,80,0">
+                                <Button Height="24" VerticalAlignment="Top" Margin="383,82,80,0" Width="50">
                                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                                 </Button>
                             </Grid>
@@ -63,6 +65,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Registro"/>
                                 <DataGridTextColumn Binding="{Binding Path=FechaMod}" Width="130" Header="Última modificación"/>
                                 <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Eliminar" CanUserReorder="False" Width="65" />
+                                <DataGridCheckBoxColumn  Binding="{Binding Path=EstadoHabilitado}" Header="¿Activo?" CanUserReorder="False" Width="65" />
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

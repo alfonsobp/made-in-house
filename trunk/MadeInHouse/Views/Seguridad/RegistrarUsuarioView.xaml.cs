@@ -25,14 +25,5 @@ namespace MadeInHouse.Views.Seguridad
             InitializeComponent();
         }
 
-        private void TxtContrasenha_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            TxtContrasenhaTB.Text = TxtContrasenha.Password;
-        }
-
-        private void TxtContrasenha2_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            TxtContrasenhaTB2.Text = TxtContrasenha2.Password;
-        }
     }
 }

@@ -23,7 +23,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate()) ";
+            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod,estadoHabilitado) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate(),@estadoHabilitado) ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -37,7 +37,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
             cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
-
+            cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
 
             try
             {
@@ -58,28 +58,20 @@ namespace MadeInHouse.DataObjects.Seguridad
             //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
-            Trace.WriteLine("Editar Usuario 1");
 
-            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate() WHERE codEmpleado = @codEmpleado ";
+            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate(), estadoHabilitado = @estadoHabilitado WHERE codEmpleado = @codEmpleado ";
 
             db.cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
             db.cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
             db.cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             db.cmd.Parameters.AddWithValue("@estado", u.Estado);
+            db.cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
 
-            Trace.WriteLine("<" + u.IdUsuario + ">");
-            Trace.WriteLine("<" + u.CodEmpleado + ">");
-            Trace.WriteLine("<" + u.Contrasenha + ">");
-            Trace.WriteLine("<" + u.Rol.IdRol + ">");
-            Trace.WriteLine("<" + u.Estado + ">");
-
-            Trace.WriteLine("Editar Usuario 2");
             try
             {
                 db.conn.Open();
                 k = db.cmd.ExecuteNonQuery();
                 db.conn.Close();
-                Trace.WriteLine("Editar Usuario 3");
             }
 
             catch (Exception e)
@@ -128,11 +120,15 @@ namespace MadeInHouse.DataObjects.Seguridad
         {
             CifrarAES cifradoAES = new CifrarAES();
 
-            string ContrasenhaDescifrada = cifradoAES.descifrarTextoAES(buscarPass(codEmpleado), "MadeInHouse",
-                     "MadeInHouse", "MD5", 22, "1234567891234567", 128);
+            //string ContrasenhaDescifrada = cifradoAES.descifrarTextoAES(buscarPass(codEmpleado), "MadeInHouse",
+            //         "MadeInHouse", "MD5", 22, "1234567891234567", 128);
 
-            Trace.WriteLine("<<<<Descifrada" + ContrasenhaDescifrada + ">>>>");
-            if (String.Compare(password, ContrasenhaDescifrada) == 0)
+            //Trace.WriteLine("<<<<Descifrada" + ContrasenhaDescifrada + ">>>>");
+
+            string contrasenhaCifrada = cifradoAES.cifrarTextoAES(password, "MadeInHouse",
+                    "MadeInHouse", "MD5", 22, "1234567891234567", 128);
+
+            if (String.Compare(contrasenhaCifrada, buscarPass(codEmpleado)) == 0)
 
                 return 1;
             else return 0;
@@ -168,6 +164,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.Estado = Int32.Parse(reader["estado"].ToString());
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+                    u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
                 }
                 else
                     conn.Close();
@@ -210,6 +207,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.Estado = Int32.Parse(reader["estado"].ToString());
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+                    u.EstadoHabilitado = Int32.Parse(reader["estadoHabilitado"].ToString());
                 }
                 else
                     conn.Close();
@@ -222,8 +220,6 @@ namespace MadeInHouse.DataObjects.Seguridad
 
             return u;
         }
-      
-
 
         public static List<Usuario> BuscarUsuario(string codEmpleado, int idRol, DateTime fechaRegIni, DateTime fechaRegFin)
         {
@@ -248,14 +244,14 @@ namespace MadeInHouse.DataObjects.Seguridad
                     Usuario u = new Usuario();
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
-                    //u.IdRol = Int32.Parse(reader["idRol"].ToString());
-                    Trace.WriteLine("<Rol flag1: ");
+
                     u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+                    u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
 
                     u.Estado = Int32.Parse(reader["estado"].ToString());
-                    Trace.WriteLine("<Flag: " + u.Rol.Nombre);
+
                     if (u.Estado == 1)
                     {
                         u.Estado = 0;
@@ -354,25 +350,17 @@ namespace MadeInHouse.DataObjects.Seguridad
             //SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
-            Trace.WriteLine("Editar Usuario 1");
 
             db.cmd.CommandText = "UPDATE Usuario SET estado = @estado, fechaMod = getdate() WHERE idUsuario = @idUsuario ";
 
             db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
             db.cmd.Parameters.AddWithValue("@estado", u.Estado);
 
-            Trace.WriteLine("<" + u.IdUsuario + ">");
-            Trace.WriteLine("<" + u.CodEmpleado + ">");
-            Trace.WriteLine("<" + u.Rol.IdRol + ">");
-            Trace.WriteLine("<" + u.Estado + ">");
-
-            Trace.WriteLine("Editar Usuario 2");
             try
             {
                 db.conn.Open();
                 k = db.cmd.ExecuteNonQuery();
                 db.conn.Close();
-                Trace.WriteLine("Editar Usuario 3");
             }
 
             catch (Exception e)
@@ -383,6 +371,54 @@ namespace MadeInHouse.DataObjects.Seguridad
             return k;
         }
 
+        public static void DeshabilitarUsuario(Usuario u)
+        {
+
+            DBConexion db = new DBConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            db.cmd.CommandText = "UPDATE Usuario SET estadoHabilitado = @estadoHabilitado WHERE idUsuario = @idUsuario ";
+
+            db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@estadoHabilitado", 0);
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+        }
+
+        public static void HabilitarUsuario(Usuario u)
+        {
+            DBConexion db = new DBConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            db.cmd.CommandText = "UPDATE Usuario SET estadoHabilitado = @estadoHabilitado WHERE idUsuario = @idUsuario ";
+
+            db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@estadoHabilitado", 1);
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+        }
 
         public static List<AccVentana> ListarAccVentanaPorRol(List<AccVentana> lstAccVentana, int idRol)
         {
