@@ -58,14 +58,12 @@
                         <DataGrid x:Name="LstUsuario" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
                                   Height="183" VerticalAlignment="Top" Margin="10,149,10,0" AutoGenerateColumns="false">
                             <DataGrid.Columns>
-
                                 <DataGridTextColumn Binding="{Binding Path=CodEmpleado}" Width="100" Header="ID Usuario"/>
                                 <DataGridTextColumn Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Rol"/>
                                 <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Registro"/>
                                 <DataGridTextColumn Binding="{Binding Path=FechaMod}" Width="130" Header="Última modificación"/>
                                 <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Eliminar" CanUserReorder="False" Width="65" />
                             </DataGrid.Columns>
-
                         </DataGrid>
                     </Grid>
                 </GroupBox>

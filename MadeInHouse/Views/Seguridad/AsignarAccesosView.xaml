@@ -59,9 +59,8 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=AccModulo.Nombre}" Width="120" Header="Módulo"/>
                                 <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="365" Header="Ventana"/>
-                                <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Mostrar" CanUserReorder="False" />
+                                <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Acceso" CanUserReorder="False" />
                             </DataGrid.Columns>
-
                         </DataGrid>
 
                     </Grid>
