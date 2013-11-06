@@ -86,7 +86,6 @@ namespace MadeInHouse.ViewModels.Seguridad
         }
 
         //GRILLA
-
         private List<AccVentana> lstAccVentanaAccModulo;
 
         public List<AccVentana> LstAccVentanaAccModulo
@@ -100,10 +99,12 @@ namespace MadeInHouse.ViewModels.Seguridad
             //DataObjects.Seguridad.AccVentanaSQL.ActualizarRol(LstAccVentanaAccModulo, IdRolValue);
             DataObjects.Seguridad.AccVentanaSQL.QuitarAccesosVentana(IdRolValue);
             DataObjects.Seguridad.AccVentanaSQL.AsignarAccesosVentana(LstAccVentanaAccModulo, IdRolValue);
+            MessageBox.Show("¡Accesos asignados con Éxito!");
         }
 
         public void ActualizarLstAccesos()
         {
+            ActualizarListaAccVentanaAccModulo();
             LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentanaPorRol(LstAccVentanaAccModulo, IdRolValue);
             NotifyOfPropertyChange("LstAccVentanaAccModulo");
         }

@@ -164,31 +164,30 @@ namespace MadeInHouse.ViewModels.Seguridad
         public void GuardarUsuario()
         {
             //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
-            if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue != 0)
+            int k = 0;
+
+            CifrarAES cifradoAES = new CifrarAES();
+
+            string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
+                    "MadeInHouse", "MD5", 22, "1234567891234567", 128);
+
+            Usuario u = new Usuario();
+            u.CodEmpleado = txtCodUsuario;
+
+            u.Contrasenha = ContrasenhaCifrada;
+
+            //u.IdRol = IdRolValue;
+            //MessageBox.Show(""+IdRolValue);
+            u.Rol = RolSQL.buscarRolPorId(IdRolValue);
+            //MessageBox.Show(""+u.Rol.IdRol);
+            u.Estado = 1;
+
+            //REGISTRAR USUARIO
+            if (indicador == 1)
             {
-                int k = 0;
-
-                CifrarAES cifradoAES = new CifrarAES();
-
-                string ContrasenhaCifrada = cifradoAES.cifrarTextoAES(TxtContrasenhaTB, "MadeInHouse",
-                        "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-
-                Usuario u = new Usuario();
-                u.CodEmpleado = txtCodUsuario;
-
-                u.Contrasenha = ContrasenhaCifrada;
-
-                //u.IdRol = IdRolValue;
-                //MessageBox.Show(""+IdRolValue);
-                u.Rol = RolSQL.buscarRolPorId(IdRolValue);
-                //MessageBox.Show(""+u.Rol.IdRol);
-                u.Estado = 1;
-
-                //REGISTRAR USUARIO
-                if (indicador == 1)
+                //debe existir y estar disponible
+                if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue != 0)
                 {
-                    //debe existir y estar disponible
-
                     int existe = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
 
                     //Empleado existente:
@@ -210,29 +209,32 @@ namespace MadeInHouse.ViewModels.Seguridad
                     {
                         MessageBox.Show("El Empleado NO Existe");
                     }
-
                 }
-                //EDITAR USUARIO
-                if (indicador == 2)
+                else
                 {
-                    if (TxtContrasenhaTB == null || TxtContrasenhaTB2 == null)
-                        u.Contrasenha = DataObjects.Seguridad.UsuarioSQL.buscarPass(u.CodEmpleado);
-
+                    MessageBox.Show("Contraseñas diferentes o campos vacíos");
+                }
+            }
+            //EDITAR USUARIO
+            if (indicador == 2)
+            {
+                if (TxtContrasenhaTB == null || TxtContrasenhaTB2 == null)
+                {
+                    u.Contrasenha = DataObjects.Seguridad.UsuarioSQL.buscarPass(u.CodEmpleado);
                     k = DataObjects.Seguridad.UsuarioSQL.EditarUsuario(u);
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
+                    MessageBox.Show("¡Nuevo Rol Asignado!");
+                }
+                else
+                {
+                    if (String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB) && IdRolValue != 0)
+                        MessageBox.Show("La Contraseña ha sido Actualizada!");
+                    else
+                        MessageBox.Show("Contraseñas diferentes o campos vacíos");
                 }
 
-
-                //else
-                //MessageBox.Show("Usuario Registrado \n\nCodigo = " + txtCodUsuario + "\nContraseña = " + TxtContrasenhaTB);
+                if (k == 0)
+                    MessageBox.Show("Ocurrio un error");
             }
-
-            else
-            {
-                MessageBox.Show("Contraseñas diferentes o campos vacíos");
-            }
-
 
         }
 

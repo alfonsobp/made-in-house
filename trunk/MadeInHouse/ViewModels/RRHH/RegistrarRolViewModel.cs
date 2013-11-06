@@ -28,7 +28,7 @@ namespace MadeInHouse.ViewModels.RRHH
         {
             get { return indicador; }
         }
-        
+
         private string txtNombRol;
 
         public string TxtNombRol
@@ -62,7 +62,7 @@ namespace MadeInHouse.ViewModels.RRHH
             set { estado = value; }
         }
         */
-        
+
         //Insertar:
         public RegistrarRolViewModel()
         {
@@ -113,7 +113,6 @@ namespace MadeInHouse.ViewModels.RRHH
             int k;
             Rol r = new Rol();
 
-            //idRol: autogenerado
             r.Nombre = txtNombRol;
             r.Descripcion = txtDesc;
             //r.Modulo = IdModuloValue;
@@ -129,10 +128,7 @@ namespace MadeInHouse.ViewModels.RRHH
                     MessageBox.Show("Ocurrio un error");
                 else
                 {
-                    MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
-                                "\n Módulo = " + "HARDCODEADO xD");
-                    //int maxIdRol = DataObjects.UtilesSQL.ObtenerMaximoID("Rol","idRol");
-                    //int j = DataObjects.RrhhSQL.insertarRolxAccModulo(maxIdRol, IdModuloValue);
+                    MessageBox.Show("Nuevo rol generado");
                 }
             }
 
