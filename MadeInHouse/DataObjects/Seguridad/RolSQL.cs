@@ -19,7 +19,6 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         public BindableCollection<Rol> ListarRol()
         {
-
             BindableCollection<Rol> lstRol = new BindableCollection<Rol>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
@@ -56,6 +55,51 @@ namespace MadeInHouse.DataObjects.Seguridad
             return lstRol;
 
         }
+
+        //Lista de Roles:
+        public static List<Rol> ListarRoles()
+        {
+            List<Rol> lstRol = new List<Rol>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Rol ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Rol r = new Rol();
+                    r.IdRol = Int32.Parse("" + reader["idRol"]);
+                    r.Nombre = reader["nombre"].ToString();
+                    r.Descripcion = reader["descripcion"].ToString();
+                    r.Estado = Int32.Parse("" + reader["estado"]);
+
+                    if (r.Estado == 1)
+                    {
+                        r.Estado = 0;
+                        lstRol.Add(r);
+                    }
+
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lstRol;
+        }
+
 
         public static int buscarIdRol(Usuario u)
         {
