@@ -12,6 +12,7 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.Seguridad;
 using MadeInHouse.DataObjects.Seguridad;
 
+
 namespace MadeInHouse.ViewModels.Seguridad
 {
     class MantenerUsuarioViewModel : Screen
@@ -45,18 +46,15 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void ActualizarListaUsuario()
         {
-            lstUsuario = UsuarioSQL.BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);//CodEmpleado, IdRol, FechaRegIni, FechaRegFin
+            lstUsuario = UsuarioSQL.BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);
             NotifyOfPropertyChange("LstUsuario");
         }
 
         public void AbrirEditarUsuario()
         {
-            //MessageBox.Show("Usuario seleccionado" + usuarioSeleccionado.CodEmpleado);
             if (usuarioSeleccionado != null)
                 win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this, usuarioSeleccionado));
-
         }
-
 
         public void EliminarUsuarios()
         {
