@@ -13,8 +13,9 @@
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
-        <DataGrid CanUserAddRows="False" SelectedItem="{Binding Path=OrdenSelected}" cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)];[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" IsReadOnly="True" x:Name="LstOrdenes" Margin="2,201,0,0" Height="213" VerticalAlignment="Top" AutoGenerateColumns="False">
-                <DataGrid.Columns>                <DataGridTextColumn Binding="{Binding Path=CodOrdenCompra}" Width="130" Header="Código"/>
+        <DataGrid CanUserAddRows="False" SelectedItem="{Binding Path=OrdenSelected}" cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones];[Event SelectionChanged]=[Action SelectedItemChanged]" IsReadOnly="True" x:Name="LstOrdenes" Margin="2,201,0,0" Height="213" VerticalAlignment="Top" AutoGenerateColumns="False">
+                <DataGrid.Columns>                
+                <DataGridTextColumn Binding="{Binding Path=CodOrdenCompra}" Width="130" Header="Código"/>
                 <DataGridTextColumn Binding="{Binding Path=Proveedor.RazonSocial}" Width="190" Header="Proveedor"/>
                 <DataGridTextColumn Binding="{Binding Path=EstadoS}" Width="130" Header="Estado"/>
                 <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Fecha Registro"/>

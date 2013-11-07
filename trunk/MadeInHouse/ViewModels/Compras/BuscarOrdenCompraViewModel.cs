@@ -122,10 +122,9 @@ namespace MadeInHouse.ViewModels.Compras
 
         private OrdenCompra ordenSeleccionada;
 
-        public void SelectedItemChanged(object sender)
+        public void SelectedItemChanged()
         {
-            ordenSeleccionada = ((sender as DataGrid).SelectedItem as OrdenCompra);
-
+            ordenSeleccionada = OrdenSelected; 
             if (r != null)
             {
                 r.Ord = ordenSeleccionada;
@@ -166,8 +165,9 @@ namespace MadeInHouse.ViewModels.Compras
         #endregion
 
         #region Acciones Doble Click
-        OrdenCompra ordenSel;
-        public void Acciones(object sender)
+
+
+        public void Acciones()
         {
             if (ventanaAccion == 0)
             {
@@ -175,11 +175,10 @@ namespace MadeInHouse.ViewModels.Compras
             }
             else if (ventanaAccion == 1)
             {
-
-                ordenSel = ((sender as DataGrid).SelectedItem as OrdenCompra);
+                
                 if (this.mantenerNotaDeIngresoViewModel != null)
                 {
-                    mantenerNotaDeIngresoViewModel.SelectedOrden = ordenSel;
+                    mantenerNotaDeIngresoViewModel.SelectedOrden = OrdenSelected;
                     this.TryClose();
                 }
             }
