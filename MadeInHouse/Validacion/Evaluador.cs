@@ -46,5 +46,11 @@ namespace MadeInHouse.Validacion
             return (x >= 0);
         }
 
+        public bool esPositivo(double x)
+        {
+
+            return (x >= 0);
+        }
+
     }
 }

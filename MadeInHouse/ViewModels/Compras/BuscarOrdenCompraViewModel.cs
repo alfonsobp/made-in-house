@@ -82,6 +82,14 @@ namespace MadeInHouse.ViewModels.Compras
             return 4;
         }
 
+        OrdenCompra ordenSelected;
+
+        public  OrdenCompra OrdenSelected
+        {
+            get { return ordenSelected; }
+            set { ordenSelected = value; NotifyOfPropertyChange("OrdenSelected"); }
+        }
+
         List<OrdenCompra> lstOrdenes;
 
         public List<OrdenCompra> LstOrdenes
@@ -128,13 +136,13 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void NuevaOrden()
         {
-            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel ();
+            generarOrdenCompraViewModel obj = new  generarOrdenCompraViewModel (this);
             win.ShowWindow(obj);
         }
         public void EditarOrden()
         {
 
-            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Editar Orden de Compra" };
+           generarOrdenCompraViewModel obj = new generarOrdenCompraViewModel(OrdenSelected,this);
             win.ShowWindow(obj);
         }
 

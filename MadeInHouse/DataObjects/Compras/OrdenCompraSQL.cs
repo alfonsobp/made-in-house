@@ -18,14 +18,16 @@ namespace MadeInHouse.DataObjects.Compras
             int k = 0;
             OrdenCompra c = entity as OrdenCompra;
             MessageBox.Show(" " + c.Proveedor.IdProveedor + " " + c.MedioPago + " " + c.Observaciones);
-            db.cmd.CommandText = "INSERT INTO OrdenCompra(idProveedor,fechaReg,medioPago,estado,observaciones) " +
-                                 "VALUES (@idProveedor,@fechaReg,@medioPago,@estado,@observaciones)";
+            db.cmd.CommandText = "INSERT INTO OrdenCompra(idProveedor,fechaReg,medioPago,estado,observaciones,fechaSinAtencion) " +
+                                 "VALUES (@idProveedor,@fechaReg,@medioPago,@estado,@observaciones,@fechaSinAtencion)";
 
             db.cmd.Parameters.AddWithValue("@idProveedor", c.Proveedor.IdProveedor);
             db.cmd.Parameters.AddWithValue("@fechaReg", DateTime.Now);
             db.cmd.Parameters.AddWithValue("@medioPago", c.MedioPago);
             db.cmd.Parameters.AddWithValue("@observaciones", c.Observaciones);
-            db.cmd.Parameters.AddWithValue("@estado", 1);
+            db.cmd.Parameters.AddWithValue("@estado", c.Estado);
+            db.cmd.Parameters.AddWithValue("@fechaSinAtencion", c.FechaSinAtencion);
+            
             try
             {
                 db.conn.Open();
@@ -96,7 +98,7 @@ namespace MadeInHouse.DataObjects.Compras
 
               
 
-            db.cmd.CommandText = "SELECT  o.idOrden , o.codOrdenCompra , o.idProveedor , o.fechaReg , o.fechaSinAtencion , o.observaciones , o.medioPago,o.estado"+
+            db.cmd.CommandText = "SELECT  o.idOrden , o.codOrdenCompra , o.idProveedor , o.fechaReg , o.fechaSinAtencion , o.observaciones , o.medioPago,o.estado "+
                                   " FROM OrdenCompra o INNER JOIN Proveedor p  "+
                                  "ON o.idProveedor = p.idProveedor "+
                                  "WHERE  1 = 1   "+ where;
@@ -120,7 +122,7 @@ namespace MadeInHouse.DataObjects.Compras
                     o.CodOrdenCompra = Convert.ToString(reader["codOrdenCompra"]);
                     o.Proveedor = new ProveedorSQL().BuscarPorCodigo(Convert.ToInt32(reader["idProveedor"]));
                     o.FechaReg =  reader["fechaReg"].ToString();
-                    o.FechaSinAtencion = reader.IsDBNull(reader.GetOrdinal("fechaSinAtencion"))? "" :Convert.ToDateTime(reader["fechaSinAtencion"]).ToString();
+                    o.FechaSinAtencion = reader.IsDBNull(reader.GetOrdinal("fechaSinAtencion"))?DateTime.Now:Convert.ToDateTime(reader["fechaSinAtencion"]);
                     o.Observaciones = reader["observaciones"].ToString();
                     o.MedioPago = reader["medioPago"].ToString();
                     o.Estado = Convert.ToInt32(reader["estado"]);
@@ -148,7 +150,54 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int Actualizar(object entity)
         {
-            throw new NotImplementedException();
+            int k = 0;
+
+            OrdenCompra p = entity as OrdenCompra;
+
+
+
+
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+
+
+            cmd.CommandText = "UPDATE OrdenCompra  set medioPago = @medioPago , observaciones = @observaciones" +
+                              " ,fechaSinAtencion = @fechaSinAtencion , estado = @estado  where idOrden = @idOrden ";
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+                
+                 cmd.Parameters.AddWithValue("@medioPago",p.MedioPago);
+                 cmd.Parameters.AddWithValue("@observaciones",p.Observaciones);
+                 cmd.Parameters.AddWithValue("@fechaSinAtencion", p.FechaSinAtencion  );
+                 cmd.Parameters.AddWithValue("@estado",p.Estado);
+                 cmd.Parameters.AddWithValue("@idOrden",p.IdOrden);
+
+            try
+            {
+                conn.Open();
+
+
+                k = cmd.ExecuteNonQuery();
+
+
+             
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+
+            }
+
+
+            return k;
+            
         }
 
         public int Eliminar(object entity)
