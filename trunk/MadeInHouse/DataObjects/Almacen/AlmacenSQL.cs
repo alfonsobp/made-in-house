@@ -67,9 +67,9 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             //db.cmd.CommandText = "sp_AgregarAlmacen";
             //db.cmd.CommandType = CommandType.StoredProcedure;
-            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono,nroFilas,nroColumnas,altura) "+
+            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono,nroFilas,nroColumnas,altura,fechaReg,estado) "+
                                     "output INSERTED.idAlmacen "+
-                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono,@nroFilas,@nroColumnas,@altura)";
+                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono,@nroFilas,@nroColumnas,@altura,@fechaReg,@estado)";
             db.cmd.Parameters.AddWithValue("@nombre", alm.Nombre);
             db.cmd.Parameters.AddWithValue("@codAlmacen",alm.CodAlmacen);
             db.cmd.Parameters.AddWithValue("@direccion", alm.Direccion);
@@ -79,6 +79,9 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@nroFilas", alm.NroFilas);
             db.cmd.Parameters.AddWithValue("@nroColumnas", alm.NroColumnas);
             db.cmd.Parameters.AddWithValue("@altura", alm.Altura);
+            db.cmd.Parameters.AddWithValue("@fechaReg", DateTime.Today);
+            db.cmd.Parameters.AddWithValue("@estado", 1);
+
 
             //db.cmd.Parameters.Add("@idAlmacen", SqlDbType.Int).Direction = ParameterDirection.Output;
 
@@ -190,6 +193,38 @@ namespace MadeInHouse.DataObjects.Almacen
             reader.Close();
 
             return idDeposito;
+        }
+
+
+        public int Actualizar(Almacenes alm)
+        {
+            db.cmd.CommandText = "UPDATE Almacen SET codAlmacen=@codAlmacen WHERE idAlmacen=@idAlmacen";
+            db.cmd.Parameters.AddWithValue("@codAlmacen", alm.CodAlmacen);
+            db.cmd.Parameters.AddWithValue("@idAlmacen", alm.IdAlmacen);
+
+            try
+            {
+                if (tipo) db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                if(tipo) db.conn.Close();
+                db.cmd.Parameters.Clear();
+
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+                return -1;
+            }
+
+            return 1;
+
+
         }
 
        

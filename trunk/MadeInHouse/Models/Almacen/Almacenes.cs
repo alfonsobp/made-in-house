@@ -15,6 +15,14 @@ namespace MadeInHouse.Models.Almacen
             get { return idAlmacen; }
             set { idAlmacen = value; }
         }
+
+        private int idUbigeo;
+
+        public int IdUbigeo
+        {
+            get { return idUbigeo; }
+            set { idUbigeo = value; }
+        }
                 
         private int tipo;
 
@@ -94,6 +102,14 @@ namespace MadeInHouse.Models.Almacen
         {
             get { return telefono; }
             set { telefono = value; }
+        }
+
+        private string administrador;
+
+        public string Administrador
+        {
+            get { return administrador; }
+            set { administrador = value; }
         }
 
         private string direccion;

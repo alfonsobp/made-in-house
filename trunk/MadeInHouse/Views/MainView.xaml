@@ -314,14 +314,16 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="AbrirMantenerTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,173,1"/>
-                <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,121,1" />
-                <Button x:Name="AbrirMantenerTipoZona"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,121,0"/>
-                <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,78,0"/>
-                <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,49,1"/>
-                <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,140,1"/>
-                <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,39,3"/>
+                <Button x:Name="AbrirBuscarTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Tiendas" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,173,1"/>
+                <Button x:Name="AbrirMantenerTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,173,1"/>
+                <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,121,1" />
+                <Button x:Name="AbrirMantenerTipoZona"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,121,0"/>
+                <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,78,0"/>
+                <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,49,1"/>
+                <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,140,1"/>
+                <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,39,3"/>
 
             </Grid>
         </Expander>
