@@ -32,6 +32,10 @@ namespace MadeInHouse.Views.RRHH
             grid = new List<Empleado>();
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
             TxtCodEmp.Text = TxtCodEmp.Text = "EMP-" + grid.Count;
+            List<string> tiendas = new List<string>();
+            tiendas = DataObjects.RRHH.EmpleadoSQL.Tiendas();
+            CmbTienda.ItemsSource = tiendas;
+            
             
         }
 
