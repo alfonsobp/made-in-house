@@ -1147,6 +1147,15 @@
     <Resource Include="Assets\gear.png" />
     <Resource Include="Assets\minimize.png" />
     <Content Include="Assets\addServicio.png" />
+    <Resource Include="Assets\almacen4.png" />
+    <Resource Include="Assets\background.jpg" />
+    <Resource Include="Assets\compras2.png" />
+    <Resource Include="Assets\config.png" />
+    <Resource Include="Assets\reportes2.png" />
+    <Resource Include="Assets\seguridad3.png" />
+    <Resource Include="Assets\weather.png" />
+    <Resource Include="Assets\RRHH4.png" />
+    <Resource Include="Assets\ventas4.png" />
     <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
     <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Dictionary\Libraries\RibbonControlsLibrary.dll" />
