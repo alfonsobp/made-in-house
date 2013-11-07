@@ -231,8 +231,9 @@ namespace MadeInHouse.ViewModels.Almacen
         }
         public void AbrirPosicionProducto()
         {
-            Almacen.PosicionProductoViewModel abrirPosView = new Almacen.PosicionProductoViewModel();
-            win.ShowWindow(abrirPosView);
+
+            MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+            wm.ShowWindow(new Almacen.PosicionProductoViewModel(this,1));
         }
 
         public void AbrirListarOrdenesCompra()
