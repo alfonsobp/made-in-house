@@ -38,6 +38,7 @@ namespace MadeInHouse.ViewModels.Compras
             if (model != null)
             {
                 model.Prov = p.Prov;
+                model.Costo = p.Costo;
                 TryClose();
             }
 

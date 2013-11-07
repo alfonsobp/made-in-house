@@ -1,6 +1,8 @@
 ﻿using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +43,107 @@ namespace MadeInHouse.DataObjects.Compras
 
         public object Buscar(params object[] filters)
         {
-            throw new NotImplementedException();
+            
+
+
+
+               List<OrdenCompra> lst = new List<OrdenCompra>();
+            DBConexion db = new DBConexion();
+            SqlDataReader reader;
+
+            String where = "";
+
+
+           
+                string codigoOrden = Convert.ToString(filters[0]);
+                string codProv = Convert.ToString(filters[1]);
+                int Estado = Convert.ToInt32(filters[2]);
+                DateTime fechaIni = Convert.ToDateTime(filters[3]);
+                DateTime fechaFin = Convert.ToDateTime(filters[4]);
+
+                if (!String.IsNullOrEmpty(codigoOrden) )
+                {
+                    where += " and o.codOrdenCompra LIKE '%" + codigoOrden+ "%' ";
+                }
+
+                if (!String.IsNullOrEmpty(codProv))
+                {
+                    where += " and p.razonSocial like '%" + codProv + "%' ";
+                }
+
+                if (Estado != 4 )
+                {
+                    where += " and o.estado = "+ Estado;
+                }
+
+                if (fechaIni != null)
+                {
+
+
+                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATE,o.fechaReg,103) ";
+
+                }
+
+                if (fechaFin != null)
+                {
+
+                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,o.fechaReg,103) ";
+                }
+
+
+
+              //  MessageBox.Show(where);
+
+              
+
+            db.cmd.CommandText = "SELECT  o.idOrden , o.codOrdenCompra , o.idProveedor , o.fechaReg , o.fechaSinAtencion , o.observaciones , o.medioPago,o.estado"+
+                                  " FROM OrdenCompra o INNER JOIN Proveedor p  "+
+                                 "ON o.idProveedor = p.idProveedor "+
+                                 "WHERE  1 = 1   "+ where;
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.Connection = db.conn;
+
+
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+
+                    OrdenCompra o = new OrdenCompra();
+                    o.IdOrden = Convert.ToInt32(reader["idOrden"]);
+                    o.CodOrdenCompra = Convert.ToString(reader["codOrdenCompra"]);
+                    o.Proveedor = new ProveedorSQL().BuscarPorCodigo(Convert.ToInt32(reader["idProveedor"]));
+                    o.FechaReg =  reader["fechaReg"].ToString();
+                    o.FechaSinAtencion = reader.IsDBNull(reader.GetOrdinal("fechaSinAtencion"))? "" :Convert.ToDateTime(reader["fechaSinAtencion"]).ToString();
+                    o.Observaciones = reader["observaciones"].ToString();
+                    o.MedioPago = reader["medioPago"].ToString();
+                    o.Estado = Convert.ToInt32(reader["estado"]);
+                    o.LstProducto = new OrdenCompraxProductoSQL().Buscar(o.IdOrden) as List<ProductoxOrdenCompra>;
+                    lst.Add(o);
+
+                    
+
+                }
+
+                db.conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return lst;
+
+
+
         }
 
         public int Actualizar(object entity)
@@ -54,6 +156,33 @@ namespace MadeInHouse.DataObjects.Compras
             throw new NotImplementedException();
         }
 
+        public int relacionarOrden(int idOrden ,int  idSol){
+        
+                    DBConexion db = new DBConexion();
+            int k = 0;
+         
+            
+            db.cmd.CommandText = "INSERT INTO SolicitudAdquisicionxOrdenCompra(idSolicitudAD,idOrden) " +
+                                 "VALUES (@idSol,@idOrden)";
+
+            db.cmd.Parameters.AddWithValue("@idSol", idSol);
+            db.cmd.Parameters.AddWithValue("@idOrden", idOrden);
+          
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        
+        }
 
     }
 }

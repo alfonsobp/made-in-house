@@ -59,10 +59,10 @@
                         <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                 </ToolBar>
-                <TextBox IsReadOnly="True"  Text="{Binding Prov.RazonSocial, Mode=TwoWay}"  Margin="158,98,223,0" TextWrapping="Wrap" Height="23" 
+                <TextBox IsReadOnly="True"  Text="{Binding Prov.RazonSocial, Mode=TwoWay}"  Margin="159,131,222,0" TextWrapping="Wrap" Height="23" 
                 	       VerticalAlignment="Top"  />
-                <Label Content="Codigo:" Margin="91,65,476,359" RenderTransformOrigin="0.493,-0.514"/>
-                <Label Content="Razon Social:" Margin="61,96,492,328" RenderTransformOrigin="0.493,-0.514"/>
+                <Label Content="Codigo:" Margin="91,90,476,334" RenderTransformOrigin="0.493,-0.514"/>
+                <Label Content="Razon Social:" Margin="62,131,491,293" RenderTransformOrigin="0.493,-0.514"/>
                 <GroupBox Header="Proveedor" HorizontalAlignment="Left" Height="141" Margin="10,46,0,0" VerticalAlignment="Top" Width="718"/>
 
             </Grid>

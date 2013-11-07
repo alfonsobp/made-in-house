@@ -14,11 +14,57 @@ namespace MadeInHouse.DataObjects.Compras
     class ConsolidadoSQL:EntitySQL
     {
 
+        public List<int> getSolicitudes() {
+
+           
+
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+            SqlDataReader reader;
+
+
+            cmd.CommandText = "select idSolicitudAD from SolicitudAdquisicion where estado = 2 ";
+
+            
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            List<int> lst = new List<int>();
+
+            try
+            {
+                conn.Open();
+
+                reader = cmd.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+
+                    int p = Convert.ToInt32(reader["idSolicitudAD"]);
+                    lst.Add(p);
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lst;
+
+        
+        }  
 
         public int Agregar(object entity)
         {
             throw new NotImplementedException();
         }
+
 
         public object Buscar(params object[] filters)
         {

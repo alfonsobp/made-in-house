@@ -12,40 +12,28 @@
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
-        <DataGrid Margin="2,201,0,0" Height="213" VerticalAlignment="Top">
+        <DataGrid CanUserAddRows="False" IsReadOnly="True" x:Name="LstOrdenes" Margin="2,201,0,0" Height="213" VerticalAlignment="Top" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="190" Header="Proveedor"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Estado"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Fecha Registro"/>
+                <DataGridTextColumn Binding="{Binding Path=CodOrdenCompra}" Width="130" Header="Código"/>
+                <DataGridTextColumn Binding="{Binding Path=Proveedor.RazonSocial}" Width="190" Header="Proveedor"/>
+                <DataGridTextColumn Binding="{Binding Path=EstadoS}" Width="130" Header="Estado"/>
+                <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Fecha Registro"/>
             </DataGrid.Columns>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-        </DataGrid>
-        <TextBox HorizontalAlignment="Left"  Text="PROV-00012" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                </DataGrid>
+        <TextBox HorizontalAlignment="Left"  x:Name="RSProveedor" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <GroupBox Header="Criterios de Búsqueda" Margin="11,59,9,0" VerticalAlignment="Top" Height="137"/>
-        <Button Height="25" Margin="455,80,82,0" VerticalAlignment="Top">
+        <Button  x:Name="Buscar"  Height="25" Margin="455,80,82,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox  Text="OC-001212" HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox  x:Name="IdOrdenCompra" HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
-        <Label Content="Código:" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Atendido" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
-        </ComboBox>
+        <Label Content="Código OC:" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top"/>
+                <ComboBox  x:Name="LstEstados" SelectedItem="{Binding SelectedEstado}" HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120"/>
+          
+      
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="27,138,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="146,166,0,0" VerticalAlignment="Top" Width="104"/>
-        <DatePicker HorizontalAlignment="Left" Margin="313,168,0,0" VerticalAlignment="Top" Width="105"/>
+        <DatePicker x:Name="FechaIni" HorizontalAlignment="Left" Margin="146,166,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker  x:Name="FechaFin" HorizontalAlignment="Left" Margin="313,168,0,0" VerticalAlignment="Top" Width="105"/>
         <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="27,165,0,0" VerticalAlignment="Top"/>
         <Label Content="Hasta:" HorizontalAlignment="Left" Margin="266,166,0,0" VerticalAlignment="Top"/>
         <ToolBar VerticalAlignment="Top" Height="41">
@@ -65,13 +53,9 @@
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
+            <Button/>
+                    <Button/>
+                    <Button Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
             <Button Height="50" Width="50">

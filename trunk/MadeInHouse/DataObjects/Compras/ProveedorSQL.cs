@@ -73,17 +73,17 @@ namespace MadeInHouse.DataObjects.Compras
                 DateTime fechaIni = Convert.ToDateTime(filters[3]);
                 DateTime fechaFin = Convert.ToDateTime(filters[4]);
 
-                if (codigo != "")
+                if (!String.IsNullOrEmpty(codigo) )
                 {
                     where += " and codProveedor = '" + codigo + "' ";
                 }
 
-                if (ruc != "")
+                if (!String.IsNullOrEmpty(ruc))
                 {
                     where += " and ruc = '" + ruc + "' ";
                 }
 
-                if (razonSocial != "")
+                if (!String.IsNullOrEmpty(razonSocial))
                 {
                     where += " and razonSocial LIKE  '%" + razonSocial + "%' ";
                 }

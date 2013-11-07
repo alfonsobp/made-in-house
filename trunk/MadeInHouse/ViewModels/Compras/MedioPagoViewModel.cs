@@ -46,13 +46,16 @@ namespace MadeInHouse.ViewModels.Compras
             set { codAlmacen = value; NotifyOfPropertyChange("CodAlmacen"); }
         }
         SeleccionDeProveedoresViewModel m;
+        List<int> Solicitudes;
 
+    
         public MedioPagoViewModel(List<Proveedor> lstProveedor, List<Consolidado> lstConsolidado, int idAlmacen,SeleccionDeProveedoresViewModel m) {
-
+            
             this.IdAlmacen = idAlmacen;
             this.LstConsolidado = lstConsolidado;
             this.LstProveedor = lstProveedor;
             CodAlmacen = "ALM-" + (idAlmacen + 10000000);
+            Solicitudes = m.Solicitudes;
             this.m = m;
         }
 
@@ -82,10 +85,18 @@ namespace MadeInHouse.ViewModels.Compras
            }
 
 
+           foreach (int idSol in Solicitudes)
+           {
+               oSQL.relacionarOrden(idOrden, idSol);
+           }
 
 
        }
-       sSQL.TerminarSolicitudes(idAlmacen);
+
+       foreach (int idSol in Solicitudes)
+       {
+           sSQL.TerminarSolicitudes(idAlmacen, idSol);
+       }
        MessageBox.Show( "Fueron generadas satisfactoriamente las Orden de compra","OBSERVACION", MessageBoxButton.OK, MessageBoxImage.Information);
        m.TryClose();
          

@@ -34,6 +34,15 @@ namespace MadeInHouse.Models.Compras
             set { cantidad = value; }
         }
 
+        private double costo;
+
+        public double Costo
+        {
+            get { return costo; }
+            set { costo = value; }
+        }
+
+
         Proveedor prov;
 
         public Proveedor Prov
