@@ -27,6 +27,11 @@ namespace MadeInHouse.ViewModels.Ventas
             win.ShowWindow(new Ventas.ClienteRegistrarViewModel(this, clienteSeleccionado.Cliente.Id) { DisplayName = "Editar Cliente" });
         }
 
+        public void Eliminarcliente()
+        {
+            int w = DataObjects.Ventas.ClienteSQL.EliminarCliente(clienteSeleccionado.Cliente.Id);
+        }
+
         public ClienteBuscarViewModel()
         {
             clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null,null,-1,null,null);

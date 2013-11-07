@@ -97,6 +97,14 @@ namespace MadeInHouse.Models.Ventas
             set { telefono = value; }
         }
 
+        private string celular;
+
+        public string Celular
+        {
+            get { return celular; }
+            set { celular = value; }
+        }
+
         private string ruc;
 
         public string Ruc
@@ -121,6 +129,14 @@ namespace MadeInHouse.Models.Ventas
             set { estado = value; }
         }
 
+        private int tipoCliente;
+
+        public int TipoCliente
+        {
+            get { return tipoCliente; }
+            set { tipoCliente = value; }
+        }
+
         private string fecRegistro;
 
         public string FecRegistro
@@ -135,6 +151,14 @@ namespace MadeInHouse.Models.Ventas
         {
             get { return distrito; }
             set { distrito = value; }
+        }
+
+        private string email;
+
+        public string Email
+        {
+            get { return email; }
+            set { email = value; }
         }
 
         private DateTime fechaNacimiento;

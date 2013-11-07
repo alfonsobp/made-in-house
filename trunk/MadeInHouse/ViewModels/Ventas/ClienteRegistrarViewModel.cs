@@ -44,6 +44,8 @@ namespace MadeInHouse.ViewModels.Ventas
             txtDist = t.Cliente.Distrito;
             txtDireccion = t.Cliente.Direccion;
             fecNacimiento = t.Cliente.FechaNacimiento;
+            txtCelular = t.Cliente.Celular;
+            txtMail = t.Cliente.Email;
 
             //txtCodUsuario = t.CodEmpleado.ToString();
             //Deshabilitar escritura en txtCodUsuario
@@ -113,6 +115,14 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtTelf = value; NotifyOfPropertyChange(() => TxtTelf); }
         }
 
+        private string txtCelular;
+
+        public string TxtCelular
+        {
+            get { return txtCelular; }
+            set { txtCelular = value; NotifyOfPropertyChange(() => TxtCelular); }
+        }
+
         private string txtMail;
 
         public string TxtMail
@@ -145,7 +155,20 @@ namespace MadeInHouse.ViewModels.Ventas
             set { fecNacimiento = value; NotifyOfPropertyChange(() => FecNacimiento); }
         }
 
-        public void GuardarCliente()
+        private Dictionary<string, int> sexo = new Dictionary<string, int>()
+        {
+            { "Varón", 0 }, { "Mujer", 1 }
+        };
+
+        public BindableCollection<string> cmbSexo
+        {
+            get
+            {
+                return new BindableCollection<string>(sexo.Keys);
+            }
+        }
+
+        public void GuardarCliente(String cmbSexo)
         {
             Cliente a = new Cliente();
 
@@ -153,7 +176,7 @@ namespace MadeInHouse.ViewModels.Ventas
             a.Nombre = txtNombre;
             a.ApePaterno = txtApPat;
             a.ApeMaterno = txtApMat;
-            //a.sexo = Int32.Parse(txtSexo);
+            a.Sexo = sexo[cmbSexo];
             a.Direccion = txtDireccion;
             a.Telefono = txtTelf;
             a.Ruc = txtRUC;
@@ -162,13 +185,23 @@ namespace MadeInHouse.ViewModels.Ventas
             a.Distrito = txtDist;
             a.FechaNacimiento = fecNacimiento;
             a.FecNacimiento = fecNacimiento.ToString();
+            a.Celular = txtCelular;
+            a.Email = txtMail;
+            if (String.IsNullOrEmpty(txtRazonSocial))
+            {
+                a.TipoCliente = 0;
+            }
+            else
+            {
+                a.TipoCliente = 1;
+            }
             MessageBox.Show(a.FecNacimiento + " " + a.Dni);
 
             if (ind == 1)
             {
                 int k = DataObjects.Ventas.ClienteSQL.agregarCliente(a, DateTime.Today);
                 if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
+                    MessageBox.Show("Ocurrio un error al grabar el cliente");
                 else
                 {
                     Int32 id = DataObjects.Ventas.ClienteSQL.BuscarIDCliente(a);
