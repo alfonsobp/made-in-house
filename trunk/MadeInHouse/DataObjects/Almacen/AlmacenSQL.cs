@@ -19,10 +19,10 @@ namespace MadeInHouse.DataObjects.Almacen
         private DBConexion db;
         private bool tipo = true;
 
+  
         public AlmacenSQL(DBConexion db=null)
         {
-            db = new DBConexion();
-            if (db == null)
+           if (db == null)
             {
                 this.db = new DBConexion();
             }
@@ -95,11 +95,13 @@ namespace MadeInHouse.DataObjects.Almacen
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                System.Windows.MessageBox.Show(e.ToString());
                 return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                System.Windows.MessageBox.Show(e.ToString());
                 return -1;
             }
 
@@ -107,19 +109,32 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
-        internal Models.Almacen.Almacenes BuscarAlmacen(int idAlmacen)
+        public Models.Almacen.Almacenes BuscarAlmacen(int idAlmacen=-1,int idTienda=-1,int tipoAlmacen=-1)
         {
 
 
             Models.Almacen.Almacenes almacen = new Models.Almacen.Almacenes();
-
             string where = "WHERE 1=1 ";
 
-            where = where + " AND idAlmacen=@idAlmacen";
+            if (idAlmacen > 0)
+            {
+                where = where + " AND idAlmacen=@idAlmacen";
+                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            }
+            if (idTienda > 0)
+            {
+                where += where + " AND idTienda=@idTienda";
+                db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            }
+            if (tipoAlmacen > 0)
+            {
+                where += where + " AND tipo=@tipo";
+                db.cmd.Parameters.AddWithValue("@tipo", tipoAlmacen);
+            }
 
             db.cmd.CommandText = "SELECT * FROM Almacen " + where;
 
-            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            
             try
             {
                 if (tipo)  db.conn.Open();
@@ -178,6 +193,8 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return idDeposito;
         }
+
+       
 
     }
 }

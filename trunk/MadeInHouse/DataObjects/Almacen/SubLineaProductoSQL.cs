@@ -39,6 +39,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     lstSubLinea.Add(slp);
                 }
                 db.cmd.Parameters.Clear();
+                reader.Close();
                 db.conn.Close();
 
             }

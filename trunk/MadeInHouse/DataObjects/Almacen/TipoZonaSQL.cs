@@ -56,7 +56,9 @@ namespace MadeInHouse.DataObjects.Almacen
                     listaTipoZona.Add(p);
                 }
 
+                reader.Close();
                 db.conn.Close();
+                
             }
             catch (SqlException e)
             {
@@ -121,7 +123,7 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
         }
 
-        public int eliminarProveedor(TipoZona p)
+        public int eliminarTipoZona(TipoZona p)
         {
             
             int k = 0;
@@ -142,6 +144,58 @@ namespace MadeInHouse.DataObjects.Almacen
             }
 
             return k;
+
+        }
+
+
+        public List<TipoZona> ObtenerZonasxAlmacen(int idAlmacen)
+        {
+            List<TipoZona> lstZonas=new List<TipoZona>();;
+            db.cmd.CommandText = "SELECT A.*,B.nombre,C.nombre,C.codHex FROM ZonaxAlmacen A " +
+                                "JOIN TipoZona B ON (A.idTipoZona=B.idTipoZona) " +
+                                " JOIN Color C ON (B.idColor=C.idColor) " +
+                                " WHERE A.idAlmacen=@idAlmacen";
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+
+            try
+            {
+
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    TipoZona tz = new TipoZona();                    
+                    tz.IdTipoZona = int.Parse(reader["idTipoZona"].ToString());
+                    tz.Nombre = reader["B.nombre"].ToString();
+                    tz.Color = reader["C.nombre"].ToString();
+                    tz.NroBloquesDisp = int.Parse(reader["nroBloquesDisp"].ToString());
+                    tz.NroBloquesTotal=int.Parse(reader["nroBloquesTotal"].ToString());
+                    lstZonas.Add(tz);
+
+                }
+
+                db.conn.Close();
+                reader.Close();
+                db.cmd.Parameters.Clear();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+
+            UbicacionSQL uSQL =  new UbicacionSQL();
+            for (int i = 0; i < lstZonas.Count; i++)
+            {
+                lstZonas[i].LstUbicaciones = uSQL.ObtenerUbicaciones(idAlmacen, lstZonas[i].IdTipoZona);
+            }
+
+            return lstZonas;
 
         }
 

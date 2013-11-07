@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows; 
 using System.Windows.Controls; 
 using MadeInHouse.Models.Almacen;
+using System.Windows.Media;
 
 
 namespace MadeInHouse.Dictionary { 
@@ -18,6 +19,15 @@ namespace MadeInHouse.Dictionary {
             get { return (int)GetValue(IdZonaProperty); }
             set { SetValue(IdZonaProperty, value); }
         }
+
+        public static readonly DependencyProperty AlturaProperty = DependencyProperty.Register("Altura", typeof(Int32), typeof(DynamicGrid),new PropertyMetadata(0, new PropertyChangedCallback(OnNumRowsOrColumnsChanged)));
+
+        public Int32 Altura
+        {
+            get { return (Int32)GetValue(AlturaProperty); }
+            set { SetValue(AlturaProperty, value); }
+        }
+
 
         public static readonly DependencyProperty NumColumnsProperty = DependencyProperty.Register("NumColumns", typeof(Int32), typeof(DynamicGrid), new PropertyMetadata(0, new PropertyChangedCallback(OnNumRowsOrColumnsChanged))); 
         
@@ -40,12 +50,13 @@ namespace MadeInHouse.Dictionary {
             ((DynamicGrid)sender).RecreateGridCells(); }
 
 
-        public List<List<Ubicacion>> Ubicaciones { get; set; }
+        public List<List<List<Ubicacion>>> Ubicaciones { get; set; }
 
         public void RecreateGridCells()
         {
 
-            Ubicaciones = new List<List<Ubicacion>>();
+            Ubicaciones = new List<List<List<Ubicacion>>>();
+            int altura = Altura;
             int numRows = NumRows;
             int currentNumRows = RowDefinitions.Count;
             int currentNumCols = ColumnDefinitions.Count;
@@ -78,13 +89,21 @@ namespace MadeInHouse.Dictionary {
             for (int i = 0; i < numRows; i++)
             {
 
-                Ubicaciones.Add(new List<Ubicacion>());
+                Ubicaciones.Add(new List<List<Ubicacion>>());
                 for (int j = 0; j < numCols; j++)
                 {
-                    Ubicaciones[i].Add(new Ubicacion());
-                    Ubicaciones[i][j].CordX = i;
-                    Ubicaciones[i][j].CordY = j;
+                    Ubicaciones[i].Add(new List<Ubicacion>());
+
+                    for (int k = 0; k < Altura; k++)
+                    {
+                        Ubicaciones[i][j].Add(new Ubicacion());
+                        Ubicaciones[i][j][k].CordX = i;
+                        Ubicaciones[i][j][k].CordY = j;
+                        Ubicaciones[i][j][k].CordZ = k;
+                    }
+                    
                     Button btnTest = new Button();
+                    lstButtons.Add(btnTest);
                     btnTest.Name = "B" + i + j; //X,Y Fila,Columna
                     //btnTest.Content = "Button" + i + j;
                     btnTest.Click += new RoutedEventHandler(onClickChange);
@@ -97,12 +116,44 @@ namespace MadeInHouse.Dictionary {
             }
         }
 
+        private List<Button> lstButtons=new List<Button>();
+
         public void onClickChange(object sender, RoutedEventArgs e) {
+            
             (sender as Button).Background = this.Background;
             int X =Int16.Parse((sender as Button).Name.Substring(1,1));
             int Y =Int16.Parse((sender as Button).Name.Substring(2,1));
-            Ubicaciones[X][Y].IdTipoZona = this.IdZona;
-        } 
+
+            Ubicaciones[X][Y][0].IdTipoZona = this.IdZona;
+
+        }
+
+
+        public void cargarGrid(List<TipoZona> lstZonas)
+        {
+
+
+            BrushConverter conv = new BrushConverter();
+
+            for (int i = 0; i < lstZonas.Count; i++)
+            {
+
+                for (int j = 0; j < lstZonas[i].LstUbicaciones.Count; j++)
+                {
+
+                  //  Ubicaciones[lstZonas[i].LstUbicaciones[j].CordX][lstZonas[i].LstUbicaciones[j].CordY][lstZonas[i].LstUbicaciones[j].CordZ].
+                }
+
+
+
+
+                 //Ubicaciones[lstUbicaciones[i].CordX][lstUbicaciones[i].CordY][lstUbicaciones[i].CordZ].IdTipoZona = lstUbicaciones[i].IdTipoZona;
+                SolidColorBrush brush = conv.ConvertFromString("Red") as SolidColorBrush;
+                lstButtons[i].Background = brush;
+            }
+
+        }
+
         protected override void OnInitialized(EventArgs e) { 
             
             base.OnInitialized(e);

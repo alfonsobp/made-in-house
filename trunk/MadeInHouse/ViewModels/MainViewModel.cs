@@ -1249,7 +1249,10 @@ namespace MadeInHouse.ViewModels
                     win.ShowWindow(new Almacen.MantenerUnidadMedidaViewModel());
                 }
 
-                #endregion Configuracion
-        */
-    }
+	public void AbrirBuscarTienda()
+        {
+            win.ShowWindow(new Almacen.BuscarTiendaViewModel());
+        }
+
+        #endregion Configuracion    }
 }

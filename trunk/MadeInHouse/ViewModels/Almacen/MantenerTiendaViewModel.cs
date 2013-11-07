@@ -17,11 +17,44 @@ namespace MadeInHouse.ViewModels.Almacen
     class MantenerTiendaViewModel : PropertyChangedBase
     {
 
-
+        #region Atributos
         private UbigeoSQL uSQL;
         private TiendaSQL tSQL;
         private ProductoSQL pxaSQL;
+        private AlmacenSQL aSQL;
+        private UbicacionSQL ubSQL;
+        private TipoZonaSQL tzSQL;
         private int idAlmacen;
+
+        private int index1;
+
+        public int Index1
+        {
+            get { return index1; }
+            set { index1 = value;
+            NotifyOfPropertyChange(() => Index1);
+            }
+        }
+
+        private int index2;
+
+        public int Index2
+        {
+            get { return index2; }
+            set { index2 = value;
+            NotifyOfPropertyChange(() => Index2);
+            }
+        }
+
+        private int index3;
+
+        public int Index3
+        {
+            get { return index3; }
+            set { index3 = value;
+            NotifyOfPropertyChange(() => Index3);
+            }
+        }
 
         private List<ProductoxAlmacen> lstProdAgregados;
 
@@ -105,7 +138,6 @@ namespace MadeInHouse.ViewModels.Almacen
                 selectedDpto = value;
                 UbigeoSQL usql = new UbigeoSQL();
                 CmbProv = usql.BuscarProv(selectedDpto);
-                SelectedIndex = 0;
             }
         }
 
@@ -140,7 +172,6 @@ namespace MadeInHouse.ViewModels.Almacen
                 selectedProv = value;
                 UbigeoSQL usql = new UbigeoSQL();
                 CmbDist = usql.BuscarDist(selectedDpto, selectedProv);
-                SelectedIndex = 0;
             }
         }
 
@@ -363,6 +394,20 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private int alturaAnq;
+
+        public int AlturaAnq
+        {
+            get { return alturaAnq; }
+            set { alturaAnq = value;
+            NotifyOfPropertyChange(() => AlturaAnq);
+            }
+            
+        }
+
+  
+
+
         private int numColumnsDto;
 
         public int NumColumnsDto
@@ -386,6 +431,17 @@ namespace MadeInHouse.ViewModels.Almacen
                 NotifyOfPropertyChange(() => NumRowsDto);
 
             }
+        }
+
+        private int alturaDto;
+
+        public int AlturaDto
+        {
+            get { return alturaDto; }
+            set { alturaDto = value;
+            NotifyOfPropertyChange(() => AlturaDto);
+            }
+            
         }
 
 
@@ -455,8 +511,69 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return selectedItem; }
             set { selectedItem = value; }
         }
+        #endregion
 
 
+
+        List<TipoZona> lstZonasAnq;
+        List<TipoZona> lstZonasDto;
+        private int accion; /*1=ABRIR NUEVO , 2=ABRIR EDITAR*/
+        private string content;
+
+        public string Content
+        {
+            get { return content; }
+            set { content = value;
+            NotifyOfPropertyChange(() => Content);
+            }
+        }
+
+        #region Constructores
+
+        public MantenerTiendaViewModel(Tienda t) 
+        {
+            accion = 2;
+            uSQL = new UbigeoSQL();
+            tSQL = new TiendaSQL();
+            pxaSQL = new ProductoSQL();
+            aSQL = new AlmacenSQL();
+            tzSQL = new TipoZonaSQL();
+
+            /*carga de la informacion general*/
+            TxtNombre = t.Nombre;
+            TxtTelef=t.Telefono;
+            TxtAdmin = t.Administrador;
+            TxtDir = t.Direccion;
+            List<Ubigeo> u = uSQL.buscarUbigeo2(t.IdUbigeo);
+
+            /*carga de los combobox*/
+            CmbDpto = uSQL.BuscarDpto();
+            Index1=CmbDpto.FindIndex(x => x.CodDpto == u[0].CodDpto);
+            SelectedDpto = u[0].CodDpto;
+            Index2 = CmbProv.FindIndex(x => x.CodProv == u[0].CodProv);
+            SelectedProv = u[0].CodProv;
+            Index3 = CmbDist.FindIndex(x => x.CodDist == u[0].CodDist);
+            
+            /*Carga de los productos*/
+            LstProductos = pxaSQL.BuscarProductoxTienda(t.IdTienda);
+
+            /*Carga del deposito y los anaqueles*/
+            Almacenes anaquel = aSQL.BuscarAlmacen(-1, t.IdTienda, 2);
+            Almacenes deposito =aSQL.BuscarAlmacen(-1,t.IdTienda,1);
+
+            Content = "Ver distribución";
+            TxtNumColumnsAnq = anaquel.NroColumnas.ToString();
+            TxtNumRowsAnq = anaquel.NroFilas.ToString();
+            TxtAlturaAnq = anaquel.Altura.ToString();
+
+            TxtNumColumnsDto = deposito.NroColumnas.ToString();
+            TxtNumRowsDto = deposito.NroFilas.ToString();
+            TxtAlturaDto = deposito.Altura.ToString();
+
+            lstZonasAnq = tzSQL.ObtenerZonasxAlmacen(anaquel.IdAlmacen);
+            lstZonasDto = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
+            
+        }
 
         public MantenerTiendaViewModel()
         {
@@ -469,10 +586,13 @@ namespace MadeInHouse.ViewModels.Almacen
             LstProductos = new List<ProductoxAlmacen>();
             LstProdAgregados = new List<ProductoxAlmacen>();
             //LstProductos = pxaSQL.BuscarProductoxAlmacen();
+            Content = "Generar distribución";
 
 
         }
+        #endregion
 
+        #region Métodos
 
         public void Distribuir(int tipo)
         {
@@ -480,12 +600,18 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
                 NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
+                AlturaAnq = Int32.Parse(TxtAlturaAnq);
+                
+               
             }
             else
             {
                 NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
                 NumRowsDto = Int32.Parse(TxtNumRowsDto);
+                AlturaDto = Int32.Parse(TxtAlturaDto);
             }
+
+            
 
 
         }
@@ -575,6 +701,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     }
                     else if ((LstProductos.Find(x => x.IdProducto == pAux.IdProducto)) == null && (LstProdAgregados.Find(x => x.IdProducto == pAux.IdProducto)) == null)
                     {
+
                         pxa.CodProducto = pAux.CodigoProd;
                         pxa.Nombre = pAux.Nombre;
                         pxa.IdProducto = pAux.IdProducto;
@@ -583,6 +710,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.StockMin = Convert.ToInt32(dt["StockMin"]);
                         pxa.StockMax = Convert.ToInt32(dt["StockMax"]);
                         pxa.PrecioVenta = float.Parse(dt["PrecioVenta"].ToString());
+                        pxa.Vigente = int.Parse(dt["Vigente"].ToString());
                         LstProdAgregados.Add(pxa);
                     }
                     else
@@ -593,6 +721,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         break;
                     }
                 }
+                dt.Close();
 
                 if (exito)
                 {
@@ -642,24 +771,27 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 for (int j = 0; j < objeto.Ubicaciones[i].Count; j++)
                 {
-                    for (int k = 0; k < lista.Count; k++)
+                    for (int m = 0; m < objeto.Ubicaciones[i][j].Count; m++)
                     {
-                        if (lista[k] == objeto.Ubicaciones[i][j].IdTipoZona)
+                        for (int k = 0; k < lista.Count; k++)
                         {
-                            encontrado = true;
-                            break;
+                            if (lista[k] == objeto.Ubicaciones[i][j][m].IdTipoZona)
+                            {
+                                encontrado = true;
+                                break;
+                            }
                         }
+                        if (!encontrado)
+                            lista.Add(objeto.Ubicaciones[i][j][m].IdTipoZona);
+                        encontrado = false;
                     }
-                    if (!encontrado)
-                        lista.Add(objeto.Ubicaciones[i][j].IdTipoZona);
-                    encontrado = false;
                 }
             }
             return lista;
         }
 
 
-        public void GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
+        public int GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
         {
 
             /*saco todos los idTipoZona*/
@@ -669,7 +801,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             DBConexion db = new DBConexion();
             db.conn.Open();
-            SqlTransaction trans = db.conn.BeginTransaction();
+            SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
             db.cmd.Transaction = trans;
             pxaSQL = new ProductoSQL(db);
             
@@ -683,6 +815,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 tienda.Telefono = txtTelef;
                 tienda.Administrador = txtAdmin;
                 Ubigeo seleccionado = new Ubigeo();
+                UbigeoSQL uSQL = new UbigeoSQL(db);
                 seleccionado = uSQL.buscarUbigeo(selectedDpto, selectedProv, selectedDist);
                 tienda.IdUbigeo = seleccionado.IdUbigeo;
                 tienda.FechaReg = DateTime.Today;
@@ -701,6 +834,9 @@ namespace MadeInHouse.ViewModels.Almacen
                     ana.Nombre = "Anaquel de TIENDA" + idTienda.ToString();
                     ana.Telefono = tienda.Telefono;
                     ana.Direccion = tienda.Direccion;
+                    ana.NroColumnas = int.Parse(TxtNumColumnsAnq);
+                    ana.NroFilas = int.Parse(TxtNumRowsAnq);
+                    ana.Altura = int.Parse(TxtAlturaAnq);
                     ana.Tipo = 2;
                     int idAnaquel = aSQL.Agregar(ana);
                     if (idAnaquel > 0)
@@ -713,6 +849,9 @@ namespace MadeInHouse.ViewModels.Almacen
                         dto.Nombre = "Deposito de TIENDA" + idTienda.ToString();
                         dto.Telefono = tienda.Telefono;
                         dto.Direccion = tienda.Direccion;
+                        dto.NroColumnas = int.Parse(TxtNumColumnsDto);
+                        dto.NroFilas = int.Parse(TxtNumRowsDto);
+                        dto.Altura = int.Parse(TxtAlturaDto);
                         dto.Tipo = 1;
                         int idDeposito = aSQL.Agregar(dto);
                         if (idDeposito > 0)
@@ -722,6 +861,7 @@ namespace MadeInHouse.ViewModels.Almacen
                             for (int i = 0; i < LstProductos.Count; i++)
                             {
                                 LstProductos[i].IdAlmacen = idDeposito;
+                                LstProductos[i].IdTienda = idTienda;
                                 exito = pxaSQL.AgregarProductoxAlmacen(LstProductos[i]);
                                 if (exito<=0) break;
                             }
@@ -749,11 +889,14 @@ namespace MadeInHouse.ViewModels.Almacen
                                     {
                                         for (int n = 0; n < anaquel.Ubicaciones[m].Count; n++)
                                         {
-                                            anaquel.Ubicaciones[m][n].IdAlmacen = idAnaquel;
-                                            anaquel.Ubicaciones[m][n].CordX = m;
-                                            anaquel.Ubicaciones[m][n].CordY = n;
-                                            anaquel.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaAnq);
-                                            ubSQL.Agregar(anaquel.Ubicaciones[m][n]);
+                                            for (int p = 0; p < anaquel.Ubicaciones[m][n].Count; p++)
+                                            {
+                                                anaquel.Ubicaciones[m][n][p].IdAlmacen = idAnaquel;
+                                                anaquel.Ubicaciones[m][n][p].CordX = m;
+                                                anaquel.Ubicaciones[m][n][p].CordY = n;
+                                                anaquel.Ubicaciones[m][n][p].CordZ = p;
+                                                ubSQL.Agregar(anaquel.Ubicaciones[m][n][p]);
+                                            }
                                         }
 
                                     }
@@ -763,48 +906,56 @@ namespace MadeInHouse.ViewModels.Almacen
                                     {
                                         for (int n = 0; n < deposito.Ubicaciones[m].Count; n++)
                                         {
-                                            deposito.Ubicaciones[m][n].IdAlmacen = idDeposito;
-                                            deposito.Ubicaciones[m][n].CordX = m;
-                                            deposito.Ubicaciones[m][n].CordY = n;
-                                            deposito.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaDto);
-                                            ubSQL.Agregar(deposito.Ubicaciones[m][n]);
+                                            for (int p = 0; p<deposito.Ubicaciones[m][n].Count; p++)
+                                            {
+                                                deposito.Ubicaciones[m][n][p].IdAlmacen = idDeposito;
+                                                /*deposito.Ubicaciones[m][n].CordX = m;
+                                                deposito.Ubicaciones[m][n].CordY = n;
+                                                deposito.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaDto);*/
+                                                ubSQL.Agregar(deposito.Ubicaciones[m][n][p]);
+                                            }
                                         }
 
                                     }
+                                    trans.Commit();
+                                    System.Windows.MessageBox.Show("Se creó la tienda correctamente");
+                                    return 1;
                                 }
                                 else
                                 {
-                                    trans.Rollback();
+                                    System.Windows.MessageBox.Show("ERROR");
                                 }
                             }
                             else
                             {
-                                trans.Rollback();
+                                System.Windows.MessageBox.Show("ERROR");
                             }
                         }
                         else
                         {
-                            trans.Rollback();
+                            System.Windows.MessageBox.Show("ERROR");
                         }
                     }
                     else
                     {
-                        trans.Rollback();
+                        System.Windows.MessageBox.Show("ERROR");
                     }
-
-
-                    trans.Commit();
                 }
                 else
                 {
-                    trans.Rollback();
+                    System.Windows.MessageBox.Show("ERROR");
                 }
+
+                trans.Rollback();
+                return -1;
 
                // System.Windows.MessageBox.Show("Se creo correctamente la tienda con id: " + idTienda.ToString() + " con anaquel id: " + idAnaquel.ToString() + " y con deposito id :" + idDeposito.ToString());
 
 
         }
 
+
+        #endregion
     }
 
         

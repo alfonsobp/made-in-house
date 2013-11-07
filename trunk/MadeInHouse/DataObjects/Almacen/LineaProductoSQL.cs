@@ -37,7 +37,9 @@ namespace MadeInHouse.DataObjects.Almacen
                     lp.Abreviatura=reader["Abreviatura"].ToString();
                     lstLineasProducto.Add(lp);   
                 }
+                reader.Close();
                 db.conn.Close();
+                
 
             }
             catch (SqlException e )

@@ -8,9 +8,9 @@ namespace MadeInHouse.Models.Almacen
 {
     class Ubicacion
     {
-        private string idUbicacion;
+        private int idUbicacion;
 
-        public string IdUbicacion
+        public int IdUbicacion
         {
             get { return idUbicacion; }
             set { idUbicacion = value; }
