@@ -98,7 +98,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodPro}" IsReadOnly="True" Header="Codigo" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=ProNombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=CantidadUbicar}" IsReadOnly="True" Header="A ingresar" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" IsReadOnly="True" Header="A ingresar" Width="73"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

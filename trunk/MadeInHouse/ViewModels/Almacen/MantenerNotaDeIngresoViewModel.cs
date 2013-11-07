@@ -113,7 +113,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return lstProductos; }
             set { lstProductos = value;
-                  NotifyOfPropertyChange(() => LstProductos);
+                  NotifyOfPropertyChange("LstProductos");
             }
         }
 

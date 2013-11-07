@@ -15,7 +15,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public List<ProductoCant> LstProductos
         {
             get { return lstProductos; }
-            set { lstProductos = value; }
+            set { lstProductos = value;
+            NotifyOfPropertyChange(() => LstProductos);
+            
+            }
         }
         private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
         private int accion;
@@ -32,9 +35,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             
             //mantenerNotaDeIngresoViewModel.Almacen.First();
-            
             // TODO: Complete member initialization
-        
         }
 
 
