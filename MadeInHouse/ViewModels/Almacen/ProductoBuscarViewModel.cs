@@ -70,7 +70,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
-            this.p = p;
+            this.ventanaAccion = p;
         }
 
         #endregion
@@ -193,9 +193,6 @@ namespace MadeInHouse.ViewModels.Almacen
                     select slp).FirstOrDefault();
         }
 
-        
-
-
         private ProductoSQL pSQL = new ProductoSQL();
         private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
         private int p;
@@ -277,6 +274,13 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (mantenerNotaDeSalidaViewModel != null)
                 {
                     mantenerNotaDeSalidaViewModel.TxtCodPro = productoSel.CodigoProd;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 4) {
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (mantenerNotaDeIngresoViewModel != null) {
+                    mantenerNotaDeIngresoViewModel.SelectedProducto = productoSel;
                     this.TryClose();
                 }
             }

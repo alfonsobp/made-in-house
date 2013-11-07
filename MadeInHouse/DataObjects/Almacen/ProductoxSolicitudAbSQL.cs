@@ -42,7 +42,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     int codigoProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
                     p = pGw.Buscar_por_CodigoProducto(codigoProducto);
                     
-                    pa.ProId = p.IdProducto.ToString();
+                    pa.CodPro = p.CodigoProd.ToString();
                     pa.ProNombre = p.Nombre;
                     pa.Can = reader.IsDBNull(reader.GetOrdinal("cantidadAtendida")) ? null : reader["cantidadAtendida"].ToString();
 

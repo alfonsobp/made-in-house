@@ -8,6 +8,7 @@ using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Compras;
 using MadeInHouse.ViewModels.Compras;
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -32,7 +33,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtDoc
         {
             get { return txtDoc; }
-            set { txtDoc = value; }
+            set { txtDoc = value;
+            NotifyOfPropertyChange(() => TxtCodPro);
+            }
         }
 
         int txtCod;
@@ -59,13 +62,27 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         Producto selectedProducto;
-
+        
         public Producto SelectedProducto
         {
             get { return selectedProducto; }
-            set { selectedProducto = value; }
+            set { selectedProducto = value;
+            NotifyOfPropertyChange(() => SelectedProducto);
+            }
         }
-        
+
+
+        OrdenCompra selectedOrden;
+
+        public OrdenCompra SelectedOrden
+        {
+            get { return selectedOrden; }
+            set
+            {selectedOrden = value; 
+                NotifyOfPropertyChange(() => SelectedOrden);
+            }
+        }
+
         List<Models.Almacen.Almacenes> almacen;
 
         public List<Models.Almacen.Almacenes> Almacen
@@ -100,7 +117,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        string txtCodPro;
+        string txtCodPro="";
 
         public string TxtCodPro
         {
@@ -117,7 +134,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtCantPro
         {
             get { return txtCantPro; }
-            set { txtCantPro = value; }
+            set { txtCantPro = value;
+            NotifyOfPropertyChange(() => TxtCantPro);
+            }
         }
 
         //Botones:
@@ -126,9 +145,23 @@ namespace MadeInHouse.ViewModels.Almacen
         
             string referencia = TxtDoc;
             string mot = this.selectedMotivo;
-            //Si fuera Por Traslado, Saco informacion de Solicitud de Abastecimiento con la referencia
-           lstProductos = gateWay.ListaProductos(referencia);
-           NotifyOfPropertyChange(() => LstProductos);
+           if ( string.Compare(mot,"Orden de Compra",true)==0){
+               List<ProductoxOrdenCompra> poc = new List<ProductoxOrdenCompra>();
+               poc = SelectedOrden.LstProducto;
+               List<ProductoCant> lpcan = new List<ProductoCant>();
+               for (int i = 0; i < poc.Count(); i++) {
+                   ProductoCant pcan = new ProductoCant();
+                   pcan.Can = poc.ElementAt(i).Cantidad;
+                   pcan.CodPro = poc.ElementAt(i).Producto.CodigoProd;
+                   pcan.ProNombre = poc.ElementAt(i).Producto.Nombre;
+                   pcan.CanAtend = poc.ElementAt(i).CantAtendida.ToString();
+                   pcan.CanAtender = poc.ElementAt(i).CantidadAtender;
+                   lpcan.Add(pcan);
+               }
+                LstProductos = new List<ProductoCant>(lpcan);
+  
+           }
+            NotifyOfPropertyChange(() => LstProductos);
         }
 
         public void BuscarDocumento()
@@ -146,7 +179,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void BuscarProducto()
         {
             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-            wm.ShowWindow(new ProductoBuscarViewModel(this, 3));
+            wm.ShowWindow(new ProductoBuscarViewModel(this, 4));
         }
 
         public void AgregarProducto() {
@@ -164,25 +197,25 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (LstProductos != null)
                     {
-                        if ((pxa = LstProductos.Find(x => x.ProId == lstAux[0].IdProducto.ToString())) == null)
+                        if ((pxa = LstProductos.Find(x => x.CodPro == lstAux[0].CodigoProd)) == null)
                         {
 
                             pxa = new ProductoCant();
                             pxa.Can = TxtCantPro;
-                            pxa.ProId = lstAux[0].IdProducto.ToString();
+                            pxa.CodPro = lstAux[0].CodigoProd.ToString();
                             pxa.ProNombre = lstAux[0].Nombre;
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
                         }
                         else
                         {
-                            System.Windows.MessageBox.Show("El producto que se quiere registrar ya existe en la tienda");
+                            System.Windows.MessageBox.Show("El producto que se quiere registrar ya esta siendo ingresado","Error");
                         }
                     }
                     else {
                         pxa = new ProductoCant();
                         pxa.Can = TxtCantPro;
-                        pxa.ProId = lstAux[0].IdProducto.ToString();
+                        pxa.CodPro = lstAux[0].CodigoProd.ToString();
                         pxa.ProNombre = lstAux[0].Nombre;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
