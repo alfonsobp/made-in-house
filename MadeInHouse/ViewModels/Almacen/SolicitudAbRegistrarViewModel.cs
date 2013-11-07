@@ -8,12 +8,25 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using System.Windows;
-
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class SolicitudAbRegistrarViewModel : Screen
+	[Export(typeof(SolicitudAbRegistrarViewModel))]
+    class SolicitudAbRegistrarViewModel : PropertyChangedBase
     {
+		private readonly IWindowManager _windowManager;
+
+        #region constructor
+
+        [ImportingConstructor]
+        public SolicitudAbRegistrarViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+        }
+
+        #endregion
         private MyWindowManager win = new MyWindowManager();
 
         #region atributos
@@ -45,18 +58,15 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void SeleccionarProductos()
         {
-            win.ShowDialog(new ProductoBuscarViewModel(this));
+            _windowManager.ShowWindow(new ProductoBuscarViewModel(this));
         }
 
         public void GuardarSolicitud()
         {
             int idUsuario = 17;
             AbastecimientoModel solModel = new AbastecimientoModel();
-            if (solModel.registrarAbastecimiento(idUsuario, Productos))
-            {
-                TryClose();
-                return;
-            }
+            string message = solModel.registrarAbastecimiento(idUsuario, Productos);
+            _windowManager.ShowDialog(new AlertViewModel(_windowManager, message));
         }
 
         public void addProducto(AbastecimientoProducto prod)

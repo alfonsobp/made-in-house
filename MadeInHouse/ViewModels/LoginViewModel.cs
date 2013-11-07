@@ -7,14 +7,23 @@ using Caliburn.Micro;
 using System.Diagnostics;
 using System.Windows;
 using System.Security.Principal;
+using System.ComponentModel.Composition;
 using MadeInHouse.DataObjects.Seguridad;
 using MadeInHouse.Models.Seguridad;
 using System.Threading;
 
 namespace MadeInHouse.ViewModels
 {
+	[Export(typeof(LoginViewModel))]
     public class LoginViewModel : Conductor<IScreen>.Collection.OneActive
     {
+		private readonly IWindowManager _windowManager;
+
+        [ImportingConstructor]
+        public LoginViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+        }
         private string txtUser;
 
         public string TxtUser
@@ -75,10 +84,7 @@ namespace MadeInHouse.ViewModels
 
                 System.Threading.Thread.CurrentPrincipal = credencial;
 
-                WindowManager win = new WindowManager();
-
-                MainViewModel main = new MainViewModel();
-                win.ShowWindow(main);
+                _windowManager.ShowWindow(new MainViewModel(_windowManager));
                 this.TryClose();
             }
 
@@ -105,10 +111,7 @@ namespace MadeInHouse.ViewModels
 
                         System.Threading.Thread.CurrentPrincipal = credencial;
 
-                        WindowManager win = new WindowManager();
-
-                        MainViewModel main = new MainViewModel();
-                        win.ShowWindow(main);
+                        _windowManager.ShowWindow(new MainViewModel(_windowManager));
                         this.TryClose();
                     }
                     else

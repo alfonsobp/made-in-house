@@ -17,10 +17,17 @@ using System.Diagnostics;
 
 namespace MadeInHouse.ViewModels
 {
-    public class MainViewModel : Conductor<IScreen>.Collection.OneActive
+	[Export(typeof(MainViewModel))]
+    public class MainViewModel : Screen
     {
-        private MyWindowManager win = new MyWindowManager();
+		private readonly IWindowManager _windowManager;
 
+        [ImportingConstructor]
+        public MainViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+        }
+		
         public static List<List<Window>> MinWin = new List<List<Window>>();
 
         int[] accVentana = new int[100];
@@ -47,14 +54,14 @@ namespace MadeInHouse.ViewModels
             //CargarAccesosRol(u, out accesoRol);
             CargarAccesosRol(out accVentana);
             if (accVentana[1] == 1)
-                win.ShowWindow(new Almacen.MantenerAlmacenViewModel());
+                _windowManager.ShowWindow(new Almacen.MantenerAlmacenViewModel());
         }
         //Ventana Externa: 1.2
         public void AbrirNuevoProducto()
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[2] == 1)
-                win.ShowWindow(new Almacen.ProductoMantenerViewModel());
+                _windowManager.ShowWindow(new Almacen.ProductoMantenerViewModel());
         }
 
         //Ventana Externa: 1.3
@@ -62,7 +69,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[3] == 1)
-                win.ShowWindow(new Almacen.ProductoBuscarViewModel());
+                _windowManager.ShowWindow(new Almacen.ProductoBuscarViewModel());
         }
 
         //Ventana Externa: 1.4
@@ -70,10 +77,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[4] == 1)
-            {
-                Almacen.BuscarGuiasRemisionViewModel buscarGuiaView = new Almacen.BuscarGuiasRemisionViewModel();
-                win.ShowWindow(buscarGuiaView);
-            }
+                _windowManager.ShowWindow(new Almacen.BuscarGuiasRemisionViewModel());
         }
 
         //Ventana Externa: 1.5
@@ -81,10 +85,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[5] == 1)
-            {
-                Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel();
-                win.ShowWindow(abrirGuiaView);
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerGuiaDeRemisionViewModel());
         }
 
         //Ventana Externa: 1.6
@@ -92,7 +93,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[6] == 1)
-                win.ShowWindow(new Almacen.BuscarNotasViewModel());
+                _windowManager.ShowWindow(new Almacen.BuscarNotasViewModel());
         }
 
         //Ventana Externa: 1.7
@@ -100,10 +101,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[7] == 1)
-            {
-                Almacen.MantenerNotaDeIngresoViewModel abrirNotaIView = new Almacen.MantenerNotaDeIngresoViewModel();
-                win.ShowWindow(abrirNotaIView);
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerNotaDeIngresoViewModel());
         }
 
         //Ventana Externa: 1.8
@@ -111,10 +109,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[8] == 1)
-            {
-                Almacen.MantenerNotaDeSalidaViewModel abrirNotaIView = new Almacen.MantenerNotaDeSalidaViewModel();
-                win.ShowWindow(abrirNotaIView);
-            }
+				_windowManager.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
         }
 
         //Ventana Externa: 1.9
@@ -122,10 +117,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[9] == 1)
-            {
-                Almacen.BuscarZonaViewModel buscarZona = new Almacen.BuscarZonaViewModel();
-                win.ShowWindow(buscarZona);
-            }
+                _windowManager.ShowWindow(new Almacen.BuscarZonaViewModel());
         }
 
         //Ventana Externa: 1.10
@@ -133,7 +125,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[10] == 1)
-                win.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
+                _windowManager.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
         }
 
         //Ventana Externa: 1.11
@@ -141,7 +133,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[11] == 1)
-                win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
+                _windowManager.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
         }
 
         //Ventana Externa: 1.12
@@ -149,7 +141,22 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[12] == 1)
-                win.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+                _windowManager.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+        }
+		
+		//Ventana Externa: 1.13
+        public void AbrirAnularDocumentos()
+        {
+			CargarAccesosRol(out accVentana);
+            if (accVentana[13] == 1)
+				_windowManager.ShowWindow(new Almacen.AnularDocumentosViewModel());
+        }
+		
+		public void RegistrarSolicitud()
+        {
+			CargarAccesosRol(out accVentana);
+            if (accVentana[13] == 1)
+				_windowManager.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel(_windowManager));
         }
 
         #endregion Almacen
@@ -162,10 +169,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[13] == 1)
-            {
-                Compras.BuscadorProveedorViewModel obj = new Compras.BuscadorProveedorViewModel();
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.BuscadorProveedorViewModel());
         }
 
         //Ventana Externa: 2.2
@@ -173,10 +177,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[14] == 1)
-            {
-                Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel();
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.MantenerProveedorViewModel());
         }
 
         //Ventana Externa: 2.3
@@ -184,10 +185,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[15] == 1)
-            {
-                Compras.CatalogoProductoProveedorViewModel obj = new Compras.CatalogoProductoProveedorViewModel();
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.CatalogoProductoProveedorViewModel());
         }
 
         //Ventana Externa: 2.4
@@ -195,10 +193,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[16] == 1)
-            {
-                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel();
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.agregarServicioViewModel());
         }
 
         //Ventana Externa: 2.5
@@ -206,10 +201,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[17] == 1)
-            {
-                Compras.BuscadorServicioViewModel obj = new Compras.BuscadorServicioViewModel();
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.BuscadorServicioViewModel());
         }
 
         //Ventana Externa: 2.6
@@ -217,10 +209,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[18] == 1)
-            {
-                Compras.BuscadorSolicitudesAdquisicionViewModel obj = new Compras.BuscadorSolicitudesAdquisicionViewModel { };
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.BuscadorSolicitudesAdquisicionViewModel {  });
         }
 
         //Ventana Externa: 2.7
@@ -228,10 +217,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[19] == 1)
-            {
-                Compras.SeleccionDeProveedoresViewModel obj = new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" };
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" });
         }
 
         //Ventana Externa: 2.8
@@ -239,10 +225,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[20] == 1)
-            {
-                Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" };
-                win.ShowWindow(obj);
-            }
+                _windowManager.ShowWindow(new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" });
         }
 
         //Ventana Externa: 2.9
@@ -252,7 +235,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[21] == 1)
             {
                 Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel { DisplayName = "Buscador Orden de compra" };
-                win.ShowWindow(obj);
+                _windowManager.ShowWindow(obj);
             }
         }
 
@@ -263,7 +246,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[18] == 1)
             {
                 Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel { };
-                win.ShowWindow(obj);
+                _windowManager.ShowWindow(obj);
             }
         }
 
@@ -274,7 +257,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[22] == 1)
             {
                 Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel { };
-                win.ShowWindow(obj);
+                _windowManager.ShowWindow(obj);
             }
         }
 
@@ -285,7 +268,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[23] == 1)
             {
                 Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel { DisplayName = "Registrar Documentos" };
-                win.ShowWindow(obj);
+                _windowManager.ShowWindow(obj);
             }
         }
 
@@ -294,9 +277,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[24] == 1)
-            {
-                win.ShowWindow(new Compras.BuscarDocumentoViewModel { DisplayName = "Buscador Documentos de  Pago" });
-            }
+                _windowManager.ShowWindow(new Compras.BuscarDocumentoViewModel { DisplayName = "Buscador Documentos de  Pago" });
         }
 
 
@@ -311,9 +292,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[25] == 1)
-            {
-                win.ShowWindow(new Ventas.ClienteBuscarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.ClienteBuscarViewModel());
         }
 
         //Ventana Externa: 3.2
@@ -321,9 +300,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[26] == 1)
-            {
-                win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.ClienteRegistrarViewModel());
         }
 
         //Ventana Externa: 3.3
@@ -331,9 +308,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[27] == 1)
-            {
-                win.ShowWindow(new Ventas.VentaBuscarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.VentaBuscarViewModel());
         }
 
         //Ventana Externa: 3.4
@@ -341,9 +316,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[28] == 1)
-            {
-                win.ShowWindow(new Ventas.VentaRegistrarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.VentaRegistrarViewModel());
         }
 
         //Ventana Externa: 3.5
@@ -351,9 +324,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[29] == 1)
-            {
-                win.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
         }
 
         //Ventana Externa: 3.6
@@ -361,9 +332,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[30] == 1)
-            {
-                win.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
-            }
+                _windowManager.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
         }
 
         //Ventana Externa: 3.7
@@ -371,9 +340,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[31] == 1)
-            {
-                win.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
         }
 
         //Ventana Externa: 3.8
@@ -381,9 +348,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[32] == 1)
-            {
-                win.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
         }
 
         //Ventana Externa: 3.9
@@ -391,9 +356,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[33] == 1)
-            {
-                win.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
-            }
+                _windowManager.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
         }
 
         //Ventana Externa: 3.10
@@ -401,9 +364,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[34] == 1)
-            {
-                win.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
-            }
+                _windowManager.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
         }
 
         //Ventana Externa: 3.11
@@ -411,9 +372,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[35] == 1)
-            {
-                win.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
         }
 
         //Ventana Externa: 3.12
@@ -421,9 +380,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[36] == 1)
-            {
-                win.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
-            }
+                _windowManager.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
         }
 
         //Ventana Externa: 3.13
@@ -431,9 +388,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[37] == 1)
-            {
-                win.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
-            }
+                _windowManager.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
         }
 
         //Ventana Externa: 3.13
@@ -441,9 +396,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[38] == 1)
-            {
-                win.ShowWindow(new Ventas.PreciosBuscarViewModel());
-            }
+                _windowManager.ShowWindow(new Ventas.PreciosBuscarViewModel());
         }
 
 
@@ -457,9 +410,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[39] == 1)
-            {
-                win.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { DisplayName = "Registrar Empleado" });
-            }
+                _windowManager.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { DisplayName = "Registrar Empleado" });
         }
 
         //Ventana Externa: 4.2
@@ -467,9 +418,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[40] == 1)
-            {
-                win.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantenimiento Empleado" });
-            }
+                _windowManager.ShowWindow(new RRHH.MantenerEmpleadoViewModel { DisplayName = "Mantenimiento Empleado" });
         }
 
         //Ventana Externa: 4.3
@@ -477,9 +426,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[41] == 1)
-            {
-                win.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Cargar Organigrama" });
-            }
+                _windowManager.ShowWindow(new RRHH.CargarOrganigramaViewModel { DisplayName = "Cargar Organigrama" });
         }
 
         #endregion RRHH
@@ -491,9 +438,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[42] == 1)
-            {
-                win.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
-            }
+                _windowManager.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
         }
 
         //Ventana Externa: 5.2
@@ -501,9 +446,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[43] == 1)
-            {
-                win.ShowWindow(new RRHH.BuscarOrganigramaViewModel { DisplayName = "Buscar Organigrama" });
-            }
+                _windowManager.ShowWindow(new RRHH.BuscarOrganigramaViewModel { DisplayName = "Buscar Organigrama" });
         }
         #endregion Clima_Laboral
 
@@ -515,9 +458,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[44] == 1)
-            {
-                win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { });
-            }
+                _windowManager.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { });
         }
 
         //Ventana Externa: 6.2
@@ -525,9 +466,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[45] == 1)
-            {
-                win.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantenimiento de usuario" });
-            }
+                _windowManager.ShowWindow(new Seguridad.MantenerUsuarioViewModel { DisplayName = "Mantenimiento de usuario" });
 
         }
 
@@ -536,9 +475,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[46] == 1)
-            {
-                win.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento Rol" });
-            }
+                _windowManager.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento Rol" });
         }
 
         //Ventana Externa: 6.4
@@ -546,9 +483,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[47] == 1)
-            {
-                win.ShowWindow(new Seguridad.AsignarAccesosViewModel { });
-            }
+                _windowManager.ShowWindow(new Seguridad.AsignarAccesosViewModel { });
         }
 
         //Ventana Externa: 6.5
@@ -556,9 +491,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[48] == 1)
-            {
-                win.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
-            }
+                _windowManager.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
         }
 
 
@@ -573,9 +506,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[49] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteTardanzasViewModel { DisplayName = "Reporte de Tardanzas" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteTardanzasViewModel { DisplayName = "Reporte de Tardanzas" });
         }
 
         //Ventana Externa: 7.2
@@ -583,9 +514,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[50] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
         }
 
         //Ventana Externa: 7.3
@@ -593,9 +522,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[51] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteVentasViewModel { DisplayName = "Reporte de Ventas" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteVentasViewModel { DisplayName = "Reporte de Ventas" });
         }
 
         //Ventana Externa: 7.4
@@ -603,9 +530,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[52] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteServiciosViewModel { DisplayName = "Reporte de Servicios" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteServiciosViewModel { DisplayName = "Reporte de Servicios" });
         }
 
         //Ventana Externa: 7.5
@@ -613,9 +538,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[53] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteDevolucionesViewModel { DisplayName = "Reporte de Devoluciones" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteDevolucionesViewModel { DisplayName = "Reporte de Devoluciones" });
         }
 
         //Ventana Externa: 7.6
@@ -623,9 +546,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[54] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
         }
 
         //Ventana Externa: 7.7
@@ -633,9 +554,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[55] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
         }
 
         //Ventana Externa: 7.8
@@ -643,9 +562,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[56] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteSolicitudesViewModel { DisplayName = "Reporte de Solicitudes de compra" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteSolicitudesViewModel { DisplayName = "Reporte de Solicitudes de compra" });
         }
 
         //Ventana Externa: 7.9
@@ -653,9 +570,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[57] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteStockViewModel { DisplayName = "Reporte de Stock de productos" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteStockViewModel { DisplayName = "Reporte de Stock de productos" });
         }
 
         //Ventana Externa: 7.10
@@ -663,9 +578,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[58] == 1)
-            {
-                win.ShowWindow(new Reportes.reportePromocionesFrecuentesViewModel { DisplayName = "Reporte de Promociones Top" });
-            }
+                _windowManager.ShowWindow(new Reportes.reportePromocionesFrecuentesViewModel { DisplayName = "Reporte de Promociones Top" });
         }
 
         //Ventana Externa: 7.11
@@ -673,9 +586,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[59] == 1)
-            {
-                win.ShowWindow(new Reportes.reporteProductosCanjePuntosViewModel { DisplayName = "Reporte de Productos canjeados por Puntos" });
-            }
+                _windowManager.ShowWindow(new Reportes.reporteProductosCanjePuntosViewModel { DisplayName = "Reporte de Productos canjeados por Puntos" });
         }
 
         #endregion
@@ -688,9 +599,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[60] == 1)
-            {
-                win.ShowWindow(new Almacen.MantenerTiendaViewModel());
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerTiendaViewModel());
         }
 
         //Ventana Externa: 8.2
@@ -698,9 +607,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[61] == 1)
-            {
-                win.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
-            }
+                _windowManager.ShowWindow(new RRHH.ControlarAsistenciaEmpleadoViewModel { DisplayName = "Controlar asistencia" });
         }
 
         //Ventana Externa: 8.3
@@ -708,9 +615,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[62] == 1)
-            {
-                win.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
-            }
+                _windowManager.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
         }
 
         //Ventana Externa: 8.4
@@ -718,9 +623,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[63] == 1)
-            {
-                win.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
         }
 
         //Ventana Externa: 8.5
@@ -728,9 +631,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[64] == 1)
-            {
-                win.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel());
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel());
         }
 
         //Ventana Externa: 8.6
@@ -738,9 +639,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[65] == 1)
-            {
-                win.ShowWindow(new Almacen.MantenerMotivoViewModel());
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerMotivoViewModel());
         }
 
         //Ventana Externa: 8.7
@@ -748,14 +647,14 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[66] == 1)
-            {
-                win.ShowWindow(new Almacen.MantenerUnidadMedidaViewModel());
-            }
+                _windowManager.ShowWindow(new Almacen.MantenerUnidadMedidaViewModel());
         }
 
         public void AbrirBuscarTienda()
         {
-            win.ShowWindow(new Almacen.BuscarTiendaViewModel());
+            CargarAccesosRol(out accVentana);
+            if (accVentana[67] == 1)
+                _windowManager.ShowWindow(new Almacen.BuscarTiendaViewModel());
         }
 
         #endregion Configuracion

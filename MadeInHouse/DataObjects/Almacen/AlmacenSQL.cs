@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +35,7 @@ namespace MadeInHouse.DataObjects.Almacen
         public int AgregarZonas(int idTipoZona,int idAlmacen) 
         {
             db.cmd.CommandType = CommandType.Text;
-            db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona,idAlmacen) VALUES (@idTipoZona,@idAlmacen)" ;
+            db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona , idAlmacen) VALUES (@idTipoZona,@idAlmacen)" ;
             db.cmd.Parameters.AddWithValue("@idTipoZona", idTipoZona);
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
 
@@ -176,9 +174,6 @@ namespace MadeInHouse.DataObjects.Almacen
         public int obtenerDeposito(int idUsuario)
         {
             int idDeposito = -1;
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.Connection = db.conn;
-            //cmd.Transaction = db.trans;
             db.cmd.CommandText = " SELECT * FROM Usuario u, AlmacenxTienda at WHERE idUsuario = @idUsuario AND u.idTienda = at.idTienda ";
             db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
 

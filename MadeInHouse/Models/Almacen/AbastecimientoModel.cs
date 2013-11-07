@@ -12,43 +12,41 @@ namespace MadeInHouse.Models.Almacen
 {
     class AbastecimientoModel
     {
-        public bool registrarAbastecimiento(int idUsuario, List<AbastecimientoProducto> prod)
+        public string registrarAbastecimiento(int idUsuario, List<AbastecimientoProducto> prod)
         {
             DBConexion db = new DBConexion();
             db.conn.Open();
             SqlTransaction trans = db.conn.BeginTransaction();
             db.cmd.Transaction = trans;
             AbastecimientoSQL solSQL = new AbastecimientoSQL(db);
-            AlmacenSQL almSQL = new AlmacenSQL(db);
-            int idDeposito;
+            TiendaSQL tiendaSQL = new TiendaSQL(db);
+            int idTienda;
             int idSolicitud;
 
-            if ((idDeposito = almSQL.obtenerDeposito(idUsuario)) > 0)
+            if ((idTienda = tiendaSQL.obtenerTienda(idUsuario)) > 0)
             {
-                if ((idSolicitud = solSQL.insertarAbastecimiento(idDeposito)) > 0)
+                if ((idSolicitud = solSQL.insertarAbastecimiento(idTienda)) > 0)
                 {
                     if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
                     {
-                        MessageBox.Show("La solicitud fue generada con exito!");
-                        return true;
+                        trans.Commit();
+                        return "OK";
                     }
                     else
                     {
-                        MessageBox.Show("Hubo un error al agregar los productos");
+                        trans.Rollback();
+                        return "Hubo un error al agregar los productos";
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo crear la solicitud");
+                    trans.Rollback();
+                    return "No se pudo crear la solicitud";
                 }
-            }
-            else
-            {
-                MessageBox.Show("No se encontro el deposito del usuario");
             }
 
             trans.Rollback();
-            return false;
+            return "No se encontro el deposito del usuario";
         }
     }
 }

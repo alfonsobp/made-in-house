@@ -36,14 +36,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
+		<ControlTemplate x:Key="MinimizeButton">
+            <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" Click="MinimizeWin_Click"  Foreground="white" Width="28" Height="22" >
+                <Image Source="/MadeInHouse;component/Assets/minimize.png" Height="20" HorizontalAlignment="Right" />
+            </Button>
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=isAlert}" Value="true">
+                    <Setter TargetName="MinimizeWin" Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </UserControl.Resources>
         <DockPanel x:Name="titleBar" MouseDown="titleBar_MouseDown" VerticalAlignment="Center" Height="30">
             <Button x:Name="CloseWin" Style="{StaticResource InformButton}"  DockPanel.Dock="Right" HorizontalAlignment="Right" Click="CloseWin_Click" Foreground="white" Width="28" Height="22">
                 <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="20" HorizontalAlignment="Right" />
             </Button>
-            <Button x:Name="MinimizeWin" Style="{StaticResource InformButton}" DockPanel.Dock="Right" HorizontalAlignment="Right" Click="MinimizeWin_Click"  Foreground="white" Width="28" Height="22" >
-                <Image Source="/MadeInHouse;component/Assets/minimize.png" Height="20" HorizontalAlignment="Right" />
-            </Button>
+			<ContentControl Template="{StaticResource MinimizeButton}" DockPanel.Dock="Right"/>
             <TextBlock Text="{Binding title}" TextAlignment="Center" FontSize="16" VerticalAlignment="Center" />
         </DockPanel>
 </UserControl>
