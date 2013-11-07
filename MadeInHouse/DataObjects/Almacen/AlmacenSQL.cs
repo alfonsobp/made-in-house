@@ -67,15 +67,18 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             //db.cmd.CommandText = "sp_AgregarAlmacen";
             //db.cmd.CommandType = CommandType.StoredProcedure;
-            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono) "+
+            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono,nroFilas,nroColumnas,altura) "+
                                     "output INSERTED.idAlmacen "+
-                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono)";
+                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono,@nroFilas,@nroColumnas,@altura)";
             db.cmd.Parameters.AddWithValue("@nombre", alm.Nombre);
             db.cmd.Parameters.AddWithValue("@codAlmacen",alm.CodAlmacen);
             db.cmd.Parameters.AddWithValue("@direccion", alm.Direccion);
             db.cmd.Parameters.AddWithValue("@tipo", alm.Tipo);
             db.cmd.Parameters.AddWithValue("@idTienda", alm.IdTienda);
             db.cmd.Parameters.AddWithValue("@telefono", alm.Telefono);
+            db.cmd.Parameters.AddWithValue("@nroFilas", alm.NroFilas);
+            db.cmd.Parameters.AddWithValue("@nroColumnas", alm.NroColumnas);
+            db.cmd.Parameters.AddWithValue("@altura", alm.Altura);
 
             //db.cmd.Parameters.Add("@idAlmacen", SqlDbType.Int).Direction = ParameterDirection.Output;
 
@@ -116,17 +119,17 @@ namespace MadeInHouse.DataObjects.Almacen
 
             if (idAlmacen > 0)
             {
-                where = where + " AND idAlmacen=@idAlmacen";
+                where += " AND idAlmacen=@idAlmacen";
                 db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             }
             if (idTienda > 0)
             {
-                where += where + " AND idTienda=@idTienda";
+                where += " AND idTienda=@idTienda";
                 db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
             }
             if (tipoAlmacen > 0)
             {
-                where += where + " AND tipo=@tipo";
+                where += " AND tipo=@tipo";
                 db.cmd.Parameters.AddWithValue("@tipo", tipoAlmacen);
             }
 

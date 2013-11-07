@@ -66,7 +66,7 @@ namespace MadeInHouse.ViewModels.Almacen
             this.ventanaAccion = ventanaAccion;
         }
 
-        public ProductoBuscarViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p)
+        public ProductoBuscarViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
         {
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
