@@ -59,6 +59,20 @@ namespace MadeInHouse.ViewModels.Almacen
             idAlmacen = solicitudView.idAlmacen;
         }
 
+        public ProductoBuscarViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion):this()
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
+            this.ventanaAccion = ventanaAccion;
+        }
+
+        public ProductoBuscarViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p)
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.p = p;
+        }
+
         #endregion
 
         #region atributos
@@ -183,6 +197,9 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         private ProductoSQL pSQL = new ProductoSQL();
+        private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+        private int p;
+        private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
         //private LineaProductoSQL lsql;
         //private SubLineaProductoSQL ssql;
         
@@ -251,6 +268,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (mantenerTiendaViewModel != null)
                 {
                     mantenerTiendaViewModel.TxtCodProducto = productoSel.CodigoProd;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 3)
+            {
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (mantenerNotaDeSalidaViewModel != null)
+                {
+                    mantenerNotaDeSalidaViewModel.TxtCodPro = productoSel.CodigoProd;
                     this.TryClose();
                 }
             }

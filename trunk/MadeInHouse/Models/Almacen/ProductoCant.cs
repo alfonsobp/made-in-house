@@ -16,17 +16,17 @@ namespace MadeInHouse.Models.Almacen
             set { proNombre = value; }
         }
 
-        private int proId;
+        private string proId;
 
-        public int ProId
+        public string ProId
         {
             get { return proId; }
             set { proId = value; }
         }
 
-        private int can;
+        private string can;
 
-        public int Can
+        public string Can
         {
             get { return can; }
             set { can = value; }

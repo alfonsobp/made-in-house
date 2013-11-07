@@ -91,8 +91,6 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void NuevaOrden()
         {
-
-
             Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel ();
             win.ShowWindow(obj);
         }
@@ -103,6 +101,50 @@ namespace MadeInHouse.ViewModels.Compras
             win.ShowWindow(obj);
         }
 
+        #region Busqueda desde Almacen
+        private int ventanaAccion = 0;
+        private Almacen.MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
 
+        public BuscarOrdenCompraViewModel(Almacen.MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accionVentana)
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.ventanaAccion = accionVentana;
+        }
+
+        public BuscarOrdenCompraViewModel()
+        {
+            // TODO: Complete member initialization
+        }
+        
+        #endregion
+
+        #region Acciones Doble Click
+        public void Acciones(object sender)
+        {
+            if (ventanaAccion == 0)
+            {
+                //Actualizar();
+            }
+            else if (ventanaAccion == 1)
+            {
+
+                /*productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (ventaRegistrarViewModel != null)
+                {
+                    ventaRegistrarViewModel.Prod = productoSel;
+                    this.TryClose();
+                }*/
+            }
+            else if (ventanaAccion == 2)
+            {
+                
+            }
+            else if (ventanaAccion == 3)
+            {
+                
+            }
+        }
+        #endregion
     }
 }
