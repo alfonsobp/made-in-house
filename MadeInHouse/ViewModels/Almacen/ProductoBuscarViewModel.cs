@@ -52,6 +52,15 @@ namespace MadeInHouse.ViewModels.Almacen
             this.ventanaAccion = ventanaAccion;
         }
 
+        private Ventas.ProformaViewModel proformaViewModel;
+        public ProductoBuscarViewModel(Ventas.ProformaViewModel proformaViewModel, int ventanaAccion)
+        {
+            this.proformaViewModel = proformaViewModel;
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            this.ventanaAccion = ventanaAccion;
+        }
+
         private SolicitudAbRegistrarViewModel solicitudView = null;
         public ProductoBuscarViewModel(SolicitudAbRegistrarViewModel solicitudView) : this()
         {
@@ -250,7 +259,7 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 Actualizar();
             }
-            else if (ventanaAccion==1)
+            else if (ventanaAccion == 1)
             {
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
                 if (ventaRegistrarViewModel != null)
@@ -277,10 +286,21 @@ namespace MadeInHouse.ViewModels.Almacen
                     this.TryClose();
                 }
             }
-            else if (ventanaAccion == 4) {
+            else if (ventanaAccion == 4)
+            {
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
-                if (mantenerNotaDeIngresoViewModel != null) {
+                if (mantenerNotaDeIngresoViewModel != null)
+                {
                     mantenerNotaDeIngresoViewModel.SelectedProducto = productoSel;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 5)
+            {
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (proformaViewModel != null)
+                {
+                    proformaViewModel.Prod = productoSel;
                     this.TryClose();
                 }
             }
