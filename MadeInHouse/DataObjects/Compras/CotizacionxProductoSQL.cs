@@ -90,11 +90,10 @@ namespace MadeInHouse.DataObjects.Compras
         public int InsertarValidado(CotizacionxProducto cp)
         {
             Producto p = new ProductoSQL().Buscar_por_CodigoProducto(cp.Producto.CodigoProd);
-            //MessageBox.Show("IdServicio = " + sp.IdServicio + " IdProducto = " + p.IdProducto + " Precio = " + sp.Precio);
             int k = 0;
-
+            //MessageBox.Show("nombre = " + p.Nombre);
             ////cp.Producto.IdProducto = p.IdProducto;
-            cp.Producto.Nombre = p.Nombre;
+            cp.Producto = p;
 
             if (p != null)
             {
@@ -104,7 +103,7 @@ namespace MadeInHouse.DataObjects.Compras
                 SqlConnection conn = DB.conn;
                 SqlCommand cmd = DB.cmd;
 
-                //MessageBox.Show("IDcot = " + cp.IdCotizacion + " IDprod = " + cp.Producto.IdProducto + " precio = " + cp.Precio + " cantidad = " + cp.Cantidad);
+ //               MessageBox.Show("IDcot = " + cp.IdCotizacion + " IDprod = " + cp.Producto.IdProducto + " precio = " + cp.Precio + " cantidad = " + cp.Cantidad);
 
                 cmd.CommandText = "IF NOT EXISTS(SELECT 1 from CotizacionxProducto where idCotizacion = @idCotizacion and idProducto = @idProducto) " +
                                    "Insert into CotizacionxProducto(idCotizacion,idProducto,cantidad,precio) " +
@@ -134,7 +133,7 @@ namespace MadeInHouse.DataObjects.Compras
                     conn.Close();
 
                 }
-                catch (Exception e)
+                catch (SqlException e)
                 {
                     MessageBox.Show(e.StackTrace.ToString());
                 }
