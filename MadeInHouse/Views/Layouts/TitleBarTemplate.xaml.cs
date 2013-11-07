@@ -56,7 +56,7 @@ namespace MadeInHouse.Views.Layouts
 
         private void CloseWin_Click(object sender, RoutedEventArgs e)
         {
-			Window.GetWindow(this).Owner.Focus();
+            if (Application.Current.MainWindow.Owner != null) Window.GetWindow(this).Owner.Focus();
             Window.GetWindow(this).Close();
             if (Window.GetWindow(this).Width == ANCHO)
                 fixTabs();
@@ -64,43 +64,50 @@ namespace MadeInHouse.Views.Layouts
 
         private void MinimizeWin_Click(object sender, RoutedEventArgs e)
         {
-            if (tabsXfila == 0)
+            if (Application.Current.MainWindow.Owner == null)
             {
-                double anchoWin = Application.Current.MainWindow.Owner.ActualWidth;
-                double calcTabs = ((anchoWin / 636) * 477) / (ANCHO);
-                tabsXfila = (int)Math.Truncate(calcTabs);
-            }
-            if (Window.GetWindow(this).Width != ANCHO)
-            {
-                Window.GetWindow(this).SizeToContent = SizeToContent.Manual;
-                Window.GetWindow(this).Width = ANCHO;
-                Window.GetWindow(this).Height = ALTURA;
-                if (MainViewModel.MinWin.Count == 0)
-                {
-                    MainViewModel.MinWin.Add(new List<Window>());
-                }
-
-                if (MainViewModel.MinWin.Last().Count < tabsXfila)
-                {
-                    MainViewModel.MinWin.Last().Add(Window.GetWindow(this));
-                }
-                else
-                {
-                    MainViewModel.MinWin.Add(new List<Window>());
-                    MainViewModel.MinWin.Last().Add(Window.GetWindow(this));
-                }
-
-
-                Window.GetWindow(this).Left = Application.Current.MainWindow.Owner.ActualWidth - 5 - (ANCHO + 5) * (MainViewModel.MinWin.Last().Count);
-                Window.GetWindow(this).Top = Application.Current.MainWindow.Owner.ActualHeight - 5 - (ALTURA + 5) * (MainViewModel.MinWin.Count);
+                Window.GetWindow(this).WindowState = WindowState.Minimized;
             }
             else
             {
-                Window.GetWindow(this).SizeToContent = SizeToContent.WidthAndHeight;
-                Window.GetWindow(this).Top = 0.5 * (Application.Current.MainWindow.Owner.ActualHeight - Window.GetWindow(this).ActualHeight);
-                Window.GetWindow(this).Left = 0.5 * (Application.Current.MainWindow.Owner.ActualWidth - Window.GetWindow(this).ActualWidth);
+                if (tabsXfila == 0)
+                {
+                    double anchoWin = Application.Current.MainWindow.Owner.ActualWidth;
+                    double calcTabs = ((anchoWin / 636) * 477) / (ANCHO);
+                    tabsXfila = (int)Math.Truncate(calcTabs);
+                }
+                if (Window.GetWindow(this).Width != ANCHO)
+                {
+                    Window.GetWindow(this).SizeToContent = SizeToContent.Manual;
+                    Window.GetWindow(this).Width = ANCHO;
+                    Window.GetWindow(this).Height = ALTURA;
+                    if (MainViewModel.MinWin.Count == 0)
+                    {
+                        MainViewModel.MinWin.Add(new List<Window>());
+                    }
 
-                fixTabs();
+                    if (MainViewModel.MinWin.Last().Count < tabsXfila)
+                    {
+                        MainViewModel.MinWin.Last().Add(Window.GetWindow(this));
+                    }
+                    else
+                    {
+                        MainViewModel.MinWin.Add(new List<Window>());
+                        MainViewModel.MinWin.Last().Add(Window.GetWindow(this));
+                    }
+
+
+                    Window.GetWindow(this).Left = Application.Current.MainWindow.Owner.ActualWidth - 5 - (ANCHO + 5) * (MainViewModel.MinWin.Last().Count);
+                    Window.GetWindow(this).Top = Application.Current.MainWindow.Owner.ActualHeight - 5 - (ALTURA + 5) * (MainViewModel.MinWin.Count);
+                }
+                else
+                {
+                    Window.GetWindow(this).SizeToContent = SizeToContent.WidthAndHeight;
+                    Window.GetWindow(this).Top = 0.5 * (Application.Current.MainWindow.Owner.ActualHeight - Window.GetWindow(this).ActualHeight);
+                    Window.GetWindow(this).Left = 0.5 * (Application.Current.MainWindow.Owner.ActualWidth - Window.GetWindow(this).ActualWidth);
+
+                    fixTabs();
+                }
             }
         }
 
