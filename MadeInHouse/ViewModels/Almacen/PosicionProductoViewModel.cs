@@ -31,7 +31,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public PosicionProductoViewModel()
         {
             
-            mantenerNotaDeIngresoViewModel.Almacen.First();
+            //mantenerNotaDeIngresoViewModel.Almacen.First();
             
             // TODO: Complete member initialization
         
