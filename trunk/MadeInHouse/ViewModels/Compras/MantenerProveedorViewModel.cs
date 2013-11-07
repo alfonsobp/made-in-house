@@ -13,7 +13,7 @@ using MadeInHouse.DataObjects.Compras;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class MantenerProveedorViewModel: PropertyChangedBase
+    class MantenerProveedorViewModel: Screen
     {
 
         public MantenerProveedorViewModel(Proveedor p, BuscadorProveedorViewModel model) {
@@ -189,11 +189,14 @@ namespace MadeInHouse.ViewModels.Compras
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
                     else
+                    {
                         MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                    "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
-                                    txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+                                      "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
+                                      txtTelefonoContacto + "\nDireccion = " + txtDireccion);
 
 
+                       
+                    }
 
                 }
 
@@ -205,15 +208,19 @@ namespace MadeInHouse.ViewModels.Compras
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
                     else
+                    {
                         MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                        "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto +
-                                        "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+                                          "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto +
+                                          "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
 
+                      
+                    }
                 }
 
                 if (model != null)
                 {
                     model.ActualizarProveedor();
+                    this.TryClose();
                 }
 
             }
