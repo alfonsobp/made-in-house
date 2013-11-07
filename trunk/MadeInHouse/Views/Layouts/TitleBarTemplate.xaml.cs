@@ -22,6 +22,7 @@ namespace MadeInHouse.Views.Layouts
     public partial class TitleBarTemplate : UserControl
     {
         public static readonly DependencyProperty titleProperty = DependencyProperty.Register("title", typeof(string), typeof(TitleBarTemplate), new PropertyMetadata(string.Empty));
+		public static readonly DependencyProperty isAlertProperty = DependencyProperty.Register("isAlert", typeof(bool), typeof(TitleBarTemplate), new PropertyMetadata(false));
 
         private const int ALTURA = 58;
         private const int ANCHO = 200;
@@ -33,6 +34,11 @@ namespace MadeInHouse.Views.Layouts
             set { SetValue(titleProperty, value); }
         }
 
+		public bool isAlert
+        {
+            get { return (bool)GetValue(isAlertProperty); }
+            set { SetValue(isAlertProperty, value); }
+        }
         public TitleBarTemplate()
         {
             InitializeComponent();
@@ -50,6 +56,7 @@ namespace MadeInHouse.Views.Layouts
 
         private void CloseWin_Click(object sender, RoutedEventArgs e)
         {
+			Window.GetWindow(this).Owner.Focus();
             Window.GetWindow(this).Close();
             if (Window.GetWindow(this).Width == ANCHO)
                 fixTabs();

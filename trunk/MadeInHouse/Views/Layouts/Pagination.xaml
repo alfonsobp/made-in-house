@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="MadeInHouse.Views.Layouts.Pagination"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="50" d:DesignWidth="250">
+    <StackPanel Orientation="Horizontal">
+        <Button Content="«" Margin="2" Height="20" Width="25" />
+        <Button Content="&lt;" Margin="2" Height="20" Width="25" />
+        <TextBox Margin="2" Height="20" Width="25" TextAlignment="Center" />
+        <TextBlock Text=" de" Margin="2" Height="20" Width="25" TextAlignment="Center" />
+        <TextBlock Margin="2" Height="20" Width="25" TextAlignment="Center" />
+        <Button Content="&gt;" Margin="3" Height="20" Width="25" />
+        <Button Content="»" Margin="3" Height="20" Width="25" />
+    </StackPanel>
+</UserControl>

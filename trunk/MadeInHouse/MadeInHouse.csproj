@@ -215,6 +215,7 @@
     <Compile Include="ViewModels\Compras\MedioPagoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
+	<Compile Include="ViewModels\Layouts\AlertViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteAccionesViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteComprasViewModel.cs" />
     <Compile Include="ViewModels\Reportes\reporteDevolucionesViewModel.cs" />
@@ -431,6 +432,9 @@
     </Compile>
     <Compile Include="Views\Compras\SeleccionDeProveedoresView.xaml.cs">
       <DependentUpon>SeleccionDeProveedoresView.xaml</DependentUpon>
+    </Compile>
+	<Compile Include="Views\Layouts\AlertView.xaml.cs">
+      <DependentUpon>AlertView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -794,6 +798,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\SeleccionDeProveedoresView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+	<Page Include="Views\Layouts\AlertView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

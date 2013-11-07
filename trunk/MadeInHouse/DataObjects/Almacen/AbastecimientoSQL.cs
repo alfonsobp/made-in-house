@@ -18,16 +18,13 @@ namespace MadeInHouse.DataObjects.Almacen
             this.db = (db == null) ? new DBConexion() : db;
         }
 
-        public int insertarAbastecimiento(int idDeposito)
+        public int insertarAbastecimiento(int idTienda)
         {
             int idSolicitud = -1;
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.Connection = db.conn;
-            //cmd.Transaction = db.trans;
-            db.cmd.CommandText = " INSERT INTO SolicitudAbastecimiento(estado,fechaReg,fechaAtencion,idOrden,idDeposito) " +
+            db.cmd.CommandText = " INSERT INTO SolicitudAbastecimiento(estado , fechaReg , fechaAtencion , idOrden , idTienda) " +
                                  " output INSERTED.idSolicitudAB " +
-                                 " VALUES (1, GETDATE(), NULL, NULL, @idDeposito) ";
-            db.cmd.Parameters.AddWithValue("@idDeposito", idDeposito);
+                                 " VALUES (1, GETDATE(), NULL, NULL, @idTienda) ";
+            db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
 
             try
             {
@@ -50,9 +47,6 @@ namespace MadeInHouse.DataObjects.Almacen
         public bool insertarProductosAbastecimiento(int idSolicitud, List<AbastecimientoProducto> prod)
         {
             int result = 0;
-            //SqlCommand cmd = new SqlCommand();
-            //cmd.Connection = db.conn;
-            //cmd.Transaction = db.trans;
             string values = "";
             if (prod != null && prod.Count > 0)
             {
