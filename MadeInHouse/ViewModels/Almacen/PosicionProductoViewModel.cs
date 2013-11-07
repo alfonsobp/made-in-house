@@ -10,31 +10,33 @@ namespace MadeInHouse.ViewModels.Almacen
 {
     class PosicionProductoViewModel : PropertyChangedBase
     {
-        ProductoCant lstProductos;
-        private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
-        private int p;
+        List<ProductoCant> lstProductos;
 
-        public PosicionProductoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
+        public List<ProductoCant> LstProductos
+        {
+            get { return lstProductos; }
+            set { lstProductos = value; }
+        }
+        private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
+        private int accion;
+
+        public PosicionProductoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accion):this()
         {
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
-            this.p = p;
+            this.accion = accion;
+            this.LstProductos = mantenerNotaDeIngresoViewModel.LstProductos;
         }
 
         public PosicionProductoViewModel()
         {
             
             mantenerNotaDeIngresoViewModel.Almacen.First();
-   
+            
             // TODO: Complete member initialization
         
         }
 
-        internal ProductoCant LstProductos
-        {
-            get { return lstProductos; }
-            set { lstProductos = value; }
-        }
 
 
     }
