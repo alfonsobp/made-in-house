@@ -31,11 +31,17 @@ namespace MadeInHouse.Models.Compras
 
         public string Cantidad
         {
-            get { return cantidad; }
+            get { return cantidad;}
             set { cantidad = value; }
         }
 
         double monto;
+
+        public double Monto
+        {
+            get { return monto; }
+            set { monto = value; }
+        }
 
         private double precioUnitario;
 
@@ -45,8 +51,14 @@ namespace MadeInHouse.Models.Compras
             set { precioUnitario = value; }
         }
 
-        int cantAtendida;
+        private double importe;
+        public double Importe
+        {
+            get { return importe; }
+            set { importe = value; }
+        }
 
+        private int cantAtendida;
         public int CantAtendida
         {
             get { return cantAtendida; }

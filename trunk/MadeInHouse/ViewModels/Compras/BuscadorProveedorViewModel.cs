@@ -23,7 +23,6 @@ namespace MadeInHouse.ViewModels.Compras
         public BuscadorProveedorViewModel(){
 
             ActualizarProveedor();
-        
         }
 
         CatalogoProductoProveedorViewModel p;
@@ -44,10 +43,24 @@ namespace MadeInHouse.ViewModels.Compras
         agregarServicioViewModel s;
         public BuscadorProveedorViewModel(agregarServicioViewModel s)
         {
-
             this.s = s;
             ActualizarProveedor();
         }
+
+        BuscarCotizacionViewModel bc;
+        public BuscadorProveedorViewModel(BuscarCotizacionViewModel bc)
+        {
+            this.bc = bc;
+            ActualizarProveedor();
+        }
+
+        BuscarDocumentoViewModel bd;
+        public BuscadorProveedorViewModel(BuscarDocumentoViewModel bd)
+        {
+            this.bd = bd;
+            ActualizarProveedor();
+        }
+
 
         private MyWindowManager win = new MyWindowManager();
 
@@ -113,8 +126,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
             proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
 
-            if (p != null)
-            {
+            if (p != null) {
                 p.Prov = proveedorSeleccionado;
                 TryClose();
             }
@@ -128,6 +140,18 @@ namespace MadeInHouse.ViewModels.Compras
             if (cp != null)
             {
                 cp.Prov = proveedorSeleccionado;
+                TryClose();
+            }
+
+            if (bc != null)
+            {
+                bc.Prov = proveedorSeleccionado;
+                TryClose();
+            }
+
+            if (bd != null)
+            {
+                bd.Prov = proveedorSeleccionado;
                 TryClose();
             }
         }

@@ -72,7 +72,6 @@
                             HorizontalAlignment="Left" Margin="25,35,0,0" VerticalAlignment="Top" Width="160" Grid.Column="1" Grid.Row="1" Height="22"
                             IsEnabled="{Binding Editar}"/>
                         <ComboBox 
-                            
                             SelectedValue="{Binding Path=SelectedValueUnid,Mode=OneWayToSource}"
                             SelectedIndex="0"
                             ItemsSource="{Binding Path=LstUnidadMedida}"

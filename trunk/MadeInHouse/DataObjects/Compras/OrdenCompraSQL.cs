@@ -76,7 +76,7 @@ namespace MadeInHouse.DataObjects.Compras
                     where += " and o.estado = "+ Estado;
                 }
 
-                if (fechaIni != null)
+                if ((fechaIni != null) && (filters[3] != null))
                 {
 
 
@@ -84,7 +84,7 @@ namespace MadeInHouse.DataObjects.Compras
 
                 }
 
-                if (fechaFin != null)
+                if ((fechaFin != null) && (filters[4] != null))
                 {
 
                     where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,o.fechaReg,103) ";

@@ -1,6 +1,7 @@
 ﻿<UserControl 
      xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
-           x:Class="MadeInHouse.Views.Compras.BuscarCotizacionView"
+             x:Class="MadeInHouse.Views.Compras.BuscarCotizacionView"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -36,44 +37,36 @@
             </Button>
             
         </ToolBar>
-        <DataGrid Margin="11,201,0,0" HorizontalAlignment="Left" Width="527" Height="198" VerticalAlignment="Top">
+        <DataGrid IsReadOnly="True" x:Name="LstCotizacion"   
+                  cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
+                  Margin="11,206,0,-5" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="527" Height="198" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Proveedor"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Estado"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Fecha Registro"/>
+                        <DataGridTextColumn Binding="{Binding Path=CodCotizacion}" Width="90" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=Proveedor.RazonSocial}" Width="200" Header="Proveedor"/>
+                        <DataGridTextColumn Binding="{Binding Path=FechaInicio}" Width="120" Header="Fecha inicio"/>
+                        <DataGridTextColumn Binding="{Binding Path=FechaFin}" Width="120" Header="Fecha fin"/>
             </DataGrid.Columns>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
         </DataGrid>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260"/>
         <GroupBox Header="Criterios de Búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="528"/>
-        <Button  Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63" >
-           
+        <Button x:Name="BuscarCotizacion" Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63" > 
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="123,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="123,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="28,99,0,0" VerticalAlignment="Top"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Height="23" Margin="123,127,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Atendido" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
+        <ComboBox SelectedValue="{Binding Path=SelectedEst, Mode=OneWayToSource}"
+                  ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="123,127,0,0" VerticalAlignment="Top" Width="120">
         </ComboBox>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="126,161,0,0" VerticalAlignment="Top" Width="104"/>
-        <DatePicker HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="105"/>
-        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="31,161,0,0" VerticalAlignment="Top"/>
+        <DatePicker x:Name="TxtFechaRegistro" HorizontalAlignment="Left" Margin="126,161,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker x:Name="TxtFechaHasta" HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="105"/>
+        <Label Content="Fecha Limite:" HorizontalAlignment="Left" Margin="31,161,0,0" VerticalAlignment="Top"/>
         <Label Content="Hasta:" HorizontalAlignment="Left" Margin="256,161,0,0" VerticalAlignment="Top"/>
-    </Grid>
+        <Button x:Name="BuscarProveedor" Height="22" Margin="388,100,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="28" >
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="28" />
+        </Button>
+            </Grid>
         </StackPanel>
     </Border>
 </UserControl>

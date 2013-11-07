@@ -24,6 +24,10 @@ namespace MadeInHouse.ViewModels.Compras
         public BuscarCotizacionViewModel()
         {
             ActualizarCotizacion();
+            lstOpciones = new List<string>();
+            lstOpciones.Add("ATENDIDO");
+            lstOpciones.Add("PENDIENTE");
+            lstOpciones.Add("CANCELADO");
         }
 
 
@@ -35,14 +39,85 @@ namespace MadeInHouse.ViewModels.Compras
 
         private Cotizacion cotizacionSeleccionada;
 
+        CotizacionSQL eM = new CotizacionSQL();
 
+
+
+        private List<string> lstOpciones;
+
+        public List<string> LstOpciones
+        {
+            get { return lstOpciones; }
+            set { lstOpciones = value; NotifyOfPropertyChange(() => LstOpciones); }
+        }
+
+
+        private string selectedEst;
+
+        public string SelectedEst
+        {
+            get { return selectedEst; }
+            set { selectedEst = value; NotifyOfPropertyChange(() => SelectedEst); }
+        }
+
+        private string txtCodigo;
+
+        public string TxtCodigo
+        {
+            get { return txtCodigo; }
+            set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
+        }
+
+        private string txtProveedor;
+
+        public string TxtProveedor
+        {
+            get { return txtProveedor; }
+            set { txtProveedor = value; NotifyOfPropertyChange(() => TxtProveedor); }
+        }
+
+        private Proveedor prov;
+
+        public Proveedor Prov
+        {
+            get { return prov; }
+            set { prov = value; NotifyOfPropertyChange(() => Prov); }
+        }
+
+
+        private DateTime txtFechaRegistro = new DateTime(DateTime.Now.Year, 1,1);
+
+        public DateTime TxtFechaRegistro
+        {
+            get { return txtFechaRegistro; }
+            set { txtFechaRegistro = value; NotifyOfPropertyChange(() => TxtFechaRegistro); }
+        }
+
+        private DateTime txtFechaHasta = new DateTime(DateTime.Now.Year, 12, 31);
+
+        public DateTime TxtFechaHasta
+        {
+            get { return txtFechaHasta; }
+            set { txtFechaHasta = value; NotifyOfPropertyChange(() => TxtFechaHasta); }
+        }
+
+
+        private List<Cotizacion> lstCotizacion;
+
+        public List<Cotizacion> LstCotizacion
+        {
+            get { return lstCotizacion; }
+            set { lstCotizacion = value; NotifyOfPropertyChange(() => LstCotizacion); }
+        }
 
 
         //Funciones de la clase
 
         public void SelectedItemChanged(object sender)
         {
+            //cotizacionSeleccionada.Proveedor = new Proveedor();
             cotizacionSeleccionada = ((sender as DataGrid).SelectedItem as Cotizacion);
+            //MessageBox.Show("id = " + cotizacionSeleccionada.IdCotizacion + " prov = " + cotizacionSeleccionada.Proveedor.IdProveedor);
         }
 
         public void NuevaCotizacion()
@@ -60,7 +135,21 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void ActualizarCotizacion()
         {
+            LstCotizacion = eM.Buscar() as List<Cotizacion>;
+        }
 
+        public void BuscarCotizacion()
+        {
+            if (TxtProveedor != null)
+                TxtProveedor = Prov.CodProveedor;
+
+            LstCotizacion = eM.Buscar(TxtCodigo, TxtProveedor, SelectedEst, TxtFechaRegistro, TxtFechaHasta) as List<Cotizacion>;
+        }
+
+        public void BuscarProveedor()
+        {
+            MadeInHouse.Models.MyWindowManager w = new MadeInHouse.Models.MyWindowManager();
+            w.ShowWindow(new BuscadorProveedorViewModel(this));
         }
 
     }

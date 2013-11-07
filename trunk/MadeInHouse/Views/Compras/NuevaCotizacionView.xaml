@@ -41,13 +41,11 @@
         </DataGrid>
         <TextBox  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="110,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
         <GroupBox Header="Cotización:" Margin="10,46,14,0" Height="172" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="25,99,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Width="52"/>
-        <ComboBox HorizontalAlignment="Left" Height="23" Margin="110,127,0,0" VerticalAlignment="Top" Width="106">
-            <ComboBoxItem Content="Atendido" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
+        <ComboBox SelectedValue="{Binding Path=SelectedEst, Mode=OneWayToSource}"
+                  ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="110,127,0,0" VerticalAlignment="Top" Width="106">
         </ComboBox>
         <Button x:Name="BuscarProveedor" HorizontalAlignment="Left" Height="23" Margin="345,99,0,0" VerticalAlignment="Top" Width="26">
               <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="20" />

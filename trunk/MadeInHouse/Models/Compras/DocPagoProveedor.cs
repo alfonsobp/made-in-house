@@ -16,6 +16,15 @@ namespace MadeInHouse.Models.Compras
             get { return idDocPago; }
             set { idDocPago = value; }
         }
+
+        string codDoc;
+
+        public string CodDoc
+        {
+            get { return codDoc; }
+            set { codDoc = value; }
+        }
+
         int cantProductos;
 
         public int CantProductos
@@ -37,6 +46,16 @@ namespace MadeInHouse.Models.Compras
             get { return fechaRecepcion; }
             set { fechaRecepcion = value; }
         }
+
+        private DateTime fechaPago;
+
+        public DateTime FechaPago
+        {
+            get { return fechaPago; }
+            set { fechaPago = value; }
+        }
+
+
         DateTime fechaVencimiento;
 
         public DateTime FechaVencimiento
@@ -46,21 +65,21 @@ namespace MadeInHouse.Models.Compras
         }
         OrdenCompra ordenCompra;
 
-        internal OrdenCompra OrdenCompra
+        public OrdenCompra OrdenCompra
         {
             get { return ordenCompra; }
             set { ordenCompra = value; }
         }
         Proveedor proveedor;
 
-        internal Proveedor Proveedor
+        public Proveedor Proveedor
         {
             get { return proveedor; }
             set { proveedor = value; }
         }
-        int igv;
+        double igv;
 
-        public int Igv
+        public double Igv
         {
             get { return igv; }
             set { igv = value; }
@@ -85,6 +104,21 @@ namespace MadeInHouse.Models.Compras
         {
             get { return totalBruto; }
             set { totalBruto = value; }
+        }
+        double saldoPagado;
+
+        public double SaldoPagado
+        {
+            get { return saldoPagado; }
+            set { saldoPagado = value; }
+        }
+
+        private int estado;
+
+        public int Estado
+        {
+            get { return estado; }
+            set { estado = value; }
         }
     }
 }

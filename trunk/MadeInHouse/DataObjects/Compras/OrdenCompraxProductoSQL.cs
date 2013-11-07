@@ -77,9 +77,13 @@ namespace MadeInHouse.DataObjects.Compras
                     p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
                     p.Cantidad = reader["cantidad"].ToString();
                     p.IdOrden = id;
-                    p.PrecioUnitario = Convert.ToDouble(reader["PU"]);
-                    p.CantAtendida = Convert.ToInt32(reader["cantAtendida"]);
+                    p.PrecioUnitario = Convert.ToDouble(reader["PU"].ToString());
+                    p.Monto = p.PrecioUnitario * (Convert.ToInt32(p.Cantidad));
+                    p.CantAtendida = Convert.ToInt32(reader["cantAtendida"].ToString());
                     lst.Add(p);
+
+                    //MessageBox.Show("Detalle por producto: \nProducto = " + p.Producto.Nombre + "\ncant = " + p.Cantidad + 
+                                    //"\nPU = " + p.PrecioUnitario);
                 }
 
                 conn.Close();

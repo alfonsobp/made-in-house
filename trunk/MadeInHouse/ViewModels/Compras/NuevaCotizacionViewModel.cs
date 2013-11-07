@@ -38,9 +38,15 @@ namespace MadeInHouse.ViewModels.Compras
 
         public NuevaCotizacionViewModel(Cotizacion c, BuscarCotizacionViewModel m)
         {
-            prov.CodProveedor = c.Proveedor.CodProveedor;
+            Id = c.IdCotizacion;
+            prov = c.Proveedor;
             model = m;
             indicador = 2;
+            TxtCodigo = "COT-" + (c.IdCotizacion + 1000000).ToString();
+            TxtObservacion = c.Observacion;
+            //prov.CodProveedor = "PROV-" + (c.Proveedor.IdProveedor + 1000000).ToString();
+
+            LstProducto = csql.Buscar(c.IdCotizacion) as List<CotizacionxProducto>;
         }
 
 
@@ -76,6 +82,15 @@ namespace MadeInHouse.ViewModels.Compras
             get { return prov; }
             set { prov = value; NotifyOfPropertyChange(() => Prov); }
         }
+
+        private string txtCodigo;
+
+        public string TxtCodigo
+        {
+            get { return txtCodigo; }
+            set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
+        }
+
 
         private DateTime txtFechaResp = DateTime.Now;
 
@@ -138,11 +153,10 @@ namespace MadeInHouse.ViewModels.Compras
             Cotizacion c = new Cotizacion();
             c.Proveedor = new Proveedor();
 
+
             MessageBox.Show("idProv = " + prov.IdProveedor + " codProv = " + prov.CodProveedor + " rs = " + prov.RazonSocial);
 
-            c.Proveedor.IdProveedor = prov.IdProveedor;
-            c.Proveedor.RazonSocial = prov.RazonSocial;
-            c.Proveedor.CodProveedor = prov.CodProveedor;
+            c.Proveedor = prov;
 
             c.FechaInicio = TxtFechaIni;
             c.FechaFin = TxtFechaFin;
@@ -151,7 +165,6 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (c.Proveedor.CodProveedor != null)
             {
-                Id = usql.ObtenerMaximoID("Cotizacion", "idCotizacion");
                 int numCot = 1000000 + Id + 1;
                 string codCotizacion = "COT-" + numCot.ToString();
 
@@ -178,13 +191,23 @@ namespace MadeInHouse.ViewModels.Compras
 
                 if (indicador == 2)
                 {
-
+                   
+                    c.IdCotizacion = Id;
                     k = new CotizacionSQL().Actualizar(c);
+
+                    if (LstProducto != null)
+                    {
+                        for (i = 0; i < LstProducto.Count; i++)
+                        {
+                            LstProducto[i].IdCotizacion = Id;
+                            y = csql.InsertarValidado(LstProducto[i]);
+                        }
+                    }
 
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
                     else
-                        MessageBox.Show("Cotizacion Registrada \n\nCodigo = " + codCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
+                        MessageBox.Show("Cotizacion Editada \n\nCodigo = " + codCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
                                         " ("+ c.Proveedor.CodProveedor + ")" + "\nFecha respuesta = " + c.FechaRespuesta.ToString() + "\nFecha inicio = " + c.FechaInicio.ToString() +
                                         "\nFecha fin = " + c.FechaFin.ToString());
 

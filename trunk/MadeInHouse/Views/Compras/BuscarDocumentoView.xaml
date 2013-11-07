@@ -3,6 +3,7 @@
     x:Class="MadeInHouse.Views.Compras.BuscarDocumentoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
@@ -14,40 +15,33 @@
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Height="419">
-        <DataGrid Margin="11,206,10,0" Height="234" VerticalAlignment="Top">
+            <DataGrid   IsReadOnly="True" x:Name="LstDocsPago"   
+                        cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
+            Margin="11,206,0,-21" Height="234" VerticalAlignment="Top" HorizontalAlignment="Left" Width="575">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Código"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="180" Header="Proveedor"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Estado"/>
-                <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="130" Header="Fecha Registro"/>
+                        <DataGridTextColumn Binding="{Binding Path=IdDocPago}" Width="130" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=Proveedor.CodProveedor}" Width="180" Header="Proveedor"/>
+                        <DataGridTextColumn Binding="{Binding Path=Estado}" Width="130" Header="Estado"/>
+                        <DataGridTextColumn Binding="{Binding Path=FechaRecepcion}" Width="130" Header="Fecha Registro"/>
             </DataGrid.Columns>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
-            <Button/>
         </DataGrid>
-        <TextBox  Text="PROV-00123" HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <GroupBox Header="Criterios de Búsqueda" Margin="11,59,9,0" VerticalAlignment="Top" Height="137"/>
-        <Button Height="25" Margin="455,80,82,0" VerticalAlignment="Top">
+        <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <GroupBox Header="Criterios de Búsqueda" Margin="11,59,0,0" VerticalAlignment="Top" Height="137" HorizontalAlignment="Left" Width="576"/>
+        <Button x:Name="BuscarDocsPago" Height="25" Margin="488,80,49,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <TextBox Text ="DOC-00123" HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <Button x:Name="BuscarProveedor" Height="21" Margin="407,110,157,0" VerticalAlignment="Top">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="22" />
+        </Button>
+        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="146,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120">
-            <ComboBoxItem Content="Atendido" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Pendiente" HorizontalAlignment="Left" Width="118"/>
-            <ComboBoxItem Content="Cancelado" HorizontalAlignment="Left" Width="118"/>
+        <ComboBox SelectedValue="{Binding Path=SelectedEst, Mode=OneWayToSource}"
+          ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120">
         </ComboBox>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="27,138,0,0" VerticalAlignment="Top"/>
-        <DatePicker HorizontalAlignment="Left" Margin="146,166,0,0" VerticalAlignment="Top" Width="104"/>
-        <DatePicker HorizontalAlignment="Left" Margin="313,168,0,0" VerticalAlignment="Top" Width="105"/>
+        <DatePicker x:Name="TxtFechaDesde" HorizontalAlignment="Left" Margin="146,166,0,0" VerticalAlignment="Top" Width="104"/>
+        <DatePicker x:Name="TxtFechaHasta" HorizontalAlignment="Left" Margin="313,168,0,0" VerticalAlignment="Top" Width="105"/>
         <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="27,165,0,0" VerticalAlignment="Top"/>
         <Label Content="Hasta:" HorizontalAlignment="Left" Margin="266,166,0,0" VerticalAlignment="Top"/>
         <ToolBar VerticalAlignment="Top" Height="41">
@@ -79,12 +73,14 @@
             <Button Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
-            <Button Height="50" Width="50">
+            <Button x:Name="pagoParcial" Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/money.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
+                <Label Content="Monto a pagar:" HorizontalAlignment="Left" Margin="462,135,0,0" VerticalAlignment="Top" Width="101"/>
+                <TextBox x:Name="TxtPago" HorizontalAlignment="Left" Height="23" Margin="462,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
 
-    </Grid>
+            </Grid>
         </StackPanel>
     </Border>
 </UserControl>
