@@ -81,13 +81,13 @@
                     </Grid>
                 </GroupBox>
 
-                <DataGrid ItemsSource="{Binding Path=LstProductos,Mode=TwoWay}" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
+                <DataGrid x:Name="LstProductos" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodPro}" IsReadOnly="True" Header="Codigo" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=ProNombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=Can}" IsReadOnly="True" Header="Cantidad Pedido" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=CanAtend}" IsReadOnly="True" Header="Atendida" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=CantidadAtender,Mode=TwoWay}" Header="A ingresar" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" Header="A ingresar" Width="73"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

@@ -41,7 +41,7 @@ namespace MadeInHouse.Models.Almacen
         public string CanAtender
         {
             get { return canAtender; }
-            set { canAtender = value; }
+            set { canAtender = value;}
         }
     }
 }
