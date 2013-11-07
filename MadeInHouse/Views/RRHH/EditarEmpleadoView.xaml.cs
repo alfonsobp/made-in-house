@@ -52,6 +52,10 @@ namespace MadeInHouse.Views.RRHH
             TxtBanco.Text = grid[0].Banco;
             TxtCuentaBancaria.Text = grid[0].CuentaBancaria;
 
+            List<string> tiendas = new List<string>();
+            tiendas = DataObjects.RRHH.EmpleadoSQL.Tiendas();
+            CmbTienda.ItemsSource = tiendas;
+
         }
         public void GuardarDatos(object sender, RoutedEventArgs e)
         {

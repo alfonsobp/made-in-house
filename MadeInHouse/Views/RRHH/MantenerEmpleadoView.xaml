@@ -54,11 +54,6 @@
                                 <Label Content="Puesto:" HorizontalAlignment="Left" Margin="334,74,0,0" VerticalAlignment="Top" Width="49"/>
 
                                 <ComboBox Name="CmbTienda" HorizontalAlignment="Left" Margin="447,17,0,0" VerticalAlignment="Top" Width="120">
-                                    <ComboBoxItem Content="Comas" HorizontalAlignment="Left" Width="118"/>
-                                    <ComboBoxItem Content="Los Olivos" HorizontalAlignment="Left" Width="118"/>
-                                    <ComboBoxItem Content="Surquillo" HorizontalAlignment="Left" Width="118"/>
-                                    <ComboBoxItem Content="San Miguel" HorizontalAlignment="Left" Width="118"/>
-                                    <ComboBoxItem Content="San Isidro" HorizontalAlignment="Left" Width="118"/>
                                 </ComboBox>
                                 <ComboBox Name="CmbArea" HorizontalAlignment="Left" Margin="447,47,0,0" VerticalAlignment="Top" Width="120">
                                     <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>

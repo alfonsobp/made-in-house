@@ -69,7 +69,7 @@ namespace MadeInHouse.DataObjects.RRHH
             return k;
         }
         /****************************************** EMPLEADO ************************************/
-        public static List<Empleado> BuscarEmpleado(string nombre,string paterno,string dni,string area,string puesto,string tienda)
+        public static List<Empleado> BuscarEmpleado(string nombre, string paterno, string dni, string area, string puesto, string tienda)
         {
             List<Empleado> lstEmpleado = new List<Empleado>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
@@ -257,11 +257,11 @@ namespace MadeInHouse.DataObjects.RRHH
 
             cmd.CommandText = "update Empleado set sexo = @sexo,nombre = @nombre,apePaterno = @apePaterno,apeMaterno = @apeMaterno,telefono = @telefono,celular = @celular, " +
             "email = @email,estado = @estado,direccion = @direccion,referencia = @referencia,fechaNac = @fechaNac,tienda = @tienda,area = @area,puesto = @puesto,emailEmpresa = @emailEmpresa,sueldo = @sueldo, cuentaBancaria = @cuentaBancaria, banco = @banco where DNI = " + p.Dni;
-             
+
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            
-            
+
+
             cmd.Parameters.AddWithValue("@sexo", p.Sexo);
             cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             cmd.Parameters.AddWithValue("@apePaterno", p.ApePaterno);
@@ -272,7 +272,7 @@ namespace MadeInHouse.DataObjects.RRHH
             cmd.Parameters.AddWithValue("@email", p.EmailEmpleado);
             cmd.Parameters.AddWithValue("@emailEmpresa", p.EmailEmpresa);
 
-            
+
             cmd.Parameters.AddWithValue("@fechaNac", p.FechNacimiento);
             cmd.Parameters.AddWithValue("@direccion", p.Direccion);
             cmd.Parameters.AddWithValue("@referencia", p.Referecia);
@@ -302,5 +302,33 @@ namespace MadeInHouse.DataObjects.RRHH
             return k;
         }
 
+        public static List<string> Tiendas()
+        {
+            List<string> tiendas = new List<string>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "select nombre from tienda";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    string tienda;
+                    tienda = reader["nombre"].ToString();
+                    tiendas.Add(tienda);
+                }
+                conn.Close();
+            }
+            catch
+            {
+                MessageBox.Show("safs");
+            }
+            return tiendas;
+        }
     }
 }
