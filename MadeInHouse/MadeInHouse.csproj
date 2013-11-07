@@ -181,6 +181,7 @@
     <Compile Include="Models\Compras\ServicioxProducto.cs" />
     <Compile Include="Validacion\Error.cs" />
     <Compile Include="Validacion\Evaluador.cs" />
+    <Compile Include="ViewModels\Almacen\BuscarTiendaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerMotivoViewModel.cs" />
@@ -292,6 +293,9 @@
     <Compile Include="ViewModels\Ventas\VentaRegistrarViewModel.cs" />
     <Compile Include="Views\Almacen\BuscarNotasView.xaml.cs">
       <DependentUpon>BuscarNotasView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\BuscarTiendaView.xaml.cs">
+      <DependentUpon>BuscarTiendaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\BuscarTipoZonaView.xaml.cs">
       <DependentUpon>BuscarTipoZonaView.xaml</DependentUpon>
@@ -606,6 +610,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\BuscarNotasView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\BuscarTiendaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -188,6 +188,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     
                 }
                 db.cmd.Parameters.Clear();
+                reader.Close();
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -241,6 +242,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.CodigoProd = reader["codProducto"].ToString();
                 }
 
+                reader.Close();
                 conn.Close();
 
             }
@@ -292,6 +294,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.CodigoProd = reader["codProducto"].ToString();
                 }
 
+                reader.Close();
                 conn.Close();
 
             }
@@ -307,12 +310,25 @@ namespace MadeInHouse.DataObjects.Almacen
 
         #region Almacen
 
-        public List<ProductoxAlmacen> BuscarProductoxAlmacen()
+        public List<ProductoxAlmacen> BuscarProductoxTienda(int idTienda=-1,int idAlmacen=-1)
         {
             List<ProductoxAlmacen> lstPxa = null;
             ProductoxAlmacen pxa = null;
+            string where=" WHERE vigente=1";
 
-            db.cmd.CommandText = "SELECT B.nombre,A.* FROM AlmacenxProducto A join Producto B ON (A.idProducto=B.idProducto) WHERE vigente=1";
+            if (idTienda > 0)
+            {
+                where += " AND idTienda=@idTienda";
+                db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            }
+            if (idAlmacen > 0)
+            {
+                where += " AND idAlmacen=@idAlmacen";
+                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            }
+
+
+            db.cmd.CommandText = "SELECT B.nombre,B.codProducto,A.* FROM AlmacenxProducto A join Producto B ON (A.idProducto=B.idProducto) " + where;
             try
             {
                 db.conn.Open();
@@ -321,6 +337,8 @@ namespace MadeInHouse.DataObjects.Almacen
                 while (reader.Read())
                 {
                     pxa = new ProductoxAlmacen();
+                    pxa.CodProducto = reader["codProducto"].ToString();
+                    pxa.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : Int32.Parse(reader["idTienda"].ToString());
                     pxa.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     pxa.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : Int32.Parse(reader["idProducto"].ToString());
                     pxa.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1 : Int32.Parse(reader["stockActual"].ToString());
@@ -329,6 +347,10 @@ namespace MadeInHouse.DataObjects.Almacen
                     pxa.PrecioVenta = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? -1 : float.Parse(reader["precioVenta"].ToString());
                     lstPxa.Add(pxa);
                 }
+                db.cmd.Parameters.Clear();
+                reader.Close();
+                db.conn.Close();
+
 
             }
             catch (SqlException e)
@@ -378,7 +400,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
                         prodAlmacen.Add(prod);
                     }
-
+                    reader.Close();
                     db.conn.Close();
                 }
                 catch (SqlException e)
@@ -398,8 +420,8 @@ namespace MadeInHouse.DataObjects.Almacen
         {
 
            
-            db.cmd.CommandText = "INSERT INTO AlmacenxProducto (idProducto,idAlmacen,stockActual,stockMin,stockMax,precioVenta,vigente) " +
-                            "VALUES (@idProducto,@idAlmacen,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente) ";
+            db.cmd.CommandText = "INSERT INTO AlmacenxProducto (idProducto,idAlmacen,stockActual,stockMin,stockMax,precioVenta,vigente,idTienda) " +
+                            "VALUES (@idProducto,@idAlmacen,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente,@idTienda) ";
             db.cmd.Parameters.AddWithValue("@idProducto", pxa.IdProducto);
             db.cmd.Parameters.AddWithValue("@idAlmacen", pxa.IdAlmacen);
             db.cmd.Parameters.AddWithValue("@stockActual", pxa.StockActual);
@@ -407,6 +429,7 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@stockMax", pxa.StockMax);
             db.cmd.Parameters.AddWithValue("@precioVenta", pxa.PrecioVenta);
             db.cmd.Parameters.AddWithValue("@vigente", pxa.Vigente);
+            db.cmd.Parameters.AddWithValue("@idTienda", pxa.IdTienda);
 
             try
             {

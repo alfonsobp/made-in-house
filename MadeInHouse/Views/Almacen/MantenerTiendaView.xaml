@@ -51,6 +51,10 @@
                 <TabControl Margin="0,47,0,0">
                     <TabItem Header="Información general" Background="White">
                         <Grid Background="White" Margin="0,0,0,-3">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="23*"/>
+                                <RowDefinition Height="26*"/>
+                            </Grid.RowDefinitions>
                             <Label Content="Nombre:" HorizontalAlignment="Left" Margin="49,57,0,0" VerticalAlignment="Top"/>
                             <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="142,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
                             <Label Content="Administrador:" HorizontalAlignment="Left" Margin="46,100,0,0" VerticalAlignment="Top" Width="96"/>
@@ -61,7 +65,7 @@
                             <ComboBox ItemsSource="{Binding CmbDpto}"
         						SelectedValue="{Binding SelectedDpto, Mode=OneWayToSource}"
         						DisplayMemberPath="Nombre"
-                                 SelectedIndex="0"
+                                 SelectedIndex="{Binding Path=Index1,FallbackValue=0}"
         						SelectedValuePath="CodDpto"
                                 HorizontalAlignment="Left" 
         						Margin="627,57,0,0" 
@@ -73,7 +77,7 @@
                             <ComboBox 
                                 ItemsSource="{Binding CmbProv}"
         						SelectedValue="{Binding SelectedProv, Mode=OneWayToSource}"
-        						SelectedIndex="0"
+        						SelectedIndex="{Binding Path=Index2,FallbackValue=0}"
         						DisplayMemberPath="Nombre"
         						SelectedValuePath="CodProv" 
         						HorizontalAlignment="Left" Margin="627,104,0,0" VerticalAlignment="Top" Width="160"/>
@@ -81,12 +85,12 @@
                             <ComboBox 
                                 ItemsSource="{Binding CmbDist}"
                                 SelectedValue="{Binding SelectedDist,Mode=OneWayToSource}"
-                                SelectedIndex="0"
+                                SelectedIndex="{Binding Path=Index3,FallbackValue=0}"
                                 DisplayMemberPath="Nombre"
                                 SelectedValuePath="CodDist"
                                 HorizontalAlignment="Left" Margin="627,148,0,0" VerticalAlignment="Top" Width="160"/>
-                            <Label Content="Dirección:" HorizontalAlignment="Left" Margin="507,193,0,0" VerticalAlignment="Top" Width="94"/>
-                            <TextBox x:Name="TxtDir" HorizontalAlignment="Left" Height="66" Margin="627,193,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                            <Label Content="Dirección:" HorizontalAlignment="Left" Margin="507,193,0,0" VerticalAlignment="Top" Width="94" Grid.RowSpan="2"/>
+                            <TextBox x:Name="TxtDir" HorizontalAlignment="Left" Height="66" Margin="627,193,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" Grid.RowSpan="2"/>
 
                         </Grid>
                     </TabItem>
@@ -155,7 +159,7 @@
                             <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94"/>
                             <TextBox x:Name="TxtAlturaAnq" HorizontalAlignment="Left" Height="23" Margin="172,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
 
-                            <Button x:Name="boton1" Content="Generar distribución" 
+                            <Button x:Name="boton1" Content="{Binding Content}" 
                             HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42"
                                 cal:Message.Attach="[Event Click] = [Action Distribuir(0)]" />
                             <ComboBox
@@ -166,7 +170,7 @@
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top" Width="75"/>
 
                             <ScrollViewer  HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
-                                <grid:DynamicGrid x:Name="Anaquel"  IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" NumColumns="{Binding NumColumnsAnq}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <grid:DynamicGrid x:Name="Anaquel" Altura="{Binding AlturaAnq}" IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" NumColumns="{Binding NumColumnsAnq}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 </grid:DynamicGrid>
                             </ScrollViewer>
                             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530"/>
@@ -186,7 +190,7 @@
                             <TextBox x:Name="TxtNumColumnsDto" HorizontalAlignment="Left" Height="23" Margin="30,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
                             <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
                             <TextBox x:Name="TxtAlturaDto" HorizontalAlignment="Left" Height="23" Margin="30,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                            <Button x:Name="boton2" Content="Generar distribución" 
+                            <Button x:Name="boton2" Content="{Binding Content}" 
                             HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42" Grid.ColumnSpan="2"
                                 cal:Message.Attach="[Event Click] = [Action Distribuir(1)]" />
 
@@ -197,7 +201,7 @@
                         HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top" Width="450" Grid.Column="1"/>
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
                             <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible" Grid.Column="1">
-                                <grid:DynamicGrid x:Name="Deposito" IdZona="{Binding ZonaDeposito}"  NumRows="{Binding NumRowsDto}" NumColumns="{Binding NumColumnsDto}"  Background="{Binding Fondo,FallbackValue=Red}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <grid:DynamicGrid x:Name="Deposito" IdZona="{Binding ZonaDeposito}" Altura="{Binding AlturaDto}" NumRows="{Binding NumRowsDto}" NumColumns="{Binding NumColumnsDto}"  Background="{Binding Fondo,FallbackValue=Red}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             </ScrollViewer>
                             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530"/>
                         </Grid>

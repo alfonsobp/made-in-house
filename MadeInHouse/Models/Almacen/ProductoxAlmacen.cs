@@ -77,6 +77,16 @@ namespace MadeInHouse.Models.Almacen
             set { vigente = value; }
         }
 
+        private int idTienda;
+
+        public int IdTienda
+        {
+            get { return idTienda; }
+            set { idTienda = value; }
+        }
+
+
+
 
         
     }

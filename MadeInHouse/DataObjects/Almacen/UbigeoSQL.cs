@@ -14,9 +14,19 @@ namespace MadeInHouse.DataObjects.Almacen
 
         
         private DBConexion db;
+        private bool tipo = true;
 
-        public UbigeoSQL(){
-            db = new DBConexion();
+        public UbigeoSQL(DBConexion db = null){
+            
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else
+            {
+                this.db = db;
+                tipo = false;
+            }
         }
 
 
@@ -32,7 +42,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
             try
             {
-                db.conn.Open();
+                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -46,8 +56,10 @@ namespace MadeInHouse.DataObjects.Almacen
 
                     listaDpto.Add(p);
                 }
-                
+
+                reader.Close();
                 db.conn.Close();
+                
             }
             catch (SqlException e)
             {
@@ -88,6 +100,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     listaProv.Add(p);
                 }
                 db.cmd.Parameters.Clear();
+                reader.Close();
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -131,6 +144,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 }
 
                 db.cmd.Parameters.Clear();
+                reader.Close();
                 db.conn.Close();
             }
             catch (SqlException e)
@@ -143,6 +157,66 @@ namespace MadeInHouse.DataObjects.Almacen
             }
 
             return listaDist;
+        }
+
+        public List<Ubigeo> buscarUbigeo2(int idUbigeo=-1,string codDpto = null, string codProv = null, string codDist = null)
+        {
+            List<Ubigeo> lstUbigeo = new List<Ubigeo>();
+            
+            string where=" WHERE 1=1 ";
+            if (idUbigeo > 0)
+            {
+                where +=" AND idUbigeo=@idUbigeo";
+                db.cmd.Parameters.AddWithValue("@idUbigeo", idUbigeo);
+            }
+
+            if (!String.IsNullOrEmpty(codDpto)) {
+                where += "AND codDpto=@codDpto ";
+                db.cmd.Parameters.AddWithValue("@codDpto", codDpto);
+            }
+
+            if (!String.IsNullOrEmpty(codProv))
+            {
+                where += " AND codProv=@codProv ";
+                db.cmd.Parameters.AddWithValue("@codProv", codProv);
+            }
+
+            if (!String.IsNullOrEmpty(codDist))
+            {
+                where += " AND codDist=@codDist";
+                db.cmd.Parameters.AddWithValue("@codDist",codDist);
+            }
+
+            db.cmd.CommandText = "SELECT * FROM Ubigeo "+ where;
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Ubigeo u = new Ubigeo();
+                    u.IdUbigeo=int.Parse(reader["idUbigeo"].ToString());
+                    u.CodDpto=reader["codDpto"].ToString();
+                    u.CodProv=reader["codProv"].ToString();
+                    u.CodDist=reader["codDist"].ToString();
+                    u.Nombre = reader["nombre"].ToString();
+                    lstUbigeo.Add(u);
+                }
+                db.cmd.Parameters.Clear();
+                reader.Close();
+                db.conn.Close();
+            }catch (SqlException e) {
+                Console.WriteLine(e);
+                return null;
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.StackTrace.ToString());
+                return null;
+            }
+
+            return lstUbigeo;
+
         }
 
 
@@ -161,7 +235,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
 
                 while (reader.Read())
@@ -174,7 +248,9 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 }
 
-                db.conn.Close();
+                reader.Close();
+                if (tipo) db.conn.Close();
+                
             }
             catch (SqlException e)
             {

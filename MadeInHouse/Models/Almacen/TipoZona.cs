@@ -39,6 +39,31 @@ namespace MadeInHouse.Models.Almacen
             get { return idColor; }
             set { idColor = value; }
         }
+
+        private int nroBloquesDisp;
+
+        public int NroBloquesDisp
+        {
+            get { return nroBloquesDisp; }
+            set { nroBloquesDisp = value; }
+        }
+
+        private int nroBloquesTotal;
+
+        public int NroBloquesTotal
+        {
+            get { return nroBloquesTotal; }
+            set { nroBloquesTotal = value; }
+        }
+
+
+        private List<Ubicacion> lstUbicaciones;
+
+        public List<Ubicacion> LstUbicaciones
+        {
+            get { return lstUbicaciones; }
+            set { lstUbicaciones = value; }
+        }
     
     }   
 

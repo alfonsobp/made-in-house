@@ -1,0 +1,101 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.BuscarTiendaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="606.134" d:DesignWidth="750">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Buscador de tiendas" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button ToolTip="Nueva tienda">
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Deshabilitar tienda">
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Limpiar búsqueda" x:Name="Limpiar">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Refrescar búsqueda">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Height="30" Width="30" />
+                    </Button>
+                </ToolBar>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox x:Name="Busqueda" Header="Criterios de búsqueda" Margin="10">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Departamento:" VerticalAlignment="Center" />
+                            <Label Content="Provincia:" VerticalAlignment="Center" Grid.Column="2" />
+                            <Label Content="Distrito:" VerticalAlignment="Center" Grid.Column="4" />
+                            <ComboBox 
+                                
+                                SelectedValue="{Binding Path=SelectedDpto, Mode=OneWayToSource}"
+                                ItemsSource="{Binding Path=CmbDpto}"
+                                SelectedIndex="{Binding Path=Index1}"
+                                DisplayMemberPath="Nombre" SelectedValuePath="CodDpto"
+                                Grid.Column="1" Height="25" Width="150" Margin="4" />
+                            <ComboBox
+                                SelectedValue="{Binding Path=SelectedProv, Mode=OneWayToSource}"
+                                ItemsSource="{Binding Path=CmbProv}"
+                                SelectedIndex="{Binding Path=Index2}"
+                                DisplayMemberPath="Nombre" SelectedValuePath="CodProv"
+                                Margin="4" Height="25" Width="150" Grid.Column="3" />
+                            <ComboBox
+                                SelectedValue="{Binding Path=SelectedDist, Mode=OneWayToSource}"
+                                ItemsSource="{Binding Path=CmbDist}"
+                                SelectedIndex="{Binding Path=Index3}"
+                                DisplayMemberPath="Nombre" SelectedValuePath="CodDist"
+                                Margin="4" Height="25"  Width="150" Grid.Column="5" />
+                            <Button x:Name="BuscarTiendas" Margin="4" Height="25" Width="60" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right">
+                                <Image Source="/Assets/find.png" Height="20" Width="50" />
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                    <DataGrid
+                        Width="{Binding ElementName=Busqueda, Path=ActualWidth }"
+                        cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
+                        x:Name="LstTiendas"
+                        SelectedItem="{Binding TiendaSel, Mode=TwoWay}"
+                        Margin="10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" MaxHeight="160">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="9*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
+                            <DataGridTextColumn Width="8*" Binding="{Binding Path=Telefono}"  Header="Teléfono"/>
+                            <DataGridTextColumn Width="20*" Binding="{Binding Path=Direccion}"  Header="Dirección"/>
+                            <DataGridTextColumn Width="13*" Binding="{Binding Path=Administrador}"  Header="Administrador"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Border>
+</UserControl>

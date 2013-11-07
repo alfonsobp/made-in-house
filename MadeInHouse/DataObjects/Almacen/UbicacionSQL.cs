@@ -57,6 +57,51 @@ namespace MadeInHouse.DataObjects.Almacen
             return 1;
         }
 
+         public List<Ubicacion> ObtenerUbicaciones(int idAlmacen=-1,int idTipoZona=-1)
+        {
+            List<Ubicacion> lstUbicaciones=null;
+            db.cmd.CommandText = "SELECT A.* FROM Ubicacion A" +
+                " WHERE A.idAlmacen=@idAlmacen and A.idTipoZona=@idTipoZona";
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            db.cmd.Parameters.AddWithValue("@idTipoZona", idTipoZona);
+            
+             try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                lstUbicaciones = new List<Ubicacion>();
+                while (reader.Read())
+                {
+                    Ubicacion u = new Ubicacion();
+                    u.IdUbicacion = int.Parse(reader["idUbicacion"].ToString());
+                    u.IdAlmacen = idAlmacen;
+                    u.IdTipoZona = idTipoZona;
+                    u.IdProducto = int.Parse(reader["idProducto"].ToString());
+                    u.CordX = int.Parse(reader["cordX"].ToString());
+                    u.CordY=int.Parse(reader["cordY"].ToString());
+                    u.CordZ = int.Parse(reader["cordZ"].ToString());
+                    u.Cantidad = int.Parse(reader["cantidad"].ToString());
+                    u.VolOcupado = int.Parse(reader["volOcupado"].ToString());
+                    lstUbicaciones.Add(u);
+
+                }
+
+                reader.Close();
+                db.conn.Close();
+                db.cmd.Parameters.Clear();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e) {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+
+            return lstUbicaciones;
+        }
 
 
     }
