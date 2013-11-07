@@ -11,6 +11,24 @@ namespace MadeInHouse.ViewModels.Almacen
     class PosicionProductoViewModel : PropertyChangedBase
     {
         ProductoCant lstProductos;
+        private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
+        private int p;
+
+        public PosicionProductoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.p = p;
+        }
+
+        public PosicionProductoViewModel()
+        {
+            
+            mantenerNotaDeIngresoViewModel.Almacen.First();
+   
+            // TODO: Complete member initialization
+        
+        }
 
         internal ProductoCant LstProductos
         {
