@@ -10,7 +10,6 @@ namespace MadeInHouse.Models.Compras
     class OrdenCompra
     {
 
-
         int idOrden;
 
         public int IdOrden

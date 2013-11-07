@@ -267,7 +267,7 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[23] == 1)
             {
-                Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel { DisplayName = "Registrar Documentos" };
+                Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel();
                 _windowManager.ShowWindow(obj);
             }
         }
@@ -277,7 +277,10 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[24] == 1)
-                _windowManager.ShowWindow(new Compras.BuscarDocumentoViewModel { DisplayName = "Buscador Documentos de  Pago" });
+            {
+                Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel();
+                _windowManager.ShowWindow(obj);
+            }
         }
 
 
@@ -821,19 +824,21 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(obj);
         }
 
-        //Ventana Externa: 2.8
-        public void AbrirGenerarOrdenCompra()
-        {
-            Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" };
-            win.ShowWindow(obj);
-        }
-
         //Ventana Externa: 2.9
         public void AbrirBuscarOrdenCompra()
         {
-            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel { DisplayName = "Buscador Orden de compra" };
+            Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel();
             win.ShowWindow(obj);
         }
+
+        //Ventana Externa: 2.10
+        public void AbrirNuevaCotizacion()
+        {
+            Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel();
+            win.ShowWindow(obj);
+        }
+                    win.ShowWindow(obj);
+                }
 
         //Ventana Externa: 2.10
         public void AbrirNuevaCotizacion()
@@ -842,18 +847,17 @@ namespace MadeInHouse.ViewModels
             win.ShowWindow(obj);
         }
 
-        //Ventana Externa: 2.11
-        public void AbrirBuscarCotizacion()
-        {
-            Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel { DisplayName = "Buscador Cotizaciones" };
-            win.ShowWindow(obj);
-        }
-
         //Ventana Externa: 2.12
         public void AbrirRegistrarDocumentos()
         {
-            Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel { DisplayName = "Registrar Documentos" };
+            Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel();
             win.ShowWindow(obj);
+        }
+
+        //Ventana Externa: 2.13
+        public void AbrirBuscarDocumentos()
+        {
+            win.ShowWindow(new Compras.BuscarDocumentoViewModel());
         }
 
         //Ventana Externa: 2.13

@@ -16,7 +16,17 @@ namespace MadeInHouse.Models.Compras
             set { idCotizacion = value; }
         }
 
+        string codCotizacion;
+
+        public string CodCotizacion
+        {
+            get { return codCotizacion; }
+            set { codCotizacion = value; }
+        }
+
+
         int estado;
+        //0=cancelado, 1=pendiente, 2=atendido;
 
         public int Estado
         {

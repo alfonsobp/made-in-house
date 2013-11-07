@@ -1,12 +1,19 @@
-﻿using Caliburn.Micro;
-using MadeInHouse.DataObjects.Compras;
-using MadeInHouse.Models;
-using MadeInHouse.Models.Compras;
+﻿using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Caliburn.Micro;
+using MadeInHouse.Views.Compras;
+using System.Windows;
+using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models;
+using System.Data.OleDb;
+using System.Data;
+using MadeInHouse.Models.Compras;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -89,6 +96,30 @@ namespace MadeInHouse.ViewModels.Compras
            
         private MyWindowManager win = new MyWindowManager();
 
+        public BuscarOrdenCompraViewModel()
+        {
+           
+        }
+
+        registrarDocumentosViewModel r;
+        public BuscarOrdenCompraViewModel(registrarDocumentosViewModel r)
+        {
+            this.r = r;
+        }
+
+        private OrdenCompra ordenSeleccionada;
+        public void SelectedItemChanged(object sender)
+        {
+            ordenSeleccionada = ((sender as DataGrid).SelectedItem as OrdenCompra);
+
+            if (r != null)
+            {
+                r.Ord = ordenSeleccionada;
+                TryClose();
+            }
+        }
+
+
         public void NuevaOrden()
         {
             Compras.generarOrdenCompraViewModel obj = new Compras.generarOrdenCompraViewModel ();
@@ -112,10 +143,7 @@ namespace MadeInHouse.ViewModels.Compras
             this.ventanaAccion = accionVentana;
         }
 
-        public BuscarOrdenCompraViewModel()
-        {
-            // TODO: Complete member initialization
-        }
+        
         
         #endregion
 
