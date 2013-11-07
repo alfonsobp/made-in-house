@@ -9,6 +9,7 @@ using MadeInHouse.Models;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.DataObjects;
 using System.Windows.Forms;
+using MadeInHouse.Validacion;
 
 namespace MadeInHouse.ViewModels.Compras
 {
@@ -156,7 +157,12 @@ namespace MadeInHouse.ViewModels.Compras
         
         }
 
-        public generarOrdenCompraViewModel() { }
+        public generarOrdenCompraViewModel() {
+            Lst = new List<ProductoxOrdenCompra>();
+            model=null;
+            FechaAtencion = DateTime.Now;
+        
+        }
 
         public generarOrdenCompraViewModel(BuscarOrdenCompraViewModel model) {
 
@@ -214,6 +220,58 @@ namespace MadeInHouse.ViewModels.Compras
         
         }
 
+        public bool Validar(OrdenCompra o) {
+
+
+            if (String.IsNullOrEmpty(o.Observaciones))
+            {
+                MessageBox.Show("AVISO", "Hay campos Vacios,Corregir", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return false;
+            }
+            if (o.Proveedor == null) {
+
+
+                MessageBox.Show("AVISO", "No ha Seleccionado un proveedor..", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                return false;
+            }
+
+            if (o.LstProducto.Count == 0) {
+
+                MessageBox.Show("AVISO", "No ha Ingresado Productos..", MessageBoxButtons.OK,  MessageBoxIcon.Exclamation);
+                return false;
+            
+            }
+
+
+            foreach (ProductoxOrdenCompra oc in o.LstProducto) {
+                Evaluador e = new Evaluador();
+
+
+                if (!e.esNumeroEntero(oc.Cantidad))
+                {
+                    MessageBox.Show(Error.esNumero.mensaje, Error.esNumero.titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+
+                }
+
+                if(!e.esPositivo(Convert.ToInt32(oc.Cantidad) )){
+                
+                    MessageBox.Show(Error.esNegativo.mensaje, Error.esNegativo.titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                
+                }
+
+
+
+            
+            }
+
+
+            return true;
+        
+        }
+
         public void Guardar() {
 
             
@@ -225,52 +283,75 @@ namespace MadeInHouse.ViewModels.Compras
             o.Observaciones = Observaciones;
             o.FechaSinAtencion = FechaAtencion;
             o.Proveedor = Prov;
-            
 
-            OrdenCompraSQL oSQL = new OrdenCompraSQL();
-            OrdenCompraxProductoSQL opSQL = new OrdenCompraxProductoSQL();
-
-            if (esNuevo)
+            if (Validar(o))
             {
-                o.Estado = 2;
-                oSQL.Agregar(o);
 
-                int id = new UtilesSQL().ObtenerMaximoID("OrdenCompra","idOrden");
+                OrdenCompraSQL oSQL = new OrdenCompraSQL();
+                OrdenCompraxProductoSQL opSQL = new OrdenCompraxProductoSQL();
 
-                foreach (ProductoxOrdenCompra oc in o.LstProducto) {
-                    oc.IdOrden = id;
-                    opSQL.Agregar(oc);
-                
-                }
-
-            }
-            else
-            {
-                o.Estado = estado;
-
-                oSQL.Actualizar(o);
                
 
-
-                if (estado == 1){
-
+                if (esNuevo)
+                {
                     o.Estado = 2;
-                    oSQL.Actualizar(o);             
-                    opSQL.Eliminar(o);
+                    oSQL.Agregar(o);
+
+                    int id = new UtilesSQL().ObtenerMaximoID("OrdenCompra", "idOrden");
 
                     foreach (ProductoxOrdenCompra oc in o.LstProducto)
                     {
-                        oc.IdOrden = idOrden;
+                        oc.IdOrden = id;
                         opSQL.Agregar(oc);
 
                     }
 
+                    MessageBox.Show("Se Generó Exitosamente la nueva Orden de Compra", "ORDEN COMPRA GENERADA", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
+                    if (model != null)
+                    {
+                        model.Buscar();
+                    }
+                    
+                    this.TryClose();
+
                 }
+                else
+                {
+                    o.Estado = estado;
+
+                    oSQL.Actualizar(o);
+
+
+
+                    if (estado == 1)
+                    {
+                        o.Estado = 2;
+                        oSQL.Actualizar(o);
+                        opSQL.Eliminar(o);
+                        foreach (ProductoxOrdenCompra oc in o.LstProducto)
+                        {
+                            oc.IdOrden = idOrden;
+                            opSQL.Agregar(oc);
+
+                        }
+                    }
+
+
+                    MessageBox.Show("Se Editó adecuadamente la Orden de Compra", "ORDEN COMPRA EDITADA", MessageBoxButtons.OK,   MessageBoxIcon.Information);
+
+                    if (model != null)
+                    {
+                        model.Buscar();
+                    }
+                    this.TryClose();
+
+
+
+
+                }
+
             }
-        
-        
         }
 
 
