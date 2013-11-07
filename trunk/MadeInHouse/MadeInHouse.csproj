@@ -160,6 +160,7 @@
     <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Models\Seguridad\EstadoHabilitado.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
+    <Compile Include="Models\Ventas\Proforma.cs" />
     <Compile Include="Models\Ventas\Venta.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
