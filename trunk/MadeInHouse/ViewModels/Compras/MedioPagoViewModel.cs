@@ -68,7 +68,8 @@ namespace MadeInHouse.ViewModels.Compras
        foreach (Proveedor p in LstProveedor){
 
            OrdenCompra o = new OrdenCompra(idAlmacen, p, "Entregar a la brevedad posible");
-           
+           o.Estado = 1;
+
            oSQL.Agregar(o);
 
            int idOrden = u.ObtenerMaximoID("OrdenCompra", "idOrden");

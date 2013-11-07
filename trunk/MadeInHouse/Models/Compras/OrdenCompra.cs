@@ -33,9 +33,9 @@ namespace MadeInHouse.Models.Compras
             set { fechaReg = value; }
         }
 
-        string fechaSinAtencion;
+        DateTime fechaSinAtencion = DateTime.Now;
 
-        public string FechaSinAtencion
+        public DateTime FechaSinAtencion
         {
             get { return fechaSinAtencion; }
             set { fechaSinAtencion = value; }

@@ -115,7 +115,7 @@ namespace MadeInHouse.DataObjects.Compras
             ProductoxOrdenCompra c = entity as ProductoxOrdenCompra;
 
             db.cmd.CommandText = "DELETE FROM  OrdenCompraxProducto" +
-                                 "WHERE  idOrden = @idOrden";
+                                 " WHERE  idOrden = @idOrden";
 
             db.cmd.Parameters.AddWithValue("@idOrden", id);
          

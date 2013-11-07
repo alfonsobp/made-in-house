@@ -12,29 +12,25 @@
 
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="455">
         <Label Content="Orden de compra :" HorizontalAlignment="Left" Height="31" Margin="18,69,0,0" VerticalAlignment="Top" Width="205"/>
-        <DataGrid Height="149" Margin="17,188,97,0" VerticalAlignment="Top">
+        <DataGrid  SelectedItem="{Binding Path=DetalleSelected}" AutoGenerateColumns="False" CanUserAddRows="False" x:Name="Lst" Height="149" Margin="17,188,98,0" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn CanUserResize="false" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Código Comercial" Width="110"/>         
-                <DataGridTextColumn CanUserResize="False" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Descripción" Width="200"/>
-                <DataGridTextColumn  CanUserResize="False" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad"/>
-                <DataGridTextColumn CanUserResize="False" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="PU ( S/. )" Width="100"/>             
-            </DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="true" CanUserResize="false" Binding="{Binding Path=Producto.CodigoProd}"  Header="Código " Width="110"/>         
+                <DataGridTextColumn IsReadOnly="True" CanUserResize="False" Binding="{Binding Path=Producto.Nombre}"  Header="Descripción" Width="250"/>
+                        <DataGridTextColumn IsReadOnly="True"  CanUserResize="False" Binding="{Binding Path=CantAtendida}" Header="Cant Atendida" Width="100"/>
+                        <DataGridTextColumn IsReadOnly="true" CanUserResize="False" Binding="{Binding Path=PrecioUnitario}"  Header="PU ( S/. )" Width="100"/>
+                        <DataGridTextColumn  CanUserResize="False" Binding="{Binding Path=Cantidad}" Header="Cantidad" Width="100"/>
+                    </DataGrid.Columns>
                 </DataGrid>
         <Label Content="Proveedor:&#xD;&#xA;" HorizontalAlignment="Left" Margin="18,117,0,0" VerticalAlignment="Top"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="23,149,0,0" VerticalAlignment="Top" Width="68"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="91,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" Text="LADRILLOS DIAZ S.A. "/>
-        <TextBox IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="91,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" Text="PROV-0024"/>
-        <Label Content="Medio de pago:" HorizontalAlignment="Left" Margin="338,113,0,0" VerticalAlignment="Top"/>
-        <Label Content="Fecha Emisión:" HorizontalAlignment="Left" Margin="338,146,0,0" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Path=Prov.RazonSocial}" IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="91,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="227" />
+                <TextBox Text="{Binding Path=Prov.CodProveedor}" IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="91,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="122" />
+        <Label Content="Medio de pago:" HorizontalAlignment="Left" Margin="396,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Fecha Atencion" HorizontalAlignment="Left" Margin="418,145,0,0" VerticalAlignment="Top"/>
         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="25,342,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="25,373,0,26" TextWrapping="Wrap" Width="293"/>
-        <TextBox IsEnabled="false" Margin="540,373,0,51" TextWrapping="Wrap" HorizontalAlignment="Left" Width="127"/>
-        <Label Content="Total Bruto:" Height="26" Margin="0,347,188,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="92"/>
-        <GroupBox Header="Detalle" Height="82" VerticalAlignment="Top" Margin="10,101,10,0" RenderTransformOrigin="0.5,0.5"/>
-        <ComboBox HorizontalAlignment="Left" Margin="434,117,0,0" VerticalAlignment="Top" Width="156">
-            <ComboBoxItem Content="FACTURA"/>
-            <ComboBoxItem Content="BOLETA"/>
-        </ComboBox>
+        <TextBox x:Name="Observaciones" HorizontalAlignment="Left" Margin="25,368,0,31" TextWrapping="Wrap" Width="439"/>
+             
+       
         <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -42,37 +38,29 @@
                     <GradientStop Color="Snow" Offset="1"/>
                 </LinearGradientBrush>
             </ToolBar.Background>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button>
+            <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button x:Name="Guardar">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>
                 <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
             </Button>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
-            </Button>
-            <Button Height="50" Width="50">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-            </Button>
-        </ToolBar>
+            <Button Height="30" Width="30"/>
+                    <Button Height="50" Width="50"/>
+                </ToolBar>
         <Menu HorizontalAlignment="Left" Height="4" Margin="638,145,-41,0" VerticalAlignment="Top" Width="3">
             <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Width="156"/>
         </Menu>
-        <DatePicker  HorizontalAlignment="Left" Margin="434,146,0,0" VerticalAlignment="Top" Width="156"/>
-        <TextBox  IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="144,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Text="OC-98000012"/>
-                <Button Content="" HorizontalAlignment="Left" Margin="218,149,0,0" VerticalAlignment="Top" Width="28" Height="26"/>
-                <Button Content="-" HorizontalAlignment="Left" Margin="705,284,0,0" VerticalAlignment="Top" Width="41" Height="35"/>
-                <Button Content="+" HorizontalAlignment="Left" Margin="705,218,0,0" VerticalAlignment="Top" Width="41" Height="35"/>
-                <Label Content="S/." HorizontalAlignment="Left" Margin="498,378,0,0" VerticalAlignment="Top"/>
+                <DatePicker IsEnabled="{Binding Path=EsEditableFecha}" x:Name="FechaAtencion" HorizontalAlignment="Left" Margin="524,146,0,0" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="CodOrden" IsEnabled="false" HorizontalAlignment="Left" Height="27" Margin="144,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" />
+                <Button IsEnabled="{Binding BuscarDispo }" x:Name="Buscar" HorizontalAlignment="Left" Margin="218,149,0,0" VerticalAlignment="Top" Width="28" Height="26">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="28" />
+                </Button>
+                <Button IsEnabled="{Binding Path=EsEditable}" x:Name="Quitar" Content="-" Margin="705,284,32,0" VerticalAlignment="Top" Height="35" FontSize="20"/>
+                <Button IsEnabled="{Binding Path=EsEditable}"  x:Name="Agregar" Content="+" Margin="705,218,32,0" VerticalAlignment="Top" Height="35" FontSize="20"/>
+                <ComboBox IsEnabled="{Binding Path=EsEditable}"  x:Name="LstEstados" SelectedItem="{Binding Path=EstadoSelected}" Margin="524,113,98,0" VerticalAlignment="Top" Width="156" Height="26"/>
 
 
 

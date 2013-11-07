@@ -25,6 +25,15 @@ namespace MadeInHouse.ViewModels.Compras
             ActualizarProveedor();
         }
 
+        generarOrdenCompraViewModel g;
+        public BuscadorProveedorViewModel(generarOrdenCompraViewModel g)
+        {
+
+            this.g = g;
+            ActualizarProveedor();
+        }
+
+        
         CatalogoProductoProveedorViewModel p;
         public BuscadorProveedorViewModel(CatalogoProductoProveedorViewModel p) {
 
@@ -47,7 +56,9 @@ namespace MadeInHouse.ViewModels.Compras
             ActualizarProveedor();
         }
 
-        BuscarCotizacionViewModel bc;
+
+        generarOrdenCompraViewModel go;
+        BuscarCotizacionViewModel bc;      
         public BuscadorProveedorViewModel(BuscarCotizacionViewModel bc)
         {
             this.bc = bc;
@@ -59,10 +70,7 @@ namespace MadeInHouse.ViewModels.Compras
         {
             this.bd = bd;
             ActualizarProveedor();
-        }
-
-
-        private MyWindowManager win = new MyWindowManager();
+        }        private MyWindowManager win = new MyWindowManager();
 
         ProveedorSQL eM = new ProveedorSQL();
 
@@ -91,6 +99,8 @@ namespace MadeInHouse.ViewModels.Compras
             get { return txtCodigo; }
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
+
+
 
         private DateTime fechaIni=new DateTime(DateTime.Now.Year, 1,1);
 
@@ -121,26 +131,60 @@ namespace MadeInHouse.ViewModels.Compras
 
         private Proveedor proveedorSeleccionado;
 
-
-        public void SelectedItemChanged(object sender)
+        public Proveedor ProveedorSeleccionado
         {
-            proveedorSeleccionado = ((sender as DataGrid).SelectedItem as Proveedor);
+            get { return proveedorSeleccionado; }
+            set { proveedorSeleccionado = value; NotifyOfPropertyChange("ProveedorSeleccionado"); }
+        }
 
-            if (p != null) {
-                p.Prov = proveedorSeleccionado;
-                TryClose();
-            }
 
-            if (s != null)
+            
+        public void SelectedItemChanged()
+        {
+            if (ProveedorSeleccionado != null)
             {
-                s.Prov = proveedorSeleccionado;
-                TryClose();
-            }
 
-            if (cp != null)
-            {
-                cp.Prov = proveedorSeleccionado;
-                TryClose();
+                if (g != null) {
+
+                    g.Prov = ProveedorSeleccionado;
+                    TryClose();
+                
+                
+                }
+
+                if (p != null)
+                {
+                    p.Prov = ProveedorSeleccionado;
+                    TryClose();
+                }
+
+                if (s != null)
+                {
+                    s.Prov = ProveedorSeleccionado;
+                    TryClose();
+                }
+
+                if (cp != null)
+                {
+                    cp.Prov = ProveedorSeleccionado;
+                    TryClose();
+                }
+
+                if (go != null) {
+
+                    go.Prov = ProveedorSeleccionado;
+                    go.BuscarDispo = false;
+                    TryClose();
+
+                    
+                }
+
+                if (p != null)
+                {
+                    p.Prov = ProveedorSeleccionado;
+                    TryClose();
+                }
+
             }
 
             if (bc != null)
@@ -174,17 +218,17 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void EditarProveedor()
         {
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(proveedorSeleccionado,this);
+            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(ProveedorSeleccionado,this);
             win.ShowWindow(obj);
         }
 
         public void EliminarProveedor()
         {
-            MessageBox.Show("Proveedor Eliminado \n\nCodigo = " + proveedorSeleccionado.CodProveedor + "\nRazon social = " + proveedorSeleccionado.RazonSocial + 
-                            "\nRuc = " + proveedorSeleccionado.Ruc + "\nTelefono = " + proveedorSeleccionado.Telefono + "\nFax = " + proveedorSeleccionado.Fax + 
-                            "\nContacto = " + proveedorSeleccionado.Contacto + "\nTelefono contacto = " + proveedorSeleccionado.TelefonoContacto + 
-                            "\nDireccion = " + proveedorSeleccionado.Direccion);
-            eM.Eliminar(proveedorSeleccionado);
+            MessageBox.Show("Proveedor Eliminado \n\nCodigo = " + ProveedorSeleccionado.CodProveedor + "\nRazon social = " + ProveedorSeleccionado.RazonSocial + 
+                            "\nRuc = " + ProveedorSeleccionado.Ruc + "\nTelefono = " + ProveedorSeleccionado.Telefono + "\nFax = " + ProveedorSeleccionado.Fax + 
+                            "\nContacto = " + ProveedorSeleccionado.Contacto + "\nTelefono contacto = " + ProveedorSeleccionado.TelefonoContacto + 
+                            "\nDireccion = " + ProveedorSeleccionado.Direccion);
+            eM.Eliminar(ProveedorSeleccionado);
             ActualizarProveedor();
         }
 

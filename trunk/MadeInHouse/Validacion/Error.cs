@@ -13,6 +13,8 @@ namespace MadeInHouse.Validacion
         public static TipoError esInvalidoCadena = new TipoError(3, "La cadena introducida no cumple el tamaño estandar..");
         public static TipoError esNegativo = new TipoError(4, "Es un numero negativo el que intenta introducir..");
 
+       
+
     }
 
     class TipoError { 
