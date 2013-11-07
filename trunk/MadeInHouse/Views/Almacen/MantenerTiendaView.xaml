@@ -160,8 +160,18 @@
                             <TextBox x:Name="TxtAlturaAnq" HorizontalAlignment="Left" Height="23" Margin="172,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
 
                             <Button x:Name="boton1" Content="{Binding Content}" 
-                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42"
-                                cal:Message.Attach="[Event Click] = [Action Distribuir(0)]" />
+                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="Distribuir" >
+                                            <cal:Parameter Value="0"/>
+                                            <cal:Parameter Value="{Binding ElementName=Anaquel}"/>
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                                    
+                                <!--:Message.Attach="[Event Click] = [Action Distribuir(0)]" /-->
                             <ComboBox
                         ItemsSource="{Binding CmbZonas}"
         			    SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
@@ -191,8 +201,17 @@
                             <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
                             <TextBox x:Name="TxtAlturaDto" HorizontalAlignment="Left" Height="23" Margin="30,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
                             <Button x:Name="boton2" Content="{Binding Content}" 
-                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42" Grid.ColumnSpan="2"
-                                cal:Message.Attach="[Event Click] = [Action Distribuir(1)]" />
+                            HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42" Grid.ColumnSpan="2">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="Distribuir" >
+                                            <cal:Parameter Value="1"/>
+                                            <cal:Parameter Value="{Binding ElementName=Deposito}"/>
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                                <!--:Message.Attach="[Event Click] = [Action Distribuir(1)]" /-->
 
                             <ComboBox
                         ItemsSource="{Binding CmbZonas}"

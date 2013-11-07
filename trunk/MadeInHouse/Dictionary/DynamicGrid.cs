@@ -103,14 +103,18 @@ namespace MadeInHouse.Dictionary {
                     }
                     
                     Button btnTest = new Button();
-                    lstButtons.Add(btnTest);
+                   // BrushConverter conv = new BrushConverter();
+                    //SolidColorBrush brush = conv.ConvertFromString("Red") as SolidColorBrush;
+                    //btnTest.Background = brush;
                     btnTest.Name = "B" + i + j; //X,Y Fila,Columna
                     //btnTest.Content = "Button" + i + j;
                     btnTest.Click += new RoutedEventHandler(onClickChange);
+                    lstButtons.Add(btnTest);
                     //btnTest.Click(); 
                     Grid.SetRow(btnTest, i);
                     Grid.SetColumn(btnTest, j);
                     this.Children.Add(btnTest);
+                    
                 }
                 UpdateLayout();
             }
@@ -124,7 +128,8 @@ namespace MadeInHouse.Dictionary {
             int X =Int16.Parse((sender as Button).Name.Substring(1,1));
             int Y =Int16.Parse((sender as Button).Name.Substring(2,1));
 
-            Ubicaciones[X][Y][0].IdTipoZona = this.IdZona;
+            for(int k=0;k<Altura;k++)
+                Ubicaciones[X][Y][k].IdTipoZona = this.IdZona;
 
         }
 
@@ -135,22 +140,29 @@ namespace MadeInHouse.Dictionary {
 
             BrushConverter conv = new BrushConverter();
 
-            for (int i = 0; i < lstZonas.Count; i++)
+            /*for (int i = 0; i < lstZonas.Count; i++)
             {
 
                 for (int j = 0; j < lstZonas[i].LstUbicaciones.Count; j++)
                 {
 
-                  //  Ubicaciones[lstZonas[i].LstUbicaciones[j].CordX][lstZonas[i].LstUbicaciones[j].CordY][lstZonas[i].LstUbicaciones[j].CordZ].
-                }
-
-
-
-
+                  //Ubicaciones[lstZonas[i].LstUbicaciones[j].CordX][lstZonas[i].LstUbicaciones[j].CordY][lstZonas[i].LstUbicaciones[j].CordZ].
+                }*/
                  //Ubicaciones[lstUbicaciones[i].CordX][lstUbicaciones[i].CordY][lstUbicaciones[i].CordZ].IdTipoZona = lstUbicaciones[i].IdTipoZona;
-                SolidColorBrush brush = conv.ConvertFromString("Red") as SolidColorBrush;
-                lstButtons[i].Background = brush;
+           
+            
+            for (int i = 0; i < lstZonas.Count; i++)
+            {
+                for (int j = 0; j < lstZonas[i].LstUbicaciones.Count; j++)
+                {
+
+                    SolidColorBrush brush = conv.ConvertFromString(lstZonas[i].Color) as SolidColorBrush;
+                    (this.Children[lstZonas[i].LstUbicaciones[j].CordY + NumColumns*lstZonas[i].LstUbicaciones[j].CordX] as Button).Background = brush;
+                    (this.Children[lstZonas[i].LstUbicaciones[j].CordY + NumColumns * lstZonas[i].LstUbicaciones[j].CordX] as Button).ToolTip = lstZonas[i].Nombre;
+                    
+                }
             }
+            
 
         }
 

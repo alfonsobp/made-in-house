@@ -594,13 +594,18 @@ namespace MadeInHouse.ViewModels.Almacen
 
         #region Métodos
 
-        public void Distribuir(int tipo)
+        public void Distribuir(int tipo, MadeInHouse.Dictionary.DynamicGrid dg)
         {
             if (tipo == 0)
             {
                 NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
                 NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
                 AlturaAnq = Int32.Parse(TxtAlturaAnq);
+
+                if (accion == 2)
+                {
+                    dg.cargarGrid(lstZonasAnq);
+                }
                 
                
             }
@@ -609,6 +614,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
                 NumRowsDto = Int32.Parse(TxtNumRowsDto);
                 AlturaDto = Int32.Parse(TxtAlturaDto);
+
+                if (accion == 2)
+                {
+                    dg.cargarGrid(lstZonasDto);
+                }
             }
 
             
@@ -771,20 +781,19 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 for (int j = 0; j < objeto.Ubicaciones[i].Count; j++)
                 {
-                    for (int m = 0; m < objeto.Ubicaciones[i][j].Count; m++)
-                    {
+                    
                         for (int k = 0; k < lista.Count; k++)
                         {
-                            if (lista[k] == objeto.Ubicaciones[i][j][m].IdTipoZona)
+                            if (lista[k] == objeto.Ubicaciones[i][j][0].IdTipoZona)
                             {
                                 encontrado = true;
                                 break;
                             }
                         }
                         if (!encontrado)
-                            lista.Add(objeto.Ubicaciones[i][j][m].IdTipoZona);
+                            lista.Add(objeto.Ubicaciones[i][j][0].IdTipoZona);
                         encontrado = false;
-                    }
+                    
                 }
             }
             return lista;

@@ -151,7 +151,7 @@ namespace MadeInHouse.DataObjects.Almacen
         public List<TipoZona> ObtenerZonasxAlmacen(int idAlmacen)
         {
             List<TipoZona> lstZonas=new List<TipoZona>();;
-            db.cmd.CommandText = "SELECT A.*,B.nombre,C.nombre,C.codHex FROM ZonaxAlmacen A " +
+            db.cmd.CommandText = "SELECT A.*,B.nombre nombreZona,C.codHex color,C.codHex FROM ZonaxAlmacen A " +
                                 "JOIN TipoZona B ON (A.idTipoZona=B.idTipoZona) " +
                                 " JOIN Color C ON (B.idColor=C.idColor) " +
                                 " WHERE A.idAlmacen=@idAlmacen";
@@ -167,10 +167,10 @@ namespace MadeInHouse.DataObjects.Almacen
                 {
                     TipoZona tz = new TipoZona();                    
                     tz.IdTipoZona = int.Parse(reader["idTipoZona"].ToString());
-                    tz.Nombre = reader["B.nombre"].ToString();
-                    tz.Color = reader["C.nombre"].ToString();
-                    tz.NroBloquesDisp = int.Parse(reader["nroBloquesDisp"].ToString());
-                    tz.NroBloquesTotal=int.Parse(reader["nroBloquesTotal"].ToString());
+                    tz.Nombre = reader["nombreZona"].ToString();
+                    tz.Color = reader["color"].ToString();
+                    tz.NroBloquesDisp = reader.IsDBNull(reader.GetOrdinal("nroBloquesDisp"))? -1:int.Parse(reader["nroBloquesDisp"].ToString());
+                    tz.NroBloquesTotal= reader.IsDBNull(reader.GetOrdinal("nroBloquesTotal"))? -1:int.Parse(reader["nroBloquesTotal"].ToString());
                     lstZonas.Add(tz);
 
                 }
