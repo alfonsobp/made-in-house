@@ -655,8 +655,8 @@ namespace MadeInHouse.ViewModels
 
         public void AbrirBuscarTienda()
         {
-            CargarAccesosRol(out accVentana);
-            if (accVentana[67] == 1)
+            //CargarAccesosRol(out accVentana);
+            //if (accVentana[67] == 1)
                 _windowManager.ShowWindow(new Almacen.BuscarTiendaViewModel());
         }
 
