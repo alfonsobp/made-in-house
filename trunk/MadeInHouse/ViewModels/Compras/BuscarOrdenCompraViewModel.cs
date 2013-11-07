@@ -81,7 +81,7 @@ namespace MadeInHouse.ViewModels.Compras
             return 4;
         }
 
-        OrdenCompra ordenSelected;
+        OrdenCompra ordenSelected = null;
 
         public  OrdenCompra OrdenSelected
         {
@@ -121,6 +121,7 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private OrdenCompra ordenSeleccionada;
+
         public void SelectedItemChanged(object sender)
         {
             ordenSeleccionada = ((sender as DataGrid).SelectedItem as OrdenCompra);
@@ -140,9 +141,11 @@ namespace MadeInHouse.ViewModels.Compras
         }
         public void EditarOrden()
         {
-
-           generarOrdenCompraViewModel obj = new generarOrdenCompraViewModel(OrdenSelected,this);
-            win.ShowWindow(obj);
+            if (OrdenSelected != null)
+            {
+                generarOrdenCompraViewModel obj = new generarOrdenCompraViewModel(OrdenSelected, this);
+                win.ShowWindow(obj);
+            }
         }
 
         #region Busqueda desde Almacen
