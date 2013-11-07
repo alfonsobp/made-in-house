@@ -421,6 +421,81 @@ namespace MadeInHouse.DataObjects.Ventas
             return k;
         }
 
+        public Cliente BuscarClienteByTarjeta(string cod)
+        {
+            DBConexion db = new DBConexion();
+            Cliente c = new Cliente();
+
+            db.cmd.CommandText = "SELECT idCLiente FROM Tarjeta WHERE codTarjeta=" + cod;
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    c = BuscarClienteByIdCliente(Convert.ToInt32(reader["idCliente"].ToString()));
+                }
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return c;
+        }
+
+        public Cliente BuscarClienteByIdCliente(int id)
+        {
+            DBConexion db = new DBConexion();
+            Cliente cli = new Cliente();
+
+            db.cmd.CommandText = "SELECT * FROM Cliente WHERE idCliente=" + id;
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    cli.Id = Int32.Parse(reader["idCLiente"].ToString());
+                    cli.Dni = reader["DNI"].ToString();
+                    cli.Nombre = reader["nombre"].ToString();
+                    cli.ApePaterno = reader["apePaterno"].ToString();
+                    cli.ApeMaterno = reader["apeMaterno"].ToString();
+                    if (reader["sexo"].ToString().Equals("M"))
+                    {
+                        cli.Sexo = 1;
+                    }
+                    else
+                    {
+                        cli.Sexo = 0;
+                    }
+                    cli.FecNacimiento = reader["fechaNac"].ToString();
+                    if (!cli.FecNacimiento.Equals("") && cli.FecNacimiento != null)
+                    {
+                        cli.FechaNacimiento = DateTime.Parse(reader["fechaNac"].ToString());
+                    }
+                    cli.Direccion = reader["direccion"].ToString();
+                    cli.Telefono = reader["telefono"].ToString();
+                    cli.Ruc = reader["RUC"].ToString();
+                    cli.RazonSocial = reader["razonSocial"].ToString();
+                    cli.Estado = Int32.Parse(reader["estado"].ToString());
+                    cli.FecRegistro = reader["fechaReg"].ToString();
+                    cli.Distrito = reader["distrito"].ToString();
+                    cli.Documento = cli.Dni;
+                }
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return cli;
+        }
+
         public static int EliminarCliente(int id)
         {
             //DBConexion db = new DBConexion();
@@ -483,6 +558,8 @@ namespace MadeInHouse.DataObjects.Ventas
             }
 
             return k;
-        }
+        } 
     }
 }
+        
+

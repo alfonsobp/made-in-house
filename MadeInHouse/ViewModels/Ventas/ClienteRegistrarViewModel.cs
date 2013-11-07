@@ -59,6 +59,12 @@ namespace MadeInHouse.ViewModels.Ventas
             ind = 1;
         }
 
+        public ClienteRegistrarViewModel(VentaRegistrarViewModel ventaRegistrarViewModel)
+        {
+            // TODO: Complete member initialization
+            this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+        }
+
         private string txtNombre;
 
         public string TxtNombre
@@ -148,6 +154,7 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private DateTime fecNacimiento;
+        private VentaRegistrarViewModel ventaRegistrarViewModel;
 
         public DateTime FecNacimiento
         {

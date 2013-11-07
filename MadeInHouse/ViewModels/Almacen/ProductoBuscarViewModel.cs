@@ -227,6 +227,7 @@ namespace MadeInHouse.ViewModels.Almacen
                      exp.Descripcion = p.Descripcion;
                      exp.Abreviatura = p.Abreviatura;
                      exp.Percepcion = p.Percepcion;
+                     exp.Precio = p.Precio;
                      if (SelectedValue != 0) 
                          exp.Linea = GetLinea(SelectedValue).Nombre;
 

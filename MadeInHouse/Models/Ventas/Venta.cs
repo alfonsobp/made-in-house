@@ -35,6 +35,13 @@ namespace MadeInHouse.Models.Ventas
         int ptosGanados;
         string tipoDocPago;
         List<DetalleVenta> lstDetalle;
+        List<VentaPago> lstPagos;
+
+        internal List<VentaPago> LstPagos
+        {
+            get { return lstPagos; }
+            set { lstPagos = value; }
+        }
 
         public int IdVenta
         {

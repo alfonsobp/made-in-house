@@ -184,8 +184,9 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
                     p.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
                     p.Percepcion = Int32.Parse(reader["percepcion"].ToString());
+                    p.Precio = Double.Parse(reader["precio"].ToString());
+                    //Console.WriteLine(p.Precio);
                     listaProductos.Add(p);
-                    
                 }
                 db.cmd.Parameters.Clear();
                 reader.Close();

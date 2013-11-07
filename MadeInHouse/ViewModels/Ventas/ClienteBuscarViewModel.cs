@@ -12,10 +12,10 @@ using MadeInHouse.DataObjects.Ventas;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
-    class ClienteBuscarViewModel : PropertyChangedBase
+    class ClienteBuscarViewModel : Screen
     {
         private MyWindowManager win = new MyWindowManager();
-
+        private int ventanaAccion = 0;
 
         public void AbrirRegistrarcliente()
         {
@@ -37,6 +37,16 @@ namespace MadeInHouse.ViewModels.Ventas
             clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null,null,-1,null,null);
             NotifyOfPropertyChange("Clientes");
             //Console.WriteLine(Clientes);
+        }
+
+        public ClienteBuscarViewModel(VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
+        {
+            // TODO: Complete member initialization
+            this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            this.ventanaAccion = ventanaAccion;
+
+            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null, null, -1, null, null);
+            NotifyOfPropertyChange("Clientes");
         }
 
         private List<Tarjeta> clientes;
@@ -73,6 +83,26 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private Tarjeta clienteSeleccionado;
+        private VentaRegistrarViewModel ventaRegistrarViewModel;
+
+        public void Acciones(object sender)
+        {
+            if (ventanaAccion == 1)
+            {
+                clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
+                if (ventaRegistrarViewModel != null)
+                {
+                    ventaRegistrarViewModel.Cli = clienteSeleccionado;
+                    this.TryClose();
+                }
+            }
+            else
+            {
+                clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
+                AbrirEditarcliente();
+            }
+        }
+
 
         public void SelectedItemChanged(object sender)
         {

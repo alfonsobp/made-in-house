@@ -5,8 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="774.627" d:DesignWidth="808.955">
+             mc:Ignorable="d" d:DesignWidth="808.955" Height="837.627">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <DockPanel>
             <Layouts:TitleBarTemplate DockPanel.Dock="Top" title="Registro de venta" />
@@ -30,10 +29,11 @@
             <Grid Margin="30">
                 <TextBlock HorizontalAlignment="Left" Margin="47,10,0,0" TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Top" Height="22" Width="40"/>
                 <TextBox x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="117,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306"/>
+                <TextBox x:Name="TxtTarjetaCliente" HorizontalAlignment="Left" Height="23" Margin="117,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.269,0.565"/>
                 <TextBox x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="117,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
-                <DatePicker x:Name="FechaDespacho" VerticalAlignment="Center" Margin="591,45,34,571"/>
+                <DatePicker x:Name="FechaDespacho" VerticalAlignment="Top" Margin="591,12,34,0"/>
                 <TextBlock HorizontalAlignment="Left" Margin="552,81,0,0" TextWrapping="Wrap" Text="RUC:" VerticalAlignment="Top" RenderTransformOrigin="-0.16,0.438"/>
-                <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="591,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="TxtRuc" Height="23" Margin="591,81,34,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 <GroupBox Header="Productos" Margin="10,162,10,0" Height="329" VerticalAlignment="Top">
                     <Grid Margin="1">
                         <Grid.ColumnDefinitions>
@@ -49,15 +49,15 @@
                              </Button.Background>
                         </Button>
                         <TextBox x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="529,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Button ToolTip="Agregar Producto" x:Name="AgregarDetalle" Content="" HorizontalAlignment="Left" Margin="667,8,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
+                        <Button ToolTip="Agregar Producto" x:Name="AgregarDetalle" Content="" Margin="667,8,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="2.964,0.536" HorizontalAlignment="Left" Width="28">
                             <Button.Background>
                                 <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>
                             </Button.Background>
                         </Button>
-                        <TextBox x:Name="TxtPagaCon" Height="23" Margin="70,323,527,-41" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        
 
                         <DataGrid x:Name="LstVenta" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
-                                  Margin="10,50,10,10" HorizontalAlignment="Left" Width="691" AutoGenerateColumns="False" CanUserAddRows="False">
+                                  Margin="10,50,10,10" AutoGenerateColumns="False" CanUserAddRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="60" Header="Código"/>
                                 <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="250" Header="Descripción"/>
@@ -68,6 +68,7 @@
                                 <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="90" Header="Subtotal"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        
                     </Grid>
                 </GroupBox>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total (Sin dcto):" VerticalAlignment="Top" Width="86" Margin="483,506,0,0"/>
@@ -78,29 +79,22 @@
                 <TextBox x:Name="TxtTotal" HorizontalAlignment="Left" Height="23" Margin="586,590,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="483,590,0,0"/>
                 <TextBox x:Name="TxtIGVTotal" HorizontalAlignment="Left" Height="23" Margin="586,562,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="18,504,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="227,626,0,0"/>
                 
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="18,532,0,0"/>
-                <TextBox x:Name="TxtVuelto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="87,532,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="227,654,0,0"/>
+                <TextBox x:Name="TxtPagaCon" IsEnabled="False" Height="23" Margin="297,626,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="126"/>
+                <TextBox x:Name="TxtVuelto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="297,654,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126"/>
 
                 <TextBlock HorizontalAlignment="Left" Margin="18,81,0,0" TextWrapping="Wrap" Text="Razón Social:" VerticalAlignment="Top"/>
-                
-                <RadioButton x:Name="RdbBoleta" Content="Boleta" HorizontalAlignment="Left" Margin="117,45,0,0" VerticalAlignment="Top"/>
-                <RadioButton x:Name="RdbFactura" Content="Factura" HorizontalAlignment="Left" Margin="365,45,0,0" VerticalAlignment="Top"/>
                 <Button ToolTip="Nuevo Cliente" x:Name="AgregarCliente" Content="" HorizontalAlignment="Left" Margin="395,10,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
                     <Button.Background>
                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/agregarEmpleado.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
-                <TextBlock HorizontalAlignment="Left" Margin="517,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="es-pe" Text="Modo pago:"/></TextBlock>
-                <ComboBox HorizontalAlignment="Left" Margin="591,10,0,0" VerticalAlignment="Top" Width="120">
-                    <ComboBoxItem Content="Tarjeta"/>
-                    <ComboBoxItem Content="Efectivo"/>
-                </ComboBox>
                 <TextBlock HorizontalAlignment="Left" Margin="35,118,0,0" TextWrapping="Wrap" Text="Direccion:" VerticalAlignment="Top"/>
                 <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="23" Margin="119,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
                 <TextBlock HorizontalAlignment="Left" Margin="529,118,0,0" TextWrapping="Wrap" Text="Telefono:" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="591,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox x:Name="TxtTelefono" Height="23" Margin="591,118,34,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 
                 
                 <Button ToolTip="Nuevo Cliente" x:Name="BuscarCliente" Content="" HorizontalAlignment="Left" Margin="440,10,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
@@ -108,9 +102,40 @@
                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/find.png" Stretch="Uniform"/>
                     </Button.Background>
                 </Button>
-                <Label Content="Fecha de despacho:" HorizontalAlignment="Left" Margin="472,44,0,0" VerticalAlignment="Top"/>
+                <Label Content="Fecha de despacho:" HorizontalAlignment="Left" Margin="472,10,0,0" VerticalAlignment="Top"/>
+                <Label Content="Modo de Pago:" HorizontalAlignment="Left" Margin="18,506,0,0" VerticalAlignment="Top"/>
+                <DataGrid x:Name="LstPagos" HorizontalAlignment="Left" Margin="227,506,0,90" Width="196"
+                          AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="113" Header="Modo"/>
+                        <DataGridTextColumn Binding="{Binding Path=Monto}" Width="75" Header="Monto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ComboBox 
+                    SelectedValue="{Binding Path=SelectedValue, Mode=OneWayToSource}"
+                    ItemsSource="{Binding Path=LstModosPago}"
+                    DisplayMemberPath="Nombre" SelectedValuePath="IdModoPago"
+                    x:Name="CmbModoPago" HorizontalAlignment="Left" Margin="18,532,0,0" 
+                    VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.475,1.409"/>
+                <Label Content="Monto:" HorizontalAlignment="Left" Margin="18,564,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-0.154"/>
+                <TextBox x:Name="TxtMonto" HorizontalAlignment="Left" Height="23" Margin="18,590,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                <Button ToolTip="Agregar Monto" x:Name="AgregarMonto" Content="" HorizontalAlignment="Left" Margin="171,542,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Button ToolTip="Quitar Motno" x:Name="QuitarMonto" Content="" HorizontalAlignment="Left" Margin="171,576,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MadeInHouse;component/Assets/minus.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                
+                <TextBlock HorizontalAlignment="Left" Margin="48,44,0,0" TextWrapping="Wrap" Text="Tarjeta:" VerticalAlignment="Top" RenderTransformOrigin="2.872,0.438"/>
+                <Label Content="Boleta o Factura:" HorizontalAlignment="Left" Margin="245,41,0,0" VerticalAlignment="Top"/>
+                <ComboBox x:Name="cmbTipoVenta" HorizontalAlignment="Left" Margin="348,45,0,0" VerticalAlignment="Top" Width="120"/>
 
             </Grid>
+            <ComboBox Height="763" VerticalAlignment="Top" Width="2"/>
         </DockPanel>
     </Border>
 </UserControl>

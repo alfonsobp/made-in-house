@@ -80,7 +80,9 @@
                             </Button>
                         </Grid>
                     </GroupBox>
-                    <DataGrid Width="{Binding ElementName=Busqueda, Path=ActualWidth }" Grid.Row="1" Margin="10" x:Name="Clientes" AutoGenerateColumns="False" BorderThickness="2" ColumnWidth="Auto" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" CanUserResizeColumns="False" >
+                    <DataGrid Width="{Binding ElementName=Busqueda, Path=ActualWidth }" 
+                              Grid.Row="1" Margin="10" x:Name="Clientes" AutoGenerateColumns="False" BorderThickness="2" ColumnWidth="Auto" 
+                              cal:Message.Attach="[Event MouseDoubleClick]=[Action Acciones($source)]; [Event SelectionChanged]=[Action SelectedItemChanged( $source)]" CanUserResizeColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="2*" Binding="{Binding Path=Cliente.Id}" Header="ID" />
                             <DataGridTextColumn Width="16*" Binding="{Binding Path=Cliente.NombreCompleto}" Header="Nombre / RazonSocial" />

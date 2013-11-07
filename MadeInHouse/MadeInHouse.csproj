@@ -109,6 +109,7 @@
     <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
+    <Compile Include="DataObjects\Ventas\ModoPagoSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\ExcelUtiles.cs" />
     <Compile Include="Models\Almacen\AbastecimientoModel.cs" />
@@ -160,8 +161,8 @@
     <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Models\Seguridad\EstadoHabilitado.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
-    <Compile Include="Models\Ventas\Proforma.cs" />
-    <Compile Include="Models\Ventas\Venta.cs" />
+    <Compile Include="Models\Ventas\ModoPago.cs" />
+    <Compile Include="Models\Ventas\Proforma.cs" />    <Compile Include="Models\Ventas\Venta.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Models\Seguridad\Usuario.cs" />
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="Models\Compras\ServicioxProducto.cs" />
+    <Compile Include="Models\Ventas\VentaPago.cs" />
     <Compile Include="Validacion\Error.cs" />
     <Compile Include="Validacion\Evaluador.cs" />
     <Compile Include="ViewModels\Almacen\BuscarTiendaViewModel.cs" />

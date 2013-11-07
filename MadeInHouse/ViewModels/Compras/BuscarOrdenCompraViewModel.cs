@@ -13,7 +13,6 @@ using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Models;
 using System.Data.OleDb;
 using System.Data;
-using MadeInHouse.Models.Compras;
 namespace MadeInHouse.ViewModels.Compras
 {
     class BuscarOrdenCompraViewModel:Screen
