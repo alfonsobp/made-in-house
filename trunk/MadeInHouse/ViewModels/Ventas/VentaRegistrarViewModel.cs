@@ -12,6 +12,8 @@ using System.Windows.Controls;
 using MadeInHouse.Models;
 using MadeInHouse.ViewModels.Almacen;
 using System.Windows;
+using MadeInHouse.Validacion;
+
 namespace MadeInHouse.ViewModels.Ventas
 {
     class VentaRegistrarViewModel : PropertyChangedBase
@@ -23,17 +25,44 @@ namespace MadeInHouse.ViewModels.Ventas
         private double desc { get; set; }
         private double igv_total { get; set; }
         private double total { get; set; }
+        private double montopago { get; set; }
 
         public VentaRegistrarViewModel()
         {
             lstVenta = new List<DetalleVenta>();
+            LstPagos = new List<VentaPago>();
+            List<string> ListaTiposVenta = new List<string>();
+            ListaTiposVenta.Add("Boleta");
+            ListaTiposVenta.Add("Factura");
+
             prod = new Producto();
             IGV = 0.18;
             PUNTO = 30;
             subt = 0;
             desc = 0;
             igv_total = 0;
+            montopago = 0;
+
+            ModoPagoSQL mpsql = new ModoPagoSQL();
+            LstModosPago = mpsql.BuscarModosPago();
         }
+
+        private BindableCollection<ModoPago> lstModosPago;
+
+        public BindableCollection<ModoPago> LstModosPago
+        {
+            get { return lstModosPago; }
+            set
+            {
+                if (this.lstModosPago == value)
+                {
+                    return;
+                }
+                this.lstModosPago = value;
+                this.NotifyOfPropertyChange(() => this.lstModosPago);
+            }
+        }
+
 
         private DetalleVenta detalleSeleccionado;
 
@@ -50,6 +79,15 @@ namespace MadeInHouse.ViewModels.Ventas
             get { return txtCliente; }
             set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
         }
+
+        private string txtTarjetaCliente;
+
+        public string TxtTarjetaCliente
+        {
+            get { return txtTarjetaCliente; }
+            set { txtTarjetaCliente = value; NotifyOfPropertyChange(() => TxtTarjetaCliente); }
+        }
+
 
         private string idCliente;
 
@@ -161,12 +199,12 @@ namespace MadeInHouse.ViewModels.Ventas
                 {
                     if (!txtPagaCon.Equals(""))
                     {
-                        txtVuelto = (Convert.ToDouble(txtPagaCon) - Convert.ToDouble(txtTotal)).ToString();
+                        TxtVuelto = (Convert.ToDouble(txtPagaCon) - Convert.ToDouble(txtTotal)).ToString();
                         NotifyOfPropertyChange(() => TxtVuelto);
                     }
                     else
                     {
-                        txtVuelto = ""; NotifyOfPropertyChange(() => TxtVuelto);
+                        TxtVuelto = ""; NotifyOfPropertyChange(() => TxtVuelto);
                     }
                 }
                 catch (FormatException e)
@@ -192,46 +230,90 @@ namespace MadeInHouse.ViewModels.Ventas
             set { fechaDespacho = value; NotifyOfPropertyChange(() => FechaDespacho); }
         }
 
+        private string tipoVenta;
+
+        public string TipoVenta
+        {
+            get { return tipoVenta; }
+            set { tipoVenta = value; NotifyOfPropertyChange(() => TipoVenta); }
+        }
+
         public void AgregarDetalle()
         {
-            DetalleVenta dv = new DetalleVenta();
-            //Producto p = new DetalleVentaSQL().Buscar(TxtProducto);
-            dv.IdProducto = prod.IdProducto;
-            dv.CodProducto = prod.CodigoProd;
-            dv.Descripcion = prod.Nombre;
-            dv.Descuento = 0;
-            dv.Precio = prod.Precio;
-            dv.SubTotal = prod.Precio * Convert.ToDouble(TxtCantidad);
-            dv.Cantidad = Convert.ToInt32(TxtCantidad);
+            Evaluador ev = new Evaluador();
+            int nuevo = 1;
+            int cant;
 
             List<DetalleVenta> aux = new List<DetalleVenta>();
             foreach (DetalleVenta item in LstVenta)
             {
+                if (item.IdProducto == prod.IdProducto)
+                {
+                    if (ev.esNumeroEntero(TxtCantidad)) item.Cantidad += Int32.Parse(TxtCantidad);
+                    else {
+                        MessageBox.Show("Tiene que poner una cantidad");
+                        return;
+                    }
+                    item.SubTotal = item.Cantidad * prod.Precio;
+                    item.Descuento += 0;
+                    if (subt > 0) subt += item.Cantidad; else subt = item.SubTotal;
+                    TxtSubTotal = subt.ToString();
+                    desc = item.Descuento;
+                    TxtDescuentoTotal = desc.ToString();
+                    igv_total = (subt - desc) * IGV;
+                    TxtIGVTotal = igv_total.ToString();
+                    total = (subt - desc) * (1 + IGV);
+                    TxtTotal = total.ToString();
+                    nuevo = 0;
+                }
                 aux.Add(item);
             }
-            aux.Add(dv);
-            LstVenta = aux;
 
-            subt += dv.SubTotal;
-            TxtSubTotal = subt.ToString();
-            desc += dv.Descuento;
-            TxtDescuentoTotal = desc.ToString();
-            igv_total = (subt - desc) * IGV;
-            TxtIGVTotal = igv_total.ToString();
-            total += (subt - desc) * (1 + IGV);
-            TxtTotal = total.ToString();
+            if (nuevo == 1)
+            {
+                DetalleVenta dv = new DetalleVenta();
+                //Producto p = new DetalleVentaSQL().Buscar(TxtProducto);
+                dv.IdProducto = prod.IdProducto;
+                dv.CodProducto = prod.CodigoProd;
+                dv.Descripcion = prod.Nombre;
+                dv.Descuento = 0;
+                dv.Precio = prod.Precio;
+
+                if (ev.esNumeroEntero(TxtCantidad)) cant = Int32.Parse(TxtCantidad);
+                else
+                {
+                    MessageBox.Show("Tiene que poner una cantidad");
+                    return;
+                }
+
+                dv.SubTotal = prod.Precio * cant;
+                dv.Cantidad = cant;
+                aux.Add(dv);
+
+                subt += dv.SubTotal;
+                TxtSubTotal = subt.ToString();
+                desc += dv.Descuento;
+                TxtDescuentoTotal = desc.ToString();
+                igv_total = (subt - desc) * IGV;
+                TxtIGVTotal = igv_total.ToString();
+                total = (subt - desc) * (1 + IGV);
+                TxtTotal = total.ToString();
+            }
+            LstVenta = aux;
+            
         }
 
         public void GuardarVenta()
         {
             Venta v = new Venta();
-            v.LstDetalle = new List<DetalleVenta>();                
+            v.LstDetalle = new List<DetalleVenta>();
+            v.LstPagos = new List<VentaPago>();   
             //guardar datos de la venta
             //completar
             v.NumDocPago = null;
             v.TipoDocPago = null;
             //v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
-            v.IdCliente = Convert.ToInt32(TxtCliente);
+            v.IdCliente = cli.Cliente.Id;
 
             //guardar detalle de la venta
             foreach (DetalleVenta dv in lstVenta)
@@ -249,6 +331,16 @@ namespace MadeInHouse.ViewModels.Ventas
 
             v.Estado = 1;
 
+
+            foreach (VentaPago vp in lstPagos)
+            {
+                if (vp.Nombre.Equals("Efectivo"))
+                {
+                    vp.Monto -= Double.Parse(txtVuelto);
+                }
+                v.LstPagos.Add(vp);
+            }
+
             //insertar en la base de datos
             VentaSQL vsql = new VentaSQL();
             int k = vsql.Agregar(v, "obra");
@@ -257,6 +349,34 @@ namespace MadeInHouse.ViewModels.Ventas
                 MessageBox.Show("Venta Realizada con Exito");
                 Limpiar();
             }
+        }
+
+        private Tarjeta cli;
+
+        public Tarjeta Cli
+        {
+            get { return cli; }
+            set { 
+                cli = value; NotifyOfPropertyChange(() => Cli); 
+                TxtCliente = cli.Cliente.RazonSocial;
+                TxtRazolSocial = cli.Cliente.RazonSocial;
+                TxtRuc = cli.Cliente.Ruc;
+                TxtTelefono = cli.Cliente.Telefono;
+                TxtDireccion = cli.Cliente.Direccion;
+                //TxtTarjetaCliente = cli.Cliente.IdTarjeta;
+                }
+        }
+
+        public void BuscarCliente()
+        {
+            MyWindowManager wc = new MyWindowManager();
+            wc.ShowWindow(new ClienteBuscarViewModel(this,1));
+        }
+
+        public void AgregarCliente()
+        {
+            MyWindowManager wc = new MyWindowManager();
+            wc.ShowWindow(new ClienteRegistrarViewModel(this));
         }
 
         Producto prod;
@@ -292,6 +412,46 @@ namespace MadeInHouse.ViewModels.Ventas
             desc = 0;
             igv_total = 0;
             lstVenta = new List<DetalleVenta>();
+        }
+
+        private List<VentaPago> lstPagos;
+        public List<VentaPago> LstPagos
+        {
+            get { return lstPagos; }
+            set { lstPagos = value; NotifyOfPropertyChange(() => LstPagos); }
+        }
+
+        private int selectedValue;
+        public int SelectedValue
+        {
+            get { return selectedValue; }
+            set { selectedValue = value; }
+        }
+
+        private string txtMonto;
+        public string TxtMonto
+        {
+            get { return txtMonto; }
+            set { txtMonto = value; NotifyOfPropertyChange(() => TxtMonto); }
+        }
+        
+        public void AgregarMonto()
+        {
+            VentaPago vp = new VentaPago();
+            vp.IdModoPago = selectedValue;
+            vp.Monto = Double.Parse(TxtMonto);
+            vp.Nombre = selectedValue.ToString();
+
+            montopago += Double.Parse(TxtMonto);
+            TxtPagaCon = montopago.ToString();
+            
+            List<VentaPago> aux = new List<VentaPago>();
+            foreach (VentaPago item in LstPagos)
+            {
+                aux.Add(item);
+            }
+            aux.Add(vp);
+            LstPagos = aux;
         }
 
     }

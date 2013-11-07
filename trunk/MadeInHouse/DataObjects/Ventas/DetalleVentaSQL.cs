@@ -28,8 +28,7 @@ namespace MadeInHouse.DataObjects.Ventas
                     prod.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
                     prod.CodigoProd = reader["codProducto"].ToString();
                     prod.Nombre = reader["nombre"].ToString();
-                    prod.Precio = 1;
-                    //prod.Precio = Convert.ToDouble(reader["precio"].ToString());
+                    prod.Precio = Double.Parse(reader["precio"].ToString());
                 }
                 db.cmd.Parameters.Clear();
                 db.conn.Close();

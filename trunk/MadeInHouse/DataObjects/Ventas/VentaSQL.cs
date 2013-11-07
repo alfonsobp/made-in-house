@@ -63,6 +63,11 @@ namespace MadeInHouse.DataObjects.Ventas
                     dvm.Agregar(v,dv);
                 }
 
+                foreach (VentaPago vp in v.LstPagos)
+                {
+                    AgregarPagoVenta(v, vp);
+                }
+
                 db2.conn.Close();
 
             }
@@ -72,6 +77,26 @@ namespace MadeInHouse.DataObjects.Ventas
             }
 
             return k;
+        }
+
+        public void AgregarPagoVenta(Venta v, VentaPago vp)
+        {
+            DBConexion db = new DBConexion();
+            db.cmd.CommandText = "INSERT INTO Pago(monto,idVenta,idModoPago) VALUES(@monto,@idVenta,@idModoPago)";
+            db.cmd.Parameters.AddWithValue("@monto", vp.Monto);
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+            db.cmd.Parameters.AddWithValue("@idModoPago", vp.IdModoPago);
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
         }
 
         public object Buscar(params object[] filters)
