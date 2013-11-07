@@ -16,12 +16,12 @@ namespace MadeInHouse.Models.Almacen
             set { proNombre = value; }
         }
 
-        private string proId;
+        private string codPro;
 
-        public string ProId
+        public string CodPro
         {
-            get { return proId; }
-            set { proId = value; }
+            get { return codPro; }
+            set { codPro = value; }
         }
 
         private string can;
@@ -31,6 +31,17 @@ namespace MadeInHouse.Models.Almacen
             get { return can; }
             set { can = value; }
         }
-
+        private string canAtend;
+        public string CanAtend
+        {
+            get { return canAtend; }
+            set { canAtend = value; }
+        }
+        private string canAtender;
+        public string CanAtender
+        {
+            get { return canAtender; }
+            set { canAtender = value; }
+        }
     }
 }

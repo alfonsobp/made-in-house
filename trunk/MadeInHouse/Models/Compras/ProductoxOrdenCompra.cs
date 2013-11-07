@@ -9,7 +9,7 @@ namespace MadeInHouse.Models.Compras
 {
     class ProductoxOrdenCompra
     {
-
+       
         private int idOrden;
 
         public int IdOrden
@@ -35,15 +35,18 @@ namespace MadeInHouse.Models.Compras
             set { cantidad = value; }
         }
 
+        string cantidadAtender = "0";
         double monto;
-
         public double Monto
         {
             get { return monto; }
             set { monto = value; }
         }
-
-        private double precioUnitario;
+ public string CantidadAtender
+        {
+            get { return cantidadAtender; }
+            set { cantidadAtender = value; }
+        }        private double precioUnitario;
 
         public double PrecioUnitario
         {

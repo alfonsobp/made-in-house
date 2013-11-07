@@ -14,12 +14,18 @@ using MadeInHouse.Models;
 using System.Data.OleDb;
 using System.Data;
 using MadeInHouse.Models.Compras;
-
 namespace MadeInHouse.ViewModels.Compras
 {
     class BuscarOrdenCompraViewModel:Screen
     {
+        bool estado = true;
 
+        public bool Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
+        
         string idOrdenCompra;
 
         public string IdOrdenCompra
@@ -141,6 +147,8 @@ namespace MadeInHouse.ViewModels.Compras
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
             this.ventanaAccion = accionVentana;
+            this.estado = false;
+            this.selectedEstado = "EN EJECUCION";
         }
 
         
@@ -148,6 +156,7 @@ namespace MadeInHouse.ViewModels.Compras
         #endregion
 
         #region Acciones Doble Click
+        OrdenCompra ordenSel;
         public void Acciones(object sender)
         {
             if (ventanaAccion == 0)
@@ -157,12 +166,12 @@ namespace MadeInHouse.ViewModels.Compras
             else if (ventanaAccion == 1)
             {
 
-                /*productoSel = ((sender as DataGrid).SelectedItem as Producto);
-                if (ventaRegistrarViewModel != null)
+                ordenSel = ((sender as DataGrid).SelectedItem as OrdenCompra);
+                if (this.mantenerNotaDeIngresoViewModel != null)
                 {
-                    ventaRegistrarViewModel.Prod = productoSel;
+                    mantenerNotaDeIngresoViewModel.SelectedOrden = ordenSel;
                     this.TryClose();
-                }*/
+                }
             }
             else if (ventanaAccion == 2)
             {

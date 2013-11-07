@@ -63,7 +63,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string SelectedMotivo
         {
             get { return selectedMotivo; }
-            set { selectedMotivo = value; }
+            set { selectedMotivo = value;
+            NotifyOfPropertyChange(() => SelectedMotivo);
+            }
         }
         Producto selectedProducto;
 
@@ -159,12 +161,12 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (LstProductos != null)
                     {
-                        if ((pxa = LstProductos.Find(x => x.ProId == lstAux[0].IdProducto.ToString())) == null)
+                        if ((pxa = LstProductos.Find(x => (x.CodPro == lstAux[0].CodigoProd))) == null)
                         {
 
                             pxa = new ProductoCant();
                             pxa.Can = TxtCantPro;
-                            pxa.ProId = lstAux[0].IdProducto.ToString();
+                            pxa.CodPro = lstAux[0].CodigoProd.ToString();
                             pxa.ProNombre = lstAux[0].Nombre;
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
@@ -177,7 +179,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     else {
                         pxa = new ProductoCant();
                         pxa.Can = TxtCantPro;
-                        pxa.ProId = lstAux[0].IdProducto.ToString();
+                        pxa.CodPro = lstAux[0].CodigoProd.ToString();
                         pxa.ProNombre = lstAux[0].Nombre;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);

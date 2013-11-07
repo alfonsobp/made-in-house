@@ -50,8 +50,8 @@
                         </Button>
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
                         <Label Content="Motivo:" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Height="26" Width="50"/>
-                        <TextBox x:Name="TxtCod" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
-                        <TextBox x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="{Binding Estado}"/>
+                        <TextBox x:Name="TxtCod" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
+                        <TextBox Text="{Binding Path=SelectedOrden.CodOrdenCompra}" x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="{Binding Estado}"/>
                         <ComboBox  ItemsSource="{Binding CmbMotivo}"
         						SelectedValue="{Binding SelectedMotivo, Mode=TwoWay}"
         						DisplayMemberPath="NombreMotivo"
@@ -81,11 +81,13 @@
                     </Grid>
                 </GroupBox>
 
-                <DataGrid x:Name="LstProductos" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
+                <DataGrid ItemsSource="{Binding Path=LstProductos,Mode=TwoWay}" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=ProId}" Header="Codigo" Width="120"/>
-                        <DataGridTextColumn Binding="{Binding Path=ProNombre}" Header="Nombre" Width="180"/>
-                        <DataGridTextColumn Binding="{Binding Path=Can}" Header="Cantidad" Width="200"/>
+                        <DataGridTextColumn Binding="{Binding Path=CodPro}" IsReadOnly="True" Header="Codigo" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=ProNombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=Can}" IsReadOnly="True" Header="Cantidad Pedido" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CanAtend}" IsReadOnly="True" Header="Atendida" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CantidadAtender,Mode=TwoWay}" Header="A ingresar" Width="73"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
@@ -93,7 +95,7 @@
                 <GroupBox Header="Productos" Margin="0,55,17,0" Height="153" VerticalAlignment="Top" HorizontalAlignment="Right" Width="364">
                     <Grid Margin="-3,0,-2,-3" HorizontalAlignment="Right" Width="357" Height="134" VerticalAlignment="Top">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="75"/>
-                        <TextBox x:Name="TxtCodPro" HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
+                        <TextBox x:Name="TxtCodPro" Text="{Binding Path=SelectedProducto.CodigoProd}" HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
                         <Label Content="Cantidad Real:" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" Width="90"/>
                         <TextBox x:Name="TxtCantPro" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                         <Button x:Name="AbrirPosicionProducto" Content="Ubicar" HorizontalAlignment="Left" Margin="256,95,0,0" VerticalAlignment="Top" Width="91" Height="26"/>

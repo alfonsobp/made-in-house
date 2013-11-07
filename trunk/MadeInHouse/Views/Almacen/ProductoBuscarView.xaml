@@ -78,8 +78,8 @@
                     <DataGrid
                         Width="{Binding ElementName=Busqueda, Path=ActualWidth }"
                         cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
-                        x:Name="LstProductos"
                         SelectedItem="{Binding ProductoSel, Mode=TwoWay}"
+                        x:Name="LstProductos"
                         Margin="10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" MaxHeight="160">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="10*" Binding="{Binding Path=CodigoProd}"  Header="Código"/>

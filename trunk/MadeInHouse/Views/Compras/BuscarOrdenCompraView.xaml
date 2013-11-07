@@ -5,7 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="600">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
@@ -13,9 +13,9 @@
             <!-- CAMBIAR NOMBREEEE -->
 
             <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}">
-        <DataGrid CanUserAddRows="False" IsReadOnly="True" x:Name="LstOrdenes" Margin="2,201,0,0" Height="213" VerticalAlignment="Top" AutoGenerateColumns="False"
-                  cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]">
-            <DataGrid.Columns>
+
+        <DataGrid CanUserAddRows="False" cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)];[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" IsReadOnly="True" x:Name="LstOrdenes" Margin="2,201,0,0" Height="213" VerticalAlignment="Top" AutoGenerateColumns="False">
+                <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=CodOrdenCompra}" Width="130" Header="Código"/>
                 <DataGridTextColumn Binding="{Binding Path=Proveedor.RazonSocial}" Width="190" Header="Proveedor"/>
                 <DataGridTextColumn Binding="{Binding Path=EstadoS}" Width="130" Header="Estado"/>
@@ -30,7 +30,7 @@
         <TextBox  x:Name="IdOrdenCompra" HorizontalAlignment="Left" Height="23" Margin="146,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,108,0,0" VerticalAlignment="Top"/>
         <Label Content="Código OC:" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top"/>
-                <ComboBox  x:Name="LstEstados" SelectedItem="{Binding SelectedEstado}" HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120"/>
+                <ComboBox  x:Name="LstEstados" SelectedItem="{Binding SelectedEstado}" IsEnabled="{Binding Path=Estado}" HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120"/>
           
       
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="27,138,0,0" VerticalAlignment="Top"/>

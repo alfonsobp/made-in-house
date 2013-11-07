@@ -92,7 +92,7 @@
                 <GroupBox Header="Productos" Margin="0,55,17,0" Height="153" VerticalAlignment="Top" HorizontalAlignment="Right" Width="364">
                     <Grid Margin="-3,0,-2,-3" HorizontalAlignment="Right" Width="357" Height="134" VerticalAlignment="Top">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="75"/>
-                        <TextBox x:Name="TxtCodPro" HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
+                        <TextBox x:Name="TxtCodPro" Text="{Binding Path=SelectedProducto.Nombre}" HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
                         <Label Content="Cantidad Real:" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" Width="90"/>
                         <TextBox x:Name="TxtCantPro" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                         <Button x:Name="AbrirPosicionProducto" Content="Ubicar" HorizontalAlignment="Left" Margin="256,95,0,0" VerticalAlignment="Top" Width="91" Height="26"/>
