@@ -346,6 +346,16 @@
         <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="1143,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
             <Image Source="/Assets/gear.png" Width="50" Height="44"/>
         </Button>
+        <Label Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="930,7,0,0" Foreground="White" FontSize="16"/>
+        <Button  Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="800,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/commentblack32.png" Width="50" Height="44"/>
+        </Button>
+        <Button  Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="740,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/warning.png" Width="50" Height="44"/>
+        </Button>
+        <Button  Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="865,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/cake.png" Width="50" Height="44"/>
+        </Button>
         <!--fin-->
 
     </Grid>
