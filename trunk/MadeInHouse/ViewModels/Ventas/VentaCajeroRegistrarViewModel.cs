@@ -283,46 +283,55 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void GuardarVenta()
         {
-            Venta v = new Venta();
-            v.LstDetalle = new List<DetalleVenta>();
-            v.LstPagos = new List<VentaPago>();
-            //guardar datos de la venta
-            //completar
-            v.NumDocPago = null;
-            v.TipoDocPago = null;
-            v.Estado = 1;
-            v.FechaReg = System.DateTime.Now;
-            //idCliente desde la tarjeta de este si es que hay
-            
-            v.IdCliente = Convert.ToInt32(TxtCliente);
-
-            //guardar detalle de la venta
-            foreach (DetalleVenta dv in lstVenta)
+            int numFilas = LstVenta.Count();
+            if (numFilas > 0)
             {
-                v.LstDetalle.Add(dv);
-            }
-            v.Monto = total;
-            v.Descuento = desc;
-            v.Igv = igv_total;
+                Venta v = new Venta();
+                v.LstDetalle = new List<DetalleVenta>();
+                v.LstPagos = new List<VentaPago>();
+                //guardar datos de la venta
+                //completar
+                v.NumDocPago = null;
+                v.TipoDocPago = null;
+                v.Estado = 1;
+                v.FechaReg = System.DateTime.Now;
+                //idCliente desde la tarjeta de este si es que hay
 
-            v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+                v.IdCliente = Convert.ToInt32(TxtCliente);
 
-            foreach (VentaPago vp in lstPagos)
-            {
-                if (vp.Nombre.Equals("Efectivo"))
+                //guardar detalle de la venta
+                foreach (DetalleVenta dv in lstVenta)
                 {
-                    vp.Monto -= Double.Parse(txtVuelto);
+                    v.LstDetalle.Add(dv);
                 }
-                v.LstPagos.Add(vp);
-            }
+                v.Monto = total;
+                v.Descuento = desc;
+                v.Igv = igv_total;
 
-            //insertar en la base de datos
-            VentaSQL vsql = new VentaSQL();
-            int k = vsql.Agregar(v,"tienda");
-            if (k != 0)
+                v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+
+                foreach (VentaPago vp in lstPagos)
+                {
+                    if (vp.Nombre.Equals("Efectivo"))
+                    {
+                        vp.Monto -= Double.Parse(txtVuelto);
+                    }
+                    v.LstPagos.Add(vp);
+                }
+
+                //insertar en la base de datos
+                VentaSQL vsql = new VentaSQL();
+                int k = vsql.Agregar(v, "tienda");
+                if (k != 0)
+                {
+                    MessageBox.Show("Venta Realizada con Exito");
+                    Limpiar();
+                }
+            }
+            else
             {
-                MessageBox.Show("Venta Realizada con Exito");
-                Limpiar();
+                MessageBox.Show("Debe ingreasar datos de la venta");
+                return;
             }
         }
 
