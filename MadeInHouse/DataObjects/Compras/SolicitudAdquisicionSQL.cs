@@ -183,17 +183,17 @@ namespace MadeInHouse.DataObjects.Compras
         }
 
 
-        public void TerminarSolicitudes(int idAlmacen) {
+        public void TerminarSolicitudes(int idAlmacen,int idSol) {
 
             DBConexion db = new DBConexion();
 
 
 
             db.cmd.CommandText = "UPDATE SolicitudAdquisicion " +
-                                 "SET fechaCierre = GETDATE(),estado = 3 where estado = 2 and idAlmacen = @idAlmacen ";
-
+                                 "SET fechaCierre = GETDATE(),estado = 3 where estado = 2 and idAlmacen = @idAlmacen and idSolicitudAD = @idSol ";
+                                
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
-       
+            db.cmd.Parameters.AddWithValue("@idSol", idSol);
             try
             {
                 db.conn.Open();

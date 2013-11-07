@@ -25,20 +25,47 @@ namespace MadeInHouse.Models.Compras
             get { return codOrdenCompra; }
             set { codOrdenCompra = value; }
         }
-        DateTime fechaReg;
 
-        public DateTime FechaReg
+        string fechaReg;
+
+        public string FechaReg
         {
             get { return fechaReg; }
             set { fechaReg = value; }
         }
-        DateTime fechaSinAtencion;
 
-        public DateTime FechaSinAtencion
+        string fechaSinAtencion;
+
+        public string FechaSinAtencion
         {
             get { return fechaSinAtencion; }
             set { fechaSinAtencion = value; }
         }
+
+        int estado = 1;
+
+        public int Estado
+        {
+            get { return estado; }
+            set { estado = value; EvaluarEstado(); }
+        }
+
+        private void EvaluarEstado() {
+            if (estado == 0) estadoS = "CANCELADA";
+            if (estado == 1) estadoS = "PRE EMITIDA";
+            if (estado == 2) estadoS = "EN EJECUCION";
+            if (estado == 3) estadoS = "FINALIZADA";
+        }
+
+        string estadoS;
+
+        public string EstadoS
+        {
+            get { return estadoS; }
+            set { estadoS = value; }
+        }
+
+
         Proveedor proveedor;
 
         public Proveedor Proveedor
@@ -81,7 +108,7 @@ namespace MadeInHouse.Models.Compras
             set { idAlmacen = value; }
         }
 
-        string medioPago;
+        string medioPago="FACTURA";
 
         public string MedioPago
         {

@@ -56,6 +56,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstRespuesta = value; NotifyOfPropertyChange("LstRespuesta"); }
         }
         Proveedor prov;
+        public Double Costo;
 
         public Proveedor Prov
         {
@@ -82,6 +83,8 @@ namespace MadeInHouse.ViewModels.Compras
             set { codigo = value; NotifyOfPropertyChange("Codigo"); }
         }
 
+        public List<int> Solicitudes;
+
         #endregion
 
         #region METODOS
@@ -89,6 +92,7 @@ namespace MadeInHouse.ViewModels.Compras
 
             Almacen = "ALM-" + (1000000 + 4);
             LstConsolidado = new ConsolidadoSQL().Buscar(4) as List<Consolidado>;
+            Solicitudes = new ConsolidadoSQL().getSolicitudes();
 
         }
 
@@ -122,6 +126,7 @@ namespace MadeInHouse.ViewModels.Compras
             // MessageBox.Show(""+ConsolidadoSelected.Producto.IdProducto);
              BuscarProveedorViewModel obj = new BuscarProveedorViewModel(consolidadoSelected.Producto.IdProducto,this);
              win.ShowWindow(obj);
+
          }
         
         }
@@ -153,6 +158,7 @@ namespace MadeInHouse.ViewModels.Compras
                p.Cantidad = Cantidad;
                p.Producto = ConsolidadoSelected.Producto;
                p.Prov = Prov;
+               p.Costo = Costo;
 
                ConsolidadoSelected.Cantidad -= Cantidad;
                buscarRespuesta(p);
@@ -253,7 +259,9 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void MedioPago() {
 
+
             List<Proveedor> lstProveedor = Seleccion();
+
             MedioPagoViewModel obj = new MedioPagoViewModel(lstProveedor, LstRespuesta, 4,this);
             MyWindowManager win = new MyWindowManager();
             win.ShowWindow(obj);

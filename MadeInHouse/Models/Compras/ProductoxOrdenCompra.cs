@@ -25,13 +25,16 @@ namespace MadeInHouse.Models.Compras
             get { return producto; }
             set { producto = value; }
         }
-        int cantidad;
 
-        public int Cantidad
+
+        string cantidad;
+
+        public string Cantidad
         {
             get { return cantidad; }
             set { cantidad = value; }
         }
+
         double monto;
 
         private double precioUnitario;
@@ -42,13 +45,23 @@ namespace MadeInHouse.Models.Compras
             set { precioUnitario = value; }
         }
 
+        int cantAtendida;
+
+        public int CantAtendida
+        {
+            get { return cantAtendida; }
+            set { cantAtendida = value; }
+        }
+
+        
+
 
         public ProductoxOrdenCompra(Consolidado c,int idOrden) {
 
-            this.cantidad = c.Cantidad;
+            this.cantidad = Convert.ToString(c.Cantidad);
             this.producto = c.Producto;
             this.idOrden = idOrden;
-        
+            this.PrecioUnitario = c.Costo;
         }
 
         public ProductoxOrdenCompra() { }
