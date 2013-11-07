@@ -41,22 +41,25 @@
                 <GroupBox Header="Datos Generales" HorizontalAlignment="Left" Margin="17,55,0,0" Width="345" Height="354" VerticalAlignment="Top">
                     <Grid Margin="2,-9,-12,-12" HorizontalAlignment="Left" Width="343">
                         <Label Content="Doc. Ref.:" HorizontalAlignment="Left" Margin="17,86,0,0" VerticalAlignment="Top" Width="62" Height="26"/>
+                        <Button x:Name="BuscarDocumento" HorizontalAlignment="Left" Margin="252,86,0,0" VerticalAlignment="Top" Width="24" Height="26">
+                            <Image Source="/Assets/find.png" />
+                        </Button>
                         <Button x:Name="CargarProductos" HorizontalAlignment="Left" Margin="287,86,0,0" VerticalAlignment="Top" Width="24" Height="26">
                             <Image Source="/Assets/Lightning.png" />
                         </Button>
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
                         <Label Content="Motivo:" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Height="26" Width="50"/>
-                        <TextBox x:Name="TxtCod" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155"/>
-                        <TextBox x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" IsEnabled="{Binding Estado}"/>
+                        <TextBox x:Name="TxtCod" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
+                        <TextBox x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="{Binding Estado}"/>
                         <ComboBox  ItemsSource="{Binding CmbMotivo}"
-        						SelectedValue="{Binding SelectedMotivo, Mode=OneWayToSource}"
+        						SelectedValue="{Binding SelectedMotivo, Mode=TwoWay}"
         						DisplayMemberPath="NombreMotivo"
                                 SelectedIndex="0"
         						SelectedValuePath="Id"
                                 HorizontalAlignment="Left" 
                                 Margin="120,55,0,0" 
                                 VerticalAlignment="Top" 
-                                Width="155" 
+                                Width="119" 
                                 Height="22">
 
                             
@@ -73,7 +76,7 @@
                         <Label Content="Responsable:" HorizontalAlignment="Left" Margin="17,151,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="Responsable" HorizontalAlignment="Left" Height="23" Margin="120,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
                         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="17,182,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="Observaciones" Height="104" Margin="118,190,20,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                        <TextBox x:Name="Observaciones" Height="104" Margin="118,190,32,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                     </Grid>
                 </GroupBox>
 

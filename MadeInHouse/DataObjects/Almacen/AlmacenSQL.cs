@@ -19,7 +19,6 @@ namespace MadeInHouse.DataObjects.Almacen
         private DBConexion db;
         private bool tipo = true;
 
-        //public AlmacenSQL();
         public AlmacenSQL(DBConexion db=null)
         {
             db = new DBConexion();

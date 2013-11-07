@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Models;
 
 
 namespace MadeInHouse.ViewModels.Almacen
 {
     class MantenerNotaDeSalidaViewModel:PropertyChangedBase
     {
-
+        MyWindowManager win = new MyWindowManager();
         DataObjects.Almacen.ProductoxSolicitudAbSQL gateWay = new ProductoxSolicitudAbSQL();
-
+        ProductoSQL pxaSQL;
         public MantenerNotaDeSalidaViewModel() {
+            pxaSQL = new ProductoSQL();
             this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
             /*
              <ComboBoxItem Content="Orden de despacho" HorizontalAlignment="Left" Width="118"/>
@@ -100,20 +102,26 @@ namespace MadeInHouse.ViewModels.Almacen
         public List<ProductoCant> LstProductos
         {
             get { return lstProductos; }
-            set { lstProductos = value; }
+            set { lstProductos = value;
+                  NotifyOfPropertyChange(() => LstProductos);
+            }
         }
 
-        int txtCodPro;
+        string txtCodPro;
 
-        public int TxtCodPro
+        public string TxtCodPro
         {
             get { return txtCodPro; }
-            set { txtCodPro = value; }
+            set
+            {
+                txtCodPro = value;
+                NotifyOfPropertyChange(() => TxtCodPro);
+            }
         }
 
-        int txtCantPro;
+        string txtCantPro;
 
-        public int TxtCantPro
+        public string TxtCantPro
         {
             get { return txtCantPro; }
             set { txtCantPro = value; }
@@ -129,8 +137,65 @@ namespace MadeInHouse.ViewModels.Almacen
            lstProductos = gateWay.ListaProductos(referencia);
            NotifyOfPropertyChange(() => LstProductos);
         }
-        void BuscarProducto() { }
-        void AgregarProducto() { }
+
+        public void BuscarProducto()
+        {
+            MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+            wm.ShowWindow(new ProductoBuscarViewModel(this, 3));
+        }
+
+        public void AgregarProducto() {
+            if (TxtCodPro == null || TxtCantPro == null)
+            {
+                System.Windows.MessageBox.Show("Debe completar todos los campos");
+            }
+            else
+            {
+                ProductoCant pxa;
+                List<Producto> lstAux = null;
+                lstAux = pxaSQL.BuscarProducto(TxtCodPro);
+                
+                if ( (lstAux != null))
+                {
+                    if (LstProductos != null)
+                    {
+                        if ((pxa = LstProductos.Find(x => x.ProId == lstAux[0].IdProducto.ToString())) == null)
+                        {
+
+                            pxa = new ProductoCant();
+                            pxa.Can = TxtCantPro;
+                            pxa.ProId = lstAux[0].IdProducto.ToString();
+                            pxa.ProNombre = lstAux[0].Nombre;
+                            LstProductos.Add(pxa);
+                            LstProductos = new List<ProductoCant>(LstProductos);
+                        }
+                        else
+                        {
+                            System.Windows.MessageBox.Show("El producto que se quiere registrar ya existe en la tienda");
+                        }
+                    }
+                    else {
+                        pxa = new ProductoCant();
+                        pxa.Can = TxtCantPro;
+                        pxa.ProId = lstAux[0].IdProducto.ToString();
+                        pxa.ProNombre = lstAux[0].Nombre;
+                        LstProductos = new List<ProductoCant>();
+                        LstProductos.Add(pxa);
+                        LstProductos = new List<ProductoCant>(LstProductos);
+                    }
+
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("El código proporcionado no existe");
+                }
+            }
+        }
+        public void AbrirPosicionProducto()
+        {
+            Almacen.PosicionProductoViewModel abrirPosView = new Almacen.PosicionProductoViewModel();
+            win.ShowWindow(abrirPosView);
+        }
         void QuitarProducto() { }
 
     }
