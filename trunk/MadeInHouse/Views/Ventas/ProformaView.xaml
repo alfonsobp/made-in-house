@@ -47,7 +47,7 @@
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Lista Requerida" Margin="10,262,0,21" HorizontalAlignment="Left" Width="452">
-                    <Grid Margin="1,1,-2,1">
+                    <Grid Margin="0,0,-1,2">
                         <DataGrid  x:Name="LstProforma" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]" Margin="10,50,10,10">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="80" Header="Cantidad"/>

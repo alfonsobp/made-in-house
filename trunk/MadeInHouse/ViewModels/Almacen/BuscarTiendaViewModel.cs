@@ -6,16 +6,19 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
+using System.Windows.Controls;
+
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class BuscarTiendaViewModel: PropertyChangedBase
+    class BuscarTiendaViewModel: Screen
     {
 
         #region Atributos
         private UbigeoSQL uSQL;
         private TiendaSQL tSQL;
         private Ubigeo deft;
+        private int ventanaAccion;
 
         private List<Ubigeo> cmbDpto;
 
@@ -172,6 +175,8 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
+        
+
 
         #endregion
 
@@ -187,6 +192,18 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        private Reportes.reporteStockViewModel reporteStockViewModel;
+        public BuscarTiendaViewModel(Reportes.reporteStockViewModel reporteStockViewModel, int ventanaAccion)
+        {
+            uSQL = new UbigeoSQL();
+            CmbDpto = uSQL.BuscarDpto();
+            deft= new Ubigeo();
+            deft.Nombre="TODOS";
+            CmbDpto.Insert(0, deft);
+            Index1 = 0;
+            this.reporteStockViewModel = reporteStockViewModel;
+            this.ventanaAccion = ventanaAccion;
+        }
         
 
         #endregion
@@ -232,10 +249,23 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         public void Acciones(object sender) {
-                
+
+            if (ventanaAccion == 1)
+            {
+                Tienda tiendaSel = ((sender as DataGrid).SelectedItem as Tienda);
+                if (reporteStockViewModel != null)
+                {
+                    reporteStockViewModel.Tien = tiendaSel;
+                    this.TryClose();
+                }
+            }
+            else
+            {
                 MantenerTiendaViewModel mtVM = new MantenerTiendaViewModel(TiendaSel);
                 (new MadeInHouse.Models.MyWindowManager()).ShowWindow(mtVM);
             }
+        }
+
 
         public void Limpiar()
         {
