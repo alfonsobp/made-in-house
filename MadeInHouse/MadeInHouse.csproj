@@ -159,6 +159,7 @@
     <Compile Include="Models\Compras\ProveedorxProducto.cs" />
     <Compile Include="Models\Compras\Servicio.cs" />
     <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
+    <Compile Include="Models\Reportes\StockRepor.cs" />
     <Compile Include="Models\Seguridad\EstadoHabilitado.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
     <Compile Include="Models\Ventas\ModoPago.cs" />

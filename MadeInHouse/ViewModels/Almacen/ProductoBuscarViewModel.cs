@@ -61,6 +61,15 @@ namespace MadeInHouse.ViewModels.Almacen
             this.ventanaAccion = ventanaAccion;
         }
 
+        private Reportes.reporteStockViewModel reporteStockViewModel;
+        public ProductoBuscarViewModel(Reportes.reporteStockViewModel reporteStockViewModel, int ventanaAccion)
+        {
+            this.reporteStockViewModel = reporteStockViewModel;
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            this.ventanaAccion = ventanaAccion;
+        }
+
         private SolicitudAbRegistrarViewModel solicitudView = null;
         public ProductoBuscarViewModel(SolicitudAbRegistrarViewModel solicitudView) : this()
         {
@@ -297,6 +306,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
             }
             else if (ventanaAccion == 5)
+            {
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (proformaViewModel != null)
+                {
+                    proformaViewModel.Prod = productoSel;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 6)
             {
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
                 if (proformaViewModel != null)
