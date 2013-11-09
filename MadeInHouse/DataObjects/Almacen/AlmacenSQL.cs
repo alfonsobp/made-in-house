@@ -219,7 +219,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
-        public int obtenerDeposito(int idUsuario)
+        /*public int obtenerDeposito(int idUsuario)
         {
             int idDeposito = -1;
             db.cmd.CommandText = " SELECT * FROM Usuario u, AlmacenxTienda at WHERE idUsuario = @idUsuario AND u.idTienda = at.idTienda ";
@@ -234,6 +234,25 @@ namespace MadeInHouse.DataObjects.Almacen
             }
             reader.Close();
 
+            return idDeposito;
+        }*/
+
+        public int obtenerDeposito(int idTienda)
+        {
+            if (db.cmd.Transaction == null) db.conn.Open();
+            int idDeposito = -1;
+            db.cmd.CommandText = " SELECT * FROM Almacen WHERE idTienda = @idTienda AND tipo = 1 ";
+            db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+
+            SqlDataReader reader = db.cmd.ExecuteReader();
+
+            if (reader.Read())
+            {
+                int posIdAlmacen = reader.GetOrdinal("idAlmacen");
+                idDeposito = reader.IsDBNull(posIdAlmacen) ? -1 : reader.GetInt32(posIdAlmacen);
+            }
+            reader.Close();
+            if (db.cmd.Transaction == null) db.conn.Close();
             return idDeposito;
         }
 

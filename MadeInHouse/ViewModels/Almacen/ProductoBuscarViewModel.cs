@@ -74,7 +74,8 @@ namespace MadeInHouse.ViewModels.Almacen
         public ProductoBuscarViewModel(SolicitudAbRegistrarViewModel solicitudView) : this()
         {
             this.solicitudView = solicitudView;
-            idAlmacen = solicitudView.idAlmacen;
+            AlmacenSQL almSQL = new AlmacenSQL();
+            idAlmacen = almSQL.obtenerDeposito(solicitudView.idTienda);
         }
 
         public ProductoBuscarViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion):this()

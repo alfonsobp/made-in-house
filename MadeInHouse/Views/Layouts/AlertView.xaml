@@ -10,7 +10,7 @@
         <ControlTemplate x:Key="ImageKey">
             <Image x:Name="Warning" Margin="15" MinWidth="50" MinHeight="50" Source="/MadeInHouse;component/Assets/warning.png" />
             <ControlTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=Message}" Value="OK">
+                <DataTrigger Binding="{Binding Path=Message}" Value="La operacion fue exitosa">
                     <Setter TargetName="Warning" Property="Source" Value="/MadeInHouse;component/Assets/check.png"/>
                 </DataTrigger>
             </ControlTemplate.Triggers>

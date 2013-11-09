@@ -112,6 +112,7 @@
     <Compile Include="DataObjects\Ventas\ModoPagoSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\ExcelUtiles.cs" />
+    <Compile Include="Models\Almacen\Abastecimiento.cs" />
     <Compile Include="Models\Almacen\AbastecimientoModel.cs" />
     <Compile Include="Models\Almacen\AbastecimientoProducto.cs" />
     <Compile Include="Models\Almacen\Almacenes.cs" />
@@ -163,7 +164,8 @@
     <Compile Include="Models\Seguridad\EstadoHabilitado.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
     <Compile Include="Models\Ventas\ModoPago.cs" />
-    <Compile Include="Models\Ventas\Proforma.cs" />    <Compile Include="Models\Ventas\Venta.cs" />
+    <Compile Include="Models\Ventas\Proforma.cs" />
+    <Compile Include="Models\Ventas\Venta.cs" />
     <Compile Include="Models\Reportes\Serviciorepor.cs" />
     <Compile Include="Models\Reportes\Ventarepor.cs" />
     <Compile Include="Models\RRHH\Empleado.cs" />

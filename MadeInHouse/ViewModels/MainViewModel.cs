@@ -148,15 +148,22 @@ namespace MadeInHouse.ViewModels
         public void AbrirAnularDocumentos()
         {
 			CargarAccesosRol(out accVentana);
-            if (accVentana[13] == 1)
+            if (accVentana[12] == 1)
 				_windowManager.ShowWindow(new Almacen.AnularDocumentosViewModel());
         }
 		
 		public void RegistrarSolicitud()
         {
 			CargarAccesosRol(out accVentana);
-            if (accVentana[13] == 1)
-				_windowManager.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel(_windowManager));
+            if (accVentana[12] == 1)
+				_windowManager.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel(_windowManager, null, 0));
+        }
+
+        public void ListadoSolicitud()
+        {
+            CargarAccesosRol(out accVentana);
+            if (accVentana[12] == 1)
+                _windowManager.ShowWindow(new Almacen.SolicitudAbListadoViewModel(_windowManager));
         }
 
         #endregion Almacen
