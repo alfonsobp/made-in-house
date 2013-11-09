@@ -143,9 +143,12 @@ namespace MadeInHouse.DataObjects.Almacen
         public int obtenerTienda(int idUsuario)
         {
             int idTienda = -1;
+            if (db.cmd.Transaction == null) db.conn.Open();
             db.cmd.CommandText = " SELECT idTienda FROM Usuario u WHERE idUsuario = @idUsuario ";
             db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
-            idTienda = (int)db.cmd.ExecuteScalar();
+            object obj = db.cmd.ExecuteScalar();
+            idTienda = String.IsNullOrEmpty(obj.ToString())? -1 : (int) obj;
+            if (db.cmd.Transaction == null) db.conn.Close();
             return idTienda;
         }
     }

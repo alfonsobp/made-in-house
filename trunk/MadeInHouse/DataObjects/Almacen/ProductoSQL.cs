@@ -401,6 +401,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
                         prodAlmacen.Add(prod);
                     }
+                    db.cmd.Parameters.Clear();
                     reader.Close();
                     db.conn.Close();
                 }

@@ -22,6 +22,7 @@ namespace MadeInHouse.Models.Almacen
             TiendaSQL tiendaSQL = new TiendaSQL(db);
             int idTienda;
             int idSolicitud;
+            string message;
 
             if ((idTienda = tiendaSQL.obtenerTienda(idUsuario)) > 0)
             {
@@ -30,23 +31,50 @@ namespace MadeInHouse.Models.Almacen
                     if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
                     {
                         trans.Commit();
-                        return "OK";
+                        return "La operacion fue exitosa";
                     }
                     else
-                    {
-                        trans.Rollback();
-                        return "Hubo un error al agregar los productos";
-                    }
+                        message = "Hubo un error al agregar los productos";
                 }
                 else
-                {
-                    trans.Rollback();
-                    return "No se pudo crear la solicitud";
-                }
+                    message = "No se pudo crear la solicitud";
             }
+            else
+                message = "No se encontro el deposito del usuario";
 
             trans.Rollback();
-            return "No se encontro el deposito del usuario";
+            return message;
+        }
+
+        public string editarAbastecimiento(int idUsuario, int idSolicitud, List<AbastecimientoProducto> prod)
+        {
+            DBConexion db = new DBConexion();
+            db.conn.Open();
+            SqlTransaction trans = db.conn.BeginTransaction();
+            db.cmd.Transaction = trans;
+            AbastecimientoSQL solSQL = new AbastecimientoSQL(db);
+            string message;
+
+            if (solSQL.actualizarAbastecimiento(idSolicitud, idUsuario) > 0)
+            {
+                if (solSQL.eliminarProductosAbastecimiento(idSolicitud) >= 0)
+                {
+                    if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
+                    {
+                        trans.Commit();
+                        return "La operacion fue exitosa";
+                    }
+                    else
+                        message = "Hubo un error al agregar los productos";
+                }
+                else
+                    message = "No se pudo eliminar los productos";
+            }
+            else
+                message = "No se pudo crear la solicitud";
+
+            trans.Rollback();
+            return message;
         }
     }
 }
