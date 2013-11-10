@@ -134,7 +134,7 @@ namespace MadeInHouse.DataObjects.Compras
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.StackTrace.ToString());
+                    //MessageBox.Show(e.StackTrace.ToString());
                 }
 
             }
