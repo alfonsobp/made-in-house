@@ -10,54 +10,26 @@ using System.Collections.ObjectModel;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.Models;
 using MadeInHouse.DataObjects.Compras;
+using System.ComponentModel;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class MantenerProveedorViewModel: Screen
+    class MantenerProveedorViewModel: Screen , IDataErrorInfo
     {
 
-        public MantenerProveedorViewModel(Proveedor p, BuscadorProveedorViewModel model) {
 
-            txtCodigo = p.CodProveedor;
-            txtContacto = p.Contacto;
-            txtDireccion = p.Direccion;
-            txtFax = p.Fax;
-            txtTelefono = p.Telefono;
-            txtTelefonoContacto = p.TelefonoContacto;
-            txtRuc = p.Ruc;
-            txtRazonSocial = p.RazonSocial;
-            txtEmail = p.Email;
-            Id = p.IdProveedor;
-            //Editar
-            indicador = 2;
-            this.model = model;
-             
-        }
+        #region ATRIBUTOS
 
         int Id;
         BuscadorProveedorViewModel model;
 
-        public MantenerProveedorViewModel(BuscadorProveedorViewModel model)
-        {
-            this.model = model;
-            //Insertar
-            indicador = 1;
-        }
-
-        public MantenerProveedorViewModel() {
-
-            //Insertar
-            indicador = 1;
-        }
-
-        private int indicador;
-        //indicador = 1 para insertar
-        //indicador = 2 para editar
-
         private MyWindowManager win = new MyWindowManager();
+        
 
         private ProveedorSQL eM;
 
+        private int indicador;
+     
         public int Indicador
         {
             get { return indicador; }
@@ -127,13 +99,63 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtDireccion = value; NotifyOfPropertyChange(() => TxtDireccion); }
         }
 
-        private string txtEmail;
+        private string txtEmail="";
 
         public string TxtEmail
         {
             get { return txtEmail; }
             set { txtEmail = value; NotifyOfPropertyChange(() => TxtEmail); }
         }
+
+        #endregion
+
+
+        public MantenerProveedorViewModel(Proveedor p, BuscadorProveedorViewModel model)
+        {
+
+            txtCodigo = p.CodProveedor;
+            txtContacto = p.Contacto;
+            txtDireccion = p.Direccion;
+            txtFax = p.Fax;
+            txtTelefono = p.Telefono;
+            txtTelefonoContacto = p.TelefonoContacto;
+            txtRuc = p.Ruc;
+            txtRazonSocial = p.RazonSocial;
+            txtEmail = p.Email;
+            Id = p.IdProveedor;
+            //Editar
+            indicador = 2;
+            this.model = model;
+
+        }
+        public MantenerProveedorViewModel(BuscadorProveedorViewModel model)
+        {
+            this.model = model;
+            //Insertar
+            indicador = 1;
+        }
+        public MantenerProveedorViewModel()
+        {
+
+            //Insertar
+            indicador = 1;
+        }
+
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "TxtEmail": if (string.IsNullOrEmpty(TxtEmail)) result="esta vacio" ; break;
+                   
+                };
+                return result;
+            }
+        }
+
 
         public Boolean validar(Proveedor p) {
 
@@ -225,6 +247,11 @@ namespace MadeInHouse.ViewModels.Compras
 
             }
             
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
         }
     }
 }
