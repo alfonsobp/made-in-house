@@ -31,7 +31,19 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             LineaProductoSQL lpSQL = new LineaProductoSQL();
             LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            LineaProducto deftlinea = new LineaProducto();
+            deftlinea.Nombre = "TODAS";
+            deftlinea.IdLinea = -1;
+            LstLineasProducto.Insert(0, deftlinea);
+            SelectedIndex1 = 0;
 
+            Tienda deft = new Tienda();
+            deft.Nombre = "ALMACEN CENTRAL";
+            deft.IdTienda = -1;
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            CmbTiendas.Insert(0, deft);
+            Index = 0;
 
         }
 
@@ -102,9 +114,50 @@ namespace MadeInHouse.ViewModels.Almacen
 
         #region atributos
 
-        public ProductoViewModel pvm = null;
+	public ProductoViewModel pvm = null;
 
-        public int idAlmacen { get; set; }
+	private List<Tienda> cmbTiendas;
+
+        public List<Tienda> CmbTiendas
+        {
+            get { return cmbTiendas; }
+            set {
+                if (this.cmbTiendas == value)
+                {
+                    return;
+                }
+
+            cmbTiendas = value;
+            NotifyOfPropertyChange(() => CmbTiendas);
+            }
+        }
+
+        private int selectedTienda;
+
+        public int SelectedTienda
+        {
+            get { return selectedTienda; }
+            set { selectedTienda = value; }
+        }
+
+        private int index;
+
+        public int Index
+        {
+            get { return index; }
+            set { index = value;
+            NotifyOfPropertyChange(() => Index);
+            }
+        }
+        private int selectedIndex1;
+
+        public int SelectedIndex1
+        {
+            get { return selectedIndex1; }
+            set { selectedIndex1 = value; 
+            NotifyOfPropertyChange(()=>SelectedIndex1);
+            }
+        }        public int idAlmacen { get; set; }
 
         private string txtCodigo;
 
@@ -114,9 +167,9 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-        private List<ExtendedProduct> lstProductos;
-
-        public List<ExtendedProduct> LstProductos
+        private List<Producto> lstProductos;
+  
+        public List<Producto> LstProductos
         {
             get { return lstProductos; }
             set
@@ -181,6 +234,10 @@ namespace MadeInHouse.ViewModels.Almacen
                 selectedValue = value;
                 SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
                 LstSubLineasProducto = slpSQL.ObtenerSubLineas(selectedValue);
+                SubLineaProducto deft = new SubLineaProducto();
+                deft.Nombre = "TODAS";
+                deft.IdSubLinea = -1;
+                LstSubLineasProducto.Insert(0, deft);
                 SelectedIndex = 0;
 
             }
@@ -230,47 +287,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void BuscarProductos()
         {
-             List<Producto> lp;
-             lp=pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, idAlmacen);
-             List<ExtendedProduct> LstProductosAux = new List<ExtendedProduct>();
-
-             if (lp != null)
-             {
-                 foreach (Producto p in lp)
-                 {
-                     ExtendedProduct exp = new ExtendedProduct();
-                     exp.IdProducto = p.IdProducto;
-                     exp.CodigoProd = p.CodigoProd;
-                     exp.Nombre = p.Nombre;
-                     exp.Descripcion = p.Descripcion;
-                     exp.Abreviatura = p.Abreviatura;
-                     exp.Percepcion = p.Percepcion;
-                     exp.Precio = p.Precio;
-                     if (SelectedValue != 0) 
-                         exp.Linea = GetLinea(SelectedValue).Nombre;
-
-                     else
-                         exp.Linea = GetLinea(p.IdLinea).Nombre;
-
-                     if (SelectedValueSub != 0) exp.SubLinea = GetSubLinea(SelectedValueSub).Nombre;
-                     else
-                     {
-                         SelectedIndex = -1;
-                         SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
-                         LstSubLineasProducto = slpSQL.ObtenerSubLineas(p.IdLinea);
-                         exp.SubLinea = GetSubLinea(p.IdSubLinea).Nombre;
-                     }
-                     LstProductosAux.Add(exp);
-                 }
-                 LstProductos = LstProductosAux;
-             }
-             else
-             {
-                 LstProductos = null;
+        LstProductos = pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, SelectedTienda);   
+		   if (LstProductos ==null)
                  System.Windows.Forms.MessageBox.Show("No se encontro ningún producto");
              }
              
-        }
+   
+
 
         public void Acciones(object sender)
         {
@@ -366,6 +389,17 @@ namespace MadeInHouse.ViewModels.Almacen
                 win.ShowWindow(pmVM);
             }
         }
+
+        public void Limpiar()
+        {
+            TxtCodigo = null;
+            Index = 0;
+            SelectedIndex = 0;
+            selectedIndex1 = 0;
+            LstProductos = null;
+
+        }
+        
         
         #endregion
     }

@@ -52,9 +52,11 @@ namespace MadeInHouse.Dictionary {
 
         public List<List<List<Ubicacion>>> Ubicaciones { get; set; }
 
+        public Dictionary<int, int> listaZonas { get; set; }
+
         public void RecreateGridCells()
         {
-
+            
             Ubicaciones = new List<List<List<Ubicacion>>>();
             int altura = Altura;
             int numRows = NumRows;
@@ -109,7 +111,6 @@ namespace MadeInHouse.Dictionary {
                     btnTest.Name = "B" + i + j; //X,Y Fila,Columna
                     //btnTest.Content = "Button" + i + j;
                     btnTest.Click += new RoutedEventHandler(onClickChange);
-                    lstButtons.Add(btnTest);
                     //btnTest.Click(); 
                     Grid.SetRow(btnTest, i);
                     Grid.SetColumn(btnTest, j);
@@ -120,13 +121,36 @@ namespace MadeInHouse.Dictionary {
             }
         }
 
-        private List<Button> lstButtons=new List<Button>();
 
         public void onClickChange(object sender, RoutedEventArgs e) {
             
             (sender as Button).Background = this.Background;
             int X =Int16.Parse((sender as Button).Name.Substring(1,1));
             int Y =Int16.Parse((sender as Button).Name.Substring(2,1));
+
+            if (listaZonas == null)
+            {
+                listaZonas = new Dictionary<int, int>();
+            }
+
+            try {
+                
+                if (Ubicaciones[X][Y][0].IdTipoZona == 0)
+                {
+                    listaZonas[this.IdZona] += 1;
+                }
+                else if (Ubicaciones[X][Y][0].IdTipoZona != this.IdZona)
+                {
+                    if (listaZonas[Ubicaciones[X][Y][0].IdTipoZona] < 0) listaZonas[Ubicaciones[X][Y][0].IdTipoZona] = 0;
+                    else listaZonas[Ubicaciones[X][Y][0].IdTipoZona] -= 1;
+                    listaZonas[this.IdZona] += 1;
+                }
+                        
+            }
+            catch (Exception d) {
+                listaZonas.Add(this.IdZona, 1);
+            }
+
 
             for(int k=0;k<Altura;k++)
                 Ubicaciones[X][Y][k].IdTipoZona = this.IdZona;
@@ -138,19 +162,7 @@ namespace MadeInHouse.Dictionary {
         {
 
 
-            BrushConverter conv = new BrushConverter();
-
-            /*for (int i = 0; i < lstZonas.Count; i++)
-            {
-
-                for (int j = 0; j < lstZonas[i].LstUbicaciones.Count; j++)
-                {
-
-                  //Ubicaciones[lstZonas[i].LstUbicaciones[j].CordX][lstZonas[i].LstUbicaciones[j].CordY][lstZonas[i].LstUbicaciones[j].CordZ].
-                }*/
-                 //Ubicaciones[lstUbicaciones[i].CordX][lstUbicaciones[i].CordY][lstUbicaciones[i].CordZ].IdTipoZona = lstUbicaciones[i].IdTipoZona;
-           
-            
+            BrushConverter conv = new BrushConverter();           
             for (int i = 0; i < lstZonas.Count; i++)
             {
                 for (int j = 0; j < lstZonas[i].LstUbicaciones.Count; j++)

@@ -32,8 +32,8 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public void AgregarProducto(Producto p)
         {
-            db.cmd.CommandText = "INSERT INTO Producto(codProducto, nombre, descripcion, percepcion,idSubLinea,idLinea,estado,idUnidad,abreviatura) " +
-            "VALUES (@codProducto,@nombre,@descripcion,@percepcion,@idSubLinea,@idLinea,@estado,@idUnidad,@abreviatura)";
+            db.cmd.CommandText = "INSERT INTO Producto(codProducto, nombre, descripcion, percepcion,idSubLinea,idLinea,estado,idUnidad,abreviatura,stockMin,stockMax) " +
+            "VALUES (@codProducto,@nombre,@descripcion,@percepcion,@idSubLinea,@idLinea,@estado,@idUnidad,@abreviatura,@stockMin,@stockMax)";
             db.cmd.Parameters.AddWithValue("@codProducto", p.CodigoProd);
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@abreviatura", p.Abreviatura);
@@ -43,6 +43,8 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@idSubLinea", p.IdSubLinea);
             db.cmd.Parameters.AddWithValue("@idLinea", p.IdLinea);
             db.cmd.Parameters.AddWithValue("@estado", 1);
+            db.cmd.Parameters.AddWithValue("@stockMin",p.StockMin);
+            db.cmd.Parameters.AddWithValue("@stockMax", p.StockMax);
 
             try
             {
@@ -70,7 +72,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
             db.cmd.CommandText = "UPDATE Producto  " +
             "SET codProducto= @codProducto,nombre= @nombre,descripcion= @descripcion,idUnidad=@idUnidad, " +
-            "percepcion= @percepcion,abreviatura= @abreviatura , idSubLinea=@idSubLinea, idLinea=@idLinea " +
+            "percepcion= @percepcion,abreviatura= @abreviatura , idSubLinea=@idSubLinea, idLinea=@idLinea , stockMax=@stockMax , stockMin=@stockMin " +
             " WHERE idProducto= @idProducto ";
 
 
@@ -83,6 +85,8 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@abreviatura", p.Abreviatura);
             db.cmd.Parameters.AddWithValue("@idSubLinea", p.IdSubLinea);
             db.cmd.Parameters.AddWithValue("@idLinea", p.IdLinea);
+            db.cmd.Parameters.AddWithValue("@stockMax", p.StockMax);
+            db.cmd.Parameters.AddWithValue("@stockMin", p.StockMin);
             
 
             try
@@ -134,13 +138,19 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
 
-        public List<Producto> BuscarProducto(String codigo=null, int idLinea=0, int idSubLinea=0, int idAlmacen=0)
+        public List<Producto> BuscarProducto(String codigo=null, int idLinea=-1, int idSubLinea=-1, int idTienda=-1)
         {
             List<Producto> listaProductos = null;
             
             
             string where = "WHERE 1=1 ";
-            string from = "";
+            string from = "SELECT p.* , L.nombre linea, S.nombre sublinea FROM Producto p" +
+                        " JOIN LineaProducto L " +
+                        " ON (P.idLinea=L.idLinea) " +
+                        " JOIN SubLineaProducto S " +
+                        " ON (P.idSubLinea=S.idSubLinea) ";
+            
+
 
             if (!String.IsNullOrEmpty(codigo))
             {
@@ -150,22 +160,30 @@ namespace MadeInHouse.DataObjects.Almacen
             
             if (idLinea > 0)
             {
-                where = where + " AND idLinea=@idLinea ";
+                where = where + " AND p.idLinea=@idLinea ";
                 db.cmd.Parameters.AddWithValue("@idLinea", idLinea);
             }
             if (idSubLinea > 0)
             {
-                where = where + " AND idSubLinea=@idSubLinea ";
+                where = where + " AND p.idSubLinea=@idSubLinea ";
                 db.cmd.Parameters.AddWithValue("@idSubLinea", idSubLinea);
             }
-            if (idAlmacen > 0)
+            if (idTienda > 0)
             {
-                from = " p, AlmacenxProducto ap ";
-                where = where + " AND p.idProducto = ap.idProducto AND idAlmacen = @idAlmacen ";
-                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+                from = "SELECT p.*, pt.stockActual stockTienda , pt.StockMin stockMinT, pt.stockMax stockMaxT , pt.precioVenta , L.nombre linea, S.nombre sublinea"+
+                        " FROM Producto p "+ 
+                        " JOIN LineaProducto L " +
+                        " ON (P.idLinea=L.idLinea) "+
+                        " JOIN SubLineaProducto S " +
+                        " ON (P.idSubLinea=S.idSubLinea) "+
+                        " JOIN ProductoxTienda pt ON ( p.idProducto = pt.idProducto) ";
+                where += " AND  pt.idTienda = @idTienda AND vigente=1 ";
+                db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
             }
+         
 
-            db.cmd.CommandText = "SELECT * FROM Producto " + from + where;
+
+            db.cmd.CommandText = from + where;
 
             try
             {
@@ -181,11 +199,35 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     p.Abreviatura = reader.IsDBNull(reader.GetOrdinal("abreviatura")) ? null : reader["abreviatura"].ToString();
                     p.Descripcion = reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? null : reader["descripcion"].ToString();
-                    p.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
-                    p.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
+                    
+                    LineaProducto lp = new LineaProducto();
+                    lp.IdLinea=reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
+                    lp.Nombre = reader.IsDBNull(reader.GetOrdinal("linea")) ? null : reader["linea"].ToString();
+                    p.Linea = lp;
+                    
+                    SubLineaProducto slp = new SubLineaProducto();
+                    slp.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
+                    slp.Nombre = reader.IsDBNull(reader.GetOrdinal("sublinea")) ? null : reader["sublinea"].ToString();
+                    p.Sublinea = slp;
+
+
                     p.Percepcion = Int32.Parse(reader["percepcion"].ToString());
-                    p.Precio = Double.Parse(reader["precio"].ToString());
-                    //Console.WriteLine(p.Precio);
+                    
+                    if (idTienda > 0)
+                    {
+                        p.Precio = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? -1 : float.Parse(reader["precioVenta"].ToString());
+                        p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockTienda")) ? -1 : int.Parse(reader["stockTienda"].ToString());
+                        p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMinT")) ? -1 : int.Parse(reader["stockMinT"].ToString());
+                        p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMaxT")) ? -1 : int.Parse(reader["stockMaxT"].ToString());
+                    }
+                    else
+                    {
+                        p.StockActual=reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1: int.Parse(reader["stockActual"].ToString());
+                        p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMin")) ? -1 : int.Parse(reader["stockMin"].ToString());
+                        p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMax")) ? -1 : int.Parse(reader["stockMax"].ToString());
+                        
+                    }
+
                     listaProductos.Add(p);
                 }
                 db.cmd.Parameters.Clear();
@@ -311,25 +353,22 @@ namespace MadeInHouse.DataObjects.Almacen
 
         #region Almacen
 
-        public List<ProductoxAlmacen> BuscarProductoxTienda(int idTienda=-1,int idAlmacen=-1)
+        public List<ProductoxAlmacen> BuscarProductoxTienda(int idTienda = -1)
         {
             List<ProductoxAlmacen> lstPxa = null;
             ProductoxAlmacen pxa = null;
-            string where=" WHERE vigente=1";
+            string where=" WHERE 1=1";
+
 
             if (idTienda > 0)
             {
                 where += " AND idTienda=@idTienda";
                 db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
             }
-            if (idAlmacen > 0)
-            {
-                where += " AND idAlmacen=@idAlmacen";
-                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
-            }
 
 
-            db.cmd.CommandText = "SELECT B.nombre,B.codProducto,A.* FROM AlmacenxProducto A join Producto B ON (A.idProducto=B.idProducto) " + where;
+
+            db.cmd.CommandText = "SELECT B.nombre,B.codProducto,A.* FROM ProductoxTienda A join Producto B ON (A.idProducto=B.idProducto) " + where;
             try
             {
                 db.conn.Open();
@@ -341,11 +380,11 @@ namespace MadeInHouse.DataObjects.Almacen
                     pxa.CodProducto = reader["codProducto"].ToString();
                     pxa.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : Int32.Parse(reader["idTienda"].ToString());
                     pxa.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
-                    pxa.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : Int32.Parse(reader["idProducto"].ToString());
                     pxa.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1 : Int32.Parse(reader["stockActual"].ToString());
                     pxa.StockMin=reader.IsDBNull(reader.GetOrdinal("stockMin")) ? -1:Int32.Parse(reader["stockMin"].ToString());
                     pxa.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMax")) ? -1 : Int32.Parse(reader["stockMax"].ToString());
                     pxa.PrecioVenta = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? -1 : float.Parse(reader["precioVenta"].ToString());
+                    pxa.Vigente = reader.IsDBNull(reader.GetOrdinal("vigente")) ? 0 : int.Parse(reader["vigente"].ToString());
                     lstPxa.Add(pxa);
                 }
                 db.cmd.Parameters.Clear();
@@ -422,16 +461,15 @@ namespace MadeInHouse.DataObjects.Almacen
         {
 
            
-            db.cmd.CommandText = "INSERT INTO AlmacenxProducto (idProducto,idAlmacen,stockActual,stockMin,stockMax,precioVenta,vigente,idTienda) " +
-                            "VALUES (@idProducto,@idAlmacen,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente,@idTienda) ";
+            db.cmd.CommandText = "INSERT INTO ProductoxTienda (idProducto,idTienda,stockActual,stockMin,stockMax,precioVenta,vigente) " +
+                            "VALUES (@idProducto,@idTienda,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente) ";
             db.cmd.Parameters.AddWithValue("@idProducto", pxa.IdProducto);
-            db.cmd.Parameters.AddWithValue("@idAlmacen", pxa.IdAlmacen);
+            db.cmd.Parameters.AddWithValue("@idTienda", pxa.IdTienda);
             db.cmd.Parameters.AddWithValue("@stockActual", pxa.StockActual);
             db.cmd.Parameters.AddWithValue("@stockMin", pxa.StockMin);
             db.cmd.Parameters.AddWithValue("@stockMax", pxa.StockMax);
             db.cmd.Parameters.AddWithValue("@precioVenta", pxa.PrecioVenta);
             db.cmd.Parameters.AddWithValue("@vigente", pxa.Vigente);
-            db.cmd.Parameters.AddWithValue("@idTienda", pxa.IdTienda);
 
             try
             {

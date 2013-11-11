@@ -59,6 +59,24 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return percepcion; }
             set { percepcion = value; }
         }
+
+        private int txtStockMin;
+
+        public int TxtStockMin
+        {
+            get { return txtStockMin; }
+            set { txtStockMin = value; }
+        }
+
+        private int txtStockMax;
+
+        public int TxtStockMax
+        {
+            get { return txtStockMax; }
+            set { txtStockMax = value; }
+        }
+
+        
      
 
         private BindableCollection<LineaProducto> lstLineasProducto;
@@ -205,6 +223,9 @@ namespace MadeInHouse.ViewModels.Almacen
                 p.IdUnidad = SelectedValueUnid;
                 p.Percepcion = Percepcion == true ? 1 : 0;
                 p.Descripcion = TxtDescrip;
+                p.StockMin = TxtStockMin;
+                p.StockMax = TxtStockMax;
+
                 if (estado == 0)
                 {
                     pSQL.AgregarProducto(p);
@@ -254,17 +275,16 @@ namespace MadeInHouse.ViewModels.Almacen
             LstUnidadMedida = umSQL.BuscarUnidadMedida();
         }
 
-        public ProductoMantenerViewModel(Producto p)
+        public ProductoMantenerViewModel(Producto p):this()
         {
 
-            LineaProductoSQL lpSQL = new LineaProductoSQL();
-            UnidadMedidaSQL umSQL = new UnidadMedidaSQL();
-            LstLineasProducto = lpSQL.ObtenerLineasProducto();
-            LstUnidadMedida = umSQL.BuscarUnidadMedida();
+        
             TxtNombre = p.Nombre;
             TxtCodigo = p.CodigoProd;
             txtAbreviatura = p.Abreviatura;
             TxtDescrip = p.Descripcion;
+            TxtStockMin = p.StockMin;
+            txtStockMax = p.StockMax;
             Percepcion = p.Percepcion==0 ? false:true;
             Editar = false;
             estado = p.IdProducto;
