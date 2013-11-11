@@ -8,26 +8,25 @@
              mc:Ignorable="d" Height="524.189" Width="742.046">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-49" Height="523" VerticalAlignment="Top">
         <StackPanel Margin="0,6,0,-6">
-            <Layouts:TitleBarTemplate title="Catalogo de productos" />
+            <Layouts:TitleBarTemplate title="CATALOGO DE PRODUCTOS DEL PROVEEDOR" />
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="459">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <DataGrid    IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,213,10,26" BorderBrush="#FF14191D" Background="White" >
+                <DataGrid CanUserAddRows="False"    IsReadOnly="True" AutoGenerateColumns="False" SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}"  Margin="10,213,10,26" BorderBrush="#FF14191D" Background="White" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd }" Header="Código"/>
-                        <DataGridTextColumn Binding="{Binding CodComercial}"  Header="Código Comercial"/>
-                        <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}"  Header="Nombre"/>
-                        <DataGridTextColumn Binding="{Binding Descripcion}" Header="Descripción" Width="130"/>
+                        <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd }" Header="Código" Width="100"/>                     
+                        <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}"  Header="Nombre" Width="130"/>
+                        <DataGridTextColumn Binding="{Binding Descripcion}" Header="Descripción" Width="170"/>
                         <DataGridTextColumn Binding="{Binding Precio}" Header="Precio (S/.)" Width="80"/>
-                        <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="150"/>
-                        <DataGridTextColumn Binding="{Binding FechaAct}"  Header="Ultima Actualización" Width="150"/>
+                        <DataGridTextColumn Binding="{Binding FechaReg}" Header="Registro" Width="120"/>
+                        <DataGridTextColumn Binding="{Binding FechaAct}"  Header="Ultima Actualización" Width="120"/>
                        
                     </DataGrid.Columns>
                 </DataGrid>
-                <TextBox IsReadOnly="True"  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  Margin="159,67,222,0" TextWrapping="Wrap" Height="23" 
+                <TextBox IsReadOnly="True"  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  Margin="228,65,153,0" TextWrapping="Wrap" Height="23" 
                   cal:Message.Attach="[Event TextChanged]=[Action Refrescar]"       VerticalAlignment="Top"  />
-                <Button x:Name="BuscarProveedor" Margin="0,65,84,0"  HorizontalAlignment="Right" Width="75" Height="26" VerticalAlignment="Top">
+                <Button x:Name="BuscarProveedor" Margin="0,65,106,0"  HorizontalAlignment="Right" Width="42" Height="23" VerticalAlignment="Top">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
                 </Button>
                 <ToolBar VerticalAlignment="Top" Height="41">
@@ -49,7 +48,7 @@
                     </Button>
                     <Button/>
                     <Button/>
-                    <Button Height="30" Width="30">
+                    <Button x:Name="Limpiar" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
                     </Button>
                     <Button x:Name="Refrescar" Height="50" Width="50">
@@ -59,11 +58,17 @@
                         <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                 </ToolBar>
-                <TextBox IsReadOnly="True"  Text="{Binding Prov.RazonSocial, Mode=TwoWay}"  Margin="159,131,222,0" TextWrapping="Wrap" Height="23" 
+                <TextBox IsEnabled="False"  Text="{Binding Prov.RazonSocial, Mode=TwoWay}"  Margin="159,105,222,0" TextWrapping="Wrap" Height="23" 
                 	       VerticalAlignment="Top"  />
-                <Label Content="Codigo:" Margin="91,90,476,334" RenderTransformOrigin="0.493,-0.514"/>
-                <Label Content="Razon Social:" Margin="62,131,491,293" RenderTransformOrigin="0.493,-0.514"/>
-                <GroupBox Header="Proveedor" HorizontalAlignment="Left" Height="141" Margin="10,46,0,0" VerticalAlignment="Top" Width="718"/>
+                <Label Content="Codigo del Proveedor:" Margin="90,65,477,359" RenderTransformOrigin="0.493,-0.514"/>
+                <Label Content="Razon Social:" Margin="76,103,477,321" RenderTransformOrigin="0.493,-0.514"/>
+                <GroupBox Header="Detalle:" HorizontalAlignment="Left" Height="137" Margin="10,46,0,0" VerticalAlignment="Top" Width="718"/>
+                <TextBox IsEnabled="False"  Text="{Binding Prov.Direccion, Mode=TwoWay}"  Margin="159,138,222,0" TextWrapping="Wrap" Height="23" 
+                	VerticalAlignment="Top"  />
+                <Label Content="Telefono:" Margin="543,105,10,319" RenderTransformOrigin="0.493,-0.514"/>
+                <TextBox IsEnabled="False" Text="{Binding Prov.Telefono, Mode=TwoWay}"  Margin="543,138,83,0" TextWrapping="Wrap" Height="23" 
+                	VerticalAlignment="Top"  />
+                <Label Content="Direccion:" Margin="90,138,477,286" RenderTransformOrigin="0.493,-0.514"/>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->

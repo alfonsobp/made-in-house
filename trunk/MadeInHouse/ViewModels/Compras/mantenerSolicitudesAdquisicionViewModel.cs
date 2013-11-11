@@ -23,7 +23,25 @@ namespace MadeInHouse.ViewModels.Compras
             set { p = value;  }
         }
 
-      
+
+        bool eagregar = true;
+
+        public bool Eagregar
+        {
+            get { return eagregar; }
+            set { eagregar = value; NotifyOfPropertyChange("Eagregar"); }
+        }
+     
+
+        public void Habilitar() {
+
+            if (P.Estado != 1) {
+
+                Eagregar = false;
+                
+            }
+             
+        }
 
 
         public mantenerSolicitudesAdquisicionViewModel(SolicitudAdquisicion p,  BuscadorSolicitudesAdquisicionViewModel model) {
@@ -31,6 +49,8 @@ namespace MadeInHouse.ViewModels.Compras
             this.P = p;
             this.model = model;
             Lst = p.LstProductos;
+
+            Habilitar();
 
         }
 
@@ -63,8 +83,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void Guardar() {
 
-            if (EsValido())
-            {
+           
                 ProductoxSolicitudAdSQL m = new ProductoxSolicitudAdSQL();
 
                 foreach (ProductoxSolicitudAd pi in Lst)
@@ -79,27 +98,35 @@ namespace MadeInHouse.ViewModels.Compras
 
                 new SolicitudAdquisicionSQL().Actualizar(P);
 
-                MessageBox.Show("Los datos fuerons Actualizados Satisfactoriamente ", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Se han confirmado las cantidades que serán atendidas en la Sol. de adquisición", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 model.Buscar();
                 this.TryClose();
 
-            }
+            
         }
 
         public void Agregar() {
-            if (EsValido()){
-               
-                    if (seleccionado != null) {
+            if (seleccionado != null)
+            {
+                if (EsValido())
+                {
 
-                        if ( Validar()) {
 
-                            Seleccionado.CantidadAtendida = Convert.ToInt32(Cantidad);
-                            Lst = new List<ProductoxSolicitudAd>(lst);
-                        }
-            
+
+                    if (Validar())
+                    {
+
+                        Seleccionado.CantidadAtendida = Convert.ToInt32(Cantidad);
+                        Lst = new List<ProductoxSolicitudAd>(lst);
                     }
 
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No ha Seleccionado ningun producto ", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         
         }

@@ -100,8 +100,37 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int Actualizar(object entity)
         {
-            throw new NotImplementedException();
+            ProductoxOrdenCompra o = entity as ProductoxOrdenCompra;
+
+            int id = o.IdOrden;
+
+                
+            DBConexion db = new DBConexion();
+            int k = 0;
+            ProductoxOrdenCompra c = entity as ProductoxOrdenCompra;
+
+            db.cmd.CommandText = "UPDATE   OrdenCompraxProducto SET cantidad = @cantidad " +
+                                 " WHERE  idOrden = @idOrden and idProducto = @idProducto";
+
+            db.cmd.Parameters.AddWithValue("@idOrden", id);
+            db.cmd.Parameters.AddWithValue("@idProducto", o.Producto.IdProducto);
+            db.cmd.Parameters.AddWithValue("@cantidad", o.Cantidad);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
         }
+        
 
         public int Eliminar(object entity)
         {

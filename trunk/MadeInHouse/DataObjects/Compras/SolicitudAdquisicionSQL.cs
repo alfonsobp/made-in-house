@@ -32,14 +32,14 @@ namespace MadeInHouse.DataObjects.Compras
             if (filters.Length > 1 && filters.Length <= 5)
             {
 
-                string idAlmacen = Convert.ToString(filters[0]);
+                string tienda = Convert.ToString(filters[0]);
                 int  estado = Convert.ToInt32(filters[1]);
                 DateTime fechaIni = Convert.ToDateTime(filters[2]);
                 DateTime fechaFin = Convert.ToDateTime(filters[3]);
 
-                if (idAlmacen != "")
+                if (!String.IsNullOrEmpty(tienda))
                 {
-                    where += " and idAlmacen = " + idAlmacen;
+                    where += " and t.nombre like '%" + tienda+"%' " ;
                 }
 
                
@@ -47,10 +47,10 @@ namespace MadeInHouse.DataObjects.Compras
                     if (estado != 4)
                     {
 
-                        where += " and estado = " + estado;
+                        where += " and s.estado = " + estado;
                     }
                     else { 
-                     where += " and estado <> 0 ";
+                     where += " and s.estado <> 0 ";
                     }
                 
 
@@ -60,25 +60,27 @@ namespace MadeInHouse.DataObjects.Compras
                 {
 
 
-                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATETIME,fechaReg,103) ";
+                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATETIME,s.fechaReg,103) ";
 
                 }
 
                 if (fechaFin != null)
                 {
 
-                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATETIME,fechaReg,103) ";
+                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATETIME,s.fechaReg,103) ";
                 }
 
             }
 
-           //  MessageBox.Show("SELECT * FROM SolicitudAdquisicion WHERE  " + where);
+          
 
-            db.cmd.CommandText = "SELECT * FROM SolicitudAdquisicion WHERE  1=1   " + where;
+            db.cmd.CommandText = "SELECT s.estado , s.idSolicitudAD ,s.fechaCierre, s.fechaReg , s.fechaAtencion , t.nombre "
+            + "FROM SolicitudAdquisicion s INNER JOIN Tienda t ON s.idTienda = t.idTienda " +
+            "WHERE  1=1   " + where;
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
 
-
+            MessageBox.Show(where);
 
             try
             {
@@ -91,11 +93,12 @@ namespace MadeInHouse.DataObjects.Compras
                 {
 
                     SolicitudAdquisicion p = new SolicitudAdquisicion();
-                   p.Estado =  Convert.ToInt32(reader["estado"].ToString());
-                   p.IdAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
+                   p.Estado =  Convert.ToInt32(reader["estado"].ToString());                   
                    p.IdSolicitudAD = Convert.ToInt32 (reader["idSolicitudAD"].ToString());
+                   p.NombreTienda = reader["nombre"].ToString();
                    p.FechaReg  =reader["fechaReg"].ToString();               
                     p.FechaAtencion = reader.IsDBNull(reader.GetOrdinal("fechaAtencion")) ? "" :reader["fechaAtencion"].ToString();
+                    p.FechaCierre = reader.IsDBNull(reader.GetOrdinal("fechaCierre")) ? "" : reader["fechaCierre"].ToString();
                    p.Codigo = "SOL-"+Convert.ToString(10000000 + p.IdSolicitudAD);
                    p.LstProductos = new ProductoxSolicitudAdSQL().Buscar(p.IdSolicitudAD) as List<ProductoxSolicitudAd>;
                    p.Est = getEstado(p.Estado);
@@ -190,9 +193,10 @@ namespace MadeInHouse.DataObjects.Compras
 
 
             db.cmd.CommandText = "UPDATE SolicitudAdquisicion " +
-                                 "SET fechaCierre = GETDATE(),estado = 3 where estado = 2 and idAlmacen = @idAlmacen and idSolicitudAD = @idSol ";
+                                 "SET fechaCierre = GETDATE(),estado = 3 "+
+                                 "where estado = 2  and idSolicitudAD = @idSol ";
                                 
-            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+           
             db.cmd.Parameters.AddWithValue("@idSol", idSol);
             try
             {

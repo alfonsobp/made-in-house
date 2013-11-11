@@ -12,13 +12,13 @@
 
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="455">
         <Label Content="Orden de compra :" HorizontalAlignment="Left" Height="31" Margin="18,69,0,0" VerticalAlignment="Top" Width="205"/>
-        <DataGrid  SelectedItem="{Binding Path=DetalleSelected}" AutoGenerateColumns="False" CanUserAddRows="False" x:Name="Lst" Height="149" Margin="17,188,98,0" VerticalAlignment="Top">
+                <DataGrid   SelectedItem="{Binding Path=DetalleSelected}" AutoGenerateColumns="False" CanUserAddRows="False" x:Name="Lst" Height="149" Margin="17,188,98,0" VerticalAlignment="Top">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="true" CanUserResize="false" Binding="{Binding Path=Producto.CodigoProd}"  Header="Código " Width="110"/>         
-                <DataGridTextColumn IsReadOnly="True" CanUserResize="False" Binding="{Binding Path=Producto.Nombre}"  Header="Descripción" Width="250"/>
-                        <DataGridTextColumn IsReadOnly="True"  CanUserResize="False" Binding="{Binding Path=CantAtendida}" Header="Cant Atendida" Width="100"/>
-                        <DataGridTextColumn IsReadOnly="true" CanUserResize="False" Binding="{Binding Path=PrecioUnitario}"  Header="PU ( S/. )" Width="100"/>
-                        <DataGridTextColumn  CanUserResize="False" Binding="{Binding Path=Cantidad}" Header="Cantidad" Width="100"/>
+                        <DataGridTextColumn  IsReadOnly="True"  CanUserResize="false" Binding="{Binding Path=Producto.CodigoProd}"  Header="Código " Width="110"/>
+                        <DataGridTextColumn  IsReadOnly="True"  CanUserResize="False" Binding="{Binding Path=Producto.Nombre}"  Header="Descripción" Width="250"/>
+                        <DataGridTextColumn  IsReadOnly="True"   CanUserResize="False" Binding="{Binding Path=CantAtendida}" Header="Cant Atendida" Width="100"/>
+                        <DataGridTextColumn IsReadOnly="True"  CanUserResize="False" Binding="{Binding Path=PrecioUnitario}"  Header="PU ( S/. )" Width="100"/>
+                        <DataGridTextColumn  IsReadOnly="{Binding Path=ReadTabla}"   CanUserResize="False" Binding="{Binding Path=Cantidad}" Header="Cantidad" Width="100"/>
                     </DataGrid.Columns>
                 </DataGrid>
         <Label Content="Proveedor:&#xD;&#xA;" HorizontalAlignment="Left" Margin="18,117,0,0" VerticalAlignment="Top"/>
@@ -28,7 +28,7 @@
         <Label Content="Medio de pago:" HorizontalAlignment="Left" Margin="396,115,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha Atencion" HorizontalAlignment="Left" Margin="418,145,0,0" VerticalAlignment="Top"/>
         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="25,342,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="Observaciones" HorizontalAlignment="Left" Margin="25,368,0,31" TextWrapping="Wrap" Width="439"/>
+        <TextBox x:Name="Observaciones" HorizontalAlignment="Left" Margin="18,368,0,31" TextWrapping="Wrap" Width="446"/>
              
        
         <ToolBar VerticalAlignment="Top">
@@ -41,7 +41,7 @@
             <Button/>
                     <Button/>
                     <Button/>
-                    <Button x:Name="Guardar">
+                    <Button IsEnabled="{Binding Path=EsGuardable}" x:Name="Guardar">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button>

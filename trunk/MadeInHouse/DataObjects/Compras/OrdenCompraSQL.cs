@@ -202,7 +202,50 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int Eliminar(object entity)
         {
-            throw new NotImplementedException();
+            int k = 0;
+
+            OrdenCompra p = entity as OrdenCompra;
+
+
+
+
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+
+
+            cmd.CommandText = "UPDATE OrdenCompra  set  estado = @estado  where idOrden = @idOrden ";
+
+
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+
+          
+            cmd.Parameters.AddWithValue("@estado", 0);
+            cmd.Parameters.AddWithValue("@idOrden", p.IdOrden);
+
+            try
+            {
+                conn.Open();
+
+
+                k = cmd.ExecuteNonQuery();
+
+
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+
+            }
+
+
+            return k;
         }
 
         public int relacionarOrden(int idOrden ,int  idSol){

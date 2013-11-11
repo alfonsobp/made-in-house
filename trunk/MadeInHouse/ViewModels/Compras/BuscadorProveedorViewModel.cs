@@ -20,66 +20,16 @@ namespace MadeInHouse.ViewModels.Compras
     class BuscadorProveedorViewModel : Screen
     {
 
-        public BuscadorProveedorViewModel(){
-
-            ActualizarProveedor();
-        }
-
-        generarOrdenCompraViewModel g;
-        public BuscadorProveedorViewModel(generarOrdenCompraViewModel g)
-        {
-
-            this.g = g;
-            ActualizarProveedor();
-        }
-
-        
-        CatalogoProductoProveedorViewModel p;
-        public BuscadorProveedorViewModel(CatalogoProductoProveedorViewModel p) {
-
-            this.p = p;
-            ActualizarProveedor();
-        }
-
-        NuevaCotizacionViewModel cp;
-
-        public BuscadorProveedorViewModel(NuevaCotizacionViewModel cp)
-        {
-            this.cp = cp;
-            ActualizarProveedor();
-        }
-
-        agregarServicioViewModel s;
-        public BuscadorProveedorViewModel(agregarServicioViewModel s)
-        {
-            this.s = s;
-            ActualizarProveedor();
-        }
-
-
-        generarOrdenCompraViewModel go;
-        BuscarCotizacionViewModel bc;      
-        public BuscadorProveedorViewModel(BuscarCotizacionViewModel bc)
-        {
-            this.bc = bc;
-            ActualizarProveedor();
-        }
-
-        BuscarDocumentoViewModel bd;
-        public BuscadorProveedorViewModel(BuscarDocumentoViewModel bd)
-        {
-            this.bd = bd;
-            ActualizarProveedor();
-        }        private MyWindowManager win = new MyWindowManager();
+#region ATRIBUTOS
+        private MyWindowManager win = new MyWindowManager();
 
         ProveedorSQL eM = new ProveedorSQL();
 
         private string txtRuc;
 
-
         public string TxtRuc
         {
-           
+
             get { return txtRuc; }
             set { txtRuc = value; NotifyOfPropertyChange(() => TxtRuc); }
         }
@@ -100,9 +50,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-
-
-        private DateTime fechaIni=new DateTime(DateTime.Now.Year, 1,1);
+        private DateTime fechaIni = new DateTime(DateTime.Now.Year, 1, 1);
 
         public DateTime FechaIni
         {
@@ -110,8 +58,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { fechaIni = value; NotifyOfPropertyChange(() => FechaIni); }
         }
 
-
-        private DateTime fechaFin=new DateTime(DateTime.Now.Year,12,31);
+        private DateTime fechaFin = new DateTime(DateTime.Now.Year, 12, 31);
 
         public DateTime FechaFin
         {
@@ -119,11 +66,9 @@ namespace MadeInHouse.ViewModels.Compras
             set { fechaFin = value; NotifyOfPropertyChange(() => FechaFin); }
         }
 
-        
-
         private List<Proveedor> lstProveedor;
 
-        public  List<Proveedor> LstProveedor
+        public List<Proveedor> LstProveedor
         {
             get { return lstProveedor; }
             set { lstProveedor = value; NotifyOfPropertyChange(() => LstProveedor); }
@@ -137,6 +82,60 @@ namespace MadeInHouse.ViewModels.Compras
             set { proveedorSeleccionado = value; NotifyOfPropertyChange("ProveedorSeleccionado"); }
         }
 
+#endregion 
+
+
+
+        public BuscadorProveedorViewModel(){
+
+            ActualizarProveedor();
+        }
+        
+        generarOrdenCompraViewModel g;
+        public BuscadorProveedorViewModel(generarOrdenCompraViewModel g)
+        {
+
+            this.g = g;
+            ActualizarProveedor();
+        }
+       
+        CatalogoProductoProveedorViewModel p;
+        public BuscadorProveedorViewModel(CatalogoProductoProveedorViewModel p) {
+
+            this.p = p;
+            ActualizarProveedor();
+        }
+
+        NuevaCotizacionViewModel cp;
+        public BuscadorProveedorViewModel(NuevaCotizacionViewModel cp)
+        {
+            this.cp = cp;
+            ActualizarProveedor();
+        }
+
+        agregarServicioViewModel s;
+        public BuscadorProveedorViewModel(agregarServicioViewModel s)
+        {
+            this.s = s;
+            ActualizarProveedor();
+        }
+     
+        BuscarCotizacionViewModel bc;      
+        public BuscadorProveedorViewModel(BuscarCotizacionViewModel bc)
+        {
+            this.bc = bc;
+            ActualizarProveedor();
+        }
+
+        BuscarDocumentoViewModel bd;
+        public BuscadorProveedorViewModel(BuscarDocumentoViewModel bd)
+        {
+            this.bd = bd;
+            ActualizarProveedor();
+        }        
+        
+    
+
 
             
         public void SelectedItemChanged()
@@ -144,13 +143,7 @@ namespace MadeInHouse.ViewModels.Compras
             if (ProveedorSeleccionado != null)
             {
 
-                if (g != null) {
-
-                    g.Prov = ProveedorSeleccionado;
-                    TryClose();
                 
-                
-                }
 
                 if (p != null)
                 {
@@ -170,10 +163,10 @@ namespace MadeInHouse.ViewModels.Compras
                     TryClose();
                 }
 
-                if (go != null) {
+                if (g != null) {
 
-                    go.Prov = ProveedorSeleccionado;
-                    go.BuscarDispo = false;
+                    g.Prov = ProveedorSeleccionado;
+                    g.BuscarDispo = false;
                     TryClose();
 
                     
@@ -189,13 +182,13 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (bc != null)
             {
-                bc.Prov = proveedorSeleccionado;
+                bc.Prov = ProveedorSeleccionado;
                 TryClose();
             }
 
             if (bd != null)
             {
-                bd.Prov = proveedorSeleccionado;
+                bd.Prov = ProveedorSeleccionado;
                 TryClose();
             }
         }
@@ -218,18 +211,37 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void EditarProveedor()
         {
-            Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(ProveedorSeleccionado,this);
-            win.ShowWindow(obj);
+            if (ProveedorSeleccionado != null)
+            {
+                Compras.MantenerProveedorViewModel obj = new Compras.MantenerProveedorViewModel(ProveedorSeleccionado, this);
+                win.ShowWindow(obj);
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ningun proveedor..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         public void EliminarProveedor()
         {
-            MessageBox.Show("Proveedor Eliminado \n\nCodigo = " + ProveedorSeleccionado.CodProveedor + "\nRazon social = " + ProveedorSeleccionado.RazonSocial + 
-                            "\nRuc = " + ProveedorSeleccionado.Ruc + "\nTelefono = " + ProveedorSeleccionado.Telefono + "\nFax = " + ProveedorSeleccionado.Fax + 
-                            "\nContacto = " + ProveedorSeleccionado.Contacto + "\nTelefono contacto = " + ProveedorSeleccionado.TelefonoContacto + 
-                            "\nDireccion = " + ProveedorSeleccionado.Direccion);
-            eM.Eliminar(ProveedorSeleccionado);
-            ActualizarProveedor();
+
+            if (ProveedorSeleccionado != null)
+            {
+
+               MessageBoxResult r = MessageBox.Show("Esta seguro que desea deshabilitar a este proveedor?", "AVISO", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+               if (r == MessageBoxResult.Yes)
+               {
+                   eM.Eliminar(ProveedorSeleccionado);
+                   ActualizarProveedor();
+               }
+
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ningun proveedor..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            
+            }
         }
 
         public void BuscarProveedor() 
@@ -319,13 +331,13 @@ namespace MadeInHouse.ViewModels.Compras
        
             BuscarPath();
 
-            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? \n"+Path, "Importar", MessageBoxButton.YesNo);
+            MessageBoxResult r = MessageBox.Show("Desea Importar desde la ruta "+Path+" ? ", "Importación", MessageBoxButton.YesNo,MessageBoxImage.Information);
 
             if (r == MessageBoxResult.Yes)
             {
 
                 Cargar();
-                MessageBox.Show("Se importó satisfactoriamente los proveedores ...");
+                MessageBox.Show("Se Importaron Satisfactoriamente los Proveedores ingresados..");
                 LstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
             }
         
