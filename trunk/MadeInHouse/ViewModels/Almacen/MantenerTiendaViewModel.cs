@@ -26,6 +26,23 @@ namespace MadeInHouse.ViewModels.Almacen
         private TipoZonaSQL tzSQL;
         private int idAlmacen;
 
+        List<TipoZona> lstZonasAnq;
+        List<TipoZona> lstZonasDto;
+        
+        private int accion; /*1=ABRIR NUEVO , 2=ABRIR EDITAR*/
+        private string content;
+
+
+        public string Content
+        {
+            get { return content; }
+            set
+            {
+                content = value;
+                NotifyOfPropertyChange(() => Content);
+            }
+        }
+
         private int index1;
 
         public int Index1
@@ -511,33 +528,25 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return selectedItem; }
             set { selectedItem = value; }
         }
-        #endregion
 
+        private bool editar=true;
 
-
-        List<TipoZona> lstZonasAnq;
-        List<TipoZona> lstZonasDto;
-        private int accion; /*1=ABRIR NUEVO , 2=ABRIR EDITAR*/
-        private string content;
-
-        public string Content
+        public bool Editar
         {
-            get { return content; }
-            set { content = value;
-            NotifyOfPropertyChange(() => Content);
+            get { return editar; }
+            set { editar = value;
+            NotifyOfPropertyChange(() => Editar);
             }
         }
 
+        #endregion
+
         #region Constructores
 
-        public MantenerTiendaViewModel(Tienda t) 
+        public MantenerTiendaViewModel(Tienda t) :this()
         {
             accion = 2;
-            uSQL = new UbigeoSQL();
-            tSQL = new TiendaSQL();
-            pxaSQL = new ProductoSQL();
-            aSQL = new AlmacenSQL();
-            tzSQL = new TipoZonaSQL();
+            Editar = false;
 
             /*carga de la informacion general*/
             TxtNombre = t.Nombre;
@@ -580,6 +589,8 @@ namespace MadeInHouse.ViewModels.Almacen
             uSQL = new UbigeoSQL();
             tSQL = new TiendaSQL();
             pxaSQL = new ProductoSQL();
+            aSQL = new AlmacenSQL();
+            tzSQL = new TipoZonaSQL();
 
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
             CmbDpto = uSQL.BuscarDpto();
@@ -625,8 +636,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         }
-
-
 
         public void BuscarProductos()
         {
@@ -798,14 +807,140 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             return lista;
         }
+        
+        public DataTable CrearZonasDT()
+        {
+            /*Agrego las zonas por almacen*/
+            DataTable zonaxAlmacenData = new DataTable("ZonaxAlmacen");
 
+            // Create Column 1: idTipoZona
+
+            DataColumn idZonaCol = new DataColumn();
+            idZonaCol.DataType = Type.GetType("System.Int32");
+            idZonaCol.ColumnName = "idTipoZona";
+
+
+            // Create Column 2: idAlmacen
+            DataColumn idAlmacenCol = new DataColumn();
+            idAlmacenCol.DataType = Type.GetType("System.Int32");
+            idAlmacenCol.ColumnName = "idAlmacen";
+
+            // Create Column 3: nroBloquesDisp
+            DataColumn nroBloquesDispCol = new DataColumn();
+            nroBloquesDispCol.DataType = Type.GetType("System.Int32");
+            nroBloquesDispCol.ColumnName = "nroBloquesDisp";
+
+            // Create Column 3: nroBloquesTotal
+            DataColumn nroBloquesTotalCol = new DataColumn();
+            nroBloquesTotalCol.DataType = Type.GetType("System.Int32");
+            nroBloquesTotalCol.ColumnName = "nroBloquesTotal";
+
+            // Add the columns to the ProductSalesData DataTable
+            zonaxAlmacenData.Columns.Add(idZonaCol);
+            zonaxAlmacenData.Columns.Add(idAlmacenCol);
+            zonaxAlmacenData.Columns.Add(nroBloquesDispCol);
+            zonaxAlmacenData.Columns.Add(nroBloquesTotalCol);
+
+            return zonaxAlmacenData;
+
+        }
+
+        public void AgregarFilasToZonasDT(DataTable data, Dictionary<int, int> dic, int id)
+        {
+            for (int i = 0; i < dic.Count; i++)
+            {
+
+                if (dic.ElementAt(i).Value > 0)
+                {
+                    DataRow zonaxAlmacenRow = data.NewRow();
+                    zonaxAlmacenRow["idTipoZona"] = dic.ElementAt(i).Key;
+                    zonaxAlmacenRow["idAlmacen"] = id;
+                    zonaxAlmacenRow["nroBloquesDisp"] = dic.ElementAt(i).Value;
+                    zonaxAlmacenRow["nroBloquesTotal"] = dic.ElementAt(i).Value;
+
+                    // Add the row to the ProductSalesData DataTable
+                    data.Rows.Add(zonaxAlmacenRow);
+
+                }
+
+            }
+
+        }
+
+        public DataTable CrearUbicacionesDT()
+        {
+
+
+            /*Agrego las zonas por almacen*/
+            DataTable ubicacionesData = new DataTable("Ubicacion");
+
+            // Create Column 1: idTipoZona
+
+            DataColumn idZonaCol = new DataColumn();
+            idZonaCol.DataType = Type.GetType("System.Int32");
+            idZonaCol.ColumnName = "idTipoZona";
+
+
+            // Create Column 2: idAlmacen
+            DataColumn idAlmacenCol = new DataColumn();
+            idAlmacenCol.DataType = Type.GetType("System.Int32");
+            idAlmacenCol.ColumnName = "idAlmacen";
+
+            // Create Column 3: cordX
+            DataColumn cordXCol = new DataColumn();
+            cordXCol.DataType = Type.GetType("System.Int32");
+            cordXCol.ColumnName = "cordX";
+
+            // Create Column 3: cordY
+            DataColumn cordYCol = new DataColumn();
+            cordYCol.DataType = Type.GetType("System.Int32");
+            cordYCol.ColumnName = "cordY";
+
+            // Create Column 3: cordY
+            DataColumn cordZCol = new DataColumn();
+            cordZCol.DataType = Type.GetType("System.Int32");
+            cordZCol.ColumnName = "cordZ";
+
+            // Add the columns to the ProductSalesData DataTable
+            ubicacionesData.Columns.Add(idZonaCol);
+            ubicacionesData.Columns.Add(idAlmacenCol);
+            ubicacionesData.Columns.Add(cordXCol);
+            ubicacionesData.Columns.Add(cordYCol);
+            ubicacionesData.Columns.Add(cordZCol);
+
+            return ubicacionesData;
+        }
+
+        public void AgregarFilasToUbicacionesDT(DataTable data, List<List<List<Ubicacion>>> filas, int id)
+        {
+            for (int m = 0; m < filas.Count; m++)
+            {
+                for (int n = 0; n < filas[m].Count; n++)
+                {
+                    for (int p = 0; p < filas[m][n].Count; p++)
+                    {
+                        filas[m][n][p].IdAlmacen = id;
+                        DataRow ubicacionxAlmacenRow = data.NewRow();
+                        ubicacionxAlmacenRow["idTipoZona"] = filas[m][n][p].IdTipoZona;
+                        ubicacionxAlmacenRow["idAlmacen"] = id;
+                        ubicacionxAlmacenRow["CordX"] = filas[m][n][p].CordX;
+                        ubicacionxAlmacenRow["CordY"] = filas[m][n][p].CordY;
+                        ubicacionxAlmacenRow["CordZ"] = filas[m][n][p].CordZ;
+
+                        // Add the row to the ProductSalesData DataTable
+                        data.Rows.Add(ubicacionxAlmacenRow);
+
+                        //ubSQL.Agregar(anaquel.Ubicaciones[m][n][p]);
+                    }
+                }
+
+            }
+
+        }
 
         public int GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
         {
 
-            /*saco todos los idTipoZona*/
-            List<int> zonasAnaquel = ObtenerListaZonas(anaquel);
-            List<int> zonasDeposito = ObtenerListaZonas(deposito);
             int exito = 1;
 
             DBConexion db = new DBConexion();
@@ -829,8 +964,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 tienda.IdUbigeo = seleccionado.IdUbigeo;
                 tienda.FechaReg = DateTime.Today;
                 TiendaSQL gw = new TiendaSQL(db);
-                int idTienda = gw.AgregarTienda(tienda);
-                if (idTienda > 0)
+                int idTienda=-1;
+                if (accion==1) idTienda = gw.AgregarTienda(tienda);
+                //else if(accion==2) 
+               
+               if (idTienda > 0)
                 {
 
                     /*Se agregan las dos partes de la tienda*/
@@ -847,7 +985,9 @@ namespace MadeInHouse.ViewModels.Almacen
                     ana.NroFilas = int.Parse(TxtNumRowsAnq);
                     ana.Altura = int.Parse(TxtAlturaAnq);
                     ana.Tipo = 2;
-                    int idAnaquel = aSQL.Agregar(ana);
+                    int idAnaquel=-1;
+                    if (accion==1) idAnaquel = aSQL.Agregar(ana);
+
                     if (idAnaquel > 0)
                     {
 
@@ -862,7 +1002,8 @@ namespace MadeInHouse.ViewModels.Almacen
                         dto.NroFilas = int.Parse(TxtNumRowsDto);
                         dto.Altura = int.Parse(TxtAlturaDto);
                         dto.Tipo = 1;
-                        int idDeposito = aSQL.Agregar(dto);
+                        int idDeposito=-1;
+                       if (accion==1) idDeposito = aSQL.Agregar(dto);
                         if (idDeposito > 0)
                         {
 
@@ -877,16 +1018,11 @@ namespace MadeInHouse.ViewModels.Almacen
 
                             if (exito > 0)
                             {
-                                /*Agrego las zonas por almacen*/
-                                for (int i = 0; i < zonasAnaquel.Count; i++)
-                                {
-                                    aSQL.AgregarZonas(zonasAnaquel[i], idAnaquel);
-                                }
+                               DataTable zonaxAlmacenData = CrearZonasDT();
+                               AgregarFilasToZonasDT(zonaxAlmacenData, anaquel.listaZonas, idAnaquel);
+                               AgregarFilasToZonasDT(zonaxAlmacenData, deposito.listaZonas, idDeposito);
 
-                                for (int i = 0; i < zonasDeposito.Count; i++)
-                                {
-                                    aSQL.AgregarZonas(zonasDeposito[i], idDeposito);
-                                }
+                                exito=aSQL.AgregarZonasMasivo(zonaxAlmacenData, trans);
 
                                 if (exito > 0)
                                 {
@@ -894,38 +1030,11 @@ namespace MadeInHouse.ViewModels.Almacen
                                     UbicacionSQL ubSQL = new UbicacionSQL(db);
 
                                     /*Ubicaciones del anaquel*/
-                                    for (int m = 0; m < anaquel.Ubicaciones.Count; m++)
-                                    {
-                                        for (int n = 0; n < anaquel.Ubicaciones[m].Count; n++)
-                                        {
-                                            for (int p = 0; p < anaquel.Ubicaciones[m][n].Count; p++)
-                                            {
-                                                anaquel.Ubicaciones[m][n][p].IdAlmacen = idAnaquel;
-                                                anaquel.Ubicaciones[m][n][p].CordX = m;
-                                                anaquel.Ubicaciones[m][n][p].CordY = n;
-                                                anaquel.Ubicaciones[m][n][p].CordZ = p;
-                                                ubSQL.Agregar(anaquel.Ubicaciones[m][n][p]);
-                                            }
-                                        }
-
-                                    }
-                                    /*Ubicaciones del deposito*/
-
-                                    for (int m = 0; m < deposito.Ubicaciones.Count; m++)
-                                    {
-                                        for (int n = 0; n < deposito.Ubicaciones[m].Count; n++)
-                                        {
-                                            for (int p = 0; p<deposito.Ubicaciones[m][n].Count; p++)
-                                            {
-                                                deposito.Ubicaciones[m][n][p].IdAlmacen = idDeposito;
-                                                /*deposito.Ubicaciones[m][n].CordX = m;
-                                                deposito.Ubicaciones[m][n].CordY = n;
-                                                deposito.Ubicaciones[m][n].CordZ = Int32.Parse(txtAlturaDto);*/
-                                                ubSQL.Agregar(deposito.Ubicaciones[m][n][p]);
-                                            }
-                                        }
-
-                                    }
+                                    DataTable ubicacionesData = CrearUbicacionesDT();
+                                    AgregarFilasToUbicacionesDT(ubicacionesData, anaquel.Ubicaciones, idAnaquel);
+                                    AgregarFilasToUbicacionesDT(ubicacionesData, deposito.Ubicaciones, idDeposito);
+                                    exito = ubSQL.AgregarMasivo(ubicacionesData, trans);
+                                
                                     trans.Commit();
                                     System.Windows.MessageBox.Show("Se creó la tienda correctamente");
                                     return 1;
@@ -963,6 +1072,10 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        public void EditarTienda()
+        {
+            Editar = true;
+        }
 
         #endregion
     }

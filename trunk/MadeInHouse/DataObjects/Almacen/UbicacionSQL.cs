@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -56,6 +57,57 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return 1;
         }
+
+        public int AgregarMasivo(DataTable data, SqlTransaction transaction )
+        {
+            try
+            {
+                if (tipo) db.conn.Open();
+                using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction))
+                {
+
+                    s.DestinationTableName = data.TableName;
+
+                    foreach (var column in data.Columns)
+                        s.ColumnMappings.Add(column.ToString(), column.ToString());
+                    
+                    s.WriteToServer(data);
+                    s.Close();
+                }
+                if (tipo) db.conn.Close();
+               
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+
+            return 1;
+        }
+
+        public int Eliminar(int idAlmacen)
+        {
+            db.cmd.CommandText = "DELETE FROM Ubicaciones WHERE idAlmacen=@idAlmacen";
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            try
+            {
+                if (tipo) db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+
+
+
+            return 1;
+        }
+  
 
          public List<Ubicacion> ObtenerUbicaciones(int idAlmacen=-1,int idTipoZona=-1)
         {

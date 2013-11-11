@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
+using System.ComponentModel;
 
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    
+
     class MantenerLineaProductoViewModel : PropertyChangedBase
     {
 

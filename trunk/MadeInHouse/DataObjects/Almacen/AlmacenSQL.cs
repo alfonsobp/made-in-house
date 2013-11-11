@@ -32,12 +32,14 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public int AgregarZonas(int idTipoZona,int idAlmacen) 
+        public int AgregarZonas(int nroBloques,int idTipoZona,int idAlmacen) 
         {
             db.cmd.CommandType = CommandType.Text;
-            db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona , idAlmacen) VALUES (@idTipoZona,@idAlmacen)" ;
+            db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona , idAlmacen,nroBloquesDisp,nroBloquesTotal) VALUES (@idTipoZona,@idAlmacen,@nroBloquesDisp,@nroBloquesTotal)";
             db.cmd.Parameters.AddWithValue("@idTipoZona", idTipoZona);
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            db.cmd.Parameters.AddWithValue("@nroBloquesDisp", nroBloques);
+            db.cmd.Parameters.AddWithValue("@nroBloquesTotal", nroBloques);
 
             try
             {
@@ -60,6 +62,94 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return 1;
 
+        }
+
+        public int ActualizarZonasMasivo(DataTable data, SqlTransaction transaction )
+        {
+            int n = 0;
+            string select="";
+            try
+            {
+                
+                if (tipo) db.conn.Open();
+                using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction))
+                {
+
+                    s.DestinationTableName = "Temporal";
+
+                    foreach (var column in data.Columns)
+                    {
+                        s.ColumnMappings.Add(column.ToString(), "column" + n.ToString());
+                        n++;
+                    }
+
+                    s.WriteToServer(data);
+                    s.Close();
+                }
+
+                for(int i=0;i<n-1;i++) {
+                    select+="column"+i.ToString()+",";
+                }
+                select +="column"+(n-1).ToString();
+
+
+                db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona,idAlmacen,nroBloquesDisp,nroBloquesTotal) " +
+                                    "SELECT " + select + " FROM Temporal T LEFT JOIN ZonaxAlmacen ZA " +
+                                    " ON (T.column1=ZA.idAlmacen and T.column2=ZA.idTipoZona " +
+                                    " WHERE ZA.idAlmacen is null and ZA.idTipoZona is null ";
+                db.cmd.ExecuteNonQuery();
+
+                db.cmd.CommandText = "TRUNCATE TABLE Temporal";
+                db.cmd.ExecuteNonQuery();
+
+
+
+
+                if (tipo) db.conn.Close();
+
+
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+
+
+
+
+            return 1;
+
+        }
+
+
+        public int AgregarZonasMasivo(DataTable data,SqlTransaction transaction)
+        {
+
+            try {
+
+            if (tipo) db.conn.Open();
+            using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default,transaction))
+            {
+                
+                s.DestinationTableName = data.TableName;
+
+                foreach (var column in data.Columns)
+                    
+                    s.ColumnMappings.Add(column.ToString(), column.ToString());
+
+                s.WriteToServer(data);
+            }
+           if (tipo) db.conn.Close();
+
+            }catch(SqlException e) {
+                    Console.WriteLine(e);
+                    return -1;
+                }
+
+            return 1;
         }
 
 

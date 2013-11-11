@@ -393,8 +393,7 @@ namespace MadeInHouse.ViewModels.Almacen
             public int GuardarAlmacen(MadeInHouse.Dictionary.DynamicGrid deposito)
             {
 
-                /*saco todos los idTipoZona*/
-                List<int> zonas = ObtenerListaZonas(deposito);
+           
                 
                 int exito = 1;
 
@@ -429,10 +428,12 @@ namespace MadeInHouse.ViewModels.Almacen
                     if (idAlmacen > 0 && up>0)
                     {
                     /*Agrego las zonas por almacen*/
-                        for (int i = 0; i < zonas.Count; i++)
-                          {
-                             exito=aSQL.AgregarZonas(zonas[i], idAlmacen);
-                          }
+                              for (int i = 0; i < deposito.listaZonas.Count; i++)
+                                {
+                                    if (deposito.listaZonas.ElementAt(i).Value > 0)
+                                       exito= aSQL.AgregarZonas(deposito.listaZonas.ElementAt(i).Value, deposito.listaZonas.ElementAt(i).Key, idAlmacen);
+                                }
+                        
 
                                 if (exito > 0)
                                 {

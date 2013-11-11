@@ -64,11 +64,11 @@ namespace MadeInHouse.DataObjects.Almacen
                 {
                     Tienda t = new Tienda();
                     t.IdTienda = int.Parse(reader["idTienda"].ToString());
-                    t.IdUbigeo= int.Parse(reader["idUbigeo"].ToString());
-                    t.Nombre = reader["nombre"].ToString();
-                    t.Direccion = reader["direccion"].ToString();
-                    t.Telefono= reader["telefono"].ToString();
-                    t.Administrador = reader["administrador"].ToString();
+                    t.IdUbigeo= reader.IsDBNull(reader.GetOrdinal("idUbigeo")) ? -1: int.Parse(reader["idUbigeo"].ToString());
+                    t.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    t.Direccion = reader.IsDBNull(reader.GetOrdinal("direccion")) ? null :reader["direccion"].ToString();
+                    t.Telefono= reader.IsDBNull(reader.GetOrdinal("telefono"))? null: reader["telefono"].ToString();
+                    t.Administrador = reader.IsDBNull(reader.GetOrdinal("administrador")) ? null:reader["administrador"].ToString();
                     lstTienda.Add(t);
                 }
                 db.cmd.Parameters.Clear();

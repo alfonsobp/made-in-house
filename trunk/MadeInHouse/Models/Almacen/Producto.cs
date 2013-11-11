@@ -110,7 +110,47 @@ namespace MadeInHouse.Models.Almacen
             get { return precio; }
             set { precio = value; }
         }
-        
+
+        private int stockActual;
+
+        public int StockActual
+        {
+            get { return stockActual; }
+            set { stockActual = value; }
+        }
+
+        private int stockMin;
+
+        public int StockMin
+        {
+            get { return stockMin; }
+            set { stockMin = value; }
+        }
+
+        private int stockMax;
+
+        public int StockMax
+        {
+            get { return stockMax; }
+            set { stockMax = value; }
+        }
+
+        private LineaProducto linea;
+
+        public LineaProducto Linea
+        {
+            get { return linea; }
+            set { linea = value; }
+        }
+
+        private SubLineaProducto sublinea;
+
+        public SubLineaProducto Sublinea
+        {
+            get { return sublinea; }
+            set { sublinea = value; }
+        }
+
 
     }
 
