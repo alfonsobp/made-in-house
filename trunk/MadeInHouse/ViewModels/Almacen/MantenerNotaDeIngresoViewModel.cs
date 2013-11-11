@@ -34,7 +34,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return txtDoc; }
             set { txtDoc = value;
-            NotifyOfPropertyChange(() => TxtCodPro);
+            NotifyOfPropertyChange(() => TxtDoc);
             }
         }
 
@@ -117,18 +117,6 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        string txtCodPro="";
-
-        public string TxtCodPro
-        {
-            get { return txtCodPro; }
-            set
-            {
-                txtCodPro = value;
-                NotifyOfPropertyChange(() => TxtCodPro);
-            }
-        }
-
         string txtCantPro;
 
         public string TxtCantPro
@@ -183,27 +171,28 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         public void AgregarProducto() {
-            if (TxtCodPro == null || TxtCantPro == null)
+            if (SelectedProducto.CodigoProd == null || TxtCantPro == null)
             {
                 System.Windows.MessageBox.Show("Debe completar todos los campos");
             }
             else
             {
                 ProductoCant pxa;
-                List<Producto> lstAux = null;
-                lstAux = pxaSQL.BuscarProducto(TxtCodPro);
+                Producto lstAux = null;
+                lstAux = pxaSQL.Buscar_por_CodigoProducto(SelectedProducto.CodigoProd);
                 
                 if ( (lstAux != null))
                 {
                     if (LstProductos != null)
                     {
-                        if ((pxa = LstProductos.Find(x => x.CodPro == lstAux[0].CodigoProd)) == null)
+                        if ((pxa = LstProductos.Find(x => x.CodPro == lstAux.CodigoProd)) == null)
                         {
-
                             pxa = new ProductoCant();
-                            pxa.Can = TxtCantPro;
-                            pxa.CodPro = lstAux[0].CodigoProd.ToString();
-                            pxa.ProNombre = lstAux[0].Nombre;
+                            pxa.CanAtender = TxtCantPro;
+                            pxa.CanAtend = "0";
+                            pxa.Can = "0";
+                            pxa.CodPro = lstAux.CodigoProd.ToString();
+                            pxa.ProNombre = lstAux.Nombre;
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
                         }
@@ -215,8 +204,8 @@ namespace MadeInHouse.ViewModels.Almacen
                     else {
                         pxa = new ProductoCant();
                         pxa.Can = TxtCantPro;
-                        pxa.CodPro = lstAux[0].CodigoProd.ToString();
-                        pxa.ProNombre = lstAux[0].Nombre;
+                        pxa.CodPro = lstAux.CodigoProd.ToString();
+                        pxa.ProNombre = lstAux.Nombre;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoCant>(LstProductos);
