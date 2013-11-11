@@ -69,7 +69,7 @@ namespace MadeInHouse.DataObjects.Compras
         public object Buscar(params object[] filters)
         {
 
-            int id = Convert.ToInt32( filters[0]);
+          
 
             DBConexion DB = new DBConexion();
 
@@ -81,10 +81,10 @@ namespace MadeInHouse.DataObjects.Compras
             cmd.CommandText = "select ps.idProducto as idProducto, sum(ps.cantidadAtendida) as suma from " +
                               " ProductoxSolicitudAd ps , SolicitudAdquisicion p where " +
                               "ps.idSolicitudAD = p.idSolicitudAD and p.estado = 2 " +
-                                " and p.idAlmacen = @id    "+
-                              "group by ps.idProducto; ";
+                            
+                              " group by ps.idProducto; ";
 
-            cmd.Parameters.AddWithValue("@id", id);
+           
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -103,7 +103,7 @@ namespace MadeInHouse.DataObjects.Compras
                     Consolidado p = new Consolidado();
                     p.Cantidad = Convert.ToInt32(reader["suma"].ToString());
                     p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
-                    p.IdAlmacen = id;
+                    
                     lst.Add(p);
                 }
 

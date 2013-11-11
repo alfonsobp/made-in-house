@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Data.OleDb;
 using System.Data;
-using System.Windows;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models;
 using MadeInHouse.DataObjects.Compras;
+using System.Windows.Forms;
+
 
 
 
@@ -44,7 +45,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { path = value; NotifyOfPropertyChange(() => Path); }
         }
 
-        Proveedor prov;
+        Proveedor prov=null;
 
         public Proveedor Prov
         {
@@ -62,13 +63,26 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void Eliminar() {
 
-            if (prov != null) {
+            if (Prov != null) {
+
+                 DialogResult result = System.Windows.Forms.MessageBox.Show("Esta seguro que desea deshabilitar este producto?","AVISO",MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+               if(result == DialogResult.Yes){
+                
                 new ProveedorxProductoSQL().Eliminar(seleccionado);
                 Refrescar();
+                MessageBox.Show("Se ha deshabilitado correctamente el producto..","AVISO");
+               }
             }
         
         }
+
+        public void Limpiar() {
+
+            Prov = null;
+            LstProducto = null;
         
+        }
 
         public void Cargar()
         {
@@ -82,33 +96,44 @@ namespace MadeInHouse.ViewModels.Compras
                 String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
                 OleDbConnection con = new OleDbConnection(constr);
                 OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-                con.Open();
 
-                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-                DataTable data = new DataTable();
-                sda.Fill(data);
-                DataTableReader ds = data.CreateDataReader();
-
-                while (ds.Read())
+                try
                 {
-                   ProveedorxProducto cp = new ProveedorxProducto();
-                    cp.IdProveedor = Prov.IdProveedor;
-                    cp.Producto = new Producto();
-                    cp.Producto.CodigoProd= ds["Codigo"].ToString();
-                    cp.CodComercial = ds["Codigo Comercial"].ToString();
-                    cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
-                    cp.Descripcion = ds["Descripcion"].ToString();                  
-                    ProveedorxProductoSQL pp = new ProveedorxProductoSQL();
-                     int k = pp.Insertar(cp);
+                    con.Open();
 
-                    
+                    OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+                    DataTable data = new DataTable();
+                    sda.Fill(data);
+                    DataTableReader ds = data.CreateDataReader();
+
+
+                    while (ds.Read())
+                    {
+                        ProveedorxProducto cp = new ProveedorxProducto();
+                        cp.IdProveedor = Prov.IdProveedor;
+                        cp.Producto = new Producto();
+                        cp.Producto.CodigoProd = ds["Codigo"].ToString();
+                        cp.CodComercial = ds["Codigo Comercial"].ToString();
+                        cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
+                        cp.Descripcion = ds["Descripcion"].ToString();
+                        ProveedorxProductoSQL pp = new ProveedorxProductoSQL();
+                        int k = pp.Insertar(cp);
+
+
+                    }
+
+
+
+
                 }
 
-              
+                catch (Exception e)
+                {
+
+                }
+
 
             }
-
-
         }
 
         public void BuscarPath()
@@ -142,9 +167,11 @@ namespace MadeInHouse.ViewModels.Compras
 
                 BuscarPath();
 
-                MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
+                 DialogResult  r =  System.Windows.Forms.MessageBox.Show("Desea Importar de la ruta  "+Path +" ? ", "AVISO",
+               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (r == MessageBoxResult.Yes)
+
+                if (r == DialogResult.Yes)
                 {
 
                     Cargar();
@@ -163,21 +190,20 @@ namespace MadeInHouse.ViewModels.Compras
        
 
         public void EditarProducto() {
-            if (prov != null  && seleccionado != null)
+            if (Prov != null  && Seleccionado != null)
             {
                 MyWindowManager win = new MyWindowManager();
                 ProveedorxProducto pp;
-                pp = seleccionado;
+                pp = Seleccionado;
                 win.ShowWindow(new Compras.ProductoViewModel(pp, this));
             }
         }
 
         public void NuevoProducto() {
-            if (prov != null)
+            if (Prov != null)
             {
                 MyWindowManager win = new MyWindowManager();
-                ProveedorxProducto pp = new ProveedorxProducto();
-                pp.Producto = new Producto();
+                ProveedorxProducto pp = new ProveedorxProducto();              
                 pp.IdProveedor = Prov.IdProveedor;
                 win.ShowWindow(new Compras.ProductoViewModel(pp, this));
             }

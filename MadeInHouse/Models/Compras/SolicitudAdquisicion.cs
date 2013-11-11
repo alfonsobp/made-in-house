@@ -23,6 +23,22 @@ namespace MadeInHouse.Models.Compras
             set { idSolicitudAD = value; }
         }
 
+        string fechaCierre;
+
+        public string FechaCierre
+        {
+            get { return fechaCierre; }
+            set { fechaCierre = value; }
+        }
+
+        string nombreTienda;
+
+        public string NombreTienda
+        {
+            get { return nombreTienda; }
+            set { nombreTienda = value; }
+        }
+
 
         string fechaReg;
 

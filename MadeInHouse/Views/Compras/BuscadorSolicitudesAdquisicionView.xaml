@@ -36,24 +36,24 @@
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-         <DataGrid  CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False"   SelectedItem="{Binding SolicitudSelected, Mode=TwoWay}" ItemsSource="{Binding LstSolicitud, Mode=OneWay}" Margin="11,195,0,0" Height="207" VerticalAlignment="Top" HorizontalAlignment="Left" Width="537">
+         <DataGrid  CanUserAddRows="False" IsReadOnly="True" AutoGenerateColumns="False"   SelectedItem="{Binding SolicitudSelected, Mode=TwoWay}" ItemsSource="{Binding LstSolicitud, Mode=OneWay}" Margin="18,195,0,0" Height="207" VerticalAlignment="Top" HorizontalAlignment="Left" Width="521">
             <DataGrid.Columns>
                 <DataGridTextColumn  Binding="{Binding Path=Codigo}" Width="130" Header="Código"/>             
                 <DataGridTextColumn Binding="{Binding Path=Est}" Width="130" Header="Estado"/>
                 <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Fecha Registro"/>
-               <DataGridTextColumn Binding="{Binding Path=FechaAtencion}" Width="130" Header="Fecha Atencion"/>
+               <DataGridTextColumn Binding="{Binding Path=NombreTienda}" Width="130" Header="Tienda"/>
                     </DataGrid.Columns>
                 </DataGrid>
-        <TextBox x:Name="IdAlmacen" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <GroupBox Header="Criterios de Búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="537"/>
-        <Button x:Name="Buscar" Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63">
+        <TextBox x:Name="Tienda" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="145,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+        <GroupBox Header="Criterios de Búsqueda" Margin="3,40,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="551"/>
+        <Button x:Name="Buscar" Height="25" Margin="485,160,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-                <Label Content="Almacén Central:" HorizontalAlignment="Left" Margin="28,76,0,0" VerticalAlignment="Top"/>
+                <Label Content="Nombre de Tienda:" HorizontalAlignment="Left" Margin="28,76,0,0" VerticalAlignment="Top"/>
                 <ComboBox  x:Name="LstEstado" SelectedItem="{Binding EstadoSelected}"  HorizontalAlignment="Left" Height="23" Margin="146,116,0,0" VerticalAlignment="Top" Width="120"/>
       
         
-        <Label Content="Estado:" HorizontalAlignment="Left" Margin="31,115,0,0" VerticalAlignment="Top"/>
+        <Label Content="Estado:" HorizontalAlignment="Left" Margin="92,113,0,0" VerticalAlignment="Top"/>
         <DatePicker  x:Name="FechaIni" HorizontalAlignment="Left" Margin="126,161,0,0" VerticalAlignment="Top" Width="104"/>
         <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="303,163,0,0" VerticalAlignment="Top" Width="105"/>
         <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="31,161,0,0" VerticalAlignment="Top"/>

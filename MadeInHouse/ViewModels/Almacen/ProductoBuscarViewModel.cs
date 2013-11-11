@@ -8,6 +8,7 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.DataObjects;
 using System.Windows.Controls;
+using MadeInHouse.ViewModels.Compras;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -92,9 +93,16 @@ namespace MadeInHouse.ViewModels.Almacen
             this.ventanaAccion = p;
         }
 
+        public ProductoBuscarViewModel(ProductoViewModel pvm):this() {
+            this.pvm = pvm;
+            
+        }
+
         #endregion
 
         #region atributos
+
+        public ProductoViewModel pvm = null;
 
         public int idAlmacen { get; set; }
 
@@ -324,6 +332,17 @@ namespace MadeInHouse.ViewModels.Almacen
                     this.TryClose();
                 }
             }
+
+            if (pvm != null) {
+
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                
+                    pvm.P = productoSel;
+                    this.TryClose();
+                
+
+            }
+
         }
 
 

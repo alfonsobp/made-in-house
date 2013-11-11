@@ -9,7 +9,7 @@
     <Grid>
 
         <StackPanel Margin="2,0,0,0" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298">
-            <Layouts:TitleBarTemplate title="Producto" />
+            <Layouts:TitleBarTemplate title="MANTENER PRODUCTOS" />
             <Grid   Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"  RenderTransformOrigin="0.444,0.693" Height="469" Margin="2,0,-2,0">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -23,33 +23,35 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button
-            			x:Name="guardarProducto" />
-                    <Button/>
-                    <Button/>
+                    
                     <Button  x:Name="guardar">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button/>
-                    <Button x:Name="limpiar" Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
-                    </Button>
+                   
 
                 </ToolBar>
                 <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
                 <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
-                <TextBox  x:Name="Precio" HorizontalAlignment="Left" Height="38" Margin="23,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <Label Content="Precio:" HorizontalAlignment="Left" Margin="24,126,0,0" VerticalAlignment="Top" Width="60"/>
-                <Label Content="Codigo Comercial" HorizontalAlignment="Left" Margin="24,209,0,0" VerticalAlignment="Top"/>
+                <TextBox  x:Name="Precio" HorizontalAlignment="Left" Height="38" Margin="59,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                <Label Content="Precio:" HorizontalAlignment="Left" Margin="24,184,0,0" VerticalAlignment="Top" Width="60"/>
+                <Label Content="Codigo Comercial" HorizontalAlignment="Left" Margin="23,258,0,0" VerticalAlignment="Top"/>
+                <Button IsEnabled="{Binding EsBuscar}" x:Name="Buscar" Margin="0,86,25,0"  HorizontalAlignment="Right" Width="27" Height="33" VerticalAlignment="Top">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
+                </Button>
+                <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="-164,-133,0,0" VerticalAlignment="Top" Height="53" Width="292"/>
+                <GroupBox Header="Producto" HorizontalAlignment="Left" Margin="6,41,0,0" VerticalAlignment="Top" Height="143" Width="282"/>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->
         </StackPanel>
-        <TextBox  Height="38" Margin="24,98,25,0" TextWrapping="Wrap" x:Name="CodProducto" VerticalAlignment="Top"/>
-        <TextBox   HorizontalAlignment="Left" Height="95" Margin="24,373,0,0" TextWrapping="Wrap" x:Name="Descripcion" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Codigo Producto:" HorizontalAlignment="Left" Margin="24,67,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox   HorizontalAlignment="Left" Height="44" Margin="26,275,0,0" TextWrapping="Wrap" x:Name="CodComercial" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,342,0,0" VerticalAlignment="Top"/>
+        <TextBox  Height="33" Margin="24,113,59,0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Path= P.CodigoProd}" VerticalAlignment="Top"/>
+        <TextBox  Height="34" Margin="24,172,59,0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Path= P.Nombre}" VerticalAlignment="Top"/>
+        <TextBox   HorizontalAlignment="Left" Height="95" Margin="24,395,0,0" TextWrapping="Wrap" x:Name="Descripcion" VerticalAlignment="Top" Width="251"/>
+        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="24,87,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox   HorizontalAlignment="Left" Height="44" Margin="24,315,0,0" TextWrapping="Wrap" x:Name="CodComercial" VerticalAlignment="Top" Width="251"/>
+        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,364,0,0" VerticalAlignment="Top"/>
+        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="24,146,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="S/." HorizontalAlignment="Left" Margin="36,258,0,0" VerticalAlignment="Top" Width="60"/>
 
     </Grid>
 </UserControl>

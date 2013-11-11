@@ -70,6 +70,46 @@ namespace MadeInHouse.ViewModels.Compras
             set { fechaFin = value; NotifyOfPropertyChange("FechaFin"); }
         }
 
+        public void Limpiar() {
+            FechaIni = new DateTime(DateTime.Now.Year, 1, 1);
+            FechaFin = new DateTime(DateTime.Now.Year, 12, 31);
+            SelectedEstado = "TODOS";
+            IdOrdenCompra = "";
+            RSProveedor = "";
+        }
+
+        public void Actualizar() {
+
+
+            LstOrdenes = new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
+        
+        }
+
+        public void Eliminar() {
+
+            if (OrdenSelected != null)
+            {
+                if (OrdenSelected.Estado == 1)
+                {
+                    new OrdenCompraSQL().Eliminar(OrdenSelected);
+                    MessageBox.Show("Se ha CANCELADO la orden de compra..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    Actualizar();
+
+                }
+                else
+                {
+                    MessageBox.Show("Solo puede CANCELAR Ordenes de compra NO EMITIDAS..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                  
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ninguna Orden de compra ..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            
+            }
+        }
+
         public int getEstado(string path) {
 
             if (path == "TODOS") return 4;
@@ -111,13 +151,16 @@ namespace MadeInHouse.ViewModels.Compras
 
         public BuscarOrdenCompraViewModel()
         {
-           
+           lstOrdenes= new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
+        
         }
 
         registrarDocumentosViewModel r;
         public BuscarOrdenCompraViewModel(registrarDocumentosViewModel r)
         {
             this.r = r;
+           LstOrdenes= new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
+        
         }
 
         private OrdenCompra ordenSeleccionada;
@@ -145,6 +188,11 @@ namespace MadeInHouse.ViewModels.Compras
                 generarOrdenCompraViewModel obj = new generarOrdenCompraViewModel(OrdenSelected, this);
                 win.ShowWindow(obj);
             }
+            else
+            {
+
+                MessageBox.Show("No ha seleccionado ninguna Orden de compra ..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         #region Busqueda desde Almacen
@@ -158,6 +206,8 @@ namespace MadeInHouse.ViewModels.Compras
             this.ventanaAccion = accionVentana;
             this.estado = false;
             this.selectedEstado = "EN EJECUCION";
+           LstOrdenes= new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
+        
         }
 
         

@@ -47,7 +47,15 @@ namespace MadeInHouse.ViewModels.Compras
             set { idAlmacen = value; NotifyOfPropertyChange("IdAlmacen"); }
         }
 
-    
+
+        string tienda;
+
+        public string Tienda
+        {
+            get { return tienda; }
+            set { tienda = value; NotifyOfPropertyChange("Tienda"); }
+        }
+
         private string estadoSelected="TODOS";
 
         public string EstadoSelected
@@ -61,7 +69,7 @@ namespace MadeInHouse.ViewModels.Compras
         public SolicitudAdquisicion SolicitudSelected
         {
             get { return solicitudSelected; }
-            set { solicitudSelected = value; }
+            set { solicitudSelected = value; NotifyOfPropertyChange("SolicitudSelected"); }
         }
 
         List<SolicitudAdquisicion> lstSolicitud;
@@ -73,12 +81,12 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         public BuscadorSolicitudesAdquisicionViewModel() {
-            LstSolicitud = new SolicitudAdquisicionSQL().Buscar("4", getEstado(EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
+            LstSolicitud = new SolicitudAdquisicionSQL().Buscar(Tienda, getEstado(EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
         }
 
         public void Buscar() {
 
-            LstSolicitud = new SolicitudAdquisicionSQL().Buscar("4",getEstado( EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
+            LstSolicitud = new SolicitudAdquisicionSQL().Buscar(Tienda,getEstado( EstadoSelected), FechaIni, FechaFin) as List<SolicitudAdquisicion>;
         
         }
 
@@ -97,15 +105,21 @@ namespace MadeInHouse.ViewModels.Compras
         {
 
 
-        //    Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel();
-        //    win.ShowWindow(obj);
+     
         }
         public void EditarSolicitud()
         {
 
-           // MessageBox.Show(" x = " + SolicitudSelected.LstProductos.Count);
-            Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel(SolicitudSelected ,this);
-            win.ShowWindow(obj);
+            if (SolicitudSelected != null)
+            {
+                Compras.mantenerSolicitudesAdquisicionViewModel obj = new Compras.mantenerSolicitudesAdquisicionViewModel(SolicitudSelected, this);
+                win.ShowWindow(obj);
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado una Solicitud de adquisicion", "AVISO", MessageBoxButton.OK,MessageBoxImage.Exclamation);
+            
+            }
         }
     }
 }
