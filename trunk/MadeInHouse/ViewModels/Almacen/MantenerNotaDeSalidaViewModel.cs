@@ -16,9 +16,11 @@ namespace MadeInHouse.ViewModels.Almacen
         MyWindowManager win = new MyWindowManager();
         DataObjects.Almacen.ProductoxSolicitudAbSQL gateWay = new ProductoxSolicitudAbSQL();
         ProductoSQL pxaSQL;
+        
         public MantenerNotaDeSalidaViewModel() {
+            enabledDoc = true;
             pxaSQL = new ProductoSQL();
-            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
+            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(2);
             /*
              <ComboBoxItem Content="Orden de despacho" HorizontalAlignment="Left" Width="118"/>
                             <ComboBoxItem Content="Traslado" HorizontalAlignment="Left" Width="118"/>
@@ -27,13 +29,23 @@ namespace MadeInHouse.ViewModels.Almacen
                             <ComboBoxItem Content="Otros" HorizontalAlignment="Left" Width="118"/>
              */
             AlmacenSQL aGW = new AlmacenSQL();
-            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(4);
+            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(3);
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
            //lstProductos = gateWay.ListaProductos("1");
             
         }
+        bool enabledDoc;
+
+        public bool EnabledDoc
+        {
+            get { return enabledDoc; }
+            set { enabledDoc = value;
+            NotifyOfPropertyChange("EnabledDoc");
+            }
+        }
+
 
         string txtDoc;
 
@@ -72,7 +84,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public Producto SelectedProducto
         {
             get { return selectedProducto; }
-            set { selectedProducto = value; }
+            set { selectedProducto = value;}
         }
         
         List<Models.Almacen.Almacenes> almacen;

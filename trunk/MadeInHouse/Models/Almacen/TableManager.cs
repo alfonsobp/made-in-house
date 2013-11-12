@@ -14,7 +14,8 @@ namespace MadeInHouse.Models.Almacen
         {
             EntityManager eM = null;
 
-
+            if (indexTable == EntityName.MotivoIS)
+                eM = new MotivoISManager();
             /*
             if (indexTable == EntityName.Proveedor)
                 //eM = new ProveedorSQL();

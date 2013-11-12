@@ -20,12 +20,13 @@ namespace MadeInHouse.ViewModels.Almacen
         ProductoSQL pxaSQL;
         public MantenerNotaDeIngresoViewModel(){
             pxaSQL = new ProductoSQL();
-            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
+            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(1);
             AlmacenSQL aGW = new AlmacenSQL();
-            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(4);
+            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(3);
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
+            estado = true;
         }
 
         string txtDoc;
@@ -58,7 +59,47 @@ namespace MadeInHouse.ViewModels.Almacen
         public string SelectedMotivo
         {
             get { return selectedMotivo; }
-            set { selectedMotivo = value; }
+            set { selectedMotivo = value;
+            Deshabilitar(selectedMotivo);
+            NotifyOfPropertyChange(() => SelectedMotivo);
+            }
+        }
+
+        private void Deshabilitar(string selectedMotivo)
+        {
+
+            if (selectedMotivo.Equals("Traslado Externo"))
+            {
+                Estado = true;
+            }
+            else
+            {
+                if (selectedMotivo.Equals("Orden de Compra"))
+                {
+                    Estado = true;
+                }
+                else
+                {
+                    if (selectedMotivo.Equals("Devolucion"))
+                    {
+                        Estado = true;
+                    }
+                    else
+                    {
+                        if (selectedMotivo.Equals("Ajuste"))
+                        {
+                            Estado = false;
+                        }
+                        else
+                        {
+                        //Cualquier otro motivo
+                            Estado = false;
+                        }
+
+                    }
+                }
+            }
+
         }
 
         Producto selectedProducto;
@@ -105,7 +146,15 @@ namespace MadeInHouse.ViewModels.Almacen
             set { observaciones = value; }
         }
 
-        //Estado (Documento Referencia);
+        bool estado;
+
+        public bool Estado
+        {
+            get { return estado; }
+            set { estado = value; 
+            NotifyOfPropertyChange("Estado");
+            }
+        }
 
         List<ProductoCant> lstProductos;
 
@@ -203,7 +252,9 @@ namespace MadeInHouse.ViewModels.Almacen
                     }
                     else {
                         pxa = new ProductoCant();
-                        pxa.Can = TxtCantPro;
+                        pxa.CanAtender = TxtCantPro;
+                        pxa.CanAtend = "0";
+                        pxa.Can = "0";
                         pxa.CodPro = lstAux.CodigoProd.ToString();
                         pxa.ProNombre = lstAux.Nombre;
                         LstProductos = new List<ProductoCant>();

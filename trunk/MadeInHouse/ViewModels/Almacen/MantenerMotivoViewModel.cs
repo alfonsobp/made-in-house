@@ -41,9 +41,9 @@ namespace MadeInHouse.ViewModels.Almacen
             int k;
             Motivo m = new Motivo();
             //MotivoIS m = new MotivoIS();
+            m.NombreMotivo = TxtMotivo;
             m.Nombre = TxtMotivo;
-            k = new TableManager().getInstance(EntityName.MotivoIS).Agregar(m);
-
+            k = DataObjects.Almacen.MotivoSQL.AgregarMotivo(m); 
             if (k == 0)
                 MessageBox.Show("Ocurrio un error");
             else
