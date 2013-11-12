@@ -53,6 +53,24 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private GuiaRemision guiaSeleccionada;
+        private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
+        private int accion;
+
+        public int Accion
+        {
+            get { return accion; }
+            set { accion = value; }
+        }
+
+        public BuscarGuiasRemisionViewModel() { 
+        
+        }
+        public BuscarGuiasRemisionViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.Accion = p;
+        }
 
         public void SelectedItemChanged(object sender)
         {
