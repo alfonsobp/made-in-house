@@ -26,7 +26,9 @@ namespace MadeInHouse.ViewModels.Almacen
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
-            estado = true;
+            Estado = true;
+            EstadoMot = true;
+            EstadoPro = true;
         }
 
         string txtDoc;
@@ -36,6 +38,27 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return txtDoc; }
             set { txtDoc = value;
             NotifyOfPropertyChange(() => TxtDoc);
+            }
+        }
+        bool estadoPro;
+
+        public bool EstadoPro
+        {
+            get { return estadoPro; }
+            set { estadoPro = value;
+            NotifyOfPropertyChange("EstadoPro");
+            }
+        }
+        bool estadoMot;
+
+        public bool EstadoMot
+        {
+            get { return estadoMot; }
+            set
+            {
+                estadoMot = value;
+                NotifyOfPropertyChange("EstadoMot");
+
             }
         }
 
@@ -60,12 +83,12 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return selectedMotivo; }
             set { selectedMotivo = value;
-            Deshabilitar(selectedMotivo);
+            DeshabilitarDoc(selectedMotivo);
             NotifyOfPropertyChange(() => SelectedMotivo);
             }
         }
 
-        private void Deshabilitar(string selectedMotivo)
+        private void DeshabilitarDoc(string selectedMotivo)
         {
 
             if (selectedMotivo.Equals("Traslado Externo"))
@@ -109,6 +132,18 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return selectedProducto; }
             set { selectedProducto = value;
             NotifyOfPropertyChange(() => SelectedProducto);
+            }
+        }
+
+        ProductoCant selectedProductoCant;
+
+        public ProductoCant SelectedProductoCant
+        {
+            get { return selectedProductoCant; }
+            set
+            {
+                selectedProductoCant = value;
+                NotifyOfPropertyChange(() => SelectedProductoCant);
             }
         }
 
@@ -199,6 +234,46 @@ namespace MadeInHouse.ViewModels.Almacen
   
            }
             NotifyOfPropertyChange(() => LstProductos);
+            EstadoMot = false;
+            Estado = false;
+            DeshabilitarPro(SelectedMotivo);
+        }
+
+        private void DeshabilitarPro(string SelectedMotivo)
+        {
+
+            if (selectedMotivo.Equals("Traslado Externo"))
+            {
+                EstadoPro = false;
+            }
+            else
+            {
+                if (selectedMotivo.Equals("Orden de Compra"))
+                {
+                    EstadoPro = false;
+                }
+                else
+                {
+                    if (selectedMotivo.Equals("Devolucion"))
+                    {
+                        EstadoPro = false;
+                    }
+                    else
+                    {
+                        if (selectedMotivo.Equals("Ajuste"))
+                        {
+                            EstadoPro = true;
+                        }
+                        else
+                        {
+                            //Cualquier otro motivo
+                            EstadoPro = true;
+                        }
+
+                    }
+                }
+            }
+
         }
 
         public void BuscarDocumento()
@@ -269,6 +344,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
             }
         }
+
         public void AbrirPosicionProducto()
         {
 
@@ -281,6 +357,16 @@ namespace MadeInHouse.ViewModels.Almacen
 
             Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel();
             win.ShowWindow(abrirListaOrden);
+        }
+
+        public void Quitar()
+        {
+            if (SelectedProductoCant != null)
+            {
+                LstProductos.Remove(SelectedProductoCant);
+                LstProductos = new List<ProductoCant>(LstProductos);
+                
+            }
         }
 
     }

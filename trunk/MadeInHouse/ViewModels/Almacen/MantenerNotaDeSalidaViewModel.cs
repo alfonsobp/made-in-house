@@ -18,7 +18,7 @@ namespace MadeInHouse.ViewModels.Almacen
         ProductoSQL pxaSQL;
         
         public MantenerNotaDeSalidaViewModel() {
-            enabledDoc = true;
+            
             pxaSQL = new ProductoSQL();
             this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(2);
             /*
@@ -34,17 +34,19 @@ namespace MadeInHouse.ViewModels.Almacen
             al.Add(a);
             this.almacen = al;
            //lstProductos = gateWay.ListaProductos("1");
-            
+            EstadoMot = true;
         }
-        bool enabledDoc;
+        bool estadoMot;
 
-        public bool EnabledDoc
+        public bool EstadoMot
         {
-            get { return enabledDoc; }
-            set { enabledDoc = value;
-            NotifyOfPropertyChange("EnabledDoc");
+            get { return estadoMot; }
+            set { estadoMot = value;
+            NotifyOfPropertyChange("EstadoMot");
+
             }
         }
+        
 
 
         string txtDoc;
@@ -149,6 +151,7 @@ namespace MadeInHouse.ViewModels.Almacen
             string mot = this.selectedMotivo;
             //Si fuera Por Traslado, Saco informacion de Solicitud de Abastecimiento con la referencia
            lstProductos = gateWay.ListaProductos(referencia);
+           EstadoMot = false;
            NotifyOfPropertyChange(() => LstProductos);
         }
 
