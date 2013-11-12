@@ -11,6 +11,24 @@ namespace MadeInHouse.ViewModels.Ventas
     class DevolucionesBuscarViewModel : PropertyChangedBase
     {
         private MyWindowManager win = new MyWindowManager();
+        private Almacen.MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
+        private int accion;
+
+        public int Accion
+        {
+            get { return accion; }
+            set { accion = value; }
+        }
+
+        public DevolucionesBuscarViewModel() { 
+        
+        }
+        public DevolucionesBuscarViewModel(Almacen.MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accion):this()
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.Accion = accion;
+        }
 
         public void AbrirRegistrarDevolucion()
         {

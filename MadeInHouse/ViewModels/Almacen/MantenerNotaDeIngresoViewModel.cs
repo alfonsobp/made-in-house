@@ -10,6 +10,7 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.ViewModels.Compras;
+using MadeInHouse.ViewModels.Ventas;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -284,8 +285,29 @@ namespace MadeInHouse.ViewModels.Almacen
                 wm.ShowWindow(new BuscarOrdenCompraViewModel(this, 1));
             }
             else {
-                MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                if (string.Compare(selectedMotivo, "Devolucion", true) == 0) {
+            
+                    MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+                    wm.ShowWindow(new DevolucionesBuscarViewModel(this,1));
+                
+                }
+                else {
+                    if (string.Compare(selectedMotivo, "Traslado Externo", true) == 0)
+                    {
+                        MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+                        wm.ShowWindow(new BuscarGuiasRemisionViewModel(this, 1));
+                    }
+                    else {
+
+                        //cualquier otro motivo
+                        MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                
+                    }
+                }
+                
+
             }
+
         }
 
         public void BuscarProducto()
