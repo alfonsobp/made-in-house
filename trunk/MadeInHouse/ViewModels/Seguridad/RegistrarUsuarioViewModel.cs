@@ -32,6 +32,7 @@ namespace MadeInHouse.ViewModels.Seguridad
             IsEnabledResetContrasenha = false;
             IsEnabledCodEmpleado = true;
             IsEnabledVerificar = true;
+            estHabilitadoValue = 1;
 
         }
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m)
@@ -45,6 +46,7 @@ namespace MadeInHouse.ViewModels.Seguridad
             IsEnabledResetContrasenha = false;
             IsEnabledCodEmpleado = true;
             IsEnabledVerificar = true;
+            estHabilitadoValue = 1;
         }
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m, Usuario u)
         {

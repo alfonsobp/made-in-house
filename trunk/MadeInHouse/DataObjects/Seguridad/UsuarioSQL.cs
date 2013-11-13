@@ -18,16 +18,14 @@ namespace MadeInHouse.DataObjects.Seguridad
         //AGREGAR
         public static int agregarUsuario(Usuario u)
         {
-
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod,estadoHabilitado) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate(),@estadoHabilitado) ";
+            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod,estadoHabilitado,numIntentos) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate(),@estadoHabilitado,@numIntentos) ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
-            Trace.WriteLine("Flag1");
             Trace.WriteLine("<" + u.CodEmpleado + ">");
             Trace.WriteLine("<" + u.Contrasenha + ">");
             Trace.WriteLine("<" + u.Rol.IdRol + ">");
@@ -38,6 +36,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
             cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
+            cmd.Parameters.AddWithValue("@numIntentos", 0); //numero de intentos 0, por ser inicial
 
             try
             {
@@ -51,6 +50,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
             return k;
         }
+
 
         public static int EditarUsuario(Usuario u)
         {
@@ -221,6 +221,48 @@ namespace MadeInHouse.DataObjects.Seguridad
             return u;
         }
 
+        public static List<Usuario> BuscarUsuarioEliminado()
+        {
+            List<Usuario> lstUsuarioElim = new List<Usuario>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Usuario WHERE estado=0";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Usuario u = new Usuario();
+                    u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
+                    u.CodEmpleado = reader["codEmpleado"].ToString();
+
+                    u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
+                    u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
+                    u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
+                    u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
+                    u.Estado = Int32.Parse(reader["estado"].ToString());
+
+                    lstUsuarioElim.Add(u);
+                }
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lstUsuarioElim;
+
+        }
+
         public static List<Usuario> BuscarUsuario(string codEmpleado, int idRol, DateTime fechaRegIni, DateTime fechaRegFin)
         {
 
@@ -344,6 +386,57 @@ namespace MadeInHouse.DataObjects.Seguridad
             return disp;
         }
 
+        public static int ActualizarEstadoUsuarios(Usuario u)
+        {
+            DBConexion db = new DBConexion();
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE Usuario SET estado = @estado, estadoHabilitado = @estadoHabilitado WHERE idUsuario = @idUsuario ";
+
+            db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@estado", u.Estado);
+            db.cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        public static int RecuperarUsuarios(Usuario u)
+        {
+            DBConexion db = new DBConexion();
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE Usuario SET estado = @estado WHERE idUsuario = @idUsuario ";
+
+            db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@estado", u.Estado);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
         public static int EliminarUsuarios(Usuario u)
         {
             DBConexion db = new DBConexion();
@@ -370,7 +463,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 
             return k;
         }
-
+            
         public static void DeshabilitarUsuario(Usuario u)
         {
 
@@ -418,6 +511,64 @@ namespace MadeInHouse.DataObjects.Seguridad
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
+        }
+
+        public static int ActualizarNumIntentos(Usuario u)
+        {
+            DBConexion db = new DBConexion();
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE Usuario SET numIntentos = @numIntentos, estadoHabilitado = @estadoHabilitado WHERE idUsuario = @idUsuario ";
+
+            db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@numIntentos", u.NumIntentos);
+            db.cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return k;
+        }
+
+        public static int GetNumIntentos(Usuario u)
+        {
+            int numIntentos = 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Usuario WHERE idUsuario = @idUsuario";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    numIntentos = (int)(reader["numIntentos"]);
+                }
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return numIntentos;
         }
 
         public static List<AccVentana> ListarAccVentanaPorRol(List<AccVentana> lstAccVentana, int idRol)
