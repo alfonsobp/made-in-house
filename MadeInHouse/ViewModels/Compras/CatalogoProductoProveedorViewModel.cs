@@ -129,7 +129,7 @@ namespace MadeInHouse.ViewModels.Compras
 
                 catch (Exception e)
                 {
-
+                    MessageBox.Show("Revisar la plantilla utilizada, ocurrio un error.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
 

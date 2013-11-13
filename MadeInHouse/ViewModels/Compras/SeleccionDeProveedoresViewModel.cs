@@ -2,9 +2,11 @@
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Compras;
+using MadeInHouse.Validacion;
 using MadeInHouse.Views.Compras;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +15,7 @@ using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class SeleccionDeProveedoresViewModel:Screen
+    class SeleccionDeProveedoresViewModel : Screen, IDataErrorInfo
     {
 
 
@@ -58,14 +60,15 @@ namespace MadeInHouse.ViewModels.Compras
             set { prov = value; NotifyOfPropertyChange("Prov"); }
         }
 
-        int cantidad=0;
+        string cantidad = "0";
 
-        public int Cantidad
+        public string Cantidad
         {
             get { return cantidad; }
             set { cantidad = value; NotifyOfPropertyChange("Cantidad"); }
         }
 
+       
         
 
         string codigo;
@@ -82,6 +85,55 @@ namespace MadeInHouse.ViewModels.Compras
         #endregion
 
         #region METODOS
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "Cantidad": result = evaluarCantidad(); break;
+                   
+                };
+                return result;
+            }
+        }
+
+        public string evaluarCantidad() {
+
+            Evaluador e = new Evaluador();
+
+            if (string.IsNullOrEmpty(Cantidad)) {
+
+                return "La cantidád está vacia";
+            } 
+
+
+            if (!e.esNumeroEntero(Cantidad)) {
+
+                return "La cantidad ingresada no es un número Entero.";
+            
+            }
+
+            if (int.Parse(Cantidad) <= 0)
+            {
+                return "No puedo ingresar cantidades que son cero.";
+            }
+
+            if (ConsolidadoSelected != null)
+            {
+                if (ConsolidadoSelected.Cantidad < int.Parse(Cantidad))
+                {
+                    return "No puede ingresar una cantidad mayor a la que dispone.";
+                }
+
+            }
+
+
+            return String.Empty;
+        }
+
         public SeleccionDeProveedoresViewModel() {
 
            
@@ -97,12 +149,12 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (p.Cantidad != 0)
             {
-                Cantidad = p.Cantidad;
+                Cantidad = p.Cantidad.ToString();
                 Codigo = ConsolidadoSelected.Producto.CodigoProd;
                
             }
             else {
-                Cantidad = 0;      
+                Cantidad = "0";      
             }
 
             Prov = null;
@@ -117,10 +169,13 @@ namespace MadeInHouse.ViewModels.Compras
 
          if (ConsolidadoSelected != null)
          {
-            // MessageBox.Show(""+ConsolidadoSelected.Producto.IdProducto);
-             BuscarProveedorViewModel obj = new BuscarProveedorViewModel(consolidadoSelected.Producto.IdProducto,this);
+             // MessageBox.Show(""+ConsolidadoSelected.Producto.IdProducto);
+             BuscarProveedorViewModel obj = new BuscarProveedorViewModel(consolidadoSelected.Producto.IdProducto, this);
              win.ShowWindow(obj);
 
+         }
+         else {
+             MessageBox.Show("No ha seleccionado ningun registro", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
          }
         
         }
@@ -129,14 +184,42 @@ namespace MadeInHouse.ViewModels.Compras
         public Boolean Validar() {
 
             if (Prov == null)
+            {
+                MessageBox.Show("No ha seleccionado ningun proveedor", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (ConsolidadoSelected == null)
+            {
+                MessageBox.Show("No ha seleccionado algún elemento de la tabla ", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            Evaluador e = new Evaluador();
+
+            if (!e.esNumeroEntero(Cantidad))
+            {
+                MessageBox.Show("La cantidad ingresada no es un número Entero.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
 
-            if(consolidadoSelected==null)
-                return false;
+            }
 
-            if (ConsolidadoSelected.Cantidad < Cantidad || Cantidad <= 0)
+            if (int.Parse(Cantidad) <= 0)
+            {
+                MessageBox.Show("No puedo ingresar cantidades que son cero.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
+            }
 
+            if (ConsolidadoSelected != null)
+            {
+
+                if (ConsolidadoSelected.Cantidad < int.Parse(Cantidad))
+                {
+
+                    MessageBox.Show("No puede ingresar una cantidad mayor a la que dispone.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return false;
+                }
+
+            }
 
 
             return true;
@@ -149,18 +232,18 @@ namespace MadeInHouse.ViewModels.Compras
             if (Validar() == true) {
 
                Consolidado p = new Consolidado();
-               p.Cantidad = Cantidad;
+               p.Cantidad = Convert.ToInt32(Cantidad);
                p.Producto = ConsolidadoSelected.Producto;
                p.Prov = Prov;
                p.Costo = Costo;
 
-               ConsolidadoSelected.Cantidad -= Cantidad;
+               ConsolidadoSelected.Cantidad -= Convert.ToInt32(Cantidad);
                buscarRespuesta(p);
                       
                LstConsolidado = new List<Consolidado>(lstConsolidado);
                LstRespuesta = new List<Consolidado>(lstRespuesta);
 
-               Cantidad = consolidadoSelected.Cantidad;
+               Cantidad = consolidadoSelected.Cantidad.ToString();
                Prov = null;
           
             }
@@ -184,7 +267,7 @@ namespace MadeInHouse.ViewModels.Compras
                    
                 }
 
-                Cantidad = 0;
+                Cantidad = "0";
                 Prov = null;
                
             }
@@ -253,17 +336,62 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void MedioPago() {
 
+            if (validarMedio())
+            {
 
-            List<Proveedor> lstProveedor = Seleccion();
+                List<Proveedor> lstProveedor = Seleccion();
 
-            MedioPagoViewModel obj = new MedioPagoViewModel(lstProveedor, LstRespuesta, 4,this);
-            MyWindowManager win = new MyWindowManager();
-            win.ShowWindow(obj);
-            //TryClose();
+                MedioPagoViewModel obj = new MedioPagoViewModel(lstProveedor, LstRespuesta, 4, this);
+                MyWindowManager win = new MyWindowManager();
+                win.ShowWindow(obj);
+                //TryClose();
+            }
+                    
+                    }
+
         
+
+        public bool validarMedio() { 
+
+          if (LstConsolidado == null){
+          
+           MessageBox.Show("No hay consolidado alguna para realizar la transaccion.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+           return false;
+          }
+
+          if (LstRespuesta == null)
+          {
+              MessageBox.Show("No hay respuesta alguna generada.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+              return false;
+          }
+
+          if (LstRespuesta.Count <= 0)
+          {
+              MessageBox.Show("No hay respuesta alguna generada.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+              return false;
+          }
+
+          foreach (Consolidado e in LstConsolidado) {
+
+              if (e.Cantidad != 0)
+              {
+                  MessageBox.Show("No ha completado la transaccion , hay productos aun no atendidos en su totalidad.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                  return false;
+              }
+          }
+
+
+          return true;
         }
+
+      
        
 #endregion
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }
 

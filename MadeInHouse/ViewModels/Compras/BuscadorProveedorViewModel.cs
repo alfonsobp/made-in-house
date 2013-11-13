@@ -233,7 +233,12 @@ namespace MadeInHouse.ViewModels.Compras
                if (r == MessageBoxResult.Yes)
                {
                    eM.Eliminar(ProveedorSeleccionado);
+
+                   MessageBoxResult r2 = MessageBox.Show("Ha sido deshabilitado el proveedor.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+
                    ActualizarProveedor();
+            
+
                }
 
             }
@@ -291,34 +296,40 @@ namespace MadeInHouse.ViewModels.Compras
 
                 List<ProveedorxProducto> lista = new List<ProveedorxProducto>();
 
-                String name = "Proveedor";
-                String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
-                OleDbConnection con = new OleDbConnection(constr);
-                OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
-                con.Open();
-
-                OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
-                DataTable data = new DataTable();
-                sda.Fill(data);
-                DataTableReader ds = data.CreateDataReader();
-
-                while (ds.Read())
+                try
                 {
-                    Proveedor p = new Proveedor();
-                    p.Contacto = ds["Contacto"].ToString();
-                    p.Direccion = ds["Direccion"].ToString();
-                    p.Email = ds["Email"].ToString();
-                    p.RazonSocial = ds["RazonSocial"].ToString();
-                    p.Fax = ds["Fax"].ToString();
-                    p.Telefono = ds["Telefono"].ToString();
-                    p.Ruc = ds["Ruc"].ToString();
-                    p.TelefonoContacto = ds["TelefonoContacto"].ToString();
-                    p.Email = ds["Email"].ToString();
+                    String name = "Proveedor";
+                    String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
+                    OleDbConnection con = new OleDbConnection(constr);
+                    OleDbCommand oconn = new OleDbCommand("Select * From [" + name + "$]", con);
+                    con.Open();
 
-                    new ProveedorSQL().Agregar(p);
+                    OleDbDataAdapter sda = new OleDbDataAdapter(oconn);
+                    DataTable data = new DataTable();
+                    sda.Fill(data);
+                    DataTableReader ds = data.CreateDataReader();
 
+                    while (ds.Read())
+                    {
+                        Proveedor p = new Proveedor();
+                        p.Contacto = ds["Contacto"].ToString();
+                        p.Direccion = ds["Direccion"].ToString();
+                        p.Email = ds["Email"].ToString();
+                        p.RazonSocial = ds["RazonSocial"].ToString();
+                        p.Fax = ds["Fax"].ToString();
+                        p.Telefono = ds["Telefono"].ToString();
+                        p.Ruc = ds["Ruc"].ToString();
+                        p.TelefonoContacto = ds["TelefonoContacto"].ToString();
+                        p.Email = ds["Email"].ToString();
+
+                        new ProveedorSQL().Agregar(p);
+
+                    }
                 }
+                catch (Exception e) {
 
+                 MessageBoxResult r =  MessageBox.Show("Revisar la plantilla utilizada, ocurrio un error.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
 
 
             }

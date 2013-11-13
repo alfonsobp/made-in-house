@@ -107,7 +107,7 @@ namespace MadeInHouse.Models.Compras
             set { idAlmacen = value; }
         }
 
-        string medioPago="FACTURA";
+        string medioPago="BOLETA";
 
         public string MedioPago
         {
@@ -121,7 +121,7 @@ namespace MadeInHouse.Models.Compras
             this.idAlmacen = idAlmacen;
             this.proveedor = p;
             this.observaciones = observaciones;
-            this.MedioPago = (p.EsBoleta) ? "BOLETA" : "FACTURA";
+            this.MedioPago = p.MedioPago;
 
         
         }
