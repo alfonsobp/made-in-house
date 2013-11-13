@@ -1183,6 +1183,7 @@
     <Resource Include="Assets\weather.png" />
     <Resource Include="Assets\RRHH4.png" />
     <Resource Include="Assets\ventas4.png" />
+    <Resource Include="Assets\recover.png" />
     <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
     <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Dictionary\Libraries\RibbonControlsLibrary.dll" />

@@ -116,10 +116,20 @@ namespace MadeInHouse.ViewModels
                     }
                     else
                         MessageBox.Show("Usted fue inhabilitado");
+                    u.NumIntentos = 0;
+                    DataObjects.Seguridad.UsuarioSQL.ActualizarNumIntentos(u);
                 }
 
                 else
                 {
+                    u.NumIntentos= DataObjects.Seguridad.UsuarioSQL.GetNumIntentos(u);
+                    u.NumIntentos++;
+                    if (u.NumIntentos >= 4)
+                    {
+                        u.EstadoHabilitado = 0;
+                        u.NumIntentos = 0;
+                    }
+                    DataObjects.Seguridad.UsuarioSQL.ActualizarNumIntentos(u);
                     Response = "Datos incorrectos";
                 }
             }

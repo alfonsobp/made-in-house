@@ -36,6 +36,16 @@ namespace MadeInHouse.Models.Seguridad
             set { contrasenha = value; }
         }
 
+        private int numIntentos;
+
+        public int NumIntentos
+        {
+            get { return numIntentos; }
+            set { numIntentos = value; }
+        }
+
+
+
         DateTime fechaMod;
 
         public DateTime FechaMod
