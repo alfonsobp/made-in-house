@@ -10,15 +10,13 @@
     <Grid>
 
         <StackPanel Margin="2,2,0,0">
-            <Layouts:TitleBarTemplate title="Medio de Pago Proveedores" />
+            <Layouts:TitleBarTemplate title="MEDIO DE PAGO DE PROVEEDORES" />
             <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Height="468">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="0*"/>
                 </Grid.ColumnDefinitions>
-                <Button Height="25" Margin="43,80,-43,0" VerticalAlignment="Top" Grid.Column="1">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
-                </Button>
+                <Button Height="25" Margin="43,80,-43,0" VerticalAlignment="Top" Grid.Column="1"/>
                 <ToolBar VerticalAlignment="Top" Height="41">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -38,23 +36,28 @@
                     <Button Height="50" Width="50"/>
                     <Button Height="50" Width="50"/>
                 </ToolBar>
-                <DataGrid   CanUserAddRows="False" AutoGenerateColumns="False" x:Name="LstProveedor" Margin="17,121,18,18">
+                <DataGrid   CanUserAddRows="False" AutoGenerateColumns="False" x:Name="LstProveedor" Margin="14,117,13,80">
                     <DataGrid.Columns >
-                        <DataGridTextColumn Binding="{Binding Path=CodProveedor}" Width="100" Header="Codigo"/>
-                        <DataGridTextColumn Binding="{Binding RazonSocial}" Width="280" Header="Razon Social"/>
-                        <DataGridCheckBoxColumn Header="Boleta" Binding="{Binding EsBoleta, UpdateSourceTrigger=PropertyChanged}"/>
-                        <DataGridCheckBoxColumn Header="Factura" Binding="{Binding EsFactura, UpdateSourceTrigger=PropertyChanged}"/>
-
-
+                        <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Binding="{Binding Path=CodProveedor}" Width="130" Header="Codigo"/>
+                        <DataGridTextColumn  CanUserResize="False" IsReadOnly="True" Binding="{Binding RazonSocial}" Width="200" Header="Razon Social"/>
+                       
+                        <DataGridTemplateColumn CanUserResize="False" Header="Medio Pago" Width="150">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ComboBox Margin="2" SelectedItem="{Binding MedioPago,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding LstMedio}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="Seleccionar el Medio de Pago:" HorizontalAlignment="Left" Margin="10,79,0,0" VerticalAlignment="Top" Height="26" Width="169"/>
-                <Label Content="Codigo de Almacen:" HorizontalAlignment="Left" Margin="17,46,0,0" VerticalAlignment="Top" Height="31" Width="127"/>
-                <TextBox x:Name="CodAlmacen" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="149,46,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="162"/>
+                <GroupBox Header="Medio de pago" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="412" Width="490"/>
 
             </Grid>
             <!-- CAMBIAR NOMBREEEE -->
         </StackPanel>
+        <Label Content="* Se generaran ordenes de compra de los proveedores expuestos , porfavor &#xD;&#xA;definir el medio de pago para cada proveedor." HorizontalAlignment="Left" Margin="20,426,0,0" VerticalAlignment="Top" Height="41" Width="468"/>
 
     </Grid>
 </UserControl>
+
+

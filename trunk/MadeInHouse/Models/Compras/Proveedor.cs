@@ -104,22 +104,25 @@ namespace MadeInHouse.Models.Compras
         
 
         //boleta, factura
-        bool esFactura;
+     
+        string medioPago="BOLETA";
 
-        public bool EsFactura
+        public string MedioPago
         {
-            get { return esFactura; }
-            set { esFactura = value; }
+            get { return medioPago; }
+            set { medioPago = value; }
         }
 
-        bool esBoleta;
+        List<String> lstMedio = new List<String>() { "BOLETA","FACTURA"};
 
-        public bool EsBoleta
+        public List<String> LstMedio
         {
-            get { return esBoleta; }
-            set { esBoleta = value; }
+            get { return lstMedio; }
+            set { lstMedio = value; }
         }
 
 
+     
+    
     }
 }

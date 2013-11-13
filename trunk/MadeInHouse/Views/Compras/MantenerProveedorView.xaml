@@ -22,18 +22,18 @@
         <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
         <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="TxtCodigo" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="PROV-0023"/>
-        <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="LADRILLOS DIAZ S.A."/>
-        <TextBox x:Name="TxtDireccion" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="Jr. Pepito # 123 , Urb pasajes - lima"/>
-        <TextBox Text="{Binding TxtEmail,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" >
+        <TextBox x:Name="TxtCodigo"  IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+       <TextBox  Text="{Binding TxtRuc,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox Text="{Binding TxtDireccion,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox Text="{Binding TxtEmail,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" >
             
             
         </TextBox>
-        <TextBox x:Name="TxtTelefonoContacto" HorizontalAlignment="Left" Height="23" Margin="125,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="122121212"/>
-        <TextBox x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2222222"/>
-        <TextBox x:Name="TxtTelefono" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="2312"/>
-        <TextBox x:Name="TxtFax" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="RAUL GONZALES"/>
-        <TextBox x:Name="TxtContacto" HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Text="121212121212"/>
+                <TextBox Text="{Binding TxtTelefonoContacto,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"   HorizontalAlignment="Left" Height="23" Margin="125,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox Text="{Binding TxtRazonSocial,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox Text="{Binding TxtTelefono,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox Text="{Binding TxtFax,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox Text="{Binding TxtContacto,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
                 <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">

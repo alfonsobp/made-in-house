@@ -19,12 +19,10 @@ namespace MadeInHouse.DataObjects.Compras
             int k = 0;
             Proveedor p = entity as Proveedor;
 
-            db.cmd.CommandText = "INSERT INTO Proveedor(razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,RUC)" +
+            db.cmd.CommandText = "INSERT INTO Proveedor(razonSocial,contacto,direccion,fax,telefono ,telefonoContacto,email,RUC) " +
             "VALUES (@razonSocial,@contacto,@direccion,@fax,@telefono ,@telefonoContacto,@email,@ruc)";
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
-
-            //db.cmd.Parameters.AddWithValue("@codProveedor", p.CodProveedor);
             db.cmd.Parameters.AddWithValue("@razonSocial", p.RazonSocial);
             db.cmd.Parameters.AddWithValue("@contacto", p.Contacto);
             db.cmd.Parameters.AddWithValue("@direccion", p.Direccion);
@@ -44,9 +42,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message );
             }
 
 
@@ -139,9 +137,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message );
             }
 
 
@@ -183,9 +181,9 @@ namespace MadeInHouse.DataObjects.Compras
 
             }
 
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message );
             }
 
             return k;
@@ -218,9 +216,9 @@ namespace MadeInHouse.DataObjects.Compras
 
             }
 
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
             return k;

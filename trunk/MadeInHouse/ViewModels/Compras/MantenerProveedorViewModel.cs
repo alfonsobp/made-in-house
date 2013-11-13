@@ -35,7 +35,7 @@ namespace MadeInHouse.ViewModels.Compras
             get { return indicador; }
         }
 
-        private string txtCodigo;
+        private string txtCodigo="PROV-1XXXXXXXXX";
 
         public string TxtCodigo
         {
@@ -141,33 +141,92 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 1;
         }
 
+        private string EvaluarRuc() {
 
-        public string this[string columnName]
-        {
-            get
-            {
-                string result = string.Empty;
-                switch (columnName)
-                {
-                    case "TxtEmail": if (string.IsNullOrEmpty(TxtEmail)) result="esta vacio" ; break;
-                   
-                };
-                return result;
-            }
+            if (String.IsNullOrEmpty(TxtRuc))
+                return "No puede ser vacio el Ruc";
+
+            if (TxtRuc.Length != 11)
+                return "El Ruc es de 11 digitos";
+
+            return string.Empty;
         }
 
 
-        public Boolean validar(Proveedor p) {
+public string this[string columnName]
+{
+    get
+    {
+        string result = string.Empty;
+        switch (columnName)
+        {
+            case "TxtEmail": if (string.IsNullOrEmpty(TxtEmail)) result="El Email no puede ser vacio" ; break;
+            case "TxtRuc":  result = EvaluarRuc(); break;
+            case "TxtTelefono": if (string.IsNullOrEmpty(TxtTelefono)) result = "El telefono no debe ser vacio"; break;
+            case "TxtDireccion": if (string.IsNullOrEmpty(TxtDireccion)) result = "La direccion no puede ser vacia"; break;
+            case "TxtRazonSocial": if (string.IsNullOrEmpty(TxtRazonSocial)) result = "La Razon Social no puede ser vacia"; break;
+            case "TxtTelefonoContacto": if (string.IsNullOrEmpty(TxtTelefonoContacto)) result = "El telefono del contacto no debe ser vacio"; break;
+            case "TxtContacto": if (string.IsNullOrEmpty(TxtContacto)) result = "El nombre del contacto no debe ser vacio"; break;
+            case "TxtFax": if (string.IsNullOrEmpty(TxtFax)) result = "El Fax no puede ser vacio"; break;
+        };
+        return result;
+    }
+}
 
-            if (p.Telefono ==null || p.Contacto == null|| p.Direccion == null || p.Email==null || p.Fax == null || p.RazonSocial == null || p.Ruc == null || p.TelefonoContacto == null)
+
+        public Boolean validar() {
+
+            if (string.IsNullOrEmpty(TxtEmail))
             {
-                MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
+                MessageBox.Show("El Email no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            else
+
+            if (string.IsNullOrEmpty(TxtRuc))
             {
-                return true;  
+                MessageBox.Show("El Ruc no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
             }
+
+            if ((TxtRuc.Length != 11))
+            {
+                MessageBox.Show("El Ruc es de 11 digitos", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(TxtTelefono))
+            {
+                MessageBox.Show("El telefono no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtDireccion))
+            {
+                MessageBox.Show("La direccion no puede ser vacia", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtRazonSocial))
+            {
+                MessageBox.Show("La Razon social no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtTelefonoContacto))
+            {
+                MessageBox.Show("El telefono del contacto no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtContacto))
+            {
+                MessageBox.Show("El nombre del contacto no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (string.IsNullOrEmpty(TxtFax))
+            {
+                MessageBox.Show("El Fax no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+             return true;
+
         }
 
         public void AgregarServicio()
@@ -187,18 +246,19 @@ namespace MadeInHouse.ViewModels.Compras
             int k;
             Proveedor p = new Proveedor();
 
-           
+            if (validar()  )
+            {
                 p.IdProveedor = Id;
                 p.Contacto = TxtContacto;
                 p.Direccion = TxtDireccion;
-                p.Email =TxtEmail;
+                p.Email =TxtEmail; 
                 p.Fax = TxtFax;
                 p.RazonSocial = TxtRazonSocial;
                 p.Ruc = TxtRuc;
                 p.Telefono = TxtTelefono;
                 p.TelefonoContacto = TxtTelefonoContacto;
 
-             if (validar(p) == true) {
+               
 
                 eM =  new ProveedorSQL();
 
@@ -209,12 +269,10 @@ namespace MadeInHouse.ViewModels.Compras
                     k = eM.Agregar(p);
 
                     if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
+                        MessageBox.Show("Ocurrio un error","AVISO");
                     else
                     {
-                        MessageBox.Show("Proveedor Registrado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                      "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nContacto = " + txtContacto + "\nTelefono contacto = " +
-                                      txtTelefonoContacto + "\nDireccion = " + txtDireccion);
+                        MessageBox.Show("La informacion del Proveedor fue Ingresada  satisfactoriamente .", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
 
 
                        
@@ -231,10 +289,7 @@ namespace MadeInHouse.ViewModels.Compras
                         MessageBox.Show("Ocurrio un error");
                     else
                     {
-                        MessageBox.Show("Proveedor Editado \n\nCodigo = " + txtCodigo + "\nRazon social = " + txtRazonSocial + "\nRuc = " + txtRuc +
-                                          "\nTelefono = " + txtTelefono + "\nFax = " + txtFax + "\nEmail = " + txtEmail + "\nContacto = " + txtContacto +
-                                          "\nTelefono contacto = " + txtTelefonoContacto + "\nDireccion = " + txtDireccion);
-
+                        MessageBox.Show("La informacion del Proveedor fue editada  satisfactoriamente .", "AVISO", MessageBoxButton.OK, MessageBoxImage.Information);
                       
                     }
                 }
@@ -242,8 +297,10 @@ namespace MadeInHouse.ViewModels.Compras
                 if (model != null)
                 {
                     model.ActualizarProveedor();
-                    this.TryClose();
+                  
                 }
+
+                this.TryClose();
 
             }
             
