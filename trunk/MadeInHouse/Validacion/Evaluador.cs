@@ -52,5 +52,13 @@ namespace MadeInHouse.Validacion
             return (x >= 0);
         }
 
+        public bool evalString(string x) 
+        {
+            if (string.IsNullOrEmpty(x)) return false;
+            if ( x.Contains('"')) return false;
+            if (x.Contains('\'')) return false;
+            return true;
+        }
+
     }
 }

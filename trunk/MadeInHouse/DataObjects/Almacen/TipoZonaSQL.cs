@@ -24,7 +24,7 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             ObservableCollection<TipoZona> listaTipoZona = new ObservableCollection<TipoZona>();
             
-            string where = "WHERE 1=1 ";
+            string where = "WHERE 1=1 AND estado=1";
 
             if (codigo != -1)
             {
@@ -75,8 +75,8 @@ namespace MadeInHouse.DataObjects.Almacen
         public void agregarTipoZona(TipoZona p)
         {
             
-            db.cmd.CommandText = "INSERT INTO TipoZona(nombre,color,idColor)" +
-            "VALUES (@nombre,@color,@idColor)";
+            db.cmd.CommandText = "INSERT INTO TipoZona(nombre,color,idColor,estado)" +
+            "VALUES (@nombre,@color,@idColor,1)";
             
             db.cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
             db.cmd.Parameters.Add(new SqlParameter("color", p.Color));
@@ -99,13 +99,15 @@ namespace MadeInHouse.DataObjects.Almacen
         {
 
             db.cmd.CommandText = "UPDATE TipoZona " +
-            " SET nombre=@nombre, idColor=@idColor" +
+            " SET nombre=@nombre, idColor=@idColor, color=@color" +
             " WHERE idTipoZona=@idTipoZona";
             int k = 0;
 
             db.cmd.Parameters.Add(new SqlParameter("idTipoZona", p.IdTipoZona));
             db.cmd.Parameters.Add(new SqlParameter("nombre", p.Nombre));
-            db.cmd.Parameters.Add(new SqlParameter("idColor", p.Color));
+            db.cmd.Parameters.Add(new SqlParameter("idColor", p.IdColor));
+            db.cmd.Parameters.Add(new SqlParameter("color", p.Color));
+
             try
             {
                 db.conn.Open();
@@ -129,18 +131,20 @@ namespace MadeInHouse.DataObjects.Almacen
             int k = 0;
             db.cmd.CommandText = "UPDATE TipoZona SET estado=0 WHERE idTipoZona = @idTipoZona";
             db.cmd.Parameters.Add(new SqlParameter("idTipoZona", p.IdTipoZona));
+            db.conn.Open();
             try
             {
-                db.conn.Open();
-
+                
                 k = db.cmd.ExecuteNonQuery();
 
-                db.conn.Close();
-
+                
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+            }
+            finally {
+                db.conn.Close();
             }
 
             return k;
