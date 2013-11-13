@@ -157,5 +157,42 @@ namespace MadeInHouse.DataObjects.Compras
             return false;
         }
 
+
+        internal Servicio ServiciobyId(int p)
+        {
+            DBConexion DB = new DBConexion();
+
+            SqlConnection conn = DB.conn;
+            SqlCommand cmd = DB.cmd;
+            SqlDataReader reader;
+
+
+            cmd.CommandText = "SELECT * FROM Servicio WHERE idServicio=" + p;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            Servicio serv = new Servicio();
+            try
+            {
+                conn.Open();
+
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    serv.IdServicio = Convert.ToInt32(reader["idServicio"].ToString());
+                    serv.Descripcion = reader["descripcion"].ToString();
+                }
+
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return serv;
+        }
     }
 }

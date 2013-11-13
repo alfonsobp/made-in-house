@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows;
 using MadeInHouse.Validacion;
 using System.Windows.Input;
+using System.Threading;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -23,11 +24,13 @@ namespace MadeInHouse.ViewModels.Ventas
         private double igv_total { get; set; }
         private double total { get; set; }
         private double montopago { get; set; }
+        private Cliente cliente { get; set; }
 
         public VentaCajeroRegistrarViewModel()
         {
            lstVenta = new List<DetalleVenta>();
            LstPagos = new List<VentaPago>();
+           cliente = new Cliente();
            IGV = 0.18;
            PUNTO = 30;
            subt = 0;
@@ -74,15 +77,14 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void ExecuteFilterView(KeyEventArgs keyArgs)
         {
-            Cliente c = new Cliente();
             if (keyArgs.Key == Key.Enter)
             {
                 //buscar al cliente por la tarjeta
                 ClienteSQL csql = new ClienteSQL();
-                c = csql.BuscarClienteByTarjeta(TxtCliente);
-                TxtRazonSocial = c.RazonSocial;
-                TxtRuc = c.Ruc;
-                TxtDNI = c.Dni;
+                cliente = csql.BuscarClienteByTarjeta(TxtCliente);
+                TxtRazonSocial = cliente.RazonSocial;
+                TxtRuc = cliente.Ruc;
+                TxtDNI = cliente.Dni;
             }
         }
 
@@ -206,7 +208,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
         private Dictionary<string, int> tipoVenta = new Dictionary<string, int>()
         {
-            { "Seleccionar", -1 }, { "Boleta", 0 }, { "Factura", 1 }
+            { "Boleta", 0 }, { "Factura", 1 }
         };
 
         public BindableCollection<string> cmbTipoVenta
@@ -281,7 +283,7 @@ namespace MadeInHouse.ViewModels.Ventas
             LstVenta = aux;
         }
 
-        public void GuardarVenta()
+        public void GuardarVenta(string cmbTipoVenta)
         {
             int numFilas = LstVenta.Count();
             if (numFilas > 0)
@@ -291,13 +293,27 @@ namespace MadeInHouse.ViewModels.Ventas
                 v.LstPagos = new List<VentaPago>();
                 //guardar datos de la venta
                 //completar
+                if (tipoVenta[cmbTipoVenta] == 0)
+                    v.TipoDocPago = "Boleta";
+                else
+                    v.TipoDocPago = "Factura";
+
                 v.NumDocPago = null;
-                v.TipoDocPago = null;
+                
                 v.Estado = 1;
                 v.FechaReg = System.DateTime.Now;
+                v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
                 //idCliente desde la tarjeta de este si es que hay
-
-                v.IdCliente = Convert.ToInt32(TxtCliente);
+                if (!TxtCliente.Equals(""))
+                {
+                    v.IdCliente = Convert.ToInt32(cliente.Id);
+                    v.CodTarjeta = Convert.ToInt32(TxtCliente);
+                }
+                else
+                {
+                    v.IdCliente = -1;
+                    v.CodTarjeta = -1;
+                }
 
                 //guardar detalle de la venta
                 foreach (DetalleVenta dv in lstVenta)

@@ -17,12 +17,21 @@ using MadeInHouse.Models.Compras;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class BuscadorServicioViewModel : PropertyChangedBase
+    class BuscadorServicioViewModel : Screen
     {
         //Constructores de la clase
 
         public BuscadorServicioViewModel()
         {
+            ActualizarServicio();
+        }
+
+        private int ventanaAccion = 0;
+        public BuscadorServicioViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
+        {
+            // TODO: Complete member initialization
+            this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            this.ventanaAccion = ventanaAccion;
             ActualizarServicio();
         }
 
@@ -63,6 +72,7 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private List<MadeInHouse.Models.Compras.Servicio> lstServicio;
+        private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
 
         public List<MadeInHouse.Models.Compras.Servicio> LstServicio
         {
@@ -90,8 +100,17 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void EditarServicio()
         {
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
-            win.ShowWindow(obj);
+            if (ventanaAccion == 0)
+            {
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
+                win.ShowWindow(obj);
+            }
+            else
+            {
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this, ventaRegistrarViewModel, 1);
+                win.ShowWindow(obj);
+            }
+
         }
 
 

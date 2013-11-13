@@ -18,10 +18,10 @@ namespace MadeInHouse.DataObjects.Ventas
             DBConexion db = new DBConexion();
             int k = 0;
 
-            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,idCliente,tipoVenta,fechaReg,fechaDespacho)" +
-                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@idCliente,@tipoVenta,@fechaReg,@fechaDespacho)";
+            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,idCliente,tipoVenta,fechaReg,fechaDespacho,tipoDocPago)" +
+                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@idCliente,@tipoVenta,@fechaReg,@fechaDespacho,@tipoDocPago)";
             //db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
-            //db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
+            db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
             db.cmd.Parameters.AddWithValue("@monto", v.Monto);
             db.cmd.Parameters.AddWithValue("@descuento", v.Descuento);
             db.cmd.Parameters.AddWithValue("@IGV", v.Igv);
@@ -30,6 +30,7 @@ namespace MadeInHouse.DataObjects.Ventas
             //db.cmd.Parameters.AddWithValue("@fechaMod", null);
             db.cmd.Parameters.AddWithValue("@estado", v.Estado);
             //db.cmd.Parameters.AddWithValue("@idUsuario", null);
+
             db.cmd.Parameters.AddWithValue("@idCliente", v.IdCliente);
             db.cmd.Parameters.AddWithValue("@tipoVenta", tipo);
 

@@ -23,7 +23,9 @@
                 <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-                <DataGrid IsReadOnly="True"  AutoGenerateColumns="False"  SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
+                <DataGrid
+                    cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
+                    IsReadOnly="True"  AutoGenerateColumns="False"  SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="70" Header="Cod. Prod"/>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Width="100" Header="Nomb. Prod"/>
