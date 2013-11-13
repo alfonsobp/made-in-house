@@ -1,8 +1,10 @@
-﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.MantenerTipoZonaView"
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  
+             x:Class="MadeInHouse.Views.Almacen.MantenerTipoZonaView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             
              mc:Ignorable="d" d:designWidth="395" d:designHeight="222" Height="240" Width="310">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
@@ -36,9 +38,9 @@
                 </ToolBar>
 
                 <Label  Content="Codigo:" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox x:Name="TxtIdTipoZona" HorizontalAlignment="Left" Height="23" Margin="113,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                <TextBox x:Name="TxtIdTipoZona" HorizontalAlignment="Left" Height="23" IsEnabled="False"  Margin="113,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
                 <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,83,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="113,86,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
+                <TextBox  Text="{Binding Path=TxtNombre, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="113,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
                 <Label Content="Color:" HorizontalAlignment="Left" Margin="24,109,0,0" VerticalAlignment="Top"/>
                 <ComboBox ItemsSource="{Binding CmbColor}" SelectedValuePath="CodHex" SelectedValue="{Binding CmbColorSelected}"  HorizontalAlignment="Left" Margin="113,114,0,0" VerticalAlignment="Top" Width="160">
                     <ComboBox.ItemTemplate>

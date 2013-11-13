@@ -1,26 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerTipoZonaViewModel : PropertyChangedBase
+    class MantenerTipoZonaViewModel : PropertyChangedBase, IDataErrorInfo
     {
         private TipoZona tipoZonaSeleccionada;
-
-
+        
         private DataObjects.Almacen.ColorSQL gateway= new DataObjects.Almacen.ColorSQL();
 
         public TipoZona TipoZonaSeleccionada
         {
             get { return tipoZonaSeleccionada; }
-            set { tipoZonaSeleccionada = value; }
+            set { tipoZonaSeleccionada = value;
+            NotifyOfPropertyChange("TipoZonaSeleccionada");
+            }
         }
 
         private int indicador;
@@ -86,7 +89,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        private string cmbColorSelected;
+        private string cmbColorSelected=null;
 
         public string CmbColorSelected
         {
@@ -103,29 +106,21 @@ namespace MadeInHouse.ViewModels.Almacen
         public int TxtIdTipoZona
         {
             get { return txtIdTipoZona; }
-            set { txtIdTipoZona = value; }
+            set { txtIdTipoZona = value;
+            NotifyOfPropertyChange("TxtIdTipoZona");
+            }
         }
         private string txtNombre;
 
         public string TxtNombre
         {
             get { return txtNombre; }
-            set { txtNombre = value; }
+            set { txtNombre = value;
+            NotifyOfPropertyChange("TxtNombre");
+            }
         }
 
-        public MantenerTipoZonaViewModel(TipoZona tipoZonaSeleccionada)
-        {
-
-            //Modifica
-            indicador = 2;
-            // TODO: Complete member initialization
-            cmbColor = gateway.BuscarZona();
-            cambioColorNombre();
-            //cmbColorSelected = gateway.BuscarZona(int.Parse(tipoZonaSeleccionada.Color));
-            this.tipoZonaSeleccionada = tipoZonaSeleccionada;
-
-        }
-
+       
         public MantenerTipoZonaViewModel()
         {
             cmbColor = gateway.BuscarZona();
@@ -134,17 +129,82 @@ namespace MadeInHouse.ViewModels.Almacen
             indicador = 1;
                     
         }
+        private BuscarTipoZonaViewModel buscarTipoZonaViewModel;
+        private int accion=0;
+        public MantenerTipoZonaViewModel(BuscarTipoZonaViewModel buscarTipoZonaViewModel, int p):this()
+        {
+            // TODO: Complete member initialization
+            this.buscarTipoZonaViewModel = buscarTipoZonaViewModel;
+            this.CmbColorSelected = null;
+            this.TxtNombre = buscarTipoZonaViewModel.TipoZonaSeleccionada.Nombre;
+            this.TxtIdTipoZona = buscarTipoZonaViewModel.TipoZonaSeleccionada.IdTipoZona;
+            this.accion = p;
+        }
+        Validacion.Evaluador eval = new Validacion.Evaluador();
 
-        public void AgregarTipoZona() {
-            TipoZona zona = new TipoZona();
-            zona.Nombre = this.txtNombre;
-            zona.Color = this.cmbColorSelected;
-            zona.IdColor = gateway.BuscarZona(this.cmbColorSelected).IdColor;
-            TipoZonaSQL gw = new TipoZonaSQL();
-            gw.agregarTipoZona(zona);
+        public void AgregarTipoZona()
+        {
 
-        
+            if (accion==0 ){
+                TipoZona zona = new TipoZona();
+                zona.Nombre = this.txtNombre;
+                zona.Color = this.cmbColorSelected;
+                
+                if (!eval.evalString(zona.Nombre))
+                {
+                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    return;
+                }
+                
+                if (cmbColorSelected == null) {
+                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    return;
+                }
+
+                zona.IdColor = gateway.BuscarZona(this.cmbColorSelected).IdColor;
+                TipoZonaSQL gw = new TipoZonaSQL();
+                gw.agregarTipoZona(zona);
+            }
+            if (accion == 1) {
+                TipoZona zona = new TipoZona();
+                zona.Nombre = this.TxtNombre;
+                zona.IdTipoZona = this.TxtIdTipoZona;
+
+                if (!eval.evalString(zona.Nombre))
+                {
+                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    return;
+                }
+
+                if (cmbColorSelected == null)
+                {
+                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    return;
+                }
+
+                zona.IdColor = gateway.BuscarZona(this.cmbColorSelected).IdColor;
+                zona.Color = this.cmbColorSelected;
+                TipoZonaSQL gw = new TipoZonaSQL();
+                gw.modificarTipoZona(zona);
+            }
         }
 
+        public string this[string columName] {
+
+            get {
+
+                string result = string.Empty;
+                switch (columName) {
+                    case "TxtNombre": if (string.IsNullOrEmpty(TxtNombre)) result = "esta vacia"; break;
+                };
+                return result;
+            }
+        }
+        public string Error{
+            get
+            {
+                return "Error Test!!!!";
+            }
+        }
     }
 }
