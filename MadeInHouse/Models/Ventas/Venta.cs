@@ -140,6 +140,14 @@ namespace MadeInHouse.Models.Ventas
             set { idCliente = value; }
         }
 
+        List<DetalleVentaServicio> lstDetalleServicio;
+
+        internal List<DetalleVentaServicio> LstDetalleServicio
+        {
+            get { return lstDetalleServicio; }
+            set { lstDetalleServicio = value; }
+        }
+
 
     }
 }

@@ -13,10 +13,11 @@ using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.DataObjects;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Compras;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Compras
 {
-    class agregarServicioViewModel : PropertyChangedBase
+    class agregarServicioViewModel : Screen
     {
 
         //Constructores de la clase
@@ -58,6 +59,40 @@ namespace MadeInHouse.ViewModels.Compras
             model = m;
         }
 
+        private int ventanaAccion = 0;
+        public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m, Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
+        {
+            // TODO: Complete member initialization
+            this.servicioSeleccionado = s;
+            this.buscadorServicioViewModel = m;
+            this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            this.ventanaAccion = ventanaAccion;
+
+            //Servicio para editar del buscador
+            txtCodigo = s.CodServicio;
+            txtNombre = s.Nombre;
+            txtProveedor = DataObjects.Compras.ServicioSQL.getCODfromProv(s.IdProveedor);
+            txtDescripcion = s.Descripcion;
+
+            LstProducto = sp.Buscar(s.IdServicio) as List<ServicioxProducto>;
+
+            indicador = 2;
+            model = m;
+        }
+
+        public void Acciones(object sender)
+        {
+            if (ventanaAccion == 1)
+            {
+                Seleccionado = ((sender as DataGrid).SelectedItem as ServicioxProducto);
+                if(ventaRegistrarViewModel != null)
+                {
+                    ventaRegistrarViewModel.Serv = Seleccionado;
+                    this.TryClose();
+                    this.buscadorServicioViewModel.TryClose();
+                }
+            }
+        }
 
 
         //Atributos de la clase
@@ -134,6 +169,9 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         List<ServicioxProducto> lstProducto;
+        private Servicio servicioSeleccionado;
+        private BuscadorServicioViewModel buscadorServicioViewModel;
+        private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
 
         public List<ServicioxProducto> LstProducto
         {

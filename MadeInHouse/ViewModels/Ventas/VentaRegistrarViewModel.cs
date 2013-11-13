@@ -11,8 +11,12 @@ using MadeInHouse.Models.Almacen;
 using System.Windows.Controls;
 using MadeInHouse.Models;
 using MadeInHouse.ViewModels.Almacen;
+using MadeInHouse.ViewModels.Compras;
 using System.Windows;
 using MadeInHouse.Validacion;
+using System.Windows.Input;
+using MadeInHouse.Models.Compras;
+using MadeInHouse.DataObjects.Compras;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -31,9 +35,7 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             lstVenta = new List<DetalleVenta>();
             LstPagos = new List<VentaPago>();
-            List<string> ListaTiposVenta = new List<string>();
-            ListaTiposVenta.Add("Boleta");
-            ListaTiposVenta.Add("Factura");
+            lstVentaServicios = new List<DetalleVentaServicio>();
 
             prod = new Producto();
             IGV = 0.18;
@@ -63,6 +65,19 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private Dictionary<string, int> tipoVenta = new Dictionary<string, int>()
+        {
+            { "Boleta", 0 }, { "Factura", 1 }
+        };
+
+        public BindableCollection<string> cmbTipoVenta
+        {
+            get
+            {
+                return new BindableCollection<string>(tipoVenta.Keys);
+            }
+        }
+
 
         private DetalleVenta detalleSeleccionado;
 
@@ -80,12 +95,44 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
         }
 
+        private Tarjeta cli;
+
+        public Tarjeta Cli
+        {
+            get { return cli; }
+            set
+            {
+                cli = value; NotifyOfPropertyChange(() => Cli);
+                TxtCliente = cli.Cliente.RazonSocial;
+                TxtRazonSocial = cli.Cliente.RazonSocial;
+                TxtRuc = cli.Cliente.Ruc;
+                TxtTelefono = cli.Cliente.Telefono;
+                TxtDireccion = cli.Cliente.Direccion;
+                TxtTarjetaCliente = cli.CodTarjeta;
+            }
+        }
+
         private string txtTarjetaCliente;
 
         public string TxtTarjetaCliente
         {
             get { return txtTarjetaCliente; }
             set { txtTarjetaCliente = value; NotifyOfPropertyChange(() => TxtTarjetaCliente); }
+        }
+
+        public void ExecuteFilterView(KeyEventArgs keyArgs)
+        {
+            Cliente c = new Cliente();
+            if (keyArgs.Key == Key.Enter)
+            {
+                //buscar al cliente por la tarjeta
+                ClienteSQL csql = new ClienteSQL();
+                c = csql.BuscarClienteByTarjeta(TxtCliente);
+                TxtRazonSocial = c.RazonSocial;
+                TxtRuc = c.Ruc;
+                TxtCliente = c.NombreCompleto;
+                cli.Cliente = c;
+            }
         }
 
 
@@ -99,10 +146,10 @@ namespace MadeInHouse.ViewModels.Ventas
 
         private string txtRazonSocial;
 
-        public string TxtRazolSocial
+        public string TxtRazonSocial
         {
             get { return txtRazonSocial; }
-            set { txtRazonSocial = value; NotifyOfPropertyChange(() => TxtRazolSocial); }
+            set { txtRazonSocial = value; NotifyOfPropertyChange(() => TxtRazonSocial); }
         }
 
         private string txtDireccion;
@@ -129,6 +176,14 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtTelefono = value; NotifyOfPropertyChange(() => TxtTelefono); }
         }
 
+        private string txtServicio;
+
+        public string TxtServicio
+        {
+            get { return txtServicio; }
+            set { txtServicio = value; NotifyOfPropertyChange(() => TxtServicio); }
+        }
+
         private string txtProducto;
 
         public string TxtProducto
@@ -151,6 +206,14 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             get { return lstVenta; }
             set { lstVenta = value; NotifyOfPropertyChange(() => LstVenta); }
+        }
+
+        private List<DetalleVentaServicio> lstVentaServicios;
+
+        public List<DetalleVentaServicio> LstVentaServicios
+        {
+            get { return lstVentaServicios; }
+            set { lstVentaServicios = value; NotifyOfPropertyChange(() => LstVentaServicios); }
         }
 
         private string txtSubTotal;
@@ -230,13 +293,6 @@ namespace MadeInHouse.ViewModels.Ventas
             set { fechaDespacho = value; NotifyOfPropertyChange(() => FechaDespacho); }
         }
 
-        private string tipoVenta;
-
-        public string TipoVenta
-        {
-            get { return tipoVenta; }
-            set { tipoVenta = value; NotifyOfPropertyChange(() => TipoVenta); }
-        }
 
         public void AgregarDetalle()
         {
@@ -303,7 +359,45 @@ namespace MadeInHouse.ViewModels.Ventas
             
         }
 
-        public void GuardarVenta()
+        public void AgregarDetalleServicio()
+        {
+            Evaluador ev = new Evaluador();
+            int nuevo = 1;
+
+            List<DetalleVentaServicio> aux = new List<DetalleVentaServicio>();
+            foreach (DetalleVentaServicio item in LstVentaServicios)
+            {
+                if (item.IdServicio == serv.IdServicio)
+                {
+                    nuevo = 0;
+                }
+                aux.Add(item);
+            }
+
+            if (nuevo == 1)
+            {
+                DetalleVentaServicio dv = new DetalleVentaServicio();
+                ServicioxProductoSQL sxpsql = new ServicioxProductoSQL();
+                dv.Servicio = sxpsql.ServiciobyId(serv.IdServicio);
+                dv.IdProducto = serv.Producto.IdProducto;
+                dv.IdServicio = serv.IdServicio;
+                dv.Descripcion = dv.Servicio.Descripcion;
+                dv.Precio = serv.Precio;
+
+                aux.Add(dv);
+
+                subt += dv.Precio;
+                TxtSubTotal = subt.ToString();
+                igv_total = (subt) * IGV;
+                TxtIGVTotal = igv_total.ToString();
+                total = (subt) * (1 + IGV);
+                TxtTotal = total.ToString();
+            }
+            LstVentaServicios = aux;
+            
+        }
+
+        public void GuardarVenta(string cmbTipoVenta)
         {
             int numFilas = LstVenta.Count();
             if (numFilas > 0)
@@ -312,29 +406,43 @@ namespace MadeInHouse.ViewModels.Ventas
                 v.LstDetalle = new List<DetalleVenta>();
                 v.LstPagos = new List<VentaPago>();
                 //guardar datos de la venta
-                //completar
+
+                if (tipoVenta[cmbTipoVenta] == 0)
+                    v.TipoDocPago = "Boleta";
+                else
+                    v.TipoDocPago = "Factura";
+
                 v.NumDocPago = null;
-                v.TipoDocPago = null;
                 v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
                 v.IdCliente = cli.Cliente.Id;
-
-                //guardar detalle de la venta
-                foreach (DetalleVenta dv in lstVenta)
-                {
-                    v.LstDetalle.Add(dv);
-                }
-                v.Monto = total;
-                v.Descuento = desc;
-                v.Igv = igv_total;
-
-                v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+                v.CodTarjeta = Convert.ToInt32(cli.CodTarjeta);
 
                 v.FechaReg = System.DateTime.Now;
                 v.FechaDespacho = fechaDespacho;
 
                 v.Estado = 1;
 
+                //guardar detalle de productos de la venta
+                foreach (DetalleVenta dv in lstVenta)
+                {
+                    v.LstDetalle.Add(dv);
+                }
 
+                //guardar detalle de servicios de la venta, si es que hay
+                if (LstVentaServicios.Count() > 0)
+                {
+                    foreach (DetalleVentaServicio dvs in LstVentaServicios)
+                    {
+                        v.LstDetalleServicio.Add(dvs);
+                    }
+                }
+
+                v.Monto = total;
+                v.Descuento = desc;
+                v.Igv = igv_total;
+                v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+
+                //guardar el pago de la venta
                 foreach (VentaPago vp in lstPagos)
                 {
                     if (vp.Nombre.Equals("Efectivo"))
@@ -344,7 +452,7 @@ namespace MadeInHouse.ViewModels.Ventas
                     v.LstPagos.Add(vp);
                 }
 
-                //insertar en la base de datos
+                //insertar la venta en la base de datos
                 VentaSQL vsql = new VentaSQL();
                 int k = vsql.Agregar(v, "obra");
                 if (k != 0)
@@ -358,22 +466,6 @@ namespace MadeInHouse.ViewModels.Ventas
                 MessageBox.Show("Debe ingreasar datos de la venta");
                 return;
             }
-        }
-
-        private Tarjeta cli;
-
-        public Tarjeta Cli
-        {
-            get { return cli; }
-            set { 
-                cli = value; NotifyOfPropertyChange(() => Cli); 
-                TxtCliente = cli.Cliente.RazonSocial;
-                TxtRazolSocial = cli.Cliente.RazonSocial;
-                TxtRuc = cli.Cliente.Ruc;
-                TxtTelefono = cli.Cliente.Telefono;
-                TxtDireccion = cli.Cliente.Direccion;
-                //TxtTarjetaCliente = cli.Cliente.IdTarjeta;
-                }
         }
 
         public void BuscarCliente()
@@ -402,6 +494,22 @@ namespace MadeInHouse.ViewModels.Ventas
             w.ShowWindow(new ProductoBuscarViewModel(this,1));
         }
 
+        private ServicioxProducto serv;
+
+        public ServicioxProducto Serv
+        {
+            get { return serv; }
+            set { serv = value; NotifyOfPropertyChange(() => Serv);
+            ServicioxProductoSQL spsql = new ServicioxProductoSQL();
+                TxtServicio = spsql.ServiciobyId(serv.IdServicio).Descripcion; }
+        }
+
+        public void BuscarServicio()
+        {
+            MyWindowManager ws = new MyWindowManager();
+            ws.ShowWindow(new BuscadorServicioViewModel(this,1));
+        }
+
         public void Limpiar()
         {
             TxtIGVTotal = "";
@@ -413,7 +521,7 @@ namespace MadeInHouse.ViewModels.Ventas
             TxtCliente = "";
             TxtDescuentoTotal = "";
             TxtDireccion = "";
-            TxtRazolSocial = "";
+            TxtRazonSocial = "";
             TxtRuc = "";
             TxtTelefono = "";
             LstVenta = null;
