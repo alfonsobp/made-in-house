@@ -23,6 +23,13 @@ namespace MadeInHouse.ViewModels.Almacen
             _windowManager = windowmanager;
         }
 
+        public SolicitudAbListadoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int acciones)
+        {
+            // TODO: Complete member initialization
+            this.MantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.Accion = acciones;
+        }
+
         #endregion
 
         #region atributos
@@ -33,6 +40,20 @@ namespace MadeInHouse.ViewModels.Almacen
         private string registroHastaHide;
 
         private List<Abastecimiento> solicitudes;
+        private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
+
+        public MantenerNotaDeIngresoViewModel MantenerNotaDeIngresoViewModel
+        {
+            get { return mantenerNotaDeIngresoViewModel; }
+            set { mantenerNotaDeIngresoViewModel = value; }
+        }
+        private int accion;
+
+        public int Accion
+        {
+            get { return accion; }
+            set { accion = value; }
+        }
         public List<Abastecimiento> Solicitudes
         {
             get { return solicitudes; }
