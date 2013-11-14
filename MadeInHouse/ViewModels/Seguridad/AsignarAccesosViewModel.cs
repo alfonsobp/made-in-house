@@ -105,13 +105,13 @@ namespace MadeInHouse.ViewModels.Seguridad
         public void ActualizarLstAccesos()
         {
             ActualizarListaAccVentanaAccModulo();
-            LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentanaPorRol(LstAccVentanaAccModulo, IdRolValue);
+            LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentanaPorRol(LstAccVentanaAccModulo, IdRolValue, IdAccModuloValue);
             NotifyOfPropertyChange("LstAccVentanaAccModulo");
         }
 
         public void ActualizarListaAccVentanaAccModulo()
         {
-            LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentana();
+            LstAccVentanaAccModulo = DataObjects.Seguridad.AccVentanaSQL.ListarAccVentana(IdAccModuloValue);
             NotifyOfPropertyChange("LstAccVentanaAccModulo");
         }
 

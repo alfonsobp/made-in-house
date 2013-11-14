@@ -15,7 +15,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 {
     class AccVentanaSQL
     {
-        public static List<AccVentana> ListarAccVentana()
+        public static List<AccVentana> ListarAccVentana(int idAccModulo)
         {
             List<AccVentana> lstAccVentana = new List<AccVentana>();
 
@@ -40,7 +40,12 @@ namespace MadeInHouse.DataObjects.Seguridad
                     av.Estado = Int32.Parse("" + reader["estado"]);
                     av.AccModulo = new AccModuloSQL().BuscarModuloPorId(Int32.Parse(reader["idAccModulo"].ToString()));
 
-                    lstAccVentana.Add(av);
+                    if(idAccModulo==0)
+                        lstAccVentana.Add(av);
+                    else if (idAccModulo == av.AccModulo.IdAccModulo)
+                    {
+                        lstAccVentana.Add(av);
+                    }
                 }
 
                 conn.Close();
@@ -54,7 +59,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             return lstAccVentana;
         }
 
-        public static List<AccVentana> ListarAccVentanaPorRol(List<AccVentana> lstAccVentana, int idRol)
+        public static List<AccVentana> ListarAccVentanaPorRol(List<AccVentana> lstAccVentana, int idRol, int idAccModulo)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();

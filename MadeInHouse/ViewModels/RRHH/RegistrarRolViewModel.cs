@@ -11,12 +11,12 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.RRHH;
 using MadeInHouse.DataObjects.Seguridad;
-
+using System.ComponentModel;
 using MadeInHouse.Models.Seguridad;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    public class RegistrarRolViewModel : Conductor<IScreen>.Collection.OneActive
+    public class RegistrarRolViewModel : Conductor<IScreen>.Collection.OneActive, IDataErrorInfo
     {
         private MyWindowManager win = new MyWindowManager();
 
@@ -111,38 +111,95 @@ namespace MadeInHouse.ViewModels.RRHH
         public void GuardarRol()
         {
             int k;
-            Rol r = new Rol();
 
-            r.Nombre = txtNombRol;
-            r.Descripcion = txtDesc;
-            //r.Modulo = IdModuloValue;
-            r.Estado = 1;   //Existencia Lógica
-
-
-            //INSERTAR NUEVO MÓDULO:
-            if (indicador == 1)
+            if (validar())
             {
-                k = DataObjects.Seguridad.RolSQL.insertarRol(r);
+                
+                Rol r = new Rol();
 
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
-                else
+                r.Nombre = txtNombRol;
+                r.Descripcion = txtDesc;
+                //r.Modulo = IdModuloValue;
+                r.Estado = 1;   //Existencia Lógica
+
+
+                //INSERTAR NUEVO MÓDULO:
+                if (indicador == 1)
                 {
-                    MessageBox.Show("Nuevo rol generado");
+                    k = DataObjects.Seguridad.RolSQL.insertarRol(r);
+
+                    if (k == 0)
+                        MessageBox.Show("Ocurrio un error");
+                    else
+                    {
+                        MessageBox.Show("Nuevo rol generado");
+                    }
+                }
+
+                //ACTUALIZA UN MÓDULO:
+                if (indicador == 2)
+                {
+                    k = DataObjects.Seguridad.RolSQL.actualizarRol(r);
+
+                    if (k == 0)
+                        MessageBox.Show("Ocurrio un error");
+                    else
+                        MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
+                                    "\n Módulo = " + "HARDCODEADO xD");
                 }
             }
+        }
 
-            //ACTUALIZA UN MÓDULO:
-            if (indicador == 2)
+        public void Limpiar()
+        {
+            TxtNombRol = "";
+            TxtDesc = "";
+        }
+
+        #region validacion
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
             {
-                k = DataObjects.Seguridad.RolSQL.actualizarRol(r);
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "TxtNombRol": if (string.IsNullOrEmpty(TxtNombRol)) result = "El nombre de rol no puede ser vacio"; break;
+                    case "TxtDesc": if (string.IsNullOrEmpty(TxtDesc)) result = "La descripcion de rol no puede ser vacio"; break;
 
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
-                else
-                    MessageBox.Show("Rol Registrado \n\n Módulo: " + txtNombRol + "\n Descripcion: " + txtDesc +
-                                "\n Módulo = " + "HARDCODEADO xD");
+                };
+                return result;
             }
         }
+
+        public Boolean validar()
+        {
+
+            if (string.IsNullOrEmpty(TxtNombRol))
+            {
+                MessageBox.Show("El nombre de rol no puede ser vacío", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(TxtDesc))
+            {
+                MessageBox.Show("La descripcion de rol no puede ser vacío", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            }
+
+
+            return true;
+
+        }
+
+        #endregion
     }
 }

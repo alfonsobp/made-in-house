@@ -52,6 +52,7 @@ namespace MadeInHouse.ViewModels.RRHH
 
         public void AbrirEditarRol()
         {
+            win.ShowWindow(new RRHH.RegistrarRolViewModel(rolSeleccionado) { });
 
         }
 
