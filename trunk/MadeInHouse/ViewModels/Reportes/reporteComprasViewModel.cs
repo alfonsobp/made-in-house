@@ -52,7 +52,12 @@ namespace MadeInHouse.ViewModels.Reportes
         public Proveedor Prov
         {
             get { return prov; }
-            set { prov = value; NotifyOfPropertyChange(() => Prov); TxtProveedor = prov.RazonSocial; }
+            set { prov = value; NotifyOfPropertyChange(() => Prov);
+                if (prov != null)
+                {
+                    TxtProveedor = prov.RazonSocial;
+                }
+            }
         }
 
         public void BuscarProveedor()
@@ -74,7 +79,12 @@ namespace MadeInHouse.ViewModels.Reportes
         public OrdenCompra OrdComp
         {
             get { return ordComp; }
-            set { ordComp = value; NotifyOfPropertyChange(() => OrdComp); TxtOrdenCompra = ordComp.CodOrdenCompra; }
+            set { ordComp = value; NotifyOfPropertyChange(() => OrdComp);
+                if (ordComp != null)
+                {
+                    TxtOrdenCompra = ordComp.CodOrdenCompra;
+                }
+            }
         }
 
         public void BuscarOrdenCompra()
@@ -101,6 +111,8 @@ namespace MadeInHouse.ViewModels.Reportes
         {
             TxtOrdenCompra = "";
             TxtProveedor = "";
+            Prov = null;
+            OrdComp = null;
         }
 
         private Dictionary<string, int> estado = new Dictionary<string, int>()
