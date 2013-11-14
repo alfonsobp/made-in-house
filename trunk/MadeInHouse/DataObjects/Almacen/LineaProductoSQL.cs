@@ -56,7 +56,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public void AgregarLineaProducto(LineaProducto lp)
         {
-
+            
             db.cmd.CommandText = "INSERT INTO LineaProducto (nombre,abreviatura) values (@nombre,@abreviatura)";
             db.cmd.Parameters.AddWithValue("@nombre", lp.Nombre);
             db.cmd.Parameters.AddWithValue("@abreviatura", lp.Abreviatura);

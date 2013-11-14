@@ -7,54 +7,58 @@ using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models;
+using System.Windows;
 
 
 namespace MadeInHouse.ViewModels.Almacen
 {
     class MantenerNotaDeSalidaViewModel:PropertyChangedBase
     {
-        MyWindowManager win = new MyWindowManager();
+         MyWindowManager win = new MyWindowManager();
         DataObjects.Almacen.ProductoxSolicitudAbSQL gateWay = new ProductoxSolicitudAbSQL();
         ProductoSQL pxaSQL;
-        
-        public MantenerNotaDeSalidaViewModel() {
-            
+        public MantenerNotaDeSalidaViewModel(){
             pxaSQL = new ProductoSQL();
-            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(2);
-            /*
-             <ComboBoxItem Content="Orden de despacho" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Traslado" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Robo" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Desperfectos" HorizontalAlignment="Left" Width="118"/>
-                            <ComboBoxItem Content="Otros" HorizontalAlignment="Left" Width="118"/>
-             */
+            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(1);
             AlmacenSQL aGW = new AlmacenSQL();
             Models.Almacen.Almacenes a = aGW.BuscarAlmacen(3);
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
-           //lstProductos = gateWay.ListaProductos("1");
+            Estado = true;
             EstadoMot = true;
+            EstadoPro = true;
         }
-        bool estadoMot;
-
-        public bool EstadoMot
-        {
-            get { return estadoMot; }
-            set { estadoMot = value;
-            NotifyOfPropertyChange("EstadoMot");
-
-            }
-        }
-        
-
 
         string txtDoc;
 
         public string TxtDoc
         {
             get { return txtDoc; }
-            set { txtDoc = value; }
+            set { txtDoc = value;
+            NotifyOfPropertyChange(() => TxtDoc);
+            }
+        }
+        bool estadoPro;
+
+        public bool EstadoPro
+        {
+            get { return estadoPro; }
+            set { estadoPro = value;
+            NotifyOfPropertyChange("EstadoPro");
+            }
+        }
+        bool estadoMot;
+
+        public bool EstadoMot
+        {
+            get { return estadoMot; }
+            set
+            {
+                estadoMot = value;
+                NotifyOfPropertyChange("EstadoMot");
+
+            }
         }
 
         int txtCod;
@@ -78,17 +82,91 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return selectedMotivo; }
             set { selectedMotivo = value;
+            DeshabilitarDoc(selectedMotivo);
             NotifyOfPropertyChange(() => SelectedMotivo);
             }
         }
-        Producto selectedProducto;
 
+        private void DeshabilitarDoc(string selectedMotivo)
+        {
+
+            if (selectedMotivo.Equals("Traslado Externo"))
+            {
+                Estado = true;
+            }
+            else
+            {
+                if (selectedMotivo.Equals("Orden de despacho"))
+                {
+                    Estado = true;
+                }
+                else
+                {
+                    if (selectedMotivo.Equals("Rotura"))
+                    {
+                        Estado = true;
+                    }
+                    else
+                    {
+                        if (selectedMotivo.Equals("Ajuste"))
+                        {
+                            Estado = false;
+                        }
+                        else
+                        {
+                            if (selectedMotivo.Equals("Perdida"))
+                            {
+                                Estado = false;
+                            }
+                            else 
+                            {
+                                //Cualquier otro motivo
+                                Estado = false;
+                            }
+                            
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        Producto selectedProducto;
+        
         public Producto SelectedProducto
         {
             get { return selectedProducto; }
-            set { selectedProducto = value;}
+            set { selectedProducto = value;
+            NotifyOfPropertyChange(() => SelectedProducto);
+            }
         }
-        
+
+        ProductoCant selectedProductoCant;
+
+        public ProductoCant SelectedProductoCant
+        {
+            get { return selectedProductoCant; }
+            set
+            {
+                selectedProductoCant = value;
+                NotifyOfPropertyChange(() => SelectedProductoCant);
+            }
+        }
+
+        #region Orden de Despacho
+/*        OrdenDeDespacho selectedOrden;
+
+        public OrdenCompra SelectedOrden
+        {
+            get { return selectedOrden; }
+            set
+            {selectedOrden = value; 
+                NotifyOfPropertyChange(() => SelectedOrden);
+            }
+        }
+ */
+        #endregion
         List<Models.Almacen.Almacenes> almacen;
 
         public List<Models.Almacen.Almacenes> Almacen
@@ -103,6 +181,7 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return responsable; }
             set { responsable = value; }
         }
+
         string observaciones;
 
         public string Observaciones
@@ -111,7 +190,15 @@ namespace MadeInHouse.ViewModels.Almacen
             set { observaciones = value; }
         }
 
-        //Estado (Documento Referencia);
+        bool estado;
+
+        public bool Estado
+        {
+            get { return estado; }
+            set { estado = value; 
+            NotifyOfPropertyChange("Estado");
+            }
+        }
 
         List<ProductoCant> lstProductos;
 
@@ -119,19 +206,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return lstProductos; }
             set { lstProductos = value;
-                  NotifyOfPropertyChange(() => LstProductos);
-            }
-        }
-
-        string txtCodPro;
-
-        public string TxtCodPro
-        {
-            get { return txtCodPro; }
-            set
-            {
-                txtCodPro = value;
-                NotifyOfPropertyChange(() => TxtCodPro);
+                  NotifyOfPropertyChange("LstProductos");
             }
         }
 
@@ -140,7 +215,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtCantPro
         {
             get { return txtCantPro; }
-            set { txtCantPro = value; }
+            set { txtCantPro = value;
+            NotifyOfPropertyChange(() => TxtCantPro);
+            }
         }
 
         //Botones:
@@ -149,53 +226,167 @@ namespace MadeInHouse.ViewModels.Almacen
         
             string referencia = TxtDoc;
             string mot = this.selectedMotivo;
-            //Si fuera Por Traslado, Saco informacion de Solicitud de Abastecimiento con la referencia
-           lstProductos = gateWay.ListaProductos(referencia);
-           EstadoMot = false;
-           NotifyOfPropertyChange(() => LstProductos);
+           if ( string.Compare(mot,"Orden de Compra",true)==0){
+             /*
+               List<ProductoxOrdenCompra> poc = new List<ProductoxOrdenCompra>();
+               poc = SelectedOrden.LstProducto;
+               List<ProductoCant> lpcan = new List<ProductoCant>();
+               for (int i = 0; i < poc.Count(); i++) {
+                   ProductoCant pcan = new ProductoCant();
+                   pcan.IdProducto = poc.ElementAt(i).Producto.IdProducto;
+                   pcan.Can = poc.ElementAt(i).Cantidad;
+                   pcan.CodPro = poc.ElementAt(i).Producto.CodigoProd;
+                   pcan.ProNombre = poc.ElementAt(i).Producto.Nombre;
+                   pcan.CanAtend = poc.ElementAt(i).CantAtendida.ToString();
+                   pcan.CanAtender = poc.ElementAt(i).CantidadAtender;
+                   lpcan.Add(pcan);
+               }
+                LstProductos = new List<ProductoCant>(lpcan);
+            */
+           }
+            NotifyOfPropertyChange(() => LstProductos);
+            EstadoMot = false;
+            Estado = false;
+            DeshabilitarPro(SelectedMotivo);
+        }
+
+        private void DeshabilitarPro(string SelectedMotivo)
+        {
+
+            if (selectedMotivo.Equals("Traslado Externo"))
+            {
+                EstadoPro = true;
+            }
+            else
+            {
+                if (selectedMotivo.Equals("Orden de despacho"))
+                {
+                    EstadoPro = false;
+                }
+                else
+                {
+                    if (selectedMotivo.Equals("Rotura"))
+                    {
+                        EstadoPro = true;
+                    }
+                    else
+                    {
+                        if (selectedMotivo.Equals("Ajuste"))
+                        {
+                            EstadoPro = true;
+                        }
+                        else
+                        {
+                            if (selectedMotivo.Equals("Perdida"))
+                            {
+                                EstadoPro = true;
+                            }
+                            else
+                            {
+                                //Cualquier otro motivo
+                                EstadoPro = true;
+                            }
+
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        public void BuscarDocumento()
+        {
+            if (string.Compare(selectedMotivo, "Orden de despacho", true) == 0)
+            {
+                /*
+                MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+                wm.ShowWindow(new BuscarOrdenCompraViewModel(this, 1));
+                */
+            }
+            else {
+                if (string.Compare(selectedMotivo, "Rotura", true) == 0)
+                {
+
+                    MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                
+                }
+                else {
+                    if (string.Compare(selectedMotivo, "Traslado Externo", true) == 0)
+                    {
+                        MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                    }
+                    else {
+                        if (string.Compare(selectedMotivo, "Perdida", true) == 0)
+                        {
+                            MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                        }
+                        else
+                        {
+                            if (string.Compare(selectedMotivo, "Ajuste", true) == 0)
+                            {
+                                MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                            }
+                            else
+                            {
+                                //cualquier otro motivo
+                                MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                            }
+                        }
+
+                
+                    }
+                }
+                
+
+            }
+
         }
 
         public void BuscarProducto()
         {
             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-            wm.ShowWindow(new ProductoBuscarViewModel(this, 3));
+            wm.ShowWindow(new ProductoBuscarViewModel(this, 4));
         }
 
         public void AgregarProducto() {
-            if (TxtCodPro == null || TxtCantPro == null)
+            if (SelectedProducto.CodigoProd == null || TxtCantPro == null)
             {
                 System.Windows.MessageBox.Show("Debe completar todos los campos");
             }
             else
             {
                 ProductoCant pxa;
-                List<Producto> lstAux = null;
-                lstAux = pxaSQL.BuscarProducto(TxtCodPro);
+                Producto lstAux = null;
+                lstAux = pxaSQL.Buscar_por_CodigoProducto(SelectedProducto.CodigoProd);
                 
                 if ( (lstAux != null))
                 {
                     if (LstProductos != null)
                     {
-                        if ((pxa = LstProductos.Find(x => (x.CodPro == lstAux[0].CodigoProd))) == null)
+                        if ((pxa = LstProductos.Find(x => x.CodPro == lstAux.CodigoProd)) == null)
                         {
-
                             pxa = new ProductoCant();
-                            pxa.Can = TxtCantPro;
-                            pxa.CodPro = lstAux[0].CodigoProd.ToString();
-                            pxa.ProNombre = lstAux[0].Nombre;
+                            pxa.CanAtender = TxtCantPro;
+                            pxa.CanAtend = "0";
+                            pxa.Can = "0";
+                            pxa.CodPro = lstAux.CodigoProd.ToString();
+                            pxa.ProNombre = lstAux.Nombre;
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
                         }
                         else
                         {
-                            System.Windows.MessageBox.Show("El producto que se quiere registrar ya existe en la tienda");
+                            System.Windows.MessageBox.Show("El producto que se quiere registrar ya esta siendo ingresado","Error");
                         }
                     }
                     else {
                         pxa = new ProductoCant();
-                        pxa.Can = TxtCantPro;
-                        pxa.CodPro = lstAux[0].CodigoProd.ToString();
-                        pxa.ProNombre = lstAux[0].Nombre;
+                        pxa.CanAtender = TxtCantPro;
+                        pxa.CanAtend = "0";
+                        pxa.Can = "0";
+                        pxa.CodPro = lstAux.CodigoProd.ToString();
+                        pxa.ProNombre = lstAux.Nombre;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoCant>(LstProductos);
@@ -208,12 +399,30 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
             }
         }
+
         public void AbrirPosicionProducto()
         {
-            Almacen.PosicionProductoViewModel abrirPosView = new Almacen.PosicionProductoViewModel();
-            win.ShowWindow(abrirPosView);
+
+            MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+            wm.ShowWindow(new Almacen.PosicionProductoViewModel(this,2));
         }
-        void QuitarProducto() { }
+
+        public void AbrirListarOrdenesCompra()
+        {
+
+            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel();
+            win.ShowWindow(abrirListaOrden);
+        }
+
+        public void Quitar()
+        {
+            if (SelectedProductoCant != null)
+            {
+                LstProductos.Remove(SelectedProductoCant);
+                LstProductos = new List<ProductoCant>(LstProductos);
+                
+            }
+        }
 
     }
 

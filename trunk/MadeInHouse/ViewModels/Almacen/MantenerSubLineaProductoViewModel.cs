@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerSubLineaProductoViewModel :PropertyChangedBase
+    class MantenerSubLineaProductoViewModel :PropertyChangedBase,IDataErrorInfo
     {
-
 
         private Dictionary<string, int> lineasProducto = new Dictionary<string, int>();
         private MantenerLineaProductoViewModel lpVM;
@@ -29,7 +30,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public bool Estado    
         {
             get { return estado; }
-            set { estado = value; NotifyOfPropertyChange(() => Estado); }
+            set { estado = value;
+            NotifyOfPropertyChange("Estado"); 
+            }
         }
 
         private string txtNombre;
@@ -37,7 +40,8 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNombre
         {
             get { return txtNombre; }
-            set { txtNombre = value; NotifyOfPropertyChange(() => TxtNombre); }
+            set { txtNombre = value;
+                NotifyOfPropertyChange("TxtNombre"); }
         }
 
         private string txtAbrv;
@@ -45,7 +49,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtAbrv
         {
             get { return txtAbrv; }
-            set { txtAbrv = value; NotifyOfPropertyChange(() => TxtAbrv); }
+            set { txtAbrv = value; 
+                NotifyOfPropertyChange("TxtAbrv"); 
+            }
         }
 
 
@@ -61,15 +67,45 @@ namespace MadeInHouse.ViewModels.Almacen
             
             lpVM=lp;
         }
-
+        
         public void GuardarSubLinea()
         {
+            if (string.IsNullOrWhiteSpace(TxtAbrv) || string.IsNullOrWhiteSpace(TxtNombre)) {
+                MessageBox.Show("Ingrese valores validos en los campos");
+                return;
+            }
+            
             SubLineaProducto slp = new SubLineaProducto(); 
             slp.Nombre=txtNombre;
             slp.Abreviatura = txtAbrv;
             
             lpVM.ActualizaTablaSubLineas(slp);
         }
+
+        public string this[string columName]
+        {
+
+            get
+            {
+
+                string result = string.Empty;
+                switch (columName)
+                {
+                    case "TxtNombre": if (string.IsNullOrEmpty(TxtNombre)) result = "esta vacia"; break;
+                    case "TxtAbrv": if (string.IsNullOrEmpty(TxtAbrv)) result = "esta vacia"; break;
+
+                };
+                return result;
+            }
+        }
+        public string Error
+        {
+            get
+            {
+                return "Error Test!!!!";
+            }
+        }
+
 
     }
 }
