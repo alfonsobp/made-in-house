@@ -23,8 +23,11 @@ namespace MadeInHouse.Views.Reportes
     /// </summary>
     public partial class reporteVentasView : UserControl
     {
+        List<Venta> ventas;
+
         public reporteVentasView()
         {
+
             InitializeComponent();
             List<Tienda> lstTienda = new List<Tienda>();
             List<Cliente> lstCliente = new List<Cliente>();
@@ -97,56 +100,8 @@ namespace MadeInHouse.Views.Reportes
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, ListBoxSede2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(ListBoxSede2, listBoxSede1);
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
 
-            xlApp = new Excel.Application();
-            
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
 
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            xlWorkSheet.Cells[1, 1] = "2";
-            xlWorkSheet.Cells[2, 1] = "7";
-            xlWorkSheet.Cells[3, 1] = "15";
-            xlWorkSheet.Cells[4, 1].Formula = "=SUM(A1:A3)";
-          
-            xlWorkBook.SaveAs("C:\\LALALA.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
-
-            releaseObject(xlWorkSheet);
-            releaseObject(xlWorkBook);
-            releaseObject(xlApp);
-
-            MessageBox.Show("archivo excel creado , esta en c:\\LALALA.xls");
-        }
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Excel.Application excelApp = new Excel.Application();
-            excelApp.Visible = false;
-            Excel.Workbook newWorkbook = excelApp.Workbooks.Add();
-            string workbookPath = "c:/SomeWorkBook.xls";  // RUTA DEL EXCEL A IMPORTAR
-            Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(workbookPath,
-                    0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
-                    true, false, 0, true, false, false);
-            Excel.Sheets excelSheets = excelWorkbook.Worksheets;
-            Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(1);
-
-            Excel.Range excelCell = (Excel.Range)excelWorksheet.get_Range("A1", "A1"); // LA CELDA QUE QUEIRES OBTENER,
-                                                                    // SE PUEDE TRABAJAR CON RANGOS COMPLETOS PERO AUN NO SE COMO
-            MessageBox.Show(excelCell.Value);//MENSAJE CON EL VALOR DE LA CELDA A1,A1
-
-            excelApp.Workbooks.Close();
-            excelApp.Quit();
-
-            releaseObject(excelWorksheet);
-            releaseObject(newWorkbook);
-            releaseObject(excelApp);
-        }
         private void releaseObject(object obj)
         {
             try
@@ -167,7 +122,7 @@ namespace MadeInHouse.Views.Reportes
 
         private void Generar(object sender, RoutedEventArgs e)
         {
-            List<Venta> ventas = new List<Venta>();
+            ventas = new List<Venta>();
             List<Venta> ventaAux1 = new List<Venta>();
             List<Venta> ventaAux2 = new List<Venta>();
             List<Venta> ventaAux3 = new List<Venta>();
@@ -230,8 +185,76 @@ namespace MadeInHouse.Views.Reportes
             Lista.ItemsSource = ventaAux4;
             montoTotal.Text = suma + "";
 
-            
+
         }
-        
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Excel.Application excelApp = new Excel.Application();
+            excelApp.Visible = false;
+            Excel.Workbook newWorkbook = excelApp.Workbooks.Add();
+            string workbookPath = "c:/SomeWorkBook.xls";  // RUTA DEL EXCEL A IMPORTAR
+            Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(workbookPath,
+                    0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
+                    true, false, 0, true, false, false);
+            Excel.Sheets excelSheets = excelWorkbook.Worksheets;
+            Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(1);
+
+            Excel.Range excelCell = (Excel.Range)excelWorksheet.get_Range("A1", "A1"); // LA CELDA QUE QUEIRES OBTENER,
+            // SE PUEDE TRABAJAR CON RANGOS COMPLETOS PERO AUN NO SE COMO
+            MessageBox.Show(excelCell.Value);//MENSAJE CON EL VALOR DE LA CELDA A1,A1
+
+            excelApp.Workbooks.Close();
+            excelApp.Quit();
+
+            releaseObject(excelWorksheet);
+            releaseObject(newWorkbook);
+            releaseObject(excelApp);
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            
+
+            xlApp = new Excel.Application();
+
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            xlWorkSheet.Cells[1, 1] = "idVenta";
+            xlWorkSheet.Cells[1, 2] = "Tipo Venta";
+            xlWorkSheet.Cells[1, 3] = "tipo Doc Pago";
+            xlWorkSheet.Cells[1, 4] = "Id Usuario";
+            xlWorkSheet.Cells[1, 5] = "Numero Documento";
+            xlWorkSheet.Cells[1, 6] = "   monto";
+            xlWorkSheet.Cells[1, 6] = "   igv";
+
+            for (int i = 2; i < ventas.Count;i++ )
+            {
+                xlWorkSheet.Cells[i, 1] = ventas[i].IdVenta;
+                xlWorkSheet.Cells[i, 2] = ventas[i].TipoVenta;
+                xlWorkSheet.Cells[i, 3] = ventas[i].TipoDocPago;
+                xlWorkSheet.Cells[i, 4] = ventas[i].IdUsuario;
+                xlWorkSheet.Cells[i, 5] = ventas[i].NumDocPago;
+                xlWorkSheet.Cells[i, 6] = ventas[i].Monto;
+                xlWorkSheet.Cells[i, 6] = ventas[i].Igv;
+            }
+
+            xlWorkBook.SaveAs("C:\\LALALA.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+
+            releaseObject(xlWorkSheet);
+            releaseObject(xlWorkBook);
+            releaseObject(xlApp);
+
+            MessageBox.Show("archivo excel creado , esta en c:\\LALALA.xls");
+        }
     }
 }
