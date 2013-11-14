@@ -13,6 +13,10 @@ namespace MadeInHouse.ViewModels.Almacen
 {
     class MantenerMotivoViewModel : PropertyChangedBase
     {
+
+        public MantenerMotivoViewModel() {
+            LstMotivos = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
+        }
         private Motivo motivoSeleccionado;
 
         public void SelectedItemChanged(object sender)
@@ -51,7 +55,10 @@ namespace MadeInHouse.ViewModels.Almacen
 
             refrescar();
         }
+        public void Borrar() {
+        
 
+        }
         private void refrescar()
         {
             LstMotivos = DataObjects.Almacen.MotivoSQL.BuscarMotivos();

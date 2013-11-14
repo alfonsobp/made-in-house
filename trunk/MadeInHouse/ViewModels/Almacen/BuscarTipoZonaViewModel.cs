@@ -29,7 +29,6 @@ namespace MadeInHouse.ViewModels.Almacen
               
         }
 
-        
         private DataObjects.Almacen.TipoZonaSQL gateway;
 
         private DataObjects.Almacen.ColorSQL gw;
