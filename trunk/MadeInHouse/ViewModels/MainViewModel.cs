@@ -43,6 +43,12 @@ namespace MadeInHouse.ViewModels
             DataObjects.Seguridad.AccesoSQL.cargarAccVentana(u.Rol.IdRol, out ventana);
         }
 
+        public void Cerrar()
+        {
+            _windowManager.ShowWindow(new LoginViewModel(_windowManager));
+            this.TryClose();
+        }
+
         //***************************************************************************************************************
 
         //MODULO ALMACÉN: 1
