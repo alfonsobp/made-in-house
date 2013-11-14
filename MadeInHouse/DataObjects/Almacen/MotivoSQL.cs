@@ -19,7 +19,7 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO MotivoIS(nombre,tipo) VALUES (@motivo,3)";
+            cmd.CommandText = "INSERT INTO MotivoIS(nombre,tipo,estado) VALUES (@motivo,3,1)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@motivo", m.NombreMotivo);
@@ -48,7 +48,7 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM MotivoIS";
+            cmd.CommandText = "SELECT * FROM MotivoIS where estado=1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -82,7 +82,7 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM MotivoIS WHERE tipo=@tipo OR tipo=3";
+            cmd.CommandText = "SELECT * FROM MotivoIS WHERE (tipo=@tipo OR tipo=3) AND estado=1";
             cmd.Parameters.AddWithValue("@tipo", p);
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -108,6 +108,38 @@ namespace MadeInHouse.DataObjects.Almacen
             }
 
             return listaMotivos;
+        }
+
+        internal static int Eliminar(Motivo tz)
+        {
+
+            
+            
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE MotivoIS SET estado=0 WHERE idMotivo = @idMotivo";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idMotivo",tz.Id);
+
+            try
+            {
+                conn.Open();
+
+                k = cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+
         }
     }
 }

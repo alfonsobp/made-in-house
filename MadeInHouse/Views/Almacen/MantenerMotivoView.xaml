@@ -8,7 +8,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Mantener Motivos de Salidas" />
+            <Layouts:TitleBarTemplate title="Mantener Motivos" />
             <Grid Margin="1" Height="264">
                 <ToolBar VerticalAlignment="Top" Height="41" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
@@ -36,7 +36,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label Content="Motivo:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtMotivo" HorizontalAlignment="Left" Height="23" Margin="65,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+                <TextBox Text="{Binding Path=TxtMotivo, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="65,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
                 <Button x:Name="AgregarMotivo" HorizontalAlignment="Left" Height="23" Margin="250,54,0,0" VerticalAlignment="Top" Width="34">
                     <Image Source="/Assets/add.png" Height="20" Width="24" />
                 </Button>

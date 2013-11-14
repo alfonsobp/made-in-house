@@ -8,10 +8,11 @@ using MadeInHouse.Models.Almacen;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
+using System.ComponentModel;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerMotivoViewModel : PropertyChangedBase
+    class MantenerMotivoViewModel : PropertyChangedBase, IDataErrorInfo
     {
 
         public MantenerMotivoViewModel() {
@@ -24,7 +25,7 @@ namespace MadeInHouse.ViewModels.Almacen
             motivoSeleccionado = ((sender as DataGrid).SelectedItem as Motivo);
         }
 
-        private string txtMotivo;
+        private string txtMotivo=null;
 
         public string TxtMotivo
         {
@@ -44,24 +45,71 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             int k;
             Motivo m = new Motivo();
-            //MotivoIS m = new MotivoIS();
+            if ( string.IsNullOrWhiteSpace(TxtMotivo)) {
+                MessageBox.Show("El nombre del motivo no puede ser vacio");
+                return;
+            }
             m.NombreMotivo = TxtMotivo;
             m.Nombre = TxtMotivo;
-            k = DataObjects.Almacen.MotivoSQL.AgregarMotivo(m); 
+            k = DataObjects.Almacen.MotivoSQL.AgregarMotivo(m);
             if (k == 0)
+            {
                 MessageBox.Show("Ocurrio un error");
+                
+            }
             else
+            {
                 MessageBox.Show("Motivo: = " + txtMotivo + " registrado con éxtio");
-
+                
+            }
             refrescar();
         }
         public void Borrar() {
-        
 
+            Motivo tz;
+            tz = motivoSeleccionado;
+            if (tz != null)
+            {
+                int a = DataObjects.Almacen.MotivoSQL.Eliminar(tz);
+                if (a > 0) LstMotivos.Remove(tz);
+                else
+                {
+                    MessageBox.Show("No se pudo borrar borrar el motivo porque esta siendo usado");
+                }
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ninguna Motivo");
+            }
+            refrescar();
         }
         private void refrescar()
         {
             LstMotivos = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
         }
+
+        public string Error
+        {
+            get
+            {
+                return "Error Test!!!!";
+            }
+        }
+
+        public string this[string columName]
+        {
+
+            get
+            {
+
+                string result = string.Empty;
+                switch (columName)
+                {
+                    case "TxtMotivo": if (string.IsNullOrEmpty(TxtMotivo)) result = "Esta vacia"; break;
+                };
+                return result;
+            }
+        }
+
     }
 }

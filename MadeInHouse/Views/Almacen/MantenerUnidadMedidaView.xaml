@@ -17,7 +17,7 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
+                    <Button x:Name="Borrar">
                         <Image Source="/Assets/delete.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -31,12 +31,12 @@
                 <DataGrid x:Name="LstUnidadesDeMedida" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
                           HeadersVisibility="Column" Margin="10,91,10,10" AutoGenerateColumns="False"  >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Id}" Header="Codigo" Width="60"/>
+                        <DataGridTextColumn Binding="{Binding Path=IdUnidad}" Header="Codigo" Width="60"/>
                         <DataGridTextColumn Binding="{Binding Path=Nombre}" Header="Nombre" Width="220"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="10,51,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="65,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="180"/>
+                <TextBox Text="{Binding Path=TxtNombre,ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="65,54,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="180"/>
                 <Button x:Name="AgregarUnidadDeMedida" HorizontalAlignment="Left" Height="23" Margin="250,54,0,0" VerticalAlignment="Top" Width="34">
                     <Image Source="/Assets/add.png" Height="20" Width="24" />
                 </Button>

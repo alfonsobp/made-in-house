@@ -90,12 +90,14 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
-        public void Eliminar(ExtendedZona tz)
+        public void Eliminar()
         {
+            ExtendedZona tz;
             tz = tipoZonaSeleccionada;
             if (tz != null)
             {
-                int a = gateway.eliminarTipoZona(tz as TipoZona);
+                int a;
+                a = gateway.eliminarTipoZona(tz as TipoZona);
                 if (a > 0) listaTipoZona.Remove(tz);
                 else {
                     MessageBox.Show("No se pudo borrar borrar el tipo de zona porque esta siendo usado");

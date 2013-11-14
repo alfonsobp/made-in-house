@@ -19,7 +19,7 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             int k = 0;
             
-            cmd.CommandText = "INSERT INTO UnidadMedida(nombre) VALUES (@nombre)";
+            cmd.CommandText = "INSERT INTO UnidadMedida(nombre,estado) VALUES (@nombre,1)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@nombre", u.Nombre);
@@ -49,7 +49,7 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM UnidadMedida";
+            cmd.CommandText = "SELECT * FROM UnidadMedida WHERE estado=1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -74,6 +74,36 @@ namespace MadeInHouse.DataObjects.Almacen
             }
 
             return listaUnidadMedidas;
+        }
+
+        internal static int Eliminar(UnidadMedida tz)
+        {
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE UnidadMedida SET estado=0 WHERE idUnidad = @idUnidad";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idUnidad", tz.IdUnidad);
+
+            try
+            {
+                conn.Open();
+
+                k = cmd.ExecuteNonQuery();
+
+                conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+
         }
     }
 }
