@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Excel = Microsoft.Office.Interop.Excel;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Ventas;
 
 namespace MadeInHouse.Views.Reportes
 {
@@ -24,6 +26,17 @@ namespace MadeInHouse.Views.Reportes
         public reporteVentasView()
         {
             InitializeComponent();
+            List<Tienda> lstTienda = new List<Tienda>();
+            List<Cliente> lstCliente = new List<Cliente>();
+            List<Producto> lstProducto = new List<Producto>();
+            lstTienda = DataObjects.Reportes.ReporteVentasSQL.BuscarTienda();
+            lstCliente = DataObjects.Reportes.ReporteVentasSQL.BuscarCliente();
+            lstProducto = DataObjects.Reportes.ReporteVentasSQL.BuscarProducto();
+
+            for (int i = 0; i < lstTienda.Count; i++) listBoxSede1.Items.Add(lstTienda[i].Nombre);
+            for (int i = 0; i < lstCliente.Count; i++) listBoxCliente1.Items.Add(lstCliente[i].Nombre);
+            for (int i = 0; i < lstProducto.Count; i++) listBoxProducto1.Items.Add(lstProducto[i].Nombre);
+
         }
 
 
@@ -35,7 +48,6 @@ namespace MadeInHouse.Views.Reportes
             destino.Items.Add(text);
             origen.Items.Remove(origen.SelectedItem);
         }
-
         private void todo_lista_a_lista(ListBox origen, ListBox destino)
         {
             while (origen.Items.Count != 0)
@@ -46,18 +58,17 @@ namespace MadeInHouse.Views.Reportes
                 origen.Items.RemoveAt(0);
             }
         }
-
         private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
         {
-            if (listBoxProveedores1.SelectedItem != null)
-                pasarListBox(listBoxProveedores1, ListBoxProveedores2);
-            if (ListBoxProveedores2.SelectedItem != null)
-                pasarListBox(ListBoxProveedores2, listBoxProveedores1);
+            if (listBoxCliente1.SelectedItem != null)
+                pasarListBox(listBoxCliente1, ListBoxCliente2);
+            if (ListBoxCliente2.SelectedItem != null)
+                pasarListBox(ListBoxCliente2, listBoxCliente1);
 
-            if (listBoxCategorias1.SelectedItem != null)
-                pasarListBox(listBoxCategorias1, ListBoxCategorias2);
-            if (ListBoxCategorias2.SelectedItem != null)
-                pasarListBox(ListBoxCategorias2, listBoxCategorias1);
+            if (listBoxProducto1.SelectedItem != null)
+                pasarListBox(listBoxProducto1, ListBoxProducto2);
+            if (ListBoxProducto2.SelectedItem != null)
+                pasarListBox(ListBoxProducto2, listBoxProducto1);
 
             if (listBoxSede1.SelectedItem != null)
                 pasarListBox(listBoxSede1, ListBoxSede2);
@@ -68,26 +79,24 @@ namespace MadeInHouse.Views.Reportes
         }
         private void Unselect(object sender, RoutedEventArgs e)
         {
-            listBoxCategorias1.UnselectAll();
-            ListBoxCategorias2.UnselectAll();
+            listBoxProducto1.UnselectAll();
+            ListBoxProducto2.UnselectAll();
             listBoxSede1.UnselectAll();
             ListBoxSede2.UnselectAll();
-            listBoxProveedores1.UnselectAll();
-            ListBoxProveedores2.UnselectAll();
+            listBoxCliente1.UnselectAll();
+            ListBoxCliente2.UnselectAll();
         }
-
         private void Pasar_Todo(object sender, RoutedEventArgs e)
         {
-            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxProveedores1, ListBoxProveedores2);
-            if (sender.Equals(izquierda1)) todo_lista_a_lista(ListBoxProveedores2, listBoxProveedores1);
+            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxCliente1, ListBoxCliente2);
+            if (sender.Equals(izquierda1)) todo_lista_a_lista(ListBoxCliente2, listBoxCliente1);
 
-            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxCategorias1, ListBoxCategorias2);
-            if (sender.Equals(izquierda2)) todo_lista_a_lista(ListBoxCategorias2, listBoxCategorias1);
+            if (sender.Equals(derecha2)) todo_lista_a_lista(listBoxProducto1, ListBoxProducto2);
+            if (sender.Equals(izquierda2)) todo_lista_a_lista(ListBoxProducto2, listBoxProducto1);
 
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, ListBoxSede2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(ListBoxSede2, listBoxSede1);
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Excel.Application xlApp;
@@ -115,7 +124,6 @@ namespace MadeInHouse.Views.Reportes
 
             MessageBox.Show("archivo excel creado , esta en c:\\LALALA.xls");
         }
-
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Excel.Application excelApp = new Excel.Application();
@@ -139,7 +147,6 @@ namespace MadeInHouse.Views.Reportes
             releaseObject(newWorkbook);
             releaseObject(excelApp);
         }
-
         private void releaseObject(object obj)
         {
             try
@@ -158,6 +165,67 @@ namespace MadeInHouse.Views.Reportes
             }
         }
 
+        private void Generar(object sender, RoutedEventArgs e)
+        {
+            List<Venta> ventas = new List<Venta>();
+            List<Venta> ventaAux1 = new List<Venta>();
+            List<Venta> ventaAux2 = new List<Venta>();
+            List<Venta> ventaAux3 = new List<Venta>();
+            List<Venta> ventaAux4 = new List<Venta>();
+            List<string> tiendas = new List<string>();
+            List<string> clientes = new List<string>();
+            List<string> productos = new List<string>();
+            List<int> lista = new List<int>();
 
+            for (int i = 0; i < ListBoxSede2.Items.Count; i++)
+            {
+                tiendas.Add(ListBoxSede2.Items[i].ToString());
+                ventaAux1 = DataObjects.Reportes.ReporteVentasSQL.BuscarVentaxTienda(tiendas[i]);
+                for (int j = 0; j < ventaAux1.Count; j++)
+                {
+                    ventas.Add(ventaAux1[j]);
+                }
+            }
+
+            for (int i = 0; i < ListBoxCliente2.Items.Count; i++)
+            {
+                clientes.Add(ListBoxCliente2.Items[i].ToString());
+                ventaAux2 = DataObjects.Reportes.ReporteVentasSQL.BuscarVentaxCliente(clientes[i]);
+                for (int j = 0; j < ventaAux2.Count; j++)
+                {
+                    ventas.Add(ventaAux2[j]);
+                }
+            }
+
+            for (int i = 0; i < ListBoxProducto2.Items.Count; i++)
+            {
+                productos.Add(ListBoxProducto2.Items[i].ToString());
+                ventaAux3 = DataObjects.Reportes.ReporteVentasSQL.BuscarVentaxProducto(productos[i]);
+                for (int j = 0; j < ventaAux3.Count; j++)
+                {
+                    ventas.Add(ventaAux3[j]);
+                }
+            }
+
+            Venta vAux;
+            Venta vAux2;
+            for (int i = 0; i < ventas.Count; i++)
+            {
+                vAux = ventas[i];
+                if (i != ventas.Count) ventas.RemoveAt(i);
+                if ((vAux = ventas.Find(x => x.IdVenta == vAux.IdVenta)) != null)
+                {
+                    vAux2 = vAux;
+                    if ((vAux2 = ventaAux4.Find(x => x.IdVenta == vAux2.IdVenta)) == null)
+                        ventaAux4.Add(vAux);
+                }
+            }
+
+
+            Lista.ItemsSource = ventaAux4;
+
+            
+        }
+        
     }
 }

@@ -77,11 +77,5 @@ namespace MadeInHouse.ViewModels.Reportes
             MessageBox.Show("La venta tiene Proveedor = " + ventarepSeleccionado.Proveedor + " , producto = " + ventarepSeleccionado.Producto +
                             " , MontovTotal = " + ventarepSeleccionado.MontoTotal);
         }
-
-        public void GenerarReporte()
-        {
-            lstVentarepor = DataObjects.ReportesSQL.GenerarReporVentas(null, null, null, null, null);
-            NotifyOfPropertyChange("LstVentarepor");
-        }
     }
 }
