@@ -135,7 +135,6 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
-
         private string idCliente;
 
         public string IdCliente
@@ -405,6 +404,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 Venta v = new Venta();
                 v.LstDetalle = new List<DetalleVenta>();
                 v.LstPagos = new List<VentaPago>();
+                v.LstDetalleServicio = new List<DetalleVentaServicio>();
                 //guardar datos de la venta
 
                 if (tipoVenta[cmbTipoVenta] == 0)
@@ -419,7 +419,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
                 v.FechaReg = System.DateTime.Now;
                 v.FechaDespacho = fechaDespacho;
-
+                v.TipoVenta = "Obra";
                 v.Estado = 1;
 
                 //guardar detalle de productos de la venta
@@ -454,7 +454,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
                 //insertar la venta en la base de datos
                 VentaSQL vsql = new VentaSQL();
-                int k = vsql.Agregar(v, "obra");
+                int k = vsql.AgregarVentaObra(v);
                 if (k != 0)
                 {
                     MessageBox.Show("Venta Realizada con Exito");

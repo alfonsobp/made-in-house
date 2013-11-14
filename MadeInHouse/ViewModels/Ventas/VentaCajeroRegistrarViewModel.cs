@@ -12,6 +12,10 @@ using System.Windows;
 using MadeInHouse.Validacion;
 using System.Windows.Input;
 using System.Threading;
+using MadeInHouse.Models.Compras;
+using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models;
+using MadeInHouse.ViewModels.Compras;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -30,6 +34,7 @@ namespace MadeInHouse.ViewModels.Ventas
         {
            lstVenta = new List<DetalleVenta>();
            LstPagos = new List<VentaPago>();
+           lstVentaServicios = new List<DetalleVentaServicio>();
            cliente = new Cliente();
            IGV = 0.18;
            PUNTO = 30;
@@ -40,6 +45,14 @@ namespace MadeInHouse.ViewModels.Ventas
            montopago = 0;
            ModoPagoSQL mpsql = new ModoPagoSQL();
            LstModosPago = mpsql.BuscarModosPago();
+        }
+
+        private List<DetalleVentaServicio> lstVentaServicios;
+
+        public List<DetalleVentaServicio> LstVentaServicios
+        {
+            get { return lstVentaServicios; }
+            set { lstVentaServicios = value; NotifyOfPropertyChange(() => LstVentaServicios); }
         }
 
         private string txtRuc;
@@ -218,6 +231,33 @@ namespace MadeInHouse.ViewModels.Ventas
                 return new BindableCollection<string>(tipoVenta.Keys);
             }
         }
+
+        private string txtServicio;
+
+        public string TxtServicio
+        {
+            get { return txtServicio; }
+            set { txtServicio = value; NotifyOfPropertyChange(() => TxtServicio); }
+        }
+
+        private ServicioxProducto serv;
+
+        public ServicioxProducto Serv
+        {
+            get { return serv; }
+            set
+            {
+                serv = value; NotifyOfPropertyChange(() => Serv);
+                ServicioxProductoSQL spsql = new ServicioxProductoSQL();
+                TxtServicio = spsql.ServiciobyId(serv.IdServicio).Descripcion;
+            }
+        }
+
+        public void BuscarServicio()
+        {
+            MyWindowManager ws = new MyWindowManager();
+            ws.ShowWindow(new BuscadorServicioViewModel(this, 2));
+        }
         
         public void AgregarDetalle()
         {
@@ -283,6 +323,44 @@ namespace MadeInHouse.ViewModels.Ventas
             LstVenta = aux;
         }
 
+        public void AgregarDetalleServicio()
+        {
+            Evaluador ev = new Evaluador();
+            int nuevo = 1;
+
+            List<DetalleVentaServicio> aux = new List<DetalleVentaServicio>();
+            foreach (DetalleVentaServicio item in LstVentaServicios)
+            {
+                if (item.IdServicio == serv.IdServicio)
+                {
+                    nuevo = 0;
+                }
+                aux.Add(item);
+            }
+
+            if (nuevo == 1)
+            {
+                DetalleVentaServicio dv = new DetalleVentaServicio();
+                ServicioxProductoSQL sxpsql = new ServicioxProductoSQL();
+                dv.Servicio = sxpsql.ServiciobyId(serv.IdServicio);
+                dv.IdProducto = serv.Producto.IdProducto;
+                dv.IdServicio = serv.IdServicio;
+                dv.Descripcion = dv.Servicio.Descripcion;
+                dv.Precio = serv.Precio;
+
+                aux.Add(dv);
+
+                subt += dv.Precio;
+                TxtSubTotal = subt.ToString();
+                igv_total = (subt) * IGV;
+                TxtIGVTotal = igv_total.ToString();
+                total = (subt) * (1 + IGV);
+                TxtTotal = total.ToString();
+            }
+            LstVentaServicios = aux;
+
+        }
+
         public void GuardarVenta(string cmbTipoVenta)
         {
             int numFilas = LstVenta.Count();
@@ -291,6 +369,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 Venta v = new Venta();
                 v.LstDetalle = new List<DetalleVenta>();
                 v.LstPagos = new List<VentaPago>();
+                v.LstDetalleServicio = new List<DetalleVentaServicio>();
                 //guardar datos de la venta
                 //completar
                 if (tipoVenta[cmbTipoVenta] == 0)
@@ -299,12 +378,12 @@ namespace MadeInHouse.ViewModels.Ventas
                     v.TipoDocPago = "Factura";
 
                 v.NumDocPago = null;
-                
+                v.TipoVenta = "Tienda";
                 v.Estado = 1;
                 v.FechaReg = System.DateTime.Now;
                 v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
                 //idCliente desde la tarjeta de este si es que hay
-                if (!TxtCliente.Equals(""))
+                if (!string.IsNullOrEmpty(TxtCliente))
                 {
                     v.IdCliente = Convert.ToInt32(cliente.Id);
                     v.CodTarjeta = Convert.ToInt32(TxtCliente);
@@ -335,13 +414,35 @@ namespace MadeInHouse.ViewModels.Ventas
                     v.LstPagos.Add(vp);
                 }
 
+                //guardar detalle de servicios de la venta, si es que hay
+                if (LstVentaServicios.Count() > 0)
+                {
+                    foreach (DetalleVentaServicio dvs in LstVentaServicios)
+                    {
+                        v.LstDetalleServicio.Add(dvs);
+                    }
+                }
+
+
                 //insertar en la base de datos
                 VentaSQL vsql = new VentaSQL();
-                int k = vsql.Agregar(v, "tienda");
-                if (k != 0)
+                if (v.IdCliente == -1)
                 {
-                    MessageBox.Show("Venta Realizada con Exito");
-                    Limpiar();
+                    int k = vsql.AgregarSinCliente(v);
+                    if (k != 0)
+                    {
+                        MessageBox.Show("Venta Realizada con Exito");
+                        Limpiar();
+                    }
+                }
+                else
+                {
+                    int k = vsql.Agregar(v);
+                    if (k != 0)
+                    {
+                        MessageBox.Show("Venta Realizada con Exito");
+                        Limpiar();
+                    }
                 }
             }
             else

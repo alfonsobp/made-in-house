@@ -80,6 +80,26 @@ namespace MadeInHouse.ViewModels.Compras
             model = m;
         }
 
+        public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m, Ventas.VentaCajeroRegistrarViewModel ventaCajeroRegistrarViewModel, int p)
+        {
+            // TODO: Complete member initialization
+            this.servicioSeleccionado = s;
+            this.buscadorServicioViewModel = m;
+            this.ventaCajeroRegistrarViewModel = ventaCajeroRegistrarViewModel;
+            this.ventanaAccion = p;
+
+            //Servicio para editar del buscador
+            txtCodigo = s.CodServicio;
+            txtNombre = s.Nombre;
+            txtProveedor = DataObjects.Compras.ServicioSQL.getCODfromProv(s.IdProveedor);
+            txtDescripcion = s.Descripcion;
+
+            LstProducto = sp.Buscar(s.IdServicio) as List<ServicioxProducto>;
+
+            indicador = 2;
+            model = m;
+        }
+
         public void Acciones(object sender)
         {
             if (ventanaAccion == 1)
@@ -88,6 +108,16 @@ namespace MadeInHouse.ViewModels.Compras
                 if(ventaRegistrarViewModel != null)
                 {
                     ventaRegistrarViewModel.Serv = Seleccionado;
+                    this.TryClose();
+                    this.buscadorServicioViewModel.TryClose();
+                }
+            }
+            if (ventanaAccion == 2)
+            {
+                Seleccionado = ((sender as DataGrid).SelectedItem as ServicioxProducto);
+                if (ventaCajeroRegistrarViewModel != null)
+                {
+                    ventaCajeroRegistrarViewModel.Serv = Seleccionado;
                     this.TryClose();
                     this.buscadorServicioViewModel.TryClose();
                 }
@@ -172,6 +202,8 @@ namespace MadeInHouse.ViewModels.Compras
         private Servicio servicioSeleccionado;
         private BuscadorServicioViewModel buscadorServicioViewModel;
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
+        private Ventas.VentaCajeroRegistrarViewModel ventaCajeroRegistrarViewModel;
+        private int p;
 
         public List<ServicioxProducto> LstProducto
         {
