@@ -12,20 +12,21 @@ namespace MadeInHouse.DataObjects.Almacen
     class UbicacionSQL
     {
         private DBConexion db;
-        private bool tipo=true;
+        private bool tipo = true;
 
-        public UbicacionSQL(DBConexion db=null)
+        public UbicacionSQL(DBConexion db = null)
         {
 
             if (db == null)
             {
                 this.db = new DBConexion();
             }
-            else {
-                this.db=db;
-                tipo=false;
+            else
+            {
+                this.db = db;
+                tipo = false;
             }
-            
+
         }
         public int Agregar(Ubicacion u)
         {
@@ -41,7 +42,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                if(tipo) db.conn.Close();
+                if (tipo) db.conn.Close();
 
             }
             catch (SqlException e)
@@ -58,7 +59,7 @@ namespace MadeInHouse.DataObjects.Almacen
             return 1;
         }
 
-        public int AgregarMasivo(DataTable data, SqlTransaction transaction )
+        public int AgregarMasivo(DataTable data, SqlTransaction transaction)
         {
             try
             {
@@ -70,12 +71,12 @@ namespace MadeInHouse.DataObjects.Almacen
 
                     foreach (var column in data.Columns)
                         s.ColumnMappings.Add(column.ToString(), column.ToString());
-                    
+
                     s.WriteToServer(data);
                     s.Close();
                 }
                 if (tipo) db.conn.Close();
-               
+
 
             }
             catch (SqlException e)
@@ -107,17 +108,17 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return 1;
         }
-  
 
-         public List<Ubicacion> ObtenerUbicaciones(int idAlmacen=-1,int idTipoZona=-1)
+
+        public List<Ubicacion> ObtenerUbicaciones(int idAlmacen = -1, int idTipoZona = -1)
         {
-            List<Ubicacion> lstUbicaciones=null;
+            List<Ubicacion> lstUbicaciones = null;
             db.cmd.CommandText = "SELECT A.* FROM Ubicacion A" +
                 " WHERE A.idAlmacen=@idAlmacen and A.idTipoZona=@idTipoZona";
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             db.cmd.Parameters.AddWithValue("@idTipoZona", idTipoZona);
-            
-             try
+
+            try
             {
                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
@@ -128,12 +129,12 @@ namespace MadeInHouse.DataObjects.Almacen
                     u.IdUbicacion = int.Parse(reader["idUbicacion"].ToString());
                     u.IdAlmacen = idAlmacen;
                     u.IdTipoZona = idTipoZona;
-                    u.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto"))? -1:int.Parse(reader["idProducto"].ToString());
+                    u.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
                     u.CordX = int.Parse(reader["cordX"].ToString());
-                    u.CordY=int.Parse(reader["cordY"].ToString());
+                    u.CordY = int.Parse(reader["cordY"].ToString());
                     u.CordZ = int.Parse(reader["cordZ"].ToString());
-                    u.Cantidad = reader.IsDBNull(reader.GetOrdinal("cantidad"))? -1:int.Parse(reader["cantidad"].ToString());
-                    u.VolOcupado = reader.IsDBNull(reader.GetOrdinal("volOcupado")) ? -1:int.Parse(reader["volOcupado"].ToString());
+                    u.Cantidad = reader.IsDBNull(reader.GetOrdinal("cantidad")) ? -1 : int.Parse(reader["cantidad"].ToString());
+                    u.VolOcupado = reader.IsDBNull(reader.GetOrdinal("volOcupado")) ? -1 : int.Parse(reader["volOcupado"].ToString());
                     lstUbicaciones.Add(u);
 
                 }
@@ -147,7 +148,8 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 Console.WriteLine(e);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 Console.WriteLine(e.StackTrace.ToString());
             }
 
@@ -155,32 +157,127 @@ namespace MadeInHouse.DataObjects.Almacen
             return lstUbicaciones;
         }
 
+        public int ActualizarUbicacionMasivo()
+        {
+            try
+            {
 
-         public int ActualizarUbicacionMasivo()
-         {
-             try
-             {
+                if (tipo) db.conn.Open();
 
-                 if (tipo) db.conn.Open();
+                db.cmd.CommandText = "MERGE INTO  Ubicacion  USING "+
+                                      "Temporal on Ubicacion.idUbicacion=Temporal.idUbicacion " +
+                                       "when matched then update " + 
+                                        "set Ubicacion.idProducto=Temporal.idProducto , Ubicacion.cantidad = Temporal.cantidad , Ubicacion.volOcupado=Temporal.volOcupado;";
+                db.cmd.ExecuteNonQuery();
 
-                 db.cmd.CommandText = "MERGE INTO  Ubicacion USING  temporal on Ubicacion.idUbicacion=temporal.idUbicacion when matched then update set Ubicacion.idProducto=temporal.idProducto , Ubicacion.cantidad = temporal.cantidad , Ubicacion.volOcupado=temporal.volOcupado;";
-                 db.cmd.ExecuteNonQuery();
+               
+                db.cmd.CommandText = "TRUNCATE TABLE Temporal";
+                db.cmd.ExecuteNonQuery();
+                if (tipo) db.conn.Close();
 
-                 if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+            return 1;
+
+        }
+
+        public DataTable CrearUbicacionesDT()
+        {
+            /*Agrego las zonas por almacen*/
+            DataTable ubicacionesData = new DataTable("Ubicacion");
+
+            // Create Column 1: idTipoZona
+
+            DataColumn idZonaCol = new DataColumn();
+            idZonaCol.DataType = Type.GetType("System.Int32");
+            idZonaCol.ColumnName = "idTipoZona";
 
 
+            // Create Column 2: idAlmacen
+            DataColumn idAlmacenCol = new DataColumn();
+            idAlmacenCol.DataType = Type.GetType("System.Int32");
+            idAlmacenCol.ColumnName = "idAlmacen";
 
-             }
-             catch (SqlException e)
-             {
-                 Console.WriteLine(e);
-                 return -1;
-             }
+            // Create Column 3: cordX
+            DataColumn cordXCol = new DataColumn();
+            cordXCol.DataType = Type.GetType("System.Int32");
+            cordXCol.ColumnName = "cordX";
 
-             return 1;
+            // Create Column 3: cordY
+            DataColumn cordYCol = new DataColumn();
+            cordYCol.DataType = Type.GetType("System.Int32");
+            cordYCol.ColumnName = "cordY";
 
-         }
+            // Create Column 3: cordY
+            DataColumn cordZCol = new DataColumn();
+            cordZCol.DataType = Type.GetType("System.Int32");
+            cordZCol.ColumnName = "cordZ";
 
+            DataColumn idProductoCol = new DataColumn();
+            idProductoCol.DataType = Type.GetType("System.Int32");
+            idProductoCol.ColumnName = "idProducto";
+
+            DataColumn cantidadCol = new DataColumn();
+            cantidadCol.DataType = Type.GetType("System.Int32");
+            cantidadCol.ColumnName = "cantidad";
+
+            DataColumn volOcupadoCol = new DataColumn();
+            volOcupadoCol.DataType = Type.GetType("System.Int32");
+            volOcupadoCol.ColumnName = "volOcupado";
+
+            DataColumn idUbicacionCol = new DataColumn();
+            idUbicacionCol.DataType = Type.GetType("System.Int32");
+            idUbicacionCol.ColumnName = "idUbicacion";
+
+
+            // Add the columns to the ProductSalesData DataTable
+            ubicacionesData.Columns.Add(idZonaCol);
+            ubicacionesData.Columns.Add(idAlmacenCol);
+            ubicacionesData.Columns.Add(cordXCol);
+            ubicacionesData.Columns.Add(cordYCol);
+            ubicacionesData.Columns.Add(cordZCol);
+            ubicacionesData.Columns.Add(idProductoCol);
+            ubicacionesData.Columns.Add(cantidadCol);
+            ubicacionesData.Columns.Add(volOcupadoCol);
+            ubicacionesData.Columns.Add(idUbicacionCol);
+
+            ubicacionesData.TableName = "Temporal";
+
+            return ubicacionesData;
+        }
+
+        public void AgregarFilasToUbicacionesDT(DataTable data, List<List<List<Ubicacion>>> filas, int id)
+        {
+            for (int m = 0; m < filas.Count; m++)
+            {
+                for (int n = 0; n < filas[m].Count; n++)
+                {
+                    for (int p = 0; p < filas[m][n].Count; p++)
+                    {
+                        filas[m][n][p].IdAlmacen = id;
+                        DataRow ubicacionxAlmacenRow = data.NewRow();
+                        ubicacionxAlmacenRow["idTipoZona"] = filas[m][n][p].IdTipoZona;
+                        ubicacionxAlmacenRow["idAlmacen"] = filas[m][n][p].IdAlmacen;
+                        ubicacionxAlmacenRow["CordX"] = filas[m][n][p].CordX;
+                        ubicacionxAlmacenRow["CordY"] = filas[m][n][p].CordY;
+                        ubicacionxAlmacenRow["CordZ"] = filas[m][n][p].CordZ;
+                        ubicacionxAlmacenRow["cantidad"] = filas[m][n][p].Cantidad;
+                        ubicacionxAlmacenRow["volOcupado"] = filas[m][n][p].VolOcupado;
+                        ubicacionxAlmacenRow["idProducto"] = filas[m][n][p].IdProducto;
+                        ubicacionxAlmacenRow["idUbicacion"] = filas[m][n][p].IdUbicacion;
+                        data.Rows.Add(ubicacionxAlmacenRow);
+
+                    }
+                }
+
+            }
+
+        }
 
     }
 }

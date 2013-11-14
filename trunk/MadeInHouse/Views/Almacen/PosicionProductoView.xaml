@@ -46,21 +46,12 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <Label Content="Producto:" HorizontalAlignment="Right" Margin="0,104,786,0" VerticalAlignment="Top" Width="98" Height="26"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,104,591,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-                
-                <Label Content="Cantidad" HorizontalAlignment="Right" Margin="0,68,495,0" VerticalAlignment="Top" Height="26" Width="58"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,68,367,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
                 <TextBox x:Name="CantIngresar"  HorizontalAlignment="Right" Height="26" Margin="0,0,225,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
                 <TextBox x:Name="VolIngresar" IsEnabled="{Binding Enable}" HorizontalAlignment="Right" Height="26" Margin="0,0,87,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
                 <Label Content="Cant." HorizontalAlignment="Right" Margin="0,0,292,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
                 <Label Content="Vol." HorizontalAlignment="Right" Margin="0,0,154,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
-                <Label Content="Distribuón en almacén" HorizontalAlignment="Right" Margin="0,164,761,0" VerticalAlignment="Top" Height="26" Width="136"/>
+                <Label Content="Distribuón en almacén" HorizontalAlignment="Right" Margin="0,68,761,0" VerticalAlignment="Top" Height="26" Width="136"/>
                 <Label Content="Ubicacion" HorizontalAlignment="Right" Margin="0,0,276,457" VerticalAlignment="Bottom" Height="26" Width="62"/>
-                <Label Content="Stock disponible:" HorizontalAlignment="Right" Margin="0,104,456,0" VerticalAlignment="Top" Height="26" Width="97"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,104,367,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81"/>
-                <Label Content="Zona:" HorizontalAlignment="Right" Margin="0,68,845,0" VerticalAlignment="Top" Height="26" Width="39"/>
-                <ComboBox HorizontalAlignment="Right" IsEnabled="False" Margin="0,68,591,0" VerticalAlignment="Top" Width="189" Height="22"/>
                 <Button x:Name="Agregar" HorizontalAlignment="Right" Margin="0,0,22,409" VerticalAlignment="Bottom" Width="43" Height="26">
                     <Image Source="/Assets/check.png"  />
                     <i:Interaction.Triggers>
@@ -101,7 +92,7 @@
                     <grid:DynamicGrid  x:Name="UbicacionCol" Tipo="2" Accion="{Binding Accion2}"   Altura="{Binding AlturaU}" IdZona="0" NumRows="{Binding Altura}" NumColumns="{Binding NumColumnsU}"  CantActual="{Binding Path=TxtCantActual,Mode=TwoWay}" VolOcu="{Binding Path=TxtVolActual,Mode=TwoWay}"  Enable="{Binding Path=Enable, Mode=TwoWay}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                     </grid:DynamicGrid>
                 </ScrollViewer>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="349,216,0,0" VerticalAlignment="Top" Width="530"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="440" Margin="349,116,0,0" VerticalAlignment="Top" Width="530"/>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251"/>
                 <Label Content="Cant.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="908,216,0,0" VerticalAlignment="Top"/>
                 <Label Content="Vol.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="1046,216,0,0" VerticalAlignment="Top"/>
