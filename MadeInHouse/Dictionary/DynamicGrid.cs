@@ -187,7 +187,7 @@ namespace MadeInHouse.Dictionary {
             }
         }
 
-        public void Mostar(List<Ubicacion> lu, int idProducto = -1)
+        public void Mostar(List<Ubicacion> lu, int idProducto = -1, string codPro=null)
         {
 
             BrushConverter conv = new BrushConverter();
@@ -206,7 +206,8 @@ namespace MadeInHouse.Dictionary {
                     colorname = conv.ConvertFromString("White") as SolidColorBrush;
                 }
                 (this.Children[lu[j].CordZ] as Button).Background = colorname;
-                (this.Children[lu[j].CordZ] as Button).Content = lu[j].IdProducto;
+                
+                (this.Children[lu[j].CordZ] as Button).Content = codPro;
 
             }
         }

@@ -82,7 +82,7 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
-                <ScrollViewer HorizontalAlignment="Left" Height="340"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">
+                <ScrollViewer HorizontalAlignment="Left" Height="444"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">
                     <Grid>
                         <grid:DynamicGrid  x:Name="Almacen" Tipo="1" Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Accion="{Binding Accion1}" Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}"   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                     </grid:DynamicGrid>
@@ -92,7 +92,7 @@
                     <grid:DynamicGrid  x:Name="UbicacionCol" Tipo="2" Accion="{Binding Accion2}"   Altura="{Binding AlturaU}" IdZona="0" NumRows="{Binding Altura}" NumColumns="{Binding NumColumnsU}"  CantActual="{Binding Path=TxtCantActual,Mode=TwoWay}" VolOcu="{Binding Path=TxtVolActual,Mode=TwoWay}"  Enable="{Binding Path=Enable, Mode=TwoWay}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                     </grid:DynamicGrid>
                 </ScrollViewer>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="440" Margin="349,116,0,0" VerticalAlignment="Top" Width="530"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="440" Margin="349,112,0,0" VerticalAlignment="Top" Width="530"/>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251"/>
                 <Label Content="Cant.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="908,216,0,0" VerticalAlignment="Top"/>
                 <Label Content="Vol.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="1046,216,0,0" VerticalAlignment="Top"/>

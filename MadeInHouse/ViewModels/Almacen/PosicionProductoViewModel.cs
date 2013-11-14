@@ -252,7 +252,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             if (SelectedProduct!=null)
-                ubicacionCol.Mostar(almacen.columna,SelectedProduct.IdProducto);
+                ubicacionCol.Mostar(almacen.columna,SelectedProduct.IdProducto,selectedProduct.CodPro);
             else
                 ubicacionCol.Mostar(almacen.columna);
             //System.Windows.MessageBox.Show("" +sender.columna[0].CordX + sender.columna[0].CordY);
