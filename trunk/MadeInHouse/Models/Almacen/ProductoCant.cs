@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.Almacen
 {
-    class ProductoCant
+    class ProductoCant : Producto 
     {
         private string proNombre;
 

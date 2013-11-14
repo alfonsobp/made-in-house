@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace MadeInHouse.DataObjects.Almacen
         private DBConexion db;
         private bool tipo = true;
 
-        public ProductoSQL(DBConexion db=null)
+        public ProductoSQL(DBConexion db = null)
         {
             if (db == null)
             {
@@ -37,13 +37,13 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@codProducto", p.CodigoProd);
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@abreviatura", p.Abreviatura);
-            db.cmd.Parameters.AddWithValue("@descripcion", p.Descripcion==null ? "":p.Descripcion );
+            db.cmd.Parameters.AddWithValue("@descripcion", p.Descripcion == null ? "" : p.Descripcion);
             db.cmd.Parameters.AddWithValue("@idUnidad", p.IdUnidad);
             db.cmd.Parameters.AddWithValue("@percepcion", p.Percepcion);
             db.cmd.Parameters.AddWithValue("@idSubLinea", p.IdSubLinea);
             db.cmd.Parameters.AddWithValue("@idLinea", p.IdLinea);
             db.cmd.Parameters.AddWithValue("@estado", 1);
-            db.cmd.Parameters.AddWithValue("@stockMin",p.StockMin);
+            db.cmd.Parameters.AddWithValue("@stockMin", p.StockMin);
             db.cmd.Parameters.AddWithValue("@stockMax", p.StockMax);
 
             try
@@ -87,7 +87,7 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@idLinea", p.IdLinea);
             db.cmd.Parameters.AddWithValue("@stockMax", p.StockMax);
             db.cmd.Parameters.AddWithValue("@stockMin", p.StockMin);
-            
+
 
             try
             {
@@ -95,7 +95,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
                 db.conn.Close();
-               
+
             }
 
             catch (SqlException e)
@@ -138,18 +138,18 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
 
-        public List<Producto> BuscarProducto(String codigo=null, int idLinea=-1, int idSubLinea=-1, int idTienda=-1)
+        public List<Producto> BuscarProducto(String codigo = null, int idLinea = -1, int idSubLinea = -1, int idTienda = -1)
         {
             List<Producto> listaProductos = null;
-            
-            
+
+
             string where = "WHERE 1=1 ";
             string from = "SELECT p.* , L.nombre linea, S.nombre sublinea FROM Producto p" +
                         " JOIN LineaProducto L " +
                         " ON (P.idLinea=L.idLinea) " +
                         " JOIN SubLineaProducto S " +
                         " ON (P.idSubLinea=S.idSubLinea) ";
-            
+
 
 
             if (!String.IsNullOrEmpty(codigo))
@@ -157,7 +157,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 where = where + " AND codProducto = @codigo ";
                 db.cmd.Parameters.AddWithValue("@codigo", codigo);
             }
-            
+
             if (idLinea > 0)
             {
                 where = where + " AND p.idLinea=@idLinea ";
@@ -170,17 +170,17 @@ namespace MadeInHouse.DataObjects.Almacen
             }
             if (idTienda > 0)
             {
-                from = "SELECT p.*, pt.stockActual stockTienda , pt.StockMin stockMinT, pt.stockMax stockMaxT , pt.precioVenta , L.nombre linea, S.nombre sublinea"+
-                        " FROM Producto p "+ 
+                from = "SELECT p.*, pt.stockActual stockTienda , pt.StockMin stockMinT, pt.stockMax stockMaxT , pt.precioVenta , L.nombre linea, S.nombre sublinea" +
+                        " FROM Producto p " +
                         " JOIN LineaProducto L " +
-                        " ON (P.idLinea=L.idLinea) "+
+                        " ON (P.idLinea=L.idLinea) " +
                         " JOIN SubLineaProducto S " +
-                        " ON (P.idSubLinea=S.idSubLinea) "+
+                        " ON (P.idSubLinea=S.idSubLinea) " +
                         " JOIN ProductoxTienda pt ON ( p.idProducto = pt.idProducto) ";
                 where += " AND  pt.idTienda = @idTienda AND vigente=1 ";
                 db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
             }
-         
+
 
 
             db.cmd.CommandText = from + where;
@@ -199,12 +199,12 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     p.Abreviatura = reader.IsDBNull(reader.GetOrdinal("abreviatura")) ? null : reader["abreviatura"].ToString();
                     p.Descripcion = reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? null : reader["descripcion"].ToString();
-                    
+
                     LineaProducto lp = new LineaProducto();
-                    lp.IdLinea=reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
+                    lp.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
                     lp.Nombre = reader.IsDBNull(reader.GetOrdinal("linea")) ? null : reader["linea"].ToString();
                     p.Linea = lp;
-                    
+
                     SubLineaProducto slp = new SubLineaProducto();
                     slp.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
                     slp.Nombre = reader.IsDBNull(reader.GetOrdinal("sublinea")) ? null : reader["sublinea"].ToString();
@@ -212,7 +212,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
                     p.Percepcion = Int32.Parse(reader["percepcion"].ToString());
-                    
+
                     if (idTienda > 0)
                     {
                         p.Precio = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? -1 : float.Parse(reader["precioVenta"].ToString());
@@ -222,10 +222,10 @@ namespace MadeInHouse.DataObjects.Almacen
                     }
                     else
                     {
-                        p.StockActual=reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1: int.Parse(reader["stockActual"].ToString());
+                        p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1 : int.Parse(reader["stockActual"].ToString());
                         p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMin")) ? -1 : int.Parse(reader["stockMin"].ToString());
                         p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMax")) ? -1 : int.Parse(reader["stockMax"].ToString());
-                        
+
                     }
 
                     listaProductos.Add(p);
@@ -357,7 +357,7 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             List<ProductoxAlmacen> lstPxa = null;
             ProductoxAlmacen pxa = null;
-            string where=" WHERE 1=1";
+            string where = " WHERE 1=1";
 
 
             if (idTienda > 0)
@@ -373,7 +373,7 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
-                lstPxa=new List<ProductoxAlmacen>();
+                lstPxa = new List<ProductoxAlmacen>();
                 while (reader.Read())
                 {
                     pxa = new ProductoxAlmacen();
@@ -381,7 +381,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     pxa.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : Int32.Parse(reader["idTienda"].ToString());
                     pxa.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     pxa.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1 : Int32.Parse(reader["stockActual"].ToString());
-                    pxa.StockMin=reader.IsDBNull(reader.GetOrdinal("stockMin")) ? -1:Int32.Parse(reader["stockMin"].ToString());
+                    pxa.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMin")) ? -1 : Int32.Parse(reader["stockMin"].ToString());
                     pxa.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMax")) ? -1 : Int32.Parse(reader["stockMax"].ToString());
                     pxa.PrecioVenta = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? -1 : float.Parse(reader["precioVenta"].ToString());
                     pxa.Vigente = reader.IsDBNull(reader.GetOrdinal("vigente")) ? 0 : int.Parse(reader["vigente"].ToString());
@@ -433,7 +433,7 @@ namespace MadeInHouse.DataObjects.Almacen
                         int posIdProducto = reader.GetOrdinal("idProducto");
                         int posStockMin = reader.GetOrdinal("stockMin");
                         int posStock = reader.GetOrdinal("stockActual");
-                        prod.IdAlmacen = reader.IsDBNull(posIdAlmacen)? -1 : reader.GetInt32(posIdAlmacen);
+                        prod.IdAlmacen = reader.IsDBNull(posIdAlmacen) ? -1 : reader.GetInt32(posIdAlmacen);
                         prod.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
                         prod.StockMin = reader.IsDBNull(posStockMin) ? -1 : reader.GetInt32(posStockMin);
                         prod.StockActual = reader.IsDBNull(posStock) ? -1 : reader.GetInt32(posStock);
@@ -457,10 +457,10 @@ namespace MadeInHouse.DataObjects.Almacen
             return prodAlmacen;
         }
 
-        public int AgregarProductoxAlmacen(ProductoxAlmacen pxa) 
+        public int AgregarProductoxAlmacen(ProductoxAlmacen pxa)
         {
 
-           
+
             db.cmd.CommandText = "INSERT INTO ProductoxTienda (idProducto,idTienda,stockActual,stockMin,stockMax,precioVenta,vigente) " +
                             "VALUES (@idProducto,@idTienda,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente) ";
             db.cmd.Parameters.AddWithValue("@idProducto", pxa.IdProducto);
@@ -473,11 +473,11 @@ namespace MadeInHouse.DataObjects.Almacen
 
             try
             {
-                if(tipo) db.conn.Open();
+                if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                if(tipo) db.conn.Close();
-                    
+                if (tipo) db.conn.Close();
+
             }
             catch (SqlException e)
             {
@@ -485,7 +485,8 @@ namespace MadeInHouse.DataObjects.Almacen
                 Console.WriteLine(e);
                 return -1;
             }
-            catch (Exception e){
+            catch (Exception e)
+            {
                 System.Windows.MessageBox.Show("ERROR: Lo sentimos no se pudo realizar la operación");
                 Console.WriteLine(e.StackTrace.ToString());
                 return -1;

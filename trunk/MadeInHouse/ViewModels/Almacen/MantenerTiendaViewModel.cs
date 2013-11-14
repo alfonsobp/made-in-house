@@ -612,6 +612,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
                 NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
                 AlturaAnq = Int32.Parse(TxtAlturaAnq);
+                dg.RecreateGridCells();
 
                 if (accion == 2)
                 {
@@ -625,6 +626,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
                 NumRowsDto = Int32.Parse(TxtNumRowsDto);
                 AlturaDto = Int32.Parse(TxtAlturaDto);
+                dg.RecreateGridCells();
 
                 if (accion == 2)
                 {
@@ -965,7 +967,9 @@ namespace MadeInHouse.ViewModels.Almacen
                 tienda.FechaReg = DateTime.Today;
                 TiendaSQL gw = new TiendaSQL(db);
                 int idTienda=-1;
-                if (accion==1) idTienda = gw.AgregarTienda(tienda);
+                //accion = 1;
+                //if (accion==1)
+                    idTienda = gw.AgregarTienda(tienda);
                 //else if(accion==2) 
                
                if (idTienda > 0)
@@ -986,7 +990,8 @@ namespace MadeInHouse.ViewModels.Almacen
                     ana.Altura = int.Parse(TxtAlturaAnq);
                     ana.Tipo = 2;
                     int idAnaquel=-1;
-                    if (accion==1) idAnaquel = aSQL.Agregar(ana);
+                    //if (accion==1)
+                        idAnaquel = aSQL.Agregar(ana);
 
                     if (idAnaquel > 0)
                     {
@@ -1003,7 +1008,8 @@ namespace MadeInHouse.ViewModels.Almacen
                         dto.Altura = int.Parse(TxtAlturaDto);
                         dto.Tipo = 1;
                         int idDeposito=-1;
-                       if (accion==1) idDeposito = aSQL.Agregar(dto);
+                       //if (accion==1) 
+                           idDeposito = aSQL.Agregar(dto);
                         if (idDeposito > 0)
                         {
 
