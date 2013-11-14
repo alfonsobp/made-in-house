@@ -16,11 +16,12 @@ namespace MadeInHouse.Models.Ventas
         DateTime fechaReg;
         DateTime fechaDespacho;
 
-        public DateTime FechaDespacho
+        public int IdVenta
         {
-            get { return fechaDespacho; }
-            set { fechaDespacho = value; }
+            get { return idVenta; }
+            set { idVenta = value; }
         }
+
         string tipoVenta;
 
         public string TipoVenta
@@ -28,6 +29,40 @@ namespace MadeInHouse.Models.Ventas
             get { return tipoVenta; }
             set { tipoVenta = value; }
         }
+
+        public int IdUsuario
+        {
+            get { return idUsuario; }
+            set { idUsuario = value; }
+        }
+
+
+        public string TipoDocPago
+        {
+            get { return tipoDocPago; }
+            set { tipoDocPago = value; }
+        }
+
+        public string NumDocPago
+        {
+            get { return numDocPago; }
+            set { numDocPago = value; }
+        }
+
+
+        public double Monto
+        {
+            get { return monto; }
+            set { monto = value; }
+        }
+
+
+        public DateTime FechaDespacho
+        {
+            get { return fechaDespacho; }
+            set { fechaDespacho = value; }
+        }
+
         int idUsuario;
         double igv;
         double monto;
@@ -39,6 +74,15 @@ namespace MadeInHouse.Models.Ventas
             get { return numDocPagoServicio; }
             set { numDocPagoServicio = value; }
         }
+
+        private int idCliente;
+
+        public int IdCliente
+        {
+            get { return idCliente; }
+            set { idCliente = value; }
+        }
+
         int ptosGanados;
         string tipoDocPago;
         List<DetalleVenta> lstDetalle;
@@ -49,13 +93,6 @@ namespace MadeInHouse.Models.Ventas
             get { return lstPagos; }
             set { lstPagos = value; }
         }
-
-        public int IdVenta
-        {
-            get { return idVenta; }
-            set { idVenta = value; }
-        }
-
 
         public int CodTarjeta
         {
@@ -91,33 +128,12 @@ namespace MadeInHouse.Models.Ventas
             set { fechaReg = value; }
         }
 
-
-        public int IdUsuario
-        {
-            get { return idUsuario; }
-            set { idUsuario = value; }
-        }
-
-
         public double Igv
         {
             get { return igv; }
             set { igv = value; }
         }
 
-
-        public double Monto
-        {
-            get { return monto; }
-            set { monto = value; }
-        }
-
-
-        public string NumDocPago
-        {
-            get { return numDocPago; }
-            set { numDocPago = value; }
-        }
 
 
         public int PtosGanados
@@ -127,24 +143,11 @@ namespace MadeInHouse.Models.Ventas
         }
 
 
-        public string TipoDocPago
-        {
-            get { return tipoDocPago; }
-            set { tipoDocPago = value; }
-        }
 
         internal List<DetalleVenta> LstDetalle
         {
             get { return lstDetalle; }
             set { lstDetalle = value; }
-        }
-
-        private int idCliente;
-
-        public int IdCliente
-        {
-            get { return idCliente; }
-            set { idCliente = value; }
         }
 
         List<DetalleVentaServicio> lstDetalleServicio;
