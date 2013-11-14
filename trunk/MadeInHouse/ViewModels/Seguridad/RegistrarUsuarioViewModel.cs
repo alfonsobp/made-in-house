@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using MadeInHouse.Models.Seguridad;
@@ -17,6 +18,9 @@ using System.Net.Mime;
 using System.Net;
 
 using MadeInHouse.DataObjects.Seguridad;
+using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Models.Almacen;
+
 namespace MadeInHouse.ViewModels.Seguridad
 {
     class RegistrarUsuarioViewModel : PropertyChangedBase
@@ -34,6 +38,17 @@ namespace MadeInHouse.ViewModels.Seguridad
             IsEnabledVerificar = true;
             estHabilitadoValue = 1;
 
+            Tienda deft = new Tienda();
+            deft.Nombre = "ALMACEN CENTRAL";
+            deft.IdTienda = 0;
+
+            //deft.IdTienda = UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name)).IdTienda;//Jalar del usuario
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            CmbTiendas.Insert(0, deft);
+            IndexTienda = 0;
+            //SelectedTienda = 17;
+
         }
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m)
         {
@@ -47,6 +62,17 @@ namespace MadeInHouse.ViewModels.Seguridad
             IsEnabledCodEmpleado = true;
             IsEnabledVerificar = true;
             estHabilitadoValue = 1;
+
+            Tienda deft = new Tienda();
+            deft.Nombre = "ALMACEN CENTRAL";
+            deft.IdTienda = 0;
+
+            //deft.IdTienda = UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name)).IdTienda;//Jalar del usuario
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            CmbTiendas.Insert(0, deft);
+            IndexTienda = 0;
+            //SelectedTienda = 17;
         }
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m, Usuario u)
         {
@@ -65,6 +91,17 @@ namespace MadeInHouse.ViewModels.Seguridad
             IsEnabledResetContrasenha = true;
             IsEnabledVerificar = false;
             usuarioSeleccionado = u;
+
+            Tienda deft = new Tienda();
+            deft.Nombre = "ALMACEN CENTRAL";
+            deft.IdTienda = 0;
+
+            //deft.IdTienda = UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name)).IdTienda;//Jalar del usuario
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            CmbTiendas.Insert(0, deft);
+            IndexTienda = 0;
+            SelectedTienda = usuarioSeleccionado.IdTienda;
         }
         private Usuario usuarioSeleccionado;
         private int indicador = 0;
@@ -187,6 +224,46 @@ namespace MadeInHouse.ViewModels.Seguridad
             get { return estHabilitadoValue; }
             set { estHabilitadoValue = value; NotifyOfPropertyChange(() => EstHabilitadoValue); }
         }
+
+        private List<Tienda> cmbTiendas;
+
+        public List<Tienda> CmbTiendas
+        {
+            get { return cmbTiendas; }
+            set
+            {
+                if (this.cmbTiendas == value)
+                {
+                    return;
+                }
+
+                cmbTiendas = value;
+                NotifyOfPropertyChange(() => CmbTiendas);
+            }
+        }
+
+        private int selectedTienda;
+
+        public int SelectedTienda
+        {
+            get { return selectedTienda; }
+            set { selectedTienda = value; }
+        }
+
+        private int indexTienda;
+
+        public int IndexTienda
+        {
+            get { return indexTienda; }
+            set
+            {
+                indexTienda = value;
+                NotifyOfPropertyChange(() => IndexTienda);
+            }
+        }
+
+        #region metodos
+
         public void VerificarUsuario()
         {
             int k = 0;
@@ -218,10 +295,30 @@ namespace MadeInHouse.ViewModels.Seguridad
             else
                 LblError = "Ingrese Código Usuario";
         }
+
+
         public void ResetContrasenha()
         {
             Util util = new Util();
-            MessageBox.Show("PASS: "+util.generarContrasenha());
+            string contrasenhaGenerada = util.generarContrasenha();
+
+            Empleado e = new Empleado();
+            e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
+
+            Usuario u = new Usuario();
+            u = UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtCodUsuario);
+            
+
+            CifrarAES cifradoAES = new CifrarAES();
+            string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenhaGenerada, "MadeInHouse",
+                    "MadeInHouse", "MD5", 22, "1234567891234567", 128);
+
+            u.Contrasenha = contrasenhaCifrada;
+            UsuarioSQL.EditarUsuario(u);
+
+            EnviarCorreo(e, contrasenhaGenerada);
+
+            //MessageBox.Show("PASS: "+util.generarContrasenha());
             
         }
         public void GuardarUsuario()
@@ -233,13 +330,15 @@ namespace MadeInHouse.ViewModels.Seguridad
             string contrasenhaGenerada = util.generarContrasenha();
             string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenhaGenerada, "MadeInHouse",
                     "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-            MessageBox.Show("PASS: " + contrasenhaGenerada);
+            //MessageBox.Show("PASS: " + contrasenhaGenerada);
+
             Usuario u = new Usuario();
             u.CodEmpleado = txtCodUsuario;
             u.EstadoHabilitado = 1;
             u.Contrasenha = contrasenhaCifrada;
             u.Estado = 1;
             u.Rol = RolSQL.buscarRolPorId(IdRolValue);
+            u.IdTienda = SelectedTienda;
             if (indicador == 1)
             {
                 //debe existir y estar disponible
@@ -269,7 +368,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                         }
                         else
-                            MessageBox.Show("El usario NO está disponible");
+                            MessageBox.Show("El usuario NO está disponible");
                     }
                     else
                     {
@@ -287,8 +386,15 @@ namespace MadeInHouse.ViewModels.Seguridad
                 usuarioSeleccionado.Contrasenha = UsuarioSQL.buscarPass(u.CodEmpleado);
                 usuarioSeleccionado.Rol.IdRol = IdRolValue;
                 usuarioSeleccionado.EstadoHabilitado = EstHabilitadoValue;
-                usuarioSeleccionado.Estado = 1;
-                UsuarioSQL.EditarUsuario(usuarioSeleccionado);
+                usuarioSeleccionado.IdTienda = SelectedTienda;
+                //MessageBox.Show("Id Tienda: " + SelectedTienda);
+                //usuarioSeleccionado.Estado = 1;
+                int e = UsuarioSQL.EditarUsuario(usuarioSeleccionado);
+
+                if (e == 1)
+                {
+                    MessageBox.Show("¡Empleado modificado con Éxito!");
+                }
             }
         }
 
@@ -341,7 +447,9 @@ namespace MadeInHouse.ViewModels.Seguridad
                     }
                 }
 
-            }
+        }
+
+        #endregion
 
     }
 }
