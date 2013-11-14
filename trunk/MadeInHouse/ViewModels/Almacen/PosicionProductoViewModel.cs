@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using System.Windows.Controls;
+using MadeInHouse.Dictionary;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -126,8 +127,46 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
+        private string txtCantActual ;
+
+        public string TxtCantActual
+        {
+            get { return txtCantActual; }
+            set { txtCantActual = value;
+            NotifyOfPropertyChange(() => TxtCantActual);
+            }
+        }
+
+        private string txtVolActual;
+
+        public string TxtVolActual
+        {
+            get { return txtVolActual; }
+            set { txtVolActual = value;
+            NotifyOfPropertyChange(() => TxtVolActual);
+            }
+        }
+
+        private string cantIngresar;
+
+        public string CantIngresar
+        {
+          get { return cantIngresar; }
+          set { cantIngresar = value; }
+        }
+
+        private string volIngresar;
+
+        public string VolIngresar
+        {
+            get { return volIngresar; }
+            set { volIngresar = value; }
+        }
+
         private AlmacenSQL aSQL;
         private TipoZonaSQL tzSQL;
+        private UbicacionSQL uSQL;
+
         private List<TipoZona> lstZonas;
 
         public List<TipoZona> LstZonas
@@ -140,11 +179,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public PosicionProductoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accion):this()
         {
+
+
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
             
             this.LstProductos = mantenerNotaDeIngresoViewModel.LstProductos;
-            idTienda = 18;
+            idTienda = 19;
             aSQL = new AlmacenSQL();
             Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
 
@@ -155,18 +196,15 @@ namespace MadeInHouse.ViewModels.Almacen
             NumRows = deposito.NroFilas;
             Altura = deposito.Altura;
 
-            //Accion1 = 1;
-            Accion2 = 2;
-
+            
+            
             tzSQL = new TipoZonaSQL();
             LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
-            
 
+            Accion2 = 2;
+            Accion1 = 2;
+            Enable = true;
 
-
-            /*this.NumRowsU = deposito.NroFilas;
-            this.NumColumns = 1;
-            this.AlturaU = 1;*/
         }
 
         public PosicionProductoViewModel()
@@ -176,13 +214,34 @@ namespace MadeInHouse.ViewModels.Almacen
             // TODO: Complete member initialization
         }
 
-        public void Agregar()
+        private bool enable;
+
+        public bool Enable
         {
+            get { return enable; }
+            set { enable = value;
+            NotifyOfPropertyChange(() => Enable);
             
-
-
+            }
         }
 
+        public void Agregar(DynamicGrid colUbicacion , DynamicGrid zonas)
+        {
+            colUbicacion.AgregarProductos(int.Parse(CantIngresar),int.Parse(VolIngresar),SelectedProduct.IdProducto ,zonas.lstZonas);
+            
+        }
+
+        public void MostrarColumna(MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
+        {
+
+            if (SelectedProduct!=null)
+                ubicacionCol.Mostar(almacen.columna,SelectedProduct.IdProducto);
+            else
+                ubicacionCol.Mostar(almacen.columna);
+            //System.Windows.MessageBox.Show("" +sender.columna[0].CordX + sender.columna[0].CordY);
+        }
+
+        int limpia = 0;
 
         public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid sender2)
         {
@@ -191,10 +250,19 @@ namespace MadeInHouse.ViewModels.Almacen
             if (SelectedProduct != null)
             {
 
-                sender2.UbicarProducto(13);
-                System.Windows.MessageBox.Show("SE SELECIONO:" + selectedProduct.CodPro);
+                sender2.UbicarProducto(SelectedProduct.IdProducto,limpia);
+                limpia += 1;
+               
 
             }
+        }
+
+        public void Guardar(DynamicGrid almacenDG )
+        {
+            uSQL = new UbicacionSQL();
+            
+
+
         }
 
 
