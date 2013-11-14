@@ -15,39 +15,6 @@ namespace MadeInHouse.DataObjects.Seguridad
     class LogSQL
     {
         //INSERTAR:
-        /*
-                public static int RegistrarActividad(Log lg)
-                {
-                    SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-                    SqlCommand cmd = new SqlCommand();
-                    int k = 0;
-
-                    cmd.CommandText = "INSERT INTO Log(fechaAccion,nomVentana,idItem,idAccion,idUsuario) " +
-                    "VALUES (getdate(),@nomVentana,@idItem,@idAccion,@idUsuario)";
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = conn;
-
-                    cmd.Parameters.AddWithValue("@nomVentana", lg.NomVentana);
-                    cmd.Parameters.AddWithValue("@idItem", lg.IdItem);
-                    cmd.Parameters.AddWithValue("@idAccion", lg.IdAccion);
-                    //cmd.Parameters.AddWithValue("@idUsuario", lg.Usuario.IdUsuario);
-                    cmd.Parameters.AddWithValue("@idUsuario", lg.IdUsuario);
-
-                    try
-                    {
-                        conn.Open();
-                        k = cmd.ExecuteNonQuery();
-                        conn.Close();
-                    }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.StackTrace.ToString());
-                    }
-                    return k;
-                }
-
-        */
-        //INSERTAR:
         public static int RegistrarActividad(string nomVentana, string idItem, int idAccion)
         {
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
@@ -82,6 +49,48 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
             return k;
         }
+
+        //BUSCAR:
+        public static List<Log> BuscarAcciones()
+        {
+            List<Log> lstLog = new List<Log>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT L.fechaAccion fecha, U.codEmpleado codEmp, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nombEmpleado, L.nomVentana ventana, A.Descripcion accion, L.idItem codItem, L.ip ipUser FROM LOG L, ACCION A, USUARIO U, EMPLEADO E WHERE L.idAccion = A.idAccion AND U.idUsuario=L.idUsuario AND E.codEmpleado = U.codEmpleado";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    Log lg = new Log();
+                    lg.FechaAccion = DateTime.Parse(reader["fecha"].ToString());
+                    lg.CodEmpleado = reader["codEmp"].ToString();
+                    lg.NomEmpleado = reader["nombEmpleado"].ToString();
+                    lg.NomVentana = reader["ventana"].ToString();
+                    lg.DescAccion = reader["accion"].ToString();
+                    lg.IdItem = reader["codItem"].ToString();
+                    lg.Ip = reader["ipUser"].ToString();
+
+                    lstLog.Add(lg);
+                }
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return lstLog;
+        }
+
     }
 
 

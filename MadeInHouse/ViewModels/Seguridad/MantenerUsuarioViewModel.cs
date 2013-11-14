@@ -12,6 +12,8 @@ using System.Windows.Controls;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Seguridad;
 using MadeInHouse.DataObjects.Seguridad;
+
+
 namespace MadeInHouse.ViewModels.Seguridad
 {
     class MantenerUsuarioViewModel : Screen
@@ -41,8 +43,6 @@ namespace MadeInHouse.ViewModels.Seguridad
             usuarioSeleccionado = ((sender as DataGrid).SelectedItem as Usuario);
         }
 
-
-
         public void AbrirRegistrarUsuario()
         {
             win.ShowWindow(new Seguridad.RegistrarUsuarioViewModel(this));
@@ -64,7 +64,6 @@ namespace MadeInHouse.ViewModels.Seguridad
             lstUsuarioElim = UsuarioSQL.BuscarUsuarioEliminado();
             NotifyOfPropertyChange("LstUsuarioElim");
         }
-
 
         public void AbrirEditarUsuario()
         {

@@ -114,13 +114,6 @@ namespace MadeInHouse.ViewModels
 
                         _windowManager.ShowWindow(new MainViewModel(_windowManager));
 
-                        IPHostEntry IPHost = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
-
-                        IPAddress[] a = Dns.GetHostByName(Dns.GetHostName()).AddressList;
-                        string ip = a[0].ToString();
-                        MessageBox.Show(ip);
-
-
                         this.TryClose();
                     }
                     else

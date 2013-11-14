@@ -21,7 +21,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private string codEmpleado;
-
         public string CodEmpleado
         {
             get { return codEmpleado; }
@@ -29,7 +28,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private string contrasenha;
-
         public string Contrasenha
         {
             get { return contrasenha; }
@@ -37,7 +35,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private int numIntentos;
-
         public int NumIntentos
         {
             get { return numIntentos; }
