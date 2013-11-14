@@ -330,5 +330,43 @@ namespace MadeInHouse.DataObjects.RRHH
             }
             return tiendas;
         }
+
+
+
+        public static List<Empleado> BuscarEmpleadoId(int id)
+        {
+            List<Empleado> lstEmpleado = new List<Empleado>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "select * from Empleado where codEmpleado = (select codEmpleado from Usuario where idUsuario = " + id + ")";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Empleado e = new Empleado();
+                    
+                    e.ApePaterno = reader["apePaterno"].ToString();
+                    e.Nombre = reader["nombre"].ToString();
+                    e.ApeMaterno = reader["apeMaterno"].ToString();
+
+                    lstEmpleado.Add(e);
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return lstEmpleado;
+        }
     }
 }

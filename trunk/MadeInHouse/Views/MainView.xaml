@@ -36,7 +36,7 @@
             <ImageBrush ImageSource="/MadeInHouse;component/Assets/background.jpg" AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
         <!--rectangulos-->
-        <Rectangle Fill="Silver" Opacity="0.5" HorizontalAlignment="Left" Height="39" Margin="385,734,0,0" Stroke="Transparent" VerticalAlignment="Top" Width="290" RenderTransformOrigin="0.5,0.5" RadiusY="13.145" RadiusX="13.145">
+        <Rectangle Fill="Silver" Opacity="0.5" HorizontalAlignment="Left" Height="39" Margin="385,677,0,0" Stroke="Transparent" VerticalAlignment="Top" Width="290" RenderTransformOrigin="0.5,0.5" RadiusY="13.145" RadiusX="13.145">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -46,7 +46,7 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Rectangle Fill="Silver" Opacity="0.5" HorizontalAlignment="Left" Height="39" Margin="653,734,0,0" Stroke="Transparent" VerticalAlignment="Top" Width="604" RenderTransformOrigin="0.5,0.5" RadiusY="13.145" RadiusX="13.145">
+        <Rectangle Fill="Silver" Opacity="0.5" HorizontalAlignment="Left" Height="39" Margin="653,677,0,0" Stroke="Transparent" VerticalAlignment="Top" Width="604" RenderTransformOrigin="0.5,0.5" RadiusY="13.145" RadiusX="13.145">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -58,35 +58,35 @@
         </Rectangle>
 
         <!--iconos de modulos-->
-        <Button Name="butRRHH" Foreground="White" Background="Transparent" ToolTip="Recursos Humanos" HorizontalAlignment="Left" Margin="408,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button Name="butRRHH" Foreground="White" Background="Transparent" ToolTip="Recursos Humanos" HorizontalAlignment="Left" Margin="418,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image  Source ="/MadeInHouse;component/Assets/RRHH.png"/>
         </Button>
-        <Button Name="butSeguridad" Foreground="White" Background="Transparent" ToolTip="Seguridad" HorizontalAlignment="Left" Margin="618,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button Name="butSeguridad" Foreground="White" Background="Transparent" ToolTip="Seguridad" HorizontalAlignment="Left" Margin="628,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/seguridad3.png" />
         </Button>
-        <Button Name="butCompras" Foreground="White" Background="Transparent" ToolTip="Compras" HorizontalAlignment="Left" Margin="828,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button Name="butCompras" Foreground="White" Background="Transparent" ToolTip="Compras" HorizontalAlignment="Left" Margin="838,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/compras2.png" />
         </Button>
-        <Button Name="butVentas" Foreground="White" Background="Transparent" ToolTip="Ventas" HorizontalAlignment="Left" Margin="723,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button Name="butVentas" Foreground="White" Background="Transparent" ToolTip="Ventas" HorizontalAlignment="Left" Margin="733,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/ventas.png" />
         </Button>
-        <Button  Name="butAlmacen" Foreground="White" Background="Transparent" ToolTip="Almacen" HorizontalAlignment="Left" Margin="933,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button  Name="butAlmacen" Foreground="White" Background="Transparent" ToolTip="Almacen" HorizontalAlignment="Left" Margin="943,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/almacen4.png"/>
         </Button>
-        <Button  Name="butClima" Foreground="White" Background="Transparent" ToolTip="Clima Laboral" HorizontalAlignment="Left" Margin="513,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button  Name="butClima" Foreground="White" Background="Transparent" ToolTip="Clima Laboral" HorizontalAlignment="Left" Margin="523,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/weather.png"/>
         </Button>
-        <Button  Name="butConfiguracion" Foreground="White" Background="Transparent" ToolTip="Configuración" HorizontalAlignment="Left" Margin="1138,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button  Name="butConfiguracion" Foreground="White" Background="Transparent" ToolTip="Configuración" HorizontalAlignment="Left" Margin="1148,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/config.png"/>
         </Button>
-        <Button Name="butReportes" Foreground="White" Background="Transparent" ToolTip="Reportes" HorizontalAlignment="Left" Margin="1038,672,0,0" VerticalAlignment="Top" Width="100" Height="100" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
+        <Button Name="butReportes" Foreground="White" Background="Transparent" ToolTip="Reportes" HorizontalAlignment="Left" Margin="1048,640,0,0" VerticalAlignment="Top" Width="75" Height="75" FontSize="36" Click="cambiarExpander" MouseEnter="agrandar" MouseLeave="achicar" Style="{StaticResource MyButtonStyle}">
             <Image Source ="/MadeInHouse;component/Assets/reportes2.png" />
         </Button>
 
 
         <!--rectangulos medio transparentes-->
         <Rectangle Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Stroke="Black" Width="300"/>
-        <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="300,0,0,0" Height="80" VerticalAlignment="Top"/>
+        <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="300,0,0,0" Height="50" VerticalAlignment="Top"/>
 
         <!--Almacen-->
         <Expander Name="expanderAlmacen" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
@@ -221,8 +221,6 @@
                 <Button x:Name="AbrirBuscarDocumentos"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="18" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,143,0" Height="31"/>
             </Grid>
         </Expander>
-        <Rectangle Fill="orange" Stroke="Black" Margin="976,43,0,0" Height="146" VerticalAlignment="Top" HorizontalAlignment="Left" Width="128"/>
-        <Image Source="/MadeInHouse;component/Assets/fotoEmpleadoAsistencia.jpg" HorizontalAlignment="Left" Height="133" Margin="982,50,0,0" VerticalAlignment="Top" Width="116"/>
 
         <!--Ventas-->
         <Expander Name="expanderVentas" IsExpanded="True" Background="Transparent" Header="Ventas" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
@@ -344,21 +342,21 @@
 
 
         <!--Botones Extra-->
-        <Button x:Name="Cerrar" Click="CloseWin_Click" Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="1208,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/cancel.png" Width="50" Height="44"/>
+        <Button x:Name="Cerrar" Click="CloseWin_Click" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1226,5,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/cancel.png" Width="35" Height="33"/>
         </Button>
-        <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="1143,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/gear.png" Width="50" Height="44"/>
+        <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1179,6,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/gear.png" Width="35" Height="33"/>
         </Button>
-        <Label Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="930,7,0,0" Foreground="White" FontSize="16"/>
-        <Button  Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="800,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/commentblack32.png" Width="50" Height="44"/>
+        <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="878,10,0,0" Foreground="White" FontSize="16"/>
+        <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="764,8,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/commentblack32.png" Width="35" Height="33"/>
         </Button>
-        <Button  Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="740,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/warning.png" Width="50" Height="44"/>
+        <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="712,5,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/warning.png" Width="35" Height="33"/>
         </Button>
-        <Button  Background="Transparent" Height="54" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60" Margin="865,10,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/cake.png" Width="50" Height="44"/>
+        <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="820,6,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+            <Image Source="/Assets/cake.png" Width="35" Height="33"/>
         </Button>
         <!--fin-->
 

@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Media.Animation;
+using System.Threading;
+using MadeInHouse.Models.RRHH;
 
 namespace MadeInHouse.Views
 {
@@ -21,8 +23,14 @@ namespace MadeInHouse.Views
     public partial class MainView : Window
     {
         public MainView()
-        {
+        {   
+
             InitializeComponent();
+            List<Empleado> lstEmpleado = new List<Empleado>();            
+            lstEmpleado = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleadoId(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            nombreUsuario.Content = "Usuario: " + lstEmpleado[0].Nombre + " " + lstEmpleado[0].ApePaterno + " " + lstEmpleado[0].ApeMaterno;
+            
+            
         }
 
         private void CloseWin_Click(object sender, RoutedEventArgs e)
@@ -124,18 +132,18 @@ namespace MadeInHouse.Views
         {
 
             Button B = (Button)sender;
-            B.Width = 120;
+            B.Width = 95;
             B.Margin = new Thickness(B.Margin.Left - 10, B.Margin.Top - 20, 0, 0);
-            B.Height = 120;
+            B.Height = 95;
 
 
         }
         private void achicar(object sender, RoutedEventArgs e)
         {
             Button B = (Button)sender;
-            B.Width = 100;
+            B.Width = 75;
             B.Margin = new Thickness(B.Margin.Left + 10, B.Margin.Top + 20, 0, 0);
-            B.Height = 100;
+            B.Height = 75;
         }
 
         private void comeIn(object expander)
