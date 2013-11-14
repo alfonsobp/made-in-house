@@ -41,30 +41,26 @@
         </DataGrid>
         <TextBox  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="110,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
         <GroupBox Header="Cotización:" Margin="10,46,14,0" Height="172" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
+        <TextBox IsEnabled="False" x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="25,99,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="25,68,0,0" VerticalAlignment="Top" Width="52"/>
-        <ComboBox SelectedValue="{Binding Path=SelectedEst, Mode=OneWayToSource}"
-                  ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="110,127,0,0" VerticalAlignment="Top" Width="106">
-        </ComboBox>
-        <Button x:Name="BuscarProveedor" HorizontalAlignment="Left" Height="23" Margin="345,99,0,0" VerticalAlignment="Top" Width="26">
+                <Button x:Name="BuscarProveedor" HorizontalAlignment="Left" Height="23" Margin="345,99,0,0" VerticalAlignment="Top" Width="26">
               <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="20" />
         </Button>
-                <Label Content="Estado:" HorizontalAlignment="Left" Margin="28,130,0,0" VerticalAlignment="Top" Width="49"/>
-        <Label Content="Observacion:" Margin="27,346,389,20"/>
+                <Label Content="Observacion:" Margin="27,346,389,20"/>
         <Button HorizontalAlignment="Left" Height="38" Margin="441,222,0,0" VerticalAlignment="Top" Width="34">
             <Image Source="/MadeInHouse;component/Assets/add.png" Height="20" Width="50" />
         </Button>
         <Button  HorizontalAlignment="Left" Height="38" Margin="441,264,0,0" VerticalAlignment="Top" Width="34">
-            <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
+        <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
         </Button>
-        <DatePicker x:Name="TxtFechaResp" HorizontalAlignment="Left" Margin="131,163,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label Content="Fecha Respuesta:" HorizontalAlignment="Left" Margin="25,161,0,0" VerticalAlignment="Top" Width="106"/>
+        <DatePicker IsEnabled="{Binding Path=EstFecha, Mode=TwoWay}" x:Name="TxtFechaResp" HorizontalAlignment="Left" Margin="131,139,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Content="Fecha Respuesta:" HorizontalAlignment="Left" Margin="25,137,0,0" VerticalAlignment="Top" Width="106"/>
         <TextBox x:Name="TxtObservacion" Margin="110,346,94,0" TextWrapping="Wrap" Height="39" VerticalAlignment="Top"/>
-        <DatePicker x:Name="TxtFechaIni" HorizontalAlignment="Left" Margin="334,132,0,0" VerticalAlignment="Top" Width="93"/>
-        <DatePicker x:Name="TxtFechaFin" HorizontalAlignment="Left" Margin="334,161,0,0" VerticalAlignment="Top" Width="93"/>
-        <Label Content="Desde:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,130,0,0"/>
-        <Label Content="Hasta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,159,0,0"/>
+        <DatePicker IsEnabled="{Binding Path=EstFecha, Mode=TwoWay}" x:Name="TxtFechaIni" HorizontalAlignment="Left" Margin="334,140,0,0" VerticalAlignment="Top" Width="93"/>
+        <DatePicker IsEnabled="{Binding Path=EstFecha, Mode=TwoWay}" x:Name="TxtFechaFin" HorizontalAlignment="Left" Margin="334,172,0,0" VerticalAlignment="Top" Width="93"/>
+        <Label Content="Desde:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,140,0,0"/>
+        <Label Content="Hasta:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="106" Margin="277,171,0,0"/>
 
     </Grid>
         </StackPanel>

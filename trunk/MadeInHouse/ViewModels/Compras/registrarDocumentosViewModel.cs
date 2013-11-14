@@ -59,6 +59,8 @@ namespace MadeInHouse.ViewModels.Compras
         int indicador; //1=insertar, 2=detalle
         UtilesSQL u = new UtilesSQL();
         int cant; double monto, importe;
+        OrdenCompraxProductoSQL eM = new OrdenCompraxProductoSQL();
+        List<ProductoxOrdenCompra> list = new List<ProductoxOrdenCompra>();
 
         private OrdenCompra ord;
         public OrdenCompra Ord
@@ -152,27 +154,50 @@ namespace MadeInHouse.ViewModels.Compras
             w.ShowWindow(new BuscarOrdenCompraViewModel(this));
         }
 
-        OrdenCompraxProductoSQL eM = new OrdenCompraxProductoSQL();
         public void Refrescar()
         {
             if (ord != null)
-                LstProducto = eM.Buscar(Ord.IdOrden) as List<ProductoxOrdenCompra>;
+                list = eM.Buscar(Ord.IdOrden) as List<ProductoxOrdenCompra>;
 
             int maxId = u.ObtenerMaximoID("DocPagoProveedor", "idDocPago");
             TxtCodigo = "DP-" + (100000 + maxId).ToString();
 
+            //Productos cotizados por el proveedor
+            Cotizacion c = obtenerCotizacion(Ord.Proveedor.IdProveedor);
+            List<CotizacionxProducto> lstProdCot = null;
+            
+            if (c != null)
+                lstProdCot = new CotizacionxProductoSQL().Buscar(c.IdCotizacion) as List<CotizacionxProducto>;
+
             cant = 0; monto = 0; importe = 0;
-            for (int i = 0; i < LstProducto.Count; i++)
+            for (int i = 0; i < list.Count; i++)
             {
-                cant += Convert.ToInt32(LstProducto[i].Cantidad);
-                monto += LstProducto[i].Monto;
-                importe += LstProducto[i].Importe;
+                if (lstProdCot != null)
+                {
+                    for (int z = 0; z < lstProdCot.Count; z++)
+                    {
+                        if (list[i].Producto.IdProducto == lstProdCot[z].Producto.IdProducto)
+                        {
+                            int catCot = (int)((Convert.ToInt32(list[i].Cantidad))/lstProdCot[z].Cantidad);
+                            int resto = (Convert.ToInt32(list[i].Cantidad)) - (catCot*lstProdCot[z].Cantidad);
+
+                            list[i].Importe = list[i].Monto - (catCot * lstProdCot[z].Precio + resto * list[i].PrecioUnitario);
+                        }
+                        
+                    }
+                }
+
+                cant += Convert.ToInt32(list[i].Cantidad);
+                monto += list[i].Monto;
+                importe += list[i].Importe;
             }
 
             TxtIGV = (0.18) * monto;
             TxtTotalBruto = monto;
             TxtDescuento = importe;
             TxtTotalFinal = monto - TxtIGV - TxtDescuento - TxtInteres;
+
+            LstProducto = new List<ProductoxOrdenCompra>(list);
         }
 
         public void GuardarDocPago()
@@ -210,11 +235,30 @@ namespace MadeInHouse.ViewModels.Compras
 
                 if (indicador == 2)
                 {
-
+                    MessageBox.Show("Los documentos de pago no son editables");
                 }
 
             }
 
+        }
+
+        public Cotizacion obtenerCotizacion(int idProv)
+        {
+            List<Cotizacion> lstCot = new CotizacionSQL().Buscar() as List<Cotizacion>;
+
+            if (lstCot == null)
+                return null;
+            else
+            {
+                for (int i = 0; i < lstCot.Count; i++)
+                {
+                    if (lstCot[i].Proveedor.IdProveedor == idProv)
+                        return lstCot[i];
+                }
+
+            }
+
+            return null;
         }
     }
 }

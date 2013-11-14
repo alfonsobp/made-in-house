@@ -34,8 +34,8 @@
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
             <Button/>
-            <Button Height="30" Width="30">
-                <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
+            <Button x:Name="ControlServicios" Height="40" Width="40">
+                <Image Source="/MadeInHouse;component/Assets/config.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
             <Button x:Name="ActualizarServicio" Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />

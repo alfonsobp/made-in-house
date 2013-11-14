@@ -21,7 +21,7 @@ namespace MadeInHouse.DataObjects.Compras
             int k = 0;
             DocPagoProveedor d = entity as DocPagoProveedor;
 
-            MessageBox.Show("Datos cotizacion: \nidProveedor = " + d.Proveedor.IdProveedor + "\nidOrden = " + d.OrdenCompra.IdOrden + "\nfecha Rec = " +
+            MessageBox.Show("Datos Documento: \nidProveedor = " + d.Proveedor.IdProveedor + "\nidOrden = " + d.OrdenCompra.IdOrden + "\nfecha Rec = " +
                             d.FechaRecepcion + "\nTotal Bruto = " + d.TotalBruto + "\ndescuentos = " + d.Descuentos + "\nIGV = " + d.Igv + "\ncant Prod = " +
                             d.CantProductos + "\nmonto Tot = " + d.MontoTotal + "\nobservaciones = " + d.Observaciones + "\nsaldo = " + d.SaldoPagado + 
                             "\nFecha Ven = " + d.FechaVencimiento);
@@ -65,36 +65,35 @@ namespace MadeInHouse.DataObjects.Compras
             SqlDataReader reader;
 
             String where = "";
-            int est = 2;
-            string codDoc = "", codProveedor = "";
 
-            if (filters.Length > 1 && filters.Length <= 5)
+            if (filters.Length >= 1 && filters.Length <= 3)
             {
 
-                codDoc = Convert.ToString(filters[0]);
-                codProveedor = Convert.ToString(filters[1]);
+                string codDoc = Convert.ToString(filters[0]);
+                string codProveedor = Convert.ToString(filters[1]);
                 string estado = Convert.ToString(filters[2]);
-                DateTime fechaIni = Convert.ToDateTime(filters[3]);
-                DateTime fechaFin = Convert.ToDateTime(filters[4]);
 
-                if (codDoc != "")
+                if (!String.IsNullOrEmpty(codDoc))
                 {
+                    //MessageBox.Show("En el buscador..codDoc = " + codDoc);
                     int idDoc = getIDfromCOD(codDoc);
 
-                    MessageBox.Show("ID doc = " + idDoc);
-                    where += " and idDoc = '" + idDoc.ToString() + "' ";
+                    //MessageBox.Show("ID docPago = " + idDoc);
+                    where += " and idDocPago = '" + idDoc.ToString() + "' ";
                 }
 
-                if (codProveedor != "")
+                if (!String.IsNullOrEmpty(codProveedor))
                 {
                     int idProveedor = getIDfromCOD(codProveedor);
 
-                    MessageBox.Show("ID prov = " + idProveedor);
+                    //MessageBox.Show("ID prov = " + idProveedor);
                     where += " and idProveedor = '" + idProveedor.ToString() + "' ";
                 }
 
-                if (estado != "")
+                if (!String.IsNullOrEmpty(estado))
                 {
+                    int est = 1;
+
                     if (estado.Equals("COMPLETO"))
                         est = 2;
                     if (estado.Equals("PENDIENTE"))
@@ -105,24 +104,12 @@ namespace MadeInHouse.DataObjects.Compras
                     where += " and estado = '" + est + "' ";
                 }
 
-                if ((fechaIni != null) && (filters[3] !=  null))
-                {
-
-                    where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATE,fechaFin,103) ";
-
-                }
-
-                if ((fechaFin != null) && (filters[4] != null))
-                {
-
-                    where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaFin,103) ";
-                }
-
             }
 
             // MessageBox.Show("SELECT * FROM Proveedor WHERE  estado = 1 " + where);
 
 
+            //MessageBox.Show("SELECT * FROM DocPagoProveedor  WHERE   estado >= 0   " + where);
             db.cmd.CommandText = "SELECT * FROM DocPagoProveedor  WHERE   estado >= 0   " + where;
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
@@ -147,10 +134,9 @@ namespace MadeInHouse.DataObjects.Compras
                     d.CodDoc = "DP-" + (1000000 + d.IdDocPago).ToString();
 
                     int idProv = Convert.ToInt32(reader["idProveedor"].ToString());
-                    d.Proveedor = getPROVfromID(idProv);
+                    d.Proveedor = getPROVfromID(idProv); 
 
                     int idOrd = Convert.ToInt32(reader["idOrden"].ToString());
-                    MessageBox.Show("idOrd = " + idOrd);
                     
                     d.OrdenCompra = getORDfromID(idOrd);
 
@@ -183,7 +169,32 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int Actualizar(object entity)
         {
-            throw new NotImplementedException();
+            DBConexion db = new DBConexion();
+            DocPagoProveedor d = entity as DocPagoProveedor;
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE DocPagoProveedor " +
+                                 "SET saldoPagado=@saldoPagado " +
+                                 "WHERE idDocPago= @idDocPago ";
+
+            db.cmd.Parameters.AddWithValue("@idDocPago", d.IdDocPago);
+            db.cmd.Parameters.AddWithValue("@saldoPagado", d.SaldoPagado);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                MessageBox.Show("Actualizacion de saldo completa \nDoc Pago = " + d.CodDoc + "\nNuevo Saldo = " + d.SaldoPagado);
+                db.conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
         }
 
         public int Eliminar(object entity)
@@ -193,6 +204,7 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int getIDfromCOD(string cod)
         {
+            MessageBox.Show("Inside getIDfromCOD: " + cod);
             int finalVal = 0, factor = 1;
             int last = cod.Length - 1;
 
@@ -221,15 +233,12 @@ namespace MadeInHouse.DataObjects.Compras
 
         public OrdenCompra getORDfromID(int idOrd)
         {
-            MessageBox.Show("entro al getORD..");
             OrdenCompraSQL eM = new OrdenCompraSQL();
             List<OrdenCompra> lstO = eM.Buscar(null, null, 4, null, null) as List<OrdenCompra>;
-            MessageBox.Show("paso el eM.Buscar()..");
 
             for (int i = 0; i < lstO.Count; i++)
                 if (lstO[i].IdOrden == idOrd)
                 {
-                    MessageBox.Show(lstO[i].IdOrden + " = " + idOrd + " ? ");
                     return lstO[i];
                 }
 
