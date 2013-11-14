@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="300" FontWeight="Bold" Foreground="White" Background="Black">
+             d:DesignHeight="30" d:DesignWidth="300" FontWeight="Bold" Foreground="White" Background="#919090">
     <UserControl.Resources>
         <Style x:Key="InformButton" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
