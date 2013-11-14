@@ -246,7 +246,7 @@ namespace MadeInHouse.Views.Reportes
                 xlWorkSheet.Cells[i, 6] = ventas[i].Igv;
             }
 
-            xlWorkBook.SaveAs("C:\\LALALA.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.SaveAs("C:\\Reporte.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
@@ -254,7 +254,7 @@ namespace MadeInHouse.Views.Reportes
             releaseObject(xlWorkBook);
             releaseObject(xlApp);
 
-            MessageBox.Show("archivo excel creado , esta en c:\\LALALA.xls");
+            MessageBox.Show("archivo excel creado , esta en c:\\Reporte.xls");
         }
     }
 }
