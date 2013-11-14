@@ -13,24 +13,28 @@ namespace MadeInHouse.Models.Seguridad
 
         }
 
-        private int idLog;
-
-        public int IdLog
-        {
-            get { return idLog; }
-            set { idLog = value; }
-        }
-
         private DateTime fechaAccion;
-
         public DateTime FechaAccion
         {
             get { return fechaAccion; }
             set { fechaAccion = value; }
         }
 
-        private string nomVentana;
+        private string codEmpleado;
+        public string CodEmpleado
+        {
+            get { return codEmpleado; }
+            set { codEmpleado = value; }
+        }
 
+        private string nomEmpleado;
+        public string NomEmpleado
+        {
+            get { return nomEmpleado; }
+            set { nomEmpleado = value; }
+        }
+
+        private string nomVentana;
         public string NomVentana
         {
             get { return nomVentana; }
@@ -38,7 +42,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private string idItem;
-
         public string IdItem
         {
             get { return idItem; }
@@ -46,7 +49,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private int idAccion;
-
         public int IdAccion
         {
             get { return idAccion; }
@@ -54,7 +56,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private string descAccion;
-
         public string DescAccion
         {
             get { return descAccion; }
@@ -62,19 +63,19 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private int idUsuario;
-
         public int IdUsuario
         {
             get { return idUsuario; }
             set { idUsuario = value; }
         }
 
-        private Usuario usuario;
-
-        public Usuario Usuario
+        private string ip;
+        public string Ip
         {
-            get { return Usuario; }
-            set { Usuario = value; }
+            get { return ip; }
+            set { ip = value; }
         }
+
+
     }
 }
