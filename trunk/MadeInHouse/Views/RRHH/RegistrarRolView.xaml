@@ -21,21 +21,23 @@
                     <Button x:Name="GuardarRol" ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar ventana" Height="30" Width="30">
+                    <Button x:Name="Limpiar" ToolTip="Limpiar ventana" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
                     </Button>
-                    <Button ToolTip="Refrescar ventana" Height="50" Width="50">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-                    </Button>
+
                 </ToolBar>
 
                 <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="159" Width="350">
                     <Grid Margin="0,0,-2,-12">
 
                         <Label Content="Nombre Rol:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="96"/>
-                        <TextBox x:Name="TxtNombRol" HorizontalAlignment="Left" Height="23" Margin="111,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox x:Name="TxtNombRol" 
+                                 Text="{Binding TxtNombRol,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Left" Height="23" Margin="111,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
                         <Label Content="Descripción:" HorizontalAlignment="Left" Margin="10,48,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="TxtDesc" HorizontalAlignment="Left" Height="75" Margin="111,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
+                        <TextBox x:Name="TxtDesc" 
+                                 Text="{Binding TxtDesc,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Left" Height="75" Margin="111,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
                     </Grid>
                 </GroupBox>
 

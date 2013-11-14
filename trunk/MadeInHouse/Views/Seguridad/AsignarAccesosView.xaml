@@ -28,6 +28,7 @@
                     <Button x:Name="ActualizarLstAccesos" ToolTip="Refrescar ventana" Height="50" Width="50">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
+                    
                 </ToolBar>
 
                 <GroupBox Header="Privilegios" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="103" Width="580">
