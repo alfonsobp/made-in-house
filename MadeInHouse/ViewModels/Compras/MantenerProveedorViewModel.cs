@@ -177,8 +177,7 @@ public string this[string columnName]
 
             if (string.IsNullOrEmpty(TxtEmail))
             {
-            
-                MessageBox.Show("El Email no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+               MessageBox.Show("El Email no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 return false;
             }
