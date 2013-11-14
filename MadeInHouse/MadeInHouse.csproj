@@ -129,6 +129,7 @@
     <Compile Include="Models\Almacen\EntityManager.cs" />
     <Compile Include="Models\Almacen\EntityName.cs" />
     <Compile Include="Models\Almacen\MotivoISManager.cs" />
+    <Compile Include="Models\Almacen\Prueba.cs" />
     <Compile Include="Models\Compras\Consolidado.cs" />
     <Compile Include="Dictionary\DynamicGrid.cs" />
     <Compile Include="DataObjects\Almacen\GuiaDeRemisionSQL.cs" />

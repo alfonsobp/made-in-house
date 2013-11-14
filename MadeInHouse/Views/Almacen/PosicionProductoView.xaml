@@ -27,6 +27,13 @@
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
                     <Button>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="Guardar" >
+                                    <cal:Parameter Value="{Binding ElementName=Almacen}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -44,9 +51,9 @@
                 
                 <Label Content="Cantidad" HorizontalAlignment="Right" Margin="0,68,495,0" VerticalAlignment="Top" Height="26" Width="58"/>
                 <TextBox HorizontalAlignment="Right" Height="23" Margin="0,68,367,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
-                <TextBox x:Name="CantIngresar" HorizontalAlignment="Right" Height="26" Margin="0,0,225,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
-                <TextBox x:Name="VolIngresar" HorizontalAlignment="Right" Height="26" Margin="0,0,87,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
-                <Label Content="Cant." HorizontalAlignment="Right" Margin="0,0,280,409" VerticalAlignment="Bottom" Height="26" Width="58"/>
+                <TextBox x:Name="CantIngresar"  HorizontalAlignment="Right" Height="26" Margin="0,0,225,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
+                <TextBox x:Name="VolIngresar" IsEnabled="{Binding Enable}" HorizontalAlignment="Right" Height="26" Margin="0,0,87,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
+                <Label Content="Cant." HorizontalAlignment="Right" Margin="0,0,292,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
                 <Label Content="Vol." HorizontalAlignment="Right" Margin="0,0,154,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
                 <Label Content="Distribuón en almacén" HorizontalAlignment="Right" Margin="0,164,761,0" VerticalAlignment="Top" Height="26" Width="136"/>
                 <Label Content="Ubicacion" HorizontalAlignment="Right" Margin="0,0,276,457" VerticalAlignment="Bottom" Height="26" Width="62"/>
@@ -56,6 +63,14 @@
                 <ComboBox HorizontalAlignment="Right" IsEnabled="False" Margin="0,68,591,0" VerticalAlignment="Top" Width="189" Height="22"/>
                 <Button x:Name="Agregar" HorizontalAlignment="Right" Margin="0,0,22,409" VerticalAlignment="Bottom" Width="43" Height="26">
                     <Image Source="/Assets/check.png"  />
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="Agregar" >
+                                <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
+                                <cal:Parameter Value="{Binding ElementName=Almacen}" />
+                            </cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                 </Button>
                 <DataGrid x:Name="LstProductosGrid" ItemsSource="{Binding Path=LstProductos}" Margin="0,68,922,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="304" Height="488" VerticalAlignment="Top" AutoGenerateColumns="False"
                                       SelectedItem="{Binding Path=SelectedProduct,Mode=TwoWay}"
@@ -78,20 +93,30 @@
                 </DataGrid>
                 <ScrollViewer HorizontalAlignment="Left" Height="340"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">
                     <Grid>
-                    <grid:DynamicGrid  x:Name="Almacen" Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"   >
+                        <grid:DynamicGrid  x:Name="Almacen" Tipo="1" Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Accion="{Binding Accion1}" Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}"   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                     </grid:DynamicGrid>
                     </Grid>
                 </ScrollViewer>
                 <ScrollViewer HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251">
-                    <grid:DynamicGrid  x:Name="UbicacionCol" Accion="{Binding Accion2}"  Altura="{Binding AlturaU}" IdZona="0" NumRows="{Binding Altura}" NumColumns="{Binding NumColumnsU}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    <grid:DynamicGrid  x:Name="UbicacionCol" Tipo="2" Accion="{Binding Accion2}"   Altura="{Binding AlturaU}" IdZona="0" NumRows="{Binding Altura}" NumColumns="{Binding NumColumnsU}"  CantActual="{Binding Path=TxtCantActual,Mode=TwoWay}" VolOcu="{Binding Path=TxtVolActual,Mode=TwoWay}"  Enable="{Binding Path=Enable, Mode=TwoWay}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                     </grid:DynamicGrid>
                 </ScrollViewer>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="349,216,0,0" VerticalAlignment="Top" Width="530"/>
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251"/>
                 <Label Content="Cant.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="908,216,0,0" VerticalAlignment="Top"/>
                 <Label Content="Vol.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="1046,216,0,0" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Left" Height="26" Margin="959,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
-                <TextBox HorizontalAlignment="Left" Height="26" Margin="1097,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+                <TextBox x:Name="TxtCantActual" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="959,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+                <TextBox x:Name="TxtVolActual"  IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="1097,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+                <Button Content="VER" HorizontalAlignment="Left" Margin="1181,224,0,0" VerticalAlignment="Top" Width="43" Height="34">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <cal:ActionMessage MethodName="MostrarColumna" >
+                                <cal:Parameter Value="{Binding ElementName=Almacen}" />
+                                <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
+                            </cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
 
             </Grid>
         </StackPanel>
