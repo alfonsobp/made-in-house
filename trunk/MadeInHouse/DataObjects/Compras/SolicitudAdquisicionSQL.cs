@@ -80,7 +80,7 @@ namespace MadeInHouse.DataObjects.Compras
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
 
-            MessageBox.Show(where);
+            //MessageBox.Show(where);
 
             try
             {

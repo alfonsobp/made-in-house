@@ -198,14 +198,24 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void GenerarPDF()
         {
-           GenerarPDF pdf = new GenerarPDF();
-           Correo c = new Correo();
-            //m.coloma@pucp.pe
-           string body = formato().ToString();
-           string msg = "Estimados :\n  Se adjunta la orden de compra , porfavor atenderla lo antes posible.";
-           pdf.createPDF(body, "\\OC.pdf");
-           c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg,Environment.CurrentDirectory+"\\OC.pdf");
 
+            if (OrdenSelected != null)
+            {
+                try
+                {
+                    GenerarPDF pdf = new GenerarPDF();
+                    Correo c = new Correo();
+                    //m.coloma@pucp.pe
+                    string body = formato().ToString();
+                    string msg = "Estimados :\n  Se adjunta la orden de compra , porfavor atenderla lo antes posible.";
+                    pdf.createPDF(body, "\\OC.pdf");
+                    c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg, Environment.CurrentDirectory + "\\OC.pdf");
+                }
+                catch (Exception e)
+                {
+
+                }
+            }
         }
 
         public string formato() {

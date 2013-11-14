@@ -60,7 +60,7 @@ namespace MadeInHouse.ViewModels.Compras
     
         }
 
-        int idProveedor;  
+       // int idProveedor;  
 
         string descripcion;
 public string Descripcion

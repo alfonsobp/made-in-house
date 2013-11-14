@@ -17,7 +17,7 @@ namespace MadeInHouse.DataObjects.Compras
             DBConexion db = new DBConexion();
             int k = 0;
             OrdenCompra c = entity as OrdenCompra;
-            MessageBox.Show(" " + c.Proveedor.IdProveedor + " " + c.MedioPago + " " + c.Observaciones);
+          //  MessageBox.Show(" " + c.Proveedor.IdProveedor + " " + c.MedioPago + " " + c.Observaciones);
             db.cmd.CommandText = "INSERT INTO OrdenCompra(idProveedor,fechaReg,medioPago,estado,observaciones,fechaSinAtencion) " +
                                  "VALUES (@idProveedor,@fechaReg,@medioPago,@estado,@observaciones,@fechaSinAtencion)";
 
