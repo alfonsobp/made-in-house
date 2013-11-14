@@ -116,8 +116,16 @@ namespace MadeInHouse.ViewModels.Almacen
                         }
                         else
                         {
-                        //Cualquier otro motivo
-                            Estado = false;
+                            if (selectedMotivo.Equals("Abastecimiento"))
+                            {
+                                Estado = true;
+                            }
+                            else
+                            {
+
+                                //Cualquier otro motivo
+                                Estado = false;
+                            }
                         }
 
                     }
@@ -268,8 +276,16 @@ namespace MadeInHouse.ViewModels.Almacen
                         }
                         else
                         {
-                            //Cualquier otro motivo
-                            EstadoPro = true;
+                            if (selectedMotivo.Equals("Abastecimiento"))
+                            {
+                                Estado = false;
+                            }
+                            else
+                            {
+
+                                //Cualquier otro motivo
+                                Estado = true;
+                            }
                         }
 
                     }
@@ -299,9 +315,17 @@ namespace MadeInHouse.ViewModels.Almacen
                         wm.ShowWindow(new BuscarGuiasRemisionViewModel(this, 1));
                     }
                     else {
+                        if (string.Compare(selectedMotivo, "Abastecimiento", true) == 0)
+                        {
+                            MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+                            wm.ShowWindow(new SolicitudAbListadoViewModel(this, 1));
+                        }
+                        else
+                        {
+                            //cualquier otro motivo
+                            MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
 
-                        //cualquier otro motivo
-                        MessageBox.Show("El motivo seleccionado no admite Documento de referencia");
+                        }
                 
                     }
                 }
