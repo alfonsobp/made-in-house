@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Diagnostics;
@@ -10,7 +11,7 @@ using System.Security.Principal;
 using System.ComponentModel.Composition;
 using MadeInHouse.DataObjects.Seguridad;
 using MadeInHouse.Models.Seguridad;
-using System.Threading;
+using System.Net;
 
 namespace MadeInHouse.ViewModels
 {
@@ -112,6 +113,14 @@ namespace MadeInHouse.ViewModels
                         System.Threading.Thread.CurrentPrincipal = credencial;
 
                         _windowManager.ShowWindow(new MainViewModel(_windowManager));
+
+                        IPHostEntry IPHost = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+
+                        IPAddress[] a = Dns.GetHostByName(Dns.GetHostName()).AddressList;
+                        string ip = a[0].ToString();
+                        MessageBox.Show(ip);
+
+
                         this.TryClose();
                     }
                     else
