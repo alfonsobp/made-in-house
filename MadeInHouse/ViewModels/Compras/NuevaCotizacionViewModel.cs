@@ -24,16 +24,23 @@ namespace MadeInHouse.ViewModels.Compras
     {
 
         //Constructores de la clase
-
         public NuevaCotizacionViewModel()
         {
             indicador = 1;
+            EstFecha = false;
+
+            int lastId = usql.ObtenerMaximoID("Cotizacion", "idCotizacion");
+            TxtCodigo = "COT-" + (lastId+1000001).ToString();
         }
 
         public NuevaCotizacionViewModel(BuscarCotizacionViewModel m)
         {
             model = m;
             indicador = 1;
+            EstFecha = false;
+
+            int lastId = usql.ObtenerMaximoID("Cotizacion", "idCotizacion");
+            TxtCodigo = "COT-" + (lastId + 1000001).ToString();
         }
 
         public NuevaCotizacionViewModel(Cotizacion c, BuscarCotizacionViewModel m)
@@ -44,8 +51,7 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 2;
             TxtCodigo = "COT-" + (c.IdCotizacion + 1000000).ToString();
             TxtObservacion = c.Observacion;
-            //prov.CodProveedor = "PROV-" + (c.Proveedor.IdProveedor + 1000000).ToString();
-
+            EstFecha = true;
             LstProducto = csql.Buscar(c.IdCotizacion) as List<CotizacionxProducto>;
         }
 
@@ -55,20 +61,21 @@ namespace MadeInHouse.ViewModels.Compras
         //Atributos de la clase
 
         // 1 = insertar, 2 = editar
-        private int indicador;
-
+        private int indicador, Id;
         UtilesSQL usql = new UtilesSQL();
-
-        int Id;
-
         BuscarCotizacionViewModel model;
-
         CotizacionxProductoSQL csql = new CotizacionxProductoSQL();
+        CotizacionSQL eMC = new CotizacionSQL();
 
+        private Boolean estFecha;
+        public Boolean EstFecha
+        {
+            get { return estFecha; }
+            set { estFecha = value; NotifyOfPropertyChange(() => EstFecha); }
+        }
 
 
         private string path = "";
-
         public string Path
         {
             get { return path; }
@@ -76,7 +83,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private Proveedor prov;
-
         public Proveedor Prov
         {
             get { return prov; }
@@ -84,7 +90,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private string txtCodigo;
-
         public string TxtCodigo
         {
             get { return txtCodigo; }
@@ -93,7 +98,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         private DateTime txtFechaResp = DateTime.Now;
-
         public DateTime TxtFechaResp
         {
             get { return txtFechaResp; }
@@ -101,7 +105,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private DateTime txtFechaIni = DateTime.Now;
-
         public DateTime TxtFechaIni
         {
             get { return txtFechaIni; }
@@ -109,7 +112,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private DateTime txtFechaFin = DateTime.Now;
-
         public DateTime TxtFechaFin
         {
             get { return txtFechaFin; }
@@ -117,7 +119,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private string txtObservacion;
-
         public string TxtObservacion
         {
             get { return txtObservacion; }
@@ -125,7 +126,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         List<CotizacionxProducto> lstProducto;
-
         public List<CotizacionxProducto> LstProducto
         {
             get { return lstProducto; }
@@ -154,10 +154,9 @@ namespace MadeInHouse.ViewModels.Compras
             c.Proveedor = new Proveedor();
 
 
-            MessageBox.Show("idProv = " + prov.IdProveedor + " codProv = " + prov.CodProveedor + " rs = " + prov.RazonSocial);
+            MessageBox.Show("Codigo Proveedor = " + prov.CodProveedor + "\nRazon Social = " + prov.RazonSocial);
 
             c.Proveedor = prov;
-
             c.FechaInicio = TxtFechaIni;
             c.FechaFin = TxtFechaFin;
             c.FechaRespuesta = TxtFechaResp;
@@ -165,13 +164,14 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (c.Proveedor.CodProveedor != null)
             {
-                int numCot = 1000000 + Id + 1;
-                string codCotizacion = "COT-" + numCot.ToString();
 
                 if (indicador == 1)
                 {
                     k = new CotizacionSQL().Agregar(c);
-                    Id = usql.ObtenerMaximoID("Cotizacion", "idCotizacion");
+                    
+                    List<Cotizacion> list = eMC.Buscar() as List<Cotizacion>;
+                    Id = list[list.Count - 1].IdCotizacion;
+                    c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
 
                     if (LstProducto != null)
                     {
@@ -185,7 +185,7 @@ namespace MadeInHouse.ViewModels.Compras
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
                     else
-                        MessageBox.Show("Cotizacion Registrada \n\nCodigo = " + codCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
+                        MessageBox.Show("Cotizacion Registrada \n\nCodigo = " + c.CodCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
                                         " ("+ c.Proveedor.CodProveedor + ")" + "\nFecha registro = " + c.FechaRespuesta.ToString());
                 }
 
@@ -193,6 +193,7 @@ namespace MadeInHouse.ViewModels.Compras
                 {
                    
                     c.IdCotizacion = Id;
+                    c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
                     k = new CotizacionSQL().Actualizar(c);
 
                     if (LstProducto != null)
@@ -207,7 +208,7 @@ namespace MadeInHouse.ViewModels.Compras
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
                     else
-                        MessageBox.Show("Cotizacion Editada \n\nCodigo = " + codCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
+                        MessageBox.Show("Cotizacion Editada \n\nCodigo = " + c.CodCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
                                         " ("+ c.Proveedor.CodProveedor + ")" + "\nFecha respuesta = " + c.FechaRespuesta.ToString() + "\nFecha inicio = " + c.FechaInicio.ToString() +
                                         "\nFecha fin = " + c.FechaFin.ToString());
 
@@ -226,7 +227,6 @@ namespace MadeInHouse.ViewModels.Compras
 
             if ((path != "") && (prov.Email != null))
             {
-
                 string time;
 
                 if (DateTime.Now.Hour >= 12)
@@ -240,7 +240,7 @@ namespace MadeInHouse.ViewModels.Compras
 
                 // Create a message and set up the recipients.
 
-                MailMessage message = new MailMessage("alonsodp2692@gmail.com", prov.Email,
+                MailMessage message = new MailMessage("madeinhouse.sw@gmail.com", prov.Email,
                                                       "Cotizacion de productos", bodyMessage);
 
                 message.IsBodyHtml = true;
@@ -269,7 +269,7 @@ namespace MadeInHouse.ViewModels.Compras
                     var client = new SmtpClient("smtp.gmail.com",587 )
                     {
                         // Add credentials if the SMTP server requires them.
-                        Credentials = new NetworkCredential("alonsodp2692@gmail.com", "adp980407912"),
+                        Credentials = new NetworkCredential("madeinhouse.sw@gmail.com", "insignia"),
                         EnableSsl = true
                     };
 
@@ -280,9 +280,9 @@ namespace MadeInHouse.ViewModels.Compras
                         MessageBox.Show("Mensaje enviado satisfactoriamente");
                     }
 
-                    catch (Exception e)
+                    catch
                     {
-                        MessageBox.Show(e.StackTrace.ToString());
+                        MessageBox.Show("No se pudo enviar el mensaje, revisar correo y/o conexiones");
                     }
                 }
 
@@ -295,7 +295,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         //Funciones para importar desde un Excel
-
         public void Cargar()
         {
 

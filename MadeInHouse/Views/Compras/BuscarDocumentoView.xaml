@@ -6,23 +6,22 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="600">
+             mc:Ignorable="d" d:DesignWidth="600" Height="525">
     <!-- COPIAR DESDE AKI -->
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-39">
+        <StackPanel Margin="0,0,0,72">
             <Layouts:TitleBarTemplate title="Listado Documentos de pago" />
             <!-- CAMBIAR NOMBREEEE -->
 
-            <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Height="419">
-            <DataGrid   IsReadOnly="True" x:Name="LstDocsPago"   
+            <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightLightBrushKey}}" Height="498">
+            <DataGrid   IsReadOnly="True" x:Name="LstDocsPago" AutoGenerateColumns="False"
                         cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-            Margin="11,206,0,-21" Height="234" VerticalAlignment="Top" HorizontalAlignment="Left" Width="575">
+            Margin="10,196,0,0" HorizontalAlignment="Left" Width="575" Height="148" VerticalAlignment="Top">
             <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=IdDocPago}" Width="130" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding Path=CodDoc}" Width="130" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding Path=Proveedor.CodProveedor}" Width="180" Header="Proveedor"/>
-                        <DataGridTextColumn Binding="{Binding Path=Estado}" Width="130" Header="Estado"/>
-                        <DataGridTextColumn Binding="{Binding Path=FechaRecepcion}" Width="130" Header="Fecha Registro"/>
+                        <DataGridTextColumn Binding="{Binding Path=MontoTotal}" Width="130" Header="Monto a Pagar"/>
+                        <DataGridTextColumn Binding="{Binding Path=SaldoPagado}" Width="130" Header="Monto Pagado"/>
             </DataGrid.Columns>
         </DataGrid>
         <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
@@ -30,7 +29,7 @@
         <Button x:Name="BuscarDocsPago" Height="25" Margin="488,80,49,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
         </Button>
-        <Button x:Name="BuscarProveedor" Height="21" Margin="407,110,157,0" VerticalAlignment="Top">
+        <Button x:Name="BuscarProveedor" Height="23" Margin="407,108,157,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="22" />
         </Button>
         <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="146,82,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
@@ -40,11 +39,7 @@
           ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="146,138,0,0" VerticalAlignment="Top" Width="120">
         </ComboBox>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="27,138,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="TxtFechaDesde" HorizontalAlignment="Left" Margin="146,166,0,0" VerticalAlignment="Top" Width="104"/>
-        <DatePicker x:Name="TxtFechaHasta" HorizontalAlignment="Left" Margin="313,168,0,0" VerticalAlignment="Top" Width="105"/>
-        <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="27,165,0,0" VerticalAlignment="Top"/>
-        <Label Content="Hasta:" HorizontalAlignment="Left" Margin="266,166,0,0" VerticalAlignment="Top"/>
-        <ToolBar VerticalAlignment="Top" Height="41">
+                <ToolBar VerticalAlignment="Top" Height="41">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                     <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -77,8 +72,18 @@
                 <Image Source="/MadeInHouse;component/Assets/money.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-                <Label Content="Monto a pagar:" HorizontalAlignment="Left" Margin="462,135,0,0" VerticalAlignment="Top" Width="101"/>
-                <TextBox x:Name="TxtPago" HorizontalAlignment="Left" Height="23" Margin="462,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                <Label Content="Monto a pagar:" HorizontalAlignment="Left" Margin="462,130,0,0" VerticalAlignment="Top" Width="101"/>
+                <TextBox x:Name="TxtPago" HorizontalAlignment="Left" Height="23" Margin="462,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                <DataGrid   IsReadOnly="True" x:Name="LstPagosParciales" AutoGenerateColumns="False"    
+                	Margin="11,366,0,0" HorizontalAlignment="Left" Width="429" Height="112" VerticalAlignment="Top">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding FechaPago}" Width="130" Header="Fecha de Pago"/>
+                        <DataGridTextColumn Binding="{Binding DocPago.Proveedor.RazonSocial}" Width="180" Header="Proveedor"/>
+                        <DataGridTextColumn Binding="{Binding Monto}" Width="130" Header="Pago Parcial"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Label Content="Monto Faltante:" HorizontalAlignment="Left" Margin="462,393,0,0" VerticalAlignment="Top" Width="101"/>
+                <TextBox x:Name="TxtTotalPago" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="462,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
 
             </Grid>
         </StackPanel>

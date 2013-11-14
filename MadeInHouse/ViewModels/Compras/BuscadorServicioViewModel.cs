@@ -98,6 +98,12 @@ namespace MadeInHouse.ViewModels.Compras
             win.ShowWindow(obj);
         }
 
+        public void ControlServicios()
+        {
+            Compras.ControlServiciosViewModel obj = new Compras.ControlServiciosViewModel();
+            win.ShowWindow(obj);
+        }
+
         public void EditarServicio()
         {
             if (ventanaAccion == 0)

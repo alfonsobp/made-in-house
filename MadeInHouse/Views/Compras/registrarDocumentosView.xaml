@@ -11,7 +11,7 @@
             <Layouts:TitleBarTemplate title="Documentos de pago" />
             <!-- CAMBIAR NOMBREEEE -->
             <Grid HorizontalAlignment="Left" Width="750" Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="549">
-            <DataGrid IsReadOnly="True"  AutoGenerateColumns="False" ItemsSource="{Binding LstProducto, Mode=OneWay}" Height="115" Margin="36,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="673" >
+            <DataGrid IsReadOnly="True"  AutoGenerateColumns="False" ItemsSource="{Binding LstProducto, Mode=OneWay}" Height="115" Margin="50,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="648" >
             <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Header="Código" Width="100"/>
                         <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Header="Descripción" Width="250"/>
@@ -36,7 +36,7 @@
         <Label Content="Medio de pago:" HorizontalAlignment="Left" Margin="50,192,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha de rececepción:" HorizontalAlignment="Left" Margin="274,155,0,0" VerticalAlignment="Top"/>
         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="36,423,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtObservaciones"  HorizontalAlignment="Left" Margin="36,459,0,38" TextWrapping="Wrap" Width="402" RenderTransformOrigin="0.5,0.5" Text="Todo llego en la hora programada y OK.">
+        <TextBox x:Name="TxtObservaciones"  HorizontalAlignment="Left" Margin="36,459,0,38" TextWrapping="Wrap" Width="402" RenderTransformOrigin="0.5,0.5">
             <TextBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>

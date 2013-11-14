@@ -55,7 +55,7 @@ namespace MadeInHouse.DataObjects.Compras
             int est = 2;
             string codCotizacion = "", codProveedor = "";
 
-            if (filters.Length > 1 && filters.Length <= 5)
+            if (filters.Length >= 1 && filters.Length <= 5)
             {
 
                 codCotizacion = Convert.ToString(filters[0]);
@@ -129,9 +129,6 @@ namespace MadeInHouse.DataObjects.Compras
                     Cotizacion p = new Cotizacion();
                     p.Proveedor = new Proveedor();
 
-                    //ProveedorSQL eM = new ProveedorSQL();
-                    //List<Proveedor> lstP = eM.Buscar(codProveedor) as List<Proveedor>;
-
                     p.IdCotizacion = Convert.ToInt32(reader["idCotizacion"].ToString());
                     p.CodCotizacion = "COT-" + (1000000 + p.IdCotizacion).ToString();
                     int idProv = Convert.ToInt32(reader["idProveedor"].ToString());
@@ -178,7 +175,7 @@ namespace MadeInHouse.DataObjects.Compras
             {
                 db.conn.Open();
                 k = db.cmd.ExecuteNonQuery();
-                MessageBox.Show("Se realizo la actualizacion");
+                MessageBox.Show("Actualizacion realizada \n\nCotizacion = " + c.CodCotizacion + "\nEstado = ATENDIDO");
                 db.conn.Close();
 
             }

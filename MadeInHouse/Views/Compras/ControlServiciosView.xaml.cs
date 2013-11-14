@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace MadeInHouse.Views.Compras
 {
     /// <summary>
-    /// Lógica de interacción para BuscarDocumentoView.xaml
+    /// Lógica de interacción para ControlServiciosView.xaml
     /// </summary>
-    public partial class BuscarDocumentoView : UserControl
+    public partial class ControlServiciosView : UserControl
     {
-        public BuscarDocumentoView()
+        public ControlServiciosView()
         {
             InitializeComponent();
-        }
-
-        private void LstDocsPago_Copy_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
     }
 }

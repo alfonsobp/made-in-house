@@ -101,6 +101,7 @@
     <Compile Include="DataObjects\Compras\DocPagoProveedorSQL.cs" />
     <Compile Include="DataObjects\Compras\OrdenCompraSQL.cs" />
     <Compile Include="DataObjects\Compras\OrdenCompraxProductoSQL.cs" />
+    <Compile Include="DataObjects\Compras\PagoParcialSQL.cs" />
     <Compile Include="DataObjects\Compras\ProductoxSolicitudAdSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorSQL.cs" />
     <Compile Include="DataObjects\Compras\ProveedorxProductoSQL.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Models\Compras\CotizacionxProducto.cs" />
     <Compile Include="Models\Compras\DocPagoProveedor.cs" />
     <Compile Include="Models\Compras\OrdenCompra.cs" />
+    <Compile Include="Models\Compras\PagoParcial.cs" />
     <Compile Include="Models\Compras\PrecioProductoProveedor.cs" />
     <Compile Include="Models\Compras\ProductoxOrdenCompra.cs" />
     <Compile Include="Models\Compras\ProductoxSolicitudAd.cs" />
@@ -229,6 +231,7 @@
     <Compile Include="ViewModels\Compras\BuscarProductoProveedorViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarProductoViewModel.cs" />
     <Compile Include="ViewModels\Compras\BuscarProveedorViewModel.cs" />
+    <Compile Include="ViewModels\Compras\ControlServiciosViewModel.cs" />
     <Compile Include="ViewModels\Compras\MedioPagoViewModel.cs" />
     <Compile Include="ViewModels\Compras\NuevaCotizacionViewModel.cs" />
     <Compile Include="ViewModels\Compras\ProductoViewModel.cs" />
@@ -428,6 +431,9 @@
     </Compile>
     <Compile Include="Views\Compras\CatalogoServiciosView.xaml.cs">
       <DependentUpon>CatalogoServiciosView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compras\ControlServiciosView.xaml.cs">
+      <DependentUpon>ControlServiciosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Compras\generarOrdenCompraView.xaml.cs">
       <DependentUpon>generarOrdenCompraView.xaml</DependentUpon>
@@ -794,6 +800,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Compras\CatalogoServiciosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compras\ControlServiciosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

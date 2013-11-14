@@ -35,12 +35,10 @@ namespace MadeInHouse.ViewModels.Compras
         //Atributos de la clase
 
         private MyWindowManager win = new MyWindowManager();
-
         private DocPagoProveedor docSeleccionado;
-
         DocPagoProveedorSQL eM = new DocPagoProveedorSQL();
-
-
+        PagoParcialSQL eMPP = new PagoParcialSQL();
+        List<PagoParcial> list = new List<PagoParcial>();
 
         private List<string> lstOpciones;
 
@@ -83,23 +81,7 @@ namespace MadeInHouse.ViewModels.Compras
             set { prov = value; NotifyOfPropertyChange(() => Prov); }
         }
 
-
-        private DateTime txtFechaDesde = new DateTime(DateTime.Now.Year, 1,1);
-
-        public DateTime TxtFechaDesde
-        {
-            get { return txtFechaDesde; }
-            set { txtFechaDesde = value; NotifyOfPropertyChange(() => TxtFechaDesde); }
-        }
-
-        private DateTime txtFechaHasta = new DateTime(DateTime.Now.Year, 12, 31);
-
-        public DateTime TxtFechaHasta
-        {
-            get { return txtFechaHasta; }
-            set { txtFechaHasta = value; NotifyOfPropertyChange(() => TxtFechaHasta); }
-        }
-
+        
         private double txtPago;
 
         public double TxtPago
@@ -108,6 +90,13 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtPago = value; NotifyOfPropertyChange(() => TxtPago); }
         }
 
+        private double txtTotalPago;
+
+        public double TxtTotalPago
+        {
+            get { return txtTotalPago; }
+            set { txtTotalPago = value; NotifyOfPropertyChange(() => TxtTotalPago); }
+        }
 
         private List<DocPagoProveedor> lstDocsPago;
 
@@ -117,16 +106,23 @@ namespace MadeInHouse.ViewModels.Compras
             set { lstDocsPago = value; NotifyOfPropertyChange(() => LstDocsPago); }
         }
 
+        private List<PagoParcial> lstPagosParciales;
 
-        //Funciones de la clase
-
-        public void SelectedItemChanged(object sender)
+        public List<PagoParcial> LstPagosParciales
         {
-            //cotizacionSeleccionada.Proveedor = new Proveedor();
-            docSeleccionado = ((sender as DataGrid).SelectedItem as DocPagoProveedor);
-            //MessageBox.Show("id = " + cotizacionSeleccionada.IdCotizacion + " prov = " + cotizacionSeleccionada.Proveedor.IdProveedor);
+            get { return lstPagosParciales; }
+            set { lstPagosParciales = value; NotifyOfPropertyChange(() => LstPagosParciales); }
         }
 
+
+        //Funciones de la clase
+        public void SelectedItemChanged(object sender)
+        {
+            docSeleccionado = ((sender as DataGrid).SelectedItem as DocPagoProveedor);
+
+            if (docSeleccionado != null)
+                LstPagosParciales = ActualizarPagos(docSeleccionado);
+        }
 
 
         public void NuevoDocumento()
@@ -138,8 +134,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void EditarDocumento()
         {
 
-
-            Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel();
+            Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel(docSeleccionado, this);
             win.ShowWindow(obj);
         }
 
@@ -148,12 +143,28 @@ namespace MadeInHouse.ViewModels.Compras
             LstDocsPago = eM.Buscar() as List<DocPagoProveedor>;
         }
 
-        public void BuscarDocsPago()
+        public List<PagoParcial> ActualizarPagos(DocPagoProveedor d)
         {
-            if (TxtProveedor != null)
+            double totalPago = 0;
+            list = eMPP.BuscarPagos(d);
+
+            if (list != null)
+            {
+                for (int i = 0; i < list.Count; i++)
+                    totalPago += list[i].Monto;
+            }
+
+            TxtTotalPago = d.MontoTotal-totalPago;
+            return list;
+        }
+
+
+        public void BuscarDocsPago()
+        {            
+            if ((String.IsNullOrEmpty(TxtProveedor)) && (Prov != null))
                 TxtProveedor = Prov.CodProveedor;
 
-            LstDocsPago = eM.Buscar(TxtCodigo, TxtProveedor, SelectedEst, TxtFechaDesde, TxtFechaHasta) as List<DocPagoProveedor>;
+            LstDocsPago = eM.Buscar(TxtCodigo, TxtProveedor, SelectedEst) as List<DocPagoProveedor>;
         }
 
         public void BuscarProveedor()
@@ -164,7 +175,44 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void pagoParcial()
         {
+            if ((docSeleccionado != null) && (TxtPago != 0))
+            {
+                int k, y;
+                PagoParcial p = new PagoParcial();
 
+                docSeleccionado.SaldoPagado += TxtPago;
+
+                if (docSeleccionado.SaldoPagado > docSeleccionado.MontoTotal)
+                    docSeleccionado.SaldoPagado = docSeleccionado.MontoTotal;
+
+                p.Monto = TxtPago;
+                p.DocPago = docSeleccionado;
+                p.FechaPago = DateTime.Now;
+                
+
+                k = eM.Actualizar(docSeleccionado);
+                y = eMPP.Agregar(p);
+                list.Add(p);
+
+                if ((k != 0) && (y != 0))
+                {
+                    MessageBox.Show("Doc de Pago = " + docSeleccionado.CodDoc + "\nMonto Pagado = " + TxtPago +
+                                    "\nMonto Faltante = " + (docSeleccionado.MontoTotal - docSeleccionado.SaldoPagado));
+                }
+
+                else
+                {
+                    MessageBox.Show("No se pudo registrar el monto a pagar, revisar conexiones");
+                }
+            }
+
+            else
+            {
+                MessageBox.Show("Seleccione un documento y/o monto a pagar");
+            }
+
+            ActualizarDocumentos();
+            LstPagosParciales = new List<PagoParcial>(list);
         }
 
     }

@@ -34,17 +34,13 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         //Atributos de la clase
-
         private MyWindowManager win = new MyWindowManager();
-
         private Cotizacion cotizacionSeleccionada;
-
         CotizacionSQL eM = new CotizacionSQL();
 
 
 
         private List<string> lstOpciones;
-
         public List<string> LstOpciones
         {
             get { return lstOpciones; }
@@ -53,7 +49,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         private string selectedEst;
-
         public string SelectedEst
         {
             get { return selectedEst; }
@@ -61,7 +56,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private string txtCodigo;
-
         public string TxtCodigo
         {
             get { return txtCodigo; }
@@ -69,7 +63,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private string txtProveedor;
-
         public string TxtProveedor
         {
             get { return txtProveedor; }
@@ -77,7 +70,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private Proveedor prov;
-
         public Proveedor Prov
         {
             get { return prov; }
@@ -86,7 +78,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         private DateTime txtFechaRegistro = new DateTime(DateTime.Now.Year, 1,1);
-
         public DateTime TxtFechaRegistro
         {
             get { return txtFechaRegistro; }
@@ -94,7 +85,6 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private DateTime txtFechaHasta = new DateTime(DateTime.Now.Year, 12, 31);
-
         public DateTime TxtFechaHasta
         {
             get { return txtFechaHasta; }
@@ -103,7 +93,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         private List<Cotizacion> lstCotizacion;
-
         public List<Cotizacion> LstCotizacion
         {
             get { return lstCotizacion; }
@@ -112,12 +101,9 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         //Funciones de la clase
-
         public void SelectedItemChanged(object sender)
         {
-            //cotizacionSeleccionada.Proveedor = new Proveedor();
-            cotizacionSeleccionada = ((sender as DataGrid).SelectedItem as Cotizacion);
-            //MessageBox.Show("id = " + cotizacionSeleccionada.IdCotizacion + " prov = " + cotizacionSeleccionada.Proveedor.IdProveedor);
+            cotizacionSeleccionada = ((sender as DataGrid).SelectedItem as Cotizacion);   
         }
 
         public void NuevaCotizacion()
