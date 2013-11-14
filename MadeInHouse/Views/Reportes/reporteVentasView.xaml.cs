@@ -221,8 +221,14 @@ namespace MadeInHouse.Views.Reportes
                 }
             }
 
+            double suma = 0;
 
+            for (int i = 0; i < ventas.Count; i++)
+            {
+                suma += ventas[i].Monto;
+            }
             Lista.ItemsSource = ventaAux4;
+            montoTotal.Text = suma + "";
 
             
         }

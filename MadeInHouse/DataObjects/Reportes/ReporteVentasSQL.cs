@@ -134,6 +134,11 @@ namespace MadeInHouse.DataObjects.Reportes
                     e.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
                     e.IdCliente = reader.IsDBNull(reader.GetOrdinal("idCliente")) ? 0 : Convert.ToInt32(reader["idCliente"]);
                     e.Monto = Convert.ToDouble(reader["monto"].ToString());
+                    e.PtosGanados = Convert.ToInt32(reader["ptosGanados"]);
+                    e.Igv = Convert.ToDouble(reader["IGV"]);
+                    e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
+                    e.TipoVenta = reader["tipoVenta"].ToString();
+                    e.Estado = Convert.ToInt32(reader["estado"]);
                     lstVenta.Add(e);
                     
                 }
@@ -172,7 +177,11 @@ namespace MadeInHouse.DataObjects.Reportes
                     e.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
                     e.IdCliente = Convert.ToInt32(reader["idCliente"]);
                     e.Monto = Convert.ToDouble(reader["monto"].ToString());
-
+                    e.PtosGanados = Convert.ToInt32(reader["ptosGanados"]);
+                    e.Igv = Convert.ToDouble(reader["IGV"]);
+                    e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
+                    e.TipoVenta = reader["tipoVenta"].ToString();
+                    e.Estado = Convert.ToInt32(reader["estado"]);
                     lstVenta.Add(e);
                 }
 
@@ -210,6 +219,11 @@ namespace MadeInHouse.DataObjects.Reportes
                     e.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
                     e.IdCliente = reader.IsDBNull(reader.GetOrdinal("idCliente")) ? 0 : Convert.ToInt32(reader["idCliente"]);
                     e.Monto = Convert.ToDouble(reader["monto"].ToString());
+                    e.PtosGanados = Convert.ToInt32(reader["ptosGanados"]);
+                    e.Igv = Convert.ToDouble(reader["IGV"]);
+                    e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
+                    e.TipoVenta = reader["tipoVenta"].ToString();
+                    e.Estado = Convert.ToInt32(reader["estado"]);
                     lstVenta.Add(e);
 
                 }
