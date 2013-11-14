@@ -180,5 +180,55 @@ namespace MadeInHouse.DataObjects.Compras
         
         }
 
+       public List<PrecioProductoProveedor> BuscarProveedores()
+       {
+
+
+
+           DBConexion DB = new DBConexion();
+
+           SqlConnection conn = DB.conn;
+           SqlCommand cmd = DB.cmd;
+           SqlDataReader reader;
+
+
+           cmd.CommandText = "select  pp.idProveedor as idProveedor " +
+                             "from ProveedorxProducto pp ,Proveedor p " +
+                             "where pp.idProveedor = p.idProveedor  and p.estado = 1 ";
+
+           cmd.CommandType = CommandType.Text;
+           cmd.Connection = conn;
+           List<PrecioProductoProveedor> lst = new List<PrecioProductoProveedor>();
+
+           try
+           {
+               conn.Open();
+
+               reader = cmd.ExecuteReader();
+
+
+               while (reader.Read())
+               {
+
+                   PrecioProductoProveedor p = new PrecioProductoProveedor();
+                   p.Costo = 0;
+                   p.Prov = new ProveedorSQL().BuscarPorCodigo(Convert.ToInt32(reader["idProveedor"]));
+
+                   lst.Add(p);
+               }
+
+               conn.Close();
+
+           }
+           catch (Exception e)
+           {
+               MessageBox.Show(e.StackTrace.ToString());
+           }
+
+           return lst;
+
+
+       }
+
     }
 }

@@ -9,6 +9,7 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.Ventas;
 using System.Windows.Controls;
 using MadeInHouse.DataObjects.Ventas;
+using MadeInHouse.ViewModels.Reportes;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -43,6 +44,16 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             // TODO: Complete member initialization
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            this.ventanaAccion = ventanaAccion;
+
+            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null, null, -1, null, null);
+            NotifyOfPropertyChange("Clientes");
+        }
+
+        public ClienteBuscarViewModel(reporteServiciosViewModel reporteServiciosVM, int ventanaAccion)
+        {
+            // TODO: Complete member initialization
+            this.reporteServiciosViewModel = reporteServiciosVM;
             this.ventanaAccion = ventanaAccion;
 
             clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null, null, -1, null, null);
@@ -84,6 +95,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
         private Tarjeta clienteSeleccionado;
         private VentaRegistrarViewModel ventaRegistrarViewModel;
+        private reporteServiciosViewModel reporteServiciosViewModel;
 
         public void Acciones(object sender)
         {
@@ -93,6 +105,15 @@ namespace MadeInHouse.ViewModels.Ventas
                 if (ventaRegistrarViewModel != null)
                 {
                     ventaRegistrarViewModel.Cli = clienteSeleccionado;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 2)
+            {
+                clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
+                if (reporteServiciosViewModel != null)
+                {
+                    reporteServiciosViewModel.Cli = clienteSeleccionado;
                     this.TryClose();
                 }
             }

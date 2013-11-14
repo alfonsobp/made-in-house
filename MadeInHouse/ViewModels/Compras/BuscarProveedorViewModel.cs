@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Models.Compras;
+using MadeInHouse.ViewModels.Reportes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,43 @@ namespace MadeInHouse.ViewModels.Compras
             }
 
            
+        }
+
+        private reporteComprasViewModel reporteComprasViewModel;
+
+        public BuscarProveedorViewModel(reporteComprasViewModel reporteComprasViewModel, int accionVentana)
+        {
+            // TODO: Complete member initialization
+            this.reporteComprasViewModel = reporteComprasViewModel;
+            this.ventanaAccion = accionVentana;
+            LstProveedores = new ConsolidadoSQL().BuscarProveedores();
+        }
+
+        private int ventanaAccion = 0;
+
+        public void Acciones()
+        {
+            if (ventanaAccion == 0)
+            {
+                //Actualizar();
+            }
+            else if (ventanaAccion == 1)
+            {
+
+                if (this.reporteComprasViewModel != null)
+                {
+                    reporteComprasViewModel.Prov = p.Prov;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 2)
+            {
+
+            }
+            else if (ventanaAccion == 3)
+            {
+
+            }
         }
 
 
