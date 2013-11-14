@@ -22,7 +22,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod,estadoHabilitado,numIntentos) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate(),@estadoHabilitado,@numIntentos) ";
+            cmd.CommandText = " INSERT INTO Usuario(codEmpleado,contrasenha,estado,idRol,fechaReg,fechaMod,estadoHabilitado,numIntentos,idTienda) VALUES (upper(@codEmpleado),@contrasenha,@estado,@idRol,getdate(),getdate(),@estadoHabilitado,@numIntentos,@idTienda) ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -36,6 +36,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             cmd.Parameters.AddWithValue("@estado", u.Estado);
             cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
+            cmd.Parameters.AddWithValue("@idTienda", u.IdTienda);
             cmd.Parameters.AddWithValue("@numIntentos", 0); //numero de intentos 0, por ser inicial
 
             try
@@ -59,13 +60,14 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate(), estadoHabilitado = @estadoHabilitado WHERE codEmpleado = @codEmpleado ";
+            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate(), estadoHabilitado = @estadoHabilitado, idTienda = @idTienda WHERE codEmpleado = @codEmpleado ";
 
             db.cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
             db.cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
             db.cmd.Parameters.AddWithValue("@idRol", u.Rol.IdRol);
             db.cmd.Parameters.AddWithValue("@estado", u.Estado);
             db.cmd.Parameters.AddWithValue("@estadoHabilitado", u.EstadoHabilitado);
+            db.cmd.Parameters.AddWithValue("@idTienda", u.IdTienda);
 
             try
             {
@@ -165,6 +167,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
+                    u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
                 }
                 else
                     conn.Close();
@@ -208,6 +211,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Int32.Parse(reader["estadoHabilitado"].ToString());
+                    u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
                 }
                 else
                     conn.Close();
@@ -248,6 +252,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
                     u.Estado = Int32.Parse(reader["estado"].ToString());
+                    u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
 
                     lstUsuarioElim.Add(u);
                 }
@@ -293,6 +298,8 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
 
                     u.Estado = Int32.Parse(reader["estado"].ToString());
+                    //MessageBox.Show("IDTIENDA: " + Convert.ToInt32(reader["idTienda"].ToString()));
+                    u.IdTienda = Convert.ToInt32(reader["idTienda"].ToString());
 
                     if (u.Estado == 1)
                     {
