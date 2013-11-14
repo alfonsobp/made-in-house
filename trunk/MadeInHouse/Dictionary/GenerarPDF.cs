@@ -31,7 +31,7 @@ namespace MadeInHouse.Dictionary
             
             document.Close();
 
-          //  Process.Start(Environment.CurrentDirectory + Path);
+            Process.Start(Environment.CurrentDirectory + Path);
         
         }
     }
