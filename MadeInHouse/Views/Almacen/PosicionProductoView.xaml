@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:designHeight="468" d:designWidth="761.5" Height="445" Width="1086">
+             xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" d:designHeight="468" d:designWidth="761.5" Height="644" Width="1251">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Ubicar producto" />
-            <Grid Margin="0,0,1,0" Height="412" HorizontalAlignment="Right" Width="1081">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="17*"/>
-                    <RowDefinition Height="35*"/>
-                </Grid.RowDefinitions>
+            <Grid Margin="0,0,1,0" Height="609" HorizontalAlignment="Right" Width="1246">
+                
 
                 <ToolBar VerticalAlignment="Top" Height="41">
                     <ToolBar.Background>
@@ -39,62 +39,36 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <Label Content="Producto:" HorizontalAlignment="Right" Margin="0,104,646,0" VerticalAlignment="Top" Width="98" Height="26"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,104,457,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Right" Height="166" Grid.Row="1" VerticalAlignment="Top" Width="335" Margin="0,64,399,0">
-                    <Grid  ShowGridLines="true" HorizontalAlignment="Right" Height="166" Margin="-1" Grid.Row="1" VerticalAlignment="Bottom" Width="335">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Label Content="B35" Grid.Column="2" HorizontalAlignment="Left" Margin="10,1,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-                    </Grid>
-                </Border>
-                <Label Content="Cantidad" HorizontalAlignment="Right" Margin="0,64,357,0" VerticalAlignment="Top" Height="26" Width="58"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,64,206,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Right" Height="166" Margin="0,64,242,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
-                    <Grid ShowGridLines="True">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="8*"/>
-                            <ColumnDefinition Width="25*"/>
-                            <ColumnDefinition Width="26*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Label Content="50" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.Row="3"/>
-                        <Label Content="40%" HorizontalAlignment="Left" Margin="4,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.Column="2"/>
-                        <Label Content="1" HorizontalAlignment="Left" Margin="0,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-                    </Grid>
-                </Border>
-                <TextBox HorizontalAlignment="Right" Height="35" Margin="0,64,142,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
-                <TextBox HorizontalAlignment="Right" Height="35" Margin="0,64,63,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="62"/>
-                <Label Content="Cant." HorizontalAlignment="Right" Margin="0,22,163,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="37"/>
-                <Label Content="Vol." HorizontalAlignment="Right" Margin="0,22,95,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="30"/>
-                <Label Content="Zona" HorizontalAlignment="Right" Margin="0,22,697,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="37"/>
-                <Label Content="Ubicacion" HorizontalAlignment="Right" Margin="0,22,300,0" Grid.Row="1" VerticalAlignment="Top" Height="26" Width="62"/>
-                <Label Content="Stock disponible:" HorizontalAlignment="Right" Margin="0,101,318,0" VerticalAlignment="Top" Height="26" Width="97"/>
-                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,104,206,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81"/>
-                <Label Content="Zona:" HorizontalAlignment="Right" Margin="0,67,705,0" VerticalAlignment="Top" Height="26" Width="39"/>
-                <ComboBox HorizontalAlignment="Right" IsEnabled="False" Margin="0,68,457,0" VerticalAlignment="Top" Width="189" Height="22"/>
-                <Button HorizontalAlignment="Right" Margin="0,128,63,0" Grid.Row="1" VerticalAlignment="Top" Width="62" Height="38">
+                <Label Content="Producto:" HorizontalAlignment="Right" Margin="0,104,786,0" VerticalAlignment="Top" Width="98" Height="26"/>
+                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,104,591,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="189"/>
+                
+                <Label Content="Cantidad" HorizontalAlignment="Right" Margin="0,68,495,0" VerticalAlignment="Top" Height="26" Width="58"/>
+                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,68,367,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
+                <TextBox x:Name="CantIngresar" HorizontalAlignment="Right" Height="26" Margin="0,0,225,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
+                <TextBox x:Name="VolIngresar" HorizontalAlignment="Right" Height="26" Margin="0,0,87,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
+                <Label Content="Cant." HorizontalAlignment="Right" Margin="0,0,280,409" VerticalAlignment="Bottom" Height="26" Width="58"/>
+                <Label Content="Vol." HorizontalAlignment="Right" Margin="0,0,154,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
+                <Label Content="Distribuón en almacén" HorizontalAlignment="Right" Margin="0,164,761,0" VerticalAlignment="Top" Height="26" Width="136"/>
+                <Label Content="Ubicacion" HorizontalAlignment="Right" Margin="0,0,276,457" VerticalAlignment="Bottom" Height="26" Width="62"/>
+                <Label Content="Stock disponible:" HorizontalAlignment="Right" Margin="0,104,456,0" VerticalAlignment="Top" Height="26" Width="97"/>
+                <TextBox HorizontalAlignment="Right" Height="23" Margin="0,104,367,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="81"/>
+                <Label Content="Zona:" HorizontalAlignment="Right" Margin="0,68,845,0" VerticalAlignment="Top" Height="26" Width="39"/>
+                <ComboBox HorizontalAlignment="Right" IsEnabled="False" Margin="0,68,591,0" VerticalAlignment="Top" Width="189" Height="22"/>
+                <Button x:Name="Agregar" HorizontalAlignment="Right" Margin="0,0,22,409" VerticalAlignment="Bottom" Width="43" Height="26">
                     <Image Source="/Assets/check.png"  />
                 </Button>
-                <DataGrid ItemsSource="{Binding Path=LstProductos}" SelectedItem="{Binding Path=SelectedProduct,Mode=TwoWay}" Margin="0,68,764,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="277" Height="297" VerticalAlignment="Top" AutoGenerateColumns="False" Grid.RowSpan="2">
+                <DataGrid x:Name="LstProductosGrid" ItemsSource="{Binding Path=LstProductos}" Margin="0,68,922,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="304" Height="488" VerticalAlignment="Top" AutoGenerateColumns="False"
+                                      SelectedItem="{Binding Path=SelectedProduct,Mode=TwoWay}"
+                                       >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <cal:ActionMessage MethodName="SelectedItemChanged" >
+                                <cal:Parameter Value="{Binding ElementName=LstProductosGrid}" />
+                                <cal:Parameter Value="{Binding ElementName=Almacen}" />
+                            </cal:ActionMessage>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodPro}" IsReadOnly="True" Header="Codigo" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=ProNombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
@@ -102,6 +76,22 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
+                <ScrollViewer HorizontalAlignment="Left" Height="340"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">
+                    <Grid>
+                    <grid:DynamicGrid  x:Name="Almacen" Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"   >
+                    </grid:DynamicGrid>
+                    </Grid>
+                </ScrollViewer>
+                <ScrollViewer HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251">
+                    <grid:DynamicGrid  x:Name="UbicacionCol" Accion="{Binding Accion2}"  Altura="{Binding AlturaU}" IdZona="0" NumRows="{Binding Altura}" NumColumns="{Binding NumColumnsU}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                    </grid:DynamicGrid>
+                </ScrollViewer>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="349,216,0,0" VerticalAlignment="Top" Width="530"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251"/>
+                <Label Content="Cant.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="908,216,0,0" VerticalAlignment="Top"/>
+                <Label Content="Vol.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="1046,216,0,0" VerticalAlignment="Top"/>
+                <TextBox HorizontalAlignment="Left" Height="26" Margin="959,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+                <TextBox HorizontalAlignment="Left" Height="26" Margin="1097,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
 
             </Grid>
         </StackPanel>
