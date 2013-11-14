@@ -76,7 +76,7 @@
                                 </Grid>
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
-                            <TextBox HorizontalAlignment="Left" Height="24" Margin="495,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="63"/>
+                            <TextBox Name="montoTotal" IsEnabled="false" HorizontalAlignment="Left" Height="24" Margin="495,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="63"/>
                             <DataGrid Name="Lista"  HorizontalAlignment="Left" Margin="10,439,0,2" Width="480"/>
                             <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
