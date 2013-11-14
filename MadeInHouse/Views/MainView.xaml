@@ -342,7 +342,7 @@
 
 
         <!--Botones Extra-->
-        <Button x:Name="Cerrar" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1226,5,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+        <Button x:Name="Cerrar" Click="CloseWin_Click" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1226,5,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
             <Image Source="/Assets/cancel.png" Width="35" Height="33"/>
         </Button>
         <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1179,6,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >

@@ -21,7 +21,7 @@
                 <Label x:Name="idPassword" Content="Contraseña:" HorizontalAlignment="Left" Margin="135,129,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
                 <PasswordBox x:Name="TxtPassword" HorizontalAlignment="Left" Height="22" Margin="228,129,0,0" VerticalAlignment="Top" Width="139" PasswordChanged="TxtPassword_PasswordChanged"/>
 
-                <Button x:Name="enter" Content="Ingresar" HorizontalAlignment="Left" Margin="212,193,0,0" VerticalAlignment="Top" Width="75" Height="20" Background="#FF9B9B9B"/>
+                <Button x:Name="enter" KeyboardNavigation.AcceptsReturn="True"  Content="Ingresar" HorizontalAlignment="Left" Margin="212,193,0,0" VerticalAlignment="Top" Width="75" Height="20" Background="#FF9B9B9B"/>
                 <Label x:Name="LblError" Content="{Binding Response}" Foreground="Red" HorizontalAlignment="Left" Margin="268,162,0,0" VerticalAlignment="Top"/>
 
             </Grid>
