@@ -46,8 +46,8 @@
                     </Grid.ColumnDefinitions>
                     <Label Content="Código:" HorizontalAlignment="Left" Margin="17,24,0,0" VerticalAlignment="Top" Height="26" Width="94" Grid.ColumnSpan="2"/>
                         <TextBox  x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="25,24,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" Grid.Column="1" IsEnabled="False"/>
-                        <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="25,55,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="281" Grid.Column="1" IsEnabled="{Binding Editar}"/>
-                    <TextBox  MaxLength="3" x:Name="TxtAbreviatura" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="25,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}" />
+                    <TextBox  Text="{Binding TxtNombre,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="25,55,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="281" Grid.Column="1" IsEnabled="{Binding Editar}"/>
+                    <TextBox  MaxLength="3" Text="{Binding TxtAbreviatura,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="25,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}" />
                     <Label Content="Línea:" HorizontalAlignment="Left" Margin="17,0,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2" Grid.Row="1" Height="26" />
                         <Label Content="Sublínea:" HorizontalAlignment="Left" Margin="17,31,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2" Grid.Row="1" Height="26"/>
                         <Label Content="Unidad Medida:" HorizontalAlignment="Left" Margin="17,62,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2" Grid.Row="1" Height="26"/>
@@ -91,8 +91,8 @@
                         <Grid HorizontalAlignment="Left" Height="49" VerticalAlignment="Top" Width="371" Margin="0,0,-2,0">
                             <Label Content="Stock Mínimo:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                             <Label Content="Stock Máximo:" HorizontalAlignment="Left" Margin="196,10,0,0" VerticalAlignment="Top"/>
-                            <TextBox x:Name="TxtStockMin" HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" IsEnabled="{Binding Editar}"/>
-                            <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="23" Margin="289,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" IsEnabled="{Binding Editar}"/>
+                            <TextBox Text="{Binding TxtStockMin,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" IsEnabled="{Binding Editar}"/>
+                            <TextBox Text="{Binding TxtStockMax,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="289,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="65" IsEnabled="{Binding Editar}"/>
                         </Grid>
                     </GroupBox>
 

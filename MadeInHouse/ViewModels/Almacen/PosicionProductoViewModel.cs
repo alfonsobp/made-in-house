@@ -8,6 +8,9 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using System.Windows.Controls;
 using MadeInHouse.Dictionary;
+using System.Data;
+using MadeInHouse.DataObjects;
+using System.Data.SqlClient;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -229,7 +232,19 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Agregar(DynamicGrid colUbicacion , DynamicGrid zonas)
         {
-            colUbicacion.AgregarProductos(int.Parse(CantIngresar),int.Parse(VolIngresar),SelectedProduct.IdProducto ,zonas.lstZonas);
+            if (selectedProduct != null)
+            {
+                if (int.Parse(selectedProduct.CanAtender) < int.Parse(CantIngresar))
+                {
+                    System.Windows.MessageBox.Show("La cantidad que se intenta ingresar es mayor a la cantidad pendiente");
+                }
+                else
+                {
+                    selectedProduct.CanAtender = (int.Parse(selectedProduct.CanAtender) - int.Parse(CantIngresar)).ToString();
+                    LstProductos = new List<ProductoCant>(LstProductos);
+                    colUbicacion.AgregarProductos(int.Parse(CantIngresar), int.Parse(VolIngresar), SelectedProduct.IdProducto, zonas.lstZonas);
+                }
+            }
             
         }
 
@@ -261,10 +276,16 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Guardar(DynamicGrid almacenDG )
         {
-            uSQL = new UbicacionSQL();
-            
-
-
+            DBConexion db = new DBConexion();
+            db.conn.Open();
+            SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
+            db.cmd.Transaction = trans;
+            uSQL = new UbicacionSQL(db);
+            DataTable temporal= uSQL.CrearUbicacionesDT();
+            uSQL.AgregarFilasToUbicacionesDT(temporal, almacenDG.Ubicaciones, 35);
+            uSQL.AgregarMasivo(temporal, trans);
+            uSQL.ActualizarUbicacionMasivo();
+            trans.Commit();
         }
 
 

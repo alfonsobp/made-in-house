@@ -8,10 +8,12 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects;
 using System.Windows;
+using System.ComponentModel;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class ProductoMantenerViewModel : PropertyChangedBase
+
+    class ProductoMantenerViewModel : Screen, IDataErrorInfo
     {
 
 
@@ -289,6 +291,32 @@ namespace MadeInHouse.ViewModels.Almacen
             Editar = false;
             estado = p.IdProducto;
         }
+
+        #region Validaciones
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "TxtNombre": if (string.IsNullOrEmpty(TxtNombre)) result = "El nombre del producto no se ha definido"; break;
+                    case "TxtAbreviatura": if (string.IsNullOrEmpty(TxtAbreviatura)) result = "No se ha definido la abreviatura"; break;
+                    case "TxtStockMin": if (TxtStockMin<0) result = "El stock no puede ser negativo"; break;
+                    case "TxtStockMax": if (TxtStockMax<TxtStockMin) result = "El stock maximo no puede ser menor al minimo"; break;
+                    
+                };
+                return result;
+            }
+        }
+
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        #endregion
 
 
     }
