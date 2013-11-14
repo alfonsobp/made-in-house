@@ -1194,6 +1194,7 @@
     <Resource Include="Assets\ventas4.png" />
     <Resource Include="Assets\recover.png" />
     <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
+    <Content Include="Dictionary\Libraries\itextsharp.dll" />
     <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
     <Content Include="Dictionary\Libraries\RibbonControlsLibrary.dll" />
     <Content Include="Dictionary\Libraries\System.ComponentModel.Composition.dll" />
