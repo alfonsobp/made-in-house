@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using Caliburn.Micro;
 using System.Windows;
 using System.Windows.Input;
@@ -73,15 +74,19 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void Guardar()
         {
+            //Recuperar Usuarios:
             for (int i = 0; i < LstUsuarioElim.Count; i++)
             {
                 if (lstUsuarioElim[i].Estado == 1)
                 {
                     lstUsuarioElim[i].EstadoHabilitado = 1;
                     UsuarioSQL.ActualizarEstadoUsuarios(lstUsuarioElim[i]);
-                }            
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 4);
+                }
             }
 
+            //Eliminar Usuarios:
             for (int i = 0; i < LstUsuario.Count; i++)
             {
                 if (lstUsuario[i].Estado == 1)
@@ -89,17 +94,25 @@ namespace MadeInHouse.ViewModels.Seguridad
                     lstUsuario[i].Estado = 0;
                     lstUsuarioElim[i].EstadoHabilitado = 0;
                     UsuarioSQL.ActualizarEstadoUsuarios(lstUsuario[i]);
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 3);
                 }
             }
 
+            //Deshabilitar Usuarios:
             for (int i = 0; i < LstUsuario.Count; i++)
             {
                 UsuarioSQL.DeshabilitarUsuario(lstUsuario[i]);
                 if (lstUsuario[i].EstadoHabilitado == 1)
+                {
                     UsuarioSQL.HabilitarUsuario(lstUsuario[i]);
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 5);
+                }
             }
             Actualizar();
         }
+
 
         public void RecuperarUsuarios()
         {
@@ -109,6 +122,8 @@ namespace MadeInHouse.ViewModels.Seguridad
                 {
                     lstUsuarioElim[i].EstadoHabilitado = 1;
                     UsuarioSQL.ActualizarEstadoUsuarios(lstUsuarioElim[i]);
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Recuperar Usuario", lstUsuarioElim[i].CodEmpleado, 4);
                 }
             }
             Actualizar();
@@ -124,13 +139,11 @@ namespace MadeInHouse.ViewModels.Seguridad
                     lstUsuario[i].Estado = 0;
                     lstUsuario[i].EstadoHabilitado = 0;
                     UsuarioSQL.ActualizarEstadoUsuarios(lstUsuario[i]);
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 3);
                 }
             }
             Actualizar();
-
-
-
-
         }
     }
 }

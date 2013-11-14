@@ -112,6 +112,7 @@
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccVentanaSQL.cs" />
+    <Compile Include="DataObjects\Seguridad\LogSQL.cs" />
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleProductoVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Models\Compras\SolicitudAdquisicion.cs" />
     <Compile Include="Models\Reportes\StockRepor.cs" />
     <Compile Include="Models\Seguridad\EstadoHabilitado.cs" />
+    <Compile Include="Models\Seguridad\Log.cs" />
     <Compile Include="Models\Ventas\DetalleProductoVenta.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
     <Compile Include="Models\Ventas\DetalleVentaServicio.cs" />

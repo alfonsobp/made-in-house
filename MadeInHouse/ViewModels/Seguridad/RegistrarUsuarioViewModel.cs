@@ -77,6 +77,7 @@ namespace MadeInHouse.ViewModels.Seguridad
         public RegistrarUsuarioViewModel(MantenerUsuarioViewModel m, Usuario u)
         {
             //EDITAR USUARIO
+            IPHostEntry IPHost = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
             txtCodUsuario = u.CodEmpleado.ToString();
@@ -364,6 +365,8 @@ namespace MadeInHouse.ViewModels.Seguridad
                                 e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
                                 EnviarCorreo(e, contrasenhaGenerada);
                                 MessageBox.Show("¡Empleado registrado con Éxito!");
+                                //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                                DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Usuario", u.CodEmpleado, 1);
                             }
 
                         }
@@ -387,8 +390,9 @@ namespace MadeInHouse.ViewModels.Seguridad
                 usuarioSeleccionado.Rol.IdRol = IdRolValue;
                 usuarioSeleccionado.EstadoHabilitado = EstHabilitadoValue;
                 usuarioSeleccionado.IdTienda = SelectedTienda;
-                //MessageBox.Show("Id Tienda: " + SelectedTienda);
-                //usuarioSeleccionado.Estado = 1;
+                //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Usuario", u.CodEmpleado, 1);
+
                 int e = UsuarioSQL.EditarUsuario(usuarioSeleccionado);
 
                 if (e == 1)
@@ -430,7 +434,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                     var client = new SmtpClient("smtp.gmail.com", 587)
                     {
                         // Add credentials if the SMTP server requires them.
-                        Credentials = new NetworkCredential("sw.grupo04@gmail.com", "insignia"),//adp980407912
+                        Credentials = new NetworkCredential("madeinhouse.sw@gmail.com", "insignia"),//adp980407912
                         EnableSsl = true
                     };
 
