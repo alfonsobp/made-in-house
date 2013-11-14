@@ -21,9 +21,12 @@ using MadeInHouse.DataObjects.Seguridad;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 
+using System.ComponentModel;
+
+
 namespace MadeInHouse.ViewModels.Seguridad
 {
-    class RegistrarUsuarioViewModel : PropertyChangedBase
+    class RegistrarUsuarioViewModel : Screen, IDataErrorInfo
     {
         public RegistrarUsuarioViewModel()
         {
@@ -297,7 +300,6 @@ namespace MadeInHouse.ViewModels.Seguridad
                 LblError = "Ingrese Código Usuario";
         }
 
-
         public void ResetContrasenha()
         {
             Util util = new Util();
@@ -324,80 +326,83 @@ namespace MadeInHouse.ViewModels.Seguridad
         }
         public void GuardarUsuario()
         {
-            //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
-            Util util = new Util();
-            int k = 0;
-            CifrarAES cifradoAES = new CifrarAES();
-            string contrasenhaGenerada = util.generarContrasenha();
-            string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenhaGenerada, "MadeInHouse",
-                    "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-            //MessageBox.Show("PASS: " + contrasenhaGenerada);
-
-            Usuario u = new Usuario();
-            u.CodEmpleado = txtCodUsuario;
-            u.EstadoHabilitado = 1;
-            u.Contrasenha = contrasenhaCifrada;
-            u.Estado = 1;
-            u.Rol = RolSQL.buscarRolPorId(IdRolValue);
-            u.IdTienda = SelectedTienda;
-            if (indicador == 1)
+            if (validar())
             {
-                //debe existir y estar disponible
-                if (!String.IsNullOrWhiteSpace(TxtCodUsuario) && IdRolValue != 0)
+
+                //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
+                Util util = new Util();
+                int k = 0;
+                CifrarAES cifradoAES = new CifrarAES();
+                string contrasenhaGenerada = util.generarContrasenha();
+                string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenhaGenerada, "MadeInHouse",
+                        "MadeInHouse", "MD5", 22, "1234567891234567", 128);
+                //MessageBox.Show("PASS: " + contrasenhaGenerada);
+
+                Usuario u = new Usuario();
+                u.CodEmpleado = txtCodUsuario;
+                u.EstadoHabilitado = 1;
+                u.Contrasenha = contrasenhaCifrada;
+                u.Estado = 1;
+                u.Rol = RolSQL.buscarRolPorId(IdRolValue);
+                u.IdTienda = SelectedTienda;
+                if (indicador == 1)
                 {
-                    int existe = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
-                    //Empleado existente:
-                    if (existe == 1)
+                    //debe existir y estar disponible
+                    if (IdRolValue != 0)
                     {
-                        int dis = 0;
-                        dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
-                        if (dis == 1)
+                        int existe = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
+                        //Empleado existente:
+                        if (existe == 1)
                         {
-                            //Está disponible
-
-                            //FALTA VALIDACION DE ENVIO DE CORREO
-                            
-                            k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
-
-                            if (k == 1)
+                            int dis = 0;
+                            dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
+                            if (dis == 1)
                             {
-                                Empleado e = new Empleado();
-                                e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
-                                EnviarCorreo(e, contrasenhaGenerada);
-                                MessageBox.Show("¡Empleado registrado con Éxito!");
+                                //Está disponible
+
+                                //FALTA VALIDACION DE ENVIO DE CORREO
+
+                                k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
+
+                                if (k == 1)
+                                {
+                                    Empleado e = new Empleado();
+                                    e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
+                                    EnviarCorreo(e, contrasenhaGenerada);
+                                    MessageBox.Show("¡Empleado registrado con Éxito!");
+                                }
+
                                 //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
                                 DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Usuario", u.CodEmpleado, 1);
                             }
-
+                            else
+                                MessageBox.Show("El usuario NO está disponible");
                         }
                         else
-                            MessageBox.Show("El usuario NO está disponible");
+                        {
+                            MessageBox.Show("El Empleado NO Existe");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("El Empleado NO Existe");
+                        MessageBox.Show("Seleccione un rol", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
-                else
+                //EDITAR USUARIO
+                if (indicador == 2)
                 {
-                    MessageBox.Show("Contraseñas diferentes o campos vacíos");
-                }
-            }
-            //EDITAR USUARIO
-            if (indicador == 2)
-            {
-                usuarioSeleccionado.Contrasenha = UsuarioSQL.buscarPass(u.CodEmpleado);
-                usuarioSeleccionado.Rol.IdRol = IdRolValue;
-                usuarioSeleccionado.EstadoHabilitado = EstHabilitadoValue;
-                usuarioSeleccionado.IdTienda = SelectedTienda;
-                //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
-                DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Usuario", u.CodEmpleado, 1);
+                    usuarioSeleccionado.Contrasenha = UsuarioSQL.buscarPass(u.CodEmpleado);
+                    usuarioSeleccionado.Rol.IdRol = IdRolValue;
+                    usuarioSeleccionado.EstadoHabilitado = EstHabilitadoValue;
+                    usuarioSeleccionado.IdTienda = SelectedTienda;
+                    //MessageBox.Show("Id Tienda: " + SelectedTienda);
+                    //usuarioSeleccionado.Estado = 1;
+                    int e = UsuarioSQL.EditarUsuario(usuarioSeleccionado);
 
-                int e = UsuarioSQL.EditarUsuario(usuarioSeleccionado);
-
-                if (e == 1)
-                {
-                    MessageBox.Show("¡Empleado modificado con Éxito!");
+                    if (e == 1)
+                    {
+                        MessageBox.Show("¡Empleado modificado con Éxito!");
+                    }
                 }
             }
         }
@@ -418,7 +423,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                 // Create a message and set up the recipients.
 
-                MailMessage message = new MailMessage("sw.grupo04@gmail.com", empleado.EmailEmpresa,
+                MailMessage message = new MailMessage("madeinhouse.sw@gmail.com", empleado.EmailEmpresa,
                                                       "MadeInHouse - Contraseña generada", bodyMessage);
 
                 message.IsBodyHtml = true;
@@ -434,6 +439,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                     var client = new SmtpClient("smtp.gmail.com", 587)
                     {
                         // Add credentials if the SMTP server requires them.
+                      
                         Credentials = new NetworkCredential("madeinhouse.sw@gmail.com", "insignia"),//adp980407912
                         EnableSsl = true
                     };
@@ -455,5 +461,42 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         #endregion
 
+        #region validacion
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = string.Empty;
+                switch (columnName)
+                {
+                    case "TxtCodUsuario": if (string.IsNullOrEmpty(TxtCodUsuario)) result = "El código de usuario no puede ser vacio"; break;
+                    
+                };
+                return result;
+            }
+        }
+
+        public Boolean validar()
+        {
+
+            if (string.IsNullOrEmpty(TxtCodUsuario))
+            {
+                MessageBox.Show("El Código de usuario no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            }
+
+
+            return true;
+
+        }
+
+        #endregion
     }
 }
