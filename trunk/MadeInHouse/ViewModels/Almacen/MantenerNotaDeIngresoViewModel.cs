@@ -362,6 +362,7 @@ namespace MadeInHouse.ViewModels.Almacen
                             pxa.CanAtender = TxtCantPro;
                             pxa.CanAtend = "0";
                             pxa.Can = "0";
+                            pxa.IdProducto=lstAux.IdProducto;
                             pxa.CodPro = lstAux.CodigoProd.ToString();
                             pxa.ProNombre = lstAux.Nombre;
                             LstProductos.Add(pxa);
@@ -379,6 +380,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.Can = "0";
                         pxa.CodPro = lstAux.CodigoProd.ToString();
                         pxa.ProNombre = lstAux.Nombre;
+                        pxa.IdProducto = lstAux.IdProducto;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoCant>(LstProductos);
