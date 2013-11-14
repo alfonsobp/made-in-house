@@ -13,6 +13,7 @@ using MadeInHouse.Models.Seguridad;
 using MadeInHouse.Views.Seguridad;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.RRHH;
+using MadeInHouse.Views.Reportes;
 using System.Diagnostics;
 
 namespace MadeInHouse.ViewModels
@@ -604,6 +605,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[59] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteProductosCanjePuntosViewModel { DisplayName = "Reporte de Productos canjeados por Puntos" });
         }
+
 
         #endregion
 

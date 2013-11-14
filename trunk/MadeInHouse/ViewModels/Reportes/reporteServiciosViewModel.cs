@@ -10,6 +10,10 @@ using MadeInHouse.Views.Reportes;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.ViewModels.Almacen;
+using MadeInHouse.Models.Ventas;
+using MadeInHouse.ViewModels.Ventas;
 
 namespace MadeInHouse.ViewModels.Reportes
 {
@@ -33,30 +37,6 @@ namespace MadeInHouse.ViewModels.Reportes
             set { fechaFin = value; NotifyOfPropertyChange(() => FechaFin); }
         }
 
-        private List<String> lstSede;
-
-        public List<String> LstSede
-        {
-            get { return lstSede; }
-            set { lstSede = value; NotifyOfPropertyChange(() => LstSede); }
-        }
-
-        private List<String> lstProveedores;
-
-        public List<String> LstProveedores
-        {
-            get { return lstProveedores; }
-            set { lstProveedores = value; NotifyOfPropertyChange(() => LstProveedores); }
-        }
-
-        private List<String> lstCategoria;
-
-        public List<String> LstCategoria
-        {
-            get { return lstCategoria; }
-            set { lstCategoria = value; NotifyOfPropertyChange(() => LstCategoria); }
-        }
-
         private List<Serviciorepor> lstServiciorepor;
 
         public List<Serviciorepor> LstServiciorepor 
@@ -72,16 +52,76 @@ namespace MadeInHouse.ViewModels.Reportes
             serviciorepSeleccionado = ((sender as DataGrid).SelectedItem as Serviciorepor);
         }
 
-        public void test()
+
+        private String txtTienda;
+
+        public String TxtTienda
         {
-            MessageBox.Show("El servicio tiene Proveedor = " + serviciorepSeleccionado.Proveedor + " , nombre = " + serviciorepSeleccionado.Nombre +
-                            " , Categoria = " + serviciorepSeleccionado.Categoria);
+            get { return txtTienda; }
+            set { txtTienda = value; NotifyOfPropertyChange(() => TxtTienda); }
+        }
+
+        private Tienda tien;
+
+        public Tienda Tien
+        {
+            get { return tien; }
+            set { tien = value; NotifyOfPropertyChange(() => Tien); TxtTienda = tien.Nombre; }
+        }
+
+        public void BuscarTienda()
+        {
+            MyWindowManager w = new MyWindowManager();
+            w.ShowWindow(new BuscarTiendaViewModel(this, 2));
+        }
+
+        private String txtCliente;
+
+        public String TxtCliente
+        {
+            get { return txtCliente; }
+            set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
+        }
+
+        private Tarjeta cli;
+
+        public Tarjeta Cli
+        {
+            get { return cli; }
+            set { cli = value; NotifyOfPropertyChange(() => Cli); TxtCliente = cli.Cliente.NombreCompleto; }
+        }
+
+        public void BuscarCliente()
+        {
+            MyWindowManager w = new MyWindowManager();
+            w.ShowWindow(new ClienteBuscarViewModel(this, 2));
+        }
+
+        private Double txtMonto;
+
+        public Double TxtMonto
+        {
+            get { return txtMonto; }
+            set { txtMonto = value; NotifyOfPropertyChange(() => TxtMonto); }
         }
 
         public void GenerarReporte()
         {
-            lstServiciorepor = DataObjects.ReportesSQL.GenerarReporServicios(null, null, null, null, null);
+            double mt = 0;
+            lstServiciorepor = DataObjects.ReportesSQL.GenerarReporServicios(txtTienda, txtCliente, fechaIni, fechaFin, ref mt);
+            TxtMonto = mt;
             NotifyOfPropertyChange("LstServiciorepor");
+        }
+
+        public void ActualizarBusqueda()
+        {
+            this.GenerarReporte();
+        }
+
+        public void LimpiarCriterios()
+        {
+            TxtCliente="";
+            TxtTienda="";
         }
     }
 }

@@ -16,20 +16,20 @@ namespace MadeInHouse.Models.Reportes
             set { fecha = value; }
         }
 
-        String proveedor;
+        String cliente;
 
-        public String Proveedor
+        public String Cliente
         {
-            get { return proveedor; }
-            set { proveedor = value; }
+            get { return cliente; }
+            set { cliente = value; }
         }
 
-        String categoria;
+        String tienda;
 
-        public String Categoria
+        public String Tienda
         {
-            get { return categoria; }
-            set { categoria = value; }
+            get { return tienda; }
+            set { tienda = value; }
         }
 
         String nombre;
@@ -40,9 +40,9 @@ namespace MadeInHouse.Models.Reportes
             set { nombre = value; }
         }
 
-        String precio;
+        Double precio;
 
-        public String Precio
+        public Double Precio
         {
             get { return precio; }
             set { precio = value; }
@@ -53,13 +53,13 @@ namespace MadeInHouse.Models.Reportes
 
         }
 
-        public Serviciorepor(DateTime fecha, String proveedor, String categoria,
-                        String nombre, String precio)
+        public Serviciorepor(DateTime fecha, String cliente, String tienda,
+                        String nombre, Double precio)
         {
             this.fecha = fecha;
             this.nombre = nombre;
-            this.categoria = categoria;
-            this.proveedor = proveedor;
+            this.cliente = cliente;
+            this.tienda = tienda;
             this.precio = precio;
         }
 

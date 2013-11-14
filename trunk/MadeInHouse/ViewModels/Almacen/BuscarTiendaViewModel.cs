@@ -204,7 +204,19 @@ namespace MadeInHouse.ViewModels.Almacen
             this.reporteStockViewModel = reporteStockViewModel;
             this.ventanaAccion = ventanaAccion;
         }
-        
+
+        private Reportes.reporteServiciosViewModel reporteServiciosViewModel;
+        public BuscarTiendaViewModel(Reportes.reporteServiciosViewModel reporteServiciosViewModel, int ventanaAccion)
+        {
+            uSQL = new UbigeoSQL();
+            CmbDpto = uSQL.BuscarDpto();
+            deft = new Ubigeo();
+            deft.Nombre = "TODOS";
+            CmbDpto.Insert(0, deft);
+            Index1 = 0;
+            this.reporteServiciosViewModel = reporteServiciosViewModel;
+            this.ventanaAccion = ventanaAccion;
+        }
 
         #endregion
 
@@ -256,6 +268,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (reporteStockViewModel != null)
                 {
                     reporteStockViewModel.Tien = tiendaSel;
+                    this.TryClose();
+                }
+            }
+            else if (ventanaAccion == 2)
+            {
+                Tienda tiendaSel = ((sender as DataGrid).SelectedItem as Tienda);
+                if (reporteServiciosViewModel != null)
+                {
+                    reporteServiciosViewModel.Tien = tiendaSel;
                     this.TryClose();
                 }
             }

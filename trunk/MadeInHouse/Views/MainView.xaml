@@ -299,7 +299,6 @@
                 <Button x:Name="AbrirReporteStock"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,1,117,0"/>
                 <Button x:Name="AbrirReportePromocionesTop"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Top Promociones" FontSize="20" Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,0,130,1"/>
                 <Button x:Name="AbrirReporteProductosCanjePuntos"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Productos Canje por Puntos" FontSize="20" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,1,38,0"/>
-
             </Grid>
         </Expander>
 

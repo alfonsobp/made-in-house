@@ -28,10 +28,10 @@
                         <Button ToolTip="Restaurar Ventana">
                             <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                         </Button>
-                        <Button ToolTip="Limpiar criterios del reporte">
+                        <Button x:Name="LimpiarCriterios" ToolTip="Limpiar criterios del reporte">
                             <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                         </Button>
-                        <Button ToolTip="Actualizar datos" Height="30" Width="30">
+                        <Button x:Name="ActualizarBusqueda" ToolTip="Actualizar datos" Height="30" Width="30">
                             <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                         </Button>
                         <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
@@ -46,69 +46,32 @@
                             <Button x:Name="GenerarReporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
-                            <GroupBox Header="Proveedores" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
+                            <GroupBox Header="Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <ListBox Name="listBoxProveedores1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                                        <ListBoxItem Content="Electrisistas Unidos"/>
-                                        <ListBoxItem Content="Instalaciones 24Hrs"/>
-                                        <ListBoxItem Content="Armando Muebles SAC"/>
-                                    </ListBox>
-                                    <ListBox x:Name="LstProveedores" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                                        <ListBoxItem Content="Fontaneros SAC"/>
-                                    </ListBox>
-                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
-                                    </Button>
-                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    <TextBox IsEnabled="False" x:Name="TxtTienda" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="150,40,0,0"/>
+                                    <Label Content="Tienda:" HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top"/>
+                                    <Button x:Name="BuscarTienda" HorizontalAlignment="Left" Width="45" Margin="341,38,0,0" Height="25" VerticalAlignment="Top">
+                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="35" RenderTransformOrigin="0.077,0.441" />
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Categorías" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
+                            <GroupBox Header="Cliente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <ListBox Name="listBoxCategorias1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                                        <ListBoxItem Content="Baños"/>
-                                        <ListBoxItem Content="Techos"/>
-                                        <ListBoxItem Content="Electronicos"/>
-                                    </ListBox>
-                                    <ListBox x:Name="LstCategoria" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                                        <ListBoxItem Content="Muebles"/>
-                                    </ListBox>
-                                    <Button Name="derecha2" Margin="202,24,290,52" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
-                                    </Button>
-                                    <Button Name="izquierda2" Margin="202,49,290,28" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
-                                    </Button>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
-                                <Grid>
-                                    <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8">
-                                        <ListBoxItem Content="San Miguel"/>
-                                        <ListBoxItem Content="La Molina"/>
-                                        <ListBoxItem Content="Puente Piedra"/>
-                                        <ListBoxItem Content="Surco"/>
-                                    </ListBox>
-                                    <ListBox x:Name="LstSede" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10">
-                                        <ListBoxItem Content="San Borja"/>
-                                    </ListBox>
-                                    <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
-                                    </Button>
-                                    <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    <TextBox IsEnabled="False" x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="150,40,0,0"/>
+                                    <Label Content="Cliente:" HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top"/>
+                                    <Button x:Name="BuscarCliente" HorizontalAlignment="Left" Width="45" Margin="341,38,0,0" Height="25" VerticalAlignment="Top">
+                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="35" RenderTransformOrigin="0.077,0.441" />
                                     </Button>
                                 </Grid>
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
-                            <TextBox HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
+                            <TextBox x:Name="TxtMonto" HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
                             <DataGrid x:Name="LstServiciorepor" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
-                                      HorizontalAlignment="Left" Margin="10,439,0,10" Width="438" AutoGenerateColumns="false">
+                                      HorizontalAlignment="Left" Margin="10,335,0,10" Width="438" AutoGenerateColumns="false">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="80" Binding="{Binding Path=Fecha}" Header="Fecha"/>
-                                    <DataGridTextColumn Width="70" Binding="{Binding Path=Proveedor}" Header="Proveedor"/>
-                                    <DataGridTextColumn Width="100" Binding="{Binding Path=Categoria}" Header="Categoría"/>
+                                    <DataGridTextColumn Width="70" Binding="{Binding Path=Cliente}" Header="Cliente"/>
+                                    <DataGridTextColumn Width="100" Binding="{Binding Path=Tienda}" Header="Tienda"/>
                                     <DataGridTextColumn Width="120" Binding="{Binding Path=Nombre}" Header="Servicio"/>
                                     <DataGridTextColumn Width="70" Binding="{Binding Path=Precio}" Header="Precio"/>
                                 </DataGrid.Columns>

@@ -14,7 +14,7 @@ using MadeInHouse.Models;
 using System.Data.OleDb;
 using System.Data;
 using MadeInHouse.Dictionary;
-namespace MadeInHouse.ViewModels.Compras
+using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
 {
     class BuscarOrdenCompraViewModel:Screen
     {
@@ -267,6 +267,18 @@ namespace MadeInHouse.ViewModels.Compras
         
         }
 
+        private reporteComprasViewModel reporteComprasViewModel;
+
+        public BuscarOrdenCompraViewModel(reporteComprasViewModel reporteComprasViewModel, int accionVentana)
+        {
+            // TODO: Complete member initialization
+            this.reporteComprasViewModel = reporteComprasViewModel;
+            this.ventanaAccion = accionVentana;
+            this.estado = false;
+            this.selectedEstado = "EN EJECUCION";
+            LstOrdenes = new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
+
+        }
         
         
         #endregion
@@ -282,7 +294,7 @@ namespace MadeInHouse.ViewModels.Compras
             }
             else if (ventanaAccion == 1)
             {
-                
+
                 if (this.mantenerNotaDeIngresoViewModel != null)
                 {
                     mantenerNotaDeIngresoViewModel.SelectedOrden = OrdenSelected;
@@ -291,7 +303,11 @@ namespace MadeInHouse.ViewModels.Compras
             }
             else if (ventanaAccion == 2)
             {
-                
+                if (this.reporteComprasViewModel != null)
+                {
+                    reporteComprasViewModel.OrdComp = OrdenSelected;
+                    this.TryClose();
+                }
             }
             else if (ventanaAccion == 3)
             {
