@@ -39,6 +39,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Caliburn.Micro.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp, Version=5.4.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Nueva carpeta (2)\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -112,7 +116,9 @@
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\ModoPagoSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
+    <Compile Include="Dictionary\Correo.cs" />
     <Compile Include="Dictionary\ExcelUtiles.cs" />
+    <Compile Include="Dictionary\GenerarPDF.cs" />
     <Compile Include="Models\Almacen\Abastecimiento.cs" />
     <Compile Include="Models\Almacen\AbastecimientoModel.cs" />
     <Compile Include="Models\Almacen\AbastecimientoProducto.cs" />
