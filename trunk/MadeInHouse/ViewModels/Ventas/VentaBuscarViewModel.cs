@@ -26,7 +26,6 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             win.ShowWindow(new Ventas.VentaEditarViewModel());
         }
-
         public void AbrirBuscarCliente()
         {
             win.ShowWindow(new Ventas.ClienteBuscarViewModel());

@@ -35,6 +35,14 @@ namespace MadeInHouse.ViewModels.Compras
             ActualizarServicio();
         }
 
+        public BuscadorServicioViewModel(Ventas.VentaCajeroRegistrarViewModel ventaCajeroRegistrarViewModel, int p)
+        {
+            // TODO: Complete member initialization
+            this.ventaCajeroRegistrarViewModel = ventaCajeroRegistrarViewModel;
+            this.ventanaAccion = p;
+            ActualizarServicio();
+        }
+
 
 
         //Atributos de la clase
@@ -73,6 +81,8 @@ namespace MadeInHouse.ViewModels.Compras
 
         private List<MadeInHouse.Models.Compras.Servicio> lstServicio;
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
+        private Ventas.VentaCajeroRegistrarViewModel ventaCajeroRegistrarViewModel;
+        private int p;
 
         public List<MadeInHouse.Models.Compras.Servicio> LstServicio
         {
@@ -111,9 +121,14 @@ namespace MadeInHouse.ViewModels.Compras
                 Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
                 win.ShowWindow(obj);
             }
-            else
+            else if (ventanaAccion == 1)
             {
                 Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this, ventaRegistrarViewModel, 1);
+                win.ShowWindow(obj);
+            }
+            else
+            {
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this, ventaCajeroRegistrarViewModel, 2);
                 win.ShowWindow(obj);
             }
 

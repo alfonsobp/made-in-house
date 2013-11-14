@@ -81,17 +81,17 @@
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/find.png" Stretch="Uniform"/>
                                     </Button.Background>
                                 </Button>
-                                <Button ToolTip="Agregar Servicio" x:Name="AgregarDetalleServicio" Content="" Margin="667,8,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="2.964,0.536" HorizontalAlignment="Left" Width="28">
+                                <Button ToolTip="Agregar Servicio" x:Name="AgregarDetalleServicio" Content="" Margin="416,10,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="2.964,0.536" HorizontalAlignment="Left" Width="28">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>
                                     </Button.Background>
                                 </Button>
 
 
-                                <DataGrid x:Name="LstVenta2" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
+                                <DataGrid x:Name="LstVentaServicios" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
                                   Margin="10,50,10,10" AutoGenerateColumns="False" CanUserAddRows="False">
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="80" Header="Código"/>
+                                        <DataGridTextColumn Binding="{Binding Path=IdServicio}" Width="80" Header="Código"/>
                                         <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="400" Header="Descripción"/>
                                         <DataGridTextColumn Binding="{Binding Path=Precio}" Width="100" Header="Precio"/>
                                     </DataGrid.Columns>

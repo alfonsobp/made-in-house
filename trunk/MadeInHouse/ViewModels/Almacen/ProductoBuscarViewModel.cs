@@ -57,11 +57,9 @@ namespace MadeInHouse.ViewModels.Almacen
         }        
 
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
-        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
+        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion):this()
         {
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
-            LineaProductoSQL lpSQL = new LineaProductoSQL();
-            LstLineasProducto = lpSQL.ObtenerLineasProducto();
             this.ventanaAccion = ventanaAccion;
         }
 

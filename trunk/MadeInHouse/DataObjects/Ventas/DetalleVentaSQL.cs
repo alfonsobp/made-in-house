@@ -70,5 +70,26 @@ namespace MadeInHouse.DataObjects.Ventas
                 MessageBox.Show(e.StackTrace.ToString());
             }
         }
+
+        public void AgregarServicios(Venta v, DetalleVentaServicio item)
+        {
+            DBConexion db = new DBConexion();
+            db.cmd.CommandText = "INSERT INTO DetalleVentaServicio(idServicio,idVenta,estado,idProducto) VALUES(@idServicio,@idVenta,@estado,@idProducto)";
+            db.cmd.Parameters.AddWithValue("@idServicio", item.IdServicio);
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+            db.cmd.Parameters.AddWithValue("@estado", v.Estado);
+            db.cmd.Parameters.AddWithValue("@idProducto", item.IdProducto);
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+        }
     }
 }

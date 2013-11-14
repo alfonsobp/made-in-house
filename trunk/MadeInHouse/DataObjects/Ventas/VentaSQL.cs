@@ -13,13 +13,13 @@ namespace MadeInHouse.DataObjects.Ventas
     class VentaSQL
     {
 
-        public int Agregar(Venta v, string tipo)
+        public int Agregar(Venta v)
         {
             DBConexion db = new DBConexion();
             int k = 0;
 
-            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,idCliente,tipoVenta,fechaReg,fechaDespacho,tipoDocPago)" +
-                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@idCliente,@tipoVenta,@fechaReg,@fechaDespacho,@tipoDocPago)";
+            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,idCliente,tipoVenta,fechaReg,tipoDocPago,idUsuario,codTarjeta)" +
+                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@idCliente,@tipoVenta,@fechaReg,@tipoDocPago,@idUsuario,@codTarjeta)";
             //db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
             db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
             db.cmd.Parameters.AddWithValue("@monto", v.Monto);
@@ -27,17 +27,11 @@ namespace MadeInHouse.DataObjects.Ventas
             db.cmd.Parameters.AddWithValue("@IGV", v.Igv);
             db.cmd.Parameters.AddWithValue("@ptsGanados", v.PtosGanados);
             db.cmd.Parameters.AddWithValue("@fechaReg", v.FechaReg);
-            //db.cmd.Parameters.AddWithValue("@fechaMod", null);
             db.cmd.Parameters.AddWithValue("@estado", v.Estado);
-            //db.cmd.Parameters.AddWithValue("@idUsuario", null);
-
+            db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
             db.cmd.Parameters.AddWithValue("@idCliente", v.IdCliente);
-            db.cmd.Parameters.AddWithValue("@tipoVenta", tipo);
-
-            if (tipo.Equals("obra"))
-                db.cmd.Parameters.AddWithValue("@fechaDespacho", v.FechaDespacho);
-            else
-                db.cmd.Parameters.AddWithValue("@fechaDespacho", DateTime.Now);
+            db.cmd.Parameters.AddWithValue("@tipoVenta", v.TipoVenta);
+            db.cmd.Parameters.AddWithValue("@codTarjeta", v.CodTarjeta);
             
 
             try
@@ -46,7 +40,6 @@ namespace MadeInHouse.DataObjects.Ventas
                 k = db.cmd.ExecuteNonQuery();
                 db.conn.Close();
 
-                
                 //sacar la ultima insersion
                 DBConexion db2 = new DBConexion();
 
@@ -68,13 +61,138 @@ namespace MadeInHouse.DataObjects.Ventas
                 {
                     AgregarPagoVenta(v, vp);
                 }
+                //agregar numDocPagoProducto
+                v.NumDocPago = SacaNumDocPago(v,1);
+                actualizaNumDocProductos(v);
+
+                foreach (VentaPago vp in v.LstPagos)
+                {
+                    AgregarPagoVenta(v, vp);
+                }
+
+                if (v.LstDetalleServicio.Count() > 0)
+                {
+                    foreach (DetalleVentaServicio item in v.LstDetalleServicio)
+                    {
+                        dvm.AgregarServicios(v, item);
+                    }
+                    //agregar numDocPagoServicio
+                    v.NumDocPagoServicio = SacaNumDocPago(v,2);
+                    actualizaNumDocServicios(v);
+                }
 
                 db2.conn.Close();
-
             }
             catch (SqlException e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+        public int AgregarVentaObra(Venta v)
+        {
+            DBConexion db = new DBConexion();
+            int k = 0;
+
+            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,idCliente,tipoVenta,fechaReg,fechaDespacho,tipoDocPago,idUsuario,codTarjeta)" +
+                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@idCliente,@tipoVenta,@fechaReg,@fechaDespacho,@tipoDocPago,@idUsuario,@codTarjeta)";
+            //db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
+            db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
+            db.cmd.Parameters.AddWithValue("@monto", v.Monto);
+            db.cmd.Parameters.AddWithValue("@descuento", v.Descuento);
+            db.cmd.Parameters.AddWithValue("@IGV", v.Igv);
+            db.cmd.Parameters.AddWithValue("@ptsGanados", v.PtosGanados);
+            db.cmd.Parameters.AddWithValue("@fechaReg", v.FechaReg);
+            db.cmd.Parameters.AddWithValue("@estado", v.Estado);
+            db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@idCliente", v.IdCliente);
+            db.cmd.Parameters.AddWithValue("@tipoVenta", v.TipoVenta);
+            db.cmd.Parameters.AddWithValue("@codTarjeta", v.CodTarjeta);
+            db.cmd.Parameters.AddWithValue("@fechaDespacho", v.FechaDespacho);
+
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+
+                //sacar la ultima insersion
+                DBConexion db2 = new DBConexion();
+
+                db2.cmd.CommandText = "SELECT MAX (idVenta) as id FROM Venta";
+
+                db2.conn.Open();
+                SqlDataReader rs = db2.cmd.ExecuteReader();
+                rs.Read();
+                v.IdVenta = Convert.ToInt32(rs["id"].ToString());
+
+                //generar orden de despacho
+                InsertaOrdenDeDespacho(v);
+
+                //guardar el detalle de la venta
+                DetalleVentaSQL dvm = new DetalleVentaSQL();
+                foreach (DetalleVenta dv in v.LstDetalle)
+                {
+                    dvm.Agregar(v, dv);
+                }
+
+                foreach (VentaPago vp in v.LstPagos)
+                {
+                    AgregarPagoVenta(v, vp);
+                }
+                //agregar numDocPagoProducto
+                v.NumDocPago = SacaNumDocPago(v,1);
+                actualizaNumDocProductos(v);
+
+                foreach (VentaPago vp in v.LstPagos)
+                {
+                    AgregarPagoVenta(v, vp);
+                }
+
+                if (v.LstDetalleServicio.Count > 0)
+                {
+                    foreach (DetalleVentaServicio item in v.LstDetalleServicio)
+                    {
+                        dvm.AgregarServicios(v, item);
+                    }
+                    //agregar numDocPagoServicio
+                    v.NumDocPagoServicio = SacaNumDocPago(v,2);
+                    actualizaNumDocServicios(v);
+                }
+
+                db2.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+        private int InsertaOrdenDeDespacho(Venta v)
+        {
+            DBConexion db = new DBConexion();
+            int k = 0;
+
+            db.cmd.CommandText = "INSERT INTO OrdenDespacho(idVenta,fechaDespacho,estado)" +
+                                  " VALUES (@idVenta,@fechaDespacho,@estado)";
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+            db.cmd.Parameters.AddWithValue("@fechaDespacho", v.FechaDespacho);
+            db.cmd.Parameters.AddWithValue("@estado", 1);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
             }
 
             return k;
@@ -176,5 +294,173 @@ namespace MadeInHouse.DataObjects.Ventas
         {
             throw new NotImplementedException();
         }
+
+        public int AgregarSinCliente(Venta v)
+        {
+            DBConexion db = new DBConexion();
+            int k = 0;
+
+            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,tipoVenta,fechaReg,tipoDocPago,idUsuario)" +
+                                  " VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@tipoVenta,@fechaReg,@tipoDocPago,@idUsuario)";
+            //db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
+            db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
+            db.cmd.Parameters.AddWithValue("@monto", v.Monto);
+            db.cmd.Parameters.AddWithValue("@descuento", v.Descuento);
+            db.cmd.Parameters.AddWithValue("@IGV", v.Igv);
+            db.cmd.Parameters.AddWithValue("@ptsGanados", v.PtosGanados);
+            db.cmd.Parameters.AddWithValue("@fechaReg", v.FechaReg);
+            db.cmd.Parameters.AddWithValue("@estado", v.Estado);
+            db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
+            db.cmd.Parameters.AddWithValue("@tipoVenta", v.TipoVenta);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+
+                //sacar la ultima insersion
+                DBConexion db2 = new DBConexion();
+
+                db2.cmd.CommandText = "SELECT MAX (idVenta) as id FROM Venta";
+
+                db2.conn.Open();
+                SqlDataReader rs = db2.cmd.ExecuteReader();
+                rs.Read();
+                v.IdVenta = Convert.ToInt32(rs["id"].ToString());
+
+                //guardar el detalle de la venta
+                DetalleVentaSQL dvm = new DetalleVentaSQL();
+                foreach (DetalleVenta dv in v.LstDetalle)
+                {
+                    dvm.Agregar(v, dv);
+                }
+                //agregar numDocPagoProducto
+                v.NumDocPago = SacaNumDocPago(v,1);
+                actualizaNumDocProductos(v);
+
+                foreach (VentaPago vp in v.LstPagos)
+                {
+                    AgregarPagoVenta(v, vp);
+                }
+
+                if (v.LstDetalleServicio.Count > 0)
+                {
+                    foreach (DetalleVentaServicio item in v.LstDetalleServicio)
+                    {
+                        dvm.AgregarServicios(v, item);
+                    }
+                    //agregar numDocPagoServicio
+                    v.NumDocPagoServicio = SacaNumDocPago(v,2);
+                    actualizaNumDocServicios(v);
+                }
+
+                db2.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
+        }
+
+        private void actualizaNumDocServicios(Venta v)
+        {
+            DBConexion db = new DBConexion();
+
+            db.cmd.CommandText = "UPDATE Venta SET numDocPagoServicio=@numDocPagoServicio WHERE idVenta=@idVenta";
+            db.cmd.Parameters.AddWithValue("@numDocPagoServicio", v.NumDocPagoServicio);
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+
+        private void actualizaNumDocProductos(Venta v)
+        {
+            DBConexion db = new DBConexion();
+
+            db.cmd.CommandText = "UPDATE Venta SET numDocPagoProducto=@numDocPagoProducto WHERE idVenta=@idVenta";
+            db.cmd.Parameters.AddWithValue("@numDocPagoProducto", v.NumDocPago);
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private string SacaNumDocPago(Venta v,int tipo)
+        {
+            string numDoc;
+            int num = numero(v,tipo);
+            if (v.TipoDocPago.Equals("Boleta"))
+                numDoc = "BOL00" + num;
+            else
+                numDoc = "FAC00" + num;
+            return numDoc;
+        }
+
+        private int numero(Venta v,int tipo)
+        {
+            DBConexion db2 = new DBConexion();
+            int k = 0;
+            db2.cmd.CommandText = "SELECT count(*) as C FROM Venta WHERE tipoDocPago=@tipoDocPago";
+            db2.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
+            try
+            {
+                db2.conn.Open();
+                SqlDataReader rs = db2.cmd.ExecuteReader();
+                rs.Read();
+                k = Convert.ToInt32(rs["C"].ToString());
+                db2.conn.Close();
+                
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            DBConexion db = new DBConexion();
+            int k2 = 0;
+            db.cmd.CommandText = "SELECT count(*) as C FROM Venta WHERE tipoDocPago=@tipoDocPago AND numDocPagoServicio is not null";
+            db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
+            try
+            {
+                db.conn.Open();
+                SqlDataReader rs = db.cmd.ExecuteReader();
+                rs.Read();
+                k2 = Convert.ToInt32(rs["C"].ToString());
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            if (tipo == 2) return k + 1 + k2;
+            else return k + k2;
+        }
+
     }
 }

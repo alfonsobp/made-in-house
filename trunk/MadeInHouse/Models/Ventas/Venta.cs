@@ -32,6 +32,13 @@ namespace MadeInHouse.Models.Ventas
         double igv;
         double monto;
         string numDocPago;
+        string numDocPagoServicio;
+
+        public string NumDocPagoServicio
+        {
+            get { return numDocPagoServicio; }
+            set { numDocPagoServicio = value; }
+        }
         int ptosGanados;
         string tipoDocPago;
         List<DetalleVenta> lstDetalle;

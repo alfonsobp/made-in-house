@@ -202,9 +202,9 @@ namespace MadeInHouse.DataObjects.Ventas
                 k = cmd.ExecuteNonQuery();
                 conn.Close();
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
             return k;
         }
