@@ -57,7 +57,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             Estado = false;
-             lineasProducto.Add(lp.TxtNombre, 0);
+            lineasProducto.Add(lp.TxtNombre, 0);
             
             lpVM=lp;
         }
