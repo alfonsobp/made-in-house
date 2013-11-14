@@ -29,14 +29,17 @@
             <Button x:Name="EditarCotizacion">
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="EliminarCotizacion">
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-                    <Button x:Name="ActualizarCotizacion" Height="50" Width="50">
+            <Button x:Name="ActualizarCotizacion" Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
-            
-        </ToolBar>
+            <Button x:Name="Limpiar" Height="50" Width="50">
+                 <Image Source="/MadeInHouse;component/Assets/eraser.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+            </Button>
+
+                </ToolBar>
         <DataGrid IsReadOnly="True" x:Name="LstCotizacion"   
                   cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
                   Margin="11,206,0,-5" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="527" Height="198" VerticalAlignment="Top">
@@ -47,7 +50,7 @@
                         <DataGridTextColumn Binding="{Binding Path=FechaFin}" Width="120" Header="Fecha fin"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260"/>
+        <TextBox IsEnabled="False" x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="123,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260"/>
         <GroupBox Header="Criterios de Búsqueda" Margin="10,46,0,0" VerticalAlignment="Top" Height="150" HorizontalAlignment="Left" Width="528"/>
         <Button x:Name="BuscarCotizacion" Height="25" Margin="431,161,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="63" > 
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
@@ -56,7 +59,7 @@
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="28,99,0,0" VerticalAlignment="Top"/>
         <Label Content="Código:" HorizontalAlignment="Left" Margin="28,68,0,0" VerticalAlignment="Top"/>
         <ComboBox SelectedValue="{Binding Path=SelectedEst, Mode=OneWayToSource}"
-                  ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="123,127,0,0" VerticalAlignment="Top" Width="120">
+                  ItemsSource="{Binding Path=LstOpciones}" HorizontalAlignment="Left" Height="23" Margin="123,126,0,0" VerticalAlignment="Top" Width="120">
         </ComboBox>
         <Label Content="Estado:" HorizontalAlignment="Left" Margin="31,130,0,0" VerticalAlignment="Top"/>
         <DatePicker x:Name="TxtFechaRegistro" HorizontalAlignment="Left" Margin="126,161,0,0" VerticalAlignment="Top" Width="104"/>

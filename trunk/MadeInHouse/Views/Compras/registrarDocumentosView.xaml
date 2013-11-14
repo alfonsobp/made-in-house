@@ -76,19 +76,17 @@
         </ToolBar>
         <Label Content="Número:" HorizontalAlignment="Left" Margin="50,152,0,0" VerticalAlignment="Top"/>
         <Label Content="Fecha vencimiento:" HorizontalAlignment="Left" Margin="274,192,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="29" Margin="146,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
+        <TextBox x:Name="TxtCodigo" IsEnabled="False" HorizontalAlignment="Left" Height="29" Margin="146,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
         <TextBox x:Name="TxtDescuento" IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,408,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label Content="Descuento:" HorizontalAlignment="Left" Height="26" Margin="477,408,0,0" VerticalAlignment="Top" Width="77" RenderTransformOrigin="0.541,1.444"/>
-        <TextBox x:Name="TxtInteres" HorizontalAlignment="Left" Height="26" Margin="587,439,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Interés financiero:" HorizontalAlignment="Left" Height="26" Margin="477,439,0,0" VerticalAlignment="Top" Width="105" RenderTransformOrigin="0.541,1.444"/>
-        <TextBox x:Name="TxtIGV" IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,469,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="IGV:" HorizontalAlignment="Left" Height="26" Margin="477,469,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.541,1.444"/>
-        <TextBox x:Name="TxtTotalFinal" IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,500,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label Content="TOTAL:" HorizontalAlignment="Left" Height="26" Margin="477,500,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.541,1.444"/>
+        <TextBox x:Name="TxtIGV" IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="IGV:" HorizontalAlignment="Left" Height="26" Margin="477,445,0,0" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.541,1.444"/>
+        <TextBox x:Name="TxtTotalFinal" IsEnabled="false" HorizontalAlignment="Left" Height="26" Margin="587,480,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="TOTAL:" HorizontalAlignment="Left" Height="26" Margin="477,480,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.541,1.444"/>
         <TextBox Text="{Binding Path=Ord.MedioPago, Mode=TwoWay}" IsEnabled="false" HorizontalAlignment="Left" Height="29" Margin="146,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="91"/>
         <GroupBox Header="Proveedor" Margin="334,46,43,0" VerticalAlignment="Top" Height="80"/>
         <GroupBox Header="Detalle del documento de pago" Height="104" Margin="36,126,43,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5"/>
-        <GroupBox Header="Detalle" Margin="0,360,27,0" HorizontalAlignment="Right" Width="254" Height="181" VerticalAlignment="Top"/>
+        <GroupBox Header="Detalle" Margin="0,361,27,0" HorizontalAlignment="Right" Width="254" Height="181" VerticalAlignment="Top"/>
         <Label Content="Orden de compra en proceso" HorizontalAlignment="Left" Height="31" Margin="36,48,0,0" VerticalAlignment="Top" Width="205"/>
         <TextBox Text="{Binding Path=Ord.CodOrdenCompra, Mode=TwoWay}" IsEnabled="false" HorizontalAlignment="Left" Height="25" Margin="36,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164"
                  cal:Message.Attach="[Event TextChanged]=[Action Refrescar]"/>
@@ -104,22 +102,14 @@
                     <GradientStop Color="Snow" Offset="1"/>
                 </LinearGradientBrush>
             </ToolBar.Background>
-            <Button>
-                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button x:Name="GuardarDocPago">
+            <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button x:Name="GuardarDocPago">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
+            <Button/>
+            <Button x:Name="Limpiar" Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
             <Button Height="50" Width="50">

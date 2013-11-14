@@ -24,7 +24,7 @@
                         <DataGridTextColumn Binding="{Binding Path=SaldoPagado}" Width="130" Header="Monto Pagado"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
+        <TextBox IsEnabled="False" x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}"  HorizontalAlignment="Left" Height="23" Margin="146,108,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
         <GroupBox Header="Criterios de Búsqueda" Margin="11,59,0,0" VerticalAlignment="Top" Height="137" HorizontalAlignment="Left" Width="576"/>
         <Button x:Name="BuscarDocsPago" Height="25" Margin="488,80,49,0" VerticalAlignment="Top">
             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
@@ -53,19 +53,15 @@
               <Button x:Name="EditarDocumento">
                 <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
             </Button>
-            <Button>
+            <Button x:Name="CancelarDocumento">
                 <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
             </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-            </Button>
-            <Button>
-                <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
-            </Button>
-            <Button Height="30" Width="30">
+            <Button/>
+                    <Button/>
+            <Button x:Name="Limpiar" Height="30" Width="30">
                 <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
             </Button>
-            <Button Height="50" Width="50">
+            <Button x:Name="ActualizarDocumentos" Height="50" Width="50">
                 <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
             <Button x:Name="pagoParcial" Height="50" Width="50">

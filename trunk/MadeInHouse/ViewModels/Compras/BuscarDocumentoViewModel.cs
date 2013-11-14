@@ -19,7 +19,6 @@ namespace MadeInHouse.ViewModels.Compras
     class BuscarDocumentoViewModel:PropertyChangedBase
     {
         //Costructores
-
         public BuscarDocumentoViewModel()
         {
             ActualizarDocumentos();
@@ -33,7 +32,6 @@ namespace MadeInHouse.ViewModels.Compras
 
 
         //Atributos de la clase
-
         private MyWindowManager win = new MyWindowManager();
         private DocPagoProveedor docSeleccionado;
         DocPagoProveedorSQL eM = new DocPagoProveedorSQL();
@@ -82,9 +80,9 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         
-        private double txtPago;
+        private string txtPago;
 
-        public double TxtPago
+        public string TxtPago
         {
             get { return txtPago; }
             set { txtPago = value; NotifyOfPropertyChange(() => TxtPago); }
@@ -143,6 +141,21 @@ namespace MadeInHouse.ViewModels.Compras
             LstDocsPago = eM.Buscar() as List<DocPagoProveedor>;
         }
 
+        public void CancelarDocumento()
+        {
+            int k = new DocPagoProveedorSQL().Eliminar(docSeleccionado);
+        }
+
+        public void Limpiar()
+        {
+            TxtCodigo = null;
+            Prov = null;
+            TxtPago = null;
+            LstPagosParciales = null;
+            LstDocsPago = null;
+            TxtTotalPago = 0;
+        }
+
         public List<PagoParcial> ActualizarPagos(DocPagoProveedor d)
         {
             double totalPago = 0;
@@ -155,6 +168,9 @@ namespace MadeInHouse.ViewModels.Compras
             }
 
             TxtTotalPago = d.MontoTotal-totalPago;
+            if (TxtTotalPago <= 0)
+                TxtTotalPago = 0;
+
             return list;
         }
 
@@ -175,44 +191,71 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void pagoParcial()
         {
-            if ((docSeleccionado != null) && (TxtPago != 0))
+            string pago = TxtPago.ToString();
+            Boolean formatoOK = true;
+
+            for (int i = 0; i < pago.Length; i++)
             {
-                int k, y;
-                PagoParcial p = new PagoParcial();
-
-                docSeleccionado.SaldoPagado += TxtPago;
-
-                if (docSeleccionado.SaldoPagado > docSeleccionado.MontoTotal)
-                    docSeleccionado.SaldoPagado = docSeleccionado.MontoTotal;
-
-                p.Monto = TxtPago;
-                p.DocPago = docSeleccionado;
-                p.FechaPago = DateTime.Now;
-                
-
-                k = eM.Actualizar(docSeleccionado);
-                y = eMPP.Agregar(p);
-                list.Add(p);
-
-                if ((k != 0) && (y != 0))
+                if ((!((pago[i] >= '0') && (pago[i] <= '9'))) && (!((pago[i] == '.') && (i>0) && (i!=(pago.Length-1)))))
                 {
-                    MessageBox.Show("Doc de Pago = " + docSeleccionado.CodDoc + "\nMonto Pagado = " + TxtPago +
-                                    "\nMonto Faltante = " + (docSeleccionado.MontoTotal - docSeleccionado.SaldoPagado));
+                    formatoOK = false;
+                    break;
+                }
+            }
+
+            if (formatoOK)
+            {
+                if ((docSeleccionado != null) && (Convert.ToDouble(TxtPago) != 0))
+                {
+                    int k, y;
+                    PagoParcial p = new PagoParcial();
+
+                    docSeleccionado.SaldoPagado += Convert.ToDouble(TxtPago);
+
+                    if (docSeleccionado.SaldoPagado >= docSeleccionado.MontoTotal)
+                        docSeleccionado.SaldoPagado = docSeleccionado.MontoTotal;
+
+                    p.Monto = Convert.ToDouble(TxtPago);
+                    p.DocPago = docSeleccionado;
+                    p.FechaPago = DateTime.Now;
+
+
+                    k = eM.Actualizar(docSeleccionado);
+
+
+                    y = eMPP.Agregar(p);
+                    list.Add(p);
+                    
+                    TxtTotalPago = TxtTotalPago - p.Monto;
+                    if (TxtTotalPago <= 0)
+                        TxtTotalPago = 0;
+
+                    if ((k != 0) && (y != 0))
+                    {
+                        MessageBox.Show("Doc de Pago = " + docSeleccionado.CodDoc + "\nMonto Pagado = " + TxtPago +
+                                        "\nMonto Faltante = " + (docSeleccionado.MontoTotal - docSeleccionado.SaldoPagado));
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("No se pudo registrar el monto a pagar, revisar conexiones");
+                    }
                 }
 
                 else
                 {
-                    MessageBox.Show("No se pudo registrar el monto a pagar, revisar conexiones");
+                    MessageBox.Show("Seleccione un documento y/o monto a pagar");
                 }
-            }
 
+
+                ActualizarDocumentos();
+                LstPagosParciales = new List<PagoParcial>(list);
+
+            }
             else
             {
-                MessageBox.Show("Seleccione un documento y/o monto a pagar");
+                MessageBox.Show("Ingrese el formato correcto \nFormato: Número Real (Num.Dec)");
             }
-
-            ActualizarDocumentos();
-            LstPagosParciales = new List<PagoParcial>(list);
         }
 
     }

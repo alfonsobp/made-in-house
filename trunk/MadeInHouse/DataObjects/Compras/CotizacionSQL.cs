@@ -15,7 +15,7 @@ namespace MadeInHouse.DataObjects.Compras
     class CotizacionSQL:EntitySQL
     {
         public int Agregar(object entity)
-        {
+        { 
             DBConexion db = new DBConexion();
             int k = 0;
             Cotizacion c = entity as Cotizacion;
@@ -64,23 +64,26 @@ namespace MadeInHouse.DataObjects.Compras
                 DateTime fechaIni = Convert.ToDateTime(filters[3]);
                 DateTime fechaFin = Convert.ToDateTime(filters[4]);
 
-                if (codCotizacion != "")
+                if (!String.IsNullOrEmpty(codCotizacion))
                 {
-                    int idCot = getIDfromCOD(codCotizacion);
-
-                    MessageBox.Show("ID cot = " + idCot);
-                    where += " and idCotizacion = '" + idCot.ToString() + "' ";
+                    try
+                    {
+                        int idCot = getIDfromCOD(codCotizacion);
+                        where += " and idCotizacion = '" + idCot.ToString() + "' ";
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Revisar formato de código \nCodigo = COT-100000X");
+                    }
                 }
 
-                if (codProveedor != "")
+                if (!String.IsNullOrEmpty(codProveedor))
                 {
                     int idProveedor = getIDfromCOD(codProveedor);
-
-                    MessageBox.Show("ID prov = " + idProveedor);
                     where += " and idProveedor = '" + idProveedor.ToString() + "' ";
                 }
 
-                if (estado != "")
+                if (!String.IsNullOrEmpty(estado))
                 {
                     if (estado.Equals("ATENDIDO"))
                         est = 2;
@@ -107,9 +110,6 @@ namespace MadeInHouse.DataObjects.Compras
 
             }
 
-            // MessageBox.Show("SELECT * FROM Proveedor WHERE  estado = 1 " + where);
-
-
             db.cmd.CommandText = "SELECT * FROM Cotizacion  WHERE   estado >= 0   " + where;
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
@@ -119,9 +119,7 @@ namespace MadeInHouse.DataObjects.Compras
             try
             {
                 db.conn.Open();
-
                 reader = db.cmd.ExecuteReader();
-
 
                 while (reader.Read())
                 {
@@ -190,7 +188,32 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int Eliminar(object entity)
         {
-            throw new NotImplementedException();
+            DBConexion db = new DBConexion();
+            Cotizacion c = entity as Cotizacion;
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE Cotizacion " +
+                                 "SET estado= @estado " +
+                                 "WHERE idCotizacion= @idCotizacion ";
+
+            db.cmd.Parameters.AddWithValue("@idCotizacion", c.IdCotizacion);
+            db.cmd.Parameters.AddWithValue("@estado", 0);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                MessageBox.Show("Cotizacion Cancelada \n\nCotizacion = " + c.CodCotizacion + "\nEstado = CANCELADA");
+                db.conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
         }
 
         public int getIDfromCOD(string cod)
