@@ -168,6 +168,8 @@ namespace MadeInHouse.ViewModels.Almacen
         private UbicacionSQL uSQL;
 
         private List<TipoZona> lstZonas;
+        private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+        private int p;
 
         public List<TipoZona> LstZonas
         {
@@ -266,7 +268,12 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-
+public PosicionProductoViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int p)
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
+            this.p = p;
+        }
 
     }
 }

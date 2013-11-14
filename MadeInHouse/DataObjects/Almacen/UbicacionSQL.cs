@@ -156,5 +156,31 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
+         public int ActualizarUbicacionMasivo()
+         {
+             try
+             {
+
+                 if (tipo) db.conn.Open();
+
+                 db.cmd.CommandText = "MERGE INTO  Ubicacion USING  temporal on Ubicacion.idUbicacion=temporal.idUbicacion when matched then update set Ubicacion.idProducto=temporal.idProducto , Ubicacion.cantidad = temporal.cantidad , Ubicacion.volOcupado=temporal.volOcupado;";
+                 db.cmd.ExecuteNonQuery();
+
+                 if (tipo) db.conn.Close();
+
+
+
+             }
+             catch (SqlException e)
+             {
+                 Console.WriteLine(e);
+                 return -1;
+             }
+
+             return 1;
+
+         }
+
+
     }
 }

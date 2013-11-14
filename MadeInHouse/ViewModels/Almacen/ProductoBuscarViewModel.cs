@@ -322,7 +322,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
                 if (mantenerNotaDeSalidaViewModel != null)
                 {
-                    mantenerNotaDeSalidaViewModel.TxtCodPro = productoSel.CodigoProd;
+                    mantenerNotaDeSalidaViewModel.SelectedProducto.CodigoProd = productoSel.CodigoProd;
                     this.TryClose();
                 }
             }
