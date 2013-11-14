@@ -13,6 +13,7 @@ using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Models;
 using System.Data.OleDb;
 using System.Data;
+using MadeInHouse.Dictionary;
 namespace MadeInHouse.ViewModels.Compras
 {
     class BuscarOrdenCompraViewModel:Screen
@@ -190,9 +191,55 @@ namespace MadeInHouse.ViewModels.Compras
             }
             else
             {
-
+             
                 MessageBox.Show("No ha seleccionado ninguna Orden de compra ..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+
+        public void GenerarPDF()
+        {
+           GenerarPDF pdf = new GenerarPDF();
+           Correo c = new Correo();
+            //m.coloma@pucp.pe
+           string body = formato().ToString();
+           string msg = "Estimados :\n  Se adjunta la orden de compra , porfavor atenderla lo antes posible.";
+           pdf.createPDF(body, "\\OC.pdf");
+           c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg,Environment.CurrentDirectory+"\\OC.pdf");
+
+        }
+
+        public string formato() {
+
+            string content = @"<HTML><BODY>";
+            content += "<center> MadeInHouse  S.A. </center><br><br> ";
+            content += "<center> Ruc. 99999999999 </center><br><br> ";
+            content += "ORDEN DE COMPRA  Nro "+ OrdenSelected.IdOrden.ToString()+"<br><br>";
+            content += "<br><br>";
+            content += "Proveedor : " + OrdenSelected.Proveedor.RazonSocial+"<br><br>";
+            content += "Fecha de pedido : " + OrdenSelected.FechaSinAtencion.ToString()+ "<br><br>";
+            content += "Terminos de entrega : Entrega en Almacen central de la Empresa <br><br>";
+            content += "Sirvase por este medio suministrar los siguientes articulos <br><br>";
+            content += "<table border = 1 ><tr><th>NRO</th><th>ARTICULO</th><th>PRECIO UNITARIO</th>"+
+                        "<th>CANTIDAD</th><th>PRECIO TOTAL</th><tr>";
+            double sumaAporte = 0; 
+            int i = 1;
+            foreach (ProductoxOrdenCompra o in OrdenSelected.LstProducto) {
+
+                int cantidad = Convert.ToInt32(o.Cantidad);
+                double parcial = o.PrecioUnitario*cantidad;
+                content += "<tr><td>"+i.ToString()+"</td>"+
+                               "<td>"+o.Producto.Nombre+"</td>"+
+                               "<td>"+o.PrecioUnitario.ToString()+"</td>"+
+                               "<td>"+o.Cantidad.ToString()+"</td>"+
+                "<td>"+ parcial.ToString()+"</td></tr>";
+                i++;
+                sumaAporte += parcial;
+            } 
+            
+            content += "<tr><td colspan = 4 > TOTAL</td><td>"+sumaAporte.ToString()+"</td> </tr></table>";
+            content += "</BODY></HTML>";
+
+            return content;
         }
 
         #region Busqueda desde Almacen
