@@ -18,10 +18,8 @@
                     <GradientStop Color="Snow" Offset="1"/>
                 </LinearGradientBrush>
             </ToolBar.Background>
-            <Button x:Name="EliminarCotizacion">
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button x:Name="GuardarCotizacion">
+            <Button x:Name="EliminarCotizacion"/>
+                    <Button x:Name="GuardarCotizacion">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button x:Name="EnviarCorreo" Height="50" Width="50">
@@ -31,7 +29,7 @@
                 <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
                 </ToolBar>
-                <DataGrid IsReadOnly="True"  AutoGenerateColumns="False" ItemsSource="{Binding LstProducto, Mode=OneWay}" Margin="25,213,72,0" Height="115" VerticalAlignment="Top">
+                <DataGrid IsReadOnly="True"  AutoGenerateColumns="False" ItemsSource="{Binding LstProducto, Mode=OneWay}" Margin="40,218,57,0" Height="115" VerticalAlignment="Top">
             <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="80" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Width="160" Header="Descripcion"/>
@@ -39,7 +37,7 @@
                         <DataGridTextColumn Binding="{Binding Path=Precio}" Width="103" Header="Precio Esp. Cant"/>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox  Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="110,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+        <TextBox IsEnabled="False" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="110,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
         <GroupBox Header="Cotización:" Margin="10,46,14,0" Height="172" VerticalAlignment="Top"/>
         <TextBox IsEnabled="False" x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="110,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="261"/>
         <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="25,99,0,0" VerticalAlignment="Top" Width="80"/>
@@ -48,13 +46,7 @@
               <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="20" />
         </Button>
                 <Label Content="Observacion:" Margin="27,346,389,20"/>
-        <Button HorizontalAlignment="Left" Height="38" Margin="441,222,0,0" VerticalAlignment="Top" Width="34">
-            <Image Source="/MadeInHouse;component/Assets/add.png" Height="20" Width="50" />
-        </Button>
-        <Button  HorizontalAlignment="Left" Height="38" Margin="441,264,0,0" VerticalAlignment="Top" Width="34">
-        <Image Source="/MadeInHouse;component/Assets/minus.png" Height="20" Width="50" />
-        </Button>
-        <DatePicker IsEnabled="{Binding Path=EstFecha, Mode=TwoWay}" x:Name="TxtFechaResp" HorizontalAlignment="Left" Margin="131,139,0,0" VerticalAlignment="Top" Width="93"/>
+                <DatePicker IsEnabled="{Binding Path=EstFecha, Mode=TwoWay}" x:Name="TxtFechaResp" HorizontalAlignment="Left" Margin="131,139,0,0" VerticalAlignment="Top" Width="93"/>
         <Label Content="Fecha Respuesta:" HorizontalAlignment="Left" Margin="25,137,0,0" VerticalAlignment="Top" Width="106"/>
         <TextBox x:Name="TxtObservacion" Margin="110,346,94,0" TextWrapping="Wrap" Height="39" VerticalAlignment="Top"/>
         <DatePicker IsEnabled="{Binding Path=EstFecha, Mode=TwoWay}" x:Name="TxtFechaIni" HorizontalAlignment="Left" Margin="334,140,0,0" VerticalAlignment="Top" Width="93"/>

@@ -20,7 +20,6 @@ namespace MadeInHouse.ViewModels.Compras
     {
         
         //Costructores
-
         public BuscarCotizacionViewModel()
         {
             ActualizarCotizacion();
@@ -126,16 +125,28 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void BuscarCotizacion()
         {
-            if (TxtProveedor != null)
-                TxtProveedor = Prov.CodProveedor;
+            if (Prov == null)
+                Prov.CodProveedor = "";
 
-            LstCotizacion = eM.Buscar(TxtCodigo, TxtProveedor, SelectedEst, TxtFechaRegistro, TxtFechaHasta) as List<Cotizacion>;
+            LstCotizacion = eM.Buscar(TxtCodigo, Prov.CodProveedor, SelectedEst, TxtFechaRegistro, TxtFechaHasta) as List<Cotizacion>;
         }
 
         public void BuscarProveedor()
         {
             MadeInHouse.Models.MyWindowManager w = new MadeInHouse.Models.MyWindowManager();
             w.ShowWindow(new BuscadorProveedorViewModel(this));
+        }
+
+        public void EliminarCotizacion()
+        {
+            int k = new CotizacionSQL().Eliminar(cotizacionSeleccionada);
+        }
+
+        public void Limpiar()
+        {
+            TxtCodigo = null;
+            Prov = null;
+            LstCotizacion = null;
         }
 
     }

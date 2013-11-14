@@ -76,10 +76,16 @@ namespace MadeInHouse.DataObjects.Compras
                 if (!String.IsNullOrEmpty(codDoc))
                 {
                     //MessageBox.Show("En el buscador..codDoc = " + codDoc);
-                    int idDoc = getIDfromCOD(codDoc);
+                    try
+                    {
+                        int idDoc = getIDfromCOD(codDoc);
+                        where += " and idDocPago = '" + idDoc.ToString() + "' ";
+                    }
 
-                    //MessageBox.Show("ID docPago = " + idDoc);
-                    where += " and idDocPago = '" + idDoc.ToString() + "' ";
+                    catch
+                    {
+                        MessageBox.Show("Revisar formato de código \nCodigo = DP-100000X");
+                    }
                 }
 
                 if (!String.IsNullOrEmpty(codProveedor))
@@ -171,20 +177,27 @@ namespace MadeInHouse.DataObjects.Compras
         {
             DBConexion db = new DBConexion();
             DocPagoProveedor d = entity as DocPagoProveedor;
-            int k = 0;
+            int k = 0; int est = 1;
+
+            if (d.SaldoPagado == d.MontoTotal)
+                est = 2;
 
             db.cmd.CommandText = "UPDATE DocPagoProveedor " +
-                                 "SET saldoPagado=@saldoPagado " +
+                                 "SET saldoPagado=@saldoPagado, estado=@estado " +
                                  "WHERE idDocPago= @idDocPago ";
 
             db.cmd.Parameters.AddWithValue("@idDocPago", d.IdDocPago);
             db.cmd.Parameters.AddWithValue("@saldoPagado", d.SaldoPagado);
+            db.cmd.Parameters.AddWithValue("@estado", est);
 
             try
             {
                 db.conn.Open();
                 k = db.cmd.ExecuteNonQuery();
-                MessageBox.Show("Actualizacion de saldo completa \nDoc Pago = " + d.CodDoc + "\nNuevo Saldo = " + d.SaldoPagado);
+                if (est == 1)
+                    MessageBox.Show("Actualizacion de saldo completa \nDoc Pago = " + d.CodDoc + "\nNuevo Saldo = " + d.SaldoPagado);
+                else
+                    MessageBox.Show("Pago Completo \nEstado = Pagado");
                 db.conn.Close();
 
             }
@@ -199,7 +212,34 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int Eliminar(object entity)
         {
-            throw new NotImplementedException();
+            DBConexion db = new DBConexion();
+            DocPagoProveedor d = entity as DocPagoProveedor;
+            int k = 0; int est = 0;
+
+
+            db.cmd.CommandText = "UPDATE DocPagoProveedor " +
+                                 "SET estado=@estado " +
+                                 "WHERE idDocPago= @idDocPago ";
+
+            db.cmd.Parameters.AddWithValue("@idDocPago", d.IdDocPago);
+            db.cmd.Parameters.AddWithValue("@saldoPagado", d.SaldoPagado);
+            db.cmd.Parameters.AddWithValue("@estado", est);
+
+            try
+            {
+                db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                MessageBox.Show("Documento cancelado \nDoc Pago = " + d.CodDoc);
+                db.conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return k;
         }
 
         public int getIDfromCOD(string cod)

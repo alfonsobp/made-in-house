@@ -154,6 +154,18 @@ namespace MadeInHouse.ViewModels.Compras
             w.ShowWindow(new BuscarOrdenCompraViewModel(this));
         }
 
+        public void Limpiar()
+        {
+            TxtCodigo = null;
+            Ord = null;
+            TxtDescuento = 0;
+            TxtIGV = 0;
+            TxtTotalBruto = 0;
+            TxtSaldoPagado = 0;
+            TxtTotalFinal = 0;
+            TxtObservaciones = null;
+        }
+
         public void Refrescar()
         {
             if (ord != null)
@@ -195,7 +207,7 @@ namespace MadeInHouse.ViewModels.Compras
             TxtIGV = (0.18) * monto;
             TxtTotalBruto = monto;
             TxtDescuento = importe;
-            TxtTotalFinal = monto - TxtIGV - TxtDescuento - TxtInteres;
+            TxtTotalFinal = monto - TxtDescuento;
 
             LstProducto = new List<ProductoxOrdenCompra>(list);
         }
@@ -218,9 +230,17 @@ namespace MadeInHouse.ViewModels.Compras
             d.CantProductos = cant;
             d.Descuentos = importe;
             d.Igv = (0.18) * (d.TotalBruto);
-            d.MontoTotal = d.TotalBruto - d.Descuentos - d.Igv;
+            d.MontoTotal = d.TotalBruto - d.Descuentos;
 
-            if ((Ord != null) && (LstProducto != null))
+            Boolean noPagado = true;
+            List<DocPagoProveedor> listDocs = new DocPagoProveedorSQL().Buscar() as List<DocPagoProveedor>;
+            
+            for (int i = 0; i < listDocs.Count; i++)
+                if ((listDocs[i].Proveedor.IdProveedor == d.Proveedor.IdProveedor) && (listDocs[i].OrdenCompra.IdOrden == d.OrdenCompra.IdOrden))
+                    noPagado = false;
+
+
+            if ((Ord != null) && (LstProducto != null) && (noPagado))
             {
                 if (indicador == 1)
                 {
@@ -229,8 +249,8 @@ namespace MadeInHouse.ViewModels.Compras
                     if (k == 0)
                         MessageBox.Show("Ocurrio un error");
                     else
-                        MessageBox.Show("Documento Registrado \n\nCodigo = " + txtCodigo + "\nOC-correspondiente = OC-" + 
-                                        (1000000+Ord.IdOrden).ToString());
+                        MessageBox.Show("Documento Registrado \n\nCodigo = " + txtCodigo + "\nOC-correspondiente = OC-" +
+                                        (1000000 + Ord.IdOrden).ToString());
                 }
 
                 if (indicador == 2)
@@ -238,6 +258,10 @@ namespace MadeInHouse.ViewModels.Compras
                     MessageBox.Show("Los documentos de pago no son editables");
                 }
 
+            }
+            else
+            {
+                MessageBox.Show("Orden de compra no válida a pagar \nRevisar si actualmente está en proceso de pago");
             }
 
         }
