@@ -224,6 +224,7 @@ namespace MadeInHouse.ViewModels.Almacen
                List<ProductoCant> lpcan = new List<ProductoCant>();
                for (int i = 0; i < poc.Count(); i++) {
                    ProductoCant pcan = new ProductoCant();
+                   pcan.IdProducto = poc.ElementAt(i).Producto.IdProducto;
                    pcan.Can = poc.ElementAt(i).Cantidad;
                    pcan.CodPro = poc.ElementAt(i).Producto.CodigoProd;
                    pcan.ProNombre = poc.ElementAt(i).Producto.Nombre;
