@@ -12,13 +12,25 @@ namespace MadeInHouse.Models.Seguridad
 {
     public class Usuario
     {
-        private int idUsuario;
+        public Usuario()
+        {
 
+        }
+        
+        private int idUsuario;
         public int IdUsuario
         {
             get { return idUsuario; }
             set { idUsuario = value; }
         }
+
+        private string nombre;
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
 
         private string codEmpleado;
         public string CodEmpleado
@@ -41,17 +53,14 @@ namespace MadeInHouse.Models.Seguridad
             set { numIntentos = value; }
         }
 
-
-
         DateTime fechaMod;
-
         public DateTime FechaMod
         {
             get { return fechaMod; }
             set { fechaMod = value; }
         }
-        DateTime fechaReg;
 
+        DateTime fechaReg;
         public DateTime FechaReg
         {
             get { return fechaReg; }
@@ -59,7 +68,6 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         private Rol rol;
-
         public Rol Rol
         {
             get { return rol; }
@@ -75,7 +83,6 @@ namespace MadeInHouse.Models.Seguridad
         //}
 
         int estado;
-
         public int Estado
         {
             get { return estado; }
@@ -83,25 +90,24 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         int idTienda;
-
         public int IdTienda
         {
             get { return idTienda; }
             set { idTienda = value; }
         }
 
-        int estadoHabilitado;
+        string nomTienda;
+        public string NomTienda
+        {
+            get { return nomTienda; }
+            set { nomTienda = value; }
+        }
 
+        int estadoHabilitado;
         public int EstadoHabilitado
         {
             get { return estadoHabilitado; }
             set { estadoHabilitado = value; }
         }
-
-        public Usuario()
-        {
-
-        }
-
     }
 }
