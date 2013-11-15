@@ -11,6 +11,9 @@ using MadeInHouse.Dictionary;
 using System.Data;
 using MadeInHouse.DataObjects;
 using System.Data.SqlClient;
+using MadeInHouse.DataObjects;
+using MadeInHouse.Models.Seguridad;
+using System.Threading;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -181,6 +184,7 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => LstZonas);
             }
         }
+        private int id;
 
         public PosicionProductoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accion):this()
         {
@@ -190,10 +194,16 @@ namespace MadeInHouse.ViewModels.Almacen
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
             
             this.LstProductos = mantenerNotaDeIngresoViewModel.LstProductos;
-            idTienda = 19;
+            //19
+            
+            Usuario u = new Usuario();
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            idTienda =  u.IdTienda;
             aSQL = new AlmacenSQL();
             Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
-
+            
+            id=deposito.IdAlmacen;
+            
             NumColumnsU=1;
             NumRowsU = 1;
             
@@ -282,10 +292,11 @@ namespace MadeInHouse.ViewModels.Almacen
             db.cmd.Transaction = trans;
             uSQL = new UbicacionSQL(db);
             DataTable temporal= uSQL.CrearUbicacionesDT();
-            uSQL.AgregarFilasToUbicacionesDT(temporal, almacenDG.Ubicaciones, 35);
+            uSQL.AgregarFilasToUbicacionesDT(temporal, almacenDG.Ubicaciones, id);
             uSQL.AgregarMasivo(temporal, trans);
             uSQL.ActualizarUbicacionMasivo();
             trans.Commit();
+            System.Windows.MessageBox.Show("Se guardo el stock");
         }
 
 
