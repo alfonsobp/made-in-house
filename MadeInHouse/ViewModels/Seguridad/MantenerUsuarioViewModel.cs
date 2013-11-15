@@ -55,7 +55,7 @@ namespace MadeInHouse.ViewModels.Seguridad
         }
         public void ActualizarListaUsuario()
         {
-            lstUsuario = UsuarioSQL.BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);
+            lstUsuario = UsuarioSQL.BuscarUsuario();
             NotifyOfPropertyChange("LstUsuario");
         }
         public void ActualizarListaUsuarioElim()

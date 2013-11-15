@@ -5,7 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="461.94" Width="682.911">
+             mc:Ignorable="d" Height="485.821" Width="947.091">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Mantenimiento de Usuario" />
@@ -43,9 +43,9 @@
                     </Button>
                 </ToolBar>
 
-                <TabControl HorizontalAlignment="Left" Width="652" Margin="10,46,0,0" Height="369" VerticalAlignment="Top">
+                <TabControl HorizontalAlignment="Left" Width="923" Margin="10,46,0,-18" Height="387" VerticalAlignment="Top">
                     <TabItem Header="Buscador de Usuarios">
-                        <Grid>
+                        <Grid Margin="0,0,-6,-43">
                             <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="134" Margin="10,10,10,0">
                                 <Grid Margin="0,0,0,-12">
 
@@ -63,14 +63,17 @@
                                 </Grid>
                             </GroupBox>
                             <DataGrid x:Name="LstUsuario" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-                                        Height="183" VerticalAlignment="Top" Margin="10,149,10,0" AutoGenerateColumns="false">
+                                        Height="198" VerticalAlignment="Top" Margin="10,157,10,0" AutoGenerateColumns="false">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Path=CodEmpleado}" Width="100" Header="ID Usuario"/>
+                                    <DataGridTextColumn Binding="{Binding Path=CodEmpleado}" Width="60" Header="Código"/>
+                                    <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="170" Header="Empleado"  />
+                                    <DataGridTextColumn Binding="{Binding Path=NomTienda}" Width="120" Header="Tienda"/>
                                     <DataGridTextColumn Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Rol"/>
-                                    <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="130" Header="Registro"/>
-                                    <DataGridTextColumn Binding="{Binding Path=FechaMod}" Width="130" Header="Última modificación"/>
-                                    <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Eliminar" CanUserReorder="False" Width="65" />
+                                    <DataGridTextColumn Binding="{Binding Path=FechaReg}" Width="140" Header="Registro"/>
+                                    <DataGridTextColumn Binding="{Binding Path=FechaMod}" Width="140" Header="Última modificación"/>
                                     <DataGridCheckBoxColumn  Binding="{Binding Path=EstadoHabilitado}" Header="¿Activo?" CanUserReorder="False" Width="65" />
+                                    <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Eliminar" CanUserReorder="False" Width="65" />
+
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>

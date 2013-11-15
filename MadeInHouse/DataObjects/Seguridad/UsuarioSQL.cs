@@ -268,7 +268,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
-        public static List<Usuario> BuscarUsuario(string codEmpleado, int idRol, DateTime fechaRegIni, DateTime fechaRegFin)
+        public static List<Usuario> BuscarUsuario()
         {
 
             List<Usuario> lstUsuario = new List<Usuario>();
@@ -276,7 +276,8 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Usuario ";
+            //cmd.CommandText = "SELECT * FROM Usuario ";
+            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod, U.estadoHabilitado estadoHabilitado, U.Estado estado FROM EMPLEADO E, TIENDA T, USUARIO U WHERE U.codEmpleado=E.codEmpleado AND U.idTienda=T.idTienda; ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -285,21 +286,20 @@ namespace MadeInHouse.DataObjects.Seguridad
                 conn.Open();
                 reader = cmd.ExecuteReader();
 
-                Trace.WriteLine("<Rol flag0: ");
                 while (reader.Read())
                 {
                     Usuario u = new Usuario();
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
-
+                    u.Nombre = reader["nomEmpleado"].ToString();
+                    u.IdTienda = Convert.ToInt32(reader["idTienda"].ToString());
+                    u.NomTienda = reader["tienda"].ToString();
                     u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
-
                     u.Estado = Int32.Parse(reader["estado"].ToString());
                     //MessageBox.Show("IDTIENDA: " + Convert.ToInt32(reader["idTienda"].ToString()));
-                    u.IdTienda = Convert.ToInt32(reader["idTienda"].ToString());
 
                     if (u.Estado == 1)
                     {
