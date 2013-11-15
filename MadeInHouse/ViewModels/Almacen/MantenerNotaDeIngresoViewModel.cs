@@ -399,6 +399,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
             wm.ShowWindow(new Almacen.PosicionProductoViewModel(this,2));
+        
         }
 
         public void AbrirListarOrdenesCompra()

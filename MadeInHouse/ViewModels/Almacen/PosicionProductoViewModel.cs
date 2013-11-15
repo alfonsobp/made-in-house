@@ -83,6 +83,8 @@ namespace MadeInHouse.ViewModels.Almacen
             set
             {
                 numColumnsU = value;
+                NotifyOfPropertyChange(() => NumColumnsU);
+
             }
         }
 
@@ -198,6 +200,7 @@ namespace MadeInHouse.ViewModels.Almacen
             
             Usuario u = new Usuario();
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            
             idTienda =  u.IdTienda;
             aSQL = new AlmacenSQL();
             Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
