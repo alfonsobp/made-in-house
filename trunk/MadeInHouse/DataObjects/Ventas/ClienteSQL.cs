@@ -167,8 +167,8 @@ namespace MadeInHouse.DataObjects.Ventas
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "INSERT INTO Cliente(DNI,nombre,apePaterno,apeMaterno,RUC,sexo,razonSocial,direccion,telefono,estado,distrito,tipoCliente,email,celular) " +
-            "VALUES (@DNI,@nombre,@apePaterno,@apeMaterno,@RUC,@sexo,@razonSocial,@direccion,@telefono,@estado,@distrito,@tipoCliente,@email,@celular)";
+            cmd.CommandText = "INSERT INTO Cliente(DNI,nombre,apePaterno,apeMaterno,RUC,sexo,razonSocial,direccion,telefono,estado,fechaReg,distrito,tipoCliente,email,celular) " +
+            "VALUES (@DNI,@nombre,@apePaterno,@apeMaterno,@RUC,@sexo,@razonSocial,@direccion,@telefono,@estado,@fechaReg,@distrito,@tipoCliente,@email,@celular)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -189,7 +189,7 @@ namespace MadeInHouse.DataObjects.Ventas
             cmd.Parameters.AddWithValue("@direccion", a.Direccion);
             cmd.Parameters.AddWithValue("@telefono", a.Telefono);
             cmd.Parameters.AddWithValue("@estado", a.Estado);
-            //cmd.Parameters.AddWithValue("@fechaReg", date);
+            cmd.Parameters.AddWithValue("@fechaReg", date);
             cmd.Parameters.AddWithValue("@distrito", a.Distrito);
             //cmd.Parameters.AddWithValue("@fechaNac", a.FechaNacimiento);
             cmd.Parameters.AddWithValue("@tipoCliente", a.TipoCliente);
