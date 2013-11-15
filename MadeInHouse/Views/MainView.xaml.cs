@@ -41,91 +41,95 @@ namespace MadeInHouse.Views
         {
             if (sender == butAlmacen)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderSeguridad);
-                comeIn(expanderClima);
-                comeIn(expanderCompras);
-                comeIn(expanderReportes);
-                comeIn(expanderVentas);
-                comeIn(expanderConfiguracion);
-                goOut(expanderAlmacen);
+                mover(expanderAlmacen, butAlmacen);
+
+                salir(expanderRRHH, butRRHH);
+                salir(expanderSeguridad, butSeguridad);
+                salir(expanderVentas, butVentas);
+                salir(expanderCompras, butCompras);
+                salir(expanderReportes, butReportes);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderClima, butClima);
             }
             if (sender == butRRHH)
             {
-                comeIn(expanderAlmacen);
-                comeIn(expanderSeguridad);
-                comeIn(expanderClima);
-                comeIn(expanderCompras);
-                comeIn(expanderReportes);
-                comeIn(expanderVentas);
-                comeIn(expanderConfiguracion);
-                goOut(expanderRRHH);
+                mover(expanderRRHH, butRRHH);
+
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderSeguridad, butSeguridad);
+                salir(expanderVentas, butVentas);
+                salir(expanderCompras, butCompras);
+                salir(expanderReportes, butReportes);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderClima, butClima);
             }
             if (sender == butSeguridad)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderAlmacen);
-                comeIn(expanderClima);
-                comeIn(expanderCompras);
-                comeIn(expanderReportes);
-                comeIn(expanderVentas);
-                comeIn(expanderConfiguracion);
-                goOut(expanderSeguridad);
+                mover(expanderSeguridad, butSeguridad);
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderRRHH,butRRHH);
+                salir(expanderVentas, butVentas);
+                salir(expanderCompras, butCompras);
+                salir(expanderReportes, butReportes);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderClima, butClima);
+                
+
             }
             if (sender == butCompras)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderAlmacen);
-                comeIn(expanderClima);
-                comeIn(expanderSeguridad);
-                comeIn(expanderReportes);
-                comeIn(expanderVentas);
-                comeIn(expanderConfiguracion);
-                goOut(expanderCompras);
+                mover(expanderCompras, butCompras);
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderRRHH, butRRHH);
+                salir(expanderVentas, butVentas);
+                salir(expanderSeguridad, butSeguridad);
+                salir(expanderReportes, butReportes);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderClima, butClima);
             }
             if (sender == butVentas)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderAlmacen);
-                comeIn(expanderClima);
-                comeIn(expanderCompras);
-                comeIn(expanderReportes);
-                comeIn(expanderSeguridad);
-                comeIn(expanderConfiguracion);
-                goOut(expanderVentas);
+                mover(expanderVentas, butVentas);
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderRRHH, butRRHH);
+                salir(expanderSeguridad, butSeguridad);
+                salir(expanderCompras, butCompras);
+                salir(expanderReportes, butReportes);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderClima, butClima);
             }
             if (sender == butReportes)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderSeguridad);
-                comeIn(expanderClima);
-                comeIn(expanderCompras);
-                comeIn(expanderAlmacen);
-                comeIn(expanderVentas);
-                comeIn(expanderConfiguracion);
-                goOut(expanderReportes);
+                mover(expanderReportes, butReportes);
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderRRHH, butRRHH);
+                salir(expanderVentas, butVentas);
+                salir(expanderCompras, butCompras);
+                salir(expanderSeguridad, butSeguridad);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderClima, butClima);
             }
             if (sender == butConfiguracion)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderSeguridad);
-                comeIn(expanderClima);
-                comeIn(expanderCompras);
-                comeIn(expanderAlmacen);
-                comeIn(expanderVentas);
-                comeIn(expanderReportes);
-                goOut(expanderConfiguracion);
+                mover(expanderConfiguracion, butConfiguracion);
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderRRHH, butRRHH);
+                salir(expanderVentas, butVentas);
+                salir(expanderCompras, butCompras);
+                salir(expanderReportes, butReportes);
+                salir(expanderSeguridad, butSeguridad);
+                salir(expanderClima, butClima);
             }
             if (sender == butClima)
             {
-                comeIn(expanderRRHH);
-                comeIn(expanderSeguridad);
-                comeIn(expanderReportes);
-                comeIn(expanderCompras);
-                comeIn(expanderAlmacen);
-                comeIn(expanderVentas);
-                comeIn(expanderConfiguracion);
-                goOut(expanderClima);
+                mover(expanderClima, butClima);
+                salir(expanderAlmacen, butAlmacen);
+                salir(expanderRRHH, butRRHH);
+                salir(expanderVentas, butVentas);
+                salir(expanderCompras, butCompras);
+                salir(expanderReportes, butReportes);
+                salir(expanderConfiguracion, butConfiguracion);
+                salir(expanderSeguridad, butSeguridad);
             }
         }
         private void agrandar(object sender, RoutedEventArgs e)
@@ -135,8 +139,6 @@ namespace MadeInHouse.Views
             B.Width = 95;
             B.Margin = new Thickness(B.Margin.Left - 10, B.Margin.Top - 20, 0, 0);
             B.Height = 95;
-
-
         }
         private void achicar(object sender, RoutedEventArgs e)
         {
@@ -146,17 +148,35 @@ namespace MadeInHouse.Views
             B.Height = 75;
         }
 
-        private void comeIn(object expander)
+
+        private void mover(Expander e,Button b)
         {
-            Expander E = (Expander)expander;
-            DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(0.25));
-            E.BeginAnimation(Expander.WidthProperty, animation);
+            e.Height = 0;
+            e.Margin = b.Margin;
+
+            ThicknessAnimation anima = new ThicknessAnimation(e.Margin, new Thickness(0, 0, 0, 0), new Duration(TimeSpan.FromSeconds(0.15)), FillBehavior.HoldEnd);
+            e.BeginAnimation(Border.MarginProperty, anima);
+
+            DoubleAnimation animation = new DoubleAnimation(300, TimeSpan.FromSeconds(0.15));
+            e.BeginAnimation(Expander.WidthProperty, animation);
+
+            DoubleAnimation animation2 = new DoubleAnimation(1024.5, TimeSpan.FromSeconds(0.1));
+            e.BeginAnimation(Expander.HeightProperty, animation2);
+
         }
-        private void goOut(object expander)
+
+        private void salir(Expander e, Button b)
         {
-            Expander E = (Expander)expander;
-            DoubleAnimation animation = new DoubleAnimation(300, TimeSpan.FromSeconds(0.25));
-            E.BeginAnimation(Expander.WidthProperty, animation);
+            e.Height = 1024.5;
+            ThicknessAnimation anima = new ThicknessAnimation(e.Margin, b.Margin, new Duration(TimeSpan.FromSeconds(0.15)), FillBehavior.HoldEnd);
+            e.BeginAnimation(Border.MarginProperty, anima);
+
+            DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(0.18));
+            e.BeginAnimation(Expander.WidthProperty, animation);
+
+            DoubleAnimation animation2 = new DoubleAnimation(0, TimeSpan.FromSeconds(0.1));
+            e.BeginAnimation(Expander.HeightProperty, animation2);
+
         }
 
     }

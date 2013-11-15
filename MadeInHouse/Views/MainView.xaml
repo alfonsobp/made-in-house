@@ -89,7 +89,7 @@
         <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="300,0,0,0" Height="50" VerticalAlignment="Top"/>
 
         <!--Almacen-->
-        <Expander Name="expanderAlmacen" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderAlmacen" FontFamily="/Assets/#Moire" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
 
             <Grid Background="Transparent" Height="Auto" Margin="0,0,0,0">
                 <Grid.RowDefinitions>
@@ -113,21 +113,21 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Almacen" FontSize="20" Grid.Row="0"/>
-                <Button x:Name="AbrirNuevoProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="4,30,147,1" Height="31" Grid.RowSpan="2" />
-                <Button x:Name="AbrirMantenimientoAlmacen" Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,119,1"/>
-                <Button x:Name="AbrirBuscarProducto" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Producto" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,142,0"/>
+                <Button x:Name="AbrirNuevoProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo producto"  FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,30,130,1" Height="31" Grid.RowSpan="2" Width="164" />
+                <Button x:Name="AbrirMantenimientoAlmacen" Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Almacen" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="4,1,103,2"/>
+                <Button x:Name="AbrirBuscarProducto" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Producto" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,119,1" Width="179"/>
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="4"/>
-                <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,228,0"/>
-                <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,184,1"/>
+                <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
+                <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,177,2" Width="121"/>
                 <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Notas de I/S" FontSize="20"  Grid.Row="7"/>
-                <Button  x:Name="AbrirBuscarNotas" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,0,229,1"/>
-                <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Transparent" Foreground="White" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,204,1"/>
-                <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,0,199,1"/>
+                <Button  x:Name="AbrirBuscarNotas" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="82"/>
+                <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Transparent" Foreground="White" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,199,2" Width="99"/>
+                <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,190,2" Width="108"/>
                 <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Control de stock" FontSize="20"  Grid.Row="11"/>
-                <Button  x:Name="AbrirBuscarZona" Background="Transparent" Foreground="White" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="12" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,96,1"/>
-                <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Transparent" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="32" Grid.Row="12" Margin="-1,30,18,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.RowSpan="2"/>
+                <Button  x:Name="AbrirBuscarZona" Background="Transparent" Foreground="White" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="12" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,78,2" Width="220"/>
+                <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Transparent" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="32" Grid.Row="12" Margin="0,30,5,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Grid.RowSpan="2"/>
                 <Button  x:Name="AbrirSolicitudAbDetalle" Background="Transparent" Foreground="White" BorderThickness="0" Content="Seguimiento sol. abastecimiento" FontSize="20" Height="32" Grid.Row="14" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,0,30" Grid.RowSpan="2"/>
-                <Button  x:Name="AbrirMovimientos" Background="Transparent" Foreground="White" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,0,64,1"/>
+                <Button  x:Name="AbrirMovimientos" Background="Transparent" Foreground="White" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,45,1"/>
                 <Button  x:Name="RegistrarSolicitud" Background="Transparent" Foreground="White" BorderThickness="0" Content="Solicitar abastecimiento" FontSize="20" Height="Auto" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,76,1"/>
                 <Button  x:Name="ListadoSolicitud" Background="Transparent" Foreground="White" BorderThickness="0" Content="Listar abastecimiento" FontSize="20" Height="Auto" Grid.Row="17" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,76,1"/>
 
@@ -136,7 +136,7 @@
         </Expander>
 
         <!--recursos humanos-->
-        <Expander Name="expanderRRHH" IsExpanded="True" Background="Transparent" Header="RRHH" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderRRHH" IsExpanded="True" Background="Transparent" Header="RRHH" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0" FontFamily="/Assets/#Moire">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -145,14 +145,14 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Empleado" FontSize="20"  Grid.Row="0"/>
-                <Button x:Name="AbrirRegistrarEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,236,0"/>
-                <Button x:Name="AbrirMantenerEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,192,0"/>
-                <Button x:Name="AbrirCargarOrganigrama"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,114,0" Height="30"/>
+                <Button x:Name="AbrirRegistrarEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,230,1" Width="68"/>
+                <Button x:Name="AbrirMantenerEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,177,1" Width="121"/>
+                <Button x:Name="AbrirCargarOrganigrama"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,84,0" Height="30" Width="214"/>
             </Grid>
         </Expander>
 
         <!-- seguridad-->
-        <Expander Name="expanderSeguridad" IsExpanded="True" Background="Transparent" Header="Seguridad" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderSeguridad" IsExpanded="True" Background="Transparent" Header="Seguridad" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -163,16 +163,16 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Usuario" FontSize="20"  Grid.Row="0"/>
-                <Button x:Name="AbrirRegistrarUsuario"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,236,1"/>
-                <Button x:Name="AbrirMantenerUsuario"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,192,0"/>
+                <Button x:Name="AbrirRegistrarUsuario"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,229,2" Width="69"/>
+                <Button x:Name="AbrirMantenerUsuario"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,175,1" Width="123"/>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Perfiles" FontSize="20"  Grid.Row="3"/>
-                <Button x:Name="AbrirMantenerRol" Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar Rol" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,158,0"/>
-                <Button x:Name="AsignarAccesos" Background="Transparent" Foreground="White" BorderThickness="0" Content="Asignar Accesos" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,152,0"/>
+                <Button x:Name="AbrirMantenerRol" Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar Rol" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,138,1" Width="160"/>
+                <Button x:Name="AsignarAccesos" Background="Transparent" Foreground="White" BorderThickness="0" Content="Asignar Accesos" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,138,1" Width="160"/>
             </Grid>
         </Expander>
 
         <!-- compras-->
-        <Expander Name="expanderCompras" IsExpanded="True" Background="Transparent" Header="Compras" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderCompras" IsExpanded="True" Background="Transparent" Header="Compras" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto" Margin="0,0,0,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -196,34 +196,34 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Proveedores" FontSize="20"  Grid.Row="0"/>
-                <Button x:Name="AbrirBuscadorProveedor"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar proveedor" FontSize="20" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,29,138,4" Grid.RowSpan="2" Height="29"/>
-                <Button x:Name="AbrirMantenerProveedor"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,139,1"/>
-                <Button x:Name="AbrirCatalogoProductoProveedor"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Catalogo productos" FontSize="20"   Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,0,117,1"/>
+                <Button x:Name="AbrirBuscadorProveedor"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar proveedor" FontSize="20" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,29,108,4" Grid.RowSpan="2" Height="29" Width="188"/>
+                <Button x:Name="AbrirMantenerProveedor"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo proveedor" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,120,2" Width="178"/>
+                <Button x:Name="AbrirCatalogoProductoProveedor"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Catalogo productos" FontSize="20"   Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,1,108,2" Width="188"/>
 
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Servicios" FontSize="20"  Grid.Row="4"/>
-                <Button x:Name="AbrirNuevoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo Servicio" FontSize="20"  Grid.Row="5"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,0,161,1"/>
-                <Button x:Name="AbrirBuscadorServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar de Servicios" FontSize="20"  Grid.Row="6"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,0,127,0" Height="31"/>
+                <Button x:Name="AbrirNuevoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo Servicio" FontSize="20"  Grid.Row="5"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,1,143,2" Width="154"/>
+                <Button x:Name="AbrirBuscadorServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar de Servicios" FontSize="20"  Grid.Row="6"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,0,94,0" Height="31" Width="205"/>
 
                 <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Solicitudes de Adquisicion" FontSize="20"  Grid.Row="7"/>
-                <Button  x:Name="AbrirBuscadorSolicitudesAdquisicion"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar de Solicitudes" FontSize="20"  Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,108,30" Height="32" Grid.RowSpan="2"/>
-                <Button x:Name="AbrirSeleccionDeProveedores"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,0,67,1"/>
+                <Button  x:Name="AbrirBuscadorSolicitudesAdquisicion"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar de Solicitudes" FontSize="20"  Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,72,30" Height="32" Grid.RowSpan="2" Width="226"/>
+                <Button x:Name="AbrirSeleccionDeProveedores"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Seleccion de proveedores" FontSize="20"  Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,1,33,2" Width="264"/>
 
                 <Button  Background="Gray" Foreground="white"  BorderThickness="0" Content="Ordenes de Compra" FontSize="20"  Grid.Row="10"/>
-                <Button x:Name="AbrirGenerarOrdenCompra" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Orden de Compra" FontSize="20"  Grid.Row="11" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,0,72,1"/>
-                <Button x:Name="AbrirBuscarOrdenCompra" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Orden de Compra" FontSize="20"  Grid.Row="12" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,72,0"/>
+                <Button x:Name="AbrirGenerarOrdenCompra" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Orden de Compra" FontSize="20"  Grid.Row="11" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,1,47,2" Width="250"/>
+                <Button x:Name="AbrirBuscarOrdenCompra" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Orden de Compra" FontSize="20"  Grid.Row="12" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-3,2,36,1" Width="265"/>
 
                 <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Cotizaciones" FontSize="20"  Grid.Row="13"/>
-                <Button x:Name="AbrirNuevaCotizacion"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo Cotizacion" FontSize="20"  Grid.Row="14" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,138,1"/>
-                <Button x:Name="AbrirBuscarCotizacion"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Cotizaciones" FontSize="20"  Grid.Row="15" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,120,1"/>
+                <Button x:Name="AbrirNuevaCotizacion"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo Cotizacion" FontSize="20"  Grid.Row="14" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,120,2" Width="178"/>
+                <Button x:Name="AbrirBuscarCotizacion"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Cotizaciones" FontSize="20"  Grid.Row="15" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-2,1,87,2" Width="213"/>
 
                 <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Documentos de pago" FontSize="20"  Grid.Row="16"/>
-                <Button x:Name="AbrirRegistrarDocumentos"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo doc. pago" FontSize="20"  Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,29,143,0" Grid.RowSpan="2" Height="33"/>
-                <Button x:Name="AbrirBuscarDocumentos"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="18" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,143,0" Height="31"/>
+                <Button x:Name="AbrirRegistrarDocumentos"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo doc. pago" FontSize="20"  Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="-1,29,131,0" Grid.RowSpan="2" Height="33" Width="168"/>
+                <Button x:Name="AbrirBuscarDocumentos"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar doc. pago" FontSize="20"  Grid.Row="18" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,120,0" Height="31" Width="178"/>
             </Grid>
         </Expander>
 
         <!--Ventas-->
-        <Expander Name="expanderVentas" IsExpanded="True" Background="Transparent" Header="Ventas" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderVentas" IsExpanded="True" Background="Transparent" Header="Ventas" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -249,31 +249,31 @@
 
                 </Grid.RowDefinitions>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Clientes" FontSize="20" Grid.Row="0"/>
-                <Button x:Name="AbrirListadoCliente"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,236,0"/>
-                <Button x:Name="AbrirNuevoCliente"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,169,1"/>
+                <Button x:Name="AbrirListadoCliente"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
+                <Button x:Name="AbrirNuevoCliente"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo Cliente" FontSize="20" Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,156,2" Width="142"/>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="3"/>
-                <Button x:Name="AbrirListadoVenta"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,236,1"/>
-                <Button x:Name="AbrirNuevaVenta"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Venta" FontSize="20" Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,30,181,2" Grid.RowSpan="2"/>
-                <Button x:Name="AbrirNuevaVentaCajero"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Venta Cajero" FontSize="20" Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,119,1"/>
-                <Button x:Name="AbrirProforma"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Proformas" FontSize="20" Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,203,1"/>
+                <Button x:Name="AbrirListadoVenta"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="81"/>
+                <Button x:Name="AbrirNuevaVenta"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Venta" FontSize="20" Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,167,4" Width="131"/>
+                <Button x:Name="AbrirNuevaVentaCajero"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Venta Cajero" FontSize="20" Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,98,2" Width="200"/>
+                <Button x:Name="AbrirProforma"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Proformas" FontSize="20" Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,186,2" Width="112"/>
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="8"/>
-                <Button x:Name="AbrirListadoDevoluciones"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,236,0"/>
-                <Button x:Name="AbrirRegistrarDevolucion"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,133,2"/>
-                <Button x:Name="AbrirListadoNotaCredito"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,68,1"/>
+                <Button x:Name="AbrirListadoDevoluciones"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
+                <Button x:Name="AbrirRegistrarDevolucion"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Devolucion" FontSize="20" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,116,3" Width="182"/>
+                <Button x:Name="AbrirListadoNotaCredito"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Nota de Crédito" FontSize="20" Grid.Row="11" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,40,2" Width="258"/>
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="12"/>
-                <Button x:Name="AbrirListadoPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,236,1"/>
-                <Button x:Name="AbrirNuevaPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,29,136,3" Grid.RowSpan="2"/>
+                <Button x:Name="AbrirListadoPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="81"/>
+                <Button x:Name="AbrirNuevaPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,30,116,4" Grid.RowSpan="2" Width="182"/>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="15"/>
-                <Button x:Name="AbrirListadoPromoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,236,1"/>
-                <Button x:Name="AbrirNuevaPromoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="3,30,133,2" Grid.RowSpan="2"/>
+                <Button x:Name="AbrirListadoPromoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="81"/>
+                <Button x:Name="AbrirNuevaPromoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="17" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="3,0,116,3" Width="179"/>
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Precios" FontSize="20" Grid.Row="18"/>
-                <Button x:Name="AbrirListadoPrecios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="19" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,236,0"/>
+                <Button x:Name="AbrirListadoPrecios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="19" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
 
             </Grid>
         </Expander>
 
         <!--Reportes-->
-        <Expander Name="expanderReportes" IsExpanded="True" Background="Transparent" Header="Reportes" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderReportes" IsExpanded="True" Background="Transparent" Header="Reportes" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -288,22 +288,22 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="AbrirReporteTardanzas"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,1,199,0"/>
-                <Button x:Name="AbrirReporteAcciones"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Log de Acciones" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,0,144,1"/>
-                <Button x:Name="AbrirReporteVentas"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,0,228,1"/>
-                <Button x:Name="AbrirReporteServicios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,0,211,1"/>
-                <Button x:Name="AbrirReporteDevoluciones"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,0,170,1"/>
-                <Button x:Name="AbrirReporteCompra"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Compras" FontSize="20" Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,1,209,0"/>
-                <Button x:Name="AbrirReporteEntradaSalidaProd"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Ent/Sal de Productos" FontSize="20" Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,0,104,1"/>
-                <Button x:Name="AbrirReporteSolicitudes"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Solicitudes" FontSize="20" Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,0,193,1"/>
-                <Button x:Name="AbrirReporteStock"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,1,117,0"/>
-                <Button x:Name="AbrirReportePromocionesTop"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Top Promociones" FontSize="20" Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,0,130,1"/>
-                <Button x:Name="AbrirReporteProductosCanjePuntos"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Productos Canje por Puntos" FontSize="20" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="10,1,38,0"/>
+                <Button x:Name="AbrirReporteTardanzas"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,2,184,1" Width="108"/>
+                <Button x:Name="AbrirReporteAcciones"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Log de Acciones" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="3,1,120,2" Width="175"/>
+                <Button x:Name="AbrirReporteVentas"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Ventas" FontSize="20" Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="3,2,214,3" Width="81"/>
+                <Button x:Name="AbrirReporteServicios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Servicios" FontSize="20" Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="5,1,194,2" Width="99"/>
+                <Button x:Name="AbrirReporteDevoluciones"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Devoluciones" FontSize="20" Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,1,155,2" Width="137"/>
+                <Button x:Name="AbrirReporteCompra"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Compras" FontSize="20" Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="4,3,196,2" Width="98"/>
+                <Button x:Name="AbrirReporteEntradaSalidaProd"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Ent/Sal de Productos" FontSize="20" Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,1,77,2" Width="215"/>
+                <Button x:Name="AbrirReporteSolicitudes"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Solicitudes" FontSize="20" Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,1,177,2" Width="119"/>
+                <Button x:Name="AbrirReporteStock"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Stock de Productos" FontSize="20" Grid.Row="8" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,2,92,1" Width="200"/>
+                <Button x:Name="AbrirReportePromocionesTop"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Top Promociones" FontSize="20" Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="5,1,113,2" Width="180"/>
+                <Button x:Name="AbrirReporteProductosCanjePuntos"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Productos Canje por Puntos" FontSize="20" Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="4,2,6,1" Width="288"/>
             </Grid>
         </Expander>
 
         <!--Configuracion-->
-        <Expander Name="expanderConfiguracion" IsExpanded="True" Background="Transparent" Header="Configuración" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderConfiguracion" IsExpanded="True" Background="Transparent" Header="Configuración" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -315,26 +315,26 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="AbrirBuscarTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Tiendas" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,173,1"/>
-                <Button x:Name="AbrirMantenerTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,173,1"/>
-                <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,121,1" />
-                <Button x:Name="AbrirMantenerTipoZona"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,121,0"/>
-                <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,78,0"/>
-                <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,49,1"/>
-                <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,140,1"/>
-                <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,39,3"/>
+                <Button x:Name="AbrirBuscarTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Tiendas" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,2,139,3" Width="158"/>
+                <Button x:Name="AbrirMantenerTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,1,157,2" Width="139"/>
+                <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,91,2" Width="207" />
+                <Button x:Name="AbrirMantenerTipoZona"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,91,1" Width="207"/>
+                <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,39,1" Width="259"/>
+                <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,2" Width="288"/>
+                <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,122,2" Width="176"/>
+                <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,4" Width="288"/>
 
             </Grid>
         </Expander>
         <!--Clima Laboral-->
-        <Expander Name="expanderClima" IsExpanded="True" Background="Transparent" Header="Clima Laboral" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
+        <Expander Name="expanderClima" IsExpanded="True" Background="Transparent" Header="Clima Laboral" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Button x:Name="AbrirBuscarEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Empleado" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,0,143,1"/>
-                <Button x:Name="AbrirBuscarOrganigrama"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Ver Organigrama" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,142,-10" Height="40"/>
+                <Button x:Name="AbrirBuscarEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Empleado" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,117,2" Width="181"/>
+                <Button x:Name="AbrirBuscarOrganigrama"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Ver Organigrama" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,117,-10" Height="40" Width="181"/>
 
             </Grid>
         </Expander>
@@ -347,7 +347,7 @@
         <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1179,6,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
             <Image Source="/Assets/gear.png" Width="35" Height="33"/>
         </Button>
-        <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="878,10,0,0" Foreground="White" FontSize="16"/>
+        <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,10,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
         <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="764,8,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
             <Image Source="/Assets/commentblack32.png" Width="35" Height="33"/>
         </Button>
