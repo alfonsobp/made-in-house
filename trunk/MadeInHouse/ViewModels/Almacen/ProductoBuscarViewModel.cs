@@ -44,6 +44,7 @@ namespace MadeInHouse.ViewModels.Almacen
             CmbTiendas = tSQL.BuscarTienda();
             CmbTiendas.Insert(0, deft);
             Index = 0;
+            Estado = true;
 
         }
 
@@ -92,8 +93,17 @@ namespace MadeInHouse.ViewModels.Almacen
         public ProductoBuscarViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion):this()
         {
             // TODO: Complete member initialization
+
             this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
             this.ventanaAccion = ventanaAccion;
+            int i=0;
+            Index = i;
+            for (i = 0; i < CmbTiendas.Count; i++) {
+                if (CmbTiendas.ElementAt(i).IdTienda == mantenerNotaDeSalidaViewModel.Almacen.ElementAt(0).IdTienda) {
+                    Index = i;
+                }
+            }
+            Estado = false;
         }
 
         public ProductoBuscarViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
@@ -113,7 +123,15 @@ namespace MadeInHouse.ViewModels.Almacen
         #region atributos
 
 	public ProductoViewModel pvm = null;
+    private bool estado;
 
+    public bool Estado
+    {
+        get { return estado; }
+        set { estado = value;
+        NotifyOfPropertyChange("Estado");
+        }
+    }
 	private List<Tienda> cmbTiendas;
 
         public List<Tienda> CmbTiendas
@@ -322,7 +340,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
                 if (mantenerNotaDeSalidaViewModel != null)
                 {
-                    mantenerNotaDeSalidaViewModel.SelectedProducto.CodigoProd = productoSel.CodigoProd;
+                    mantenerNotaDeSalidaViewModel.SelectedProducto = productoSel;
                     this.TryClose();
                 }
             }
@@ -352,6 +370,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     proformaViewModel.Prod = productoSel;
                     this.TryClose();
                 }
+                
             }
 
             if (pvm != null) {
