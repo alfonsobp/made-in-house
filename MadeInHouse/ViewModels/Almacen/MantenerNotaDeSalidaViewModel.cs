@@ -8,6 +8,8 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models;
 using System.Windows;
+using MadeInHouse.Models.Seguridad;
+using System.Threading;
 
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -17,17 +19,34 @@ namespace MadeInHouse.ViewModels.Almacen
          MyWindowManager win = new MyWindowManager();
         DataObjects.Almacen.ProductoxSolicitudAbSQL gateWay = new ProductoxSolicitudAbSQL();
         ProductoSQL pxaSQL;
+        Usuario u = new Usuario();
+        int idTienda;
         public MantenerNotaDeSalidaViewModel(){
             pxaSQL = new ProductoSQL();
-            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(1);
+            this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(2);
             AlmacenSQL aGW = new AlmacenSQL();
-            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(3);
+
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            idTienda = u.IdTienda;
+            Models.Almacen.Almacenes a;
+            if (idTienda != 0)
+            {
+                //1 deposito
+                //2 anaquel
+                //3 central va al else
+                a = aGW.BuscarAlmacen(-1, idTienda, 1);
+            }
+            else
+            {
+                a = aGW.BuscarAlmacen(-1, idTienda, 3);
+            }
+
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
             Estado = true;
             EstadoMot = true;
-            EstadoPro = true;
+            EstadoPro = true; 
         }
 
         string txtDoc;
@@ -82,8 +101,10 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return selectedMotivo; }
             set { selectedMotivo = value;
-            DeshabilitarDoc(selectedMotivo);
             NotifyOfPropertyChange(() => SelectedMotivo);
+            DeshabilitarDoc(selectedMotivo);
+            DeshabilitarPro(selectedMotivo);
+
             }
         }
 
@@ -247,7 +268,6 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => LstProductos);
             EstadoMot = false;
             Estado = false;
-            DeshabilitarPro(SelectedMotivo);
         }
 
         private void DeshabilitarPro(string SelectedMotivo)
@@ -346,9 +366,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public void BuscarProducto()
         {
             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-            wm.ShowWindow(new ProductoBuscarViewModel(this, 4));
+            wm.ShowWindow(new ProductoBuscarViewModel(this, 3));
+        
         }
-
         public void AgregarProducto() {
             if (SelectedProducto.CodigoProd == null || TxtCantPro == null)
             {

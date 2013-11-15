@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
@@ -9,6 +10,7 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Compras;
+using MadeInHouse.Models.Seguridad;
 using MadeInHouse.ViewModels.Compras;
 using MadeInHouse.ViewModels.Ventas;
 
@@ -19,11 +21,27 @@ namespace MadeInHouse.ViewModels.Almacen
         MyWindowManager win = new MyWindowManager();
         DataObjects.Almacen.ProductoxSolicitudAbSQL gateWay = new ProductoxSolicitudAbSQL();
         ProductoSQL pxaSQL;
+        Usuario u = new Usuario();
+        int idTienda;
         public MantenerNotaDeIngresoViewModel(){
             pxaSQL = new ProductoSQL();
             this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(1);
             AlmacenSQL aGW = new AlmacenSQL();
-            Models.Almacen.Almacenes a = aGW.BuscarAlmacen(3);
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            idTienda = u.IdTienda;
+            Models.Almacen.Almacenes a;
+            if (idTienda != 0)
+            {
+                //1 deposito
+                //2 anaquel
+                //3 central va al else
+                 a = aGW.BuscarAlmacen(-1, idTienda, 1);
+            }
+            else 
+            {
+                a = aGW.BuscarAlmacen(-1, idTienda, 3);
+            }
+
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
@@ -85,6 +103,7 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return selectedMotivo; }
             set { selectedMotivo = value;
             DeshabilitarDoc(selectedMotivo);
+            DeshabilitarPro(selectedMotivo);
             NotifyOfPropertyChange(() => SelectedMotivo);
             }
         }
@@ -246,7 +265,6 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => LstProductos);
             EstadoMot = false;
             Estado = false;
-            DeshabilitarPro(SelectedMotivo);
         }
 
         private void DeshabilitarPro(string SelectedMotivo)
@@ -278,7 +296,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         {
                             if (selectedMotivo.Equals("Abastecimiento"))
                             {
-                                Estado = false;
+                                EstadoPro = false;
                             }
                             else
                             {

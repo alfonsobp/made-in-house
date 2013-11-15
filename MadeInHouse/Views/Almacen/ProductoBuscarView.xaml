@@ -81,7 +81,9 @@
                                 SelectedValue="{Binding SelectedTienda, Mode=OneWayToSource}"
                                 DisplayMemberPath="Nombre" 
                                 SelectedValuePath="IdTienda"
-                                Grid.Column="1" HorizontalAlignment="Left" Margin="4,4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150"/>
+                                Grid.Column="1" HorizontalAlignment="Left" Margin="4,4,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150"
+                                IsEnabled="{Binding Estado}"
+                                />
                         </Grid>
                     </GroupBox>
                     <DataGrid
