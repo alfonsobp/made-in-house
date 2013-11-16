@@ -3,89 +3,63 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5">
+             xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
+             mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="834.5" Width="1249">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel Margin="1,0,-2,0">
             <Layouts:TitleBarTemplate title="Movimientos entre zonas"/>
-            <Grid Height="580" Margin="3,0,-3,0">
-                <GroupBox Header="Zona de recepción" Margin="435,20,38,28">
-                    <Grid HorizontalAlignment="Left" Height="522" VerticalAlignment="Top" Width="384" Margin="0,0,0,-12">
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="164" VerticalAlignment="Top" Width="316" Margin="26,256,0,0"/>
+            <Grid Height="801" Margin="3,0,0,0">
+                <GroupBox Header="Zona de recepción" Margin="636,20,32,28">
+                    <Grid HorizontalAlignment="Left" Height="743" VerticalAlignment="Top" Width="559" Margin="0,0,-2,-12">
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="26,18,0,0" VerticalAlignment="Top"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="80,18,0,0" VerticalAlignment="Top" Width="120"/>
-                        <DataGrid HorizontalAlignment="Left" Margin="27,67,0,0" VerticalAlignment="Top" Width="310" Height="145">
+                        <ComboBox HorizontalAlignment="Left" Margin="80,18,0,0" VerticalAlignment="Top" Width="256"/>
+                        <DataGrid HorizontalAlignment="Left" Margin="26,67,0,0" VerticalAlignment="Top" Width="523" Height="145">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Código" Width="80"/>
                                 <DataGridTextColumn Header="Nombre" Width="160"/>
                                 <DataGridTextColumn Header="C.Total" Width="100"/>
-                                
+
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Label Content="Cantidad a ubicar" HorizontalAlignment="Left" Margin="27,440,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="152,440,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"/>
-                        <Button  HorizontalAlignment="Left" Margin="252,440,0,0" VerticalAlignment="Top" Width="34" Height="23">
+                        <Label Content="Cantidad a ubicar" HorizontalAlignment="Left" Margin="26,234,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"/>
+                        <Button  HorizontalAlignment="Left" Margin="345,237,0,0" VerticalAlignment="Top" Width="34" Height="23">
                             <Image Source="/Assets/check.png" />
                         </Button>
-                        <Grid ShowGridLines="True" Background="Aqua" Margin="27,260,47,106">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                        </Grid>
+                        
+                            <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="338" Width="530" Margin="19,326,10,79">
+                                <grid:DynamicGrid  x:Name="AlmacenSalida2" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+                            </ScrollViewer>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="338" Margin="10,326,0,0" VerticalAlignment="Top" Width="539"/>
+
+
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Zona de salida" Margin="34,20,470,52" >
-                    <Grid HorizontalAlignment="Left" Height="498" VerticalAlignment="Top" Width="355" Margin="0,0,-2,-12">
-                        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="21,24,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Zona:" HorizontalAlignment="Left" Margin="21,55,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Producto:" HorizontalAlignment="Left" Margin="21,86,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Filtro:" HorizontalAlignment="Left" Margin="21,117,0,0" VerticalAlignment="Top" Height="49"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="87,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="148"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="87,121,0,0" VerticalAlignment="Top" Width="120"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="87,55,0,0" VerticalAlignment="Top" Width="151"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="87,24,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Button HorizontalAlignment="Left" Margin="242,89,0,0" VerticalAlignment="Top" Width="26" Height="23">
+                <GroupBox Header="Zona de salida" Margin="20,20,641,28" >
+                    <Grid HorizontalAlignment="Left" Height="730" VerticalAlignment="Top" Width="558" Margin="0,0,-2,0">
+                        <Label Content="Almacén:" HorizontalAlignment="Left" Margin="10,24,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Zona:" HorizontalAlignment="Left" Margin="282,19,0,0" VerticalAlignment="Top" Height="27"/>
+                        <Label Content="Producto:" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="76,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="321,24,0,0" VerticalAlignment="Top" Width="221"/>
+                        <Button HorizontalAlignment="Left" Margin="246,72,0,0" VerticalAlignment="Top" Width="26" Height="23">
                             <Image Source="/Assets/find.png" />
                         </Button>
-                        <Grid ShowGridLines="True" Background="Aqua"
-                            HorizontalAlignment="Left" Height="152" Margin="21,166,0,0" VerticalAlignment="Top" Width="310">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="8" HorizontalAlignment="Left" Height="152" Grid.RowSpan="5" VerticalAlignment="Top" Width="310" Margin="1,0,-0.25,0"/>
-                        </Grid>
-                        <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="21,358,0,0" VerticalAlignment="Top" Width="116"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="162,358,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
-                        <Button  HorizontalAlignment="Left" Margin="260,358,0,0" VerticalAlignment="Top" Width="41" Height="23">
+                        <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="246,477,0,0" VerticalAlignment="Top" Width="116"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="247,531,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
+                        <Button  HorizontalAlignment="Left" Margin="378,531,0,0" VerticalAlignment="Top" Width="40" Height="22">
                             <Image Source="/Assets/add.png" />
                         </Button>
+                        <ComboBox HorizontalAlignment="Left" Margin="73,24,0,0" VerticalAlignment="Top" Width="199"/>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="10,103,0,0" VerticalAlignment="Top" Width="532">
+                            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                                <grid:DynamicGrid  x:Name="AlmacenSalida" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                </grid:DynamicGrid>
+
+                            </ScrollViewer>
+                        </Border>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="238" VerticalAlignment="Top" Width="194" Margin="10,464,0,0"/>
                     </Grid>
                 </GroupBox>
             </Grid>
