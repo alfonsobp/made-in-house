@@ -84,8 +84,10 @@
                 </DataGrid>
                 <ScrollViewer HorizontalAlignment="Left" Height="444"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">
                     <Grid>
+                        <ProgressBar/>
                         <grid:DynamicGrid  x:Name="Almacen" Tipo="1" Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Accion="{Binding Accion1}" Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}"   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    </grid:DynamicGrid>
+                    
+                        </grid:DynamicGrid>
                     </Grid>
                 </ScrollViewer>
                 <ScrollViewer HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251">

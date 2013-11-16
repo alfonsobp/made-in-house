@@ -491,12 +491,13 @@ namespace MadeInHouse.ViewModels.Almacen
             LstProductos = simular(LstProductos);
             nota.Observaciones = Observaciones;
             nota.Tipo = 2;
+            
             LstProductos = simular(LstProductos);
+            
             nota.LstProducto = LstProductos;
             
             nota.IdNota=ntgw.AgregarNota(nota); //Falta llenar Tabla ProductoNotaIS 
             
-
             //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
 
