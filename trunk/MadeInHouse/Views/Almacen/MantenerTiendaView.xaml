@@ -182,7 +182,7 @@
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top" Width="75"/>
 
                             <ScrollViewer  HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
-                                <grid:DynamicGrid x:Name="Anaquel" Altura="{Binding AlturaAnq}" IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" NumColumns="{Binding NumColumnsAnq}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                <grid:DynamicGrid x:Name="Anaquel" Accion="1" Altura="{Binding AlturaAnq}" IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" NumColumns="{Binding NumColumnsAnq}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                 </grid:DynamicGrid>
                             </ScrollViewer>
                             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530"/>
@@ -227,7 +227,7 @@
                         HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top" Width="450" Grid.Column="1"/>
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
                             <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible" Grid.Column="1">
-                                <grid:DynamicGrid x:Name="Deposito" IdZona="{Binding ZonaDeposito}" Altura="{Binding AlturaDto}" NumRows="{Binding NumRowsDto}" NumColumns="{Binding NumColumnsDto}"  Background="{Binding Fondo,FallbackValue=Red}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                <grid:DynamicGrid x:Name="Deposito" Accion="1" IdZona="{Binding ZonaDeposito}" Altura="{Binding AlturaDto}" NumRows="{Binding NumRowsDto}" NumColumns="{Binding NumColumnsDto}"  Background="{Binding Fondo,FallbackValue=Red}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                             </ScrollViewer>
                             <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530"/>
                         </Grid>
