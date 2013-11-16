@@ -490,7 +490,7 @@ namespace MadeInHouse.ViewModels.Almacen
             nota.Observaciones = Observaciones;
             nota.Tipo = 2;
 
-            ntgw.AgregarNota(nota); //Falta llenar Tabla ProductoNotaIS 
+            nota.IdNota=ntgw.AgregarNota(nota); //Falta llenar Tabla ProductoNotaIS 
             
 
             //Actualizar Documentos de Referencia para darlos por Terminados! :)
