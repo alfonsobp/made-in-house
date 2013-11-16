@@ -43,5 +43,14 @@ namespace MadeInHouse.Models.Almacen
             get { return canAtender; }
             set { canAtender = value;}
         }
+        private List<Ubicacion> ubicaciones;
+
+        internal List<Ubicacion> Ubicaciones
+        {
+            
+            get { return ubicaciones; }
+            set { ubicaciones = value; }
+        }
+
     }
 }
