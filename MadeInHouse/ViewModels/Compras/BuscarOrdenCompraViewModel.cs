@@ -201,23 +201,32 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
 
             if (OrdenSelected != null)
             {
-                try
-                {
-                    GenerarPDF pdf = new GenerarPDF();
-                    Correo c = new Correo();
-                    //m.coloma@pucp.pe
-                    string path = "\\OrdenCompra-"+OrdenSelected.Proveedor.RazonSocial+".pdf";
-                    pdf.Borrar(Environment.CurrentDirectory +path );                 
-                    string body = formato(OrdenSelected).ToString();
-                    string msg = "Estimados :"+ Environment.NewLine +"Se adjunta la Orden de compra , Atenderla porfavor.";
-                    pdf.createPDF(body, path,false);
-                    c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg, Environment.CurrentDirectory + path);
-                   
-               
-                }
-                catch (Exception e)
-                {
 
+                if (OrdenSelected.Estado == 2)
+                {
+                    try
+                    {
+                        GenerarPDF pdf = new GenerarPDF();
+                        Correo c = new Correo();
+                        //m.coloma@pucp.pe
+                        string path = "\\OrdenCompra-" + OrdenSelected.Proveedor.RazonSocial + ".pdf";
+                        pdf.Borrar(Environment.CurrentDirectory + path);
+                        string body = formato(OrdenSelected).ToString();
+                        string msg = "Estimados :" + Environment.NewLine + "Se adjunta la Orden de compra , Atenderla porfavor.";
+                        pdf.createPDF(body, path, false);
+                        c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg, Environment.CurrentDirectory + path);
+
+
+                    }
+                    catch (Exception e)
+                    {
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Solo se puede enviar correos de Ordenes de compra EMITIDAS.", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                
                 }
             }
         }
@@ -268,7 +277,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
             this.ventanaAccion = accionVentana;
             this.estado = false;
-            this.selectedEstado = "EN EJECUCION";
+            this.selectedEstado = "EMITIDA";
            LstOrdenes= new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
         
         }
@@ -281,7 +290,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
             this.reporteComprasViewModel = reporteComprasViewModel;
             this.ventanaAccion = accionVentana;
             this.estado = false;
-            this.selectedEstado = "EN EJECUCION";
+            this.selectedEstado = "EMITIDA";
             LstOrdenes = new OrdenCompraSQL().Buscar(IdOrdenCompra, RSProveedor, getEstado(SelectedEstado), FechaIni, FechaFin) as List<OrdenCompra>;
 
         }

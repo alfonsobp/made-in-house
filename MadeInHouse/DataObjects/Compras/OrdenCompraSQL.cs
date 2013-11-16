@@ -35,9 +35,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
             return k;
@@ -136,9 +136,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
 
@@ -189,10 +189,9 @@ namespace MadeInHouse.DataObjects.Compras
                 conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
-
+                MessageBox.Show(e.Message);
             }
 
 
@@ -213,7 +212,7 @@ namespace MadeInHouse.DataObjects.Compras
 
             SqlConnection conn = DB.conn;
             SqlCommand cmd = DB.cmd;
-            OrdenCompraSQL oSQL = new OrdenCompraSQL();
+            OrdenCompraxProductoSQL oSQL = new OrdenCompraxProductoSQL();
 
             cmd.CommandText = "UPDATE OrdenCompra  set  estado = @estado  where idOrden = @idOrden ";
 
@@ -242,10 +241,9 @@ namespace MadeInHouse.DataObjects.Compras
                 conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
-
+                MessageBox.Show(e.Message);
             }
 
 
@@ -271,9 +269,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
             return k;
