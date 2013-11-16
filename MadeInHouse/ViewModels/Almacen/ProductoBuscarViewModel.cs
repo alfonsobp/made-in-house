@@ -111,6 +111,17 @@ namespace MadeInHouse.ViewModels.Almacen
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
             this.ventanaAccion = p;
+
+            int i = 0;
+            Index = i;
+            for (i = 0; i < CmbTiendas.Count; i++)
+            {
+                if (CmbTiendas.ElementAt(i).IdTienda == mantenerNotaDeIngresoViewModel.Almacen.ElementAt(0).IdTienda)
+                {
+                    Index = i;
+                }
+            }
+            Estado = false;
         }
 
         public ProductoBuscarViewModel(ProductoViewModel pvm):this() {

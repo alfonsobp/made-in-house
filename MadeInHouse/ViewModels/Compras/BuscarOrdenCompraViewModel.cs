@@ -312,7 +312,8 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
 
                 if (this.mantenerNotaDeIngresoViewModel != null)
                 {
-                    mantenerNotaDeIngresoViewModel.SelectedOrden = OrdenSelected;
+                    mantenerNotaDeIngresoViewModel.TxtDoc = OrdenSelected.CodOrdenCompra;
+                    mantenerNotaDeIngresoViewModel.TxtDocId = OrdenSelected.IdOrden;
                     this.TryClose();
                 }
             }

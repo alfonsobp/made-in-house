@@ -25,7 +25,7 @@
                     <Button>
                         <Image Source="/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button x:Name="AgregarNotaSalida">
+                    <Button x:Name="AgregarNota">
                         <Image Source="/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
@@ -51,7 +51,7 @@
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
                         <Label Content="Motivo:" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Height="26" Width="50"/>
                         <TextBox x:Name="TxtCod" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
-                        <TextBox Text="{Binding Path=SelectedOrden.CodOrdenCompra}" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="{Binding Estado}"/>
+                        <TextBox x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="{Binding Estado}"/>
                         <ComboBox  ItemsSource="{Binding CmbMotivo}"
         						SelectedValue="{Binding SelectedMotivo, Mode=TwoWay}"
         						DisplayMemberPath="NombreMotivo"
@@ -78,7 +78,7 @@
                             HorizontalAlignment="Left" Margin="120,121,0,0" VerticalAlignment="Top" Width="193"
                             IsEnabled="False"/>
                         <Label Content="Responsable:" HorizontalAlignment="Left" Margin="17,151,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="Responsable" HorizontalAlignment="Left" Height="23" Margin="120,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
+                        <ComboBox ItemsSource="{Binding Responsable}" DisplayMemberPath="CodEmpleado" SelectedValue="IdUsuario" IsEnabled="False" SelectedIndex="0" HorizontalAlignment="Left" Height="23" Margin="120,151,0,0"  VerticalAlignment="Top" Width="119"/>
                         <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="17,182,0,0" VerticalAlignment="Top"/>
                         <TextBox x:Name="Observaciones" Height="104" Margin="118,190,32,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                     </Grid>

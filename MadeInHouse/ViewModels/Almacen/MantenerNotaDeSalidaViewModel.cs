@@ -51,9 +51,9 @@ namespace MadeInHouse.ViewModels.Almacen
 
             List<Usuario> ul = new List<Usuario>();
             ul.Add(u);
-            
-            this.almacen = al;
+
             this.responsable = new List<Usuario>(ul);
+            this.almacen = al;
             Estado = true;
             EstadoMot = true;
             EstadoPro = true; 
