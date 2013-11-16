@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             
              mc:Ignorable="d" 
                      d:DesignHeight="700" d:DesignWidth="700">
 
@@ -70,7 +71,7 @@
                             </Grid>
                         </GroupBox>
 
-                        <DataGrid Margin="10,182,10,0">
+                        <DataGrid Margin="10,182,10,0" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="Código"/>
                                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Width="60" Header="DNI"/>

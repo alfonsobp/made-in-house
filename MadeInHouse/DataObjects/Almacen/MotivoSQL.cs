@@ -120,6 +120,7 @@ namespace MadeInHouse.DataObjects.Almacen
             int k = 0;
 
             cmd.CommandText = "UPDATE MotivoIS SET estado=0 WHERE idMotivo = @idMotivo";
+            
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@idMotivo",tz.Id);
@@ -141,5 +142,40 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
 
         }
+
+        internal static Motivo BuscarMotivo(string SelectedMotivo)
+        {
+            Motivo m = new Motivo(); 
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM MotivoIS where nombre=@nombre";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@nombre",SelectedMotivo);
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    
+                    m.Id = reader.IsDBNull(reader.GetOrdinal("idMotivo")) ? -1 : (int)reader["idMotivo"];
+                    m.NombreMotivo = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                   
+                }
+
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return m;
+        }
+        
     }
 }

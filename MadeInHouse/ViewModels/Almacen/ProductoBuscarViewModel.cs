@@ -333,6 +333,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     mantenerTiendaViewModel.TxtCodProducto = productoSel.CodigoProd;
                     this.TryClose();
+                    
                 }
             }
             else if (ventanaAccion == 3)

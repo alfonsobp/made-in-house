@@ -15,54 +15,75 @@ namespace MadeInHouse.Models.Almacen
                 get { return idNota; }
                 set { idNota = value; }
             }
-            string codNota;
+        
+            string tipo;
 
-            public string CodNota
+            public string Tipo
             {
-                get { return codNota; }
-                set { codNota = value; }
+                get { return tipo; }
+                set { tipo = value; }
             }
-            DateTime fechaMod;
+        
+        
+        DateTime fechaReg;
 
-            public DateTime FechaMod
+        public DateTime FechaReg
+        {
+            get { return fechaReg; }
+            set { fechaReg = value; }
+        }
+
+
+            int idAlmacen;
+
+            public int IdAlmacen
             {
-                get { return fechaMod; }
-                set { fechaMod = value; }
+                get { return idAlmacen; }
+                set { idAlmacen = value; }
             }
-            DateTime fechaReg;
 
-            public DateTime FechaReg
+
+            int idMotivo;
+
+            internal int IdMotivo
             {
-                get { return fechaReg; }
-                set { fechaReg = value; }
+                get { return idMotivo; }
+                set { idMotivo = value; }
             }
-            int alm;
+        
+       
+            List<ProductoCant> lstProducto;
 
-            internal int Alm
-            {
-                get { return alm; }
-                set { alm = value; }
-            }
-            int guia;
-
-            internal int Guia
-            {
-                get { return guia; }
-                set { guia = value; }
-            }
-            int motivo;
-
-            internal int Motivo
-            {
-                get { return motivo; }
-                set { motivo = value; }
-            }
-            List<int> lstProducto;
-
-            internal List<int> LstProducto
+            public List<ProductoCant> LstProducto
             {
                 get { return lstProducto; }
                 set { lstProducto = value; }
             }
+
+            string observaciones;
+
+            public string Observaciones
+            {
+                get { return observaciones; }
+                set { observaciones = value; }
+            }
+            int idResponsable;
+
+            public int IdResponsable
+            {
+                get { return idResponsable; }
+                set { idResponsable = value; }
+            }
+
+            int idDoc;
+
+            public int IdDoc
+            {
+                get { return idDoc; }
+                set { idDoc = value; }
+            }
+
+        
+
         }
 }
