@@ -8,6 +8,12 @@ namespace MadeInHouse.Models.Almacen
 {
     class ProductoCant : Producto 
     {
+
+        public ProductoCant()
+        {
+            ubicaciones = new List<Ubicacion>();
+        }
+
         private string proNombre;
 
         public string ProNombre
