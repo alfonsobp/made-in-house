@@ -30,6 +30,14 @@ namespace MadeInHouse.ViewModels.Seguridad
             set { lstUsuario = value; NotifyOfPropertyChange(() => LstUsuario); }
         }
 
+        //textBox de Búsqueda con el código del usuario:
+        private string txtCodUsuarioBuscado;
+        public string TxtCodUsuarioBuscado
+        {
+            get { return txtCodUsuarioBuscado; }
+            set { txtCodUsuarioBuscado = value; NotifyOfPropertyChange(() => txtCodUsuarioBuscado); }
+        }
+
         private List<Usuario> lstUsuarioElim;
         public List<Usuario> LstUsuarioElim
         {
@@ -53,11 +61,19 @@ namespace MadeInHouse.ViewModels.Seguridad
             ActualizarListaUsuario();
             ActualizarListaUsuarioElim();
         }
+
+        public void BuscarUsuarioPorCodigo()
+        {
+            lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado);
+            NotifyOfPropertyChange("LstUsuario");
+        }
+
         public void ActualizarListaUsuario()
         {
             lstUsuario = UsuarioSQL.BuscarUsuario();
             NotifyOfPropertyChange("LstUsuario");
         }
+        
         public void ActualizarListaUsuarioElim()
         {
             //lstUsuarioElim = UsuarioSQL.BuscarUsuario("Lalala", 0, DateTime.Today, DateTime.Today);

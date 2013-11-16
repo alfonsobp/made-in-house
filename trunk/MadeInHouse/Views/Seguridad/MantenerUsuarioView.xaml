@@ -50,14 +50,16 @@
                                 <Grid Margin="0,0,0,-12">
 
                                     <Label Content="ID Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="20,10,0,0"/>
-                                    <TextBox HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-
+                                    <TextBox Text="{Binding TxtCodUsuarioBuscado}"
+                                        HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
                                     <Label Content="Fecha de registro:" HorizontalAlignment="Left" Height="29" Margin="20,46,0,0" VerticalAlignment="Top" Width="109"/>
                                     <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="348,46,0,0" VerticalAlignment="Top" Width="48"/>
-                                    <DatePicker HorizontalAlignment="Left" Margin="129,47,0,0" VerticalAlignment="Top" Width="113" Height="24"/>
-                                    <DatePicker HorizontalAlignment="Left" Margin="425,47,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                                    <DatePicker Text="{Binding FechaIni}"
+                                        HorizontalAlignment="Left" Margin="129,47,0,0" VerticalAlignment="Top" Width="113" Height="24"/>
+                                    <DatePicker Text="{Binding FechFin}"
+                                        HorizontalAlignment="Left" Margin="425,47,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
 
-                                    <Button Height="24" VerticalAlignment="Top" Margin="383,82,80,0" Width="50">
+                                    <Button x:Name="BuscarUsuarioPorCodigo" Height="24" VerticalAlignment="Top" Margin="383,82,80,0" Width="50">
                                         <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                                     </Button>
                                 </Grid>

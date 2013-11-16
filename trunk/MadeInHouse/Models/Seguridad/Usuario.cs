@@ -97,7 +97,7 @@ namespace MadeInHouse.Models.Seguridad
         }
 
         string nomTienda;
-        public string NomTienda
+            public string NomTienda
         {
             get { return nomTienda; }
             set { nomTienda = value; }
