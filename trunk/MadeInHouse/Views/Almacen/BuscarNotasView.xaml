@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" Height="543.667" Width="435">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
@@ -48,17 +49,19 @@
                         <TextBox Height="23" Margin="77,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
                         <DatePicker Margin="77,46,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
                         <ComboBox Margin="77,80,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
-                        <Button Background="Transparent" Margin="274,10,0,0" HorizontalAlignment="Left" Width="76" Height="23" VerticalAlignment="Top">
+                        <Button x:Name="Buscar" Margin="274,10,0,0" HorizontalAlignment="Left" Width="76" Height="23" VerticalAlignment="Top">
                             <Image Source="/Assets/find.png" />
                         </Button>
                     </Grid>
                 </GroupBox>
-                <DataGrid Margin="20,2,0,53" Grid.Row="2" HeadersVisibility="All" HorizontalAlignment="Left" Width="394" >
+                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="20,2,0,53" Grid.Row="2" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="394" 
+                          cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
+                          SelectedItem="{Binding NotaSel, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Código" Width="120"/>
-                        <DataGridTextColumn Header="Fecha" Width="100"/>
-                        <DataGridTextColumn Header="Tipo" Width="100"/>
-                        <DataGridTextColumn Header="Tienda" Width="200"/>
+                        <DataGridTextColumn Header="idNota" Binding="{Binding Path=IdNota}" Width="120"/>
+                        <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaReg}" Width="100"/>
+                        <DataGridTextColumn Header="Tipo" Binding="{Binding Path=Tipo}" Width="100"/>
+                        <DataGridTextColumn Header="Almacen" Binding="{Binding Path=IdAlmacen}" Width="200"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

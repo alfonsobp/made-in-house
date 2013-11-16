@@ -42,6 +42,10 @@ namespace MadeInHouse.ViewModels.Almacen
                 a = aGW.BuscarAlmacen(-1, idTienda, 3);
             }
 
+            List<Usuario> ul = new List<Usuario>();
+            ul.Add(u);
+            this.responsable = new List<Usuario>(ul);
+
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
             this.almacen = al;
@@ -59,6 +63,16 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => TxtDoc);
             }
         }
+        
+        int txtDocId;
+
+        public int TxtDocId { 
+            get{ return txtDocId; }
+            set { txtDocId = value;
+            }
+
+            }
+
         bool estadoPro;
 
         public bool EstadoPro
@@ -194,14 +208,18 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return almacen; }
             set { almacen = value; }
         }
-        string responsable;
 
-        public string Responsable
+
+        List<Usuario> responsable = new List<Usuario>();
+
+        public List<Usuario> Responsable
         {
             get { return responsable; }
-            set { responsable = value; }
+            set { responsable = value;
+            NotifyOfPropertyChange("Responsable");
+            }
         }
-        string observaciones;
+        string observaciones="";
 
         public string Observaciones
         {
@@ -391,7 +409,8 @@ namespace MadeInHouse.ViewModels.Almacen
                             System.Windows.MessageBox.Show("El producto que se quiere registrar ya esta siendo ingresado","Error");
                         }
                     }
-                    else {
+                    else 
+                    {
                         pxa = new ProductoCant();
                         pxa.CanAtender = TxtCantPro;
                         pxa.CanAtend = "0";
@@ -403,7 +422,6 @@ namespace MadeInHouse.ViewModels.Almacen
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoCant>(LstProductos);
                     }
-
                 }
                 else
                 {
@@ -435,6 +453,38 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstProductos = new List<ProductoCant>(LstProductos);
                 
             }
+        }
+
+        public void AgregarNota()
+        {
+
+            NotaISSQL ntgw = new NotaISSQL();
+            NotaIS nota = new NotaIS();
+            nota.IdAlmacen = Almacen.ElementAt(0).IdAlmacen;
+            // Logica de  Referencia de documento
+            if (Estado == false)
+            {
+                // no hay documento de referencia colocar 0;
+                nota.IdDoc = 0;
+            }
+            else
+            {
+                //Si existe documento de referencia colocar el ID
+                nota.IdDoc = TxtDocId;
+            }
+            nota.IdMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivo(SelectedMotivo).Id;
+            nota.IdResponsable = Responsable.ElementAt(0).IdUsuario;
+            nota.Observaciones = Observaciones;
+            nota.Tipo = 1;
+
+            nota.LstProducto = this.LstProductos;
+
+            nota.IdNota = ntgw.AgregarNota(nota);
+
+            //Actualizar Documentos de Referencia para darlos por Terminados! :)
+
+            MessageBox.Show("Nota Creada");
+
         }
 
     }
