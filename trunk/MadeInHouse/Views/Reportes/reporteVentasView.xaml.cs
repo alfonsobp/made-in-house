@@ -123,6 +123,9 @@ namespace MadeInHouse.Views.Reportes
         private void Generar(object sender, RoutedEventArgs e)
         {
             ventas = new List<Venta>();
+            DateTime inicio = Convert.ToDateTime(FechaIni.Text);
+            DateTime fin =Convert.ToDateTime(FechaFin.Text);
+
             List<Venta> ventaAux1 = new List<Venta>();
             List<Venta> ventaAux2 = new List<Venta>();
             List<Venta> ventaAux3 = new List<Venta>();
@@ -177,11 +180,20 @@ namespace MadeInHouse.Views.Reportes
             }
 
             double suma = 0;
-
-            for (int i = 0; i < ventas.Count; i++)
+            for (int i = 0; i < ventaAux4.Count; i++)
             {
-                suma += ventas[i].Monto;
+                if (ventaAux4[i].FechaReg < inicio || ventaAux4[i].FechaReg > fin)
+                {
+                    ventaAux4.RemoveAt(i);
+                    i = -1;
+                }
             }
+            for (int i = 0; i < ventaAux4.Count; i++)
+            {
+                suma += ventaAux4[i].Monto;
+            }
+
+            
             Lista.ItemsSource = ventaAux4;
             montoTotal.Text = suma + "";
 

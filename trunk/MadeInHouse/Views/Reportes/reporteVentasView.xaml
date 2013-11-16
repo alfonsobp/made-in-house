@@ -4,8 +4,10 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="600" Height="696.5">
+    
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Ventas" />
@@ -80,9 +82,8 @@
                             <DataGrid Name="Lista"  HorizontalAlignment="Left" Margin="10,439,0,2" Width="480"/>
                             <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
-                            <DatePicker x:Name="FechaIni" HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-
+                            <DatePicker Name="FechaIni" Margin="62,21,393,537"></DatePicker>
+                            <DatePicker Name="FechaFin" Margin="283,22,172,536"></DatePicker>
                         </Grid>
                     </GroupBox>
                 </Grid>
