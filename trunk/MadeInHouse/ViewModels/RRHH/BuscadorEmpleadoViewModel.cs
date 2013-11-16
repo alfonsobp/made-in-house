@@ -12,8 +12,13 @@ using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    public class BuscadorEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
+    class BuscadorEmpleadoViewModel : Screen
     {
         private MyWindowManager win = new MyWindowManager();
+     
+        public BuscadorEmpleadoViewModel() { 
+        
+        }
+        
     }
 }

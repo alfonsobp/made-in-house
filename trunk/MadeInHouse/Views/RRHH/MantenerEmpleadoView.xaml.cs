@@ -26,6 +26,9 @@ namespace MadeInHouse.Views.RRHH
     {
         static public string INDICEMP;
         private List<Empleado> grid;
+        
+        private ViewModels.Almacen.MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+        private int accion;
 
         public MantenerEmpleadoView()
         {
@@ -41,6 +44,7 @@ namespace MadeInHouse.Views.RRHH
             Lista.ItemsSource = grid;
             Lista.Items.Refresh();            
         }
+
 
         public void Refrescar(object sender, RoutedEventArgs e)
         {
@@ -101,5 +105,7 @@ namespace MadeInHouse.Views.RRHH
             else INDICEMP = grid[Lista.SelectedIndex].Dni;
             
         }
+       
+
     }
 }

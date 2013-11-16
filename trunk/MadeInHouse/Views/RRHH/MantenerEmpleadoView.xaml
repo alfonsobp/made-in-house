@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
             mc:Ignorable="d" Height="714" Width="705">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="705" Margin="0,0,0,10">
         <DockPanel>
@@ -76,7 +77,7 @@
                             </Grid>
                         </GroupBox>
 
-                        <DataGrid Name="Lista" Margin="10,182,10,0" >
+                        <DataGrid Name="Lista" Margin="10,182,10,0">
                             <DataGrid.Columns >
                                 <!-- aqui van las columnas en caso no kiera mostrar todas -->
                             </DataGrid.Columns>                            

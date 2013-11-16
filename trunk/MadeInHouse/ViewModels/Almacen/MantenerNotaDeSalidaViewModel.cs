@@ -10,6 +10,9 @@ using MadeInHouse.Models;
 using System.Windows;
 using MadeInHouse.Models.Seguridad;
 using System.Threading;
+using MadeInHouse.ViewModels.RRHH;
+using MadeInHouse.Views.RRHH;
+using MadeInHouse.Models.RRHH;
 
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -21,6 +24,7 @@ namespace MadeInHouse.ViewModels.Almacen
         ProductoSQL pxaSQL;
         Usuario u = new Usuario();
         int idTienda;
+        List<Usuario> responsable = new List<Usuario>();
         public MantenerNotaDeSalidaViewModel(){
             pxaSQL = new ProductoSQL();
             this.cmbMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivos(2);
@@ -28,6 +32,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             idTienda = u.IdTienda;
+            
             Models.Almacen.Almacenes a;
             if (idTienda != 0)
             {
@@ -43,7 +48,12 @@ namespace MadeInHouse.ViewModels.Almacen
 
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
             al.Add(a);
+
+            List<Usuario> ul = new List<Usuario>();
+            ul.Add(u);
+            
             this.almacen = al;
+            this.responsable = new List<Usuario>(ul);
             Estado = true;
             EstadoMot = true;
             EstadoPro = true; 
@@ -58,6 +68,14 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => TxtDoc);
             }
         }
+        int txtDocId;
+
+        public int TxtDocId
+        {
+            get { return txtDocId; }
+            set { txtDocId = value; }
+        }
+
         bool estadoPro;
 
         public bool EstadoPro
@@ -113,7 +131,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             if (selectedMotivo.Equals("Traslado Externo"))
             {
-                Estado = true;
+                Estado = false;
             }
             else
             {
@@ -125,7 +143,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (selectedMotivo.Equals("Rotura"))
                     {
-                        Estado = true;
+                        Estado = false;
                     }
                     else
                     {
@@ -195,20 +213,24 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return almacen; }
             set { almacen = value; }
         }
-        string responsable;
 
-        public string Responsable
+        public List<Usuario> Responsable
         {
             get { return responsable; }
-            set { responsable = value; }
+            set { responsable = value;
+            NotifyOfPropertyChange("Responsable");
+            }
+       
         }
-
+        
         string observaciones;
 
         public string Observaciones
         {
             get { return observaciones; }
-            set { observaciones = value; }
+            set { observaciones = value;
+            NotifyOfPropertyChange("Observaciones");
+            }
         }
 
         bool estado;
@@ -369,6 +391,9 @@ namespace MadeInHouse.ViewModels.Almacen
             wm.ShowWindow(new ProductoBuscarViewModel(this, 3));
         
         }
+       
+        
+
         public void AgregarProducto() {
             if (SelectedProducto.CodigoProd == null || TxtCantPro == null)
             {
@@ -442,6 +467,32 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstProductos = new List<ProductoCant>(LstProductos);
                 
             }
+        }
+
+        public void AgregarNota() {
+
+            NotaISSQL ntgw = new NotaISSQL();
+            NotaIS nota = new NotaIS();
+            nota.IdAlmacen = Almacen.ElementAt(0).IdAlmacen;
+            // Logica de  Referencia de documento
+            if (Estado == false)
+            {
+                // no hay documento de referencia colocar 0;
+                nota.IdDoc = 0;
+            }
+            else { 
+                //Si existe documento de referencia colocar el ID
+                nota.IdDoc = TxtDocId;
+            }
+            nota.IdMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivo(SelectedMotivo).Id;
+            nota.IdResponsable = Responsable.ElementAt(0).IdUsuario;
+            nota.LstProducto = LstProductos;
+            nota.Observaciones = Observaciones;
+            nota.Tipo = "Salida";
+
+            ntgw.AgregarNota(nota);
+
+
         }
 
     }

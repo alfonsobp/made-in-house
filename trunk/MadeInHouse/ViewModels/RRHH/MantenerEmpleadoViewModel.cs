@@ -9,13 +9,15 @@ using System.Windows;
 using System.Windows.Input;
 using System.ComponentModel.Composition;
 using MadeInHouse.Models;
+using MadeInHouse.Models.RRHH;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.RRHH
 {
-    public class MantenerEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
+    class MantenerEmpleadoViewModel : Conductor<IScreen>.Collection.OneActive
     {
         private MyWindowManager win = new MyWindowManager();
-
+        
         public void AbrirVerEmpleado()
         {
             win.ShowWindow(new RRHH.VerEmpleadoViewModel { });
@@ -31,8 +33,13 @@ namespace MadeInHouse.ViewModels.RRHH
             win.ShowWindow(new RRHH.RegistrarEmpleadoViewModel { });
         }
 
+        Empleado selectedEmpleado;
+        private Almacen.MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+        private int accion;
 
 
+        }
 
-    }
+
+    
 }
