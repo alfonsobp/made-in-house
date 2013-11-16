@@ -274,7 +274,7 @@ namespace MadeInHouse.ViewModels.Seguridad
             Empleado e = new Empleado();
             if (!String.IsNullOrWhiteSpace(TxtCodUsuario))
             {
-                k = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
+                k = DataObjects.Seguridad.UsuarioSQL.GetIdUsuario(TxtCodUsuario);
                 //Si el Empleado existe:
                 if (k == 1)
                 {
@@ -350,7 +350,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                     //debe existir y estar disponible
                     if (IdRolValue != 0)
                     {
-                        int existe = DataObjects.Seguridad.UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuario);
+                        int existe = DataObjects.Seguridad.UsuarioSQL.GetIdUsuario(TxtCodUsuario);
                         //Empleado existente:
                         if (existe == 1)
                         {
