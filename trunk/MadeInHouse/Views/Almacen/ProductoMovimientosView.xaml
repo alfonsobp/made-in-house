@@ -7,11 +7,11 @@
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
              xmlns:cal="http://www.caliburnproject.org"
              
-             mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="835" Width="1249">
+             mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="845.448" Width="1249">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Margin="0,2,0,-45">
-        <StackPanel Margin="1,0,-2,0">
+        <StackPanel Margin="1,0,-2,-2">
             <Layouts:TitleBarTemplate title="Movimientos entre zonas"/>
-            <Grid Height="801" Margin="3,0,0,0">
+            <Grid Height="849" Margin="3,0,0,0">
                 <ToolBar Height="47" VerticalAlignment="Top" Margin="-6,0,0,0">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -40,7 +40,7 @@
 
 
 
-                <GroupBox Header="Zona de recepción" Margin="636,65,32,-17">
+                <GroupBox Header="Zona de recepción" Margin="636,65,29,10">
                     <Grid HorizontalAlignment="Left" Height="743" VerticalAlignment="Top" Width="559" Margin="0,0,-2,-12">
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="26,11,0,0" VerticalAlignment="Top"/>
                         <ComboBox HorizontalAlignment="Left" Margin="80,11,0,0" VerticalAlignment="Top" Width="256"/>
@@ -56,7 +56,7 @@
                             <Image Source="/Assets/check.png" />
                         </Button>
 
-                        <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="338" Width="530" Margin="16,378,13,27">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="338" Width="530" Margin="16,348,13,57">
                             <grid:DynamicGrid  x:Name="AlmacenSalida2" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                         </ScrollViewer>
@@ -65,7 +65,7 @@
 
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Zona de salida" Margin="20,65,641,-17" >
+                <GroupBox Header="Zona de salida" Margin="20,65,641,10" >
                     <Grid HorizontalAlignment="Left" Height="730" VerticalAlignment="Top" Width="558" Margin="0,-15,0,0">
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="12,26,0,0" VerticalAlignment="Top" Height="27"/>
                         <Label Content="Producto:" HorizontalAlignment="Left" Margin="280,27,0,0" VerticalAlignment="Top"/>
