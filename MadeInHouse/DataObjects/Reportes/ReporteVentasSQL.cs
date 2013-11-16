@@ -139,6 +139,9 @@ namespace MadeInHouse.DataObjects.Reportes
                     e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
                     e.TipoVenta = reader["tipoVenta"].ToString();
                     e.Estado = Convert.ToInt32(reader["estado"]);
+                    e.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
+                    e.FechaMod = reader.IsDBNull(reader.GetOrdinal("fechaMod")) ? new DateTime(1/1/1) : Convert.ToDateTime(reader["fechaMod"].ToString());
+                    e.FechaDespacho = reader.IsDBNull(reader.GetOrdinal("fechaDespacho")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaDespacho"].ToString());
                     lstVenta.Add(e);
                     
                 }
@@ -182,6 +185,9 @@ namespace MadeInHouse.DataObjects.Reportes
                     e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
                     e.TipoVenta = reader["tipoVenta"].ToString();
                     e.Estado = Convert.ToInt32(reader["estado"]);
+                    e.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
+                    e.FechaMod = reader.IsDBNull(reader.GetOrdinal("fechaMod")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaMod"].ToString());
+                    e.FechaDespacho = reader.IsDBNull(reader.GetOrdinal("fechaDespacho")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaDespacho"].ToString());
                     lstVenta.Add(e);
                 }
 
@@ -224,6 +230,9 @@ namespace MadeInHouse.DataObjects.Reportes
                     e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
                     e.TipoVenta = reader["tipoVenta"].ToString();
                     e.Estado = Convert.ToInt32(reader["estado"]);
+                    e.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
+                    e.FechaMod = reader.IsDBNull(reader.GetOrdinal("fechaMod")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaMod"].ToString());
+                    e.FechaDespacho = reader.IsDBNull(reader.GetOrdinal("fechaDespacho")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaDespacho"].ToString());
                     lstVenta.Add(e);
 
                 }
