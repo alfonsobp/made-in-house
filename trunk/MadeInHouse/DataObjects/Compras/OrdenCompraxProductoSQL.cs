@@ -36,9 +36,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
             return k;
@@ -89,10 +89,10 @@ namespace MadeInHouse.DataObjects.Compras
                 conn.Close();
 
             }
-            catch (Exception e)
-            { 
-                MessageBox.Show(e.StackTrace.ToString());
-            }
+             catch (SqlException e)
+             {
+                 MessageBox.Show(e.Message);
+             }
 
             return lst;
 
@@ -123,10 +123,11 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
+              
 
             return k;
         }
@@ -157,9 +158,9 @@ namespace MadeInHouse.DataObjects.Compras
                 db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
             return k;
