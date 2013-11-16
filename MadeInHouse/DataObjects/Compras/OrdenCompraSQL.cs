@@ -213,7 +213,7 @@ namespace MadeInHouse.DataObjects.Compras
 
             SqlConnection conn = DB.conn;
             SqlCommand cmd = DB.cmd;
-
+            OrdenCompraSQL oSQL = new OrdenCompraSQL();
 
             cmd.CommandText = "UPDATE OrdenCompra  set  estado = @estado  where idOrden = @idOrden ";
 
@@ -233,6 +233,10 @@ namespace MadeInHouse.DataObjects.Compras
 
                 k = cmd.ExecuteNonQuery();
 
+                foreach (ProductoxOrdenCompra op in p.LstProducto) {
+                    op.Cantidad = op.CantAtendida.ToString();
+                    oSQL.Actualizar(op);
+                }
 
 
                 conn.Close();

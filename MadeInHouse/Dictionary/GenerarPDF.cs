@@ -15,7 +15,7 @@ namespace MadeInHouse.Dictionary
 {
     class GenerarPDF
     {
-        public void createPDF(string html,string Path)
+        public void createPDF(string html,string Path,bool mostrar)
         {
 
 
@@ -31,7 +31,24 @@ namespace MadeInHouse.Dictionary
             
             document.Close();
 
-            Process.Start(Environment.CurrentDirectory + Path);
+            if (mostrar)
+            {
+                Process.Start(Environment.CurrentDirectory + Path);
+            }
+
+        }
+
+        public void Borrar(string path){
+        
+                   System.IO.FileInfo fi = new System.IO.FileInfo(path);
+            try
+            {
+                fi.Delete();
+            }
+            catch (System.IO.IOException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         
         }
     }

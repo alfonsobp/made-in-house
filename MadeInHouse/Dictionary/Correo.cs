@@ -27,11 +27,7 @@ namespace MadeInHouse.Dictionary
 
                 message.IsBodyHtml = true;
 
-                MessageBoxResult r = MessageBox.Show("Desea enviar el correo  ?", "Enviar Correo",
-                                                     MessageBoxButton.YesNo);
-
-                if (r == MessageBoxResult.Yes)
-                {
+               
 
                     // Create  the file attachment for this e-mail message.
                     Attachment data = new Attachment(path, MediaTypeNames.Application.Octet);
@@ -66,7 +62,7 @@ namespace MadeInHouse.Dictionary
                     {
                         MessageBox.Show(e.StackTrace.ToString());
                     }
-                }
+                
 
             }
 
