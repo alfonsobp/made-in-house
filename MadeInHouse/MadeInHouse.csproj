@@ -134,6 +134,7 @@
     <Compile Include="DataObjects\Ventas\ModoPagoSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\Correo.cs" />
+    <Compile Include="Dictionary\DynamicGridChild.cs" />
     <Compile Include="Dictionary\ExcelUtiles.cs" />
     <Compile Include="Dictionary\GenerarPDF.cs" />
     <Compile Include="Models\Almacen\Abastecimiento.cs" />

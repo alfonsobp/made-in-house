@@ -11,7 +11,6 @@ using MadeInHouse.Dictionary;
 using System.Data;
 using MadeInHouse.DataObjects;
 using System.Data.SqlClient;
-using MadeInHouse.DataObjects;
 using MadeInHouse.Models.Seguridad;
 using System.Threading;
 
@@ -72,6 +71,7 @@ namespace MadeInHouse.ViewModels.Almacen
             set
             {
                 numRowsU = value;
+                NotifyOfPropertyChange(() => NumRowsU);
             }
         }
 
@@ -160,7 +160,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public string CantIngresar
         {
           get { return cantIngresar; }
-          set { cantIngresar = value; }
+          set   { cantIngresar = value; }
         }
 
         private string volIngresar;
@@ -169,6 +169,16 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return volIngresar; }
             set { volIngresar = value; }
+        }
+
+        private List<Ubicacion> columnaU;
+
+        public List<Ubicacion> ColumnaU
+        {
+            get { return columnaU; }
+            set { columnaU = value;
+            NotifyOfPropertyChange(() => ColumnaU);
+            }
         }
 
         private AlmacenSQL aSQL;
@@ -207,9 +217,9 @@ namespace MadeInHouse.ViewModels.Almacen
             
             id=deposito.IdAlmacen;
             
-            NumColumnsU=1;
-            NumRowsU = 1;
-            
+            /*NumColumnsU=1;
+            NumRowsU = 1;*/
+           
             NumColumns =deposito.NroColumnas ;
             NumRows = deposito.NroFilas;
             Altura = deposito.Altura;
@@ -242,7 +252,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        public void Agregar(DynamicGrid colUbicacion , DynamicGrid zonas)
+        public void Agregar(DynamicGrid ubicacionCol , DynamicGrid almacen)
         {
             if (selectedProduct != null)
             {
@@ -254,35 +264,25 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     selectedProduct.CanAtender = (int.Parse(selectedProduct.CanAtender) - int.Parse(CantIngresar)).ToString();
                     LstProductos = new List<ProductoCant>(LstProductos);
-                    colUbicacion.AgregarProductos(int.Parse(CantIngresar), int.Parse(VolIngresar), SelectedProduct.IdProducto, zonas.lstZonas);
+                    ubicacionCol.AgregarProductos(int.Parse(CantIngresar), int.Parse(VolIngresar), SelectedProduct.IdProducto, almacen.lstZonas);
                 }
             }
             
         }
 
-        public void MostrarColumna(MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
+
+        public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
         {
 
-            if (SelectedProduct!=null)
-                ubicacionCol.Mostar(almacen.columna,SelectedProduct.IdProducto,selectedProduct.CodPro);
-            else
-                ubicacionCol.Mostar(almacen.columna);
-            //System.Windows.MessageBox.Show("" +sender.columna[0].CordX + sender.columna[0].CordY);
-        }
-
-        int limpia = 0;
-
-        public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid sender2)
-        {
-
+            ubicacionCol.SelectedProduct = SelectedProduct;
             SelectedProduct = ((sender as DataGrid).SelectedItem as ProductoCant);
+
             if (SelectedProduct != null)
             {
 
-                sender2.UbicarProducto(SelectedProduct.IdProducto,limpia);
-                limpia += 1;
-               
-
+                almacen.UbicarProducto(SelectedProduct.IdProducto);
+                
+            
             }
         }
 
