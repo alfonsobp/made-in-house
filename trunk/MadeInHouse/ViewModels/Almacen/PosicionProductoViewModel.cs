@@ -222,7 +222,6 @@ namespace MadeInHouse.ViewModels.Almacen
             Accion2 = 2;
             Accion1 = 2;
             Enable = true;
-
         }
 
         public PosicionProductoViewModel()
@@ -303,11 +302,39 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-public PosicionProductoViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int p)
+public PosicionProductoViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int p):this()
         {
+
             // TODO: Complete member initialization
             this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
-            this.p = p;
+
+            this.LstProductos = mantenerNotaDeSalidaViewModel.LstProductos;
+            //19
+
+            Usuario u = new Usuario();
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+
+            idTienda = u.IdTienda;
+            aSQL = new AlmacenSQL();
+            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
+
+            id = deposito.IdAlmacen;
+
+            NumColumnsU = 1;
+            NumRowsU = 1;
+
+            NumColumns = deposito.NroColumnas;
+            NumRows = deposito.NroFilas;
+            Altura = deposito.Altura;
+
+
+
+            tzSQL = new TipoZonaSQL();
+            LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
+
+            Accion2 = 2;
+            Accion1 = 2;
+            Enable = true;
         }
 
     }
