@@ -4,13 +4,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="713" d:DesignWidth="604.5">
+             mc:Ignorable="d" d:DesignWidth="604.5" Height="644">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Stocks" />
             <Grid>
-                <Grid Height="713" VerticalAlignment="Top">
+                <Grid Height="594" VerticalAlignment="Top">
                     <ToolBar VerticalAlignment="Top" Height="41">
                         <ToolBar.Background>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -34,20 +33,12 @@
                             <Image Source="/MadeInHouse;component/Assets/pdf.png" />
                         </Button>
                     </ToolBar>
-                    <GroupBox Header="Reporte de Stock en Almacenes" HorizontalAlignment="Left" Height="658" Margin="10,46,0,0" VerticalAlignment="Top" Width="580">
-                        <Grid Margin="12,19,-12,-22" Height="639" VerticalAlignment="Top">
+                    <GroupBox Header="Reporte de Stock en Almacenes" HorizontalAlignment="Left" Height="548" Margin="10,46,0,0" VerticalAlignment="Top" Width="580">
+                        <Grid Margin="0,9,10,-12" Height="529" VerticalAlignment="Top">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Button x:Name="GeneraReporteStock" ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Height="24">
-                                <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
-                            </Button>
-                            <GroupBox Header="Almacén" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
-                                <Grid>
-                                    <Label Content="Almacen:" HorizontalAlignment="Left" Margin="34,41,0,0" VerticalAlignment="Top"/>
-                                </Grid>
-                            </GroupBox>
-                            <DataGrid x:Name="ListStock" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" Height="245" Width="548">
+                            <DataGrid Name="ListStock" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" Height="245" Width="538">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Width="130" Binding="{Binding Path=Producto}" Header="Producto"/>
                                     <DataGridTextColumn Width="80" Binding="{Binding Path=Almacen}" Header="Almacen"/>
@@ -55,26 +46,34 @@
                                     <DataGridTextColumn Width="100" Binding="{Binding Path=Stock}" Header="Stock"/>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
-                            <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
-                            <DatePicker x:Name="FechaDesde" HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <DatePicker x:Name="FechaHasta" HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <GroupBox Header="Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,197,0,0" Width="548" Height="123">
-                                <Grid>
-                                    <Label Content="Tienda:" HorizontalAlignment="Left" Margin="34,41,0,0" VerticalAlignment="Top"/>
-                                    <TextBox IsEnabled="False" x:Name="TxtTienda" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="135,40,0,0"/>
-                                    <ComboBox 
-                                
-                                SelectedValue="{Binding Path=SelectedDpto, Mode=OneWayToSource}"
-                                ItemsSource="{Binding Path=CmbDpto}"
-                                SelectedIndex="{Binding Path=Index1}"
-                                DisplayMemberPath="Nombre" SelectedValuePath="IdAlmacen" Height="25" Margin="135,-102,242,178" />
-                                    <Button x:Name="BuscarTienda" HorizontalAlignment="Left" Width="45" Margin="341,38,0,0" Height="25" VerticalAlignment="Top">
-                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="35" RenderTransformOrigin="0.077,0.441" />
+                            <GroupBox Header="Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="538" Height="123">
+                                <Grid Margin="0,0,-2,0">
+                                    <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
+                                    <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
+                            <GroupBox Header="Almacen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,138,0,0" Width="538" Height="123">
+                                <Grid Margin="0,0,-2,0">
+                                    <ListBox Name="listBoxAlmacen1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxAlmacen2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
+                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
 
+                                    <Button Name="GeneraReporteStock" ToolTip="Generar reporte" Margin="451,49,26,0" VerticalAlignment="Top" Height="24">
+                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                                    </Button>
+                                </Grid>
+                            </GroupBox>
                         </Grid>
                     </GroupBox>
                 </Grid>

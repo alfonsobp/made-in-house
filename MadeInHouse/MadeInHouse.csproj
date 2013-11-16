@@ -122,6 +122,7 @@
     <Compile Include="DataObjects\Compras\ServicioxProductoSQL.cs" />
     <Compile Include="DataObjects\Compras\SolicitudAdquisicionSQL.cs" />
     <Compile Include="DataObjects\EntitySQL.cs" />
+    <Compile Include="DataObjects\Reportes\ReporteStockSQL.cs" />
     <Compile Include="DataObjects\Reportes\ReporteVentasSQL.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
     <Compile Include="DataObjects\Seguridad\AccModuloSQL.cs" />
@@ -1223,6 +1224,7 @@
     <Resource Include="Assets\RRHH4.png" />
     <Resource Include="Assets\ventas4.png" />
     <Resource Include="Assets\recover.png" />
+    <Resource Include="Assets\psp.jpg" />
     <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
     <Content Include="Dictionary\Libraries\itextsharp.dll" />
     <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />
