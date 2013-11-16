@@ -496,7 +496,8 @@ namespace MadeInHouse.ViewModels.Almacen
             
             nota.LstProducto = LstProductos;
             
-            nota.IdNota=ntgw.AgregarNota(nota); //Falta llenar Tabla ProductoNotaIS 
+            nota.IdNota=ntgw.AgregarNota(nota);
+
             
             //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
