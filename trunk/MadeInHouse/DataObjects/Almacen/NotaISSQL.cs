@@ -29,8 +29,9 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public void AgregarNota(NotaIS p)
         {
+            
             db.cmd.CommandText = "INSERT INTO NotaIS(tipo,fechaReg,observaciones,responsable,idDoc,idMotivo,idAlmacen) " +
-            "VALUES (@tipo,GETDATE(),@observaciones,@responsable,@idDoc,@idMotivo,@idAlmacen)";
+            "VALUES (@tipo,GETDATE(),@observaciones,@responsable,@idDoc,@idMotivo,@idAlmacen); SELECT CAST(scope_identity() AS int)";
             db.cmd.Parameters.AddWithValue("@tipo", p.Tipo);
             db.cmd.Parameters.AddWithValue("@observaciones", p.Observaciones);
             db.cmd.Parameters.AddWithValue("@responsable", p.IdResponsable);
@@ -42,8 +43,7 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 db.conn.Open();
 
-
-                db.cmd.ExecuteNonQuery();
+                p.IdNota=(Int32)db.cmd.ExecuteScalar();
                 db.cmd.Parameters.Clear();
                 db.conn.Close();
 
@@ -56,6 +56,8 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 Console.WriteLine(e.StackTrace.ToString());
             }
+
+
         }
     }
 }

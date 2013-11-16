@@ -488,9 +488,12 @@ namespace MadeInHouse.ViewModels.Almacen
             nota.IdResponsable = Responsable.ElementAt(0).IdUsuario;
             nota.LstProducto = LstProductos;
             nota.Observaciones = Observaciones;
-            nota.Tipo = "Salida";
+            nota.Tipo = 2;
 
-            ntgw.AgregarNota(nota);
+            ntgw.AgregarNota(nota); //Falta llenar Tabla ProductoNotaIS 
+            
+
+            //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
 
         }
