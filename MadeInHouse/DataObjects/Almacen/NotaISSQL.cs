@@ -56,6 +56,40 @@ namespace MadeInHouse.DataObjects.Almacen
                 Console.WriteLine(e.StackTrace.ToString());
             }
 
+            //Agregamos en ProductoxNotaIS
+            db.cmd.CommandText = "INSERT INTO ProductoxNotaIS(idProducto,idNota,idAlmacen,cantidad,idUbicacion)"+
+            "VALUES (@idProducto,@idNota,@idAlmacen,@cantidad,@idUbicacion)";
+            try
+            {
+                db.conn.Open();
+                for (int i = 0; i < p.LstProducto.Count; i++)
+                {
+
+                    for (int j = 0; j < p.LstProducto.ElementAt(i).Ubicaciones.Count; j++)
+                    {
+                        db.cmd.Parameters.AddWithValue("@idProducto", p.LstProducto.ElementAt(i).IdProducto);
+                        db.cmd.Parameters.AddWithValue("@idNota", retorno);
+                        db.cmd.Parameters.AddWithValue("@idAlmacen", p.IdAlmacen);
+                        db.cmd.Parameters.AddWithValue("@cantidad", p.LstProducto.ElementAt(i).Ubicaciones.ElementAt(j).Cantidad);
+                        db.cmd.Parameters.AddWithValue("@idUbicacion", p.LstProducto.ElementAt(i).Ubicaciones.ElementAt(j).IdUbicacion);
+                        db.cmd.ExecuteNonQuery();
+                        db.cmd.Parameters.Clear();
+
+                    }
+
+                }
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+            
+
             return retorno;
         }
     }

@@ -223,7 +223,7 @@ namespace MadeInHouse.ViewModels.Almacen
        
         }
         
-        string observaciones;
+        string observaciones="";
 
         public string Observaciones
         {
@@ -416,6 +416,7 @@ namespace MadeInHouse.ViewModels.Almacen
                             pxa.CanAtend = "0";
                             pxa.Can = "0";
                             pxa.CodPro = lstAux.CodigoProd.ToString();
+                            pxa.IdProducto = lstAux.IdProducto;
                             pxa.ProNombre = lstAux.Nombre;
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
@@ -431,6 +432,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.CanAtend = "0";
                         pxa.Can = "0";
                         pxa.CodPro = lstAux.CodigoProd.ToString();
+                        pxa.IdProducto = lstAux.IdProducto;
                         pxa.ProNombre = lstAux.Nombre;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
@@ -486,16 +488,44 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             nota.IdMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivo(SelectedMotivo).Id;
             nota.IdResponsable = Responsable.ElementAt(0).IdUsuario;
-            nota.LstProducto = LstProductos;
+            LstProductos = simular(LstProductos);
             nota.Observaciones = Observaciones;
             nota.Tipo = 2;
-
+            LstProductos = simular(LstProductos);
+            nota.LstProducto = LstProductos;
+            
             nota.IdNota=ntgw.AgregarNota(nota); //Falta llenar Tabla ProductoNotaIS 
             
 
             //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
 
+        }
+
+        private List<ProductoCant> simular(List<ProductoCant> LstProductos)
+        {
+            int x = 1;
+            for (int i = 0; i < LstProductos.Count; i++) {
+                LstProductos.ElementAt(i).Ubicaciones = new List<Ubicacion>();
+                Ubicacion ubi = new Ubicacion();
+                ubi.IdUbicacion = x;
+                ubi.Cantidad = x*10;
+                x++;
+                ubi.IdProducto = LstProductos.ElementAt(i).IdProducto;
+
+                LstProductos.ElementAt(i).Ubicaciones.Add(ubi);
+
+                Ubicacion ubi1 = new Ubicacion();
+                ubi1.IdUbicacion = x;
+                ubi1.Cantidad = x*10;
+                x++;
+                ubi1.IdProducto = LstProductos.ElementAt(i).IdProducto;
+
+                LstProductos.ElementAt(i).Ubicaciones.Add(ubi1);
+
+            }
+
+            return LstProductos;
         }
 
     }
