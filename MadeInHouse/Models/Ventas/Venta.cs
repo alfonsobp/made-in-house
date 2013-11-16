@@ -13,8 +13,42 @@ namespace MadeInHouse.Models.Ventas
         double descuento;
         int estado;
         DateTime fechaMod;
+
+        string estadoS="REALIZADA";
+
+        public string EstadoS
+        {
+            get { return estadoS; }
+            set { estadoS = value; }
+        }
+
+        string fechaRegS;
+
+        public string FechaRegS
+        {
+            get { return fechaRegS; }
+            set { fechaRegS = value; }
+        }
+
         DateTime fechaReg;
+
+        public DateTime FechaReg
+        {
+            get { return fechaReg; }
+            set { fechaReg = value; }
+        }
+
         DateTime fechaDespacho;
+
+        
+
+        string nombreCliente;
+
+        public string NombreCliente
+        {
+            get { return nombreCliente; }
+            set { nombreCliente = value; }
+        }
 
         public int IdVenta
         {
@@ -49,6 +83,7 @@ namespace MadeInHouse.Models.Ventas
             set { numDocPago = value; }
         }
 
+         
 
         public double Monto
         {
@@ -122,11 +157,7 @@ namespace MadeInHouse.Models.Ventas
         }
 
 
-        public DateTime FechaReg
-        {
-            get { return fechaReg; }
-            set { fechaReg = value; }
-        }
+       
 
         public double Igv
         {
@@ -144,7 +175,7 @@ namespace MadeInHouse.Models.Ventas
 
 
 
-        internal List<DetalleVenta> LstDetalle
+        public List<DetalleVenta> LstDetalle
         {
             get { return lstDetalle; }
             set { lstDetalle = value; }
@@ -152,7 +183,7 @@ namespace MadeInHouse.Models.Ventas
 
         List<DetalleVentaServicio> lstDetalleServicio;
 
-        internal List<DetalleVentaServicio> LstDetalleServicio
+        public List<DetalleVentaServicio> LstDetalleServicio
         {
             get { return lstDetalleServicio; }
             set { lstDetalleServicio = value; }

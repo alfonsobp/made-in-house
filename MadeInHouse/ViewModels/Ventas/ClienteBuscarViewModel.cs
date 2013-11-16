@@ -18,6 +18,18 @@ namespace MadeInHouse.ViewModels.Ventas
         private MyWindowManager win = new MyWindowManager();
         private int ventanaAccion = 0;
 
+       
+
+        VentaBuscarViewModel vbvm = null;
+
+        public ClienteBuscarViewModel(VentaBuscarViewModel vbvm)
+        {
+            Clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null, null, -1, null, null);
+            this.vbvm = vbvm ;
+            ventanaAccion = 3;
+        }
+
+
         public void AbrirRegistrarcliente()
         {
             win.ShowWindow(new Ventas.ClienteRegistrarViewModel());
@@ -35,7 +47,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public ClienteBuscarViewModel()
         {
-            clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null,null,-1,null,null);
+            Clientes = DataObjects.Ventas.ClienteSQL.BuscarClientes(null,null,-1,null,null);
             NotifyOfPropertyChange("Clientes");
             //Console.WriteLine(Clientes);
         }
@@ -99,6 +111,8 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void Acciones(object sender)
         {
+
+        
             if (ventanaAccion == 1)
             {
                 clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
@@ -116,6 +130,18 @@ namespace MadeInHouse.ViewModels.Ventas
                     reporteServiciosViewModel.Cli = clienteSeleccionado;
                     this.TryClose();
                 }
+            }
+            else if (ventanaAccion == 3)
+            {
+                clienteSeleccionado = ((sender as DataGrid).SelectedItem as Tarjeta);
+                if (vbvm != null){
+
+                    vbvm.client = clienteSeleccionado.Cliente;
+                    vbvm.Identificacion = (vbvm.client.TipoCliente == 0) ? vbvm.client.Nombre : vbvm.client.RazonSocial;
+                    vbvm.DniRuc = (vbvm.client.TipoCliente == 0) ? vbvm.client.Dni : vbvm.client.Ruc;
+                    this.TryClose();
+                }
+
             }
             else
             {
