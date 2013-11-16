@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="429" d:DesignWidth="850">
     <Border BorderThickness="2" CornerRadius="6" BorderBrush="White">
-        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Margin="0,0,0,-2">
             <DockPanel>
                 <Layouts:TitleBarTemplate title="Listado de ventas" DockPanel.Dock="Top" />
                 <ToolBar DockPanel.Dock="Top" Margin="-3,-1,-1,0" Loaded="ToolBar_Loaded">
@@ -30,10 +30,10 @@
                     <Button>
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button x:Name="Limpiar">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
-                    <Button Height="30" Width="30">
+                    <Button x:Name="Actualizar" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
@@ -73,29 +73,29 @@
                             <TextBlock TextWrapping="Wrap" Text="hasta" Grid.Column="8" VerticalAlignment="Center" />
                             <DatePicker x:Name="FechaFin" VerticalAlignment="Center" Grid.Column="10"/>
                             <TextBlock TextWrapping="Wrap" Text="DNI/RUC:" Grid.Row="1" VerticalAlignment="Center" />
-                            <TextBox x:Name="DniRuc" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" />
+                            <TextBox  IsReadOnly="True" x:Name="DniRuc" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" />
                             <TextBlock TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
-                            <TextBox x:Name="TxtCliente" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="5" Margin="0,8,79,9"/>
+                            <TextBox  Text="{Binding Path=Identificacion}" IsReadOnly="True" TextWrapping="Wrap"  VerticalAlignment="Center" Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="5" Margin="0,8,79,9"/>
                             <TextBlock TextWrapping="Wrap" Text="Estado:" VerticalAlignment="Center" Grid.Row="2"/>
-                            <ComboBox x:Name="CmbEstado" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" />
+                            <ComboBox  SelectedItem="{Binding SelectedEstado}" x:Name="LstEstado" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" />
                             <TextBlock Grid.Column="4" Grid.Row="2" TextWrapping="Wrap" Text="Monto: desde" VerticalAlignment="Center"/>
-                            <TextBox x:Name="TxtMontoMin" Grid.Column="6" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
-                            <TextBox x:Name="TxtMontoMax" Grid.Column="10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Path=MontoMin,UpdateSourceTrigger=PropertyChanged}"  Grid.Column="6" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
+                            <TextBox Text="{Binding Path=MontoMax,UpdateSourceTrigger=PropertyChanged}" Grid.Column="10" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Center"/>
                             <TextBlock Grid.Column="8" Grid.Row="2" TextWrapping="Wrap" Text="hasta" VerticalAlignment="Center"/>
                             <Button x:Name="AbrirBuscarCliente"  HorizontalAlignment="Right" Height="17" VerticalAlignment="Bottom" Width="60" Grid.Column="10" Grid.Row="1" Margin="0,0,0,10">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="17" Width="50" />
                             </Button>
                         </Grid>
                     </GroupBox>
-                    <DataGrid x:Name="LstVentas" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]" 
-                              Margin="10" Grid.Row="1" MaxHeight="400" AutoGenerateColumns="False">
+                    <DataGrid  Height="100" Width="800" CanUserAddRows="False" IsReadOnly="True" x:Name="LstVentas"  SelectedItem="{Binding VentaSeleccionada}" 
+                              Margin="10" Grid.Row="1" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=IdVenta}" Width="85" Header="ID Venta"/>
-                            <DataGridTextColumn Binding="{Binding Path=IdCliente}" Width="85" Header="ID Cliente"/>
+                            
                             <DataGridTextColumn Binding="{Binding Path=NombreCliente}" Width="350" Header="Nombre Cliente"/>
-                            <DataGridTextColumn Binding="{Binding Path=FechaEmision}" Width="110" Header="Fecha de emisión"/>
-                            <DataGridTextColumn Binding="{Binding Path=MontoToal}" Width="110" Header="Monto Total"/>
-                            <DataGridTextColumn Binding="{Binding Path=Estado}" Width="80" Header="Estado"/>
+                            <DataGridTextColumn Binding="{Binding Path=FechaRegS}" Width="150" Header="Fecha de emisión"/>
+                            <DataGridTextColumn Binding="{Binding Path=Monto}" Width="140" Header="Monto Total"/>
+                            <DataGridTextColumn Binding="{Binding Path=EstadoS}" Width="95" Header="Estado"/>
                         </DataGrid.Columns>
                     </DataGrid>
 

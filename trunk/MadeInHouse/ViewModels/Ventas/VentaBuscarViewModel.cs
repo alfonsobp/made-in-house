@@ -11,6 +11,7 @@ using System.Windows;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
+using MadeInHouse.Validacion;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -28,14 +29,58 @@ namespace MadeInHouse.ViewModels.Ventas
         }
         public void AbrirBuscarCliente()
         {
-            win.ShowWindow(new Ventas.ClienteBuscarViewModel());
+            win.ShowWindow(new Ventas.ClienteBuscarViewModel(this));
         }
 
-        private Venta ventaSeleccionada;
+        public Cliente client=null;
 
-        public void SelectedItemChanged(object sender)
+
+        private List<string> lstEstado = new List<string>() { "TODOS", "REALIZADA", "ANULADA" };
+
+        public int getEstado(string l) {
+
+            if (l == "TODOS") return -1;
+            if (l == "REALIZADA") return 1;
+            if (l == "ANULADA") return 0;
+
+            return -1;
+        
+        }
+
+        public List<string> LstEstado
         {
-            ventaSeleccionada = ((sender as DataGrid).SelectedItem as Venta);
+            get { return lstEstado; }
+            set { lstEstado = value; NotifyOfPropertyChange("LstEstado"); }
+        }
+
+
+        private string identificacion = "";
+
+        public string Identificacion
+        {
+            get { return identificacion; }
+            set { identificacion = value; NotifyOfPropertyChange("Identificacion"); }
+        }
+
+
+
+        string selectedEstado = "TODOS";
+
+        public string SelectedEstado
+        {
+            get { return selectedEstado; }
+            set { selectedEstado = value; NotifyOfPropertyChange("SelectedEstado"); }
+        }
+
+
+
+
+        private Venta ventaSeleccionada=null;
+
+        public Venta VentaSeleccionada
+        {
+            get { return ventaSeleccionada; }
+            set { ventaSeleccionada = value; NotifyOfPropertyChange("VentaSeleccionada"); }
         }
 
         private DateTime fechaInicio = new DateTime(DateTime.Now.Year, 1, 1);
@@ -71,20 +116,16 @@ namespace MadeInHouse.ViewModels.Ventas
             set { dniRuc = value; NotifyOfPropertyChange(() => DniRuc); }
         }
 
-        private string txtCliente;
+       
+        
 
-        public string TxtCliente
-        {
-            get { return txtCliente; }
-            set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
-        }
 
         private string montoMin;
 
         public string MontoMin
         {
             get { return montoMin; }
-            set { montoMin = value; NotifyOfPropertyChange(() => montoMin); }
+            set { montoMin = value; NotifyOfPropertyChange(() => MontoMin); }
         }
 
         private string montoMax;
@@ -92,7 +133,7 @@ namespace MadeInHouse.ViewModels.Ventas
         public string MontoMax
         {
             get { return montoMax; }
-            set { montoMax = value; NotifyOfPropertyChange(() => montoMax); }
+            set { montoMax = value; NotifyOfPropertyChange(() => MontoMax); }
         }
 
         private List<Venta> lstVentas = null;
@@ -105,7 +146,68 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void BuscarVentas()
         {
-            LstVentas = new VentaSQL().Buscar(TxtDocPago, DniRuc, MontoMin, MontoMax) as List<Venta>;
+            if (Validar())
+            {
+
+                LstVentas = new VentaSQL().Buscar(TxtDocPago,  MontoMin, MontoMax,client,fechaInicio,fechaFin,getEstado(SelectedEstado) ) as List<Venta>;
+            }
+           
+           
+        }
+
+        public bool Validar() {
+
+            Evaluador e = new Evaluador();
+
+            if (!e.esNumeroReal(MontoMax)&& !String.IsNullOrEmpty(MontoMax)) {
+                MessageBox.Show("No ha ingresado un valor correcto en el Monto máximo", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+            
+            
+            }
+
+            if (!e.esNumeroReal(MontoMin) && !String.IsNullOrEmpty(MontoMin))
+            {
+                MessageBox.Show("No ha ingresado un valor correcto en el Monto mínimo", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+
+
+            }
+
+            if (!e.esNumeroReal(DniRuc)&& !String.IsNullOrEmpty(DniRuc))
+            {
+                MessageBox.Show("El DNI/RUC es un valor numérico", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                return false;
+
+            }
+
+
+
+            return true;
+        
+        }
+
+
+        public void Limpiar() {
+
+
+            DniRuc = "";
+            Identificacion = "";
+            client = null;
+            MontoMax = "";
+            MontoMin = "";
+            FechaInicio = new DateTime(DateTime.Now.Year, 1, 1);
+            FechaFin = new DateTime(DateTime.Now.Year, 12, 31);
+
+        }
+
+        public void Actualizar() {
+
+            this.BuscarVentas();
+         
         }
     }
 }

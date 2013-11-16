@@ -51,7 +51,7 @@ namespace MadeInHouse.Models.Almacen
         }
         private List<Ubicacion> ubicaciones;
 
-        internal List<Ubicacion> Ubicaciones
+        public List<Ubicacion> Ubicaciones
         {
             
             get { return ubicaciones; }
