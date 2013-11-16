@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,13 +7,14 @@ using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
-    class NotaISSQL
+    class ProductoxNotaISSQL
     {
+
 
         private DBConexion db;
         private bool tipo = true;
 
-        public NotaISSQL(DBConexion db = null)
+        public ProductoxNotaISSQL(DBConexion db = null)
         {
             if (db == null)
             {
@@ -26,8 +26,8 @@ namespace MadeInHouse.DataObjects.Almacen
                 tipo = false;
             }
         }
-
-        public int AgregarNota(NotaIS p)
+        /*
+        public int AgregarNota(ProductoxNotaIS p)
         {
             int retorno=-1;
             db.cmd.CommandText = "INSERT INTO NotaIS(tipo,fechaReg,observaciones,responsable,idDoc,idMotivo,idAlmacen) " +
@@ -58,5 +58,6 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return retorno;
         }
+        */
     }
 }
