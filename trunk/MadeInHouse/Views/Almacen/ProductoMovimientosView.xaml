@@ -1,19 +1,50 @@
 ﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.ProductoMovimientosView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
+             xmlns:cal="http://www.caliburnproject.org"
+             
              mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="834.5" Width="1249">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Margin="0,-43,0,0">
         <StackPanel Margin="1,0,-2,0">
             <Layouts:TitleBarTemplate title="Movimientos entre zonas"/>
             <Grid Height="801" Margin="3,0,0,0">
-                <GroupBox Header="Zona de recepción" Margin="636,20,32,28">
+                <ToolBar Height="47" VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button Margin="0,3" VerticalAlignment="Stretch" IsEnabled="{Binding Editar}" >
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="GuardarTienda" >
+                                    <cal:Parameter Value="{Binding ElementName=Anaquel}" />
+                                    <cal:Parameter Value="{Binding ElementName=Deposito}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button>
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+
+
+
+                <GroupBox Header="Zona de recepción" Margin="636,65,32,-17">
                     <Grid HorizontalAlignment="Left" Height="743" VerticalAlignment="Top" Width="559" Margin="0,0,-2,-12">
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="26,18,0,0" VerticalAlignment="Top"/>
                         <ComboBox HorizontalAlignment="Left" Margin="80,18,0,0" VerticalAlignment="Top" Width="256"/>
-                        <DataGrid HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top" Width="539" Height="145">
+                        <DataGrid HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Width="539" Height="275">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Código" Width="80"/>
                                 <DataGridTextColumn Header="Nombre" Width="330"/>
@@ -21,43 +52,41 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Label Content="Cantidad a ubicar" HorizontalAlignment="Left" Margin="26,234,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74"/>
-                        <Button  HorizontalAlignment="Left" Margin="345,237,0,0" VerticalAlignment="Top" Width="34" Height="23">
+                        <Button  HorizontalAlignment="Left" Margin="469,21,0,0" VerticalAlignment="Top" Width="34" Height="23">
                             <Image Source="/Assets/check.png" />
                         </Button>
 
-                        <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="338" Width="530" Margin="19,326,10,79">
+                        <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="338" Width="530" Margin="16,378,13,27">
                             <grid:DynamicGrid  x:Name="AlmacenSalida2" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                         </ScrollViewer>
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="338" Margin="10,326,0,0" VerticalAlignment="Top" Width="539"/>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="338" Margin="10,377,0,0" VerticalAlignment="Top" Width="539"/>
 
 
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Zona de salida" Margin="20,20,641,28" >
+                <GroupBox Header="Zona de salida" Margin="20,65,641,-17" >
                     <Grid HorizontalAlignment="Left" Height="730" VerticalAlignment="Top" Width="558" Margin="0,-15,0,0">
-                        <Label Content="Zona:" HorizontalAlignment="Left" Margin="12,23,0,0" VerticalAlignment="Top" Height="27"/>
-                        <Label Content="Producto:" HorizontalAlignment="Left" Margin="280,23,0,0" VerticalAlignment="Top"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="346,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="51,23,0,0" VerticalAlignment="Top" Width="221"/>
-                        <Button HorizontalAlignment="Left" Margin="516,23,0,0" VerticalAlignment="Top" Width="26" Height="23">
+                        <Label Content="Zona:" HorizontalAlignment="Left" Margin="12,53,0,0" VerticalAlignment="Top" Height="27"/>
+                        <Label Content="Producto:" HorizontalAlignment="Left" Margin="280,53,0,0" VerticalAlignment="Top"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="346,53,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+                        <ComboBox HorizontalAlignment="Left" Margin="51,53,0,0" VerticalAlignment="Top" Width="221"/>
+                        <Button HorizontalAlignment="Left" Margin="516,53,0,0" VerticalAlignment="Top" Width="26" Height="23">
                             <Image Source="/Assets/find.png" />
                         </Button>
-                        <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="249,417,0,0" VerticalAlignment="Top" Width="116"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="250,471,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
-                        <Button  HorizontalAlignment="Left" Margin="381,471,0,0" VerticalAlignment="Top" Width="40" Height="22">
+                        <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="249,447,0,0" VerticalAlignment="Top" Width="116"/>
+                        <TextBox HorizontalAlignment="Left" Height="23" Margin="250,501,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
+                        <Button  HorizontalAlignment="Left" Margin="381,501,0,0" VerticalAlignment="Top" Width="40" Height="22">
                             <Image Source="/Assets/add.png" />
                         </Button>
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="10,55,0,0" VerticalAlignment="Top" Width="532">
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="10,100,0,0" VerticalAlignment="Top" Width="532">
                             <ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="1,0,-1,0">
                                 <grid:DynamicGrid  x:Name="AlmacenSalida" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                 </grid:DynamicGrid>
 
                             </ScrollViewer>
                         </Border>
-                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="281" VerticalAlignment="Top" Width="212" Margin="11,420,0,0"/>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="281" VerticalAlignment="Top" Width="212" Margin="11,450,0,-1"/>
                     </Grid>
                 </GroupBox>
             </Grid>
