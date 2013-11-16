@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects;
 using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Dictionary;
 using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
@@ -68,22 +69,25 @@ namespace MadeInHouse.ViewModels.Compras
        foreach (Proveedor p in LstProveedor){
 
            OrdenCompra o = new OrdenCompra(idAlmacen, p, "Entregar a la brevedad posible");
-           o.Estado = 1;
-
+           o.Estado = 2;
+           
            oSQL.Agregar(o);
 
            int idOrden = u.ObtenerMaximoID("OrdenCompra", "idOrden");
-
+           o.IdOrden = idOrden;
            foreach (Consolidado c in LstConsolidado) {
 
                if (c.Prov.IdProveedor == p.IdProveedor)
                {
-                   ProductoxOrdenCompra po = new ProductoxOrdenCompra(c, idOrden);
-
+                   ProductoxOrdenCompra po = new ProductoxOrdenCompra(c, idOrden);                
                    opSQL.Agregar(po);
+                   o.LstProducto.Add(po);
                }
 
            }
+
+           Enviar(o);
+           
 
 
            foreach (int idSol in Solicitudes)
@@ -102,6 +106,62 @@ namespace MadeInHouse.ViewModels.Compras
        m.TryClose();
          
             
+        }
+
+        public void Enviar(OrdenCompra o) {
+
+
+
+            
+                GenerarPDF pdf = new GenerarPDF();
+                Correo c = new Correo();
+                //m.coloma@pucp.pe
+                string path = "\\OrdenCompra-" + o.Proveedor.RazonSocial + ".pdf";
+                pdf.Borrar(Environment.CurrentDirectory + path);
+                string body = formato(o).ToString();
+                string msg = "Estimados :" + Environment.NewLine + "Se adjunta la Orden de compra , Atenderla porfavor.";
+                pdf.createPDF(body, path, false);
+                c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), o.Proveedor.Email, msg, Environment.CurrentDirectory + path);
+
+              
+        }
+
+        public string formato(OrdenCompra O)
+        {
+
+            string content = @"<HTML><BODY>";
+            content += "<center> MadeInHouse  S.A. </center><br><br> ";
+            content += "<center> Ruc. 99999999999 </center><br><br> ";
+            content += "ORDEN DE COMPRA  Nro " + O.IdOrden.ToString() + "<br><br>";
+            content += "<br><br>";
+            content += "Proveedor : " + O.Proveedor.RazonSocial + "<br><br>";
+            content += "Fecha de pedido : " + O.FechaSinAtencion.ToString() + "<br><br>";
+            content += "Terminos de entrega : Entrega en Almacen central de la Empresa <br><br>";
+            content += "Sirvase por este medio suministrar los siguientes articulos <br><br>";
+            content += "<table border = 1 ><tr><th>NRO</th><th>ARTICULO</th><th>PRECIO UNITARIO</th>" +
+                        "<th>CANTIDAD</th><th>PRECIO TOTAL</th><tr>";
+            double sumaAporte = 0;
+            int i = 1;
+            foreach (ProductoxOrdenCompra o in O.LstProducto)
+            {
+
+                int cantidad = Convert.ToInt32(o.Cantidad);
+                double parcial = o.PrecioUnitario * cantidad;
+                content += "<tr><td>" + i.ToString() + "</td>" +
+                               "<td>" + o.Producto.Nombre + "</td>" +
+                               "<td>" + o.PrecioUnitario.ToString() + "</td>" +
+                               "<td>" + o.Cantidad.ToString() + "</td>" +
+                "<td>" + parcial.ToString() + "</td></tr>";
+                i++;
+                sumaAporte += parcial;
+            }
+
+            content += "<tr><td colspan = 4 > TOTAL</td><td>" + sumaAporte.ToString() + "</td> </tr></table>";
+            content += "<br><br>";
+            content += "Observaciones :" + O.Observaciones;
+            content += "</BODY></HTML>";
+
+            return content;
         }
 
     }

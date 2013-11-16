@@ -515,28 +515,28 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             GenerarPDF pdf = new GenerarPDF();
             string body = formatoBP(v).ToString();
-            pdf.createPDF(body, "\\BP.pdf");
+            pdf.createPDF(body, "\\BP.pdf",true);
         }
 
         public void GenerarPDFBoletaServicios(Venta v)
         {
             GenerarPDF pdf = new GenerarPDF();
             string body = formatoBS(v).ToString();
-            pdf.createPDF(body, "\\BS.pdf");
+            pdf.createPDF(body, "\\BS.pdf",true);
         }
 
         public void GenerarPDFFacturaProductos(Venta v)
         {
             GenerarPDF pdf = new GenerarPDF();
             string body = formatoFP(v).ToString();
-            pdf.createPDF(body, "\\FP.pdf");
+            pdf.createPDF(body, "\\FP.pdf",true);
         }
 
         public void GenerarPDFFacturaServicios(Venta v)
         {
             GenerarPDF pdf = new GenerarPDF();
             string body = formatoFS(v).ToString();
-            pdf.createPDF(body, "\\FS.pdf");
+            pdf.createPDF(body, "\\FS.pdf",true);
         }
 
         public string formatoBP(Venta v)

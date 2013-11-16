@@ -27,7 +27,7 @@ namespace MadeInHouse.Models.Compras
         }
 
 
-        string cantidad;
+        string cantidad="0";
 
         public string Cantidad
         {
@@ -61,7 +61,7 @@ namespace MadeInHouse.Models.Compras
             set { importe = value; }
         }
 
-        private int cantAtendida;
+        private int cantAtendida=0;
         public int CantAtendida
         {
             get { return cantAtendida; }

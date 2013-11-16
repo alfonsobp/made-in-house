@@ -107,15 +107,15 @@ namespace MadeInHouse.DataObjects.Compras
                 
             DBConexion db = new DBConexion();
             int k = 0;
-            ProductoxOrdenCompra c = entity as ProductoxOrdenCompra;
+          
 
-            db.cmd.CommandText = "UPDATE   OrdenCompraxProducto SET cantidad = @cantidad " +
+            db.cmd.CommandText = "UPDATE   OrdenCompraxProducto SET cantidad = @cantidad , cantAtendida = @cantAtendida " +
                                  " WHERE  idOrden = @idOrden and idProducto = @idProducto";
 
             db.cmd.Parameters.AddWithValue("@idOrden", id);
             db.cmd.Parameters.AddWithValue("@idProducto", o.Producto.IdProducto);
             db.cmd.Parameters.AddWithValue("@cantidad", o.Cantidad);
-
+            db.cmd.Parameters.AddWithValue("@cantAtendida", o.CantAtendida);
             try
             {
                 db.conn.Open();

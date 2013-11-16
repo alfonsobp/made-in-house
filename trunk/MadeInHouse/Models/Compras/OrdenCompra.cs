@@ -51,9 +51,9 @@ namespace MadeInHouse.Models.Compras
 
         private void EvaluarEstado() {
             if (estado == 0) estadoS = "CANCELADA";
-            if (estado == 1) estadoS = "PRE EMITIDA";
-            if (estado == 2) estadoS = "EN EJECUCION";
-            if (estado == 3) estadoS = "FINALIZADA";
+            if (estado == 1) estadoS = "BORRADOR";
+            if (estado == 2) estadoS = "EMITIDA";
+            if (estado == 3) estadoS = "ATENDIDA";
         }
 
         string estadoS;
@@ -90,7 +90,7 @@ namespace MadeInHouse.Models.Compras
 
         
 
-        List<ProductoxOrdenCompra> lstProducto;
+        List<ProductoxOrdenCompra> lstProducto= new List<ProductoxOrdenCompra>();
 
         internal List<ProductoxOrdenCompra> LstProducto
         {
