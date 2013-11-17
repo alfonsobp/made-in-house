@@ -4,8 +4,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Reporte Movimientos ENTRADA / SALIDA" Height="312.05" Width="770.835">
     <Grid Margin="0,0,2,7">
-        <WindowsFormsHost Margin="28,40,24,10">
+        <WindowsFormsHost Margin="28,95,24,10">
             <rv:ReportViewer x:Name="_reportViewer"/>
         </WindowsFormsHost>
+        <TextBox Name="idAlmacen" HorizontalAlignment="Left" Height="23" Margin="28,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="IdAlmacen" HorizontalAlignment="Left" Margin="28,16,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="idProducto" HorizontalAlignment="Left" Height="23" Margin="188,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="idProducto" HorizontalAlignment="Left" Margin="188,16,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="fechaIni" HorizontalAlignment="Left" Margin="329,41,0,0" VerticalAlignment="Top"/>
+        <DatePicker Name="fechaFin" HorizontalAlignment="Left" Margin="499,41,0,0" VerticalAlignment="Top"/>
+        <Label Content="Desde" HorizontalAlignment="Left" Margin="329,15,0,0" VerticalAlignment="Top"/>
+        <Label Content="Hasta" HorizontalAlignment="Left" Margin="499,16,0,0" VerticalAlignment="Top"/>
+        <Button  Content="OK" HorizontalAlignment="Left" Margin="684,16,0,0" VerticalAlignment="Top" Width="53" Height="45" Click="Button_Click_1"/>
     </Grid>
 </Window>

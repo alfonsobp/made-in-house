@@ -147,17 +147,21 @@ namespace MadeInHouse.ViewModels.Compras
         {
             Consolidado p  = ((sender as DataGrid).SelectedItem as Consolidado);
 
-            if (p.Cantidad != 0)
+            if (p != null)
             {
-                Cantidad = p.Cantidad.ToString();
-                Codigo = ConsolidadoSelected.Producto.CodigoProd;
-               
-            }
-            else {
-                Cantidad = "0";      
-            }
+                if (p.Cantidad != 0)
+                {
+                    Cantidad = p.Cantidad.ToString();
+                    Codigo = ConsolidadoSelected.Producto.CodigoProd;
+                    
 
-            Prov = null;
+                }
+                else
+                {
+                    Cantidad = "0";
+                }
+            }
+            //Prov = null;
             
         }
 

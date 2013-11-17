@@ -21,6 +21,9 @@ namespace MadeInHouse.Views.Reportes
     /// </summary>
     public partial class ReporteMov : Window
     {
+        public ReportViewer.DataSetMov dataset;
+        public ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter adapter;
+
         public ReporteMov()
         {
             InitializeComponent();
@@ -31,31 +34,37 @@ namespace MadeInHouse.Views.Reportes
 
         private void ReportViewer_Load(object sender, EventArgs e)
         {
-            if (!_isReportViewerLoaded)
-            {
-                Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-                ReportViewer.DataSetMov dataset = new ReportViewer.DataSetMov();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+             dataset = new ReportViewer.DataSetMov();
 
-                dataset.BeginInit();
+            dataset.BeginInit();
 
-                reportDataSource1.Name = "DataSet1"; //Name of the report dataset in our .RDLC file
-                reportDataSource1.Value = dataset.DataTable1;
-                this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-                this._reportViewer.LocalReport.ReportEmbeddedResource = "MadeInHouse.ReportViewer.ReportMov.rdlc";
+            reportDataSource1.Name = "DataSet1"; //Name of the report dataset in our .RDLC file
+            reportDataSource1.Value = dataset.DataTable1;
+            this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "MadeInHouse.ReportViewer.ReportMov.rdlc";
 
-                dataset.EndInit();
+            dataset.EndInit();
 
-                //fill data into adventureWorksDataSet
-             
-                ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter adapter = new ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter();
-                adapter.ClearBeforeFill = true;
-                dataset.EnforceConstraints = false;
-                adapter.Fill(dataset.DataTable1);
+            //fill data into adventureWorksDataSet
 
-                _reportViewer.RefreshReport();
+           adapter = new ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter();
+            adapter.ClearBeforeFill = true;
+            dataset.EnforceConstraints = false;
 
-                _isReportViewerLoaded = true;
-            }
+         
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            
+            
+        
+            adapter.Fill(dataset.DataTable1,fechaIni.SelectedDate,fechaFin.SelectedDate,Convert.ToInt32(idAlmacen.Text),Convert.ToInt32(idProducto.Text) );
+
+            _reportViewer.RefreshReport();
+            
+            
         }
     }
 }
