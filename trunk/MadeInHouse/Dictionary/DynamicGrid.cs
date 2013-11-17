@@ -236,7 +236,7 @@ namespace MadeInHouse.Dictionary {
 
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorname = conv.ConvertFromString("White") as SolidColorBrush;
-            SolidColorBrush ocupado = conv.ConvertFromString("Gray") as SolidColorBrush;
+            //SolidColorBrush ocupado = conv.ConvertFromString("Gray") as SolidColorBrush;
             SolidColorBrush foreground = conv.ConvertFromString("WhiteSmoke") as SolidColorBrush;
             
             bool enable = true;
@@ -273,6 +273,11 @@ namespace MadeInHouse.Dictionary {
                     else 
                     {
                         enable = false;
+                        LinearGradientBrush ocupado = new LinearGradientBrush();
+                        ocupado.StartPoint = new System.Windows.Point(0, 0.5);
+                        ocupado.EndPoint = new System.Windows.Point(10, 0.5);
+                        ocupado.GradientStops.Add(new GradientStop(Colors.Gray, 0.1));
+
                         (this.Children[Columna[j].CordZ] as Button).Background = ocupado;
                         (this.Children[Columna[j].CordZ] as Button).Content = "OCUPADO";
                         
@@ -288,6 +293,7 @@ namespace MadeInHouse.Dictionary {
         private int xAnt;
         private int yAnt;
         private SolidColorBrush colorAnt;
+        private LinearGradientBrush colorAntU;
 
         public void onClickChange(object sender, RoutedEventArgs e) {
 
@@ -335,9 +341,19 @@ namespace MadeInHouse.Dictionary {
                 {
                     (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAnt;
                 }
+                else if (colorAntU != null)
+                {
+                    (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAntU;
+                }
+
                 xAnt = X;
                 yAnt = Y;
-                colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush;
+                if (Tipo==1)
+                    colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush ;
+                else 
+                    colorAntU = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as LinearGradientBrush;
+
+                (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
 
                 if (Tipo == 1)
                 {
@@ -346,7 +362,7 @@ namespace MadeInHouse.Dictionary {
                     AlturaU = 1;
                     NumRowsU = Altura;
                     ColumnaU = Ubicaciones[X][Y];
-                    //(this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
+                    
                 }
                 if (Tipo == 2)
                 {
