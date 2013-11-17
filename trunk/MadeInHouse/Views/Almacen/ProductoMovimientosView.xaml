@@ -7,11 +7,11 @@
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
              xmlns:cal="http://www.caliburnproject.org"
              
-             mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="845.448" Width="1249">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Margin="0,2,0,-45">
-        <StackPanel Margin="1,0,-2,-2">
+             mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="939.03" Width="1259.448">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Margin="0,2,0,0" Height="939" VerticalAlignment="Top">
+        <StackPanel Margin="1,0,-2,0" Height="951" VerticalAlignment="Top">
             <Layouts:TitleBarTemplate title="Movimientos entre zonas"/>
-            <Grid Height="856" Margin="3,0,0,0">
+            <Grid Height="908" Margin="3,0,0,0">
                 <ToolBar Height="47" VerticalAlignment="Top" Margin="-6,0,0,0">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -40,15 +40,22 @@
 
 
 
-                <GroupBox Header="Zona de recepción" Margin="636,65,29,10">
+                <GroupBox Header="Zona de recepción" Margin="639,65,29,0" Height="782" VerticalAlignment="Top">
                     <Grid HorizontalAlignment="Left" Height="743" VerticalAlignment="Top" Width="559" Margin="0,0,-2,-12">
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="26,11,0,0" VerticalAlignment="Top"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="80,11,0,0" VerticalAlignment="Top" Width="256"/>
-                        <DataGrid HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="539" Height="275">
+                        <ComboBox
+                                IsEnabled="{Binding Editar}"
+                        ItemsSource="{Binding CmbZonas}"
+        			    SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
+                        DisplayMemberPath="Nombre"
+                        HorizontalAlignment="Left" Margin="70,11,0,0" VerticalAlignment="Top" Width="221"/>
+                        
+                        
+                        <DataGrid x:Name="AddProductosMovidos" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="539" Height="275">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Código" Width="80"/>
-                                <DataGridTextColumn Header="Nombre" Width="330"/>
-                                <DataGridTextColumn Header="C.Total" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding Path=CodPro}" Header="Código" Width="80"/>
+                                <DataGridTextColumn Binding="{Binding Path=ProNombre}"  Header="Nombre" Width="330"/>
+                                <DataGridTextColumn Binding="{Binding Path=CanAtender}" Header="C.Total" Width="100"/>
 
                             </DataGrid.Columns>
                         </DataGrid>
@@ -65,12 +72,18 @@
 
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Zona de salida" Margin="20,65,641,10" >
+                <GroupBox Header="Zona de salida" Margin="20,65,642,0" Height="782" VerticalAlignment="Top" >
                     <Grid HorizontalAlignment="Left" Height="730" VerticalAlignment="Top" Width="558" Margin="0,-15,0,0">
                         <Label Content="Zona:" HorizontalAlignment="Left" Margin="12,26,0,0" VerticalAlignment="Top" Height="27"/>
                         <Label Content="Producto:" HorizontalAlignment="Left" Margin="280,27,0,0" VerticalAlignment="Top"/>
                         <TextBox HorizontalAlignment="Left" Height="23" Margin="346,26,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="51,26,0,0" VerticalAlignment="Top" Width="221"/>
+                        <ComboBox  
+                                IsEnabled="{Binding Editar}"
+                            ItemsSource="{Binding CmbZonas}"
+        			        SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
+                            DisplayMemberPath="Nombre"
+                            HorizontalAlignment="Left" Margin="59,26,0,0" VerticalAlignment="Top" Width="221"/>
+                        
                         <Button HorizontalAlignment="Left" Margin="516,27,0,0" VerticalAlignment="Top" Width="26" Height="23">
                             <Image Source="/Assets/find.png" />
                         </Button>
