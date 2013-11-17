@@ -236,38 +236,49 @@ namespace MadeInHouse.Dictionary {
 
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorname = conv.ConvertFromString("White") as SolidColorBrush;
+            SolidColorBrush ocupado = conv.ConvertFromString("Gray") as SolidColorBrush;
             SolidColorBrush foreground = conv.ConvertFromString("WhiteSmoke") as SolidColorBrush;
             
+            bool enable = true;
 
-            /*LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
-            myLinearGradientBrush.StartPoint = new System.Windows.Point(0,0.5);
-            myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.Black, 0.1));
-            myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.White, 0.1));*/
-            
             if (Columna != null)
             {
                 for (int j = 0; j < Columna.Count; j++)
                 {
+                    idSelectedProduct = Columna[j].IdProducto;
                     if (Columna[j].IdProducto == (SelectedProduct == null ? -1 : SelectedProduct.IdProducto))
                     {
-                        colorname = conv.ConvertFromString("Fuchsia") as SolidColorBrush;
+                        enable = true;
+                        (this.Children[Columna[j].CordZ] as Button).IsEnabled = enable;
                         (this.Children[Columna[j].CordZ] as Button).Foreground = foreground;
                         (this.Children[Columna[j].CordZ] as Button).FontSize = 25;
                         (this.Children[Columna[j].CordZ] as Button).FontWeight = FontWeights.Bold;
                         (this.Children[Columna[j].CordZ] as Button).Content = SelectedProduct.CodPro;
+                       
+                        LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+                        myLinearGradientBrush.StartPoint = new System.Windows.Point(0, 0.5);
+                        myLinearGradientBrush.EndPoint = new System.Windows.Point(Columna[j].VolOcupado / 10, 0.5);
+                        myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.Red, 0.1));
+                        myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.LightGreen, 0.1));
+
+                        (this.Children[Columna[j].CordZ] as Button).Background = myLinearGradientBrush;
+                        (this.Children[Columna[j].CordZ] as Button).Content = Columna[j].Cantidad + " - " + Columna[j].VolOcupado + "%";
+
                     }
-                    else
+                    else if (Columna[j].IdProducto==0)
                     {
-                        colorname = conv.ConvertFromString("White") as SolidColorBrush;
+                        (this.Children[Columna[j].CordZ] as Button).Background = colorname;
+                        (this.Children[Columna[j].CordZ] as Button).Content = "VACIO";
                     }
-                    LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
-                    myLinearGradientBrush.StartPoint = new System.Windows.Point(0, 0.5);
-                    myLinearGradientBrush.EndPoint = new System.Windows.Point(Columna[j].VolOcupado / 10, 0.5);
-                    myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.Red, 0.1));
-                    myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.LightGreen, 0.1));
-                            
-                    (this.Children[Columna[j].CordZ] as Button).Background = myLinearGradientBrush;
-                    (this.Children[Columna[j].CordZ] as Button).Content = Columna[j].Cantidad + " - " + Columna[j].VolOcupado + "%" ;
+                    else 
+                    {
+                        enable = false;
+                        (this.Children[Columna[j].CordZ] as Button).Background = ocupado;
+                        (this.Children[Columna[j].CordZ] as Button).Content = "OCUPADO";
+                        
+                        
+                    }
+                    
                     
 
                 }
@@ -320,35 +331,40 @@ namespace MadeInHouse.Dictionary {
             }
             else if (Accion ==2)
             {
-
+                if (colorAnt != null)
+                {
+                    (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAnt;
+                }
+                xAnt = X;
+                yAnt = Y;
+                colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush;
 
                 if (Tipo == 1)
                 {
 
-                    
-                    if (colorAnt != null)
-                    {
-                        (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAnt;    
-                    }
-                    xAnt = X;
-                    yAnt = Y;
-                    colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush;
-                    
-                    
                     NumColumnsU = 1;
                     AlturaU = 1;
                     NumRowsU = Altura;
                     ColumnaU = Ubicaciones[X][Y];
-                    (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
+                    //(this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
                 }
                 if (Tipo == 2)
                 {
-                    selectedUbicacion = Columna[X];
-                    CantActual = Columna[X].Cantidad.ToString();
-                    VolOcu = Columna[X].VolOcupado.ToString();
-                    if (int.Parse(VolOcu) > 0) Enable = false;
-                    else Enable = true;
+                    if (Columna[X].IdProducto == idSelectedProduct)
+                    {
+                        selectedUbicacion = Columna[X];
+                        CantActual = Columna[X].Cantidad.ToString();
+                        VolOcu = Columna[X].VolOcupado.ToString();
+                        if (int.Parse(VolOcu) > 0) Enable = false;
+                        else Enable = true;
+                    }
+                    else
+                    {
+                        CantActual = "---";
+                        VolOcu = "---";
+                    }
                 }
+
             }
             else if (Accion == 3)
             {
@@ -390,6 +406,7 @@ namespace MadeInHouse.Dictionary {
         }
 
         public ProductoCant SelectedProduct;
+        public int idSelectedProduct;
 
         public void UbicarProducto(int idProducto)
         {

@@ -129,7 +129,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     u.IdUbicacion = int.Parse(reader["idUbicacion"].ToString());
                     u.IdAlmacen = idAlmacen;
                     u.IdTipoZona = idTipoZona;
-                    u.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
+                    u.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? 0 : int.Parse(reader["idProducto"].ToString());
                     u.CordX = int.Parse(reader["cordX"].ToString());
                     u.CordY = int.Parse(reader["cordY"].ToString());
                     u.CordZ = int.Parse(reader["cordZ"].ToString());
