@@ -1070,16 +1070,44 @@ FROM
  INNER JOIN  NotaIS nis  ON pnis.idNota = nis.idNota 
  INNER JOIN MotivoIS m ON nis.idMotivo =  m.idMotivo
  INNER JOIN Producto p ON  pnis.idProducto = p.idProducto  
- INNER JOIN Almacen a ON   nis.idAlmacen = a.idAlmacen";
+ INNER JOIN Almacen a ON   nis.idAlmacen = a.idAlmacen
+
+WHERE 
+
+nis.fechaReg >= @fechaRegI and nis.fechaReg <= @fechaRegF
+ and nis.idAlmacen  = @idAlmacen  and  p.idProducto = @idProducto";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fechaRegI", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "fechaReg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fechaRegF", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "fechaReg", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idAlmacen", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idAlmacen", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@idProducto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "idProducto", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSetMov.DataTable1DataTable dataTable) {
+        public virtual int Fill(DataSetMov.DataTable1DataTable dataTable, global::System.Nullable<global::System.DateTime> fechaRegI, global::System.Nullable<global::System.DateTime> fechaRegF, global::System.Nullable<int> idAlmacen, int idProducto) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((fechaRegI.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(fechaRegI.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((fechaRegF.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fechaRegF.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((idAlmacen.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(idAlmacen.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((int)(idProducto));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -1091,8 +1119,27 @@ FROM
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSetMov.DataTable1DataTable GetData() {
+        public virtual DataSetMov.DataTable1DataTable GetData(global::System.Nullable<global::System.DateTime> fechaRegI, global::System.Nullable<global::System.DateTime> fechaRegF, global::System.Nullable<int> idAlmacen, int idProducto) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((fechaRegI.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(fechaRegI.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((fechaRegF.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fechaRegF.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((idAlmacen.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(idAlmacen.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((int)(idProducto));
             DataSetMov.DataTable1DataTable dataTable = new DataSetMov.DataTable1DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

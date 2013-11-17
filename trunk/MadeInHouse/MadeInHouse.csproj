@@ -218,6 +218,10 @@
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="Models\Compras\ServicioxProducto.cs" />
     <Compile Include="Models\Ventas\VentaPago.cs" />
+    <Compile Include="ReportViewer\DataSetMov.cs">
+      <DependentUpon>DataSetMov.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportViewer\DataSetMov.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
