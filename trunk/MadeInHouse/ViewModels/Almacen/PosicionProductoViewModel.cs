@@ -274,15 +274,13 @@ namespace MadeInHouse.ViewModels.Almacen
         public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
         {
 
-            ubicacionCol.SelectedProduct = SelectedProduct;
+            
             SelectedProduct = ((sender as DataGrid).SelectedItem as ProductoCant);
+            ubicacionCol.SelectedProduct = SelectedProduct;
 
             if (SelectedProduct != null)
             {
-
                 almacen.UbicarProducto(SelectedProduct.IdProducto);
-                
-            
             }
         }
 
