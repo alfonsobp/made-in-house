@@ -122,6 +122,7 @@
     <Compile Include="DataObjects\Compras\ServicioxProductoSQL.cs" />
     <Compile Include="DataObjects\Compras\SolicitudAdquisicionSQL.cs" />
     <Compile Include="DataObjects\EntitySQL.cs" />
+    <Compile Include="DataObjects\Reportes\ReporteOrdenCompraSQL.cs" />
     <Compile Include="DataObjects\Reportes\ReporteStockSQL.cs" />
     <Compile Include="DataObjects\Reportes\ReporteVentasSQL.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />

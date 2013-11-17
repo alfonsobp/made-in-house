@@ -77,8 +77,6 @@ namespace MadeInHouse.Views.Reportes
                 pasarListBox(listBoxSede1, ListBoxSede2);
             if (ListBoxSede2.SelectedItem != null)
                 pasarListBox(ListBoxSede2, listBoxSede1);
-
-
         }
         private void Unselect(object sender, RoutedEventArgs e)
         {
