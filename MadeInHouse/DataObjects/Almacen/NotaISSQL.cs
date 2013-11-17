@@ -139,32 +139,28 @@ namespace MadeInHouse.DataObjects.Almacen
 
         private List<ProductoCant> BuscarNotas(int p)
         {
+            DBConexion db1 = new DBConexion();
             List<ProductoCant> lstProCant = new List<ProductoCant>();
 
-            db.cmd.CommandText = "SELECT * FROM ProductoxNotaIS where @idNota=idNota Group by";
-
+            db1.cmd.CommandText = "SELECT idProducto,idNota,sum(cantidad) AS cantidad ,idAlmacen FROM desarrollo.ProductoxNotaIS WHERE idNota=@idNota GROUP BY idProducto, idNota, idAlmacen";
+            db1.cmd.Parameters.AddWithValue("@idNota", p);
+                        
             try
             {
-                if (tipo) db.conn.Open();
-                SqlDataReader reader = db.cmd.ExecuteReader();
+                db1.conn.Open();
+                SqlDataReader reader = db1.cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    NotaIS nota = new NotaIS();
-                    nota.FechaReg = reader.IsDBNull(reader.GetOrdinal("fechaReg")) ? DateTime.MinValue : DateTime.Parse(reader["fechaReg"].ToString());
-                    nota.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : int.Parse(reader["idAlmacen"].ToString());
-                    nota.IdDoc = reader.IsDBNull(reader.GetOrdinal("idDoc")) ? -1 : int.Parse(reader["idDoc"].ToString());
-                    nota.IdMotivo = reader.IsDBNull(reader.GetOrdinal("idMotivo")) ? -1 : int.Parse(reader["idMotivo"].ToString());
-                    nota.IdNota = reader.IsDBNull(reader.GetOrdinal("idNota")) ? -1 : int.Parse(reader["idNota"].ToString());
-                    nota.IdResponsable = reader.IsDBNull(reader.GetOrdinal("responsable")) ? -1 : int.Parse(reader["responsable"].ToString());
-                    nota.Observaciones = reader.IsDBNull(reader.GetOrdinal("observaciones")) ? "" : reader["observaciones"].ToString();
-                    nota.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? -1 : int.Parse(reader["tipo"].ToString());
-                    nota.LstProducto = BuscarNotas(nota.IdNota);
-                    //lstProCant.Add(procan);
+                    ProductoCant procan = new ProductoCant();
+                    procan.CanAtender = reader.IsDBNull(reader.GetOrdinal("cantidad")) ? null : reader["cantidad"].ToString();
+                    procan.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
+                    lstProCant.Add(procan);
 
                 }
-                db.cmd.Parameters.Clear();
-                if (tipo) db.conn.Close();
+                db1.cmd.Parameters.Clear();
+                db1.conn.Close();
+                
             }
             catch (SqlException e)
             {
