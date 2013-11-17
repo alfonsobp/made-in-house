@@ -314,6 +314,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
                 {
                     mantenerNotaDeIngresoViewModel.TxtDoc = OrdenSelected.CodOrdenCompra;
                     mantenerNotaDeIngresoViewModel.TxtDocId = OrdenSelected.IdOrden;
+                    mantenerNotaDeIngresoViewModel.SelectedOrden = OrdenSelected;
                     this.TryClose();
                 }
             }
