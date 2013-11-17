@@ -482,11 +482,18 @@ namespace MadeInHouse.ViewModels.Almacen
 
             nota.IdNota = ntgw.AgregarNota(nota);
 
+            ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
+            ProductoSQL pgw = new ProductoSQL();
+
+            List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
+            if (u.IdTienda != 0) ptgw.ActualizarStockEntrada(list, u.IdTienda);
+            else pgw.ActualizarStockEntrada(list);
+
             //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
             if (SelectedOrden != null)
             {
-                guardarOrden(nota);
+                guardarOrden(list);
             }
           
 
@@ -496,17 +503,17 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-        public void guardarOrden(NotaIS nota) {
+        public void guardarOrden(List<ProductoCant> list) {
 
             OrdenCompraxProductoSQL ocSQL = new OrdenCompraxProductoSQL();
-
+            
             foreach (ProductoxOrdenCompra op in SelectedOrden.LstProducto) 
             {
-                foreach (ProductoCant pc in nota.LstProducto) {
+                foreach (ProductoCant pc in list) {
 
                     if (pc.IdProducto == op.Producto.IdProducto) {
                         MessageBox.Show(" cant atendida = " + pc.CanAtender);
-                        op.CantAtendida = Convert.ToInt32(pc.CanAtender);
+                        op.CantAtendida += Convert.ToInt32(pc.CanAtender);
                         ocSQL.Actualizar(op);
                     }
                 

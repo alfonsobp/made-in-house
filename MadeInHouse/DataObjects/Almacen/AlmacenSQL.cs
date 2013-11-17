@@ -215,7 +215,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 where += " AND idAlmacen=@idAlmacen";
                 db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             }
-            if (idTienda > 0)
+            if (idTienda >= 0)
             {
                 where += " AND idTienda=@idTienda";
                 db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
