@@ -85,11 +85,11 @@
 
                 <DataGrid x:Name="LstProductos" CanUserAddRows="False" SelectedItem="{Binding SelectedProductoCant}" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=CodPro}" IsReadOnly="True" Header="Codigo" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=ProNombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CodigoProd}" IsReadOnly="True" Header="Codigo" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=Can}" IsReadOnly="True" Header="Cantidad Pedido" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=CanAtend}" IsReadOnly="True" Header="Atendida" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" Header="A ingresar" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" Header="A Mover" Width="73"/>
                     </DataGrid.Columns>
 
                 </DataGrid>
@@ -98,7 +98,7 @@
                     <Grid Margin="-3,0,-2,-3" HorizontalAlignment="Right" Width="357" Height="134" VerticalAlignment="Top">
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="18,10,0,0" VerticalAlignment="Top" Width="75"/>
                         <TextBox Text="{Binding Path=SelectedProducto.CodigoProd}" IsEnabled="{Binding EstadoPro}" HorizontalAlignment="Left" Height="26" Margin="124,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.425,0.565"/>
-                        <Label Content="Cantidad Real:" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" Width="90"/>
+                        <Label Content="Cantidad:" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" Width="90"/>
                         <TextBox x:Name="TxtCantPro"  IsEnabled="{Binding EstadoPro}" HorizontalAlignment="Left" Height="23" Margin="124,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                         <Button x:Name="AbrirPosicionProducto" Content="Ubicar" HorizontalAlignment="Left" Margin="256,95,0,0" VerticalAlignment="Top" Width="91" Height="26"/>
                         <Button x:Name="BuscarProducto"  IsEnabled="{Binding EstadoPro}"  HorizontalAlignment="Left" Margin="261,10,0,0" VerticalAlignment="Top" Width="24" Height="26">

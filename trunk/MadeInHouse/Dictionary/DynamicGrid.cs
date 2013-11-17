@@ -253,7 +253,7 @@ namespace MadeInHouse.Dictionary {
                         (this.Children[Columna[j].CordZ] as Button).Foreground = foreground;
                         (this.Children[Columna[j].CordZ] as Button).FontSize = 25;
                         (this.Children[Columna[j].CordZ] as Button).FontWeight = FontWeights.Bold;
-                        (this.Children[Columna[j].CordZ] as Button).Content = SelectedProduct.CodPro;
+                        (this.Children[Columna[j].CordZ] as Button).Content = SelectedProduct.CodigoProd;
                        
                         LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
                         myLinearGradientBrush.StartPoint = new System.Windows.Point(0, 0.5);

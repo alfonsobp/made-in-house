@@ -77,9 +77,9 @@
                     </i:Interaction.Triggers>
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=CodPro}" IsReadOnly="True" Header="Codigo" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=ProNombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" IsReadOnly="True" Header="A ingresar" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CodigoProd}" IsReadOnly="True" Header="Codigo" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
+                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" IsReadOnly="True" Header="A Mover" Width="73"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <ScrollViewer HorizontalAlignment="Left" Height="444"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">

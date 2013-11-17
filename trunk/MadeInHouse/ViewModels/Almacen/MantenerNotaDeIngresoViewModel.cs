@@ -272,8 +272,8 @@ namespace MadeInHouse.ViewModels.Almacen
                    ProductoCant pcan = new ProductoCant();
                    pcan.IdProducto = poc.ElementAt(i).Producto.IdProducto;
                    pcan.Can = poc.ElementAt(i).Cantidad;
-                   pcan.CodPro = poc.ElementAt(i).Producto.CodigoProd;
-                   pcan.ProNombre = poc.ElementAt(i).Producto.Nombre;
+                   pcan.CodigoProd = poc.ElementAt(i).Producto.CodigoProd;
+                   pcan.Nombre = poc.ElementAt(i).Producto.Nombre;
                    pcan.CanAtend = poc.ElementAt(i).CantAtendida.ToString();
                    pcan.CanAtender = poc.ElementAt(i).CantidadAtender;
                    pcan.Ubicaciones = new List<Ubicacion>();
@@ -394,15 +394,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (LstProductos != null)
                     {
-                        if ((pxa = LstProductos.Find(x => x.CodPro == lstAux.CodigoProd)) == null)
+                        if ((pxa = LstProductos.Find(x => x.CodigoProd == lstAux.CodigoProd)) == null)
                         {
                             pxa = new ProductoCant();
                             pxa.CanAtender = TxtCantPro;
                             pxa.CanAtend = "0";
                             pxa.Can = "0";
                             pxa.IdProducto=lstAux.IdProducto;
-                            pxa.CodPro = lstAux.CodigoProd.ToString();
-                            pxa.ProNombre = lstAux.Nombre;
+                            pxa.CodigoProd = lstAux.CodigoProd.ToString();
+                            pxa.Nombre = lstAux.Nombre;
                             pxa.Ubicaciones = new List<Ubicacion>();
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
@@ -418,8 +418,8 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.CanAtender = TxtCantPro;
                         pxa.CanAtend = "0";
                         pxa.Can = "0";
-                        pxa.CodPro = lstAux.CodigoProd.ToString();
-                        pxa.ProNombre = lstAux.Nombre;
+                        pxa.CodigoProd = lstAux.CodigoProd.ToString();
+                        pxa.Nombre = lstAux.Nombre;
                         pxa.IdProducto = lstAux.IdProducto;
                         pxa.Ubicaciones = new List<Ubicacion>();
                         LstProductos = new List<ProductoCant>();
