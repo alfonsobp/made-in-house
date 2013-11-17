@@ -24,13 +24,13 @@ namespace MadeInHouse.Views.Reportes
     public partial class reporteVentasView : UserControl
     {
         List<Venta> ventas;
-
+        List<Cliente> lstCliente;
         public reporteVentasView()
         {
 
             InitializeComponent();
             List<Tienda> lstTienda = new List<Tienda>();
-            List<Cliente> lstCliente = new List<Cliente>();
+            lstCliente = new List<Cliente>();
             List<Producto> lstProducto = new List<Producto>();
             lstTienda = DataObjects.Reportes.ReporteVentasSQL.BuscarTienda();
             lstCliente = DataObjects.Reportes.ReporteVentasSQL.BuscarCliente();
@@ -189,6 +189,10 @@ namespace MadeInHouse.Views.Reportes
             for (int i = 0; i < ventaAux4.Count; i++)
             {
                 suma += ventaAux4[i].Monto;
+                for (int j = 0; j < lstCliente.Count; j++)
+                {
+                    if (lstCliente[j].Id == ventaAux4[i].IdCliente) ventaAux4[i].NombreCliente = lstCliente[j].Nombre;
+                }
             }
 
             

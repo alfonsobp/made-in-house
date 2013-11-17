@@ -53,7 +53,7 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT nombre FROM Cliente order by 1";
+            cmd.CommandText = "SELECT * FROM Cliente order by 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -65,6 +65,7 @@ namespace MadeInHouse.DataObjects.Reportes
                 {
                     Cliente e = new Cliente();
                     e.Nombre = reader["nombre"].ToString();
+                    e.Id = Convert.ToInt32(reader["idCliente"]);
                     lstCliente.Add(e);
                 }
 
