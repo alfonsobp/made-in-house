@@ -328,7 +328,6 @@ namespace MadeInHouse.ViewModels.Almacen
         public void Guardar(DynamicGrid almacenDG )
         {
             DBConexion db = new DBConexion();
-            LstProductos[0].Ubicaciones = null;
             db.conn.Open();
             SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
             db.cmd.Transaction = trans;
