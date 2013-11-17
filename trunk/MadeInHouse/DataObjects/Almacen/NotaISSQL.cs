@@ -137,7 +137,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
-        private List<ProductoCant> BuscarNotas(int p)
+        public List<ProductoCant> BuscarNotas(int p)
         {
             DBConexion db1 = new DBConexion();
             List<ProductoCant> lstProCant = new List<ProductoCant>();

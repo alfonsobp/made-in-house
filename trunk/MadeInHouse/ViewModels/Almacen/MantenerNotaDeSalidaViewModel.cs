@@ -495,8 +495,13 @@ namespace MadeInHouse.ViewModels.Almacen
             
             nota.IdNota=ntgw.AgregarNota(nota);
 
-                        //Actualizar Documentos de Referencia para darlos por Terminados! :)
+            //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
+            //Actualizar Stock
+            ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
+            List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
+
+            ptgw.ActualizarStockSalida(list,u.IdTienda);
 
         }
 
