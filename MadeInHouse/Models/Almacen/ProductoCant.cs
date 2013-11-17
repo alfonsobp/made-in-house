@@ -14,22 +14,7 @@ namespace MadeInHouse.Models.Almacen
             ubicaciones = new List<Ubicacion>();
         }
 
-        private string proNombre;
-
-        public string ProNombre
-        {
-            get { return proNombre; }
-            set { proNombre = value; }
-        }
-
-        private string codPro;
-
-        public string CodPro
-        {
-            get { return codPro; }
-            set { codPro = value; }
-        }
-
+        
         private string can;
 
         public string Can

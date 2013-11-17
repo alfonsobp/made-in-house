@@ -231,14 +231,14 @@ namespace MadeInHouse.ViewModels.Almacen
                     else
                     {
                         pc.IdProducto = lstProd[0].IdProducto;
-                        pc.CodPro = TxtProducto;
+                        pc.CodigoProd = TxtProducto;
                         productoSeleccionado = null;
                     }
                 }
                 else
                 {
                     pc.IdProducto = ProductoSeleccionado.IdProducto;
-                    pc.CodPro = ProductoSeleccionado.CodigoProd;
+                    pc.CodigoProd = ProductoSeleccionado.CodigoProd;
                     productoSeleccionado = null;
                 }
 

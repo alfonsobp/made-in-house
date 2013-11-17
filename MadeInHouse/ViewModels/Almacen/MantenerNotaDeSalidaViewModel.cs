@@ -409,15 +409,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (LstProductos != null)
                     {
-                        if ((pxa = LstProductos.Find(x => x.CodPro == lstAux.CodigoProd)) == null)
+                        if ((pxa = LstProductos.Find(x => x.CodigoProd == lstAux.CodigoProd)) == null)
                         {
                             pxa = new ProductoCant();
                             pxa.CanAtender = TxtCantPro;
                             pxa.CanAtend = "0";
                             pxa.Can = "0";
-                            pxa.CodPro = lstAux.CodigoProd.ToString();
+                            pxa.CodigoProd = lstAux.CodigoProd.ToString();
                             pxa.IdProducto = lstAux.IdProducto;
-                            pxa.ProNombre = lstAux.Nombre;
+                            pxa.Nombre = lstAux.Nombre;
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
                         }
@@ -431,9 +431,9 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.CanAtender = TxtCantPro;
                         pxa.CanAtend = "0";
                         pxa.Can = "0";
-                        pxa.CodPro = lstAux.CodigoProd.ToString();
+                        pxa.CodigoProd = lstAux.CodigoProd.ToString();
                         pxa.IdProducto = lstAux.IdProducto;
-                        pxa.ProNombre = lstAux.Nombre;
+                        pxa.Nombre = lstAux.Nombre;
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoCant>(LstProductos);
