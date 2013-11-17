@@ -235,8 +235,15 @@ namespace MadeInHouse.Dictionary {
         {
 
             BrushConverter conv = new BrushConverter();
-            SolidColorBrush colorname = conv.ConvertFromString("White") as SolidColorBrush; ;
-  
+            SolidColorBrush colorname = conv.ConvertFromString("White") as SolidColorBrush;
+            SolidColorBrush foreground = conv.ConvertFromString("WhiteSmoke") as SolidColorBrush;
+            
+
+            /*LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+            myLinearGradientBrush.StartPoint = new System.Windows.Point(0,0.5);
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.Black, 0.1));
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.White, 0.1));*/
+            
             if (Columna != null)
             {
                 for (int j = 0; j < Columna.Count; j++)
@@ -244,25 +251,40 @@ namespace MadeInHouse.Dictionary {
                     if (Columna[j].IdProducto == (SelectedProduct == null ? -1 : SelectedProduct.IdProducto))
                     {
                         colorname = conv.ConvertFromString("Fuchsia") as SolidColorBrush;
+                        (this.Children[Columna[j].CordZ] as Button).Foreground = foreground;
+                        (this.Children[Columna[j].CordZ] as Button).FontSize = 25;
+                        (this.Children[Columna[j].CordZ] as Button).FontWeight = FontWeights.Bold;
                         (this.Children[Columna[j].CordZ] as Button).Content = SelectedProduct.CodPro;
                     }
                     else
                     {
                         colorname = conv.ConvertFromString("White") as SolidColorBrush;
                     }
-                    (this.Children[Columna[j].CordZ] as Button).Background = colorname;
-                    (this.Children[Columna[j].CordZ] as Button).Content = Columna[j].Cantidad;
+                    LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+                    myLinearGradientBrush.StartPoint = new System.Windows.Point(0, 0.5);
+                    myLinearGradientBrush.EndPoint = new System.Windows.Point(Columna[j].VolOcupado / 10, 0.5);
+                    myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.Red, 0.1));
+                    myLinearGradientBrush.GradientStops.Add(new GradientStop(Colors.LightGreen, 0.1));
+                            
+                    (this.Children[Columna[j].CordZ] as Button).Background = myLinearGradientBrush;
+                    (this.Children[Columna[j].CordZ] as Button).Content = Columna[j].Cantidad + " - " + Columna[j].VolOcupado + "%" ;
                     
 
                 }
             }
         }
 
+        private int xAnt;
+        private int yAnt;
+        private SolidColorBrush colorAnt;
+
         public void onClickChange(object sender, RoutedEventArgs e) {
 
             int X = Int16.Parse((sender as Button).Name.Substring(1, (sender as Button).Name.IndexOf("X") - 1));
             int Y = Int16.Parse((sender as Button).Name.Substring((sender as Button).Name.IndexOf("Y") + 1));
-
+            BrushConverter conv = new BrushConverter();
+            SolidColorBrush colorClick = conv.ConvertFromString("LightSkyBlue") as SolidColorBrush;
+            //Colors.
             if (Accion == 1)
             {
                 (sender as Button).Background = this.Background;
@@ -302,12 +324,22 @@ namespace MadeInHouse.Dictionary {
 
                 if (Tipo == 1)
                 {
+
+                    
+                    if (colorAnt != null)
+                    {
+                        (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAnt;    
+                    }
+                    xAnt = X;
+                    yAnt = Y;
+                    colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush;
                     
                     
                     NumColumnsU = 1;
                     AlturaU = 1;
                     NumRowsU = Altura;
                     ColumnaU = Ubicaciones[X][Y];
+                    (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
                 }
                 if (Tipo == 2)
                 {

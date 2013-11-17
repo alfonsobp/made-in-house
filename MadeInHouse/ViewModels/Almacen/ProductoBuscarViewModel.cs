@@ -50,6 +50,17 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private int ventanaAccion = 0;
         
+        
+
+
+        private Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel;
+        public ProductoBuscarViewModel(Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel, int ventanaAccion)
+            : this()
+        {
+            this.ProductoMovimientosViewModel = ProductoMovimientosViewModel;
+            this.ventanaAccion = ventanaAccion;
+        }
+
         private Almacen.MantenerTiendaViewModel mantenerTiendaViewModel;
         public ProductoBuscarViewModel(Almacen.MantenerTiendaViewModel mantenerTiendaViewModel, int ventanaAccion):this()
         {
@@ -383,6 +394,17 @@ namespace MadeInHouse.ViewModels.Almacen
                     this.TryClose();
                 }
                 
+            }
+            else if (ventanaAccion == 7)
+            {
+                productoSel = ((sender as DataGrid).SelectedItem as Producto);
+                if (ProductoMovimientosViewModel != null)
+                {
+                    ProductoMovimientosViewModel.ProductoSeleccionado = productoSel;
+                    ProductoMovimientosViewModel.TxtProducto = productoSel.CodigoProd;
+                    this.TryClose();
+                }
+
             }
 
             if (pvm != null) {
