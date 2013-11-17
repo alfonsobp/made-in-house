@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Windows.Media.Animation;
 using System.Threading;
 using MadeInHouse.Models.RRHH;
+using MadeInHouse.Views.Reportes;
 
 namespace MadeInHouse.Views
 {
@@ -177,6 +178,13 @@ namespace MadeInHouse.Views
             DoubleAnimation animation2 = new DoubleAnimation(0, TimeSpan.FromSeconds(0.1));
             e.BeginAnimation(Expander.HeightProperty, animation2);
 
+        }
+
+        private void reporteStock_Click(object sender, RoutedEventArgs e)
+        {
+
+            ReporteMov rs = new ReporteMov();
+            rs.Show();
         }
 
     }

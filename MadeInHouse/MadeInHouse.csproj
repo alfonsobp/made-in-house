@@ -218,6 +218,11 @@
     <Compile Include="Models\Ventas\Tarjeta.cs" />
     <Compile Include="Models\Compras\ServicioxProducto.cs" />
     <Compile Include="Models\Ventas\VentaPago.cs" />
+    <Compile Include="ReportViewer\DataSetMov.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetMov.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Validacion\Error.cs" />
     <Compile Include="Validacion\Evaluador.cs" />
     <Compile Include="ViewModels\Almacen\BuscarTiendaViewModel.cs" />
@@ -516,6 +521,9 @@
     </Compile>
     <Compile Include="Views\Reportes\reporteSolicitudesView.xaml.cs">
       <DependentUpon>reporteSolicitudesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reportes\ReporteMov.xaml.cs">
+      <DependentUpon>ReporteMov.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Reportes\reporteStockView.xaml.cs">
       <DependentUpon>reporteStockView.xaml</DependentUpon>
@@ -904,6 +912,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reportes\ReporteMov.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reportes\reporteStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1103,6 +1115,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewer\ReportMov.rdlc" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -1112,6 +1125,17 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="ReportViewer\DataSetMov.xsc">
+      <DependentUpon>DataSetMov.xsd</DependentUpon>
+    </None>
+    <None Include="ReportViewer\DataSetMov.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetMov.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportViewer\DataSetMov.xss">
+      <DependentUpon>DataSetMov.xsd</DependentUpon>
+    </None>
     <Resource Include="Assets\Moire.ttf" />
   </ItemGroup>
   <ItemGroup>
