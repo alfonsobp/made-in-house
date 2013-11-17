@@ -18,25 +18,20 @@ using MadeInHouse.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.DataObjects.Reportes;
 
 namespace MadeInHouse.Views.Reportes
 {
-    /// <summary>
-    /// Lógica de interacción para reporteStockView.xaml
-    /// </summary>
+
     public partial class reporteStockView : UserControl
     {
         public reporteStockView()
         {
             InitializeComponent();
+            listBoxSede1.Items.Add("ALMACEN CENTRAL");
             List<Tienda> lstTienda = new List<Tienda>();
             lstTienda = DataObjects.Reportes.ReporteVentasSQL.BuscarTienda();
             for (int i = 0; i < lstTienda.Count; i++) listBoxSede1.Items.Add(lstTienda[i].Nombre);
-            listBoxAlmacen1.Items.Add("ALMACEN CENTRAL");
-
-
-            
-          
         }
 
         private void pasarListBox(ListBox origen, ListBox destino)
@@ -67,7 +62,7 @@ namespace MadeInHouse.Views.Reportes
                 pasarListBox(listBoxSede1, ListBoxSede2);
                 text = text.Replace("System.Windows.Controls.ListBoxItem: ", "");
                 lstAlmacenes = DataObjects.Reportes.reporteStock.BuscarAlmacenesxTienda(text);
-                for (int i = 0; i < lstAlmacenes.Count; i++) listBoxAlmacen1.Items.Add(lstAlmacenes[i].Nombre);
+                
             }
             if (ListBoxSede2.SelectedItem != null)
             {
@@ -79,26 +74,14 @@ namespace MadeInHouse.Views.Reportes
 
                 lstAlmacenes = DataObjects.Reportes.reporteStock.BuscarAlmacenesxTienda(text);
 
-                for (int i = 0; i < lstAlmacenes.Count; i++)
-                {
-                    listBoxAlmacen1.Items.Remove(lstAlmacenes[i].Nombre);
-                    ListBoxAlmacen2.Items.Remove(lstAlmacenes[i].Nombre);
-                    
-                }
 
             }
 
-            if (listBoxAlmacen1.SelectedItem != null)
-                pasarListBox(listBoxAlmacen1, ListBoxAlmacen2);
-            if (ListBoxAlmacen2.SelectedItem != null)
-                pasarListBox(ListBoxAlmacen2, listBoxAlmacen1);
         }
         private void Unselect(object sender, RoutedEventArgs e)
         {
             listBoxSede1.UnselectAll();
             ListBoxSede2.UnselectAll();
-            listBoxAlmacen1.UnselectAll();
-            ListBoxAlmacen2.UnselectAll();
 
         }
         private void Pasar_Todo(object sender, RoutedEventArgs e)
@@ -108,26 +91,34 @@ namespace MadeInHouse.Views.Reportes
                 List<Almacenes> lstAlmacenes = new List<Almacenes>();
                 lstAlmacenes = DataObjects.Reportes.reporteStock.BuscarAlmacen();
                 todo_lista_a_lista(listBoxSede1, ListBoxSede2);
-                listBoxAlmacen1.Items.Clear();
-                ListBoxAlmacen2.Items.Clear();
-                for(int i=0; i<lstAlmacenes.Count;i++)
-                {
-                    listBoxAlmacen1.Items.Add(lstAlmacenes[i].Nombre);
-                }
+
+
 
             }
             if (sender.Equals(izquierda3))
             {
                 todo_lista_a_lista(ListBoxSede2, listBoxSede1);
-                listBoxAlmacen1.Items.Clear();
-                ListBoxAlmacen2.Items.Clear();
-                listBoxAlmacen1.Items.Add("ALMACEN CENTRAL");
             }
-            if (sender.Equals(derecha1)) todo_lista_a_lista(listBoxAlmacen1, ListBoxAlmacen2);
-            if (sender.Equals(izquierda1)) todo_lista_a_lista(ListBoxAlmacen2, listBoxAlmacen1);
             
         }
 
+        private void generar(object sender, RoutedEventArgs e)
+        {
+            List<stock> lista = new List<stock>();
+            List<stock> stocks = new List<stock>();
+
+            for (int i = 0; i < ListBoxSede2.Items.Count; i++)
+            {
+                if (ListBoxSede2.Items[i].ToString() == "ALMACEN CENTRAL")
+                     lista = DataObjects.Reportes.reporteStock.BuscarStockCentral();
+                else lista = DataObjects.Reportes.reporteStock.BuscarStock(ListBoxSede2.Items[i].ToString());
+                for (int j = 0; j < lista.Count; j++)
+                {
+                    stocks.Add(lista[j]);
+                }
+            }
+            ListStock.ItemsSource = stocks;
+        }
     }
     
 
