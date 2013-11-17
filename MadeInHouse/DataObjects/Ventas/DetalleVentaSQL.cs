@@ -12,16 +12,33 @@ namespace MadeInHouse.DataObjects.Ventas
 {
     class DetalleVentaSQL
     {
+        private DBConexion db;
+        private bool tipo = true;
+
+        public DetalleVentaSQL(DBConexion db = null)
+        {
+
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else
+            {
+                this.db = db;
+                tipo = false;
+            }
+
+        }
+
         public Producto Buscar(string idProducto)
         {
-            DBConexion db = new DBConexion();
             Producto prod = new Producto();
 
-            db.cmd.CommandText = "select * from Producto where idProducto=" + Convert.ToInt32(idProducto);
+            db.cmd.CommandText = "select * from ProductoxTienda where idProducto=" + Convert.ToInt32(idProducto);
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -31,7 +48,7 @@ namespace MadeInHouse.DataObjects.Ventas
                     prod.Precio = Double.Parse(reader["precio"].ToString());
                 }
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
             }
             catch (SqlException e)
             {
@@ -52,7 +69,6 @@ namespace MadeInHouse.DataObjects.Ventas
 
         public void Agregar(Venta v, DetalleVenta dv)
         {
-            DBConexion db = new DBConexion();
             db.cmd.CommandText = "INSERT INTO DetalleVenta(cantidad,descuento,idVenta,idProducto) VALUES(@cantidad,@descuento,@idVenta,@idProducto)";
             db.cmd.Parameters.AddWithValue("@cantidad", dv.Cantidad);
             db.cmd.Parameters.AddWithValue("@descuento", dv.Descuento);
@@ -61,9 +77,11 @@ namespace MadeInHouse.DataObjects.Ventas
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
+                db.cmd.Parameters.Clear();
+
             }
             catch (SqlException e)
             {
@@ -73,7 +91,6 @@ namespace MadeInHouse.DataObjects.Ventas
 
         public void AgregarServicios(Venta v, DetalleVentaServicio item)
         {
-            DBConexion db = new DBConexion();
             db.cmd.CommandText = "INSERT INTO DetalleVentaServicio(idServicio,idVenta,estado,idProducto) VALUES(@idServicio,@idVenta,@estado,@idProducto)";
             db.cmd.Parameters.AddWithValue("@idServicio", item.IdServicio);
             db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
@@ -82,9 +99,10 @@ namespace MadeInHouse.DataObjects.Ventas
 
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
+                db.cmd.Parameters.Clear();
             }
             catch (SqlException e)
             {

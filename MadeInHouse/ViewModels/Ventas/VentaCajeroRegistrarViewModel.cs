@@ -17,6 +17,9 @@ using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Models;
 using MadeInHouse.ViewModels.Compras;
 using MadeInHouse.Dictionary;
+using MadeInHouse.DataObjects;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -413,14 +416,24 @@ namespace MadeInHouse.ViewModels.Ventas
 
 
                 //insertar en la base de datos
-                VentaSQL vsql = new VentaSQL();
+                DBConexion db = new DBConexion();
+                db.conn.Open();
+                SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
+                db.cmd.Transaction = trans;
+                VentaSQL vsql = new VentaSQL(db);
                 if (v.IdCliente == -1)
                 {
                     int k = vsql.AgregarSinCliente(v);
                     if (k != 0)
                     {
+                        trans.Commit();
                         MessageBox.Show("Venta Realizada con Exito");
                         Limpiar();
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        MessageBox.Show("Ocurrio un Error en el proceso");
                     }
                 }
                 else
@@ -428,8 +441,14 @@ namespace MadeInHouse.ViewModels.Ventas
                     int k = vsql.Agregar(v);
                     if (k != 0)
                     {
+                        trans.Commit();
                         MessageBox.Show("Venta Realizada con Exito");
                         Limpiar();
+                    }
+                    else
+                    {
+                        trans.Rollback();
+                        MessageBox.Show("Ocurrio un Error en el proceso");
                     }
                 }
 
