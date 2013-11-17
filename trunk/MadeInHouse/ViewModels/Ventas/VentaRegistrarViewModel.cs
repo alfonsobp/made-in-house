@@ -18,6 +18,9 @@ using System.Windows.Input;
 using MadeInHouse.Models.Compras;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Dictionary;
+using MadeInHouse.DataObjects;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -454,26 +457,36 @@ namespace MadeInHouse.ViewModels.Ventas
                 }
 
                 //insertar la venta en la base de datos
-                VentaSQL vsql = new VentaSQL();
+                DBConexion db = new DBConexion();
+                db.conn.Open();
+                SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
+                db.cmd.Transaction = trans;
+                VentaSQL vsql = new VentaSQL(db);
                 int k = vsql.AgregarVentaObra(v);
                 if (k != 0)
                 {
+                    trans.Commit();
                     MessageBox.Show("Venta Realizada con Exito");
                     Limpiar();
-                }
-
-                if (v.TipoDocPago.Equals("Boleta"))
-                {
-                    GenerarPDFBoletaProductos(v);
-                    if (v.LstDetalleServicio.Count() > 0)
-                        GenerarPDFBoletaServicios(v);
+                    if (v.TipoDocPago.Equals("Boleta"))
+                    {
+                        GenerarPDFBoletaProductos(v);
+                        if (v.LstDetalleServicio.Count() > 0)
+                            GenerarPDFBoletaServicios(v);
+                    }
+                    else
+                    {
+                        GenerarPDFFacturaProductos(v);
+                        if (v.LstDetalleServicio.Count() > 0)
+                            GenerarPDFFacturaServicios(v);
+                    }
                 }
                 else
                 {
-                    GenerarPDFFacturaProductos(v);
-                    if (v.LstDetalleServicio.Count() > 0)
-                        GenerarPDFFacturaServicios(v);
+                    trans.Rollback();
+                    MessageBox.Show("Ocurrio un Error en el proceso");
                 }
+                
 
             }
             else
