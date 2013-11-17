@@ -429,7 +429,7 @@ namespace MadeInHouse.Dictionary {
             }
         }
 
-        public void AgregarProductos(int cant, int vol, int idProducto, List<TipoZona> zonas)
+        public int AgregarProductos(int cant, int vol, int idProducto)
         {
 
             int volAux;
@@ -440,7 +440,7 @@ namespace MadeInHouse.Dictionary {
                 if (volAux > 100)
                 {
                     System.Windows.MessageBox.Show("No se pudo ingresar , se superó la capacidad");
-                    return;
+                    return -1;
                 }
                 else if (volAux == 100)
                 {
@@ -471,9 +471,52 @@ namespace MadeInHouse.Dictionary {
             CantActual = selectedUbicacion.Cantidad.ToString();
             VolOcu = selectedUbicacion.VolOcupado.ToString();
             this.Mostrar();
-           
-            
+
+            return 1;
         }
+
+        public int DisminuirProductos(int cant, int idProducto)
+        {
+
+            int cantAux;
+            if (selectedUbicacion.Cantidad>0)
+            {
+
+                cantAux = selectedUbicacion.Cantidad - cant ;
+                if (cantAux < 0)
+                {
+                    System.Windows.MessageBox.Show("No hay suficientes productos");
+                    return -1;
+                }
+                else selectedUbicacion.VolOcupado = selectedUbicacion.VolOcupado - cant * selectedUbicacion.VolOcupado / selectedUbicacion.Cantidad; 
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("No hay productos en esa ubicacion");
+                return -1;
+            }
+
+
+
+            Ubicacion ubiModificada = new Ubicacion();
+            ubiModificada.IdProducto = SelectedProduct.IdProducto;
+            ubiModificada.IdUbicacion = selectedUbicacion.IdUbicacion;
+            ubiModificada.Cantidad = cant;
+            SelectedProduct.Ubicaciones.Add(ubiModificada);
+
+            selectedUbicacion.Cantidad -= cant;
+            Columna[selectedUbicacion.CordZ].Cantidad = selectedUbicacion.Cantidad;
+            Columna[selectedUbicacion.CordZ].VolOcupado = selectedUbicacion.VolOcupado;
+
+            CantActual = selectedUbicacion.Cantidad.ToString();
+            VolOcu = selectedUbicacion.VolOcupado.ToString();
+            this.Mostrar();
+
+            return 1;
+        }
+
+
+
 
         protected override void OnInitialized(EventArgs e) { 
             

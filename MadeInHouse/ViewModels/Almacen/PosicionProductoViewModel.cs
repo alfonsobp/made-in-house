@@ -13,6 +13,7 @@ using MadeInHouse.DataObjects;
 using System.Data.SqlClient;
 using MadeInHouse.Models.Seguridad;
 using System.Threading;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -186,8 +187,6 @@ namespace MadeInHouse.ViewModels.Almacen
         private UbicacionSQL uSQL;
 
         private List<TipoZona> lstZonas;
-        private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
-        private int p;
 
         public List<TipoZona> LstZonas
         {
@@ -198,47 +197,80 @@ namespace MadeInHouse.ViewModels.Almacen
         }
         private int id;
 
-        public PosicionProductoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accion):this()
+        private string imSource;
+
+        public string ImSource
         {
+            get { return imSource; }
+            set { imSource = value;
+            NotifyOfPropertyChange(() => ImSource);
+            }
+        }
 
+        private string ejecutar;
 
-            // TODO: Complete member initialization
-            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
-            
-            this.LstProductos = mantenerNotaDeIngresoViewModel.LstProductos;
-            //19
+        public string Ejecutar
+        {
+            get { return ejecutar; }
+            set { ejecutar = value;
+            NotifyOfPropertyChange(() => Ejecutar);
+            }
+        }
+
+        private int accion;
+
+        public int Accion
+        {
+            get { return accion; }
+            set { accion = value; }
+        }
+
+        public void Disminuir(DynamicGrid ubicacionCol, DynamicGrid almacen)
+        {
+            MessageBox.Show("funciono");
+        }
+
+        private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+
+        public PosicionProductoViewModel(object sender, int accion)
+        {
+            this.accion = accion;
+            if (accion == 1)
+            {
+                this.mantenerNotaDeIngresoViewModel = (sender as MantenerNotaDeIngresoViewModel);
+                this.LstProductos = (sender as MantenerNotaDeIngresoViewModel).LstProductos;
+                ImSource = "/Assets/add.png";
+                Ejecutar = "Agregar";
+
+            }
+            else
+            {
+                this.mantenerNotaDeSalidaViewModel = (sender as MantenerNotaDeSalidaViewModel);
+                this.LstProductos = (sender as MantenerNotaDeSalidaViewModel).LstProductos;
+                ImSource = "/Assets/minus.png";
+                Ejecutar = "Disminuir";
+
+            }
             
             Usuario u = new Usuario();
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-            
-            idTienda =  u.IdTienda;
+
+            idTienda = u.IdTienda;
             aSQL = new AlmacenSQL();
-            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, idTienda==0 ? 3: 1);
-            
-            id=deposito.IdAlmacen;
-            
-            /*NumColumnsU=1;
-            NumRowsU = 1;*/
-           
-            NumColumns =deposito.NroColumnas ;
+            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, idTienda == 0 ? 3 : 1);
+
+            id = deposito.IdAlmacen;
+
+            NumColumns = deposito.NroColumnas;
             NumRows = deposito.NroFilas;
             Altura = deposito.Altura;
 
-            
-            
             tzSQL = new TipoZonaSQL();
             LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
 
             Accion2 = 2;
             Accion1 = 2;
             Enable = true;
-        }
-
-        public PosicionProductoViewModel()
-        {
-            
-            //mantenerNotaDeIngresoViewModel.Almacen.First();
-            // TODO: Complete member initialization
         }
 
         private bool enable;
@@ -254,17 +286,26 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Agregar(DynamicGrid ubicacionCol , DynamicGrid almacen)
         {
+
+            int exito=0;
             if (selectedProduct != null)
             {
                 if (int.Parse(selectedProduct.CanAtender) < int.Parse(CantIngresar))
                 {
-                    System.Windows.MessageBox.Show("La cantidad que se intenta ingresar es mayor a la cantidad pendiente");
+                  if (accion==1)  System.Windows.MessageBox.Show("La cantidad que se intenta ingresar es mayor a la cantidad pendiente");
+                  else System.Windows.MessageBox.Show("La cantidad que se intenta retirar es mayor a la cantidad pendiente");
                 }
+                
                 else
                 {
-                    selectedProduct.CanAtender = (int.Parse(selectedProduct.CanAtender) - int.Parse(CantIngresar)).ToString();
+
+                    if (accion == 1) exito = ubicacionCol.AgregarProductos(int.Parse(CantIngresar), int.Parse(VolIngresar), SelectedProduct.IdProducto);
+                    else exito=ubicacionCol.DisminuirProductos(int.Parse(CantIngresar), SelectedProduct.IdProducto);
+                    
+                    if (exito > 0)
+                        selectedProduct.CanAtender = (int.Parse(selectedProduct.CanAtender) - int.Parse(CantIngresar)).ToString();
+                   
                     LstProductos = new List<ProductoCant>(LstProductos);
-                    ubicacionCol.AgregarProductos(int.Parse(CantIngresar), int.Parse(VolIngresar), SelectedProduct.IdProducto, almacen.lstZonas);
                 }
             }
             
@@ -287,6 +328,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void Guardar(DynamicGrid almacenDG )
         {
             DBConexion db = new DBConexion();
+            LstProductos[0].Ubicaciones = null;
             db.conn.Open();
             SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
             db.cmd.Transaction = trans;
@@ -299,41 +341,6 @@ namespace MadeInHouse.ViewModels.Almacen
             System.Windows.MessageBox.Show("Se guardo el stock");
         }
 
-
-public PosicionProductoViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int p):this()
-        {
-
-            // TODO: Complete member initialization
-            this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
-
-            this.LstProductos = mantenerNotaDeSalidaViewModel.LstProductos;
-            //19
-
-            Usuario u = new Usuario();
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-
-            idTienda = u.IdTienda;
-            aSQL = new AlmacenSQL();
-            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
-
-            id = deposito.IdAlmacen;
-
-            NumColumnsU = 1;
-            NumRowsU = 1;
-
-            NumColumns = deposito.NroColumnas;
-            NumRows = deposito.NroFilas;
-            Altura = deposito.Altura;
-
-
-
-            tzSQL = new TipoZonaSQL();
-            LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
-
-            Accion2 = 2;
-            Accion1 = 2;
-            Enable = true;
-        }
 
     }
 }
