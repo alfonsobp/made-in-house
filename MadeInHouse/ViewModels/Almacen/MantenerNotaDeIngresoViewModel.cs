@@ -13,6 +13,7 @@ using MadeInHouse.Models.Compras;
 using MadeInHouse.Models.Seguridad;
 using MadeInHouse.ViewModels.Compras;
 using MadeInHouse.ViewModels.Ventas;
+using MadeInHouse.DataObjects.Compras;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -483,9 +484,41 @@ namespace MadeInHouse.ViewModels.Almacen
 
             //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
+            if (SelectedOrden != null) {
+
+
+                guardarOrden(nota);
+            
+            }
+
+
             MessageBox.Show("Nota Creada");
 
         }
+
+        public void guardarOrden(NotaIS nota) {
+
+            OrdenCompraxProductoSQL ocSQL = new OrdenCompraxProductoSQL();
+
+            foreach (ProductoxOrdenCompra op in SelectedOrden.LstProducto) 
+            {
+                foreach (ProductoCant pc in nota.LstProducto) {
+
+                    if (pc.IdProducto == op.Producto.IdProducto) {
+
+                        op.CantAtendida += Convert.ToInt32(pc.CanAtender);
+                        ocSQL.Actualizar(op);
+                    }
+                
+                }
+            
+            }
+
+            
+        
+        }
+
+
 
     }
 }
