@@ -38,16 +38,14 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <DataGrid Name="ListStock" AutoGenerateColumns="False" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" Height="245" Width="538">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Width="130" Binding="{Binding Path=Producto}" Header="Producto"/>
-                                    <DataGridTextColumn Width="80" Binding="{Binding Path=Almacen}" Header="Almacen"/>
-                                    <DataGridTextColumn Width="100" Binding="{Binding Path=Tienda}" Header="Tienda"/>
-                                    <DataGridTextColumn Width="100" Binding="{Binding Path=Stock}" Header="Stock"/>
-                                </DataGrid.Columns>
+                            <DataGrid Name="ListStock"  HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Height="364" Width="538">
+                                
                             </DataGrid>
                             <GroupBox Header="Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="538" Height="123">
                                 <Grid Margin="0,0,-2,0">
+                                    <Button Click="generar" ToolTip="Generar reporte" Margin="451,49,26,0" VerticalAlignment="Top" Height="24">
+                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                                    </Button>
                                     <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
                                     <ListBox Name="ListBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
                                     <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
@@ -55,22 +53,6 @@
                                     </Button>
                                     <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
-                                    </Button>
-                                </Grid>
-                            </GroupBox>
-                            <GroupBox Header="Almacen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,138,0,0" Width="538" Height="123">
-                                <Grid Margin="0,0,-2,0">
-                                    <ListBox Name="listBoxAlmacen1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
-                                    <ListBox Name="ListBoxAlmacen2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
-                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
-                                    </Button>
-                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
-                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
-                                    </Button>
-
-                                    <Button Name="GeneraReporteStock" ToolTip="Generar reporte" Margin="451,49,26,0" VerticalAlignment="Top" Height="24">
-                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
