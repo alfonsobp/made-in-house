@@ -1,4 +1,6 @@
-﻿using MadeInHouse.ReportViewer;
+﻿using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.ReportViewer;
 using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
@@ -28,6 +30,9 @@ namespace MadeInHouse.Views.Reportes
         {
             InitializeComponent();
             _reportViewer.Load += ReportViewer_Load;
+           
+            cmbProducto.DataContext = new ProductoSQL().BuscarProducto();
+            cmbAlmacen.DataContext = new AlmacenSQL().BuscarAlmacen();
         }
 
         private bool _isReportViewerLoaded;
@@ -48,7 +53,7 @@ namespace MadeInHouse.Views.Reportes
 
             //fill data into adventureWorksDataSet
 
-           adapter = new ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter();
+            adapter = new ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter();
             adapter.ClearBeforeFill = true;
             dataset.EnforceConstraints = false;
 
@@ -57,14 +62,28 @@ namespace MadeInHouse.Views.Reportes
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            
-            
-        
-            adapter.Fill(dataset.DataTable1,fechaIni.SelectedDate,fechaFin.SelectedDate,Convert.ToInt32(idAlmacen.Text),Convert.ToInt32(idProducto.Text) );
 
-            _reportViewer.RefreshReport();
+            if (Validar())
+            {
+                Almacenes a = cmbAlmacen.SelectedItem as Almacenes;
+                Producto p = cmbProducto.SelectedItem as Producto;
+
+                adapter.Fill(dataset.DataTable1, fechaIni.SelectedDate, fechaFin.SelectedDate,Convert.ToInt32(a.IdAlmacen) , Convert.ToInt32(p.IdProducto ) );
+
+                _reportViewer.RefreshReport();
+            }
             
-            
+        }
+
+        public bool Validar() {
+
+            if (cmbAlmacen.SelectedItem == null)
+                return false;
+
+            if (cmbProducto.SelectedItem == null)
+                return false;
+
+            return true;
         }
     }
 }
