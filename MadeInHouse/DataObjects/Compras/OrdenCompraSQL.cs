@@ -126,7 +126,7 @@ namespace MadeInHouse.DataObjects.Compras
                     o.Observaciones = reader["observaciones"].ToString();
                     o.MedioPago = reader["medioPago"].ToString();
                     o.Estado = Convert.ToInt32(reader["estado"]);
-                    o.LstProducto = new OrdenCompraxProductoSQL().Buscar(o.IdOrden) as List<ProductoxOrdenCompra>;
+                  //  o.LstProducto = new OrdenCompraxProductoSQL().Buscar(o.IdOrden) as List<ProductoxOrdenCompra>;
                     lst.Add(o);
 
                     
