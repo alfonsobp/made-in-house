@@ -95,6 +95,7 @@ namespace MadeInHouse.Views.RRHH
             if (result == MessageBoxResult.Yes)
             {
                 k = DataObjects.RRHH.EmpleadoSQL.EliminarEmpleado(grid[indice].Dni);
+                k = DataObjects.RRHH.EmpleadoSQL.eliminarUsuario(grid[indice].CodEmpleado);
                 Refrescar(sender, e);
             }
         }
