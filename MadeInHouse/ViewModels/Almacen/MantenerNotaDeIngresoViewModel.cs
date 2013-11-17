@@ -276,6 +276,7 @@ namespace MadeInHouse.ViewModels.Almacen
                    pcan.ProNombre = poc.ElementAt(i).Producto.Nombre;
                    pcan.CanAtend = poc.ElementAt(i).CantAtendida.ToString();
                    pcan.CanAtender = poc.ElementAt(i).CantidadAtender;
+                   pcan.Ubicaciones = new List<Ubicacion>();
                    lpcan.Add(pcan);
                }
                 LstProductos = new List<ProductoCant>(lpcan);
@@ -402,6 +403,7 @@ namespace MadeInHouse.ViewModels.Almacen
                             pxa.IdProducto=lstAux.IdProducto;
                             pxa.CodPro = lstAux.CodigoProd.ToString();
                             pxa.ProNombre = lstAux.Nombre;
+                            pxa.Ubicaciones = new List<Ubicacion>();
                             LstProductos.Add(pxa);
                             LstProductos = new List<ProductoCant>(LstProductos);
                         }
@@ -419,6 +421,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.CodPro = lstAux.CodigoProd.ToString();
                         pxa.ProNombre = lstAux.Nombre;
                         pxa.IdProducto = lstAux.IdProducto;
+                        pxa.Ubicaciones = new List<Ubicacion>();
                         LstProductos = new List<ProductoCant>();
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoCant>(LstProductos);

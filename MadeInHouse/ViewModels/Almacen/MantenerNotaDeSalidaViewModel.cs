@@ -499,9 +499,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
             //Actualizar Stock
             ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
-            List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
+            ProductoSQL pgw = new ProductoSQL();
 
-            ptgw.ActualizarStockSalida(list,u.IdTienda);
+            List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
+            if (u.IdTienda != 0) ptgw.ActualizarStockSalida(list, u.IdTienda);
+            else pgw.ActualizarStockSalida(list);
+
+            MessageBox.Show("Nota de Salida Creada");
 
         }
 

@@ -528,6 +528,34 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
         }
+
+        public void ActualizarStockSalida(List<ProductoCant> list)
+        {
+
+            db.cmd.CommandText = "UPDATE Producto SET  stockActual=stockActual-@cantidad WHERE idproducto=@idProducto";
+            try
+            {
+                db.conn.Open();
+                for (int i = 0; i < list.Count; i++)
+                {
+                    db.cmd.Parameters.AddWithValue("@cantidad", list.ElementAt(i).CanAtender);
+                    db.cmd.Parameters.AddWithValue("@idProducto", list.ElementAt(i).IdProducto);
+                    db.cmd.ExecuteNonQuery();
+                    db.cmd.Parameters.Clear();
+
+                }
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+        }
     }
 
 
