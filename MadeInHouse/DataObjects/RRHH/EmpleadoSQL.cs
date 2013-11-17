@@ -76,7 +76,7 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Empleado where nombre like '" + nombre + "%' and apePaterno like '" + paterno + "%' and DNI like '" + dni + "%' and tienda like '" + tienda + "%' and area like '" + area + "%' and puesto like '" + puesto + "%'";
+            cmd.CommandText = "SELECT * FROM Empleado where nombre like '" + nombre + "%' and apePaterno like '" + paterno + "%' and DNI like '" + dni + "%' and tienda like '" + tienda + "%' and area like '" + area + "%' and puesto like '" + puesto + "%' and estado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -367,6 +367,35 @@ namespace MadeInHouse.DataObjects.RRHH
             }
 
             return lstEmpleado;
+        }
+        ////////////////////////ELIMINAR USUARIO//////////////////////////////
+        public static int eliminarUsuario(string p)
+        {
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            int k = 0;
+
+            cmd.CommandText = "UPDATE USUARIO set estado = 0 where codEmpleado = '" + p +"'";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+
+            return k;
         }
     }
 }
