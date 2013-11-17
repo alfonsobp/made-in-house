@@ -90,8 +90,10 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
 
             if (OrdenSelected != null)
             {
+
                 if (OrdenSelected.Estado == 2)
                 {
+                    OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                     new OrdenCompraSQL().Eliminar(OrdenSelected);
                     MessageBox.Show("Se ha CANCELADO la orden de compra..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     Actualizar();
@@ -171,6 +173,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
             ordenSeleccionada = OrdenSelected; 
             if (r != null)
             {
+                ordenSeleccionada.LstProducto = new OrdenCompraxProductoSQL().Buscar(ordenSeleccionada.IdOrden) as List<ProductoxOrdenCompra>;
                 r.Ord = ordenSeleccionada;
                 TryClose();
             }
@@ -186,6 +189,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
         {
             if (OrdenSelected != null)
             {
+                OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                 generarOrdenCompraViewModel obj = new generarOrdenCompraViewModel(OrdenSelected, this);
                 win.ShowWindow(obj);
             }
@@ -206,6 +210,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
                 {
                     try
                     {
+                        OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                         GenerarPDF pdf = new GenerarPDF();
                         Correo c = new Correo();
                         //m.coloma@pucp.pe
@@ -312,6 +317,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
 
                 if (this.mantenerNotaDeIngresoViewModel != null)
                 {
+                     OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                     mantenerNotaDeIngresoViewModel.TxtDoc = OrdenSelected.CodOrdenCompra;
                     mantenerNotaDeIngresoViewModel.TxtDocId = OrdenSelected.IdOrden;
                     mantenerNotaDeIngresoViewModel.SelectedOrden = OrdenSelected;
@@ -322,6 +328,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
             {
                 if (this.reporteComprasViewModel != null)
                 {
+                    OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                     reporteComprasViewModel.OrdComp = OrdenSelected;
                     this.TryClose();
                 }
