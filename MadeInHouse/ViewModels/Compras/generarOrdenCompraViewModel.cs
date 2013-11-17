@@ -18,8 +18,6 @@ namespace MadeInHouse.ViewModels.Compras
 
         bool esNuevo = true;
 
-    
-
         List<ProductoxOrdenCompra> lst;
 
         public List<ProductoxOrdenCompra> Lst
@@ -73,7 +71,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         
 
-        string codOrden;
+        string codOrden="OC-1XXXXXXXXX";
 
         public string CodOrden
         {
@@ -191,7 +189,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         bool esGuardable=true;
 
-public bool EsGuardable
+        public bool EsGuardable
 {
   get { return esGuardable; }
   set { esGuardable = value;NotifyOfPropertyChange("EsGuardable"); }
@@ -217,6 +215,7 @@ public bool EsGuardable
 
             if (estado == 1) { EsEditable = true; };
             if(estado == 0 ) { esGuardable = false;}
+
         }
 
         public void agregar()
@@ -294,16 +293,24 @@ public bool EsGuardable
 
                 if (!e.esNumeroEntero(oc.Cantidad))
                 {
-                    MessageBox.Show(Error.esNumero.mensaje, Error.esNumero.titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("No se puede ingresar valores que no sean números en cantidad", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
 
                 }
 
                 if(!e.esPositivo(Convert.ToInt32(oc.Cantidad) )){
                 
-                    MessageBox.Show(Error.esNegativo.mensaje, Error.esNegativo.titulo, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("No se puede ingresar valores negativos en cantidad","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 
+                }
+
+                if ((Convert.ToInt32(oc.Cantidad))==0)
+                {
+
+                    MessageBox.Show("No se puede ingresar 0 como cantidad","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+
                 }
 
                 if (oc.CantAtendida > Convert.ToInt32(oc.Cantidad)) {
@@ -348,18 +355,7 @@ public bool EsGuardable
                     if (esNuevo)
                     {
 
-                        DialogResult result = MessageBox.Show("Esta generando una Orden de compra por defecto es NO EMITIDA , desea EMITIRLA  ? ", "AVISO",
-               MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (result == DialogResult.Yes)
-                        {
-                            o.Estado = 2;
-
-                        }
-                        else
-                        {
-                            o.Estado = 1;
-                        }
+                        o.Estado = 2;
 
 
                         oSQL.Agregar(o);
@@ -399,13 +395,13 @@ public bool EsGuardable
 
                             }
 
-                            DialogResult result = MessageBox.Show("Esta Editando una Orden de compra NO EMITIDA , desea EMITIRLA  ? ", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult result = MessageBox.Show("Está trabajando con un BORRADOR , desea EMITIRLO? ", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             if (result == DialogResult.Yes)
                             {
                                 o.Estado = 2;
                                 oSQL.Actualizar(o);
-
+                                MessageBox.Show("Se generó adecuadamente la Orden de Compra", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                         else
@@ -416,13 +412,14 @@ public bool EsGuardable
                             {
                                 oc.IdOrden = idOrden;
                                 opSQL.Actualizar(oc);
+                                MessageBox.Show("Se Editó adecuadamente la Orden de Compra", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             }
 
 
                         }
 
-                        MessageBox.Show("Se Editó adecuadamente la Orden de Compra", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                      
 
                         if (model != null)
                         {
@@ -435,6 +432,67 @@ public bool EsGuardable
                 }
 
             }
+
+        public void GuardarBorrador() {
+
+            OrdenCompra o = new OrdenCompra();
+            o.IdOrden = idOrden;
+            o.IdAlmacen = 4;
+            o.LstProducto = Lst;
+            o.MedioPago = EstadoSelected;
+            o.Observaciones = Observaciones;
+            o.FechaSinAtencion = FechaAtencion;
+            o.Proveedor = Prov;
+
+
+
+            if (Validar(o))
+            {
+
+                OrdenCompraSQL oSQL = new OrdenCompraSQL();
+                OrdenCompraxProductoSQL opSQL = new OrdenCompraxProductoSQL();
+
+
+
+
+                if (esNuevo)
+                {
+
+                       DialogResult result = MessageBox.Show("Está cerrando el Mantenimiento de Orden de compra , desea guardar en BORRADOR ? ", "AVISO", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                       if (result == DialogResult.Yes)
+                       {
+
+                           o.Estado = 1;
+
+
+                           oSQL.Agregar(o);
+
+                           int id = new UtilesSQL().ObtenerMaximoID("OrdenCompra", "idOrden");
+
+                           foreach (ProductoxOrdenCompra oc in o.LstProducto)
+                           {
+                               oc.IdOrden = id;
+                               opSQL.Agregar(oc);
+
+                           }
+
+                           MessageBox.Show("Se guardó la Orden de compra en BORRADOR", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                           if (model != null)
+                           {
+                               model.Buscar();
+                           }
+
+                           this.TryClose();
+                       }
+                }
+
+            }
+
+            
+
+        }
         
       
 

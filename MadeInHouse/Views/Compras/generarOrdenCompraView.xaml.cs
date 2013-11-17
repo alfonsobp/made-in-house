@@ -34,5 +34,10 @@ namespace MadeInHouse.Views.Compras
         {
 
         }
+
+        private void CodOrden_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
