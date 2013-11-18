@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using MadeInHouse.Models.Seguridad;
 using System.Threading;
 using System.Windows;
+using System.Windows.Media;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -216,6 +217,16 @@ namespace MadeInHouse.ViewModels.Almacen
             NotifyOfPropertyChange(() => Ejecutar);
             }
         }
+        private LinearGradientBrush colorAnt;
+
+        public LinearGradientBrush ColorAnt
+        {
+            get { return colorAnt; }
+            set { colorAnt = value;
+            NotifyOfPropertyChange(() => ColorAnt);
+            }
+        }
+
 
         private int accion;
 
@@ -288,6 +299,12 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             int exito=0;
+            if (String.IsNullOrEmpty(CantIngresar))
+            {
+                MessageBox.Show("Debe ingresar una cantidad");
+                return;
+            }
+
             if (selectedProduct != null)
             {
                 if (int.Parse(selectedProduct.CanAtender) < int.Parse(CantIngresar))

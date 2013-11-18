@@ -16,7 +16,6 @@ using Caliburn.Micro;
 using System.Diagnostics;
 using MadeInHouse.Models;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Reportes;
 

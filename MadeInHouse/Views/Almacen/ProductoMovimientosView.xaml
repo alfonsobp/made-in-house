@@ -7,12 +7,12 @@
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
              xmlns:cal="http://www.caliburnproject.org"
              
-	 mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" Height="939.03" Width="1259.448">
-    	<Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Margin="0,2,0,0" Height="939" VerticalAlignment="Top">
-        	<StackPanel Margin="1,0,-2,0" Height="951" VerticalAlignment="Top">            <Layouts:TitleBarTemplate title="Movimientos entre zonas"/>
-            <Grid Height="856" Margin="3,0,0,0">
-                
-                    <ToolBar Height="47" VerticalAlignment="Top" Margin="-6,0,0,0">
+	 mc:Ignorable="d" d:designWidth="872" d:designHeight="630.5" >
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <StackPanel>
+            <Layouts:TitleBarTemplate title="Movimientos internos" />
+            <Grid Height="680">
+                    <ToolBar Height="47" VerticalAlignment="Top">
                         <ToolBar.Background>
                             <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                                 <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -38,10 +38,8 @@
                         </Button>
                     </ToolBar>
 
-
-
-                    <GroupBox Header="Zona de recepción" Margin="639,65,29,0" Height="782" VerticalAlignment="Top">
-                        <Grid HorizontalAlignment="Left" Height="743" VerticalAlignment="Top" Width="559" Margin="0,0,-2,-12">
+                    <GroupBox Header="Zona de recepción" Margin="636,52,33,0" Height="607" VerticalAlignment="Top">
+                        <Grid HorizontalAlignment="Left" Height="567" VerticalAlignment="Top" Width="559">
                             <Label Content="Zona:" HorizontalAlignment="Left" Margin="26,11,0,0" VerticalAlignment="Top"/>
                             <ComboBox
                                 IsEnabled="{Binding Editar}"
@@ -51,11 +49,14 @@
                         HorizontalAlignment="Left" Margin="70,11,0,0" VerticalAlignment="Top" Width="221"/>
 
 
-                            <DataGrid x:Name="AddProductosMovidos" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="539" Height="275">
+                            <DataGrid x:Name="AddProductosMovidos" 
+                                      ItemsSource="{Binding Path=LstProductos}"
+                                      HorizontalAlignment="Left" Margin="10,52,0,0" 
+                                      VerticalAlignment="Top" Width="539" Height="168" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Path=CodPro}" Header="Código" Width="80"/>
-                                    <DataGridTextColumn Binding="{Binding Path=ProNombre}"  Header="Nombre" Width="330"/>
-                                    <DataGridTextColumn Binding="{Binding Path=CanAtender}" Header="C.Total" Width="100"/>
+                                <DataGridTextColumn Binding="{Binding Path=CodigoProd}" Header="Código" Width="1*"/>
+                                    <DataGridTextColumn Binding="{Binding Path=Nombre}"  Header="Nombre" Width="3*"/>
+                                    <DataGridTextColumn Binding="{Binding Path=CanAtender}" Header="C.Total" Width="1*"/>
 
                                 </DataGrid.Columns>
                             </DataGrid>
@@ -63,17 +64,23 @@
                                 <Image Source="/Assets/check.png" />
                             </Button>
 
-                            <ScrollViewer HorizontalScrollBarVisibility="Visible" Height="338" Width="530" Margin="16,348,13,57">
-                                <grid:DynamicGrid  x:Name="AlmacenSalida2" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                            <ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="10,278,10,0">
+                                <grid:DynamicGrid  x:Name="AlmacenSalida2" ShowGridLines="True" 
+                                                   NumRows="{Binding NumRowsAnq}"
+                                                   NumColumns="{Binding  NumColumnAnq}"
+                                                   Altura="{Binding AlturaAnq}"
+                                                   lstZonas="{Binding LstZonasAnq}"
+                                                   
+                                                   HorizontalAlignment="Left" VerticalAlignment="Top" />
 
                             </ScrollViewer>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="338" Margin="10,347,0,0" VerticalAlignment="Top" Width="539"/>
+                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="289" Margin="10,278,0,0" VerticalAlignment="Top" Width="539"/>
 
 
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Zona de salida" Margin="20,65,642,0" Height="782" VerticalAlignment="Top" >
-                        <Grid HorizontalAlignment="Left" Height="730" VerticalAlignment="Top" Width="558" Margin="0,-15,0,0">
+                    <GroupBox Header="Zona de salida" Margin="10,52,652,0" Height="607" VerticalAlignment="Top" >
+                        <Grid HorizontalAlignment="Left" Height="599" VerticalAlignment="Top" Width="567" Margin="0,-15,-2,-12">
                         <Label Content="Producto:" HorizontalAlignment="Left" Margin="12,27,0,0" VerticalAlignment="Top"/>
                           <TextBox x:Name="TxtProducto" HorizontalAlignment="Left" Height="23" Margin="89,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="244"/>
 
@@ -88,16 +95,26 @@
                             </i:Interaction.Triggers>
                             <Image Source="/Assets/find.png" />
                             </Button>
-                            <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="249,447,0,0" VerticalAlignment="Top" Width="116"/>
-                            <TextBox HorizontalAlignment="Left" Height="23" Margin="250,501,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
-                            <Button  HorizontalAlignment="Left" Margin="381,501,0,0" VerticalAlignment="Top" Width="40" Height="22">
-                                <Image Source="/Assets/add.png" />
-                            </Button>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="10,70,0,0" VerticalAlignment="Top" Width="532">
-                                <ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="1,0,-1,0">
+                            <Label Content="Cantidad a retirar:" HorizontalAlignment="Left" Margin="278,370,0,0" VerticalAlignment="Top" Width="116"/>
+                        <TextBox x:Name="TxtCantidad" HorizontalAlignment="Left" Height="24" Margin="278,401,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
+                            <Button  HorizontalAlignment="Left" Margin="417,401,0,0" VerticalAlignment="Top" Width="61" Height="47">
+                                <Image Source="/Assets/right.png" />
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <cal:ActionMessage MethodName="Disminuir" >
+                                        <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
+                                        <cal:Parameter Value="{Binding ElementName=AlmacenSalida}" />
+                                        
+                                    </cal:ActionMessage>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                            
+                                <ScrollViewer HorizontalScrollBarVisibility="Visible" Margin="12,58,10,255">
                                     <grid:DynamicGrid  x:Name="AlmacenSalida" 
                                                        Tipo="1" 
                                                        Accion="2"
+                                                       ColorAntU="{Binding ColorAnt,Mode=TwoWay}"
                                                        ColumnaU="{Binding ColumnaU,Mode=TwoWay}"
                                                        NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}" Altura="{Binding Altura}" 
                                                        lstZonas="{Binding LstZonas}"
@@ -108,10 +125,11 @@
                                     </grid:DynamicGrid>
 
                                 </ScrollViewer>
-                            </Border>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="281" VerticalAlignment="Top" Width="212" Margin="11,429,0,0"/>
-                            <ScrollViewer HorizontalAlignment="Left" Height="280" Margin="12,430,0,0" VerticalAlignment="Top" Width="211">
+                            
+                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="219" VerticalAlignment="Top" Width="240" Margin="10,370,0,0"/>
+                            <ScrollViewer HorizontalAlignment="Left" Height="219" Margin="12,370,0,0" VerticalAlignment="Top" Width="238">
                                 <grid:DynamicGrid  x:Name="UbicacionCol" Tipo="2"
+                                       ColorAntU="{Binding ColorAnt,Mode=TwoWay}"
                                        Columna="{Binding ColumnaU}"            
                                        Accion="{Binding Accion2}"  
                                        IdZona="0" 
@@ -121,7 +139,8 @@
                                        CantActual="{Binding Path=TxtCantActual,Mode=TwoWay}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                 </grid:DynamicGrid>
                             </ScrollViewer>
-                        </Grid>
+                        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="286" Margin="12,58,0,0" VerticalAlignment="Top" Width="545"/>
+                    </Grid>
                     </GroupBox>
                 </Grid>
 
