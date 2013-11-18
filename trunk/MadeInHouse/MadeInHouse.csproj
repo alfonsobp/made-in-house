@@ -106,6 +106,7 @@
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\NotaISSQL.cs" />
     <Compile Include="DataObjects\Almacen\OrdenDespachoSQL.cs" />
+    <Compile Include="DataObjects\Almacen\ProductoxNotaISSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxTiendaSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
