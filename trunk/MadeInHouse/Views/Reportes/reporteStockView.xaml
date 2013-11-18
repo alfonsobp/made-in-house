@@ -4,43 +4,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="604.5" Height="644">
+             mc:Ignorable="d" d:DesignWidth="604.5" Height="236">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Stocks" />
             <Grid>
-                <Grid Height="594" VerticalAlignment="Top">
-                    <ToolBar VerticalAlignment="Top" Height="41">
-                        <ToolBar.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF535050" Offset="0.073"/>
-                                <GradientStop Color="Snow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ToolBar.Background>
-                        <Button ToolTip="Restaurar Ventana">
-                            <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                        </Button>
-                        <Button ToolTip="Limpiar criterios del reporte">
-                            <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                        </Button>
-                        <Button ToolTip="Actualizar datos" Height="30" Width="30">
-                            <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
-                            <Image Source="/MadeInHouse;component/Assets/xls.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a PDF" Height="35" Width="35">
-                            <Image Source="/MadeInHouse;component/Assets/pdf.png" />
-                        </Button>
-                    </ToolBar>
-                    <GroupBox Header="Reporte de Stock en Almacenes" HorizontalAlignment="Left" Height="548" Margin="10,46,0,0" VerticalAlignment="Top" Width="580">
-                        <Grid Margin="0,9,10,-12" Height="529" VerticalAlignment="Top">
+                <Grid Height="233" VerticalAlignment="Top">
+                    <GroupBox Header="Reporte de Stock en Almacenes" HorizontalAlignment="Left" Height="174" Margin="10,10,0,0" VerticalAlignment="Top" Width="580">
+                        <Grid Margin="0,9,10,0" Height="150" VerticalAlignment="Top">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <DataGrid Name="ListStock"  HorizontalAlignment="Left" Margin="10,147,0,0" VerticalAlignment="Top" Height="364" Width="538">
-                                
-                            </DataGrid>
                             <GroupBox Header="Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Width="538" Height="123">
                                 <Grid Margin="0,0,-2,0">
                                     <Button Click="generar" ToolTip="Generar reporte" Margin="451,49,26,0" VerticalAlignment="Top" Height="24">

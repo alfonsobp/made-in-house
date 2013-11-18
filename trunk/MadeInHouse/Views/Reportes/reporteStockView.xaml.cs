@@ -117,9 +117,11 @@ namespace MadeInHouse.Views.Reportes
                     stocks.Add(lista[j]);
                 }
             }
-            ListStock.ItemsSource = stocks;
+            
+            Reportes.reportViewerStock win = new reportViewerStock(stocks);
+            win.Show();
         }
+
     }
-    
 
 }

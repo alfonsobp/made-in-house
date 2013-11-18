@@ -10,7 +10,7 @@ using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.DataObjects.Reportes
 {
-    class stock
+    public class stock
     {
         int idproducto;
         string producto;
