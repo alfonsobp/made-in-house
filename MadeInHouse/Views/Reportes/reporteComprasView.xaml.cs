@@ -127,7 +127,10 @@ namespace MadeInHouse.Views.Reportes
                     i = -1;
                 }
             }
-            Lista.ItemsSource = lstOrdenCompra;
+            
+            Reportes.reportViewerCompras win = new reportViewerCompras(lstOrdenCompra);
+            win.Show();
         }
     }
+    
 }

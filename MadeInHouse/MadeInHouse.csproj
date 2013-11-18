@@ -549,6 +549,9 @@
     <Compile Include="Views\Reportes\reporteVentasView.xaml.cs">
       <DependentUpon>reporteVentasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\reportViewerCompras.xaml.cs">
+      <DependentUpon>reportViewerCompras.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\reportViewerStock.xaml.cs">
       <DependentUpon>reportViewerStock.xaml</DependentUpon>
     </Compile>
@@ -957,6 +960,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reportes\reportViewerCompras.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reportes\reportViewerStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1154,11 +1161,13 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportViewer\Report1.rdlc" />
     <EmbeddedResource Include="ReportViewer\Report2.rdlc" />
+    <EmbeddedResource Include="ReportViewer\Report3.rdlc" />
     <EmbeddedResource Include="ReportViewer\ReportMov.rdlc" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.OrdenDeCompra.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.stock.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.Models.Reportes.StockRepor.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.Views.Reportes.VentaAux.datasource" />
