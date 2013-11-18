@@ -309,15 +309,21 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void BuscarAlmacen()
         {
-            if (SeleccionadoTipo.Equals("GR-TRASLADO EXTERNO"))
+            if (seleccionadoTipo != null)
+                if (SeleccionadoTipo.Equals("GR-TRASLADO EXTERNO"))
+                {
+                    MyWindowManager w = new MyWindowManager();
+                    w.ShowWindow(new BuscarAlmacenViewModel(this));
+                }
+
+                else
+                {
+                    MessageBox.Show("Es un traslado por ORDEN DE DESPACHO \nNo entre ALMACENES");
+                }
+            else 
             {
-                MyWindowManager w = new MyWindowManager();
-                w.ShowWindow(new BuscarAlmacenViewModel(this));
+                MessageBox.Show("No se Selecciona tipo de la Guia");
             }
-
-            else
-                MessageBox.Show("Es un traslado por ORDEN DE DESPACHO \nNo entre ALMACENES");
-
         }
 
         public void BuscarNota()

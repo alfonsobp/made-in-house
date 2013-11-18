@@ -35,15 +35,18 @@
                     </Button>
                 </ToolBar>
                 <Grid Margin="10,46,0,10">
-                    <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="105" Margin="10,10,10,0">
+                    <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="143" Margin="10,10,10,0">
                         <Grid Margin="0,0,-2,-12">
 
-                            <Label Content="Código orden de despacho: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,13,0,0"/>
+                            <Label Content="Código orden de despacho: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,12,0,0"/>
                             <TextBox Text="{Binding TxtIdOrdenDespacho}"
                                         HorizontalAlignment="Left" Height="23" Margin="181,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-                            <Label Content="Código de venta:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,44,0,0"/>
+                            <Label Content="Código de venta:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,43,0,0"/>
                             <TextBox Text="{Binding TxtIdVenta}"
                                         HorizontalAlignment="Left" Height="23" Margin="181,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                            <Label Content="Estado:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,71,0,0"/>
+                            <ComboBox Text="{Binding TxtIdVenta}"
+                                        HorizontalAlignment="Left" Height="23" Margin="181,72,0,0" VerticalAlignment="Top" Width="113"/>
 
                             <Button x:Name="BuscarUsuarioPorCodigo" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
@@ -51,7 +54,7 @@
                         </Grid>
                     </GroupBox>
                     <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-                                        Height="214" VerticalAlignment="Top" Margin="10,120,10,0" AutoGenerateColumns="false">
+                                        Height="176" VerticalAlignment="Top" Margin="10,158,10,0" AutoGenerateColumns="false">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=IdOrdenDespacho}" Width="120" Header="Código despacho"/>
                             <DataGridTextColumn Binding="{Binding Path=Venta.IdVenta}" Width="120" Header="Código venta"/>

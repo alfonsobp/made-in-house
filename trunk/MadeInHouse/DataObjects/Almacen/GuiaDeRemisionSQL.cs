@@ -71,22 +71,24 @@ namespace MadeInHouse.DataObjects.Almacen
                     g.Tipo = reader["tipo"].ToString();
                     g.Observaciones = reader["observaciones"].ToString();
                     g.Estado = Convert.ToInt32(reader["estado"].ToString());
-
-                    if (!reader.IsDBNull(reader.GetOrdinal("idAlmacen")))                    
-                    {
-                        int idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
-                        int idNota = Convert.ToInt32(reader["idNota"].ToString());
-                        g.Almacen = getALMfromIDAlm(idAlmacen);
-                        g.Nota = getNOTAfromIDnota(idNota);
-                    }
-
+                    g.IdGuia = Convert.ToInt32(reader["idGuia"].ToString());
+                    int idAlmacen=0;
+                    idAlmacen= reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : Convert.ToInt32(reader["idAlmacen"].ToString());
+                    int idNota = 0;
+                    idNota = reader.IsDBNull(reader.GetOrdinal("idNota")) ? -1 : Convert.ToInt32(reader["idNota"].ToString());
+                    
                     if (!reader.IsDBNull(reader.GetOrdinal("idOrdenDespacho")))
                     {
                         int idOrd = Convert.ToInt32(reader["idOrdenDespacho"].ToString());
                         g.Orden = getORDENfromIDorden(idOrd);
                     }
-                    
-                   
+
+                    if (idNota != 0) {
+                        g.Nota = getNOTAfromIDnota(idNota);
+                    }
+                    if (idAlmacen != 0) {
+                        g.Almacen = getALMfromIDAlm(idAlmacen);
+                    }
                     lstGuiaDeRemision.Add(g);
                 }
 
@@ -175,7 +177,7 @@ namespace MadeInHouse.DataObjects.Almacen
             int k = 0;
 
             db.cmd.CommandText = "UPDATE GuiaRemision  " +
-            "SET dirPartida= @dirPartida,dirLlegada= @dirLlegada,camion= @camion,conductor= @conductor,fechaReg= @fechaReg,tipo= @tipo,observaciones= @observaciones " +
+            "SET estado= @estado, dirPartida= @dirPartida,dirLlegada= @dirLlegada,camion= @camion,conductor= @conductor,fechaReg= @fechaReg,tipo= @tipo,observaciones= @observaciones " +
             " WHERE codGuiaRem= @codGuiaRem ";
 
             db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
@@ -184,7 +186,7 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
             db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
             db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
-
+            db.cmd.Parameters.AddWithValue("@estado", g.Estado);
             try
             {
                 db.conn.Open();
