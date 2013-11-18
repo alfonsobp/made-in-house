@@ -43,9 +43,6 @@ namespace MadeInHouse.Views.Reportes
             for (int i = 0; i < lstProducto.Count; i++) listBoxProducto1.Items.Add(lstProducto[i].Nombre);
 
         }
-
-
-
         private void pasarListBox(ListBox origen, ListBox destino)
         {
             String text = origen.SelectedItem.ToString();
@@ -100,26 +97,6 @@ namespace MadeInHouse.Views.Reportes
             if (sender.Equals(derecha3)) todo_lista_a_lista(listBoxSede1, ListBoxSede2);
             if (sender.Equals(izquierda3)) todo_lista_a_lista(ListBoxSede2, listBoxSede1);
         }
-
-
-        private void releaseObject(object obj)
-        {
-            try
-            {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
-
         private void Generar(object sender, RoutedEventArgs e)
         {
             ventas = new List<Venta>();
@@ -225,75 +202,6 @@ namespace MadeInHouse.Views.Reportes
             }
                 Reportes.reportViewerVentas neva = new reportViewerVentas(final);            
                 neva.Show();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Excel.Application excelApp = new Excel.Application();
-            excelApp.Visible = false;
-            Excel.Workbook newWorkbook = excelApp.Workbooks.Add();
-            string workbookPath = "c:/SomeWorkBook.xls";  // RUTA DEL EXCEL A IMPORTAR
-            Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(workbookPath,
-                    0, false, 5, "", "", false, Excel.XlPlatform.xlWindows, "",
-                    true, false, 0, true, false, false);
-            Excel.Sheets excelSheets = excelWorkbook.Worksheets;
-            Excel.Worksheet excelWorksheet = (Excel.Worksheet)excelSheets.get_Item(1);
-
-            Excel.Range excelCell = (Excel.Range)excelWorksheet.get_Range("A1", "A1"); // LA CELDA QUE QUEIRES OBTENER,
-            // SE PUEDE TRABAJAR CON RANGOS COMPLETOS PERO AUN NO SE COMO
-            MessageBox.Show(excelCell.Value);//MENSAJE CON EL VALOR DE LA CELDA A1,A1
-
-            excelApp.Workbooks.Close();
-            excelApp.Quit();
-
-            releaseObject(excelWorksheet);
-            releaseObject(newWorkbook);
-            releaseObject(excelApp);
-        }
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-
-            
-
-            xlApp = new Excel.Application();
-
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
-
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            xlWorkSheet.Cells[1, 1] = "idVenta";
-            xlWorkSheet.Cells[1, 2] = "Tipo Venta";
-            xlWorkSheet.Cells[1, 3] = "tipo Doc Pago";
-            xlWorkSheet.Cells[1, 4] = "Id Usuario";
-            xlWorkSheet.Cells[1, 5] = "Numero Documento";
-            xlWorkSheet.Cells[1, 6] = "   monto";
-            xlWorkSheet.Cells[1, 6] = "   igv";
-
-            for (int i = 2; i < ventas.Count;i++ )
-            {
-                xlWorkSheet.Cells[i, 1] = ventas[i].IdVenta;
-                xlWorkSheet.Cells[i, 2] = ventas[i].TipoVenta;
-                xlWorkSheet.Cells[i, 3] = ventas[i].TipoDocPago;
-                xlWorkSheet.Cells[i, 4] = ventas[i].IdUsuario;
-                xlWorkSheet.Cells[i, 5] = ventas[i].NumDocPago;
-                xlWorkSheet.Cells[i, 6] = ventas[i].Monto;
-                xlWorkSheet.Cells[i, 6] = ventas[i].Igv;
-            }
-
-            xlWorkBook.SaveAs("C:\\Reporte.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
-
-            releaseObject(xlWorkSheet);
-            releaseObject(xlWorkBook);
-            releaseObject(xlApp);
-
-            MessageBox.Show("archivo excel creado , esta en c:\\Reporte.xls");
         }
     }
 
