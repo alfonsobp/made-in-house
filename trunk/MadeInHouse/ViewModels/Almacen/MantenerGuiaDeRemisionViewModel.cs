@@ -33,6 +33,7 @@ namespace MadeInHouse.ViewModels.Almacen
             if (g.Orden != null)
             {
                 Orden = g.Orden;
+                Orden.CodOrden = "OD-" + (1000000 + Orden.IdOrdenDespacho).ToString();
             }
 
             TxtCodigo = g.CodGuiaRem;

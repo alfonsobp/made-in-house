@@ -72,11 +72,20 @@ namespace MadeInHouse.DataObjects.Almacen
                     g.Observaciones = reader["observaciones"].ToString();
                     g.Estado = Convert.ToInt32(reader["estado"].ToString());
 
-                    int idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
-                    int idNota = Convert.ToInt32(reader["idNota"].ToString());
+                    if (!reader.IsDBNull(reader.GetOrdinal("idAlmacen")))                    
+                    {
+                        int idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
+                        int idNota = Convert.ToInt32(reader["idNota"].ToString());
+                        g.Almacen = getALMfromIDAlm(idAlmacen);
+                        g.Nota = getNOTAfromIDnota(idNota);
+                    }
 
-                    g.Almacen = getALMfromIDAlm(idAlmacen);
-                    g.Nota = getNOTAfromIDnota(idNota);
+                    if (!reader.IsDBNull(reader.GetOrdinal("idOrdenDespacho")))
+                    {
+                        int idOrd = Convert.ToInt32(reader["idOrdenDespacho"].ToString());
+                        g.Orden = getORDENfromIDorden(idOrd);
+                    }
+                    
                    
                     lstGuiaDeRemision.Add(g);
                 }
@@ -212,6 +221,18 @@ namespace MadeInHouse.DataObjects.Almacen
             List<NotaIS> list = new NotaISSQL().BuscarNotas();
             for (int i = 0; i < list.Count; i++)
                 if (list[i].IdNota == id)
+                {
+                    return list[i];
+                }
+
+            return null;
+        }
+
+        public OrdenDespacho getORDENfromIDorden(int id)
+        {
+            List<OrdenDespacho> list = new OrdenDespachoSQL().BuscarOrdenDespacho(-1, -1);
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].IdOrdenDespacho == id)
                 {
                     return list[i];
                 }
