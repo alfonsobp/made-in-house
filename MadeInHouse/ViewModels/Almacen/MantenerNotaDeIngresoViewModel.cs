@@ -191,7 +191,7 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-        OrdenCompra selectedOrden;
+        OrdenCompra selectedOrden=null;
 
         public OrdenCompra SelectedOrden
         {
@@ -201,6 +201,18 @@ namespace MadeInHouse.ViewModels.Almacen
                 NotifyOfPropertyChange(() => SelectedOrden);
             }
         }
+
+        GuiaRemision selectedGuia;
+
+        public GuiaRemision SelectedGuia
+        {
+            get { return selectedGuia; }
+            set { selectedGuia = value;
+            NotifyOfPropertyChange("SelectedGuia");
+            }
+        }
+
+        
 
         List<Models.Almacen.Almacenes> almacen;
 
@@ -268,7 +280,7 @@ namespace MadeInHouse.ViewModels.Almacen
                List<ProductoxOrdenCompra> poc = new List<ProductoxOrdenCompra>();
                poc = SelectedOrden.LstProducto;
                List<ProductoCant> lpcan = new List<ProductoCant>();
-               for (int i = 0; i < poc.Count(); i++) {
+               for (int i = 0; i < poc.Count; i++) {
                    ProductoCant pcan = new ProductoCant();
                    pcan.IdProducto = poc.ElementAt(i).Producto.IdProducto;
                    pcan.Can = poc.ElementAt(i).Cantidad;
@@ -282,6 +294,31 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstProductos = new List<ProductoCant>(lpcan);
   
            }
+           else
+           {
+               if (string.Compare(mot, "Traslado Externo", true) == 0)
+               {
+
+                   LstProductos = selectedGuia.Nota.LstProducto;
+
+               }
+               else
+               {
+                   if (string.Compare(mot, "Devolucion", true) == 0)
+                   {
+                       LstProductos = new List<ProductoCant>();
+                   }
+                   else {
+
+                       if (string.Compare(mot, "Abastecimiento", true) == 0) {
+
+                            LstProductos = new List<ProductoCant>();
+                       }
+                   }
+               }
+           }
+           
+
             NotifyOfPropertyChange(() => LstProductos);
             EstadoMot = false;
             Estado = false;
@@ -498,10 +535,22 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 guardarOrden(list);
             }
-          
 
+            if (SelectedGuia != null) {
+
+                CambiarEstadoGuia(SelectedGuia);
+
+            }
 
             MessageBox.Show("Nota Creada");
+
+        }
+
+        private void CambiarEstadoGuia(GuiaRemision SelectedGuia)
+        {
+            GuiaDeRemisionSQL grsql = new GuiaDeRemisionSQL();
+            selectedGuia.Estado = 2;
+            grsql.editarGuiaDeRemision(selectedGuia);
 
         }
 

@@ -142,7 +142,7 @@ namespace MadeInHouse.DataObjects.Almacen
             DBConexion db1 = new DBConexion();
             List<ProductoCant> lstProCant = new List<ProductoCant>();
 
-            db1.cmd.CommandText = "SELECT idProducto,idNota,sum(cantidad) AS cantidad ,idAlmacen FROM desarrollo.ProductoxNotaIS WHERE idNota=@idNota GROUP BY idProducto, idNota, idAlmacen";
+            db1.cmd.CommandText = "SELECT idProducto,idNota,sum(cantidad) AS cantidad ,idAlmacen FROM ProductoxNotaIS WHERE idNota=@idNota GROUP BY idProducto, idNota, idAlmacen";
             db1.cmd.Parameters.AddWithValue("@idNota", p);
                         
             try
@@ -152,9 +152,13 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 while (reader.Read())
                 {
+                    ProductoSQL psql = new ProductoSQL();
                     ProductoCant procan = new ProductoCant();
                     procan.CanAtender = reader.IsDBNull(reader.GetOrdinal("cantidad")) ? null : reader["cantidad"].ToString();
                     procan.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
+                    Producto pr = psql.Buscar_por_CodigoProducto(procan.IdProducto);
+                    procan.Nombre = pr.Nombre;
+                    procan.CodigoProd = pr.CodigoProd;
                     lstProCant.Add(procan);
 
                 }

@@ -90,6 +90,19 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        public void Acciones(object sender)
+        {
+            if (accion == 1) {
+                guiaSeleccionada = ((sender as DataGrid).SelectedItem as GuiaRemision);
+                if (mantenerNotaDeIngresoViewModel != null)
+                {
+                    mantenerNotaDeIngresoViewModel.SelectedGuia = guiaSeleccionada;
+                    mantenerNotaDeIngresoViewModel.TxtDocId = guiaSeleccionada.IdGuia;
+                    mantenerNotaDeIngresoViewModel.TxtDoc = guiaSeleccionada.CodGuiaRem;
+                }
+            
+            }
+        }
 
         public void AbrirMantenerGuiaDeRemision()
         {

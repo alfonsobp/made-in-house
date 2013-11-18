@@ -13,6 +13,7 @@ using System.Threading;
 using MadeInHouse.ViewModels.RRHH;
 using MadeInHouse.Views.RRHH;
 using MadeInHouse.Models.RRHH;
+using MadeInHouse.Models.Ventas;
 
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -193,18 +194,21 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        #region Orden de Despacho
-/*        OrdenDeDespacho selectedOrden;
+        #region selecteds
 
-        public OrdenCompra SelectedOrden
+        OrdenDespacho selectedDespacho;
+
+        public OrdenDespacho SelectedDespacho
         {
-            get { return selectedOrden; }
+            get { return selectedDespacho; }
             set
-            {selectedOrden = value; 
-                NotifyOfPropertyChange(() => SelectedOrden);
+            {
+                selectedDespacho = value;
+                NotifyOfPropertyChange("SelectedDespacho");
             }
         }
- */
+
+        
         #endregion
         List<Models.Almacen.Almacenes> almacen;
 
@@ -269,23 +273,26 @@ namespace MadeInHouse.ViewModels.Almacen
         
             string referencia = TxtDoc;
             string mot = this.selectedMotivo;
-           if ( string.Compare(mot,"Orden de Compra",true)==0){
-             /*
-               List<ProductoxOrdenCompra> poc = new List<ProductoxOrdenCompra>();
-               poc = SelectedOrden.LstProducto;
+           if ( string.Compare(mot,"Orden de Despacho",true)==0){
+
+               List<DetalleVenta> ldv = selectedDespacho.Venta.LstDetalle;
                List<ProductoCant> lpcan = new List<ProductoCant>();
-               for (int i = 0; i < poc.Count(); i++) {
+
+               for (int i = 0; i < ldv.Count; i++) {
+
                    ProductoCant pcan = new ProductoCant();
-                   pcan.IdProducto = poc.ElementAt(i).Producto.IdProducto;
-                   pcan.Can = poc.ElementAt(i).Cantidad;
-                   pcan.CodPro = poc.ElementAt(i).Producto.CodigoProd;
-                   pcan.ProNombre = poc.ElementAt(i).Producto.Nombre;
-                   pcan.CanAtend = poc.ElementAt(i).CantAtendida.ToString();
-                   pcan.CanAtender = poc.ElementAt(i).CantidadAtender;
+                   pcan.IdProducto = ldv.ElementAt(i).IdProducto;
+                   pcan.Can = ldv.ElementAt(i).Cantidad.ToString();
+                   pcan.CodigoProd = ldv.ElementAt(i).CodProducto;
+                   ProductoSQL psql = new ProductoSQL();
+                   Producto p = psql.Buscar_por_CodigoProducto(pcan.IdProducto);
+                   pcan.Nombre = p.Nombre;
+                   pcan.CanAtend = "0";
+                   pcan.CanAtender = ldv.ElementAt(i).Cantidad.ToString();
                    lpcan.Add(pcan);
                }
-                LstProductos = new List<ProductoCant>(lpcan);
-            */
+               LstProductos = new List<ProductoCant>(lpcan);
+
            }
             NotifyOfPropertyChange(() => LstProductos);
             EstadoMot = false;
@@ -341,10 +348,11 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             if (string.Compare(selectedMotivo, "Orden de despacho", true) == 0)
             {
-                /*
+
+                
                 MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-                wm.ShowWindow(new BuscarOrdenCompraViewModel(this, 1));
-                */
+                wm.ShowWindow(new BuscarOrdenDespachoViewModel());
+                
             }
             else {
                 if (string.Compare(selectedMotivo, "Rotura", true) == 0)
