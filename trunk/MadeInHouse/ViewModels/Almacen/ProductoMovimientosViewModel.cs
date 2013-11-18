@@ -15,6 +15,8 @@ using MadeInHouse.Models.Seguridad;
 using System.Threading;
 using MadeInHouse.Models;
 using System.Windows;
+using MadeInHouse.Dictionary;
+using System.Windows.Media;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -169,28 +171,97 @@ namespace MadeInHouse.ViewModels.Almacen
             set { productoSeleccionado = value; }
         }
 
-        
+
+        private string txtCantidad;
+
+        public string TxtCantidad
+        {
+            get { return txtCantidad; }
+            set { txtCantidad = value;
+            NotifyOfPropertyChange(() => TxtCantidad);
+            }
+        }
+
+        private LinearGradientBrush colorAnt;
+
+        public LinearGradientBrush ColorAnt
+        {
+            get { return colorAnt; }
+            set { colorAnt = value;
+            NotifyOfPropertyChange(() => ColorAnt);
+            }
+        }
+        private List<ProductoCant> lstProductos;
+
+        public List<ProductoCant> LstProductos
+        {
+            get { return lstProductos; }
+            set { lstProductos = value;
+            NotifyOfPropertyChange(() => LstProductos);
+            }
+        }
+
+        private int numColumnAnq;
+
+        public int NumColumnAnq
+        {
+            get { return numColumnAnq; }
+            set { numColumnAnq = value;
+            NotifyOfPropertyChange(() => NumColumnAnq);
+            }
+        }
+
+        private int numRowsAnq;
+
+        public int NumRowsAnq
+        {
+            get { return numRowsAnq; }
+            set { numRowsAnq = value;
+            NotifyOfPropertyChange(() => NumRowsAnq);
+            }
+        }
+
+        private int alturaAnq;
+
+        public int AlturaAnq
+        {
+            get { return alturaAnq; }
+            set { alturaAnq = value;
+            NotifyOfPropertyChange(() => AlturaAnq);
+            }
+        }
+
+        private List<TipoZona> lstZonasAnq;
+
+        public List<TipoZona> LstZonasAnq
+        {
+            get { return lstZonasAnq; }
+            set { lstZonasAnq = value;
+            NotifyOfPropertyChange(() => LstZonasAnq);
+            }
+        }
 
 
         private AlmacenSQL aSQL;
         private TipoZonaSQL tzSQL;
         private int idTienda;
-        private int id;
+
+
 
         public ProductoMovimientosViewModel()
         {
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
             Usuario u = new Usuario();
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-
             idTienda = u.IdTienda;
+
             aSQL = new AlmacenSQL();
             Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
+            Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
 
-            id = deposito.IdAlmacen;
-
-            /*NumColumnsU=1;
-            NumRowsU = 1;*/
+            NumColumnAnq = anaquel.NroColumnas;
+            NumRowsAnq = anaquel.NroFilas;
+            AlturaAnq = anaquel.Altura;
 
             NumColumns = deposito.NroColumnas;
             NumRows = deposito.NroFilas;
@@ -198,9 +269,12 @@ namespace MadeInHouse.ViewModels.Almacen
 
             tzSQL = new TipoZonaSQL();
             LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
+            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(anaquel.IdAlmacen);
 
             Accion2 = 2;
             Accion1 = 2;
+
+            LstProductos=new List<ProductoCant>();
 
 
 
@@ -230,6 +304,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         MessageBox.Show("Producto no existente con ese código");
                     else
                     {
+                        pc.Nombre = lstProd[0].Nombre;
                         pc.IdProducto = lstProd[0].IdProducto;
                         pc.CodigoProd = TxtProducto;
                         productoSeleccionado = null;
@@ -237,6 +312,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
                 else
                 {
+                    pc.Nombre = ProductoSeleccionado.Nombre;
                     pc.IdProducto = ProductoSeleccionado.IdProducto;
                     pc.CodigoProd = ProductoSeleccionado.CodigoProd;
                     productoSeleccionado = null;
@@ -249,6 +325,43 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         }
+
+        public void Disminuir(DynamicGrid ubicacionCol, DynamicGrid almacen)
+        {
+
+            int exito = 0;
+            if (String.IsNullOrEmpty(TxtCantidad))
+            {
+                MessageBox.Show("Debe ingresar una cantidad");
+                return;
+            }
+            else if (ubicacionCol.SelectedProduct!=null)
+            {
+                    exito = ubicacionCol.DisminuirProductos(int.Parse(TxtCantidad), ubicacionCol.SelectedProduct.IdProducto);
+                    if (exito == 1)
+                    {
+                        int index = LstProductos.FindIndex(x=>x.IdProducto==ubicacionCol.SelectedProduct.IdProducto);
+                        if (index >= 0)
+                        {
+                            LstProductos[index].CanAtender = ""+(int.Parse(LstProductos[index].CanAtender) + int.Parse(TxtCantidad));
+                        }
+                        else
+                        {
+                            ubicacionCol.SelectedProduct.CanAtender = TxtCantidad;
+                            LstProductos.Add(ubicacionCol.SelectedProduct);
+                        }
+                        LstProductos = new List<ProductoCant>(LstProductos);
+
+                    }
+            }
+
+
+
+
+        }
+
+
+
 
 
     }

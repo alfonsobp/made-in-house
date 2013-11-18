@@ -14,6 +14,12 @@ namespace MadeInHouse.Dictionary {
     class DynamicGrid : Grid {
 
 
+        private static readonly DependencyProperty ColorAntUProperty = DependencyProperty.Register("ColorAntU", typeof(LinearGradientBrush), typeof(DynamicGrid));
+        public LinearGradientBrush ColorAntU
+        {
+            get { return (LinearGradientBrush)GetValue(ColorAntUProperty); }
+            set { SetValue(ColorAntUProperty, value); }
+        }
 
         private static readonly DependencyProperty ColumnaUProperty = DependencyProperty.Register("ColumnaU", typeof(List<Ubicacion>), typeof(DynamicGrid));
 
@@ -292,8 +298,12 @@ namespace MadeInHouse.Dictionary {
 
         private int xAnt;
         private int yAnt;
+
+        private int xAntU;
+        private int yAntU;
+
         private SolidColorBrush colorAnt;
-        private LinearGradientBrush colorAntU;
+        
 
         public void onClickChange(object sender, RoutedEventArgs e) {
 
@@ -337,35 +347,34 @@ namespace MadeInHouse.Dictionary {
             }
             else if (Accion ==2)
             {
-                if (colorAnt != null)
-                {
-                    (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAnt;
-                }
-                else if (colorAntU != null)
-                {
-                    (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAntU;
-                }
-
-                xAnt = X;
-                yAnt = Y;
-                if (Tipo==1)
-                    colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush ;
-                else 
-                    colorAntU = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as LinearGradientBrush;
-
-                (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
-
                 if (Tipo == 1)
                 {
+                    if (colorAnt != null)
+                    {
+                         (this.Children[Ubicaciones[xAnt][yAnt][0].CordY + Ubicaciones[xAnt][yAnt][0].CordX * NumColumns] as Button).Background = colorAnt;
+                    }
+                    xAnt = X;
+                    yAnt = Y;
+
 
                     NumColumnsU = 1;
                     AlturaU = 1;
                     NumRowsU = Altura;
                     ColumnaU = Ubicaciones[X][Y];
-                    
+                    colorAnt = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as SolidColorBrush ;
+                    ColorAntU = null;
                 }
+
                 if (Tipo == 2)
                 {
+                    if (ColorAntU != null)
+                    {
+                        (this.Children[Ubicaciones[xAntU][yAntU][0].CordY + Ubicaciones[xAntU][yAntU][0].CordX * NumColumns] as Button).Background = ColorAntU;
+                    }
+                    xAntU = X;
+                    yAntU = Y;
+                    ColorAntU = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as LinearGradientBrush;
+
                     if (Columna[X].IdProducto == idSelectedProduct)
                     {
                         selectedUbicacion = Columna[X];
@@ -380,6 +389,7 @@ namespace MadeInHouse.Dictionary {
                         VolOcu = "---";
                     }
                 }
+                (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
 
             }
             else if (Accion == 3)
@@ -512,6 +522,11 @@ namespace MadeInHouse.Dictionary {
         {
 
             int cantAux;
+            if (selectedUbicacion == null)
+            {
+                return -1;
+            }
+
             if (selectedUbicacion.Cantidad>0)
             {
 

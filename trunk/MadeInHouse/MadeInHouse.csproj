@@ -108,6 +108,7 @@
     <Compile Include="DataObjects\Almacen\OrdenDespachoSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxTiendaSQL.cs" />
+    <Compile Include="DataObjects\Almacen\SectorSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
     <Compile Include="DataObjects\Compras\ConsolidadoSQL.cs" />
     <Compile Include="DataObjects\Compras\CotizacionSQL.cs" />
@@ -150,6 +151,7 @@
     <Compile Include="Models\Almacen\OrdenDespacho.cs" />
     <Compile Include="Models\Almacen\ProductoxNotaIS.cs" />
     <Compile Include="Models\Almacen\Prueba.cs" />
+    <Compile Include="Models\Almacen\Sector.cs" />
     <Compile Include="Models\Compras\Consolidado.cs" />
     <Compile Include="Dictionary\DynamicGrid.cs" />
     <Compile Include="DataObjects\Almacen\GuiaDeRemisionSQL.cs" />
