@@ -149,7 +149,11 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
             object obj = db.cmd.ExecuteScalar();
             idTienda = String.IsNullOrEmpty(obj.ToString())? -1 : (int) obj;
-            if (db.cmd.Transaction == null) db.conn.Close();
+            if (db.cmd.Transaction == null)
+            {
+                db.conn.Close();
+                db.cmd.Parameters.Clear();
+            }
             return idTienda;
         }
 
