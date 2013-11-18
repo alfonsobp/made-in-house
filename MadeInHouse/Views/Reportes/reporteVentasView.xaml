@@ -6,84 +6,59 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="600" Height="696.5">
-    
+             mc:Ignorable="d" Height="522.5" Width="609">
+
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Ventas" />
             <Grid>
                 <Grid Margin="0,0,0,-21">
-                    <ToolBar VerticalAlignment="Top" Height="41">
-                        <ToolBar.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF535050" Offset="0.073"/>
-                                <GradientStop Color="Snow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ToolBar.Background>
-                        <Button ToolTip="Restaurar Ventana">
-                            <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                        </Button>
-                        <Button ToolTip="Limpiar criterios del reporte">
-                            <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                        </Button>
-                        <Button ToolTip="Actualizar datos" Height="30" Width="30">
-                            <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35" Click="Button_Click">
-                            <Image Source="/MadeInHouse;component/Assets/xls.png" />
-                        </Button>
-                        <Button Name="botonPDF" ToolTip="Exportar tabla a PDF" Height="35" Width="35" Click="Button_Click_1">
-                            <Image Source="/MadeInHouse;component/Assets/pdf.png" />
-                        </Button>
-                    </ToolBar>
-                    <GroupBox Header="Reporte de Ventas" HorizontalAlignment="Left" Height="605" Margin="10,46,0,-51" VerticalAlignment="Top" Width="580">
+                    <GroupBox Header="Reporte de Ventas" HorizontalAlignment="Left" Height="462" Margin="10,10,0,0" VerticalAlignment="Top" Width="576">
                         <Grid>
-                            <Button Name="GenerarReporte" ToolTip="Generar reporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60" Click="Generar">
+                            <Button Name="GenerarReporte" ToolTip="Generar reporte" Margin="401,21,93,0" VerticalAlignment="Top" Click="Generar">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
                             <GroupBox Header="Cliente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <ListBox MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" Name="listBoxCliente1" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
-                                    <ListBox Name="ListBoxCliente2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
-                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
+                                    <ListBox MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" Name="listBoxCliente1" HorizontalAlignment="Left" Width="176" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxCliente2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="181" Margin="322,8,0,10"/>
+                                    <Button Name="derecha1" Margin="228,24,264,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
+                                    <Button Name="izquierda1" Margin="228,49,264,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
                             <GroupBox  MouseDoubleClick="ListBoxItem_DoubleClicked" Header="Producto" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <ListBox Name="listBoxProducto1" MouseLeave="Unselect" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
-                                    <ListBox Name="ListBoxProducto2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
-                                    <Button Name="derecha2" Margin="202,24,290,52" Click="Pasar_Todo">
+                                    <ListBox Name="listBoxProducto1" MouseLeave="Unselect" HorizontalAlignment="Left" Width="175" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxProducto2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="183" Margin="322,8,0,10"/>
+                                    <Button Name="derecha2" Margin="226,24,266,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button Name="izquierda2" Margin="202,49,290,28" Click="Pasar_Todo">
+                                    <Button Name="izquierda2" Margin="226,49,266,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
                             <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
-                                    <ListBox Name="ListBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
-                                    <Button Name="derecha3" Margin="202,24,290,52" Click="Pasar_Todo">
+                                    <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="177" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="179" Margin="322,8,0,10"/>
+                                    <Button Name="derecha3" Margin="230,24,262,52" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
-                                    <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
+                                    <Button Name="izquierda3" Margin="230,49,262,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
-                            <TextBox Name="montoTotal" IsEnabled="false" HorizontalAlignment="Left" Height="24" Margin="495,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="63"/>
-                            <DataGrid Name="Lista"  HorizontalAlignment="Left" Margin="10,439,0,2" Width="480"/>
                             <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
-                            <DatePicker Name="FechaIni" Margin="62,21,393,537"></DatePicker>
-                            <DatePicker Name="FechaFin" Margin="283,22,172,536"></DatePicker>
+                            <DatePicker Name="FechaDesde" Margin="62,21,393,0" Height="26" VerticalAlignment="Top"></DatePicker>
+                            <DatePicker Name="FechaHasta" Margin="283,22,0,0" HorizontalAlignment="Left" Width="113" Height="25" VerticalAlignment="Top"></DatePicker>
                         </Grid>
                     </GroupBox>
                 </Grid>
