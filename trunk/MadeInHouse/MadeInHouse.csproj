@@ -106,7 +106,6 @@
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\NotaISSQL.cs" />
     <Compile Include="DataObjects\Almacen\OrdenDespachoSQL.cs" />
-    <Compile Include="DataObjects\Almacen\ProductoxNotaISSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxTiendaSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
@@ -146,6 +145,7 @@
     <Compile Include="Models\Almacen\Almacenes.cs" />
     <Compile Include="Models\Almacen\EntityManager.cs" />
     <Compile Include="Models\Almacen\EntityName.cs" />
+    <Compile Include="Models\Almacen\GuiaRemxProducto.cs" />
     <Compile Include="Models\Almacen\MotivoISManager.cs" />
     <Compile Include="Models\Almacen\OrdenDespacho.cs" />
     <Compile Include="Models\Almacen\ProductoxNotaIS.cs" />
@@ -232,6 +232,7 @@
     </Compile>
     <Compile Include="Validacion\Error.cs" />
     <Compile Include="Validacion\Evaluador.cs" />
+    <Compile Include="ViewModels\Almacen\BuscarAlmacenViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarOrdenDespachoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarTiendaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />

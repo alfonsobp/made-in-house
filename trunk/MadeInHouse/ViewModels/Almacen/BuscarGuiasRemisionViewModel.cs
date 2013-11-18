@@ -10,42 +10,53 @@ using MadeInHouse.Views.Almacen;
 using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
+using MadeInHouse.DataObjects.Almacen;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
     class BuscarGuiasRemisionViewModel : PropertyChangedBase
-
     {
 
+
+        //Atributos
         private MyWindowManager win = new MyWindowManager();
 
         private string txtCodigo;
-
         public string TxtCodigo
         {
             get { return txtCodigo; }
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-        private string txtFecha;
-
-        public string TxtFecha
+        private DateTime txtFechaIni = new DateTime(DateTime.Now.Year, 1, 1);
+        public DateTime TxtFechaIni
         {
-            get { return txtFecha; }
-            set { txtFecha = value; NotifyOfPropertyChange(() => TxtFecha); }
+            get { return txtFechaIni; }
+            set { txtFechaIni = value; NotifyOfPropertyChange(() => TxtFechaIni); }
         }
 
-        private string cbTipo;
+        private DateTime txtFechaFin = new DateTime(DateTime.Now.Year, 12, 31);
+        public DateTime TxtFechaFin
+        {
+            get { return txtFechaFin; }
+            set { txtFechaFin = value; NotifyOfPropertyChange(() => TxtFechaFin); }
+        }
 
-        public string CbTipo
+        private List<string> cbTipo = new List<string>() { "GR-ORDEN DESPACHO", "GR-TRASLADO EXTERNO" };
+        public List<string> CbTipo
         {
             get { return cbTipo; }
             set { cbTipo = value; NotifyOfPropertyChange(() => CbTipo); }
         }
 
+        private string seleccionadoTipo;
+        public string SeleccionadoTipo
+        {
+            get { return seleccionadoTipo; }
+            set { seleccionadoTipo = value; NotifyOfPropertyChange(() => SeleccionadoTipo); }
+        }
 
         private List<GuiaRemision> lstGuiaDeRemision;
-
         public List<GuiaRemision> LstGuiaDeRemision
         {
             get { return lstGuiaDeRemision; }
@@ -62,12 +73,13 @@ namespace MadeInHouse.ViewModels.Almacen
             set { accion = value; }
         }
 
-        public BuscarGuiasRemisionViewModel() { 
-        
+        public BuscarGuiasRemisionViewModel() 
+        {
+            ActualizarGuiaRemision();
         }
+
         public BuscarGuiasRemisionViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
         {
-            // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
             this.Accion = p;
         }
@@ -77,7 +89,6 @@ namespace MadeInHouse.ViewModels.Almacen
             guiaSeleccionada = ((sender as DataGrid).SelectedItem as GuiaRemision);
 
         }
-
 
 
         public void AbrirMantenerGuiaDeRemision()
@@ -91,7 +102,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void BuscarGuiaRemision()
         {
-            LstGuiaDeRemision = DataObjects.Almacen.GuiaDeRemisionSQL.BuscarGuiaDeRemision(null, DateTime.Now, null);
+            LstGuiaDeRemision = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(TxtCodigo, TxtFechaIni, TxtFechaFin, SeleccionadoTipo);
             
         }
 
@@ -99,6 +110,11 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel(guiaSeleccionada);
             win.ShowWindow(abrirGuiaView);
+        }
+
+        public void ActualizarGuiaRemision()
+        {
+            LstGuiaDeRemision = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(null, TxtFechaIni, TxtFechaFin, null);
         }
     }
 }

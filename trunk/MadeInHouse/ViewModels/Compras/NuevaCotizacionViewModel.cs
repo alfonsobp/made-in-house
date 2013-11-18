@@ -167,55 +167,60 @@ namespace MadeInHouse.ViewModels.Compras
 
                 if (indicador == 1)
                 {
-                    k = new CotizacionSQL().Agregar(c);
-                    
-                    List<Cotizacion> list = eMC.Buscar() as List<Cotizacion>;
-                    Id = list[list.Count - 1].IdCotizacion;
-                    c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
 
-                    if (LstProducto != null)
                     {
-                        for (i = 0; i < LstProducto.Count; i++)
+                        k = new CotizacionSQL().Agregar(c);
+
+                        List<Cotizacion> list = eMC.Buscar() as List<Cotizacion>;
+                        Id = list[list.Count - 1].IdCotizacion;
+                        c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
+
+                        if (LstProducto != null)
                         {
-                            LstProducto[i].IdCotizacion = Id;
-                            y = csql.InsertarValidado(LstProducto[i]);
+                            for (i = 0; i < LstProducto.Count; i++)
+                            {
+                                LstProducto[i].IdCotizacion = Id;
+                                y = csql.InsertarValidado(LstProducto[i]);
+                            }
                         }
+
+                        if (k == 0)
+                            MessageBox.Show("Ocurrio un error");
+                        else
+                            MessageBox.Show("Cotizacion Registrada \n\nCodigo = " + c.CodCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
+                                               " (" + c.Proveedor.CodProveedor + ")" + "\nFecha registro = " + c.FechaRespuesta.ToString());
+
+
                     }
 
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Cotizacion Registrada \n\nCodigo = " + c.CodCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
-                                        " ("+ c.Proveedor.CodProveedor + ")" + "\nFecha registro = " + c.FechaRespuesta.ToString());
-                }
-
-                if (indicador == 2)
-                {
-                   
-                    c.IdCotizacion = Id;
-                    c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
-                    k = new CotizacionSQL().Actualizar(c);
-
-                    if (LstProducto != null)
+                    if (indicador == 2)
                     {
-                        for (i = 0; i < LstProducto.Count; i++)
+
+                        c.IdCotizacion = Id;
+                        c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
+                        k = new CotizacionSQL().Actualizar(c);
+
+                        if (LstProducto != null)
                         {
-                            LstProducto[i].IdCotizacion = Id;
-                            y = csql.InsertarValidado(LstProducto[i]);
+                            for (i = 0; i < LstProducto.Count; i++)
+                            {
+                                LstProducto[i].IdCotizacion = Id;
+                                y = csql.InsertarValidado(LstProducto[i]);
+                            }
                         }
+
+                        if (k == 0)
+                            MessageBox.Show("Ocurrio un error");
+                        else
+                            MessageBox.Show("Cotizacion Editada \n\nCodigo = " + c.CodCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
+                                            " (" + c.Proveedor.CodProveedor + ")" + "\nFecha respuesta = " + c.FechaRespuesta.ToString() + "\nFecha inicio = " + c.FechaInicio.ToString() +
+                                            "\nFecha fin = " + c.FechaFin.ToString());
+
                     }
 
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Cotizacion Editada \n\nCodigo = " + c.CodCotizacion + "\nProveedor = " + c.Proveedor.RazonSocial +
-                                        " ("+ c.Proveedor.CodProveedor + ")" + "\nFecha respuesta = " + c.FechaRespuesta.ToString() + "\nFecha inicio = " + c.FechaInicio.ToString() +
-                                        "\nFecha fin = " + c.FechaFin.ToString());
-
+                    if (model != null)
+                        model.ActualizarCotizacion();
                 }
-
-                if (model != null)
-                    model.ActualizarCotizacion();
             }
 
         }

@@ -13,7 +13,7 @@
             <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
                 <DataGrid IsReadOnly="True" x:Name="LstProveedor" SelectedItem="{Binding Path=ProveedorSeleccionado}"  
                           cal:Message.Attach="[Event MouseDoubleClick]=[Action SelectedItemChanged]" 
-                          Margin="10,188,10,0" Height="234" VerticalAlignment="Top" AutoGenerateColumns="false">
+                          Margin="10,188,10,-1" Height="234" VerticalAlignment="Top" AutoGenerateColumns="false">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodProveedor}"  Width="100" Header="Código"/>
                         <DataGridTextColumn Binding="{Binding Path=RazonSocial}"  Width="330" Header="Razón Social"/>

@@ -25,22 +25,6 @@ namespace MadeInHouse.Models.Almacen
             set { codGuiaRem = value; }
         }
 
-        private string dirPartida;
-
-        public string DirPartida
-        {
-            get { return dirPartida; }
-            set { dirPartida = value; }
-        }
-
-        private string dirLlegada;
-
-        public string DirLlegada
-        {
-            get { return dirLlegada; }
-            set { dirLlegada = value; }
-        }
-
         private string camion;
 
         public string Camion
@@ -100,9 +84,22 @@ namespace MadeInHouse.Models.Almacen
             set { estado = value; }
         }
 
-        
 
+        private Almacenes almacen;
 
+        public Almacenes Almacen
+        {
+            get { return almacen; }
+            set { almacen = value; }
+        }
+
+        private NotaIS nota;
+
+        public NotaIS Nota
+        {
+            get { return nota; }
+            set { nota = value; }
+        }
 
 
     }

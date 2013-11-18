@@ -1,9 +1,9 @@
 ﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.BuscarNotasView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" Height="543.667" Width="435">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
@@ -55,7 +55,7 @@
                     </Grid>
                 </GroupBox>
                 <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="20,2,0,53" Grid.Row="2" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="394" 
-                          cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
+                          cal:Message.Attach="[Event MouseDoubleClick] = [Action SelectedItemChanged]"
                           SelectedItem="{Binding NotaSel, Mode=TwoWay}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="idNota" Binding="{Binding Path=IdNota}" Width="120"/>

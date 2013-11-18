@@ -175,5 +175,43 @@ namespace MadeInHouse.DataObjects.Almacen
 
         
         }
+
+        public List<ProductoxNotaIS> BuscarNotasXProductos()
+        {
+            List<ProductoxNotaIS> lista = new List<ProductoxNotaIS>();
+
+            db.cmd.CommandText = "SELECT * FROM ProductoxNotaIS ";
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    ProductoxNotaIS p = new ProductoxNotaIS();
+                    p.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
+                    p.IdNota = Convert.ToInt32(reader["idNota"].ToString());
+                    p.IdAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
+                    p.IdUbicacion = Convert.ToInt32(reader["idUbicacion"].ToString());
+                    p.Cantidad = Convert.ToInt32(reader["cantidad"].ToString());
+
+                    lista.Add(p);
+                }
+
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+
+            return lista;
+        }
     }
 }

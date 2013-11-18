@@ -84,6 +84,5 @@ namespace MadeInHouse.Models.Almacen
             }
 
         
-
         }
 }
