@@ -1,0 +1,67 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  
+             x:Class="MadeInHouse.Views.Almacen.BuscarOrdenDespachoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="430" Width="560">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+        <StackPanel Margin="0,0,0,8">
+            <Layouts:TitleBarTemplate title="Mantenimiento de Orden de Despacho" />
+            <Grid Height="390">
+
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+
+                    <Button x:Name="AbrirEditarOrdenDespacho" ToolTip="Editar usuario">
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="Guardar" ToolTip="Guardar cambios">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+
+                    <Button x:Name="Limpiar" ToolTip="Limpiar criterios">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="Actualizar" ToolTip="Actualizar tabla" Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                <Grid Margin="10,46,0,10">
+                    <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="105" Margin="10,10,10,0">
+                        <Grid Margin="0,0,-2,-12">
+
+                            <Label Content="Código orden de despacho: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,13,0,0"/>
+                            <TextBox Text="{Binding TxtIdOrdenDespacho}"
+                                        HorizontalAlignment="Left" Height="23" Margin="181,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                            <Label Content="Código de venta:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,44,0,0"/>
+                            <TextBox Text="{Binding TxtIdVenta}"
+                                        HorizontalAlignment="Left" Height="23" Margin="181,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+
+                            <Button x:Name="BuscarUsuarioPorCodigo" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right">
+                                <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                    <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
+                                        Height="214" VerticalAlignment="Top" Margin="10,120,10,0" AutoGenerateColumns="false">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=idOrdenDespacho}" Width="120" Header="Código despacho"/>
+                            <DataGridTextColumn Binding="{Binding Path=idVenta}" Width="120" Header="Código venta"/>
+                            <DataGridTextColumn Binding="{Binding Path=FechaDespacho}" Width="140" Header="Fecha"/>
+                            <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Estado" CanUserReorder="False" Width="65" />
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>

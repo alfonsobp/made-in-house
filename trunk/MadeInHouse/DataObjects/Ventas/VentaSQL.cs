@@ -541,5 +541,48 @@ namespace MadeInHouse.DataObjects.Ventas
             else return k + k2;
         }
 
+
+        internal Venta buscarVentaPorId(int idVenta)
+        {
+                        Venta v = null;
+
+            db.cmd.CommandText = "SELECT * FROM Venta WHERE idVenta=@idVenta ";
+            db.cmd.Parameters.AddWithValue("@idVenta", idVenta);
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader;
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    v = new Venta();
+
+                    v.IdUsuario = Int32.Parse(reader["idVenta"].ToString());
+                    v.TipoDocPago = reader["tipoDocPago"].ToString();
+                    v.Monto = Double.Parse(reader["monto"].ToString());
+                    v.Descuento = Double.Parse(reader["descuento"].ToString());
+                    v.Igv = Double.Parse(reader["IGV"].ToString());
+                    v.PtosGanados = Int32.Parse(reader["ptsGanados"].ToString());
+                    v.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
+                    v.Estado = Int32.Parse(reader["estado"].ToString());
+                    v.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
+                    v.IdCliente = Int32.Parse(reader["idCliente"].ToString());
+                    v.TipoVenta = reader["tipoDocPago"].ToString();
+                    v.CodTarjeta = Int32.Parse(reader["codTarjeta"].ToString());
+
+                }
+                else
+                    db.conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return v;
+        }
     }
 }

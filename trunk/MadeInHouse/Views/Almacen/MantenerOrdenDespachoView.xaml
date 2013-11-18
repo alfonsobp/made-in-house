@@ -1,0 +1,58 @@
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.MantenerOrdenDespachoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Width="398" Height="341">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" HorizontalAlignment="Left" Width="388" Height="331" VerticalAlignment="Top">
+        <StackPanel Margin="0,0,0,-2">
+            <Layouts:TitleBarTemplate title="Orden de despacho" />
+            <Grid Height="298">
+                <ToolBar VerticalAlignment="Top">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button x:Name="Guardar"  ToolTip="Guardar usuario">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Limpiar celdas">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
+                    </Button>
+                    <Button ToolTip="Actualizar tabla" Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    </Button>
+                </ToolBar>
+                <GroupBox Header="Datos Orden de Despacho" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="242" Width="364">
+                    <Grid Margin="0,10,-2,-12">
+                        <Label Content="Código:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="19,19,0,0"/>
+                        <TextBox x:Name="TxtCodigo"  
+                                 IsEnabled="{Binding IsEnabledCodigo}" 
+                                 Text="{Binding TxtCodigo,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="169,22,0,0"/>
+                        <Label Content="Núm. de documento: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="124" Margin="19,65,0,0"/>
+                        <TextBox x:Name="TxtNumDoc"  
+                                 IsEnabled="{Binding IsEnabledCodigo}" 
+                                 Text="{Binding TxtCodigo,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                                 HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="169,66,0,0"/>
+                        <Label Content="Cliente:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Margin="19,110,0,0"/>
+                        <Label Content="Estado:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Margin="19,157,0,0"/>
+                        <TextBox x:Name="TxtCliente"  
+                        	IsEnabled="{Binding IsEnabledCodigo}" 
+                        	Text="{Binding TxtCodigo, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                        	HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="169,113,0,0"/>
+                        <ComboBox ItemsSource="{Binding Path=LstEstado}"
+                               DisplayMemberPath="Nombre"
+                               SelectedValuePath="Estado" 
+                               SelectedValue="{Binding Path=EstadoValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="169,157,0,0" 
+                               VerticalAlignment="Top" Width="135"/>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </StackPanel>
+    </Border>
+</UserControl>
