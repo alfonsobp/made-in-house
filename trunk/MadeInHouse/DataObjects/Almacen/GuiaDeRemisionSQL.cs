@@ -50,7 +50,6 @@ namespace MadeInHouse.DataObjects.Almacen
 
             db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE estado >= 0 " + where;
             db.cmd.CommandType = CommandType.Text;
-            MessageBox.Show("SELECT * FROM GuiaRemision WHERE estado >= 0 " + where);
 
             try
             {
@@ -105,22 +104,43 @@ namespace MadeInHouse.DataObjects.Almacen
                             "\nfechaT = " + g.FechaTraslado + "\ntipo = " + g.Tipo + "\nobs = " + g.Observaciones + "\nidAlm = " + g.Almacen.IdAlmacen +
                             "\nidNota = " + g.Nota.IdNota);*/
 
-            db.cmd.CommandText = 
-            "INSERT INTO GuiaRemision(codGuiaRem,camion,conductor,fechaReg,fechaTraslado,tipo,observaciones,estado,idAlmacen,idNota) " +
-            "VALUES (@codGuiaRem,@camion,@conductor,@fechaReg,@fechaTraslado,@tipo,@observaciones,@estado,@idAlmacen,@idNota)";
+            if (g.Nota != null)
+            {
+                db.cmd.CommandText =
+                "INSERT INTO GuiaRemision(codGuiaRem,camion,conductor,fechaReg,fechaTraslado,tipo,observaciones,estado,idAlmacen,idNota) " +
+                "VALUES (@codGuiaRem,@camion,@conductor,@fechaReg,@fechaTraslado,@tipo,@observaciones,@estado,@idAlmacen,@idNota)";
 
 
-            db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
-            db.cmd.Parameters.AddWithValue("@camion", g.Camion);
-            db.cmd.Parameters.AddWithValue("@conductor", g.Conductor);
-            db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
-            db.cmd.Parameters.AddWithValue("@fechaTraslado", g.FechaTraslado);
-            db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
-            db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
-            db.cmd.Parameters.AddWithValue("@estado", 1);
-            db.cmd.Parameters.AddWithValue("@idAlmacen", g.Almacen.IdAlmacen);
-            db.cmd.Parameters.AddWithValue("@idNota", g.Nota.IdNota);
+                db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
+                db.cmd.Parameters.AddWithValue("@camion", g.Camion);
+                db.cmd.Parameters.AddWithValue("@conductor", g.Conductor);
+                db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
+                db.cmd.Parameters.AddWithValue("@fechaTraslado", g.FechaTraslado);
+                db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
+                db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
+                db.cmd.Parameters.AddWithValue("@estado", 1);
+                db.cmd.Parameters.AddWithValue("@idAlmacen", g.Almacen.IdAlmacen);
+                db.cmd.Parameters.AddWithValue("@idNota", g.Nota.IdNota);
+            }
 
+
+            if (g.Orden != null)
+            {
+                db.cmd.CommandText =
+                "INSERT INTO GuiaRemision(codGuiaRem,camion,conductor,fechaReg,fechaTraslado,tipo,observaciones,estado,idOrdenDespacho) " +
+                "VALUES (@codGuiaRem,@camion,@conductor,@fechaReg,@fechaTraslado,@tipo,@observaciones,@estado,@idOrdenDespacho)";
+
+
+                db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
+                db.cmd.Parameters.AddWithValue("@camion", g.Camion);
+                db.cmd.Parameters.AddWithValue("@conductor", g.Conductor);
+                db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
+                db.cmd.Parameters.AddWithValue("@fechaTraslado", g.FechaTraslado);
+                db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
+                db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
+                db.cmd.Parameters.AddWithValue("@estado", 1);
+                db.cmd.Parameters.AddWithValue("@idOrdenDespacho", g.Orden.IdOrdenDespacho);
+            }
 
             try
             {

@@ -8,6 +8,7 @@ using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -18,6 +19,14 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             ActualizarListaOrdenDespacho();
         }
+
+        MantenerGuiaDeRemisionViewModel m;
+        public BuscarOrdenDespachoViewModel(MantenerGuiaDeRemisionViewModel m)
+        {
+            this.m = m;
+            ActualizarListaOrdenDespacho();
+        }
+        
         private MyWindowManager win = new MyWindowManager();
         private List<OrdenDespacho> lstOrdenDespacho;
         public List<OrdenDespacho> LstOrdenDespacho
@@ -47,13 +56,33 @@ namespace MadeInHouse.ViewModels.Almacen
         public void SelectedItemChanged(object sender)
         {
             ordenDespachoSeleccionado = ((sender as DataGrid).SelectedItem as OrdenDespacho);
+            ordenDespachoSeleccionado.CodOrden = "OD-" + (1000000 + ordenDespachoSeleccionado.IdOrdenDespacho).ToString();
+
+            if (ordenDespachoSeleccionado != null)
+            {
+                if (m != null)
+                {
+                    m.Orden = ordenDespachoSeleccionado;
+                    TryClose();
+                }
+            }
         }
 
 
         public void BuscarOrdenDeDespacho()
         {
-            lstOrdenDespacho = odSQL.BuscarOrdenDespacho(Int32.Parse(TxtIdOrdenDespacho), Int32.Parse(TxtIdVenta));
-            NotifyOfPropertyChange("LstOrdenDespacho");
+            if ((!String.IsNullOrEmpty(TxtIdOrdenDespacho)) && (!String.IsNullOrEmpty(TxtIdVenta)))
+            {
+                lstOrdenDespacho = odSQL.BuscarOrdenDespacho(Int32.Parse(TxtIdOrdenDespacho), Int32.Parse(TxtIdVenta));
+                NotifyOfPropertyChange("LstOrdenDespacho");
+            }
+
+            else
+            {
+                lstOrdenDespacho = odSQL.BuscarOrdenDespacho(-1, -1);
+                MessageBox.Show("tam list = " + lstOrdenDespacho.Count);
+                NotifyOfPropertyChange("LstOrdenDespacho");
+            }
         }
 
         public void ActualizarListaOrdenDespacho()

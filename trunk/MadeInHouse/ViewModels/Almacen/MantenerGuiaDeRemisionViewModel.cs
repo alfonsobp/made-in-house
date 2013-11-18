@@ -11,8 +11,11 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using MadeInHouse.ViewModels.Ventas;
 using MadeInHouse.Models.Ventas;
+using MadeInHouse.Models.Seguridad;
 using MadeInHouse.DataObjects;
 using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.DataObjects.Ventas;
+using MadeInHouse.DataObjects.Seguridad;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -21,8 +24,17 @@ namespace MadeInHouse.ViewModels.Almacen
         //Constructores
         public MantenerGuiaDeRemisionViewModel(GuiaRemision g) {
 
-            Nota = g.Nota;
-            Alm = g.Almacen;
+            if (g.Nota != null)
+            {
+                Nota = g.Nota;
+                Alm = g.Almacen;
+            }
+
+            if (g.Orden != null)
+            {
+                Orden = g.Orden;
+            }
+
             TxtCodigo = g.CodGuiaRem;
             TxtFechaReg = g.FechaReg;
             SeleccionadoTipo=g.Tipo;
@@ -172,11 +184,32 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtCantidad = value; NotifyOfPropertyChange(() => TxtCantidad); }
         }
 
+        private string txtRSCliente;
+        public string TxtRSCliente
+        {
+          get { return txtRSCliente; }
+            set { txtRSCliente = value; NotifyOfPropertyChange(() => TxtRSCliente); }
+        }
+
+        private string txtDirCliente;
+        public string TxtDirCliente
+        {
+            get { return txtDirCliente; }
+            set { txtDirCliente = value; NotifyOfPropertyChange(() => TxtDirCliente); }
+        }
+
         private NotaIS nota;
         public NotaIS Nota
         {
             get { return nota; }
             set { nota = value; NotifyOfPropertyChange(() => Nota); }
+        }
+
+        private OrdenDespacho orden;
+        public OrdenDespacho Orden
+        {
+            get { return orden; }
+            set { orden = value; NotifyOfPropertyChange(() => Orden); }
         }
 
         private Almacenes alm;
@@ -193,7 +226,7 @@ namespace MadeInHouse.ViewModels.Almacen
             set { lstProductos = value; NotifyOfPropertyChange(() => LstProductos); }
         }
 
-        public void Refrescar()
+        public void RefrescarNotas()
         {
             if (Nota.Tipo == 2)
             {
@@ -235,6 +268,38 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
+        public void RefrescarOrden()
+        {
+            Venta v = getVentafromID(Orden.Venta.IdVenta);
+            Usuario u = getUsuariofromID(v.IdUsuario);
+            Cliente c = getClientefromID(v.IdCliente);
+            Almacenes a = getAlmacenfromIDTienda(u.IdTienda);
+
+            TxtAlmacenOrigen = a.Nombre;
+            TxtDirPartida = a.Direccion;
+            TxtDirCliente = c.Direccion;
+            TxtRSCliente = c.RazonSocial;
+
+            List<DetalleVenta> l = new DetalleVentaSQL().BuscarTodos();
+            List<GuiaRemxProducto> lAux = new List<GuiaRemxProducto>();
+            int cantTotal = 0;
+
+            for (int i = 0; i < l.Count; i++)
+                if (l[i].IdDetalleV == Orden.Venta.IdVenta)
+                {
+                    GuiaRemxProducto gp = new GuiaRemxProducto();
+                    Producto p = new ProductoSQL().Buscar_por_CodigoProducto(l[i].IdProducto);
+                    gp.CodProd = p.CodigoProd;
+                    gp.Nombre = p.Nombre;
+                    gp.Cantidad = l[i].Cantidad;
+                    cantTotal += l[i].Cantidad;
+                    lAux.Add(gp);
+                }
+
+            LstProductos = new List<GuiaRemxProducto>(lAux);
+            TxtCantidad = cantTotal;
+        }
+
         public void RefrescarAlm()
         {
             TxtDirLlegada = Alm.Direccion;
@@ -262,8 +327,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void BuscarOrden()
         {
-            //MyWindowManager w = new MyWindowManager();
-            //w.ShowWindow(new Bus(this));
+            MyWindowManager w = new MyWindowManager();
+            w.ShowWindow(new BuscarOrdenDespachoViewModel(this));
         }
 
         public void BuscarNotaOrden()
@@ -295,8 +360,15 @@ namespace MadeInHouse.ViewModels.Almacen
             int k = 1;
             GuiaRemision g = new GuiaRemision();
 
-            g.Almacen = Alm;
-            g.Nota = Nota;
+            if ((Nota != null) && (Alm != null))
+            {
+                g.Almacen = Alm;
+                g.Nota = Nota;
+            }
+
+            if (Orden != null)
+                g.Orden = Orden;
+            
             g.CodGuiaRem = txtCodigo;
             g.FechaTraslado = txtFechaReg;
             g.FechaReg = DateTime.Now;
@@ -309,22 +381,28 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 if ((LstProductos != null) || (!String.IsNullOrEmpty(TxtConductor)) || (!String.IsNullOrEmpty(SeleccionadoCamion)))
                 {
-                    if ((Nota != null) && (TxtTienda != null))
+                    if (((Nota != null) && (TxtTienda != null)) || (Orden != null))
                     {
 
-                    k = new GuiaDeRemisionSQL().agregarGuiaDeRemision(g);
+                        k = new GuiaDeRemisionSQL().agregarGuiaDeRemision(g);
 
-                    if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
-                    else
-                        MessageBox.Show("Guia de Remision Registrada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
-                                        "\nTipo Guia = " + seleccionadoTipo + "\nConductor = " + txtConductor + "\nCamion= " +
-                                        seleccionadoCamion + "\nObservaciones = " + txtObservaciones);
+                        if (k == 0)
+                            MessageBox.Show("Ocurrio un error");
+                        else
+                        {
+                            MessageBox.Show("Guia de Remision Registrada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
+                                            "\nTipo Guia = " + seleccionadoTipo + "\nConductor = " + txtConductor + "\nCamion= " +
+                                            seleccionadoCamion + "\nObservaciones = " + txtObservaciones);
+                        }
                     }
 
                     else
                     {
-                        MessageBox.Show("Ingrese ALMACEN DESTINO del traslado");
+                        if (TxtTienda == null)
+                            MessageBox.Show("Ingrese ALMACEN DESTINO del traslado");
+                        
+                        if (Orden == null)
+                            MessageBox.Show("Ingrese ORDEN del traslado");
                     }
 
                 }
@@ -362,5 +440,34 @@ namespace MadeInHouse.ViewModels.Almacen
             return null;
         }
 
+        public Venta getVentafromID(int id)
+        {
+            Venta c = new VentaSQL().buscarVentaPorId(id);
+            return c;
+        }
+
+        public Cliente getClientefromID(int id)
+        {
+            Cliente c = new ClienteSQL().BuscarClienteByIdCliente(id);
+            return c;
+        }
+
+        public Usuario getUsuariofromID(int id)
+        {
+            Usuario u = UsuarioSQL.buscarUsuarioPorIdUsuario(id);
+            return u;
+        }
+
+        public Almacenes getAlmacenfromIDTienda(int id)
+        {
+            List<Almacenes> list = new AlmacenSQL().BuscarAlmacen();
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].IdTienda == id)
+                {
+                    return list[i];
+                }
+
+            return null;
+        }
     }
 }

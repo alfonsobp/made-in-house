@@ -5,9 +5,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="1052" Height="627.16">
+             mc:Ignorable="d" d:DesignWidth="1052" Height="765.16">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
+        <StackPanel Margin="0,0,0,83">
             <Layouts:TitleBarTemplate title="Nueva Guia de Remisión" />
             <Grid>
                 <Grid.RowDefinitions>
@@ -49,17 +49,17 @@
                     </Button>
                 </ToolBar>
                 <GroupBox Grid.Column="3" Header="Productos" Margin="10,57,10,139" Grid.RowSpan="3">
-                    <Grid>
+                    <Grid Margin="0,-10,0,10">
                         <Label Content="Nota de Salida:" Margin="10,22,264,367"/>
                         <DataGrid x:Name="LstProductos" AutoGenerateColumns="False"
-                                  Margin="10,0,10,36" HeadersVisibility="Column" Height="257" VerticalAlignment="Bottom">
+                                  Margin="10,0,10,31" HeadersVisibility="Column" Height="257" VerticalAlignment="Bottom">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=CodProd}" Header="Código" Width="90"/>
                                 <DataGridTextColumn Binding="{Binding Path=Nombre}" Header="Nombre" Width="185"/>
                                 <DataGridTextColumn Binding="{Binding Path=Cantidad}" Header="Cantidad" Width="80"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox IsEnabled="False" Text="{Binding Path=Nota.IdNota, Mode=TwoWay}" cal:Message.Attach="[Event TextChanged]=[Action Refrescar]"
+                        <TextBox IsEnabled="False" Text="{Binding Path=Nota.IdNota, Mode=TwoWay}" cal:Message.Attach="[Event TextChanged]=[Action RefrescarNotas]"
                                  HorizontalAlignment="Left" Height="23" Margin="125,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
                         <Label Content="Cantidad total:" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Width="90"/>
                         <TextBox IsEnabled="False" x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="125,82,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="70"/>
@@ -67,10 +67,9 @@
                      <Button x:Name="BuscarNotaOrden" HorizontalAlignment="Left" Margin="277,22,0,0" VerticalAlignment="Top" Width="24" Height="24">
                          <Image Source="/Assets/find.png" RenderTransformOrigin="2.564,0.416" />
                      </Button>
-                        <Label Content="Orden de despacho:" Margin="10,51,249,357"/>
-                        <TextBox Text="{Binding SelectedNotaOrden, Mode=TwoWay}"
-                        	     HorizontalAlignment="Left" Height="23" Margin="125,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" 
-                                 cal:Message.Attach="[Event TextChanged]=[Action Refrescar]"/>
+                        <Label Content="Orden Despacho:" Margin="10,51,249,357"/>
+                        <TextBox IsEnabled="False" Text="{Binding Path=Orden.CodOrden, Mode=TwoWay}" cal:Message.Attach="[Event TextChanged]=[Action RefrescarOrden]"
+                        	     HorizontalAlignment="Left" Height="23" Margin="125,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Guía" Margin="10,57,10,10" Grid.Column="1">
@@ -95,6 +94,10 @@
                         <Label Content="Dirección Tienda:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.079,0.385" Height="26" Width="104" Margin="10,41,0,0"/>
                         <TextBox IsEnabled="False" x:Name="TxtTienda" HorizontalAlignment="Left" Margin="119,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="22"/>
                         <TextBox IsEnabled="False" x:Name="TxtDirLlegada" HorizontalAlignment="Left" Margin="119,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="47"/>
+                        <Label Content="RS Cliente:" HorizontalAlignment="Left" VerticalAlignment="Top" Height="26" Width="104" Margin="10,134,0,0"/>
+                        <Label Content="Dirección Cliente:" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.079,0.385" Height="26" Width="104" Margin="10,165,0,0"/>
+                        <TextBox IsEnabled="False" x:Name="TxtRSCliente" HorizontalAlignment="Left" Margin="119,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="22"/>
+                        <TextBox IsEnabled="False" x:Name="TxtDirCliente" HorizontalAlignment="Left" Margin="119,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="47"/>
                     </Grid>
                 </GroupBox>
                 <GroupBox Header="Información general" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
@@ -102,8 +105,6 @@
                         <Label Content="Almacen origen:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="103"/>
                         <Label Content="Almacen destino:" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
                         <TextBox IsEnabled="False" Name="TxtDirPartida" HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="397" />
-                        <Label Content="Fecha de traslado:" HorizontalAlignment="Left" Margin="20,279,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.476,0.5" Height="26" Width="112"/>
-                        <DatePicker HorizontalAlignment="Left" Margin="192,280,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
                         <Label Content="Camión:" HorizontalAlignment="Left" Margin="20,203,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
                         <Label Content="Conductor:" HorizontalAlignment="Left" Margin="20,159,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
                         <TextBox x:Name="TxtConductor" HorizontalAlignment="Left" Height="23" Margin="192,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
