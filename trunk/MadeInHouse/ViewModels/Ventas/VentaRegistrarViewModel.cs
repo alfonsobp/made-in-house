@@ -21,12 +21,13 @@ using MadeInHouse.Dictionary;
 using MadeInHouse.DataObjects;
 using System.Data.SqlClient;
 using System.Data;
+using MadeInHouse.DataObjects.Almacen;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
     class VentaRegistrarViewModel : PropertyChangedBase
     {
-
+        #region Atributos
         private double IGV { get; set; }
         private double PUNTO { get; set; }
         private double subt { get; set; }
@@ -34,46 +35,12 @@ namespace MadeInHouse.ViewModels.Ventas
         private double igv_total { get; set; }
         private double total { get; set; }
         private double montopago { get; set; }
-
-        public VentaRegistrarViewModel()
-        {
-            lstVenta = new List<DetalleVenta>();
-            LstPagos = new List<VentaPago>();
-            lstVentaServicios = new List<DetalleVentaServicio>();
-
-            prod = new Producto();
-            IGV = 0.18;
-            PUNTO = 30;
-            subt = 0;
-            desc = 0;
-            igv_total = 0;
-            montopago = 0;
-
-            ModoPagoSQL mpsql = new ModoPagoSQL();
-            LstModosPago = mpsql.BuscarModosPago();
-        }
-
-        private BindableCollection<ModoPago> lstModosPago;
-
-        public BindableCollection<ModoPago> LstModosPago
-        {
-            get { return lstModosPago; }
-            set
-            {
-                if (this.lstModosPago == value)
-                {
-                    return;
-                }
-                this.lstModosPago = value;
-                this.NotifyOfPropertyChange(() => this.lstModosPago);
-            }
-        }
+        public int idTienda { get; set; }
 
         private Dictionary<string, int> tipoVenta = new Dictionary<string, int>()
         {
             { "Boleta", 0 }, { "Factura", 1 }
         };
-
         public BindableCollection<string> cmbTipoVenta
         {
             get
@@ -82,17 +49,13 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
-
         private DetalleVenta detalleSeleccionado;
-
         public void SelectedItemChanged(object sender)
         {
             detalleSeleccionado = ((sender as DataGrid).SelectedItem as DetalleVenta);
         }
 
-
         private string txtCliente;
-
         public string TxtCliente
         {
             get { return txtCliente; }
@@ -100,7 +63,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private Tarjeta cli;
-
         public Tarjeta Cli
         {
             get { return cli; }
@@ -117,30 +79,13 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtTarjetaCliente;
-
         public string TxtTarjetaCliente
         {
             get { return txtTarjetaCliente; }
             set { txtTarjetaCliente = value; NotifyOfPropertyChange(() => TxtTarjetaCliente); }
         }
 
-        public void ExecuteFilterView(KeyEventArgs keyArgs)
-        {
-            Cliente c = new Cliente();
-            if (keyArgs.Key == Key.Enter)
-            {
-                //buscar al cliente por la tarjeta
-                ClienteSQL csql = new ClienteSQL();
-                c = csql.BuscarClienteByTarjeta(TxtCliente);
-                TxtRazonSocial = c.RazonSocial;
-                TxtRuc = c.Ruc;
-                TxtCliente = c.NombreCompleto;
-                cli.Cliente = c;
-            }
-        }
-
         private string idCliente;
-
         public string IdCliente
         {
             get { return idCliente; }
@@ -148,7 +93,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtRazonSocial;
-
         public string TxtRazonSocial
         {
             get { return txtRazonSocial; }
@@ -156,7 +100,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtDireccion;
-
         public string TxtDireccion
         {
             get { return txtDireccion; }
@@ -164,7 +107,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtRuc;
-
         public string TxtRuc
         {
             get { return txtRuc; }
@@ -172,7 +114,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtTelefono;
-
         public string TxtTelefono
         {
             get { return txtTelefono; }
@@ -180,7 +121,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtServicio;
-
         public string TxtServicio
         {
             get { return txtServicio; }
@@ -188,7 +128,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtProducto;
-
         public string TxtProducto
         {
             get { return txtProducto; }
@@ -196,7 +135,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtCantidad;
-
         public string TxtCantidad
         {
             get { return txtCantidad; }
@@ -204,7 +142,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private List<DetalleVenta> lstVenta;
-
         public List<DetalleVenta> LstVenta
         {
             get { return lstVenta; }
@@ -212,7 +149,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private List<DetalleVentaServicio> lstVentaServicios;
-
         public List<DetalleVentaServicio> LstVentaServicios
         {
             get { return lstVentaServicios; }
@@ -220,7 +156,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtSubTotal;
-
         public string TxtSubTotal
         {
             get { return txtSubTotal; }
@@ -228,7 +163,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtDescuentoTotal;
-
         public string TxtDescuentoTotal
         {
             get { return txtDescuentoTotal; }
@@ -236,7 +170,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtIGVTotal;
-
         public string TxtIGVTotal
         {
             get { return txtIGVTotal; }
@@ -244,7 +177,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtTotal;
-
         public string TxtTotal
         {
             get { return txtTotal; }
@@ -252,7 +184,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtPagaCon;
-
         public string TxtPagaCon
         {
             get { return txtPagaCon; }
@@ -281,7 +212,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtVuelto;
-
         public string TxtVuelto
         {
             get { return txtVuelto; }
@@ -289,13 +219,108 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private DateTime fechaDespacho = new DateTime(DateTime.Now.Year, 1, 1);
-
         public DateTime FechaDespacho
         {
             get { return fechaDespacho; }
             set { fechaDespacho = value; NotifyOfPropertyChange(() => FechaDespacho); }
         }
 
+        Producto prod;
+        public Producto Prod
+        {
+            get { return prod; }
+            set { prod = value; NotifyOfPropertyChange(() => Prod); TxtProducto = prod.Nombre; }
+        }
+
+        private List<VentaPago> lstPagos;
+        public List<VentaPago> LstPagos
+        {
+            get { return lstPagos; }
+            set { lstPagos = value; NotifyOfPropertyChange(() => LstPagos); }
+        }
+
+        private int selectedValue;
+        public int SelectedValue
+        {
+            get { return selectedValue; }
+            set { selectedValue = value; }
+        }
+
+        private string txtMonto;
+        public string TxtMonto
+        {
+            get { return txtMonto; }
+            set { txtMonto = value; NotifyOfPropertyChange(() => TxtMonto); }
+        }
+
+        private ServicioxProducto serv;
+        public ServicioxProducto Serv
+        {
+            get { return serv; }
+            set
+            {
+                serv = value; NotifyOfPropertyChange(() => Serv);
+                ServicioxProductoSQL spsql = new ServicioxProductoSQL();
+                TxtServicio = spsql.ServiciobyId(serv.IdServicio).Descripcion;
+            }
+        }
+
+        #endregion
+
+        #region Constructor
+        public VentaRegistrarViewModel()
+        {
+            lstVenta = new List<DetalleVenta>();
+            LstPagos = new List<VentaPago>();
+            lstVentaServicios = new List<DetalleVentaServicio>();
+
+            prod = new Producto();
+            IGV = 0.18;
+            PUNTO = 30;
+            subt = 0;
+            desc = 0;
+            igv_total = 0;
+            montopago = 0;
+
+            TiendaSQL tiendSQL = new TiendaSQL();
+            this.idTienda = tiendSQL.obtenerTienda(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+
+            ModoPagoSQL mpsql = new ModoPagoSQL();
+            LstModosPago = mpsql.BuscarModosPago();
+        }
+
+        private BindableCollection<ModoPago> lstModosPago;
+
+        public BindableCollection<ModoPago> LstModosPago
+        {
+            get { return lstModosPago; }
+            set
+            {
+                if (this.lstModosPago == value)
+                {
+                    return;
+                }
+                this.lstModosPago = value;
+                this.NotifyOfPropertyChange(() => this.lstModosPago);
+            }
+        }
+        #endregion
+
+        #region Metodos
+        public void ExecuteFilterView(KeyEventArgs keyArgs)
+        {
+            Cliente c = new Cliente();
+            if (keyArgs.Key == Key.Enter)
+            {
+                //buscar al cliente por la tarjeta
+                ClienteSQL csql = new ClienteSQL();
+                c = csql.BuscarClienteByTarjeta(TxtCliente);
+                TxtRazonSocial = c.RazonSocial;
+                TxtRuc = c.Ruc;
+                TxtCliente = c.NombreCompleto;
+                cli.Cliente = c;
+            }
+        }
 
         public void AgregarDetalle()
         {
@@ -508,28 +533,10 @@ namespace MadeInHouse.ViewModels.Ventas
             wc.ShowWindow(new ClienteRegistrarViewModel(this));
         }
 
-        Producto prod;
-
-        public Producto Prod
-        {
-            get { return prod; }
-            set { prod = value; NotifyOfPropertyChange(() => Prod); TxtProducto = prod.Nombre; }
-        }
-
         public void BuscarProducto()
         {
             MyWindowManager w = new MyWindowManager();
             w.ShowWindow(new ProductoBuscarViewModel(this,1));
-        }
-
-        private ServicioxProducto serv;
-
-        public ServicioxProducto Serv
-        {
-            get { return serv; }
-            set { serv = value; NotifyOfPropertyChange(() => Serv);
-            ServicioxProductoSQL spsql = new ServicioxProductoSQL();
-                TxtServicio = spsql.ServiciobyId(serv.IdServicio).Descripcion; }
         }
 
         public void BuscarServicio()
@@ -559,27 +566,6 @@ namespace MadeInHouse.ViewModels.Ventas
             lstVenta = new List<DetalleVenta>();
         }
 
-        private List<VentaPago> lstPagos;
-        public List<VentaPago> LstPagos
-        {
-            get { return lstPagos; }
-            set { lstPagos = value; NotifyOfPropertyChange(() => LstPagos); }
-        }
-
-        private int selectedValue;
-        public int SelectedValue
-        {
-            get { return selectedValue; }
-            set { selectedValue = value; }
-        }
-
-        private string txtMonto;
-        public string TxtMonto
-        {
-            get { return txtMonto; }
-            set { txtMonto = value; NotifyOfPropertyChange(() => TxtMonto); }
-        }
-        
         public void AgregarMonto()
         {
             VentaPago vp = new VentaPago();
@@ -768,6 +754,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
             return content;
         }
+        #endregion
 
     }
 }

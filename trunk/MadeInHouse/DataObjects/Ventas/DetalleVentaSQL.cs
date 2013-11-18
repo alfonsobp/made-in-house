@@ -30,12 +30,10 @@ namespace MadeInHouse.DataObjects.Ventas
 
         }
 
-        public Producto Buscar(string idProducto)
+        public Producto Buscar(string idProducto, int idTienda)
         {
             Producto prod = new Producto();
-
-            db.cmd.CommandText = "select * from ProductoxTienda where idProducto=" + Convert.ToInt32(idProducto);
-
+            db.cmd.CommandText = "select * from Producto where idProducto=" + Convert.ToInt32(idProducto);
             try
             {
                 if (tipo) db.conn.Open();
@@ -45,16 +43,38 @@ namespace MadeInHouse.DataObjects.Ventas
                     prod.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
                     prod.CodigoProd = reader["codProducto"].ToString();
                     prod.Nombre = reader["nombre"].ToString();
-                    prod.Precio = Double.Parse(reader["precio"].ToString());
                 }
                 db.cmd.Parameters.Clear();
                 if (tipo) db.conn.Close();
+                reader.Close();
+                db.cmd.Parameters.Clear();
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
+
+            db.cmd.CommandText = "select * from ProductoxTienda where idProducto=" + Convert.ToInt32(idProducto) + " AND idTienda=" + idTienda;
+            try
+            {
+                if (tipo) db.conn.Open();
+                SqlDataReader rs = db.cmd.ExecuteReader();
+                while (rs.Read())
+                {
+                    prod.Precio = Double.Parse(rs["precioVenta"].ToString());
+                }
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+                db.cmd.Parameters.Clear();
+                rs.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
             return prod;
+
         }
 
         public int Actualizar(DetalleVenta dv)
@@ -85,7 +105,7 @@ namespace MadeInHouse.DataObjects.Ventas
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
         }
 

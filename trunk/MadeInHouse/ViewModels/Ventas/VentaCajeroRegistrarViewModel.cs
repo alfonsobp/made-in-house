@@ -20,11 +20,13 @@ using MadeInHouse.Dictionary;
 using MadeInHouse.DataObjects;
 using System.Data.SqlClient;
 using System.Data;
+using MadeInHouse.DataObjects.Almacen;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
     class VentaCajeroRegistrarViewModel : PropertyChangedBase
     {
+        #region Atributos
         private double IGV { get; set; }
         private double PUNTO { get; set; }
         private double subt { get; set; }
@@ -33,26 +35,9 @@ namespace MadeInHouse.ViewModels.Ventas
         private double total { get; set; }
         private double montopago { get; set; }
         private Cliente cliente { get; set; }
-
-        public VentaCajeroRegistrarViewModel()
-        {
-           lstVenta = new List<DetalleVenta>();
-           LstPagos = new List<VentaPago>();
-           lstVentaServicios = new List<DetalleVentaServicio>();
-           cliente = new Cliente();
-           IGV = 0.18;
-           PUNTO = 30;
-           subt = 0;
-           desc = 0;
-           igv_total = 0;
-           total = 0;
-           montopago = 0;
-           ModoPagoSQL mpsql = new ModoPagoSQL();
-           LstModosPago = mpsql.BuscarModosPago();
-        }
+        private int idTienda { get; set; }
 
         private List<DetalleVentaServicio> lstVentaServicios;
-
         public List<DetalleVentaServicio> LstVentaServicios
         {
             get { return lstVentaServicios; }
@@ -60,7 +45,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtRuc;
-
         public string TxtRuc
         {
             get { return txtRuc; }
@@ -68,7 +52,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtRazonSocial;
-
         public string TxtRazonSocial
         {
             get { return txtRazonSocial; }
@@ -76,38 +59,20 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private string txtDNI;
-
         public string TxtDNI
         {
             get { return txtDNI; }
             set { txtDNI = value; NotifyOfPropertyChange(() => TxtDNI); }
         }
-
-        //sacara datos del cliente por tarjeta
+        
         private string txtCliente;
-
         public string TxtCliente
         {
             get { return txtCliente; }
             set { txtCliente = value; NotifyOfPropertyChange(() => TxtCliente); }
         }
 
-        public void ExecuteFilterView(KeyEventArgs keyArgs)
-        {
-            if (keyArgs.Key == Key.Enter)
-            {
-                //buscar al cliente por la tarjeta
-                ClienteSQL csql = new ClienteSQL();
-                cliente = csql.BuscarClienteByTarjeta(TxtCliente);
-                TxtRazonSocial = cliente.RazonSocial;
-                TxtRuc = cliente.Ruc;
-                TxtDNI = cliente.Dni;
-            }
-        }
-
-
         private BindableCollection<ModoPago> lstModosPago;
-
         public BindableCollection<ModoPago> LstModosPago
         {
             get { return lstModosPago; }
@@ -123,7 +88,6 @@ namespace MadeInHouse.ViewModels.Ventas
         }
 
         private DetalleVenta detalleSeleccionado;
-
         public void SelectedItemChanged(object sender)
         {
             detalleSeleccionado = ((sender as DataGrid).SelectedItem as DetalleVenta);
@@ -182,8 +146,9 @@ namespace MadeInHouse.ViewModels.Ventas
         public string TxtPagaCon
         {
             get { return txtPagaCon; }
-            set {
-                txtPagaCon = value; 
+            set
+            {
+                txtPagaCon = value;
                 NotifyOfPropertyChange(() => TxtPagaCon);
 
                 try
@@ -216,7 +181,6 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             { "Boleta", 0 }, { "Factura", 1 }
         };
-
         public BindableCollection<string> cmbTipoVenta
         {
             get
@@ -244,15 +208,72 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private List<VentaPago> lstPagos;
+        public List<VentaPago> LstPagos
+        {
+            get { return lstPagos; }
+            set { lstPagos = value; NotifyOfPropertyChange(() => LstPagos); }
+        }
+
+        private int selectedValue;
+        public int SelectedValue
+        {
+            get { return selectedValue; }
+            set { selectedValue = value; }
+        }
+
+        private string txtMonto;
+        public string TxtMonto
+        {
+            get { return txtMonto; }
+            set { txtMonto = value; NotifyOfPropertyChange(() => TxtMonto); }
+        }
+        #endregion
+
+        #region Constructor
+        public VentaCajeroRegistrarViewModel()
+        {
+           lstVenta = new List<DetalleVenta>();
+           LstPagos = new List<VentaPago>();
+           lstVentaServicios = new List<DetalleVentaServicio>();
+           cliente = new Cliente();
+           IGV = 0.18;
+           PUNTO = 30;
+           subt = 0;
+           desc = 0;
+           igv_total = 0;
+           total = 0;
+           montopago = 0;
+           ModoPagoSQL mpsql = new ModoPagoSQL();
+           LstModosPago = mpsql.BuscarModosPago();
+           idTienda = new TiendaSQL().obtenerTienda(Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name));
+        }
+        #endregion
+
+        #region Metodos
+        //sacara datos del cliente por tarjeta
+        public void ExecuteFilterView(KeyEventArgs keyArgs)
+        {
+            if (keyArgs.Key == Key.Enter)
+            {
+                //buscar al cliente por la tarjeta
+                ClienteSQL csql = new ClienteSQL();
+                cliente = csql.BuscarClienteByTarjeta(TxtCliente);
+                TxtRazonSocial = cliente.RazonSocial;
+                TxtRuc = cliente.Ruc;
+                TxtDNI = cliente.Dni;
+            }
+        }
+
         public void BuscarServicio()
         {
             MyWindowManager ws = new MyWindowManager();
             ws.ShowWindow(new BuscadorServicioViewModel(this, 2));
         }
-        
+
         public void AgregarDetalle()
         {
-            Producto p = new DetalleVentaSQL().Buscar(TxtProducto);
+            Producto p = new DetalleVentaSQL().Buscar(TxtProducto,idTienda);
             Evaluador ev = new Evaluador();
             int nuevo = 1;
             int cant;
@@ -490,27 +511,6 @@ namespace MadeInHouse.ViewModels.Ventas
             lstVenta = new List<DetalleVenta>();
         }
 
-        private List<VentaPago> lstPagos;
-        public List<VentaPago> LstPagos
-        {
-            get { return lstPagos; }
-            set { lstPagos = value; NotifyOfPropertyChange(() => LstPagos); }
-        }
-
-        private int selectedValue;
-        public int SelectedValue
-        {
-            get { return selectedValue; }
-            set { selectedValue = value; }
-        }
-
-        private string txtMonto;
-        public string TxtMonto
-        {
-            get { return txtMonto; }
-            set { txtMonto = value; NotifyOfPropertyChange(() => TxtMonto); }
-        }
-
         public void AgregarMonto()
         {
             VentaPago vp = new VentaPago();
@@ -699,5 +699,6 @@ namespace MadeInHouse.ViewModels.Ventas
 
             return content;
         }
+        #endregion
     }
 }

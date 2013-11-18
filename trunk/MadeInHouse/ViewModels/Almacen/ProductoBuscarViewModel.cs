@@ -73,6 +73,8 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
             this.ventanaAccion = ventanaAccion;
+            AlmacenSQL almSQL = new AlmacenSQL();
+            idAlmacen = almSQL.obtenerDeposito(ventaRegistrarViewModel.idTienda);
         }
 
         private Ventas.ProformaViewModel proformaViewModel;

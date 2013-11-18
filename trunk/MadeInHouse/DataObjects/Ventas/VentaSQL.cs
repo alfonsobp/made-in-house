@@ -8,6 +8,7 @@ using System.Windows;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.Models.Seguridad;
+using MadeInHouse.DataObjects.Almacen;
 
 namespace MadeInHouse.DataObjects.Ventas
 {
@@ -174,7 +175,6 @@ namespace MadeInHouse.DataObjects.Ventas
 
         public int AgregarSinCliente(Venta v)
         {
-            DBConexion db = new DBConexion();
             int k = 0;
 
             db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,tipoVenta,fechaReg,tipoDocPago,idUsuario)" +
@@ -196,6 +196,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 k = (int)db.cmd.ExecuteScalar();
                 v.IdVenta = k;
                 if (tipo) db.conn.Close();
+                db.cmd.Parameters.Clear();
 
                 //guardar el detalle de la venta
                 DetalleVentaSQL dvm = new DetalleVentaSQL(db);
@@ -410,12 +411,7 @@ namespace MadeInHouse.DataObjects.Ventas
 
         private void descontarDeSector(Venta v, DetalleVenta dv)
         {
-            Usuario u = new Usuario();
-            db.cmd.CommandText = "SELECT * FROM Usuario WHERE idUsuario=@idUsuario";
-            db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
-            SqlDataReader rs = db.cmd.ExecuteReader();
-            rs.Read();
-            int idTienda = Convert.ToInt32(rs["idTienda"].ToString());
+            int idTienda = new TiendaSQL().obtenerTienda(v.IdUsuario);
 
             db.cmd.CommandText = "SELECT * FROM Almacen WHERE idTienda=@idTienda AND tipo=@tipo";
             db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
@@ -423,6 +419,8 @@ namespace MadeInHouse.DataObjects.Ventas
             SqlDataReader rs2 = db.cmd.ExecuteReader();
             rs2.Read();
             int idAlmacen = Convert.ToInt32(rs2["idAlmacen"].ToString());
+            rs2.Close();
+            db.cmd.Parameters.Clear();
 
             db.cmd.CommandText = "UPDATE Sector SET cantidad=cantidad-@cantidad WHERE idAlmacen=@idAlmacen AND idProducto=@idProducto; UPDATE ProductoxTienda SET stockActual=stockActual-@cantidad WHERE idTienda=@idTienda AND idProducto=@idProducto";
             db.cmd.Parameters.AddWithValue("@cantidad", dv.Cantidad);
