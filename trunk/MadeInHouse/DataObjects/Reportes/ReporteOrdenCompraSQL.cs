@@ -11,7 +11,7 @@ using MadeInHouse.Models.Compras;
 
 namespace MadeInHouse.DataObjects.Reportes
 {
-    class OrdenDeCompra
+    public class OrdenDeCompra
     {
         int idOrden;
         string codOrdenCompra;
