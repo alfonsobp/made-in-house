@@ -29,6 +29,8 @@ namespace MadeInHouse.Views.Reportes
         {
 
             InitializeComponent();
+            FechaDesde.Text = "01/01/"+DateTime.Today.Year.ToString();
+            FechaHasta.Text = "31/12/" + DateTime.Today.Year.ToString();
             List<Tienda> lstTienda = new List<Tienda>();
             lstCliente = new List<Cliente>();
             List<Producto> lstProducto = new List<Producto>();
@@ -121,8 +123,8 @@ namespace MadeInHouse.Views.Reportes
         private void Generar(object sender, RoutedEventArgs e)
         {
             ventas = new List<Venta>();
-            DateTime inicio = Convert.ToDateTime(FechaIni.Text);
-            DateTime fin =Convert.ToDateTime(FechaFin.Text);
+            DateTime inicio = Convert.ToDateTime(FechaDesde.Text);
+            DateTime fin =Convert.ToDateTime(FechaHasta.Text);
 
             List<Venta> ventaAux1 = new List<Venta>();
             List<Venta> ventaAux2 = new List<Venta>();
@@ -177,7 +179,7 @@ namespace MadeInHouse.Views.Reportes
                 }
             }
 
-            double suma = 0;
+           
             for (int i = 0; i < ventaAux4.Count; i++)
             {
                 if (ventaAux4[i].FechaReg < inicio || ventaAux4[i].FechaReg > fin)
@@ -188,18 +190,41 @@ namespace MadeInHouse.Views.Reportes
             }
             for (int i = 0; i < ventaAux4.Count; i++)
             {
-                suma += ventaAux4[i].Monto;
+                
                 for (int j = 0; j < lstCliente.Count; j++)
                 {
                     if (lstCliente[j].Id == ventaAux4[i].IdCliente) ventaAux4[i].NombreCliente = lstCliente[j].Nombre;
                 }
             }
 
-            
-            Lista.ItemsSource = ventaAux4;
-            montoTotal.Text = suma + "";
+            List<VentaAux> final = new List<VentaAux>();
 
-
+            for (int i = 0; i < ventaAux4.Count; i++)
+            {
+                final.Add(new VentaAux());
+                final[i].CodTarjeta = ventaAux4[i].CodTarjeta;
+                final[i].Descuento = ventaAux4[i].Descuento;
+                final[i].Estado  = ventaAux4[i].Estado;
+                final[i].EstadoS = ventaAux4[i].EstadoS;
+                final[i].FechaDespacho = ventaAux4[i].FechaDespacho;
+                final[i].FechaMod = ventaAux4[i].FechaMod;
+                final[i].FechaReg = ventaAux4[i].FechaReg;
+                final[i].FechaRegS = ventaAux4[i].FechaRegS;
+                final[i].IdCliente = ventaAux4[i].IdCliente;
+                final[i].IdUsuario = ventaAux4[i].IdUsuario;
+                final[i].IdVenta = ventaAux4[i].IdVenta;
+                final[i].Igv = ventaAux4[i].Igv;
+                final[i].Monto = ventaAux4[i].Monto;
+                final[i].NombreCliente = ventaAux4[i].NombreCliente;
+                final[i].NumDocPago = ventaAux4[i].NumDocPago;
+                final[i].NumDocPagoServicio = ventaAux4[i].NumDocPagoServicio;
+                final[i].PtosGanados = ventaAux4[i].PtosGanados;
+                final[i].TipoDocPago = ventaAux4[i].TipoDocPago;
+                final[i].TipoVenta = ventaAux4[i].TipoVenta;
+                                                                                            
+            }
+                Reportes.reportViewerVentas neva = new reportViewerVentas(final);            
+                neva.Show();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -270,5 +295,162 @@ namespace MadeInHouse.Views.Reportes
 
             MessageBox.Show("archivo excel creado , esta en c:\\Reporte.xls");
         }
+    }
+
+    public class VentaAux
+    {
+        int idVenta;
+        int codTarjeta;
+        double descuento;
+        int estado;
+        DateTime fechaMod;
+
+        string estadoS = "REALIZADA";
+
+        public string EstadoS
+        {
+            get { return estadoS; }
+            set { estadoS = value; }
+        }
+
+        string fechaRegS;
+
+        public string FechaRegS
+        {
+            get { return fechaRegS; }
+            set { fechaRegS = value; }
+        }
+
+        DateTime fechaReg;
+
+        public DateTime FechaReg
+        {
+            get { return fechaReg; }
+            set { fechaReg = value; }
+        }
+
+        DateTime fechaDespacho;
+
+
+
+        string nombreCliente;
+
+        public string NombreCliente
+        {
+            get { return nombreCliente; }
+            set { nombreCliente = value; }
+        }
+
+        public int IdVenta
+        {
+            get { return idVenta; }
+            set { idVenta = value; }
+        }
+
+        string tipoVenta;
+
+        public string TipoVenta
+        {
+            get { return tipoVenta; }
+            set { tipoVenta = value; }
+        }
+
+        public int IdUsuario
+        {
+            get { return idUsuario; }
+            set { idUsuario = value; }
+        }
+
+
+        public string TipoDocPago
+        {
+            get { return tipoDocPago; }
+            set { tipoDocPago = value; }
+        }
+
+        public string NumDocPago
+        {
+            get { return numDocPago; }
+            set { numDocPago = value; }
+        }
+
+
+
+        public double Monto
+        {
+            get { return monto; }
+            set { monto = value; }
+        }
+
+
+        public DateTime FechaDespacho
+        {
+            get { return fechaDespacho; }
+            set { fechaDespacho = value; }
+        }
+
+        int idUsuario;
+        double igv;
+        double monto;
+        string numDocPago;
+        string numDocPagoServicio;
+
+        public string NumDocPagoServicio
+        {
+            get { return numDocPagoServicio; }
+            set { numDocPagoServicio = value; }
+        }
+
+        private int idCliente;
+
+        public int IdCliente
+        {
+            get { return idCliente; }
+            set { idCliente = value; }
+        }
+
+        int ptosGanados;
+        string tipoDocPago;
+
+        public int CodTarjeta
+        {
+            get { return codTarjeta; }
+            set { codTarjeta = value; }
+        }
+
+
+        public double Descuento
+        {
+            get { return descuento; }
+            set { descuento = value; }
+        }
+
+
+        public int Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
+
+
+        public DateTime FechaMod
+        {
+            get { return fechaMod; }
+            set { fechaMod = value; }
+        }
+
+
+        public double Igv
+        {
+            get { return igv; }
+            set { igv = value; }
+        }
+    
+        public int PtosGanados
+        {
+            get { return ptosGanados; }
+            set { ptosGanados = value; }
+        }
+        
     }
 }
