@@ -14,45 +14,78 @@ namespace MadeInHouse.DataObjects.Almacen
 {
     class GuiaDeRemisionSQL
     {
-        public static List<GuiaRemision> BuscarGuiaDeRemision(string codigo, DateTime fechaReg, string tipo)
+        public List<GuiaRemision> BuscarGuiaDeRemision(string codigo, DateTime fechaIni, DateTime fechaFin, string tipo)
         {
 
+            DBConexion db = new DBConexion();
             List<GuiaRemision> lstGuiaDeRemision = new List<GuiaRemision>();
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
+            String where = "";
 
-            cmd.CommandText = "SELECT * FROM GuiaRemision ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
+            if (!String.IsNullOrEmpty(codigo))
+            {
+                    where += " and codGuiaRem = '" + codigo.ToString() + "' ";
+            }
+
+            if (fechaIni != null)
+            {
+
+                where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATE,fechaTraslado,103) ";
+
+            }
+
+            if (fechaFin != null)
+            {
+
+                where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaTraslado,103) ";
+            }
+
+            if (!String.IsNullOrEmpty(tipo))
+            {
+
+                where += " and tipo = '" + tipo.ToString() + "' ";
+            }
+
+
+
+            db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE estado >= 0 " + where;
+            db.cmd.CommandType = CommandType.Text;
+            MessageBox.Show("SELECT * FROM GuiaRemision WHERE estado >= 0 " + where);
 
             try
             {
-                conn.Open();
+                db.conn.Open();
 
-                reader = cmd.ExecuteReader();
-
+                reader = db.cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
 
                     GuiaRemision g = new GuiaRemision();
+                    g.Almacen = new Almacenes();
+
                     g.CodGuiaRem = reader["codGuiaRem"].ToString();
-                    g.DirPartida = reader["dirPartida"].ToString();
-                    g.DirLlegada = reader["dirLlegada"].ToString();
+                    g.Conductor = reader["conductor"].ToString();
+                    g.FechaTraslado = Convert.ToDateTime(reader["fechaTraslado"].ToString());
+                    g.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
                     g.Camion = reader["camion"].ToString();
-                    //g.FechaReg = (DateTime)(reader["fechaReg"]);
                     g.Tipo = reader["tipo"].ToString();
                     g.Observaciones = reader["observaciones"].ToString();
+                    g.Estado = Convert.ToInt32(reader["estado"].ToString());
+
+                    int idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
+                    int idNota = Convert.ToInt32(reader["idNota"].ToString());
+
+                    g.Almacen = getALMfromIDAlm(idAlmacen);
+                    g.Nota = getNOTAfromIDnota(idNota);
                    
                     lstGuiaDeRemision.Add(g);
-                    MessageBox.Show(g.CodGuiaRem + " desde: " + g.DirLlegada);
                 }
 
-                conn.Close();
+                db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
@@ -63,81 +96,73 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public static int agregarGuiaDeRemision(GuiaRemision g)
+        public int agregarGuiaDeRemision(GuiaRemision g)
         {
-
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
+            DBConexion db = new DBConexion();
             int k = 0;
 
-            cmd.CommandText = 
-            //"INSERT INTO GuiaRemision(codGuiaRem,dirPartida,dirLlegada,camion,conductor,fechaReg,tipo,observaciones) " +
-            //"VALUES (@codGuiaRem,@dirPartida,@dirLlegada,@camion,@conductor,@fechaReg,@tipo,@observaciones)";
+            /*MessageBox.Show("\ncod = " + g.CodGuiaRem + "\ncamion = " + g.Camion + "\nconductor = " + g.Conductor + "\nfechaR = " + g.FechaReg +
+                            "\nfechaT = " + g.FechaTraslado + "\ntipo = " + g.Tipo + "\nobs = " + g.Observaciones + "\nidAlm = " + g.Almacen.IdAlmacen +
+                            "\nidNota = " + g.Nota.IdNota);*/
 
-            "INSERT INTO GuiaRemision(codGuiaRem,dirPartida,dirLlegada) " +
-            "VALUES (@codGuiaRem,@dirPartida,@dirLlegada)";
+            db.cmd.CommandText = 
+            "INSERT INTO GuiaRemision(codGuiaRem,camion,conductor,fechaReg,fechaTraslado,tipo,observaciones,estado,idAlmacen,idNota) " +
+            "VALUES (@codGuiaRem,@camion,@conductor,@fechaReg,@fechaTraslado,@tipo,@observaciones,@estado,@idAlmacen,@idNota)";
 
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
 
-            cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
-            cmd.Parameters.AddWithValue("@dirPartida", g.DirPartida);
-            cmd.Parameters.AddWithValue("@dirLlegada", g.DirLlegada);
-            cmd.Parameters.AddWithValue("@camion", g.Camion);
-            cmd.Parameters.AddWithValue("@conductor", g.Conductor);
-            //cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
-            //cmd.Parameters.AddWithValue("@tipo", g.Tipo);
-            //cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
+            db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
+            db.cmd.Parameters.AddWithValue("@camion", g.Camion);
+            db.cmd.Parameters.AddWithValue("@conductor", g.Conductor);
+            db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
+            db.cmd.Parameters.AddWithValue("@fechaTraslado", g.FechaTraslado);
+            db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
+            db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
+            db.cmd.Parameters.AddWithValue("@estado", 1);
+            db.cmd.Parameters.AddWithValue("@idAlmacen", g.Almacen.IdAlmacen);
+            db.cmd.Parameters.AddWithValue("@idNota", g.Nota.IdNota);
+
 
             try
             {
-                conn.Open();
+                db.conn.Open();
 
 
-                k = cmd.ExecuteNonQuery();
+                k = db.cmd.ExecuteNonQuery();
 
-                conn.Close();
+                db.conn.Close();
 
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
-
-
             return k;
         }
 
-        public static int editarGuiaDeRemision(GuiaRemision g)
+        public int editarGuiaDeRemision(GuiaRemision g)
         {
-
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
+            DBConexion db = new DBConexion();
             int k = 0;
 
-            cmd.CommandText = "UPDATE GuiaRemision  " +
+            db.cmd.CommandText = "UPDATE GuiaRemision  " +
             "SET dirPartida= @dirPartida,dirLlegada= @dirLlegada,camion= @camion,conductor= @conductor,fechaReg= @fechaReg,tipo= @tipo,observaciones= @observaciones " +
             " WHERE codGuiaRem= @codGuiaRem ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
 
-            cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
-            cmd.Parameters.AddWithValue("@dirPartida", g.DirPartida);
-            cmd.Parameters.AddWithValue("@dirLlegada", g.DirLlegada);
-            cmd.Parameters.AddWithValue("@camion", g.Camion);
-            cmd.Parameters.AddWithValue("@conductor", g.Conductor);
-            cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
-            cmd.Parameters.AddWithValue("@tipo", g.Tipo);
-            cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
+            db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
+            db.cmd.Parameters.AddWithValue("@camion", g.Camion);
+            db.cmd.Parameters.AddWithValue("@conductor", g.Conductor);
+            db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
+            db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
+            db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
 
             try
             {
-                conn.Open();
+                db.conn.Open();
 
-                k = cmd.ExecuteNonQuery();
+                k = db.cmd.ExecuteNonQuery();
 
-                conn.Close();
+                db.conn.Close();
 
             }
 
@@ -149,5 +174,30 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
 
         }
+
+        public Almacenes getALMfromIDAlm(int id)
+        {
+            List<Almacenes> list = new AlmacenSQL().BuscarAlmacen();
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].IdAlmacen == id)
+                {
+                    return list[i];
+                }
+
+            return null;
+        }
+
+        public NotaIS getNOTAfromIDnota(int id)
+        {
+            List<NotaIS> list = new NotaISSQL().BuscarNotas();
+            for (int i = 0; i < list.Count; i++)
+                if (list[i].IdNota == id)
+                {
+                    return list[i];
+                }
+
+            return null;
+        }
+
     }
 }

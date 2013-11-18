@@ -1,5 +1,6 @@
 ﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"  x:Class="MadeInHouse.Views.Almacen.BuscarAlmacenView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
@@ -36,22 +37,19 @@
                 </ToolBar>
                 <GroupBox Header="Criterios de busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="144" Width="580">
                     <Grid Margin="0,0,0,-218">
-                        <Label Content="Codigo" HorizontalAlignment="Left" Margin="298,10,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="398,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
-                        <Label Content="Nombre" HorizontalAlignment="Left" Margin="17,11,0,0" VerticalAlignment="Top" Width="94"/>
-                        <TextBox HorizontalAlignment="Left" Height="23" Margin="117,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
-                        <Label Content="Ciudad:" HorizontalAlignment="Left" Margin="17,51,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="117,51,0,0" VerticalAlignment="Top" Width="160"/>
-                        <Label Content="Distrito:" HorizontalAlignment="Left" Margin="17,89,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="117,89,0,0" VerticalAlignment="Top" Width="160"/>
+                        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="16,32,0,0" VerticalAlignment="Top" Width="94"/>
+                        <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="110,35,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160"/>
 
-                        <DataGrid Margin="10,140,8,22">
+                        <DataGrid x:Name="LstAlmacenes" AutoGenerateColumns="False" Margin="10,140,8,22"
+                                  SelectedItem="{Binding Path=AlmSelect}" cal:Message.Attach="[Event MouseDoubleClick]=[Action SelectedItemChanged]">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="110" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                                <DataGridTextColumn Width="440" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Direccion"/>
+                                <DataGridTextColumn Width="110" Binding="{Binding Path=IdAlmacen}" Header="Codigo"/>
+                                <DataGridTextColumn Width="140" Binding="{Binding Path=Nombre}" Header="Nombre"/>
+                                <DataGridTextColumn Width="340" Binding="{Binding Path=Direccion}" Header="Direccion"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button Margin="298,58,210,0" VerticalAlignment="Top" Width="60">
+                        <Button x:Name="BuscarAlmacenes" 
+                                Margin="298,33,210,0" VerticalAlignment="Top" Width="60">
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                         </Button>
 

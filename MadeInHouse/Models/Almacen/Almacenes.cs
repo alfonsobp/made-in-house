@@ -112,6 +112,14 @@ namespace MadeInHouse.Models.Almacen
             set { administrador = value; }
         }
 
+        private Tienda objTienda;
+        public Tienda ObjTienda
+        {
+            get { return objTienda; }
+            set { objTienda = value; }
+        }
+
+
         private string direccion;
 
         public string Direccion

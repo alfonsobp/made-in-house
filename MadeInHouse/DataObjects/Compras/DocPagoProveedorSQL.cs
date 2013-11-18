@@ -244,7 +244,6 @@ namespace MadeInHouse.DataObjects.Compras
 
         public int getIDfromCOD(string cod)
         {
-            MessageBox.Show("Inside getIDfromCOD: " + cod);
             int finalVal = 0, factor = 1;
             int last = cod.Length - 1;
 

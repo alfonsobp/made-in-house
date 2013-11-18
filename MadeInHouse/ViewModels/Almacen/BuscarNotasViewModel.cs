@@ -10,43 +10,56 @@ using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class BuscarNotasViewModel : PropertyChangedBase
+    class BuscarNotasViewModel : Screen
     {
         private MyWindowManager win = new MyWindowManager();
-        NotaISSQL ntgw = new NotaISSQL();
 
-        private List<NotaIS> lstNotaIs = new List<NotaIS>();
-
-        public List<NotaIS> LstNotaIs
+        public BuscarNotasViewModel()
         {
-            get { return lstNotaIs;}
-            set { lstNotaIs = value;
-            NotifyOfPropertyChange("LstNotaIS");
-            }
         }
 
-        private NotaIS notaSel = new NotaIS();
+        MantenerGuiaDeRemisionViewModel g;
+        public BuscarNotasViewModel(MantenerGuiaDeRemisionViewModel g)
+        {
+            this.g = g;
+        }
 
+        private NotaIS notaSel;
         public NotaIS NotaSel
         {
             get { return notaSel; }
-            set { notaSel = value;
-            NotifyOfPropertyChange("NotaSel");
-            }
+            set { notaSel = value; NotifyOfPropertyChange("NotaSel"); }
         }
 
-        public BuscarNotasViewModel() {
-
-            LstNotaIs = ntgw.BuscarNotas();
-        }
-
-        public void Buscar(){
-            LstNotaIs = ntgw.BuscarNotas();
-        }
-
-        public void Acciones(object sender)
+        private List<NotaIS> lstNotaIs;
+        public List<NotaIS> LstNotaIs
         {
+            get { return lstNotaIs; }
+            set { lstNotaIs = value; NotifyOfPropertyChange("LstNotaIs"); }
+        }
 
+        public void AbrirMantenerNotaDeIngreso()
+        {
+            win.ShowWindow(new Almacen.MantenerNotaDeIngresoViewModel());
+        }
+
+        public void SelectedItemChanged()
+        {
+            if (NotaSel != null)
+            {
+
+                if (g != null)
+                {
+                    g.Nota = NotaSel;
+                    TryClose();
+                }
+            }
+
+        }
+
+        public void Buscar()
+        {
+            LstNotaIs = new NotaISSQL().BuscarNotas();
         }
 
     }
