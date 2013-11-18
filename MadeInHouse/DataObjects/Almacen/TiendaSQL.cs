@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
 using System.Data;
+using System.Windows;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -151,5 +152,44 @@ namespace MadeInHouse.DataObjects.Almacen
             if (db.cmd.Transaction == null) db.conn.Close();
             return idTienda;
         }
+
+        public Tienda obtenerTiendaPorId(int idTienda)
+        {
+            Tienda t = null;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    t = new Tienda();
+
+                    t.IdTienda = Int32.Parse(reader["idTienda"].ToString());
+                    t.Nombre = reader["nombre"].ToString();
+                    t.Direccion = reader["direccion"].ToString();
+                    t.Administrador = reader["administrador"].ToString();
+                    t.Telefono = reader["telefono"].ToString();
+                    t.IdUbigeo = Int32.Parse(reader["idUbigeo"].ToString());
+                    t.Estado = Int32.Parse(reader["estado"].ToString());
+                    t.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
+                }
+                else
+                    conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return t;
+        }
+
     }
 }

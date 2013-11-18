@@ -105,6 +105,7 @@
     <Compile Include="DataObjects\Almacen\AbastecimientoSQL.cs" />
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\NotaISSQL.cs" />
+    <Compile Include="DataObjects\Almacen\OrdenDespachoSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxSolicitudAbSQL.cs" />
     <Compile Include="DataObjects\Almacen\ProductoxTiendaSQL.cs" />
     <Compile Include="DataObjects\Almacen\UbicacionSQL.cs" />
@@ -145,6 +146,7 @@
     <Compile Include="Models\Almacen\EntityManager.cs" />
     <Compile Include="Models\Almacen\EntityName.cs" />
     <Compile Include="Models\Almacen\MotivoISManager.cs" />
+    <Compile Include="Models\Almacen\OrdenDespacho.cs" />
     <Compile Include="Models\Almacen\ProductoxNotaIS.cs" />
     <Compile Include="Models\Almacen\Prueba.cs" />
     <Compile Include="Models\Compras\Consolidado.cs" />
@@ -229,10 +231,12 @@
     </Compile>
     <Compile Include="Validacion\Error.cs" />
     <Compile Include="Validacion\Evaluador.cs" />
+    <Compile Include="ViewModels\Almacen\BuscarOrdenDespachoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarTiendaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\BuscarZonaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerMotivoViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\MantenerOrdenDespachoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerSubLineaProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerTiendaViewModel.cs" />
     <Compile Include="ViewModels\Almacen\MantenerUnidadMedidaViewModel.cs" />
@@ -345,6 +349,9 @@
     <Compile Include="Views\Almacen\BuscarNotasView.xaml.cs">
       <DependentUpon>BuscarNotasView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Almacen\BuscarOrdenDespachoView.xaml.cs">
+      <DependentUpon>BuscarOrdenDespachoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Almacen\BuscarTiendaView.xaml.cs">
       <DependentUpon>BuscarTiendaView.xaml</DependentUpon>
     </Compile>
@@ -368,6 +375,9 @@
     </Compile>
     <Compile Include="Views\Almacen\MantenerMotivoView.xaml.cs">
       <DependentUpon>MantenerMotivoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Almacen\MantenerOrdenDespachoView.xaml.cs">
+      <DependentUpon>MantenerOrdenDespachoView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\MantenerSubLineaProductoView.xaml.cs">
       <DependentUpon>MantenerSubLineaProductoView.xaml</DependentUpon>
@@ -683,6 +693,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Almacen\BuscarOrdenDespachoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Almacen\BuscarTiendaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -712,6 +726,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\MantenerNotaDeIngresoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Almacen\MantenerOrdenDespachoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
