@@ -85,7 +85,6 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
-                MessageBox.Show(from + where);
 
                 while (reader.Read())
                 {

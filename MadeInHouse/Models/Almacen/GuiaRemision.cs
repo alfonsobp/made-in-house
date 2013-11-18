@@ -58,8 +58,6 @@ namespace MadeInHouse.Models.Almacen
             set { fechaTraslado = value; }
         }
 
-
-
         private string tipo;
 
         public string Tipo
