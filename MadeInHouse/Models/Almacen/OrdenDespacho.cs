@@ -11,11 +11,17 @@ namespace MadeInHouse.Models.Almacen
     {
 
         int idOrdenDespacho;
-
         public int IdOrdenDespacho
         {
             get { return idOrdenDespacho; }
             set { idOrdenDespacho = value; }
+        }
+
+        string codOrden;
+        public string CodOrden
+        {
+            get { return codOrden; }
+            set { codOrden = value; }
         }
 
         DateTime fechaDespacho;

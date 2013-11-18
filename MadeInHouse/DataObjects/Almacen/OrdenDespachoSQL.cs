@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.ViewModels.Almacen;
 using MadeInHouse.DataObjects.Ventas;
 using System.Data.SqlClient;
 using System.Windows;
@@ -63,8 +64,8 @@ namespace MadeInHouse.DataObjects.Almacen
             List<OrdenDespacho> listaOrdenDespacho = null;
 
 
-            string where = "WHERE 1=1 ";
-            string from = "SELECT o.* FROM OrdenDespacho o";
+            string where = "WHERE estado >= 0 ";
+            string from = "SELECT * FROM OrdenDespacho ";
 
             if (idOrdenDespacho > 0)
             {
@@ -84,13 +85,18 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
+                MessageBox.Show(from + where);
 
                 while (reader.Read())
                 {
                     if (listaOrdenDespacho == null) listaOrdenDespacho = new List<OrdenDespacho>();
                     OrdenDespacho p = new OrdenDespacho();
+
                     p.IdOrdenDespacho = Int32.Parse(reader["idOrdenDespacho"].ToString());
-                    p.Venta = (new VentaSQL()).buscarVentaPorId(Int32.Parse(reader["idVenta"].ToString()));//JALAR VENTA
+
+                    int id = Int32.Parse(reader["idVenta"].ToString());
+                    p.Venta = new MantenerGuiaDeRemisionViewModel().getVentafromID(id);
+
                     p.Estado = Int32.Parse(reader["estado"].ToString());
                     p.FechaDespacho = DateTime.Parse(reader["fechaDespacho"].ToString());
 

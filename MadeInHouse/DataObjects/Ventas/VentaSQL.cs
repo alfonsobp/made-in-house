@@ -542,7 +542,7 @@ namespace MadeInHouse.DataObjects.Ventas
         }
 
 
-        internal Venta buscarVentaPorId(int idVenta)
+        public Venta buscarVentaPorId(int idVenta)
         {
                         Venta v = null;
 
@@ -559,12 +559,12 @@ namespace MadeInHouse.DataObjects.Ventas
                 {
                     v = new Venta();
 
-                    v.IdUsuario = Int32.Parse(reader["idVenta"].ToString());
+                    v.IdVenta = Int32.Parse(reader["idVenta"].ToString());
                     v.TipoDocPago = reader["tipoDocPago"].ToString();
                     v.Monto = Double.Parse(reader["monto"].ToString());
                     v.Descuento = Double.Parse(reader["descuento"].ToString());
                     v.Igv = Double.Parse(reader["IGV"].ToString());
-                    v.PtosGanados = Int32.Parse(reader["ptsGanados"].ToString());
+                    v.PtosGanados = Int32.Parse(reader["ptosGanados"].ToString());
                     v.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     v.Estado = Int32.Parse(reader["estado"].ToString());
                     v.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());

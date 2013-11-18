@@ -101,6 +101,12 @@ namespace MadeInHouse.Models.Almacen
             set { nota = value; }
         }
 
+        private OrdenDespacho orden;
 
+        public OrdenDespacho Orden
+        {
+            get { return orden; }
+            set { orden = value; }
+        }
     }
 }

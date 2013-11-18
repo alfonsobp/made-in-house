@@ -53,8 +53,8 @@
                     <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
                                         Height="214" VerticalAlignment="Top" Margin="10,120,10,0" AutoGenerateColumns="false">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=idOrdenDespacho}" Width="120" Header="Código despacho"/>
-                            <DataGridTextColumn Binding="{Binding Path=idVenta}" Width="120" Header="Código venta"/>
+                            <DataGridTextColumn Binding="{Binding Path=IdOrdenDespacho}" Width="120" Header="Código despacho"/>
+                            <DataGridTextColumn Binding="{Binding Path=Venta.IdVenta}" Width="120" Header="Código venta"/>
                             <DataGridTextColumn Binding="{Binding Path=FechaDespacho}" Width="140" Header="Fecha"/>
                             <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Estado" CanUserReorder="False" Width="65" />
 

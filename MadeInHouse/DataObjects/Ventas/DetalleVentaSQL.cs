@@ -109,5 +109,37 @@ namespace MadeInHouse.DataObjects.Ventas
                 MessageBox.Show(e.StackTrace.ToString());
             }
         }
+
+        public List<DetalleVenta> BuscarTodos()
+        {
+            List<DetalleVenta> lista = new List<DetalleVenta>();
+
+            db.cmd.CommandText = "select * from DetalleVenta ";
+
+            try
+            {
+                if (tipo) db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    DetalleVenta d = new DetalleVenta();
+
+                    d.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
+                    d.IdDetalleV = Convert.ToInt32(reader["idVenta"].ToString());
+                    d.Descuento = Convert.ToDouble(reader["descuento"].ToString());
+                    d.Cantidad = Convert.ToInt32(reader["cantidad"].ToString());
+
+                    lista.Add(d);
+                }
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+            return lista;
+        
+        }
     }
 }
