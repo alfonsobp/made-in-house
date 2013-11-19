@@ -89,9 +89,10 @@ namespace MadeInHouse.DataObjects.Ventas
 
         public void Agregar(Venta v, DetalleVenta dv)
         {
-            db.cmd.CommandText = "INSERT INTO DetalleVenta(cantidad,descuento,idVenta,idProducto) VALUES(@cantidad,@descuento,@idVenta,@idProducto)";
+            db.cmd.CommandText = "INSERT INTO DetalleVenta(cantidad,descuento,precio,idVenta,idProducto) VALUES(@cantidad,@descuento,@precio,@idVenta,@idProducto)";
             db.cmd.Parameters.AddWithValue("@cantidad", dv.Cantidad);
             db.cmd.Parameters.AddWithValue("@descuento", dv.Descuento);
+            db.cmd.Parameters.AddWithValue("@precio", dv.Precio);
             db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
             db.cmd.Parameters.AddWithValue("@idProducto", dv.IdProducto);
 

@@ -509,25 +509,47 @@ namespace MadeInHouse.ViewModels.Ventas
             desc = 0;
             igv_total = 0;
             lstVenta = new List<DetalleVenta>();
+            lstVentaServicios = new List<DetalleVentaServicio>();
+            lstPagos = new List<VentaPago>();
         }
 
         public void AgregarMonto()
         {
-            VentaPago vp = new VentaPago();
-            vp.IdModoPago = selectedValue;
-            vp.Monto = Double.Parse(TxtMonto);
-            vp.Nombre = selectedValue.ToString();
-
-            montopago += Double.Parse(TxtMonto);
-            TxtPagaCon = montopago.ToString();
-
-            List<VentaPago> aux = new List<VentaPago>();
-            foreach (VentaPago item in LstPagos)
+            if (ValidaMonto())
             {
-                aux.Add(item);
+                VentaPago vp = new VentaPago();
+                vp.IdModoPago = selectedValue;
+                vp.Monto = Double.Parse(TxtMonto);
+                vp.Nombre = selectedValue.ToString();
+
+                montopago += Double.Parse(TxtMonto);
+                TxtPagaCon = montopago.ToString();
+
+                List<VentaPago> aux = new List<VentaPago>();
+                foreach (VentaPago item in LstPagos)
+                {
+                    aux.Add(item);
+                }
+                aux.Add(vp);
+                LstPagos = aux;
             }
-            aux.Add(vp);
-            LstPagos = aux;
+        }
+
+        private bool ValidaMonto()
+        {
+            Evaluador e = new Evaluador();
+            if (String.IsNullOrEmpty(TxtMonto) && !e.esNumeroReal(TxtMonto))
+            {
+                MessageBox.Show("No ha ingresado un valor correcto en el Monto de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (selectedValue == 0)
+            {
+                MessageBox.Show("No ha seleccionado una forma de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
         public void GenerarPDFBoletaProductos(Venta v)
