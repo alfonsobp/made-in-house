@@ -177,7 +177,7 @@ namespace MadeInHouse.DataObjects.Almacen
             int k = 0;
 
             db.cmd.CommandText = "UPDATE GuiaRemision  " +
-            "SET estado= @estado, dirPartida= @dirPartida,dirLlegada= @dirLlegada,camion= @camion,conductor= @conductor,fechaReg= @fechaReg,tipo= @tipo,observaciones= @observaciones " +
+            "SET estado= @estado, camion= @camion,conductor= @conductor,fechaReg= @fechaReg,tipo= @tipo,observaciones= @observaciones " +
             " WHERE codGuiaRem= @codGuiaRem ";
 
             db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
