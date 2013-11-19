@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.Almacen
 {
-    class ProductoxAlmacen
+    class ProductoxTienda
     {
         private int idAlmacen;
 
@@ -47,6 +47,15 @@ namespace MadeInHouse.Models.Almacen
             get { return stockActual; }
             set { stockActual = value; }
         }
+
+        private int stockPendiente;
+
+        public int StockPendiente
+        {
+            get { return stockPendiente; }
+            set { stockPendiente = value; }
+        }
+
         private int stockMin;
 
         public int StockMin

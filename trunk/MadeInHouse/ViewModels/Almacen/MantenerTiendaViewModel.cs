@@ -73,9 +73,9 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        private List<ProductoxAlmacen> lstProdAgregados;
+        private List<ProductoxTienda> lstProdAgregados;
 
-        public List<ProductoxAlmacen> LstProdAgregados
+        public List<ProductoxTienda> LstProdAgregados
         {
             get { return lstProdAgregados; }
             set { lstProdAgregados = value; }
@@ -304,9 +304,9 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        private List<ProductoxAlmacen> lstProductos;
+        private List<ProductoxTienda> lstProductos;
 
-        public List<ProductoxAlmacen> LstProductos
+        public List<ProductoxTienda> LstProductos
         {
             get { return lstProductos; }
             set
@@ -521,9 +521,9 @@ namespace MadeInHouse.ViewModels.Almacen
             set { selectedIndex = value; }
         }
 
-        private ProductoxAlmacen selectedItem;
+        private ProductoxTienda selectedItem;
 
-        public ProductoxAlmacen SelectedItem
+        public ProductoxTienda SelectedItem
         {
             get { return selectedItem; }
             set { selectedItem = value; }
@@ -594,9 +594,9 @@ namespace MadeInHouse.ViewModels.Almacen
 
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
             CmbDpto = uSQL.BuscarDpto();
-            LstProductos = new List<ProductoxAlmacen>();
-            LstProdAgregados = new List<ProductoxAlmacen>();
-            //LstProductos = pxaSQL.BuscarProductoxAlmacen();
+            LstProductos = new List<ProductoxTienda>();
+            LstProdAgregados = new List<ProductoxTienda>();
+            //LstProductos = pxaSQL.BuscarProductoxTienda();
             Content = "Generar distribución";
 
 
@@ -654,7 +654,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
-                ProductoxAlmacen pxa;
+                ProductoxTienda pxa;
                 List<Producto> lstAux = null;
                 lstAux = pxaSQL.BuscarProducto(TxtCodProducto);
 
@@ -664,7 +664,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     if ((pxa = LstProductos.Find(x => x.IdProducto == lstAux[0].IdProducto)) == null)
                     {
 
-                        pxa = new ProductoxAlmacen();
+                        pxa = new ProductoxTienda();
                         pxa.CodProducto = lstAux[0].CodigoProd;
                         pxa.IdProducto = lstAux[0].IdProducto;
                         pxa.Nombre = lstAux[0].Nombre;
@@ -674,7 +674,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.PrecioVenta = float.Parse(txtPrecioV);
                         pxa.Vigente = (ChkVigente == true) ? 1 : 0;
                         LstProductos.Add(pxa);
-                        LstProductos = new List<ProductoxAlmacen>(LstProductos);
+                        LstProductos = new List<ProductoxTienda>(LstProductos);
                     }
                     else
                     {
@@ -694,7 +694,7 @@ namespace MadeInHouse.ViewModels.Almacen
             if (SelectedItem != null)
             {
                 LstProductos.Remove(SelectedItem);
-                LstProductos = new List<ProductoxAlmacen>(LstProductos);
+                LstProductos = new List<ProductoxTienda>(LstProductos);
                 Limpiar();
             }
         }
@@ -712,7 +712,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 while (dt.Read())
                 {
 
-                    ProductoxAlmacen pxa = new ProductoxAlmacen();
+                    ProductoxTienda pxa = new ProductoxTienda();
                     Producto pAux = (lstAux.Find(x => x.CodigoProd == dt["Codigo"].ToString()));
                     if (pAux == null)
                     {
@@ -750,7 +750,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     {
                         LstProductos.Add(LstProdAgregados[i]);
                     }
-                    LstProductos = new List<ProductoxAlmacen>(LstProductos);
+                    LstProductos = new List<ProductoxTienda>(LstProductos);
                 }
 
 
@@ -760,7 +760,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void SelectedItemChanged(object sender)
         {
 
-            SelectedItem = ((sender as DataGrid).SelectedItem as ProductoxAlmacen);
+            SelectedItem = ((sender as DataGrid).SelectedItem as ProductoxTienda);
             if (SelectedItem != null)
             {
                 TxtCodProducto = SelectedItem.CodProducto;

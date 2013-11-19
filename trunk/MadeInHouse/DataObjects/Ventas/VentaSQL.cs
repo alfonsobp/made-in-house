@@ -539,7 +539,6 @@ namespace MadeInHouse.DataObjects.Ventas
             else return k + k2;
         }
 
-
         public Venta buscarVentaPorId(int idVenta)
         {
                         Venta v = null;

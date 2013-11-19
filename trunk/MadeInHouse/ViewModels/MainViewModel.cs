@@ -15,6 +15,7 @@ using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.RRHH;
 using MadeInHouse.Views.Reportes;
 using System.Diagnostics;
+using MadeInHouse.ViewModels.Ventas;
 
 namespace MadeInHouse.ViewModels
 {
@@ -136,22 +137,14 @@ namespace MadeInHouse.ViewModels
         }
 
         //Ventana Externa: 1.11
-        public void AbrirSolicitudAbDetalle()
-        {
-            CargarAccesosRol(out accVentana);
-            if (accVentana[11] == 1)
-                _windowManager.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
-        }
-
-        //Ventana Externa: 1.12
         public void AbrirMovimientos()
         {
             CargarAccesosRol(out accVentana);
-            if (accVentana[12] == 1)
+            if (accVentana[11] == 1)
                 _windowManager.ShowWindow(new Almacen.ProductoMovimientosViewModel());
         }
 		
-		//Ventana Externa: 1.13
+		//Ventana Externa: 1.12
         public void AbrirAnularDocumentos()
         {
 			CargarAccesosRol(out accVentana);
@@ -357,7 +350,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[31] == 1)
-                _windowManager.ShowWindow(new Ventas.DevolucionesBuscarViewModel());
+                _windowManager.ShowWindow(new DevolucionesBuscarViewModel(_windowManager));
         }
 
         //Ventana Externa: 3.8
@@ -365,7 +358,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[32] == 1)
-                _windowManager.ShowWindow(new Ventas.DevolucionesRegistrarViewModel());
+                _windowManager.ShowWindow(new Ventas.DevolucionesRegistrarViewModel(_windowManager, null, 0));
         }
 
         //Ventana Externa: 3.9
@@ -764,7 +757,7 @@ namespace MadeInHouse.ViewModels
         //Ventana Externa: 1.11
         public void AbrirSolicitudAbDetalle()
         {
-            win.ShowWindow(new Almacen.SolicitudAbDetalleViewModel());
+            win.ShowWindow(new Almacen.SolicitudAbAtenderViewModel());
         }
 
         //Ventana Externa: 1.12

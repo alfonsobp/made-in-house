@@ -69,6 +69,7 @@ namespace MadeInHouse.ViewModels
 
         public void enter()
         {
+            UsuarioSQL userSQL = new UsuarioSQL();
             Usuario u = new Usuario();
 
             //INGRESO POR DEFECTO COMO USUARIO ADMIN
@@ -76,7 +77,7 @@ namespace MadeInHouse.ViewModels
             {
                 AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado("ADMIN").IdUsuario, "Database");
+                IIdentity usuario = new GenericIdentity("" + userSQL.buscarUsuarioPorCodEmpleado("ADMIN").IdUsuario, "Database");
                 
 
                 string[] rol = { "idRolAllenar", "otrorol" };
@@ -94,7 +95,7 @@ namespace MadeInHouse.ViewModels
                 int verificado;
 
                 verificado = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
-                u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser);
+                u = userSQL.buscarUsuarioPorCodEmpleado(TxtUser);
                 //0 = Incorrecto
                 //1 = Correcto
 
@@ -104,7 +105,7 @@ namespace MadeInHouse.ViewModels
                     {
                         AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                        IIdentity usuario = new GenericIdentity("" + DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
+                        IIdentity usuario = new GenericIdentity("" + userSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
 
                         string[] rol = { "idRolAllenar", "otrorol" };
 

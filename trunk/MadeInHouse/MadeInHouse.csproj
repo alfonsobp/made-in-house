@@ -134,6 +134,7 @@
     <Compile Include="DataObjects\Seguridad\RolxAccVentanaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleProductoVentaSQL.cs" />
     <Compile Include="DataObjects\Ventas\DetalleVentaSQL.cs" />
+    <Compile Include="DataObjects\Ventas\DevolucionSQL.cs" />
     <Compile Include="DataObjects\Ventas\ModoPagoSQL.cs" />
     <Compile Include="DataObjects\Ventas\VentaSQL.cs" />
     <Compile Include="Dictionary\Correo.cs" />
@@ -200,6 +201,9 @@
     <Compile Include="Models\Ventas\DetalleProductoVenta.cs" />
     <Compile Include="Models\Ventas\DetalleVenta.cs" />
     <Compile Include="Models\Ventas\DetalleVentaServicio.cs" />
+    <Compile Include="Models\Ventas\Devolucion.cs" />
+    <Compile Include="Models\Ventas\DevolucionModel.cs" />
+    <Compile Include="Models\Ventas\DevolucionProducto.cs" />
     <Compile Include="Models\Ventas\ModoPago.cs" />
     <Compile Include="Models\Ventas\Proforma.cs" />
     <Compile Include="Models\Ventas\Venta.cs" />
@@ -255,7 +259,7 @@
     <Compile Include="ViewModels\Almacen\PosicionProductoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\ProductoMovimientosViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbConsolidarViewModel.cs" />
-    <Compile Include="ViewModels\Almacen\SolicitudAbDetalleViewModel.cs" />
+    <Compile Include="ViewModels\Almacen\SolicitudAbAtenderViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbListadoViewModel.cs" />
     <Compile Include="ViewModels\Almacen\SolicitudAbRegistrarViewModel.cs" />
     <Compile Include="ViewModels\Almacen\StockMinListadoViewModel.cs" />
@@ -431,8 +435,8 @@
     <Compile Include="Views\Almacen\SolicitudAbConsolidarView.xaml.cs">
       <DependentUpon>SolicitudAbConsolidarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\SolicitudAbDetalleView.xaml.cs">
-      <DependentUpon>SolicitudAbDetalleView.xaml</DependentUpon>
+    <Compile Include="Views\Almacen\SolicitudAbAtenderView.xaml.cs">
+      <DependentUpon>SolicitudAbAtenderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Almacen\StockMinListadoView.xaml.cs">
       <DependentUpon>StockMinListadoView.xaml</DependentUpon>
@@ -799,7 +803,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Almacen\SolicitudAbDetalleView.xaml">
+    <Page Include="Views\Almacen\SolicitudAbAtenderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

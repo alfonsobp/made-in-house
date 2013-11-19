@@ -380,7 +380,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (string.Compare(selectedMotivo, "Devolucion", true) == 0) {
             
                     MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-                    wm.ShowWindow(new DevolucionesBuscarViewModel(this,1));
+                    wm.ShowWindow(new DevolucionesBuscarViewModel(wm, this,1));
                 
                 }
                 else {

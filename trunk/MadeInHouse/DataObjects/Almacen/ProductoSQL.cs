@@ -353,10 +353,10 @@ namespace MadeInHouse.DataObjects.Almacen
 
         #region Almacen
 
-        public List<ProductoxAlmacen> BuscarProductoxTienda(int idTienda = -1)
+        public List<ProductoxTienda> BuscarProductoxTienda(int idTienda = -1)
         {
-            List<ProductoxAlmacen> lstPxa = null;
-            ProductoxAlmacen pxa = null;
+            List<ProductoxTienda> lstPxa = null;
+            ProductoxTienda pxa = null;
             string where = " WHERE 1=1";
 
 
@@ -373,10 +373,10 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
-                lstPxa = new List<ProductoxAlmacen>();
+                lstPxa=new List<ProductoxTienda>();
                 while (reader.Read())
                 {
-                    pxa = new ProductoxAlmacen();
+                    pxa = new ProductoxTienda();
                     pxa.CodProducto = reader["codProducto"].ToString();
                     pxa.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : Int32.Parse(reader["idTienda"].ToString());
                     pxa.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
@@ -405,11 +405,11 @@ namespace MadeInHouse.DataObjects.Almacen
             return lstPxa;
         }
 
-        public List<ProductoxAlmacen> BuscarProductoxAlmacen(int idAlmacen, int idProducto)
+        public List<ProductoxTienda> BuscarProductoxTienda(int idTienda, int idProducto)
         {
-            List<ProductoxAlmacen> prodAlmacen = null;
+            List<ProductoxTienda> prodAlmacen = null;
 
-            if (idAlmacen > 0)
+            if (idTienda > 0)
             {
                 string where = "";
                 if (idProducto > 0)
@@ -417,8 +417,8 @@ namespace MadeInHouse.DataObjects.Almacen
                     where = " AND idProducto = @idProducto ";
                     db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
                 }
-                db.cmd.CommandText = " SELECT * FROM AlmacenxProducto WHERE idAlmacen = @idAlmacen " + where;
-                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+                db.cmd.CommandText = " SELECT * FROM ProductoxTienda WHERE idTienda = @idTienda " + where;
+                db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
 
                 try
                 {
@@ -427,15 +427,17 @@ namespace MadeInHouse.DataObjects.Almacen
 
                     while (reader.Read())
                     {
-                        if (prodAlmacen == null) prodAlmacen = new List<ProductoxAlmacen>();
-                        ProductoxAlmacen prod = new ProductoxAlmacen();
-                        int posIdAlmacen = reader.GetOrdinal("idAlmacen");
+                        if (prodAlmacen == null) prodAlmacen = new List<ProductoxTienda>();
+                        ProductoxTienda prod = new ProductoxTienda();
+                        int posIdAlmacen = reader.GetOrdinal("idTienda");
                         int posIdProducto = reader.GetOrdinal("idProducto");
                         int posStockMin = reader.GetOrdinal("stockMin");
+                        int posStockMax = reader.GetOrdinal("stockMax");
                         int posStock = reader.GetOrdinal("stockActual");
                         prod.IdAlmacen = reader.IsDBNull(posIdAlmacen) ? -1 : reader.GetInt32(posIdAlmacen);
                         prod.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
                         prod.StockMin = reader.IsDBNull(posStockMin) ? -1 : reader.GetInt32(posStockMin);
+                        prod.StockMax = reader.IsDBNull(posStockMax) ? -1 : reader.GetInt32(posStockMax);
                         prod.StockActual = reader.IsDBNull(posStock) ? -1 : reader.GetInt32(posStock);
 
                         prodAlmacen.Add(prod);
@@ -457,10 +459,64 @@ namespace MadeInHouse.DataObjects.Almacen
             return prodAlmacen;
         }
 
-        public int AgregarProductoxAlmacen(ProductoxAlmacen pxa)
+        public List<ProductoxTienda> BuscarProductoxCentral(int idAlmacen, int idProducto)
+        {
+            List<ProductoxTienda> prodAlmacen = null;
+
+            if (idAlmacen > 0)
+            {
+                string where = "";
+                if (idProducto > 0)
+                {
+                    where = " WHERE idProducto = @idProducto ";
+                    db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
+                }
+                db.cmd.CommandText = " SELECT * FROM Producto " + where;
+                db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+
+                try
+                {
+                    db.conn.Open();
+                    SqlDataReader reader = db.cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        if (prodAlmacen == null) prodAlmacen = new List<ProductoxTienda>();
+                        ProductoxTienda prod = new ProductoxTienda();
+                        int posIdProducto = reader.GetOrdinal("idProducto");
+                        int posStockMin = reader.GetOrdinal("stockMin");
+                        int posStockMax = reader.GetOrdinal("stockMax");
+                        int posStock = reader.GetOrdinal("stockActual");
+                        int posStockPendiente = reader.GetOrdinal("stockPendiente");
+                        prod.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
+                        prod.StockMin = reader.IsDBNull(posStockMin) ? -1 : reader.GetInt32(posStockMin);
+                        prod.StockMax = reader.IsDBNull(posStockMax) ? -1 : reader.GetInt32(posStockMax);
+                        prod.StockActual = reader.IsDBNull(posStock) ? -1 : reader.GetInt32(posStock);
+                        prod.StockPendiente = reader.IsDBNull(posStockPendiente) ? -1 : reader.GetInt32(posStockPendiente);
+
+                        prodAlmacen.Add(prod);
+                    }
+                    db.cmd.Parameters.Clear();
+                    reader.Close();
+                    db.conn.Close();
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace.ToString());
+                }
+            }
+
+            return prodAlmacen;
+        }
+
+        public int AgregarProductoxAlmacen(ProductoxTienda pxa) 
         {
 
-
+           
             db.cmd.CommandText = "INSERT INTO ProductoxTienda (idProducto,idTienda,stockActual,stockMin,stockMax,precioVenta,vigente) " +
                             "VALUES (@idProducto,@idTienda,@stockActual,@stockMin,@stockMax,@precioVenta,@vigente) ";
             db.cmd.Parameters.AddWithValue("@idProducto", pxa.IdProducto);

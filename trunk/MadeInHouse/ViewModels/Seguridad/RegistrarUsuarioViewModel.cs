@@ -302,6 +302,7 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void ResetContrasenha()
         {
+            UsuarioSQL uSQL = new UsuarioSQL();
             Util util = new Util();
             string contrasenhaGenerada = util.generarContrasenha();
 
@@ -309,7 +310,7 @@ namespace MadeInHouse.ViewModels.Seguridad
             e = DataObjects.RRHH.EmpleadoSQL.DatosBasicosEmpleado(TxtCodUsuario);
 
             Usuario u = new Usuario();
-            u = UsuarioSQL.buscarUsuarioPorCodEmpleado(TxtCodUsuario);
+            u = uSQL.buscarUsuarioPorCodEmpleado(TxtCodUsuario);
             
 
             CifrarAES cifradoAES = new CifrarAES();
