@@ -247,25 +247,30 @@ namespace MadeInHouse.Dictionary {
 
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorname = conv.ConvertFromString("White") as SolidColorBrush;
-            //SolidColorBrush ocupado = conv.ConvertFromString("Gray") as SolidColorBrush;
-            SolidColorBrush foreground = conv.ConvertFromString("WhiteSmoke") as SolidColorBrush;
-            
-            bool enable = true;
+            SolidColorBrush foreground = conv.ConvertFromString("DarkGray") as SolidColorBrush;
+            ColorAntU = null;
 
             if (Columna != null)
             {
+                LinearGradientBrush vacio = new LinearGradientBrush();
+                vacio.StartPoint = new System.Windows.Point(0, 0.5);
+                vacio.EndPoint = new System.Windows.Point(10, 0.5);
+                vacio.GradientStops.Add(new GradientStop(Colors.White, 0.1));
+
+                LinearGradientBrush ocupado = new LinearGradientBrush();
+                ocupado.StartPoint = new System.Windows.Point(0, 0.5);
+                ocupado.EndPoint = new System.Windows.Point(10, 0.5);
+                ocupado.GradientStops.Add(new GradientStop(Colors.Gray, 0.1));
+
+                
+
                 for (int j = 0; j < Columna.Count; j++)
                 {
-                    
+                    (this.Children[Columna[j].CordZ] as Button).Foreground = foreground;
+                    (this.Children[Columna[j].CordZ] as Button).FontSize = 25;
+
                     if (Columna[j].IdProducto == (SelectedProduct == null ? -1 : SelectedProduct.IdProducto))
                     {
-                        enable = true;
-                        (this.Children[Columna[j].CordZ] as Button).IsEnabled = enable;
-                        (this.Children[Columna[j].CordZ] as Button).Foreground = foreground;
-                        (this.Children[Columna[j].CordZ] as Button).FontSize = 25;
-                        (this.Children[Columna[j].CordZ] as Button).FontWeight = FontWeights.Bold;
-                        (this.Children[Columna[j].CordZ] as Button).Content = SelectedProduct.CodigoProd;
-                       
                         LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
                         myLinearGradientBrush.StartPoint = new System.Windows.Point(0, 0.5);
                         myLinearGradientBrush.EndPoint = new System.Windows.Point(Columna[j].VolOcupado / 10, 0.5);
@@ -278,19 +283,15 @@ namespace MadeInHouse.Dictionary {
                     }
                     else if (Columna[j].IdProducto==0)
                     {
-                        (this.Children[Columna[j].CordZ] as Button).Background = colorname;
+                        (this.Children[Columna[j].CordZ] as Button).Background = vacio;
                         (this.Children[Columna[j].CordZ] as Button).Content = "VACIO";
                     }
                     else 
                     {
                         enable = false;
-                        LinearGradientBrush ocupado = new LinearGradientBrush();
-                        ocupado.StartPoint = new System.Windows.Point(0, 0.5);
-                        ocupado.EndPoint = new System.Windows.Point(10, 0.5);
-                        ocupado.GradientStops.Add(new GradientStop(Colors.Gray, 0.1));
-
                         (this.Children[Columna[j].CordZ] as Button).Background = ocupado;
                         (this.Children[Columna[j].CordZ] as Button).Content = "OCUPADO";
+                        //(this.Children[Columna[j].CordZ] as Button).IsEnabled = enable;
                         
                         
                     }
@@ -382,7 +383,7 @@ namespace MadeInHouse.Dictionary {
 
                     if (Columna[X].IdProducto == SelectedProduct.IdProducto)
                     {
-                        selectedUbicacion = Columna[X];
+                        
                         CantActual = Columna[X].Cantidad.ToString();
                         VolOcu = Columna[X].VolOcupado.ToString();
                         if (int.Parse(VolOcu) > 0) Enable = false;
@@ -392,7 +393,11 @@ namespace MadeInHouse.Dictionary {
                     {
                         CantActual = "---";
                         VolOcu = "---";
+                        Enable = true;
                     }
+                    
+
+                    selectedUbicacion = Columna[X];
                 }
                 (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
 
@@ -455,8 +460,6 @@ namespace MadeInHouse.Dictionary {
         {
             if (lstZonas != null) 
                 this.lstZonas = lstZonas;
-
-           
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorname = conv.ConvertFromString("Black") as SolidColorBrush;
             for (int i = 0; i < this.lstZonas.Count ; i++)
@@ -473,9 +476,6 @@ namespace MadeInHouse.Dictionary {
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].IdUbicacion = this.lstZonas[i].LstUbicaciones[j].IdUbicacion;
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].Cantidad = this.lstZonas[i].LstUbicaciones[j].Cantidad;
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].VolOcupado = this.lstZonas[i].LstUbicaciones[j].VolOcupado;
-                    
-                    
-
                 }
             }
             
@@ -649,6 +649,10 @@ namespace MadeInHouse.Dictionary {
 
         public int DisminuirProductos(int cant, int idProducto)
         {
+            LinearGradientBrush vacio = new LinearGradientBrush();
+            vacio.StartPoint = new System.Windows.Point(0, 0.5);
+            vacio.EndPoint = new System.Windows.Point(10, 0.5);
+            vacio.GradientStops.Add(new GradientStop(Colors.White, 0.1));
 
             int cantAux;
             if (selectedUbicacion == null)
@@ -682,6 +686,11 @@ namespace MadeInHouse.Dictionary {
             SelectedProduct.Ubicaciones.Add(ubiModificada);
 
             selectedUbicacion.Cantidad -= cant;
+            if (selectedUbicacion.Cantidad == 0)
+            {
+                if (ColorAntU != null) ColorAntU = vacio;
+                Columna[selectedUbicacion.CordZ].IdProducto = 0;
+            }
             Columna[selectedUbicacion.CordZ].Cantidad = selectedUbicacion.Cantidad;
             Columna[selectedUbicacion.CordZ].VolOcupado = selectedUbicacion.VolOcupado;
 
