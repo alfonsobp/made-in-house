@@ -271,7 +271,7 @@ namespace MadeInHouse.ViewModels.Ventas
         public VentaRegistrarViewModel()
         {
             lstVenta = new List<DetalleVenta>();
-            LstPagos = new List<VentaPago>();
+            lstPagos = new List<VentaPago>();
             lstVentaServicios = new List<DetalleVentaServicio>();
 
             prod = new Producto();
@@ -316,7 +316,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 ClienteSQL csql = new ClienteSQL();
                 c = csql.BuscarClienteByTarjeta(TxtCliente);
                 TxtRazonSocial = c.RazonSocial;
-                TxtRuc = c.Ruc;
+                TxtRuc = c.Ruc.Trim();
                 TxtCliente = c.NombreCompleto;
                 cli.Cliente = c;
             }
@@ -430,95 +430,122 @@ namespace MadeInHouse.ViewModels.Ventas
             int numFilas = LstVenta.Count();
             if (numFilas > 0)
             {
-                Venta v = new Venta();
-                v.LstDetalle = new List<DetalleVenta>();
-                v.LstPagos = new List<VentaPago>();
-                v.LstDetalleServicio = new List<DetalleVentaServicio>();
-                //guardar datos de la venta
-
-                if (tipoVenta[cmbTipoVenta] == 0)
-                    v.TipoDocPago = "Boleta";
-                else
-                    v.TipoDocPago = "Factura";
-
-                v.NumDocPago = null;
-                v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
-                v.IdCliente = cli.Cliente.Id;
-                v.CodTarjeta = Convert.ToInt32(cli.CodTarjeta);
-
-                v.FechaReg = System.DateTime.Now;
-                v.FechaDespacho = fechaDespacho;
-                v.TipoVenta = "Obra";
-                v.Estado = 1;
-
-                //guardar detalle de productos de la venta
-                foreach (DetalleVenta dv in lstVenta)
+                if (Validar())
                 {
-                    v.LstDetalle.Add(dv);
-                }
+                    Venta v = new Venta();
+                    v.LstDetalle = new List<DetalleVenta>();
+                    v.LstPagos = new List<VentaPago>();
+                    v.LstDetalleServicio = new List<DetalleVentaServicio>();
+                    //guardar datos de la venta
 
-                //guardar detalle de servicios de la venta, si es que hay
-                if (LstVentaServicios.Count() > 0)
-                {
-                    foreach (DetalleVentaServicio dvs in LstVentaServicios)
+                    if (tipoVenta[cmbTipoVenta] == 0)
+                        v.TipoDocPago = "Boleta";
+                    else
+                        v.TipoDocPago = "Factura";
+
+                    v.NumDocPago = null;
+                    v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
+                    v.IdCliente = cli.Cliente.Id;
+                    v.CodTarjeta = Convert.ToInt32(cli.CodTarjeta);
+
+                    v.FechaReg = System.DateTime.Now;
+                    v.FechaDespacho = fechaDespacho;
+                    v.TipoVenta = "Obra";
+                    v.Estado = 1;
+
+                    //guardar detalle de productos de la venta
+                    foreach (DetalleVenta dv in lstVenta)
                     {
-                        v.LstDetalleServicio.Add(dvs);
+                        v.LstDetalle.Add(dv);
                     }
-                }
 
-                v.Monto = total;
-                v.Descuento = desc;
-                v.Igv = igv_total;
-                v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
-
-                //guardar el pago de la venta
-                foreach (VentaPago vp in lstPagos)
-                {
-                    if (vp.Nombre.Equals("Efectivo"))
+                    //guardar detalle de servicios de la venta, si es que hay
+                    if (LstVentaServicios.Count() > 0)
                     {
-                        vp.Monto -= Double.Parse(txtVuelto);
+                        foreach (DetalleVentaServicio dvs in LstVentaServicios)
+                        {
+                            v.LstDetalleServicio.Add(dvs);
+                        }
                     }
-                    v.LstPagos.Add(vp);
-                }
 
-                //insertar la venta en la base de datos
-                DBConexion db = new DBConexion();
-                db.conn.Open();
-                SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
-                db.cmd.Transaction = trans;
-                VentaSQL vsql = new VentaSQL(db);
-                int k = vsql.AgregarVentaObra(v);
-                if (k != 0)
-                {
-                    trans.Commit();
-                    MessageBox.Show("Venta Realizada con Exito");
-                    Limpiar();
-                    if (v.TipoDocPago.Equals("Boleta"))
+                    v.Monto = total;
+                    v.Descuento = desc;
+                    v.Igv = igv_total;
+                    v.PtosGanados = Convert.ToInt32(v.Monto / PUNTO);
+
+                    //guardar el pago de la venta
+                    foreach (VentaPago vp in lstPagos)
                     {
-                        GenerarPDFBoletaProductos(v);
-                        if (v.LstDetalleServicio.Count() > 0)
-                            GenerarPDFBoletaServicios(v);
+                        if (vp.Nombre.Equals("Efectivo"))
+                        {
+                            vp.Monto -= Double.Parse(txtVuelto);
+                        }
+                        v.LstPagos.Add(vp);
+                    }
+
+                    //insertar la venta en la base de datos
+                    DBConexion db = new DBConexion();
+                    db.conn.Open();
+                    SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
+                    db.cmd.Transaction = trans;
+                    VentaSQL vsql = new VentaSQL(db);
+                    int k = vsql.AgregarVentaObra(v);
+                    if (k != 0)
+                    {
+                        trans.Commit();
+                        MessageBox.Show("Venta Realizada con Exito");
+                        Limpiar();
+                        if (v.TipoDocPago.Equals("Boleta"))
+                        {
+                            GenerarPDFBoletaProductos(v);
+                            if (v.LstDetalleServicio.Count() > 0)
+                                GenerarPDFBoletaServicios(v);
+                        }
+                        else
+                        {
+                            GenerarPDFFacturaProductos(v);
+                            if (v.LstDetalleServicio.Count() > 0)
+                                GenerarPDFFacturaServicios(v);
+                        }
                     }
                     else
                     {
-                        GenerarPDFFacturaProductos(v);
-                        if (v.LstDetalleServicio.Count() > 0)
-                            GenerarPDFFacturaServicios(v);
+                        trans.Rollback();
+                        MessageBox.Show("Ocurrio un Error en el proceso");
                     }
                 }
-                else
-                {
-                    trans.Rollback();
-                    MessageBox.Show("Ocurrio un Error en el proceso");
-                }
-                
 
             }
             else
             {
-                MessageBox.Show("Debe ingreasar datos de la venta");
+                MessageBox.Show("Debe ingreasar datos de productos a la venta");
                 return;
             }
+        }
+
+        private bool Validar()
+        {
+            Evaluador e = new Evaluador();
+            if (!e.evalString(TxtRazonSocial))
+            {
+                MessageBox.Show("No ha ingresado la razon social del cliente", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (!e.evalString(TxtDireccion))
+            {
+                MessageBox.Show("No ha ingresado la direccion del cliente", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            int numFilas = LstPagos.Count();
+            if (numFilas == 0)
+            {
+                MessageBox.Show("No se ha ingresado el monto de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
         }
 
         public void BuscarCliente()
@@ -564,25 +591,50 @@ namespace MadeInHouse.ViewModels.Ventas
             desc = 0;
             igv_total = 0;
             lstVenta = new List<DetalleVenta>();
+            lstPagos = new List<VentaPago>();
+            TxtMonto = "";
+            TxtServicio = "";
+            TxtTarjetaCliente = "";
+            LstVentaServicios = new List<DetalleVentaServicio>();
         }
 
         public void AgregarMonto()
         {
-            VentaPago vp = new VentaPago();
-            vp.IdModoPago = selectedValue;
-            vp.Monto = Double.Parse(TxtMonto);
-            vp.Nombre = selectedValue.ToString();
-
-            montopago += Double.Parse(TxtMonto);
-            TxtPagaCon = montopago.ToString();
-            
-            List<VentaPago> aux = new List<VentaPago>();
-            foreach (VentaPago item in LstPagos)
+            if (ValidaMonto())
             {
-                aux.Add(item);
+                VentaPago vp = new VentaPago();
+                vp.IdModoPago = selectedValue;
+                vp.Monto = Double.Parse(TxtMonto);
+                vp.Nombre = selectedValue.ToString();
+
+                montopago += Double.Parse(TxtMonto);
+                TxtPagaCon = montopago.ToString();
+
+                List<VentaPago> aux = new List<VentaPago>();
+                foreach (VentaPago item in LstPagos)
+                {
+                    aux.Add(item);
+                }
+                aux.Add(vp);
+                LstPagos = aux;
             }
-            aux.Add(vp);
-            LstPagos = aux;
+        }
+
+        private bool ValidaMonto()
+        {
+            Evaluador e = new Evaluador();
+            if (String.IsNullOrEmpty(TxtMonto) && !e.esNumeroReal(TxtMonto))
+            {
+                MessageBox.Show("No ha ingresado un valor correcto en el Monto de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (selectedValue == 0)
+            {
+                MessageBox.Show("No ha seleccionado una forma de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            
+            return true;
         }
 
         public void GenerarPDFBoletaProductos(Venta v)
