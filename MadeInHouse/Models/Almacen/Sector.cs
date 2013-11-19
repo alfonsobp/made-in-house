@@ -48,6 +48,14 @@ namespace MadeInHouse.Models.Almacen
             set { cantidad = value; }
         }
 
+        private int cantidadIngresada;
+
+        public int CantidadIngresada
+        {
+            get { return cantidadIngresada; }
+            set { cantidadIngresada = value; }
+        }
+
         private int nroColor;
 
         public int NroColor
@@ -64,7 +72,30 @@ namespace MadeInHouse.Models.Almacen
             set { volOcupado = value; }
         }
 
+        private List<Ubicacion> lstUbicaciones;
 
+        public List<Ubicacion> LstUbicaciones
+        {
+            get { return lstUbicaciones; }
+            set { lstUbicaciones = value; }
+        }
+
+        private int capacidad;
+
+        public int Capacidad
+        {
+            get { return capacidad; }
+            set { capacidad = value; }
+        }
+
+
+        private int nroUbicaciones;
+
+        public int NroUbicaciones
+        {
+            get { return nroUbicaciones; }
+            set { nroUbicaciones = value; }
+        }
 
 
     }

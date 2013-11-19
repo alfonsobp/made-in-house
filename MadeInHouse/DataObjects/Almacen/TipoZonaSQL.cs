@@ -152,7 +152,7 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public List<TipoZona> ObtenerZonasxAlmacen(int idAlmacen)
+        public List<TipoZona> ObtenerZonasxAlmacen(int idAlmacen,int tipo=-1)
         {
             List<TipoZona> lstZonas=new List<TipoZona>();;
             db.cmd.CommandText = "SELECT A.*,B.nombre nombreZona,C.codHex color,C.codHex FROM ZonaxAlmacen A " +
@@ -160,6 +160,8 @@ namespace MadeInHouse.DataObjects.Almacen
                                 " JOIN Color C ON (B.idColor=C.idColor) " +
                                 " WHERE A.idAlmacen=@idAlmacen";
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+
+
 
             try
             {
@@ -197,6 +199,20 @@ namespace MadeInHouse.DataObjects.Almacen
             for (int i = 0; i < lstZonas.Count; i++)
             {
                 lstZonas[i].LstUbicaciones = uSQL.ObtenerUbicaciones(idAlmacen, lstZonas[i].IdTipoZona);
+            }
+
+            SectorSQL sSQL = new SectorSQL();
+            if (tipo == 2)
+            {
+                for (int i = 0; i < lstZonas.Count; i++)
+                {
+                    lstZonas[i].LstSectores = sSQL.ObtenerSectores(idAlmacen, lstZonas[i].IdTipoZona);
+                    if (lstZonas[i].LstSectores == null)
+                    {
+                        lstZonas[i].LstSectores = new List<Sector>();
+                    }
+                }
+                
             }
 
             return lstZonas;

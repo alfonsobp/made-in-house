@@ -220,7 +220,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
         #endregion
 
-
         #region Métodos
         
         public void BuscarTiendas()

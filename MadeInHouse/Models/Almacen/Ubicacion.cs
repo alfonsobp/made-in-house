@@ -80,5 +80,14 @@ namespace MadeInHouse.Models.Almacen
             set { volOcupado = value; }
         }
 
+        private int idSector;
+
+        public int IdSector
+        {
+            get { return idSector; }
+            set { idSector = value; }
+        }
+
+
     }
 }

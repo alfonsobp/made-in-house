@@ -27,7 +27,7 @@ namespace MadeInHouse.DataObjects.Almacen
             }
         }
 
-        public int AgregarNota(NotaIS p)
+        public int AgregarNota(NotaIS p,int sector=-1)
         {
             int retorno=-1;
             db.cmd.CommandText = "INSERT INTO NotaIS(tipo,fechaReg,observaciones,responsable,idDoc,idMotivo,idAlmacen) " +
@@ -56,42 +56,67 @@ namespace MadeInHouse.DataObjects.Almacen
                 Console.WriteLine(e.StackTrace.ToString());
             }
 
-            //Agregamos en ProductoxNotaIS
-            db.cmd.CommandText = "INSERT INTO ProductoxNotaIS(idProducto,idNota,idAlmacen,cantidad,idUbicacion)"+
-            "VALUES (@idProducto,@idNota,@idAlmacen,@cantidad,@idUbicacion)";
-            try
-            {
-                db.conn.Open();
-                for (int i = 0; i < p.LstProducto.Count; i++)
-                {
 
-                    for (int j = 0; j < p.LstProducto.ElementAt(i).Ubicaciones.Count; j++)
+            if (sector == -1)
+            {
+                //Agregamos en ProductoxNotaIS
+                db.cmd.CommandText = "INSERT INTO ProductoxNotaIS(idProducto,idNota,idAlmacen,cantidad,idUbicacion)" +
+                "VALUES (@idProducto,@idNota,@idAlmacen,@cantidad,@idUbicacion)";
+                try
+                {
+                    db.conn.Open();
+                    for (int i = 0; i < p.LstProducto.Count; i++)
                     {
-                        db.cmd.Parameters.AddWithValue("@idProducto", p.LstProducto.ElementAt(i).IdProducto);
-                        db.cmd.Parameters.AddWithValue("@idNota", retorno);
-                        db.cmd.Parameters.AddWithValue("@idAlmacen", p.IdAlmacen);
-                        db.cmd.Parameters.AddWithValue("@cantidad", p.LstProducto.ElementAt(i).Ubicaciones.ElementAt(j).Cantidad);
-                        db.cmd.Parameters.AddWithValue("@idUbicacion", p.LstProducto.ElementAt(i).Ubicaciones.ElementAt(j).IdUbicacion);
-                        db.cmd.ExecuteNonQuery();
-                        db.cmd.Parameters.Clear();
+
+                        for (int j = 0; j < p.LstProducto.ElementAt(i).Ubicaciones.Count; j++)
+                        {
+                            db.cmd.Parameters.AddWithValue("@idProducto", p.LstProducto.ElementAt(i).IdProducto);
+                            db.cmd.Parameters.AddWithValue("@idNota", retorno);
+                            db.cmd.Parameters.AddWithValue("@idAlmacen", p.IdAlmacen);
+                            db.cmd.Parameters.AddWithValue("@cantidad", p.LstProducto.ElementAt(i).Ubicaciones.ElementAt(j).Cantidad);
+                            db.cmd.Parameters.AddWithValue("@idUbicacion", p.LstProducto.ElementAt(i).Ubicaciones.ElementAt(j).IdUbicacion);
+                            db.cmd.ExecuteNonQuery();
+                            db.cmd.Parameters.Clear();
+
+                        }
 
                     }
-
+                    db.conn.Close();
                 }
-                db.conn.Close();
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace.ToString());
+                }
             }
-            catch (SqlException e)
-            {
-                Console.WriteLine(e);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace.ToString());
-            }
-            
 
             return retorno;
         }
+
+
+        public int AgregarNotaxSector()
+        {
+            db.cmd.CommandText="INSERT INTO SectorxMovimiento (idSector,idNota,cantidad) "+
+                                "SELECT idSector,idNota,cantidadIngresada FROM TemporalSector";
+
+            try {
+                if (tipo) db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                if(tipo) db.conn.Close();
+
+
+            } catch (SqlException e) {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+            return 1;
+        }
+
+
 
         public List<NotaIS> BuscarNotas()
         {

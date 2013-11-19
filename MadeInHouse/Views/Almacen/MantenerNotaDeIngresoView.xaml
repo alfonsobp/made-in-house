@@ -84,7 +84,10 @@
                     </Grid>
                 </GroupBox>
 
-                <DataGrid x:Name="LstProductos" CanUserAddRows="False" SelectedItem="{Binding SelectedProductoCant}" Margin="0,213,17,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
+                <DataGrid x:Name="LstProductos" CanUserAddRows="False" 
+                          SelectedItem="{Binding SelectedProductoCant}" 
+                          Margin="0,213,17,0" HeadersVisibility="Column" 
+                          HorizontalAlignment="Right" Width="364" Height="196" VerticalAlignment="Top" AutoGenerateColumns="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodigoProd}" IsReadOnly="True" Header="Codigo" Width="73"/>
                         <DataGridTextColumn Binding="{Binding Path=Nombre}" IsReadOnly="True" Header="Nombre" Width="73"/>

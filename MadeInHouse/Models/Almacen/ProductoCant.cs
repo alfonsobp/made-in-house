@@ -43,5 +43,13 @@ namespace MadeInHouse.Models.Almacen
             set { ubicaciones = value; }
         }
 
+        private bool atendido = true;
+
+        public bool Atendido
+        {
+            get { return atendido; }
+            set { atendido = value; }
+        }
+
     }
 }

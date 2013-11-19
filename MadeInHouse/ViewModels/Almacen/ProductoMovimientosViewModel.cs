@@ -140,6 +140,18 @@ namespace MadeInHouse.ViewModels.Almacen
             set { cmbZonas = value; }
         }
 
+        private int selectedZona;
+
+        public int SelectedZona
+        {
+            get { return selectedZona; }
+            set { selectedZona = value;
+            NotifyOfPropertyChange(() => SelectedZona);    
+
+            }
+        }
+
+
         private List<Ubicacion> columnaU;
 
         public List<Ubicacion> ColumnaU
@@ -241,12 +253,51 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private int idZona;
+
+        public int IdZona
+        {
+            get { return idZona; }
+            set { idZona = value; }
+        }
+
+        private int txtStockActual;
+
+        public int TxtStockActual
+        {
+            get { return txtStockActual; }
+            set { txtStockActual = value;
+            NotifyOfPropertyChange(() => TxtStockActual);
+            }
+        }
+
+        private string txtVolOcupado;
+
+        public string TxtVolOcupado
+        {
+            get { return txtVolOcupado; }
+            set { txtVolOcupado = value;
+            NotifyOfPropertyChange(() => TxtVolOcupado);
+            }
+        }
+
+        private int txtCapacidad;
+
+        public int TxtCapacidad
+        {
+            get { return txtCapacidad; }
+            set { txtCapacidad = value;
+            NotifyOfPropertyChange(() => TxtCapacidad);
+            }
+        }
+
 
         private AlmacenSQL aSQL;
         private TipoZonaSQL tzSQL;
         private int idTienda;
-
-
+        private int idDeposito;
+        private int idAnaquel;
+        private int idResponsable;  
 
         public ProductoMovimientosViewModel()
         {
@@ -254,10 +305,13 @@ namespace MadeInHouse.ViewModels.Almacen
             Usuario u = new Usuario();
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             idTienda = u.IdTienda;
+            idResponsable = u.IdUsuario;
 
             aSQL = new AlmacenSQL();
             Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
             Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
+            idDeposito = deposito.IdAlmacen;
+            idAnaquel = anaquel.IdAlmacen;
 
             NumColumnAnq = anaquel.NroColumnas;
             NumRowsAnq = anaquel.NroFilas;
@@ -268,13 +322,14 @@ namespace MadeInHouse.ViewModels.Almacen
             Altura = deposito.Altura;
 
             tzSQL = new TipoZonaSQL();
-            LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
-            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(anaquel.IdAlmacen);
+            LstZonas = tzSQL.ObtenerZonasxAlmacen(idDeposito);
+            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(idAnaquel, 2);
 
             Accion2 = 2;
             Accion1 = 2;
 
             LstProductos=new List<ProductoCant>();
+            Atendido = false;
 
 
 
@@ -354,12 +409,133 @@ namespace MadeInHouse.ViewModels.Almacen
 
                     }
             }
+        }
+
+        private ProductoCant selectedProduct;
+
+        internal ProductoCant SelectedProduct
+        {
+            get { return selectedProduct; }
+            set { selectedProduct = value; }
+        }
+
+        private bool atendido;
+
+        public bool Atendido
+        {
+            get { return atendido; }
+            set { atendido = value;
+            NotifyOfPropertyChange(() => Atendido);
+            }
+        }
 
 
+        public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid anaquel)
+        {
+            SelectedProduct = ((sender as DataGrid).SelectedItem as ProductoCant);
+            anaquel.SelectedProduct = SelectedProduct;
+            if (selectedZona > 0)
+            {
+                if (SelectedProduct != null)
+                {
+
+                    anaquel.UbicarSector(SelectedProduct.IdProducto);
+                    TxtCapacidad = anaquel.CapacidadActual;
+                    TxtVolOcupado = anaquel.VolOcupadoActual + "%";
+                    TxtStockActual = anaquel.StockActual;
+                    Atendido = SelectedProduct.Atendido;
+
+
+                }
+            }
+        }
+
+        public void GuardarCantidadParcial()
+        {
+            
+            TipoZona tz = LstZonasAnq.Find(x => x.IdTipoZona == SelectedZona);
+            if (tz != null)
+            {
+                
+                Sector sector = tz.LstSectores.Find(x => x.IdProducto == SelectedProduct.IdProducto);
+                if (sector == null)
+                {
+                    MessageBox.Show("El producto no tiene un espacio separado en los anaqueles , separe un espacio");
+                    return;
+                }
+                else
+                {
+                    sector.Cantidad += int.Parse(SelectedProduct.CanAtender);
+                    if (sector.Cantidad > sector.Capacidad)
+                    {
+
+                        MessageBox.Show("Se superó la capacidad , debe separar más espacio en los anaqueles");
+                        sector.Cantidad -= int.Parse(SelectedProduct.CanAtender);    
+                        return;
+                    }
+                    sector.CantidadIngresada = int.Parse(SelectedProduct.CanAtender); 
+                    sector.VolOcupado = (int)(((double)sector.Cantidad / sector.Capacidad) * 100);
+                    TxtVolOcupado = sector.VolOcupado + "%";
+                    TxtStockActual = sector.Cantidad;
+                    SelectedProduct.Atendido = false;
+                    Atendido = false;
+                }
+            }
 
 
         }
 
+
+
+
+        public void GuardarMovimiento(DynamicGrid anaquel , DynamicGrid deposito)
+        {
+
+            SectorSQL sectorSQL= new SectorSQL();
+            UbicacionSQL ubicacionSQL= new UbicacionSQL();
+            DataTable sectoresDT= sectorSQL.CrearSectoresDT();
+            DataTable ubicacionesDT= ubicacionSQL.CrearUbicacionesDT();
+            List<Sector> lstSectores= new List<Sector>();
+            List<Ubicacion> ubicacionesModificadas= new List<Ubicacion>();
+
+            for(int i=0;i<anaquel.lstZonas.Count;i++) 
+            {
+               lstSectores.AddRange(anaquel.lstZonas[i].LstSectores);
+                for (int j=0;j<anaquel.lstZonas[i].LstSectores.Count;j++){
+                    ubicacionesModificadas.AddRange(anaquel.lstZonas[i].LstSectores[j].LstUbicaciones) ;
+                }
+
+            }
+
+            sectorSQL.AgregarFilasToSectoresDT(sectoresDT,lstSectores);
+            ubicacionSQL.AgregarFilasToUbicacionesDT(ubicacionesDT, ubicacionesModificadas);
+
+            /*empieza el guardado en la bd*/
+            sectorSQL.AgregarMasivo(sectoresDT); //insertados en TemporalSector
+            sectorSQL.ActualizarSectorMasivo(); //actualizados en tabla Sector
+            sectorSQL.ActualizarIdSector();
+
+            /*Agrego las ubicaciones de almacen de salida*/
+            ubicacionSQL.AgregarFilasToUbicacionesDT(ubicacionesDT, deposito.Ubicaciones,deposito.Ubicaciones[0][0][0].IdAlmacen);
+            ubicacionSQL.AgregarMasivo(ubicacionesDT);
+            ubicacionSQL.ActualizarIdSector();
+            ubicacionSQL.ActualizarUbicacionMasivo();
+
+            /*Agrego el movimiento como un "todo" a la bd*/
+            NotaISSQL notaSQL = new NotaISSQL();
+            NotaIS nota= new NotaIS();
+            nota.IdMotivo=12;
+            nota.Tipo = 3;
+            nota.Observaciones = "";
+            nota.IdDoc = 0;
+            nota.IdAlmacen=idDeposito;
+            nota.IdResponsable=idResponsable;
+            int idNota=notaSQL.AgregarNota(nota,1);
+            sectorSQL.ActualizarTemporalSector(idNota);
+            notaSQL.AgregarNotaxSector();
+
+
+        }
 
 
 
