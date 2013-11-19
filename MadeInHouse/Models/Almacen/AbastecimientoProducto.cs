@@ -11,6 +11,7 @@ namespace MadeInHouse.Models.Almacen
         public int idProducto { get; set; }
         public string nombre { get; set; }
         public int stock { get; set; }
+        public int stockPendiente { get; set; }
         public int sugerido { get; set; }
         public int pedido { get; set; }
         public int atendido { get; set; }

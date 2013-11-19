@@ -39,6 +39,7 @@ namespace MadeInHouse.Models.Ventas
         }
 
         DateTime fechaDespacho;
+        public string dni { get; set; }
 
         
 

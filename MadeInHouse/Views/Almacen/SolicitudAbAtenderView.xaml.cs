@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MadeInHouse.Views.Ventas
+namespace MadeInHouse.Views.Almacen
 {
     /// <summary>
-    /// Lógica de interacción para DevolucionesRegistrarView.xaml
+    /// Lógica de interacción para SolicitudAbAtenderView.xaml
     /// </summary>
-    public partial class DevolucionesRegistrarView : UserControl
+    public partial class SolicitudAbAtenderView : UserControl
     {
-        public DevolucionesRegistrarView()
+        public SolicitudAbAtenderView()
         {
             InitializeComponent();
         }

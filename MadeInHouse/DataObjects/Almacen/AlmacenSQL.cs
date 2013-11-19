@@ -331,7 +331,9 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             if (db.cmd.Transaction == null) db.conn.Open();
             int idDeposito = -1;
-            db.cmd.CommandText = " SELECT * FROM Almacen WHERE idTienda = @idTienda AND tipo = 1 ";
+            string where = "";
+            if (idTienda > 0) where = " AND tipo = 1 ";
+            db.cmd.CommandText = " SELECT * FROM Almacen WHERE idTienda = @idTienda " + where;
             db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
 
             SqlDataReader reader = db.cmd.ExecuteReader();
@@ -343,6 +345,7 @@ namespace MadeInHouse.DataObjects.Almacen
             }
             reader.Close();
             if (db.cmd.Transaction == null) db.conn.Close();
+            db.cmd.Parameters.Clear();
             return idDeposito;
         }
 

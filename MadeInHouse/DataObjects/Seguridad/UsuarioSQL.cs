@@ -15,6 +15,13 @@ namespace MadeInHouse.DataObjects.Seguridad
 {
     class UsuarioSQL
     {
+        private DBConexion db;
+
+        public UsuarioSQL(DBConexion db = null)
+        {
+            this.db = (db == null) ? new DBConexion() : db;
+        }
+
         //AGREGAR
         public static int agregarUsuario(Usuario u)
         {
@@ -137,7 +144,6 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
-
         public static List<Usuario> BuscarUsuarioPorCodigo(string codEmpleado)
         {
             List<Usuario> lstUsuario = new List<Usuario>();
@@ -189,23 +195,18 @@ namespace MadeInHouse.DataObjects.Seguridad
             return lstUsuario;
         }
 
-        public static Usuario buscarUsuarioPorCodEmpleado(string codEmpleado)
+        public Usuario buscarUsuarioPorCodEmpleado(string codEmpleado)
         {
             Usuario u = null;
-
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Usuario WHERE codEmpleado=@codEmpleado ";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+            db.cmd.CommandText = "SELECT * FROM Usuario WHERE codEmpleado=@codEmpleado ";
+            db.cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
 
             try
             {
-                conn.Open();
-                reader = cmd.ExecuteReader();
+                if(db.cmd.Transaction == null) db.conn.Open();
+                reader = db.cmd.ExecuteReader();
 
                 if (reader.Read())
                 {
@@ -221,9 +222,9 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
                     u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
                 }
-                else
-                    conn.Close();
 
+                if (db.cmd.Transaction == null) db.conn.Close();
+                db.cmd.Parameters.Clear();
             }
             catch (Exception e)
             {

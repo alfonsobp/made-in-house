@@ -31,7 +31,8 @@ namespace MadeInHouse.ViewModels.Almacen
             _windowManager = windowmanager;
             this.idSolicitud = idSolicitud;
             this.window = window;
-            this.nomTienda = nomTienda;
+            TiendaSQL tiendSQL = new TiendaSQL();
+            this.idTiendaUsuario = tiendSQL.obtenerTienda(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             if (idSolicitud > 0)
             {
                 AbastecimientoSQL abSQL = new AbastecimientoSQL();
@@ -52,7 +53,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     IsReadOnly = true;
                     CanEdit = Visibility.Visible;
                     CanDelete = Visibility.Visible;
-                    CanAtent = Visibility.Visible;
+                    CanAtent = (this.idTiendaUsuario == 0) ? Visibility.Visible : Visibility.Collapsed;
                     CanUpload = Visibility.Collapsed;
                     CanSave = Visibility.Collapsed;
                 }
@@ -60,8 +61,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
-                TiendaSQL tiendSQL = new TiendaSQL();
-                idTienda = tiendSQL.obtenerTienda(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+                idTienda = idTiendaUsuario;
                 IndMantenimiento = REGISTRO;
                 IsReadOnly = false;
                 CanEdit = Visibility.Collapsed;
@@ -93,8 +93,8 @@ namespace MadeInHouse.ViewModels.Almacen
         private readonly IWindowManager _windowManager;
 
         public int idTienda { get; set; }
+        public int idTiendaUsuario { get; set; }
         public int idSolicitud { get; set; }
-        public string nomTienda { get; set; }
         public SolicitudAbListadoViewModel window { get; set; }
 
         private int indMantenimiento;
@@ -202,9 +202,15 @@ namespace MadeInHouse.ViewModels.Almacen
             IndMantenimiento = EDICION;
             IsReadOnly = false;
             CanEdit = Visibility.Collapsed;
+            CanDelete = Visibility.Collapsed;
             CanAtent = Visibility.Collapsed;
             CanUpload = Visibility.Visible;
             CanSave = Visibility.Visible;
+        }
+
+        public void AtenderSolicitud()
+        {
+            _windowManager.ShowWindow(new SolicitudAbAtenderViewModel(_windowManager, this, idSolicitud));
         }
 
         public void SeleccionarProductos()
@@ -215,7 +221,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void GuardarSolicitud()
         {
             AbastecimientoModel solModel = new AbastecimientoModel();
-            int idUsuario = 17;
+            int idUsuario = Int32.Parse(Thread.CurrentPrincipal.Identity.Name);
             string message = "Hubo error en el proceso";
             switch (IndMantenimiento)
             {
@@ -232,7 +238,8 @@ namespace MadeInHouse.ViewModels.Almacen
             IndMantenimiento = DETALLE;
             IsReadOnly = true;
             CanEdit = Visibility.Visible;
-            CanAtent = Visibility.Visible;
+            CanDelete = Visibility.Visible;
+            CanAtent = (this.idTiendaUsuario == 0) ? Visibility.Visible : Visibility.Collapsed;
             CanUpload = Visibility.Collapsed;
             CanSave = Visibility.Collapsed;
         }

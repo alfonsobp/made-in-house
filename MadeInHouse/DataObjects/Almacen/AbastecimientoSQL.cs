@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MadeInHouse.DataObjects.Almacen
@@ -21,10 +22,11 @@ namespace MadeInHouse.DataObjects.Almacen
         public int insertarAbastecimiento(int idTienda)
         {
             int idSolicitud = -1;
-            db.cmd.CommandText = " INSERT INTO SolicitudAbastecimiento(estado , fechaReg , fechaAtencion , idOrden , idTienda) " +
+            db.cmd.CommandText = " INSERT INTO SolicitudAbastecimiento(estado , fechaReg , idTienda, idUsuario) " +
                                  " output INSERTED.idSolicitudAB " +
-                                 " VALUES (1, GETDATE(), NULL, NULL, @idTienda) ";
+                                 " VALUES (1, GETDATE(), @idTienda, @idUsuario) ";
             db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            db.cmd.Parameters.AddWithValue("@idUsuario", Thread.CurrentPrincipal.Identity.Name);
 
             if (db.cmd.Transaction == null) db.conn.Open();
             
@@ -46,6 +48,8 @@ namespace MadeInHouse.DataObjects.Almacen
                 {
                     if (!String.IsNullOrEmpty(values)) values += " , ";
                     values += " (@idSolicitudAB, " + item.idProducto + " , " + item.pedido + " , " + item.atendido + " ) ";
+                    if (!this.actualizarStock(item.idProducto, item.atendido, item.stock, item.stockPendiente))
+                        return false;
                 }
 
                 db.cmd.CommandText = " INSERT INTO ProductoxSolicitudAb (idSolicitudAB , idProducto , cantidad , cantidadAtendida) " +
@@ -111,15 +115,17 @@ namespace MadeInHouse.DataObjects.Almacen
             return lstAux;
         }
 
-        public List<AbastecimientoProducto> buscarProductosAbastecimiento(int idSolicitud, int idTienda)
+        public List<AbastecimientoProducto> buscarProductosAbastecimiento(int idSolicitud, int idTienda = -1)
         {
             List<AbastecimientoProducto> lstAux = null;
-            List<ProductoxAlmacen> prod;
+            List<ProductoxTienda> prod;
             ProductoSQL pSQL = new ProductoSQL();
             AlmacenSQL almSQL = new AlmacenSQL();
             AbastecimientoProducto abTemp;
             int posProd, posNomProd, posCant, posAtent;
-            int idAlmacen = almSQL.obtenerDeposito(idTienda);
+            int idAlmacen = idTienda;
+            if (idTienda == 0)
+                idAlmacen = almSQL.obtenerDeposito(idTienda);
 
             db.cmd.CommandText = "SELECT * FROM ProductoxSolicitudAb ps, Producto p WHERE ps.idProducto = p.idProducto AND ps.idSolicitudAB = @idSolicitudAB ";
             db.cmd.Parameters.Add(new SqlParameter("idSolicitudAB", idSolicitud));
@@ -139,8 +145,12 @@ namespace MadeInHouse.DataObjects.Almacen
                 abTemp.nombre = reader.IsDBNull(posNomProd) ? null : reader.GetString(posNomProd);
                 abTemp.pedido = reader.IsDBNull(posCant) ? -1 : reader.GetInt32(posCant);
                 abTemp.atendido = reader.IsDBNull(posAtent) ? -1 : reader.GetInt32(posAtent);
-                prod = pSQL.BuscarProductoxAlmacen(idAlmacen, abTemp.idProducto);
+                if (idTienda == 0)
+                    prod = pSQL.BuscarProductoxCentral(idAlmacen, abTemp.idProducto);
+                else
+                    prod = pSQL.BuscarProductoxTienda(idAlmacen, abTemp.idProducto);
                 abTemp.stock = prod == null? -1 : prod.ElementAt(0).StockActual;
+                abTemp.stockPendiente = prod == null ? -1 : prod.ElementAt(0).StockPendiente;
                 abTemp.sugerido = prod == null ? -1 : (prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual);
                 lstAux.Add(abTemp);
             }
@@ -204,6 +214,44 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.Clear();
 
             return result;
+        }
+
+        public int atenderAbastecimiento(int idSolicitudAB, int idUsuario)
+        {
+            int result = -1;
+            db.cmd.CommandText = " UPDATE SolicitudAbastecimiento SET " +
+                                 " estado = 3, idUsuario = @idUsuario " +
+                                 " WHERE idSolicitudAB =  @idSolicitudAB ";
+            db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
+            db.cmd.Parameters.AddWithValue("@idSolicitudAB", idSolicitudAB);
+
+            if (db.cmd.Transaction == null) db.conn.Open();
+
+            result = db.cmd.ExecuteNonQuery();
+
+            if (db.cmd.Transaction == null) db.conn.Close();
+            db.cmd.Parameters.Clear();
+
+            return result;
+        }
+
+        public bool actualizarStock(int idProducto, int cantidad, int stockActual, int stockPendiente)
+        {
+            db.cmd.CommandText = " UPDATE Producto SET " +
+                                 " stockActual = @stockActual, stockPendiente = @stockPendiente " +
+                                 " WHERE idProducto = @idProducto ";
+            db.cmd.Parameters.AddWithValue("@stockActual", stockActual - cantidad);
+            db.cmd.Parameters.AddWithValue("@stockPendiente", stockPendiente + cantidad);
+            db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+            if (db.cmd.Transaction == null) db.conn.Open();
+
+            int result = db.cmd.ExecuteNonQuery();
+
+            if (db.cmd.Transaction == null) db.conn.Close();
+            db.cmd.Parameters.Clear();
+
+            return result > 0 ? true : false;
         }
     }
 }

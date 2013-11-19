@@ -3,60 +3,74 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="467.027" d:DesignWidth="420">
-    <Border BorderThickness="2" CornerRadius="6" BorderBrush="Black" Background="White">
-        <DockPanel>
-            <Layouts:TitleBarTemplate title="Registro de devolución" DockPanel.Dock="Top" />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="433"/>
-                </Grid.RowDefinitions>
-                <ToolBar VerticalAlignment="Top" Margin="0">
+             d:DesignHeight="467.027" d:DesignWidth="620">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="Title">
+            <Border Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
+                <Layouts:TitleBarTemplate title="Detalle devolución" Name="txtTitle" />
+            </Border>
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=IndMantenimiento}" Value="1">
+                    <Setter TargetName="txtTitle" Property="title" Value="Registrar devolución"/>
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <ContentControl Template="{StaticResource Title}" DockPanel.Dock="Top" />
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button x:Name="AbrirRegistrarcliente" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0,3" >
-                        <Image Source="/MadeInHouse;component/Assets/New2.png" Height="30" Width="30"/>
-                    </Button>
-                    <Button x:Name="AbrirEditarCliente" >
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-                    </Button>
-                    <Button x:Name="AbrirEliminarVenta" >
+                    <Button x:Name="AnularSolicitud" ToolTip="Eliminar solicitud de abastecimiento" Visibility="{Binding Path=CanDelete}">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    <Button x:Name="GuardarDevolucion" ToolTip="Guardar" Visibility="{Binding Path=CanSave}">
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                 </ToolBar>
-                <TextBlock HorizontalAlignment="Left" Margin="15,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="122"><Run Language="es-pe" Text="Documento de pago:"/><LineBreak/><Run Language="es-pe" Text=":"/><LineBreak/><Run Language="es-pe"/></TextBlock>
-                <GroupBox Header="Productos" Margin="10,122,10,10">
-                    <DataGrid MaxHeight="400">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid HorizontalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Documento de pago:" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        <TextBox x:Name="DocPago" Height="25" cal:Message.Attach="[Event TextChanged] = [Action ObtenerProductos($source)]" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1" IsReadOnly="{Binding Path=IsReadOnly}" />
+                        <TextBlock Text="DNI:" TextWrapping="Wrap" Grid.Row="1" VerticalAlignment="Center" />
+                        <TextBox x:Name="DNI" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1" Grid.Row="1" IsReadOnly="True" />
+                    </Grid>
+                    <DataGrid CanUserAddRows="False" x:Name="LstProductos" Height="320" Width="500" Grid.Row="1" IsReadOnly="{Binding Path=IsReadOnly}" Margin="10" AutoGenerateColumns="False" >
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="ID Producto" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Producto" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Cantidad" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Devuelve"/>
-                            <DataGridComboBoxColumn ClipboardContentBinding="{x:Null}" Header="Motivo" SelectedValueBinding="{x:Null}" SelectedItemBinding="{x:Null}" TextBinding="{x:Null}"/>
-                            <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Detalle otros"/>
+                            <DataGridTextColumn Binding="{Binding CodProducto}" Width="80" Header="Codigo" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding Producto}" Width="*" Header="Producto" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding Cantidad}" Width="80" Header="Cantidad" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding Devuelto}" Width="80" Header="Devuelto" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding Devuelve}" Width="80" Header="Devuelve"/>
+                            <DataGridTextColumn Binding="{Binding Observaciones}" Width="100" Header="Observaciones"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                </GroupBox>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="142,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <TextBlock HorizontalAlignment="Left" Margin="15,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Width="122"><Run Language="es-es" Text="DNI:"/></TextBlock>
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="142,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
-            </Grid>
-        </DockPanel>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

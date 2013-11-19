@@ -100,7 +100,8 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             this.solicitudView = solicitudView;
             AlmacenSQL almSQL = new AlmacenSQL();
-            idAlmacen = almSQL.obtenerDeposito(solicitudView.idTienda);
+            idAlmacen = solicitudView.idTienda;
+            SelectedTienda = solicitudView.idTienda;
         }
 
         public ProductoBuscarViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion):this()
@@ -430,10 +431,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 AbastecimientoProducto prodPedido = new AbastecimientoProducto();
                 prodPedido.idProducto = productoSel.IdProducto;
                 prodPedido.nombre = productoSel.Nombre;
-                List<ProductoxAlmacen> prod = pSQL.BuscarProductoxAlmacen(idAlmacen, productoSel.IdProducto);
+                List<ProductoxTienda> prod = pSQL.BuscarProductoxTienda(idAlmacen, productoSel.IdProducto);
                 prodPedido.stock = prod.ElementAt(0).StockActual;
                 prodPedido.sugerido = prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual;
                 prodPedido.pedido = prodPedido.sugerido;
+                prodPedido.atendido = 0;
                 solicitudView.addProducto(prodPedido);
             }
             else

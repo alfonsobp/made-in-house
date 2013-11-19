@@ -154,6 +154,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 db.conn.Close();
                 db.cmd.Parameters.Clear();
             }
+            db.cmd.Parameters.Clear();
             return idTienda;
         }
 

@@ -62,6 +62,7 @@ namespace MadeInHouse.Models.Almacen
                     if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
                     {
                         trans.Commit();
+                        db.conn.Close();
                         return "La operacion fue exitosa";
                     }
                     else
@@ -74,6 +75,40 @@ namespace MadeInHouse.Models.Almacen
                 message = "No se pudo crear la solicitud";
 
             trans.Rollback();
+            db.conn.Close();
+            return message;
+        }
+
+        public string atenderAbastecimiento(int idUsuario, int idSolicitud, List<AbastecimientoProducto> prod)
+        {
+            DBConexion db = new DBConexion();
+            db.conn.Open();
+            SqlTransaction trans = db.conn.BeginTransaction();
+            db.cmd.Transaction = trans;
+            AbastecimientoSQL solSQL = new AbastecimientoSQL(db);
+            string message;
+
+            if (solSQL.atenderAbastecimiento(idSolicitud, idUsuario) > 0)
+            {
+                if (solSQL.eliminarProductosAbastecimiento(idSolicitud) >= 0)
+                {
+                    if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
+                    {
+                        trans.Commit();
+                        db.conn.Close();
+                        return "La operacion fue exitosa";
+                    }
+                    else
+                        message = "Hubo un error al agregar los productos";
+                }
+                else
+                    message = "No se pudo eliminar los productos";
+            }
+            else
+                message = "No se pudo crear la solicitud";
+
+            trans.Rollback();
+            db.conn.Close();
             return message;
         }
     }
