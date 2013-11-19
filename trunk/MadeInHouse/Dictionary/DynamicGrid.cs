@@ -14,6 +14,13 @@ namespace MadeInHouse.Dictionary {
     class DynamicGrid : Grid {
 
 
+        private static readonly DependencyProperty SelectedZonaProperty = DependencyProperty.Register("SelectedZona", typeof(int), typeof(DynamicGrid), new PropertyMetadata(0, new PropertyChangedCallback(OnZonaChanged)));
+        public int SelectedZona
+        {
+            get { return (int)GetValue(SelectedZonaProperty); }
+            set { SetValue(SelectedZonaProperty, value); }
+        }
+
         private static readonly DependencyProperty ColorAntUProperty = DependencyProperty.Register("ColorAntU", typeof(LinearGradientBrush), typeof(DynamicGrid));
         public LinearGradientBrush ColorAntU
         {
@@ -101,14 +108,6 @@ namespace MadeInHouse.Dictionary {
             set { SetValue(ObjetoProperty, value); }
         }
 
-
-        public static readonly DependencyProperty GridChildProperty = DependencyProperty.Register("GridChild", typeof(DynamicGrid), typeof(DynamicGrid));
-        public DynamicGrid GridChild
-        {
-            get { return (DynamicGrid)GetValue(GridChildProperty); }
-            set { SetValue(GridChildProperty, value); }
-        }
-
         public static readonly DependencyProperty AccionProperty = DependencyProperty.Register("Accion", typeof(int), typeof(DynamicGrid));//, new PropertyMetadata(1, new PropertyChangedCallback(OnNumRowsOrColumnsChanged)));
         public int Accion
         {
@@ -153,6 +152,7 @@ namespace MadeInHouse.Dictionary {
             set { SetValue(NumRowsProperty, value); }
         } 
         
+
         static void OnNumRowsOrColumnsChanged(object sender, DependencyPropertyChangedEventArgs e) {
             ((DynamicGrid)sender).RecreateGridCells(); }
 
@@ -164,6 +164,11 @@ namespace MadeInHouse.Dictionary {
         static void OnColumnChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             ((DynamicGrid)sender).Mostrar();
+        }
+
+        static void OnZonaChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            ((DynamicGrid)sender).CargarSectores();
         }
 
         public List<List<List<Ubicacion>>> Ubicaciones { get; set; }
@@ -251,7 +256,7 @@ namespace MadeInHouse.Dictionary {
             {
                 for (int j = 0; j < Columna.Count; j++)
                 {
-                    idSelectedProduct = Columna[j].IdProducto;
+                    
                     if (Columna[j].IdProducto == (SelectedProduct == null ? -1 : SelectedProduct.IdProducto))
                     {
                         enable = true;
@@ -375,7 +380,7 @@ namespace MadeInHouse.Dictionary {
                     yAntU = Y;
                     ColorAntU = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as LinearGradientBrush;
 
-                    if (Columna[X].IdProducto == idSelectedProduct)
+                    if (Columna[X].IdProducto == SelectedProduct.IdProducto)
                     {
                         selectedUbicacion = Columna[X];
                         CantActual = Columna[X].Cantidad.ToString();
@@ -394,6 +399,51 @@ namespace MadeInHouse.Dictionary {
             }
             else if (Accion == 3)
             {
+                if (SelectedProduct != null)
+                {
+                    
+                    if (Ubicaciones[X][Y][0].IdProducto == 0 ) {
+
+                        TipoZona tz=lstZonas.Find(x => x.IdTipoZona == SelectedZona);
+                        Sector sector= tz.LstSectores.Find(x => x.IdProducto == SelectedProduct.IdProducto);
+                        Ubicaciones[X][Y][0].IdProducto = SelectedProduct.IdProducto;
+                        if (sector != null)
+                        {
+                            //verifico si puedo agregar o no esa ubicacion al sector ( es decir , si es contigua)
+                            Ubicaciones[X][Y][0].IdSector = sector.IdSector;
+                            sector.NroUbicaciones += 1;
+                            if (sector.Capacidad != 0)
+                            {
+                                sector.Capacidad += sector.Capacidad ;
+                                sector.VolOcupado = (sector.Cantidad / sector.Capacidad) * 100;
+                            }
+                            sector.LstUbicaciones.Add(Ubicaciones[X][Y][0]);
+                            
+                        }
+                        else
+                        {
+                            string capAux= Microsoft.VisualBasic.Interaction.InputBox("Ingrese la capacidad que tendra cada columna ", "Capacidad de la columna");
+                            if (String.IsNullOrEmpty(capAux)) 
+                            {
+                                return;
+                            }
+                            sector = new Sector();
+                            sector.IdProducto = SelectedProduct.IdProducto;
+                            sector.Cantidad = 0;
+                            sector.VolOcupado = 0;
+                            sector.Capacidad = int.Parse(capAux);
+                            sector.NroUbicaciones = 1;
+                            sector.IdTipoZona = SelectedZona;
+                            sector.IdAlmacen = Ubicaciones[X][Y][0].IdAlmacen;
+                            sector.LstUbicaciones = new List<Ubicacion>();
+                            sector.LstUbicaciones.Add(Ubicaciones[X][Y][0]);
+                            tz.LstSectores.Add(sector);
+                        }
+                        (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
+                    }
+                   
+                }
+
 
 
             }
@@ -417,6 +467,7 @@ namespace MadeInHouse.Dictionary {
                     SolidColorBrush brush = conv.ConvertFromString(this.lstZonas[i].Color) as SolidColorBrush;
                     (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).Background = brush;
                     (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).ToolTip = this.lstZonas[i].Nombre;
+                    Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].IdAlmacen = this.lstZonas[i].LstUbicaciones[j].IdAlmacen;
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].IdTipoZona = this.lstZonas[i].LstUbicaciones[j].IdTipoZona;
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].IdProducto = this.lstZonas[i].LstUbicaciones[j].IdProducto;
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].IdUbicacion = this.lstZonas[i].LstUbicaciones[j].IdUbicacion;
@@ -431,8 +482,86 @@ namespace MadeInHouse.Dictionary {
 
         }
 
+
+        public int StockActual;
+        public int VolOcupadoActual;
+        public int CapacidadActual;
+
+        public void UbicarSector(int idProducto) {
+
+            TipoZona tz = lstZonas.Find(x => x.IdTipoZona == SelectedZona);
+            BrushConverter conv = new BrushConverter();
+            SolidColorBrush colorOcupado = conv.ConvertFromString("LightPink") as SolidColorBrush;
+            SolidColorBrush colorProducto = conv.ConvertFromString("LightSkyBlue") as SolidColorBrush;
+            
+
+            for (int j = 0; j < tz.LstSectores.Count; j++)
+            {
+                    for (int k = 0; k < tz.LstSectores[j].LstUbicaciones.Count; k++)
+                    {
+                        (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Content = "";
+                    }
+            }
+
+            for (int j = 0; j < tz.LstSectores.Count; j++)
+                {
+                    if (idProducto == tz.LstSectores[j].IdProducto)
+                    {
+                        for (int k = 0; k < tz.LstSectores[j].LstUbicaciones.Count; k++)
+                        {
+                            CapacidadActual = tz.LstSectores[j].Capacidad;
+                            StockActual = tz.LstSectores[j].Cantidad;
+                            VolOcupadoActual = tz.LstSectores[j].VolOcupado;
+                            //(this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Content = "" + tz.LstSectores[j].IdSector;
+                            (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Background = colorProducto;
+                        }
+                    }
+                    else if (idProducto != 0)
+                    {
+                        for (int k = 0; k < tz.LstSectores[j].LstUbicaciones.Count; k++)
+                        {
+                            //(this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Content = "X";
+                            (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Background = colorOcupado;
+                        }
+                    }
+
+                }
+            
+        }
+
+        public void CargarSectores()
+        {
+
+            BrushConverter conv = new BrushConverter();
+            SolidColorBrush colorname = conv.ConvertFromString("Black") as SolidColorBrush;
+
+                for (int i = 0; i < this.lstZonas.Count; i++)
+                {
+                    for (int j = 0; j < this.lstZonas[i].LstUbicaciones.Count; j++)
+                    {
+                        if (this.lstZonas[i].LstUbicaciones[j].IdTipoZona == SelectedZona)
+                        {
+                            SolidColorBrush brush = conv.ConvertFromString(this.lstZonas[i].Color) as SolidColorBrush;
+                            bool enable = true;
+                            (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).Background = brush;
+                            (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).ToolTip = this.lstZonas[i].Nombre;
+                            (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).IsEnabled = enable;
+
+
+                        }
+                        else
+                        {
+                            bool enable = false;
+                            (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).IsEnabled = enable;
+                        }
+                    }
+                }
+
+        }
+
+
         public ProductoCant SelectedProduct;
-        public int idSelectedProduct;
+        
 
         public void UbicarProducto(int idProducto)
         {

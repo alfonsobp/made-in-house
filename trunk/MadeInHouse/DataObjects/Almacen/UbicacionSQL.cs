@@ -59,14 +59,40 @@ namespace MadeInHouse.DataObjects.Almacen
             return 1;
         }
 
-        public int AgregarMasivo(DataTable data, SqlTransaction transaction)
+        public int ActualizarIdSector() 
         {
             try
             {
-                if (tipo) db.conn.Open();
-                using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction))
-                {
 
+                if (tipo) db.conn.Open();
+                db.cmd.CommandText = "MERGE INTO  TemporalUbicacion  USING "+
+                                      "Sector on (TemporalUbicacion.idProducto=Sector.idProducto and  TemporalUbicacion.idTipoZona=Sector.idTipoZona and TemporalUbicacion.idAlmacen=Sector.idAlmacen )" +
+                                       "when matched then update " +
+                                        "set TemporalUbicacion.idSector=Sector.idSector ;";
+                db.cmd.ExecuteNonQuery();
+                //db.cmd.ExecuteNonQuery();
+                if (tipo) db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+
+
+            return 1;
+        }
+
+        public int AgregarMasivo(DataTable data, SqlTransaction transaction=null)
+        {
+            try
+            {
+                SqlBulkCopy s = transaction==null ? new SqlBulkCopy(db.conn) : new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction);
+                if (tipo) db.conn.Open();
+                using (s)
+                {
                     s.DestinationTableName = data.TableName;
 
                     foreach (var column in data.Columns)
@@ -110,7 +136,7 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
-        public List<Ubicacion> ObtenerUbicaciones(int idAlmacen = -1, int idTipoZona = -1)
+        public List<Ubicacion> ObtenerUbicaciones(int idAlmacen = -1, int idTipoZona = -1,int idSector=-1)
         {
             List<Ubicacion> lstUbicaciones = null;
             db.cmd.CommandText = "SELECT A.* FROM Ubicacion A" +
@@ -118,6 +144,12 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             db.cmd.Parameters.AddWithValue("@idTipoZona", idTipoZona);
 
+            if (idSector > 0)
+            {
+                db.cmd.CommandText += "  and A.idSector=@idSector";
+                db.cmd.Parameters.AddWithValue("@idSector", idSector);
+
+            }
             try
             {
                 db.conn.Open();
@@ -130,6 +162,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     u.IdAlmacen = idAlmacen;
                     u.IdTipoZona = idTipoZona;
                     u.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? 0 : int.Parse(reader["idProducto"].ToString());
+                    u.IdSector = reader.IsDBNull(reader.GetOrdinal("idSector")) ? 0 : int.Parse(reader["idSector"].ToString());
                     u.CordX = int.Parse(reader["cordX"].ToString());
                     u.CordY = int.Parse(reader["cordY"].ToString());
                     u.CordZ = int.Parse(reader["cordZ"].ToString());
@@ -165,13 +198,13 @@ namespace MadeInHouse.DataObjects.Almacen
                 if (tipo) db.conn.Open();
 
                 db.cmd.CommandText = "MERGE INTO  Ubicacion  USING "+
-                                      "Temporal on Ubicacion.idUbicacion=Temporal.idUbicacion " +
-                                       "when matched then update " + 
-                                        "set Ubicacion.idProducto=Temporal.idProducto , Ubicacion.cantidad = Temporal.cantidad , Ubicacion.volOcupado=Temporal.volOcupado;";
+                                      "TemporalUbicacion on Ubicacion.idUbicacion=TemporalUbicacion.idUbicacion " +
+                                       "when matched then update " +
+                                        "set Ubicacion.idProducto=TemporalUbicacion.idProducto , Ubicacion.cantidad = TemporalUbicacion.cantidad , Ubicacion.volOcupado=TemporalUbicacion.volOcupado , Ubicacion.idSector=TemporalUbicacion.idSector;";
                 db.cmd.ExecuteNonQuery();
 
                
-                db.cmd.CommandText = "TRUNCATE TABLE Temporal";
+                db.cmd.CommandText = "TRUNCATE TABLE TemporalUbicacion";
                 db.cmd.ExecuteNonQuery();
                 if (tipo) db.conn.Close();
 
@@ -189,7 +222,7 @@ namespace MadeInHouse.DataObjects.Almacen
         public DataTable CrearUbicacionesDT()
         {
             /*Agrego las zonas por almacen*/
-            DataTable ubicacionesData = new DataTable("Ubicacion");
+            DataTable ubicacionesData = new DataTable();
 
             // Create Column 1: idTipoZona
 
@@ -234,6 +267,10 @@ namespace MadeInHouse.DataObjects.Almacen
             idUbicacionCol.DataType = Type.GetType("System.Int32");
             idUbicacionCol.ColumnName = "idUbicacion";
 
+            DataColumn idSectorCol = new DataColumn();
+            idSectorCol.DataType = Type.GetType("System.Int32");
+            idSectorCol.ColumnName = "idSector";
+
 
             // Add the columns to the ProductSalesData DataTable
             ubicacionesData.Columns.Add(idZonaCol);
@@ -245,8 +282,9 @@ namespace MadeInHouse.DataObjects.Almacen
             ubicacionesData.Columns.Add(cantidadCol);
             ubicacionesData.Columns.Add(volOcupadoCol);
             ubicacionesData.Columns.Add(idUbicacionCol);
+            ubicacionesData.Columns.Add(idSectorCol);
 
-            ubicacionesData.TableName = "Temporal";
+            ubicacionesData.TableName = "TemporalUbicacion";
 
             return ubicacionesData;
         }
@@ -279,5 +317,23 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
+        public void AgregarFilasToUbicacionesDT(DataTable data, List<Ubicacion> filas)
+        {
+              for (int p = 0; p < filas.Count; p++)
+                    {
+                        DataRow ubicacionRow = data.NewRow();
+                        ubicacionRow["idTipoZona"] = filas[p].IdTipoZona;
+                        ubicacionRow["idAlmacen"] = filas[p].IdAlmacen;
+                        ubicacionRow["idProducto"] = filas[p].IdProducto;
+                        ubicacionRow["idUbicacion"] = filas[p].IdUbicacion;
+                        ubicacionRow["idSector"] = filas[p].IdSector;
+                        ubicacionRow["idUbicacion"] = filas[p].IdUbicacion;
+                        data.Rows.Add(ubicacionRow);
+
+                    }
+            }
+
+        }
+
+
     }
-}

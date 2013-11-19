@@ -15,6 +15,22 @@ namespace MadeInHouse.DataObjects
             db = new DBConexion();
         }
 
+        public void LimpiarTabla(string tName)
+        {
+            db.cmd.CommandText = "TRUNCATE TABLE " + tName;
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+            }
+
+        }
+
         public int ObtenerMaximoID (string nombreTabla, string nombreID) 
         {
 

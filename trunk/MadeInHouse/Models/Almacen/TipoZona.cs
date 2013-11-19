@@ -64,7 +64,15 @@ namespace MadeInHouse.Models.Almacen
             get { return lstUbicaciones; }
             set { lstUbicaciones = value; }
         }
-    
+
+        private List<Sector> lstSectores;
+
+        public List<Sector> LstSectores
+        {
+            get { return lstSectores; }
+            set { lstSectores = value; }
+        }
+
     }   
 
 }
