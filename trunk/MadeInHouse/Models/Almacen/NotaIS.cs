@@ -83,6 +83,12 @@ namespace MadeInHouse.Models.Almacen
                 set { idDoc = value; }
             }
 
+            private Almacenes alm;
+            public Almacenes Alm
+            {
+                get { return alm; }
+                set { alm = value; }
+            }
         
         }
 }

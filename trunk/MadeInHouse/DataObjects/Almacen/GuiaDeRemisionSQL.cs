@@ -9,12 +9,15 @@ using System.Windows;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
 using Caliburn.Micro;
+using MadeInHouse.Models.Ventas;
+using MadeInHouse.ViewModels.Almacen;
+using MadeInHouse.Models.Seguridad;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
     class GuiaDeRemisionSQL
     {
-        public List<GuiaRemision> BuscarGuiaDeRemision(string codigo, DateTime fechaIni, DateTime fechaFin, string tipo)
+        public List<GuiaRemision> BuscarGuiaDeRemision(string codigo, int estado, string tipo)
         {
 
             DBConexion db = new DBConexion();
@@ -27,18 +30,13 @@ namespace MadeInHouse.DataObjects.Almacen
                     where += " and codGuiaRem = '" + codigo.ToString() + "' ";
             }
 
-            if (fechaIni != null)
+            if (estado != 0)
             {
 
-                where += " and CONVERT(DATE,'" + fechaIni.ToString("yyyy-MM-dd") + "')   <=  CONVERT(DATE,fechaTraslado,103) ";
+                where += " and estado = " + estado;
 
             }
 
-            if (fechaFin != null)
-            {
-
-                where += " and CONVERT(DATE,'" + fechaFin.ToString("yyyy-MM-dd") + "')   >=  CONVERT(DATE,fechaTraslado,103) ";
-            }
 
             if (!String.IsNullOrEmpty(tipo))
             {
@@ -63,6 +61,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     GuiaRemision g = new GuiaRemision();
                     g.Almacen = new Almacenes();
 
+                    g.IdGuia = Convert.ToInt32(reader["idGuia"].ToString());
                     g.CodGuiaRem = reader["codGuiaRem"].ToString();
                     g.Conductor = reader["conductor"].ToString();
                     g.FechaTraslado = Convert.ToDateTime(reader["fechaTraslado"].ToString());
@@ -71,16 +70,25 @@ namespace MadeInHouse.DataObjects.Almacen
                     g.Tipo = reader["tipo"].ToString();
                     g.Observaciones = reader["observaciones"].ToString();
                     g.Estado = Convert.ToInt32(reader["estado"].ToString());
-                    g.IdGuia = Convert.ToInt32(reader["idGuia"].ToString());
-                    int idAlmacen=0;
-                    idAlmacen= reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : Convert.ToInt32(reader["idAlmacen"].ToString());
-                    int idNota = 0;
-                    idNota = reader.IsDBNull(reader.GetOrdinal("idNota")) ? -1 : Convert.ToInt32(reader["idNota"].ToString());
-                    
+
+                    if (!reader.IsDBNull(reader.GetOrdinal("idAlmacen")))                    
+                    {
+                        int idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
+                        int idNota = Convert.ToInt32(reader["idNota"].ToString());
+                        g.Almacen = getALMfromIDAlm(idAlmacen);
+                        g.Nota = getNOTAfromIDnota(idNota);
+                        g.AlmOrigen = getALMfromIDAlm(g.Nota.IdAlmacen);
+                    }
+
                     if (!reader.IsDBNull(reader.GetOrdinal("idOrdenDespacho")))
                     {
                         int idOrd = Convert.ToInt32(reader["idOrdenDespacho"].ToString());
                         g.Orden = getORDENfromIDorden(idOrd);
+
+                        Venta v = new MantenerGuiaDeRemisionViewModel().getVentafromID(g.Orden.Venta.IdVenta);
+                        Usuario u = new MantenerGuiaDeRemisionViewModel().getUsuariofromID(v.IdUsuario);
+                        Cliente c = new MantenerGuiaDeRemisionViewModel().getClientefromID(v.IdCliente);
+                        g.AlmOrigen = new MantenerGuiaDeRemisionViewModel().getAlmacenfromIDTienda(u.IdTienda);
                     }
 
                     if (idNota != 0) {
@@ -104,6 +112,80 @@ namespace MadeInHouse.DataObjects.Almacen
             return lstGuiaDeRemision;
 
         }
+
+        public Boolean BuscarIDNota(int id)
+        {
+
+            DBConexion db = new DBConexion();
+            List<GuiaRemision> lstGuiaDeRemision = new List<GuiaRemision>();
+            SqlDataReader reader;
+            
+            db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE idNota = " + id.ToString();
+            db.cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                        int idNota = Convert.ToInt32(reader["idNota"].ToString());
+                        return true;
+                    
+                }
+
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return false;
+
+        }
+
+
+        public Boolean BuscarIDOrden(int id)
+        {
+
+            DBConexion db = new DBConexion();
+            List<GuiaRemision> lstGuiaDeRemision = new List<GuiaRemision>();
+            SqlDataReader reader;
+
+            db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE idOrden = " + id;
+            db.cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                        int idOrd = Convert.ToInt32(reader["idOrdenDespacho"].ToString());
+                        return true; 
+                }
+
+
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return false;
+
+        }
+
 
 
         public int agregarGuiaDeRemision(GuiaRemision g)
@@ -177,16 +259,16 @@ namespace MadeInHouse.DataObjects.Almacen
             int k = 0;
 
             db.cmd.CommandText = "UPDATE GuiaRemision  " +
-            "SET estado= @estado, camion= @camion,conductor= @conductor,fechaReg= @fechaReg,tipo= @tipo,observaciones= @observaciones " +
-            " WHERE codGuiaRem= @codGuiaRem ";
+            "SET camion= @camion, conductor= @conductor, fechaTraslado= @fechaTraslado, observaciones= @observaciones, estado= @estado " +
+            " WHERE idGuia= @idGuia ";
 
-            db.cmd.Parameters.AddWithValue("@codGuiaRem", g.CodGuiaRem);
+            db.cmd.Parameters.AddWithValue("@idGuia", g.IdGuia);
             db.cmd.Parameters.AddWithValue("@camion", g.Camion);
             db.cmd.Parameters.AddWithValue("@conductor", g.Conductor);
-            db.cmd.Parameters.AddWithValue("@fechaReg", g.FechaReg);
-            db.cmd.Parameters.AddWithValue("@tipo", g.Tipo);
+            db.cmd.Parameters.AddWithValue("@fechaTraslado", g.FechaTraslado);
             db.cmd.Parameters.AddWithValue("@observaciones", g.Observaciones);
             db.cmd.Parameters.AddWithValue("@estado", g.Estado);
+
             try
             {
                 db.conn.Open();

@@ -29,41 +29,44 @@
                     <Button x:Name="EditarGuiaDeRemision">
                         <Image Source="/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button/>
                     <Button>
                         <Image Source="/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/Assets/eraser.png" Height="30" Width="30" />
+                    <Button x:Name="RecibirGuia">
+                        <Image Source="/Assets/check.png" Height="30" Width="30" />
                     </Button>
                     <Button x:Name="ActualizarGuiaRemision" Height="30" Width="30">
                         <Image Source="/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Criterios de búsqueda" Margin="10,17,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="398" Height="127" VerticalAlignment="Top">
+                <GroupBox Header="Criterios de búsqueda" Margin="10,17,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="398" Height="173" VerticalAlignment="Top" Grid.RowSpan="2">
 
-                    <Grid HorizontalAlignment="Left" Width="381" Height="109" VerticalAlignment="Top" Margin="0,0,0,-4">
+                    <Grid HorizontalAlignment="Left" Width="381" Height="151" VerticalAlignment="Top" Margin="0,0,0,-46">
                         <Label Content="Código:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="71" Margin="10,10,0,0" />
                         <Label Content="Tipo:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="58"  Margin="10,67,0,0"/>
-                        <Label Content="Fecha Traslado:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="93"  Margin="10,37,0,0"/>
-                        <TextBox x:Name="TxtCodigo" Margin="71,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195"/>
-                        <DatePicker x:Name="TxtFechaIni" Margin="103,38,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="68"/>
-                        <DatePicker x:Name="TxtFechaFin" Margin="198,38,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="68"/>
-                        <ComboBox SelectedItem="{Binding SeleccionadoTipo, Mode=TwoWay}" ItemsSource="{Binding CbTipo, Mode=OneWay}" Margin="71,70,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
+                        <Label Content="Alm. Origen:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="93"  Margin="10,37,0,0"/>
+                        <TextBox x:Name="TxtCodigo" Margin="86,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180"/>
+                        <ComboBox SelectedItem="{Binding SeleccionadoTipo, Mode=TwoWay}" ItemsSource="{Binding CbTipo, Mode=OneWay}" Margin="86,70,0,0" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
                         </ComboBox>
-                        <Button x:Name="BuscarGuiaRemision" Background="Transparent" Margin="278,0,0,76" HorizontalAlignment="Left" Width="86" Height="23" VerticalAlignment="Bottom">
+                        <Button x:Name="BuscarGuiaRemision" Background="Transparent" Margin="292,0,0,123" HorizontalAlignment="Left" Width="69" Height="18" VerticalAlignment="Bottom">
                             <Image Source="/Assets/find.png" />
                         </Button>
-                        <Label Content="--" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="18"  Margin="175,37,0,0"/>
+                        <TextBox Text="{Binding Path=Alm.Nombre, Mode=TwoWay}" IsEnabled="False" Margin="86,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="152" Height="21"/>
+                        <Button x:Name="BuscarAlmacen" Margin="243,0,0,93" HorizontalAlignment="Left" Width="23" Height="21" VerticalAlignment="Bottom">
+                            <Image Source="/MadeInHouse;component/Assets/find.png" />
+                        </Button>
+                        <Label Content="Estado:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="58"  Margin="10,97,0,0"/>
+                        <ComboBox SelectedItem="{Binding SeleccionadoEst, Mode=TwoWay}" ItemsSource="{Binding CbEst, Mode=OneWay}" Margin="86,99,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
+                        </ComboBox>
                     </Grid>
                 </GroupBox>
                 <DataGrid x:Name="LstGuiaDeRemision" 
                           cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)];[Event MouseDoubleClick] = [Action Acciones($source)]"
                           IsReadOnly="True"
-                          Margin="10,3,17,0" Grid.Row="2" HeadersVisibility="All" Height="241" VerticalAlignment="Top" AutoGenerateColumns="false" >
+                          Margin="10,49,17,0" Grid.Row="2" HeadersVisibility="All" Height="195" VerticalAlignment="Top" AutoGenerateColumns="false" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodGuiaRem}" Header="Código" Width="80"/>
-                        <DataGridTextColumn Binding="{Binding Path=FechaTraslado}" Header="Fecha Traslado" Width="160"/>
+                        <DataGridTextColumn Binding="{Binding Path=AlmOrigen.Nombre}" Header="Almacen Origen" Width="160"/>
                         <DataGridTextColumn Binding="{Binding Path=Tipo}" Header="Tipo" Width="160"/>
                 
                     </DataGrid.Columns>

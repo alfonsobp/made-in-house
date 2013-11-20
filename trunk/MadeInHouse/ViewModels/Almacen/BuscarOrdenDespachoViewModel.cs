@@ -56,16 +56,38 @@ namespace MadeInHouse.ViewModels.Almacen
         public void SelectedItemChanged(object sender)
         {
             ordenDespachoSeleccionado = ((sender as DataGrid).SelectedItem as OrdenDespacho);
-            ordenDespachoSeleccionado.CodOrden = "OD-" + (1000000 + ordenDespachoSeleccionado.IdOrdenDespacho).ToString();
 
             if (ordenDespachoSeleccionado != null)
             {
+                ordenDespachoSeleccionado.CodOrden = "OD-" + (1000000 + ordenDespachoSeleccionado.IdOrdenDespacho).ToString();
                 if (m != null)
                 {
-                    m.Orden = ordenDespachoSeleccionado;
-                    TryClose();
+                    if (!(new GuiaDeRemisionSQL().BuscarIDOrden(ordenDespachoSeleccionado.IdOrdenDespacho)))
+                    {
+                        m.Orden = ordenDespachoSeleccionado;
+                        TryClose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La ORDEN ya esta en una GUIA");
+                    }
                 }
             }
+        }
+
+        public Boolean EstaEnOrden(OrdenDespacho ord)
+        {
+            List<GuiaRemision> list = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(null, 0, null);
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (list[i].Orden != null)
+                {
+                    if (list[i].Orden.IdOrdenDespacho == ord.IdOrdenDespacho)
+                        return true;
+                }
+            }
+
+            return false;
         }
 
 

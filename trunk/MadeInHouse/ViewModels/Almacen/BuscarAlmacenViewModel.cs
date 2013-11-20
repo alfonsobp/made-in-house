@@ -22,6 +22,12 @@ namespace MadeInHouse.ViewModels.Almacen
             this.g = g;
         }
 
+        BuscarGuiasRemisionViewModel b;
+        public BuscarAlmacenViewModel(BuscarGuiasRemisionViewModel b)
+        {
+            this.b = b;
+        }
+
         //Atributos
         private string txtCodigo;
         public string TxtCodigo
@@ -55,6 +61,12 @@ namespace MadeInHouse.ViewModels.Almacen
                     g.Alm = AlmSelect;
                     TryClose();
                 }
+
+                if (b != null)
+                {
+                    b.Alm = AlmSelect;
+                    TryClose();
+                }
             }
         }
 
@@ -76,5 +88,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstAlmacenes = new List<Almacenes>(list);
             }
         }
+
+        
     }
 }
