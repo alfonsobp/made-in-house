@@ -57,7 +57,8 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 while (reader.Read())
                 {
-
+                    int idAlmacen = 0;
+                    int idNota = 0;
                     GuiaRemision g = new GuiaRemision();
                     g.Almacen = new Almacenes();
 
@@ -73,8 +74,8 @@ namespace MadeInHouse.DataObjects.Almacen
 
                     if (!reader.IsDBNull(reader.GetOrdinal("idAlmacen")))                    
                     {
-                        int idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
-                        int idNota = Convert.ToInt32(reader["idNota"].ToString());
+                        idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
+                        idNota = Convert.ToInt32(reader["idNota"].ToString());
                         g.Almacen = getALMfromIDAlm(idAlmacen);
                         g.Nota = getNOTAfromIDnota(idNota);
                         g.AlmOrigen = getALMfromIDAlm(g.Nota.IdAlmacen);
