@@ -158,7 +158,7 @@ namespace MadeInHouse.DataObjects.Almacen
             List<GuiaRemision> lstGuiaDeRemision = new List<GuiaRemision>();
             SqlDataReader reader;
 
-            db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE idOrden = " + id;
+            db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE idOrdenDespacho = " + id;
             db.cmd.CommandType = CommandType.Text;
 
             try

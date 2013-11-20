@@ -143,24 +143,26 @@ namespace MadeInHouse.ViewModels.Almacen
             }
 
             list = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(TxtCodigo, estado, SeleccionadoTipo);
-
-            if (!String.IsNullOrEmpty(Alm.CodAlmacen))
+            if (Alm != null)
             {
-                for (int i = 0; i < list.Count; i++)
+                if (!String.IsNullOrEmpty(Alm.CodAlmacen))
                 {
-                    if (list[i].AlmOrigen.CodAlmacen == Alm.CodAlmacen)
-                        NewList.Add(list[i]);
+                    for (int i = 0; i < list.Count; i++)
+                    {
+                        if (list[i].AlmOrigen.CodAlmacen == Alm.CodAlmacen)
+                            NewList.Add(list[i]);
+                    }
+
+                    if (NewList != null)
+                        LstGuiaDeRemision = new List<GuiaRemision>(NewList);
+                    else
+                        LstGuiaDeRemision = new List<GuiaRemision>(list);
                 }
 
-                if (NewList != null)
-                    LstGuiaDeRemision = new List<GuiaRemision>(NewList);
                 else
+                {
                     LstGuiaDeRemision = new List<GuiaRemision>(list);
-            }
-
-            else
-            {
-                LstGuiaDeRemision = new List<GuiaRemision>(list);
+                }
             }
 
         }
