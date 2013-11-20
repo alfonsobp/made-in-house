@@ -299,10 +299,34 @@ namespace MadeInHouse.DataObjects.RRHH
                 MessageBox.Show(e.StackTrace.ToString());
             }
 
-
-
             return k;
         }
+
+        public static void ActualizarTiendaEnUsuario(string codEmpleado, int idTienda)
+        {
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+
+            int k = 0;
+
+            cmd.CommandText = "UPDATE USUARIO set idTienda=@idTienda where codEmpleado=@codEmpleado ";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                k = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+        }
+
 
         public static List<string> Tiendas()
         {
@@ -362,6 +386,36 @@ namespace MadeInHouse.DataObjects.RRHH
             return idTienda;
         }
 
+        public static int GetIdTiendaPorCodEmpleado(string codEmpleado)
+        {
+            int idTienda = 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = " SELECT idTienda FROM Empleado WHERE upper(codEmpleado)=upper(@codEmpleado)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    idTienda = Convert.ToInt32(reader["idTienda"].ToString());
+                else
+                    conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return idTienda;
+        }
+
 
         public static List<Empleado> BuscarEmpleadoId(int id)
         {
@@ -401,7 +455,6 @@ namespace MadeInHouse.DataObjects.RRHH
         ////////////////////////ELIMINAR USUARIO//////////////////////////////
         public static int eliminarUsuario(string p)
         {
-
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             int k = 0;
@@ -409,21 +462,17 @@ namespace MadeInHouse.DataObjects.RRHH
             cmd.CommandText = "UPDATE USUARIO set estado = 0 where codEmpleado = '" + p +"'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            
 
             try
             {
                 conn.Open();
                 k = cmd.ExecuteNonQuery();
                 conn.Close();
-
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
-
-
 
             return k;
         }
