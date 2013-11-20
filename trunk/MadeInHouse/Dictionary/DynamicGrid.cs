@@ -288,7 +288,7 @@ namespace MadeInHouse.Dictionary {
                     }
                     else 
                     {
-                        enable = false;
+                        //enable = false;
                         (this.Children[Columna[j].CordZ] as Button).Background = ocupado;
                         (this.Children[Columna[j].CordZ] as Button).Content = "OCUPADO";
                         //(this.Children[Columna[j].CordZ] as Button).IsEnabled = enable;
