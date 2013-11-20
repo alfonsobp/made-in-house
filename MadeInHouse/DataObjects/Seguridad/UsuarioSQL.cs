@@ -67,7 +67,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, estado = @estado, fechaMod = getdate(), estadoHabilitado = @estadoHabilitado, idTienda = @idTienda WHERE codEmpleado = @codEmpleado ";
+            db.cmd.CommandText = "UPDATE Usuario SET contrasenha = @contrasenha, idRol = @idRol, fechaMod = getdate(), estadoHabilitado = @estadoHabilitado, idTienda = @idTienda WHERE codEmpleado = @codEmpleado ";
 
             db.cmd.Parameters.AddWithValue("@codEmpleado", u.CodEmpleado);
             db.cmd.Parameters.AddWithValue("@contrasenha", u.Contrasenha);
