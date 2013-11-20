@@ -534,6 +534,11 @@ namespace MadeInHouse.ViewModels.Almacen
             sectorSQL.ActualizarTemporalSector(idNota);
             notaSQL.AgregarNotaxSector();
 
+            UtilesSQL util = new UtilesSQL();
+            util.LimpiarTabla("TemporalUbicacion");
+            util.LimpiarTabla("TemporalSector");
+
+            MessageBox.Show("Se transfirieron los productos correctamente");
 
         }
 
