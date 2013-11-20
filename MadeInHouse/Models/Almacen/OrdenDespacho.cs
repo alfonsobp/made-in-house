@@ -48,6 +48,12 @@ namespace MadeInHouse.Models.Almacen
             set { estado = value; }
         }
 
+        private Almacenes almOrigen;
+        public Almacenes AlmOrigen
+        {
+            get { return almOrigen; }
+            set { almOrigen = value; }
+        }
 
         public void OrdenDeDespacho()
         {

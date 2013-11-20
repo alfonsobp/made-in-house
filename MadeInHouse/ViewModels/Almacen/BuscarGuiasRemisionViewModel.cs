@@ -28,18 +28,11 @@ namespace MadeInHouse.ViewModels.Almacen
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
-        private DateTime txtFechaIni = new DateTime(DateTime.Now.Year, 1, 1);
-        public DateTime TxtFechaIni
+        private List<string> cbEst = new List<string>() { "EMITIDA", "RECIBIDA" };
+        public List<string> CbEst
         {
-            get { return txtFechaIni; }
-            set { txtFechaIni = value; NotifyOfPropertyChange(() => TxtFechaIni); }
-        }
-
-        private DateTime txtFechaFin = new DateTime(DateTime.Now.Year, 12, 31);
-        public DateTime TxtFechaFin
-        {
-            get { return txtFechaFin; }
-            set { txtFechaFin = value; NotifyOfPropertyChange(() => TxtFechaFin); }
+            get { return cbEst; }
+            set { cbEst = value; NotifyOfPropertyChange(() => CbEst); }
         }
 
         private List<string> cbTipo = new List<string>() { "GR-ORDEN DESPACHO", "GR-TRASLADO EXTERNO" };
@@ -49,11 +42,25 @@ namespace MadeInHouse.ViewModels.Almacen
             set { cbTipo = value; NotifyOfPropertyChange(() => CbTipo); }
         }
 
+        private string seleccionadoEst;
+        public string SeleccionadoEst
+        {
+            get { return seleccionadoEst; }
+            set { seleccionadoEst = value; NotifyOfPropertyChange(() => SeleccionadoEst); }
+        }
+
         private string seleccionadoTipo;
         public string SeleccionadoTipo
         {
             get { return seleccionadoTipo; }
             set { seleccionadoTipo = value; NotifyOfPropertyChange(() => SeleccionadoTipo); }
+        }
+
+        private Almacenes alm;
+        public Almacenes Alm
+        {
+            get { return alm; }
+            set { alm = value; NotifyOfPropertyChange(() => Alm); }
         }
 
         private List<GuiaRemision> lstGuiaDeRemision;
@@ -76,6 +83,13 @@ namespace MadeInHouse.ViewModels.Almacen
         public BuscarGuiasRemisionViewModel() 
         {
             ActualizarGuiaRemision();
+        }
+
+        public void BuscarAlmacen()
+        {
+
+                MyWindowManager w = new MyWindowManager();
+                w.ShowWindow(new BuscarAlmacenViewModel(this));
         }
 
         public BuscarGuiasRemisionViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
@@ -115,19 +129,82 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void BuscarGuiaRemision()
         {
-            LstGuiaDeRemision = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(TxtCodigo, TxtFechaIni, TxtFechaFin, SeleccionadoTipo);
-            
+            int estado = 0;
+            List<GuiaRemision> list = new List<GuiaRemision>();
+            List<GuiaRemision> NewList = new List<GuiaRemision>();
+
+            if (!String.IsNullOrEmpty(SeleccionadoEst))
+            {
+                if (SeleccionadoEst.Equals("EMITIDA"))
+                    estado = 1;
+
+                if (SeleccionadoEst.Equals("RECIBIDA"))
+                    estado = 2;
+            }
+
+            list = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(TxtCodigo, estado, SeleccionadoTipo);
+
+            if (!String.IsNullOrEmpty(Alm.CodAlmacen))
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (list[i].AlmOrigen.CodAlmacen == Alm.CodAlmacen)
+                        NewList.Add(list[i]);
+                }
+
+                if (NewList != null)
+                    LstGuiaDeRemision = new List<GuiaRemision>(NewList);
+                else
+                    LstGuiaDeRemision = new List<GuiaRemision>(list);
+            }
+
+            else
+            {
+                LstGuiaDeRemision = new List<GuiaRemision>(list);
+            }
+
         }
 
         public void EditarGuiaDeRemision()
         {
             Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel(guiaSeleccionada);
             win.ShowWindow(abrirGuiaView);
+            ActualizarGuiaRemision();
         }
 
         public void ActualizarGuiaRemision()
         {
-            LstGuiaDeRemision = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(null, TxtFechaIni, TxtFechaFin, null);
+            Alm = null;
+            SeleccionadoEst = null;
+            SeleccionadoTipo = null;
+            TxtCodigo = null;
+            LstGuiaDeRemision = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(null, 0, null);
+        }
+
+        public void RecibirGuia()
+        {
+
+            if (guiaSeleccionada != null)
+            {
+                guiaSeleccionada.Estado = 2;
+                Almacenes almDesp = new Almacenes(); 
+
+                List<Almacenes> list = new AlmacenSQL().BuscarAlmacen();
+                for (int i = 0; i < list.Count; i++)
+                    if (list[i].IdAlmacen == guiaSeleccionada.AlmOrigen.IdAlmacen)
+                        almDesp = list[i];
+
+                int k = new GuiaDeRemisionSQL().editarGuiaDeRemision(guiaSeleccionada);
+
+                if (k != 0)
+                    MessageBox.Show("Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nAlmacen despachador = " + almDesp.Nombre +
+                                    "\nAlmacen receptor = " + guiaSeleccionada.Almacen.Nombre);
+            }
+
+            else
+            {
+                MessageBox.Show("Seleccione una GUIA que fue RECIBIDA satisfactoriamente");
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -50,8 +51,17 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 if (g != null)
                 {
-                    g.Nota = NotaSel;
-                    TryClose();
+                    if (!(new GuiaDeRemisionSQL().BuscarIDNota(NotaSel.IdNota)))
+                    {
+                        MessageBox.Show("chauuuuu");
+                        g.Nota = NotaSel;
+                        TryClose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La NOTA ya esta en una GUIA");
+                    }
+
                 }
             }
 
@@ -60,6 +70,21 @@ namespace MadeInHouse.ViewModels.Almacen
         public void Buscar()
         {
             LstNotaIs = new NotaISSQL().BuscarNotas();
+        }
+
+        public Boolean EstaEnGuia(NotaIS nota)
+        {
+            List<GuiaRemision> list = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(null, 0, null);
+            for (int i=0; i<list.Count; i++)
+            {
+                if (list[i].Nota != null)
+                {
+                    if (list[i].Nota.IdNota == nota.IdNota)
+                        return true;
+                }
+            }
+
+            return false;
         }
 
     }

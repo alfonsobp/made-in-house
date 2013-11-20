@@ -106,5 +106,12 @@ namespace MadeInHouse.Models.Almacen
             get { return orden; }
             set { orden = value; }
         }
+
+        private Almacenes almOrigen;
+        public Almacenes AlmOrigen
+        {
+            get { return almOrigen; }
+            set { almOrigen = value; }
+        }
     }
 }
