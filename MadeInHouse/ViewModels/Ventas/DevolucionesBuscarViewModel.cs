@@ -23,6 +23,10 @@ namespace MadeInHouse.ViewModels.Ventas
             _windowManager = windowmanager;
             CmbEstados = new List<EstadosDevolucion>();
             EstadosDevolucion est = new EstadosDevolucion();
+            est.estado = 0;
+            est.nomEstado = "Seleccionar estado";
+            CmbEstados.Add(est);
+            est = new EstadosDevolucion();
             est.estado = 1;
             est.nomEstado = "Registrado";
             CmbEstados.Add(est);
@@ -33,10 +37,6 @@ namespace MadeInHouse.ViewModels.Ventas
             est = new EstadosDevolucion();
             est.estado = 3;
             est.nomEstado = "Anulado";
-            CmbEstados.Add(est);
-            est = new EstadosDevolucion();
-            est.estado = 0;
-            est.nomEstado = "Seleccionar estado";
             CmbEstados.Add(est);
         }
 
@@ -107,9 +107,9 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             switch(accion){
                 case 1:
-                    AbrirDetalle();
                     break;
                 default:
+                    AbrirDetalle();
                     break;
             }
         }

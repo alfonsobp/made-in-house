@@ -143,13 +143,19 @@ namespace MadeInHouse.ViewModels.Ventas
 
         #region metodos
 
-        public void ObtenerProductos(object sender)
+        public void ObtenerProductos()
+        {
+            DevolucionSQL dSQL = new DevolucionSQL();
+            LstProductos = dSQL.BuscarProductos();
+        }
+
+        public void ObtenerProductosVenta()
         {
             DevolucionSQL dSQL = new DevolucionSQL();
             dev.venta = dSQL.BuscarVenta(this.DocPago);
             DNI = dev.venta == null ? null : dev.venta.dni;
             if (dev.venta != null)
-                LstProductos = dSQL.BuscarProductosVenta(-1, dev.venta.IdVenta);
+                LstProductos = dSQL.BuscarProductos(-1, dev.venta.IdVenta);
         }
 
         public void GuardarDevolucion()
