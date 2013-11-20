@@ -89,7 +89,7 @@
         <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="300,0,0,0" Height="50" VerticalAlignment="Top"/>
 
         <!--Almacen-->
-        <Expander Name="expanderAlmacen" FontFamily="/Assets/#Moire" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="300" Margin="0,0,0,0">
+        <Expander Name="expanderAlmacen" FontFamily="/Assets/#Moire" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
 
             <Grid Background="Transparent" Height="Auto" Margin="0,0,0,0">
                 <Grid.RowDefinitions>
