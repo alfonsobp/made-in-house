@@ -17,7 +17,7 @@ namespace MadeInHouse.DataObjects.Ventas
             this.db = (db == null) ? new DBConexion() : db;
         }
 
-        public List<DevolucionProducto> BuscarProductosVenta(int idProducto = -1, int idVenta = -1, string docPago = null)
+        public List<DevolucionProducto> BuscarProductos(int idProducto = -1, int idVenta = -1, string docPago = null, int idDevolucion = -1)
         {
             List<DevolucionProducto> lstProducto = null;
             DevolucionProducto detTemp;
@@ -42,7 +42,13 @@ namespace MadeInHouse.DataObjects.Ventas
                 db.cmd.Parameters.Add(new SqlParameter("docPago", docPago));
             }
 
-            db.cmd.CommandText = " SELECT dv.cantidad as cantidad, dd.cantidad as devuelto, p.Nombre as nombre, p.codProducto as codProducto, p.idProducto as idProducto, p.precio as precio FROM DetalleVenta dv, Producto p, Venta v LEFT JOIN Devolucion d on d.idVenta = v.idVenta LEFT JOIN DetalleDevolucion dd on dd.idDevolucion = d.idDevolucion WHERE dv.idProducto = p.idProducto AND dv.idVenta = v.idVenta " + where;
+            if (idDevolucion != -1)
+            {
+                where += " AND dd.idDevolucion = @idDevolucion ";
+                db.cmd.Parameters.Add(new SqlParameter("idDevolucion", idDevolucion));
+            }
+
+            db.cmd.CommandText = " SELECT dv.cantidad as cantidad, dd.cantidad as devuelto, p.Nombre as nombre, p.codProducto as codProducto, p.idProducto as idProducto, p.precio as precio FROM DetalleVenta dv, Producto p, Venta v LEFT JOIN Devolucion d on d.idVenta = v.idVenta LEFT JOIN DetalleDevolucion dd on dd.idDevolucion = d.idDevolucion WHERE dv.idProducto = p.idProducto AND dv.idVenta = v.idVenta " + where + " ORDER BY p.idProducto ASC ";
 
             if (db.cmd.Transaction == null) db.conn.Open();
             SqlDataReader reader = db.cmd.ExecuteReader();
@@ -230,6 +236,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 devTemp.IdDevolucion = reader.IsDBNull(posIdDevolucion) ? -1 : reader.GetInt32(posIdDevolucion);
                 devTemp.venta.dni = reader.IsDBNull(posDNI) ? null : reader.GetString(posDNI);
                 devTemp.venta.NumDocPago = reader.IsDBNull(posDocPago) ? null : reader.GetString(posDocPago);
+                devTemp.NumDocCredito = reader.IsDBNull(posNotaCredito) ? null : reader.GetString(posNotaCredito);
                 devTemp.Monto = reader.IsDBNull(posMonto) ? -1 : (double)reader.GetDecimal(posMonto);
                 devTemp.fechaReg = reader.IsDBNull(posRegistro) ? null : reader.GetDateTime(posRegistro).ToString();
                 devTemp.estado = reader.IsDBNull(posEstado) ? -1 : reader.GetInt32(posEstado);
@@ -242,5 +249,48 @@ namespace MadeInHouse.DataObjects.Ventas
 
             return lstAux;
         }
+        /*
+        public List<DevolucionProducto> BuscarProductos()
+        {
+            List<DevolucionProducto> lstProducto = null;
+            DevolucionProducto detTemp;
+            int posCantidad, posNombre, posCodProducto, posPrecio, posIdProducto, posDevuelto;
+            string where = "";
+
+            if (idDevolucion != -1)
+            {
+                where += " AND dd.idDevolucion = @idDevolucion ";
+                db.cmd.Parameters.Add(new SqlParameter("idDevolucion", idDevolucion));
+            }
+
+            db.cmd.CommandText = " SELECT roducto as idProducto, p.precio as precio FROM DetalleVenta dv, Producto p, Venta v LEFT JOIN Devolucion d on d.idVenta = v.idVenta LEFT JOIN DetalleDevolucion dd on dd.idDevolucion = d.idDevolucion WHERE dv.idProducto = p.idProducto AND dv.idVenta = v.idVenta " + where;
+
+            if (db.cmd.Transaction == null) db.conn.Open();
+            SqlDataReader reader = db.cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                if (lstProducto == null) lstProducto = new List<DevolucionProducto>();
+                detTemp = new DevolucionProducto();
+                posCantidad = reader.GetOrdinal("cantidad");
+                posDevuelto = reader.GetOrdinal("devuelto");
+                posNombre = reader.GetOrdinal("nombre");
+                posCodProducto = reader.GetOrdinal("codProducto");
+                posIdProducto = reader.GetOrdinal("idProducto");
+                posPrecio = reader.GetOrdinal("precio");
+                detTemp.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
+                detTemp.CodProducto = reader.IsDBNull(posCodProducto) ? null : reader.GetString(posCodProducto);
+                detTemp.Producto = reader.IsDBNull(posNombre) ? null : reader.GetString(posNombre);
+                detTemp.Cantidad = reader.IsDBNull(posCantidad) ? -1 : reader.GetInt32(posCantidad);
+                detTemp.Devuelto = reader.IsDBNull(posDevuelto) ? 0 : reader.GetInt32(posDevuelto);
+                detTemp.Precio = reader.IsDBNull(posPrecio) ? -1 : (double)reader.GetDecimal(posPrecio);
+                lstProducto.Add(detTemp);
+            }
+
+            db.cmd.Parameters.Clear();
+            if (db.cmd.Transaction == null) db.conn.Close();
+
+            return lstProducto;
+        }*/
     }
 }

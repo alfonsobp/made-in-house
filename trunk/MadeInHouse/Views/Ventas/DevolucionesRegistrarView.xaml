@@ -55,7 +55,7 @@
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="Documento de pago:" TextWrapping="Wrap" VerticalAlignment="Center" />
-                        <TextBox x:Name="DocPago" Height="25" cal:Message.Attach="[Event TextChanged] = [Action ObtenerProductos($source)]" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1" IsReadOnly="{Binding Path=IsReadOnly}" />
+                        <TextBox x:Name="DocPago" Height="25" cal:Message.Attach="[Event TextChanged] = [Action ObtenerProductosVenta()]" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1" IsReadOnly="{Binding Path=IsReadOnly}" />
                         <TextBlock Text="DNI:" TextWrapping="Wrap" Grid.Row="1" VerticalAlignment="Center" />
                         <TextBox x:Name="DNI" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1" Grid.Row="1" IsReadOnly="True" />
                     </Grid>

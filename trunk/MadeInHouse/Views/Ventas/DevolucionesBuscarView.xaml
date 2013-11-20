@@ -66,7 +66,7 @@
                             <TextBox x:Name="notaCredito" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1"/>
                             <TextBox x:Name="docPago" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="3"/>
                             <ComboBox ItemsSource="{Binding CmbEstados}" SelectedValue="{Binding SelectedEstado, Mode=TwoWay}"
-                                      DisplayMemberPath="nomEstado" SelectedValuePath="estado" Margin="4" Width="150" Height="25" Grid.Column="5"/>
+                                      DisplayMemberPath="nomEstado" SelectedValuePath="estado" Margin="4" Width="150" Height="25" Grid.Column="5" SelectedIndex="1"/>
                             <DatePicker x:Name="registroDesde" Margin="4" Grid.Column="1" Grid.Row="1" Height="25" Width="150"/>
                             <DatePicker x:Name="registroHasta" Margin="4" Grid.Column="3" Grid.Row="1" Height="25" Width="150" />
                             <TextBox x:Name="dni" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="5" Grid.Row="1"/>
