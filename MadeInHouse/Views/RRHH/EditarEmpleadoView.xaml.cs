@@ -107,23 +107,23 @@ namespace MadeInHouse.Views.RRHH
 
             else
             {
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBoxResult result = MessageBox.Show("Esta seguro que desea actualizar los datos de " + emp.Nombre + " " + emp.ApePaterno + " " + emp.ApeMaterno, "Alerta", button, icon);
+                MessageBoxButton button = MessageBoxButton.YesNoCancel;
+                MessageBoxImage icon = MessageBoxImage.Warning;
+                MessageBoxResult result = MessageBox.Show("Esta seguro que desea actualizar los datos de " + emp.Nombre + " " + emp.ApePaterno + " " + emp.ApeMaterno, "Alerta", button, icon);
 
-            if (result == MessageBoxResult.Yes)
-            {
-                int k;
-                k = DataObjects.RRHH.EmpleadoSQL.editarEmpleado(emp);
-
-                if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
-                else
+                if (result == MessageBoxResult.Yes)
                 {
-                    MessageBox.Show("Los datos han sido guardados exitosamente");
-                    Limpiar(sender, e);
+                    int k;
+                    k = DataObjects.RRHH.EmpleadoSQL.editarEmpleado(emp);
+
+                    if (k == 0)
+                        MessageBox.Show("Ocurrio un error");
+                    else
+                    {
+                        MessageBox.Show("Los datos han sido guardados exitosamente");
+                        Limpiar(sender, e);
+                    }
                 }
-            }
             }
 
         }
