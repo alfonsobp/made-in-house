@@ -286,6 +286,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public void CargarProductos() {
         
             string referencia = TxtDoc;
+            if (string.IsNullOrWhiteSpace(TxtDoc)) {
+                MessageBox.Show("No se ha ingresado ningun Documento de Referencia");
+            }
             string mot = this.selectedMotivo;
            if ( string.Compare(mot,"Orden de Compra",true)==0){
                List<ProductoxOrdenCompra> poc = new List<ProductoxOrdenCompra>();
@@ -403,8 +406,15 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             if (string.Compare(selectedMotivo, "Orden de Compra", true) == 0)
             {
-                MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-                wm.ShowWindow(new BuscarOrdenCompraViewModel(this, 1));
+                if (u.IdTienda == 0)
+                {
+                    MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
+                    wm.ShowWindow(new BuscarOrdenCompraViewModel(this, 1));
+                }
+                else 
+                {
+                    MessageBox.Show("Ordenes de Compra solo pueden ser ingresadas por Almacen Central");
+                }  
             }
             else {
                 if (string.Compare(selectedMotivo, "Devolucion", true) == 0) {
@@ -447,7 +457,7 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         public void AgregarProducto() {
-            if (SelectedProducto.CodigoProd == null || TxtCantPro == null)
+            if (SelectedProducto.CodigoProd == null || TxtCantPro == null || Convert.ToInt64(TxtCantPro)<=0)
             {
                 System.Windows.MessageBox.Show("Debe completar todos los campos");
             }
@@ -572,8 +582,21 @@ namespace MadeInHouse.ViewModels.Almacen
 
             }
             
+            if (SelectedDevolucion != null) {
+
+                CambiarEstadoDevolucion(SelectedDevolucion);
+
+            }
+            
             MessageBox.Show("Nota Creada");
 
+        }
+
+        private void CambiarEstadoDevolucion(Devolucion SelectedDevolucion)
+        {
+            DevolucionSQL dsql = new DevolucionSQL();
+            SelectedDevolucion.estado = 2;
+//            dsql.modificarDevolucion(SelectedDevolucion);       
         }
 
         private void CambiarEstadoGuia(GuiaRemision SelectedGuia)

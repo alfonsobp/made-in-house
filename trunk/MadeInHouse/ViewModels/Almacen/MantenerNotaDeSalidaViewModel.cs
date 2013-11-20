@@ -14,6 +14,7 @@ using MadeInHouse.ViewModels.RRHH;
 using MadeInHouse.Views.RRHH;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Models.Ventas;
+using MadeInHouse.DataObjects.Ventas;
 
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -126,6 +127,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
             }
         }
+
+        
 
         private void DeshabilitarDoc(string selectedMotivo)
         {
@@ -275,22 +278,20 @@ namespace MadeInHouse.ViewModels.Almacen
             string mot = this.selectedMotivo;
            if ( string.Compare(mot,"Orden de Despacho",true)==0){
 
-               List<DetalleVenta> ldv = selectedDespacho.Venta.LstDetalle;
+               List<DetalleVenta> l = new DetalleVentaSQL().BuscarTodos();
                List<ProductoCant> lpcan = new List<ProductoCant>();
+               for (int i = 0; i < l.Count; i++)
+                   if (l[i].IdDetalleV == SelectedDespacho.Venta.IdVenta)
+                   {
+                       Producto p = new ProductoSQL().Buscar_por_CodigoProducto(l[i].IdProducto);
+                       ProductoCant pcan = new ProductoCant();
+                       pcan.IdProducto = p.IdProducto;
+                       pcan.CodigoProd = p.CodigoProd;
+                       pcan.Nombre = p.Nombre;
+                       pcan.CanAtender = l.ElementAt(i).Cantidad.ToString();
+                       lpcan.Add(pcan);
+                   }
 
-               for (int i = 0; i < ldv.Count; i++) {
-
-                   ProductoCant pcan = new ProductoCant();
-                   pcan.IdProducto = ldv.ElementAt(i).IdProducto;
-                   pcan.Can = ldv.ElementAt(i).Cantidad.ToString();
-                   pcan.CodigoProd = ldv.ElementAt(i).CodProducto;
-                   ProductoSQL psql = new ProductoSQL();
-                   Producto p = psql.Buscar_por_CodigoProducto(pcan.IdProducto);
-                   pcan.Nombre = p.Nombre;
-                   pcan.CanAtend = "0";
-                   pcan.CanAtender = ldv.ElementAt(i).Cantidad.ToString();
-                   lpcan.Add(pcan);
-               }
                LstProductos = new List<ProductoCant>(lpcan);
 
            }
@@ -349,9 +350,8 @@ namespace MadeInHouse.ViewModels.Almacen
             if (string.Compare(selectedMotivo, "Orden de despacho", true) == 0)
             {
 
-                
                 MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-                wm.ShowWindow(new BuscarOrdenDespachoViewModel());
+                wm.ShowWindow(new BuscarOrdenDespachoViewModel(this));
                 
             }
             else {
@@ -403,9 +403,9 @@ namespace MadeInHouse.ViewModels.Almacen
         
 
         public void AgregarProducto() {
-            if (SelectedProducto.CodigoProd == null || TxtCantPro == null)
+            if (SelectedProducto.CodigoProd == null || TxtCantPro == null || Convert.ToInt64(TxtCantPro)<=0 )
             {
-                System.Windows.MessageBox.Show("Debe completar todos los campos");
+                System.Windows.MessageBox.Show("Debe completar todos los campos y la cantidad debe ser mayor a 0");
             }
             else
             {
@@ -462,13 +462,7 @@ namespace MadeInHouse.ViewModels.Almacen
             wm.ShowWindow(new Almacen.PosicionProductoViewModel(this,2));
         }
 
-        public void AbrirListarOrdenesCompra()
-        {
-
-            Almacen.ListaOrdenCompraViewModel abrirListaOrden = new Almacen.ListaOrdenCompraViewModel();
-            win.ShowWindow(abrirListaOrden);
-        }
-
+        
         public void Quitar()
         {
             if (SelectedProductoCant != null)
@@ -512,6 +506,8 @@ namespace MadeInHouse.ViewModels.Almacen
             List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
             if (u.IdTienda != 0) ptgw.ActualizarStockSalida(list, u.IdTienda);
             else pgw.ActualizarStockSalida(list);
+            
+            //Actualizar Documento de Referencia
 
             MessageBox.Show("Nota de Salida Creada");
 

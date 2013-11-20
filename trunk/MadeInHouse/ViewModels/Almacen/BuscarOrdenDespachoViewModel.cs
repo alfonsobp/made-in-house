@@ -26,6 +26,15 @@ namespace MadeInHouse.ViewModels.Almacen
             this.m = m;
             ActualizarListaOrdenDespacho();
         }
+
+        private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+
+        public BuscarOrdenDespachoViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel):this()
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
+
+        }
         
         private MyWindowManager win = new MyWindowManager();
         private List<OrdenDespacho> lstOrdenDespacho;
@@ -71,6 +80,13 @@ namespace MadeInHouse.ViewModels.Almacen
                     {
                         MessageBox.Show("La ORDEN ya esta en una GUIA");
                     }
+                }
+
+                if (mantenerNotaDeSalidaViewModel != null) {
+                    mantenerNotaDeSalidaViewModel.TxtDoc = ordenDespachoSeleccionado.CodOrden;
+                    mantenerNotaDeSalidaViewModel.TxtDocId = ordenDespachoSeleccionado.IdOrdenDespacho;
+                    mantenerNotaDeSalidaViewModel.SelectedDespacho = ordenDespachoSeleccionado;
+                    this.TryClose();
                 }
             }
         }
