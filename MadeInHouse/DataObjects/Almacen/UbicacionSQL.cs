@@ -203,8 +203,9 @@ namespace MadeInHouse.DataObjects.Almacen
                                         "set Ubicacion.idProducto=TemporalUbicacion.idProducto , Ubicacion.cantidad = TemporalUbicacion.cantidad , Ubicacion.volOcupado=TemporalUbicacion.volOcupado , Ubicacion.idSector=TemporalUbicacion.idSector;";
                 db.cmd.ExecuteNonQuery();
 
-                db.cmd.CommandText = "TRUNCATE TABLE TemporalUbicacion";
+                //db.cmd.CommandText = "TRUNCATE TABLE TemporalUbicacion";
                 db.cmd.ExecuteNonQuery();
+
                 if (tipo) db.conn.Close();
 
             }

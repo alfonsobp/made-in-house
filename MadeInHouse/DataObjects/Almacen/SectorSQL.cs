@@ -212,7 +212,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 if (tipo) db.conn.Open();
                 db.cmd.CommandText = "MERGE INTO  TemporalSector  USING " +
-                                      "Sector on (TemporalUbicacion.idProducto=Sector.idProducto and  TemporalUbicacion.idTipoZona=Sector.idTipoZona and TemporalUbicacion.idAlmacen=Sector.idAlmacen )" +
+                                      "Sector on (TemporalSector.idProducto=Sector.idProducto and  TemporalSector.idTipoZona=Sector.idTipoZona and TemporalSector.idAlmacen=Sector.idAlmacen )" +
                                        "when matched then update " +
                                         "set TemporalSector.idSector=Sector.idSector ;";
                 db.cmd.ExecuteNonQuery();
@@ -242,7 +242,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
             }catch (SqlException e) 
             {
                 Console.WriteLine(e);
