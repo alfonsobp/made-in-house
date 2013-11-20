@@ -291,6 +291,16 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private bool enable;
+
+        public bool Enable
+        {
+            get { return enable; }
+            set { enable = value;
+            NotifyOfPropertyChange(() => Enable);
+            }
+        }
+
 
         private AlmacenSQL aSQL;
         private TipoZonaSQL tzSQL;
@@ -341,7 +351,7 @@ namespace MadeInHouse.ViewModels.Almacen
             if (TxtProducto == null || TxtProducto=="")
             {
                 MyWindowManager w = new MyWindowManager();
-                w.ShowWindow(new ProductoBuscarViewModel(this, 7));
+                w.ShowWindow(new ProductoBuscarViewModel(this, 7,idTienda));
 
             }
             
@@ -390,24 +400,30 @@ namespace MadeInHouse.ViewModels.Almacen
                 MessageBox.Show("Debe ingresar una cantidad");
                 return;
             }
-            else if (ubicacionCol.SelectedProduct!=null)
+            else if (int.Parse(TxtCantidad) < 0)
             {
-                    exito = ubicacionCol.DisminuirProductos(int.Parse(TxtCantidad), ubicacionCol.SelectedProduct.IdProducto);
-                    if (exito == 1)
-                    {
-                        int index = LstProductos.FindIndex(x=>x.IdProducto==ubicacionCol.SelectedProduct.IdProducto);
-                        if (index >= 0)
-                        {
-                            LstProductos[index].CanAtender = ""+(int.Parse(LstProductos[index].CanAtender) + int.Parse(TxtCantidad));
-                        }
-                        else
-                        {
-                            ubicacionCol.SelectedProduct.CanAtender = TxtCantidad;
-                            LstProductos.Add(ubicacionCol.SelectedProduct);
-                        }
-                        LstProductos = new List<ProductoCant>(LstProductos);
+                MessageBox.Show("Debe ingresar una cantidad mayor a cero");
+                return;
+            }
+            else if (ubicacionCol.SelectedProduct != null)
+            {
 
+                exito = ubicacionCol.DisminuirProductos(int.Parse(TxtCantidad), ubicacionCol.SelectedProduct.IdProducto);
+                if (exito == 1)
+                {
+                    int index = LstProductos.FindIndex(x => x.IdProducto == ubicacionCol.SelectedProduct.IdProducto);
+                    if (index >= 0)
+                    {
+                        LstProductos[index].CanAtender = "" + (int.Parse(LstProductos[index].CanAtender) + int.Parse(TxtCantidad));
                     }
+                    else
+                    {
+                        ubicacionCol.SelectedProduct.CanAtender = TxtCantidad;
+                        LstProductos.Add(ubicacionCol.SelectedProduct);
+                    }
+                    LstProductos = new List<ProductoCant>(LstProductos);
+
+                }
             }
         }
 

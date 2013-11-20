@@ -151,6 +151,7 @@
                                        Columna="{Binding ColumnaU}"            
                                        Accion="{Binding Accion2}"  
                                        IdZona="0" 
+                                       Enable="{Binding Enable,Mode=TwoWay}"
                                        Altura="{Binding AlturaU}" 
                                        NumRows="{Binding NumRowsU}" 
                                        NumColumns="{Binding NumColumnsU}" 

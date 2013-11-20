@@ -393,7 +393,7 @@ namespace MadeInHouse.Dictionary {
                     {
                         CantActual = "---";
                         VolOcu = "---";
-                        Enable = true;
+                        Enable = false;
                     }
                     
 
@@ -676,8 +676,6 @@ namespace MadeInHouse.Dictionary {
                 System.Windows.MessageBox.Show("No hay productos en esa ubicacion");
                 return -1;
             }
-
-
 
             Ubicacion ubiModificada = new Ubicacion();
             ubiModificada.IdProducto = SelectedProduct.IdProducto;

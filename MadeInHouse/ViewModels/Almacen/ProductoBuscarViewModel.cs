@@ -54,11 +54,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         private Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel;
-        public ProductoBuscarViewModel(Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel, int ventanaAccion)
+        public ProductoBuscarViewModel(Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel, int ventanaAccion,int idTienda=-1)
             : this()
         {
             this.ProductoMovimientosViewModel = ProductoMovimientosViewModel;
             this.ventanaAccion = ventanaAccion;
+            Index = this.CmbTiendas.FindIndex(x => x.IdTienda == idTienda);
+            Estado = false;
         }
 
         private Almacen.MantenerTiendaViewModel mantenerTiendaViewModel;
