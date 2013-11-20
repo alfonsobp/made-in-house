@@ -14,6 +14,8 @@ using MadeInHouse.Models.Seguridad;
 using MadeInHouse.ViewModels.Compras;
 using MadeInHouse.ViewModels.Ventas;
 using MadeInHouse.DataObjects.Compras;
+using MadeInHouse.Models.Ventas;
+using MadeInHouse.DataObjects.Ventas;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -202,7 +204,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        GuiaRemision selectedGuia;
+        GuiaRemision selectedGuia=null;
 
         public GuiaRemision SelectedGuia
         {
@@ -212,7 +214,16 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        
+        Devolucion selectedDevolucion;
+
+        public Devolucion SelectedDevolucion
+        {
+            get { return selectedDevolucion; }
+            set { selectedDevolucion = value;
+            NotifyOfPropertyChange("SelectedDevolucion");
+            }
+        }
+
 
         List<Models.Almacen.Almacenes> almacen;
 
@@ -306,7 +317,26 @@ namespace MadeInHouse.ViewModels.Almacen
                {
                    if (string.Compare(mot, "Devolucion", true) == 0)
                    {
-                       LstProductos = new List<ProductoCant>();
+                       List<DevolucionProducto> dv = new List<DevolucionProducto>();
+                       DevolucionSQL dsql = new DevolucionSQL();
+
+                       dv = dsql.BuscarProductos(-1, -1, null, SelectedDevolucion.IdDevolucion);
+                       List<ProductoCant> lpcan = new List<ProductoCant>();
+                       for (int i = 0; i < dv.Count; i++) {
+                           ProductoCant pcan = new ProductoCant();
+                           Producto p = new Producto();
+                           ProductoSQL pgw = new ProductoSQL();
+                           p = pgw.Buscar_por_CodigoProducto(dv.ElementAt(i).IdProducto);
+                           pcan.IdProducto = p.IdProducto;
+                           pcan.Nombre = p.Nombre;
+                           pcan.Can = "0";
+                           pcan.CanAtend = "0";
+                           pcan.CanAtender = dv.ElementAt(i).Devuelto.ToString();
+                           pcan.Ubicaciones = new List<Ubicacion>();
+                           pcan.CodigoProd = p.CodigoProd;
+                           lpcan.Add(pcan);
+                       }
+                       LstProductos = lpcan;
                    }
                    else {
 
@@ -380,7 +410,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (string.Compare(selectedMotivo, "Devolucion", true) == 0) {
             
                     MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-                    wm.ShowWindow(new DevolucionesBuscarViewModel(wm, this,1));
+                    wm.ShowWindow(new DevolucionesBuscarViewModel(wm, this,2));
                 
                 }
                 else {
@@ -541,7 +571,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 CambiarEstadoGuia(SelectedGuia);
 
             }
-
+            
             MessageBox.Show("Nota Creada");
 
         }

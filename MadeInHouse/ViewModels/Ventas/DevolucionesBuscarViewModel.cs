@@ -44,14 +44,9 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             this.window = window;
             this.accion = accion;
+            
         }
 
-        /*public DevolucionesBuscarViewModel(Almacen.MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int accion):this()
-        {
-            // TODO: Complete member initialization
-            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
-            this.Accion = accion;
-        }*/
 
         #endregion
 
@@ -62,7 +57,7 @@ namespace MadeInHouse.ViewModels.Ventas
         public Devolucion devolucionSel { get; set; }
         public int accion { get; set; }
         private int SelectedEstado { get; set; }
-
+        
         //Filtros:
         private string notaCreditoHide;
         private string docPagoHide;
@@ -107,6 +102,12 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             switch(accion){
                 case 1:
+                    break;
+                case 2:
+                    (window as MantenerNotaDeIngresoViewModel).SelectedDevolucion = devolucionSel;
+                    (window as MantenerNotaDeIngresoViewModel).TxtDoc = devolucionSel.venta.NumDocPago;
+                    (window as MantenerNotaDeIngresoViewModel).TxtDocId = devolucionSel.IdDevolucion;
+                    
                     break;
                 default:
                     AbrirDetalle();
