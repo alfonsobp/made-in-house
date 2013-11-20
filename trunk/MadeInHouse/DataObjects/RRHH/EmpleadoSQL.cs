@@ -257,7 +257,7 @@ namespace MadeInHouse.DataObjects.RRHH
             int k = 0;
 
             cmd.CommandText = "update Empleado set sexo = @sexo,nombre = @nombre,apePaterno = @apePaterno,apeMaterno = @apeMaterno,telefono = @telefono,celular = @celular, " +
-            "email = @email,estado = @estado,direccion = @direccion,referencia = @referencia,fechaNac = @fechaNac,tienda = @tienda,area = @area,puesto = @puesto,emailEmpresa = @emailEmpresa,sueldo = @sueldo, cuentaBancaria = @cuentaBancaria, banco = @banco where DNI = " + p.Dni;
+            "email = @email,estado = @estado,direccion = @direccion,referencia = @referencia,fechaNac = @fechaNac,tienda = @tienda,idTienda=@idTienda,area = @area,puesto = @puesto,emailEmpresa = @emailEmpresa,sueldo = @sueldo, cuentaBancaria = @cuentaBancaria, banco = @banco where DNI = " + p.Dni;
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -280,6 +280,7 @@ namespace MadeInHouse.DataObjects.RRHH
 
             cmd.Parameters.AddWithValue("@estado", p.Estado);
             cmd.Parameters.AddWithValue("@tienda", p.Tienda);
+            cmd.Parameters.AddWithValue("@idTienda", p.IdTienda);
             cmd.Parameters.AddWithValue("@area", p.Area);
             cmd.Parameters.AddWithValue("@puesto", p.Puesto);
 
