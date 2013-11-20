@@ -180,7 +180,7 @@ namespace MadeInHouse.DataObjects.Almacen
             try
             {
                 if (tipo) db.conn.Open();
-                using (SqlBulkCopy s = new SqlBulkCopy(db.conn))
+                using (SqlBulkCopy s = new SqlBulkCopy(db.conn,SqlBulkCopyOptions.Default,trans))
                 {
 
                     s.DestinationTableName = data.TableName;
@@ -226,8 +226,6 @@ namespace MadeInHouse.DataObjects.Almacen
                 return -1;
             }
 
-
-
             return 1;
         }
 
@@ -242,7 +240,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 if (tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
-                if (tipo) db.conn.Close();
+                if(tipo) db.conn.Close();
             }catch (SqlException e) 
             {
                 Console.WriteLine(e);

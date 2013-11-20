@@ -7,12 +7,24 @@ using System.Data.SqlClient;
 
 namespace MadeInHouse.DataObjects
 {
-    public class UtilesSQL
+    class UtilesSQL
     {
         private DBConexion db = null;
-        public UtilesSQL()
+        private bool tipo = true;
+
+        public UtilesSQL (DBConexion db = null)
         {
-            db = new DBConexion();
+
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else
+            {
+                this.db = db;
+                tipo = false;
+            }
+
         }
 
         public void LimpiarTabla(string tName)
@@ -20,9 +32,9 @@ namespace MadeInHouse.DataObjects
             db.cmd.CommandText = "TRUNCATE TABLE " + tName;
             try
             {
-                db.conn.Open();
+               if(tipo) db.conn.Open();
                 db.cmd.ExecuteNonQuery();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
             }
             catch (SqlException e)
             {
@@ -39,11 +51,11 @@ namespace MadeInHouse.DataObjects
             db.cmd.CommandText = "SELECT MAX("+nombreID+") FROM "+nombreTabla;
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 reader = db.cmd.ExecuteReader();
                 if (reader.Read())
                     id = reader.GetInt32(0);
-                db.conn.Close();
+                if (tipo)  db.conn.Close();
             }
             catch (SqlException e)
             {
