@@ -152,7 +152,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod, U.estadoHabilitado estadoHabilitado, U.Estado estado FROM EMPLEADO E, TIENDA T, USUARIO U WHERE U.codEmpleado=E.codEmpleado AND U.idTienda=T.idTienda AND upper(U.codEmpleado)=upper(@codEmpleado) AND U.estado=1";
+            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod,  U.estadoHabilitado estadoHabilitado, U.Estado estado  FROM DESarrollo.Empleado E  JOIN Desarrollo.Usuario u  ON (E.codEmpleado=u.codEmpleado )  LEFT JOIN Desarrollo.Tienda T  ON (u.idTienda=T.idTienda) ORDER BY 7 DESC";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
@@ -330,7 +330,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlDataReader reader;
 
             //cmd.CommandText = "SELECT * FROM Usuario ";
-            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod, U.estadoHabilitado estadoHabilitado, U.Estado estado FROM EMPLEADO E, TIENDA T, USUARIO U WHERE U.codEmpleado=E.codEmpleado AND U.idTienda=T.idTienda ORDER BY 7 DESC ";
+            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod,  U.estadoHabilitado estadoHabilitado, U.Estado estado  FROM DESarrollo.Empleado E  JOIN Desarrollo.Usuario u  ON (E.codEmpleado=u.codEmpleado )  LEFT JOIN Desarrollo.Tienda T  ON (u.idTienda=T.idTienda) ORDER BY 7 DESC";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
