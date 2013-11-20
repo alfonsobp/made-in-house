@@ -41,19 +41,21 @@ namespace MadeInHouse.DataObjects.Almacen
            
             try
             {
-                db.conn.Open();
+                if (tipo) db.conn.Open();
                 retorno = (Int32)db.cmd.ExecuteScalar();
                 db.cmd.Parameters.Clear();
-                db.conn.Close();
+                if (tipo) db.conn.Close();
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                return -1;
             }
 
 
@@ -64,7 +66,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 "VALUES (@idProducto,@idNota,@idAlmacen,@cantidad,@idUbicacion)";
                 try
                 {
-                    db.conn.Open();
+                   if(tipo)  db.conn.Open();
                     for (int i = 0; i < p.LstProducto.Count; i++)
                     {
 
@@ -81,15 +83,17 @@ namespace MadeInHouse.DataObjects.Almacen
                         }
 
                     }
-                    db.conn.Close();
+                    if(tipo) db.conn.Close();
                 }
                 catch (SqlException e)
                 {
                     Console.WriteLine(e);
+                    return -1;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine(e.StackTrace.ToString());
+                    return -1;
                 }
             }
 
