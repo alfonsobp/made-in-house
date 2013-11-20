@@ -62,7 +62,8 @@ namespace MadeInHouse.Views.RRHH
                 DateTime d = DateTime.Now;
             emp.FechaReg = d.ToString("dd/MM/yyyy ");
             emp.Puesto = CmbPuesto.Text;
-            emp.Tienda = CmbTienda.Text;
+            emp.Tienda = CmbTienda.Text;    //esto es el nombre de la Tienda seleccionada
+            emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
             emp.Area = CmbArea.Text;
             emp.EmailEmpresa = TxtEmailEmpresa.Text;
             if (TxtSalario.Text != "") emp.Sueldo = decimal.Parse(TxtSalario.Text, NumberStyles.AllowThousands
