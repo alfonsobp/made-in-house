@@ -166,6 +166,14 @@ namespace MadeInHouse.Models.RRHH
             get { return tienda; }
             set { tienda = value; }
         }
+        int idTienda;
+
+        public int IdTienda
+        {
+            get { return idTienda; }
+            set { idTienda = value; }
+        }
+
         string puesto;
         public string Puesto
         {

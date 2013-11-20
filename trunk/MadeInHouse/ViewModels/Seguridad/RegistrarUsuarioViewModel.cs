@@ -240,7 +240,6 @@ namespace MadeInHouse.ViewModels.Seguridad
                 {
                     return;
                 }
-
                 cmbTiendas = value;
                 NotifyOfPropertyChange(() => CmbTiendas);
             }

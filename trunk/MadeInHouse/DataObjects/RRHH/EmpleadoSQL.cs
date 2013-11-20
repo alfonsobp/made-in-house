@@ -23,8 +23,8 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado) " +
-            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado)";
+            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado,idTienda) " +
+            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado,@idTienda)";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@codEmpleado", p.CodEmpleado);
@@ -46,6 +46,7 @@ namespace MadeInHouse.DataObjects.RRHH
 
             cmd.Parameters.AddWithValue("@estado", p.Estado);
             cmd.Parameters.AddWithValue("@tienda", p.Tienda);
+            cmd.Parameters.AddWithValue("@idTienda", p.IdTienda);
             cmd.Parameters.AddWithValue("@area", p.Area);
             cmd.Parameters.AddWithValue("@puesto", p.Puesto);
 
@@ -331,6 +332,34 @@ namespace MadeInHouse.DataObjects.RRHH
             return tiendas;
         }
 
+        public static int GetIdTienda(string nombTienda){
+            int idTienda = 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = " SELECT idTienda FROM Tienda WHERE upper(nombre)=upper(@nombre)";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@nombre", nombTienda);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    idTienda = Convert.ToInt32(reader["idTienda"].ToString());
+                else
+                    conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return idTienda;
+        }
 
 
         public static List<Empleado> BuscarEmpleadoId(int id)
