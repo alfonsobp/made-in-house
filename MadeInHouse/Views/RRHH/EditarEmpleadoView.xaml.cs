@@ -45,7 +45,7 @@ namespace MadeInHouse.Views.RRHH
             TxtEmail.Text = grid[0].EmailEmpleado;
 
             CmbPuesto.Text = grid[0].Puesto;
-            CmbTienda.Text = grid[0].Tienda;
+            
             CmbArea.Text = grid[0].Area;
             TxtEmailEmpresa.Text = grid[0].EmailEmpresa;
             TxtSalario.Text = grid[0].Sueldo + "";
@@ -55,8 +55,9 @@ namespace MadeInHouse.Views.RRHH
             List<string> tiendas = new List<string>();
             tiendas = DataObjects.RRHH.EmpleadoSQL.Tiendas();
             CmbTienda.ItemsSource = tiendas;
-
+            CmbTienda.Text = grid[0].Tienda;
         }
+
         public void GuardarDatos(object sender, RoutedEventArgs e)
         {
 
@@ -81,6 +82,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Puesto = CmbPuesto.Text;
             emp.Tienda = CmbTienda.Text;    //esto es el nombre de la Tienda seleccionada
             emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
+            DataObjects.RRHH.EmpleadoSQL.ActualizarTiendaEnUsuario(emp.CodEmpleado, emp.IdTienda);
 
             emp.Area = CmbArea.Text;
             emp.EmailEmpresa = TxtEmailEmpresa.Text;

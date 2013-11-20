@@ -344,7 +344,8 @@ namespace MadeInHouse.ViewModels.Seguridad
                 u.Contrasenha = contrasenhaCifrada;
                 u.Estado = 1;
                 u.Rol = RolSQL.buscarRolPorId(IdRolValue);
-                u.IdTienda = SelectedTienda;
+                //u.IdTienda = SelectedTienda;
+                u.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTiendaPorCodEmpleado(u.CodEmpleado);
                 if (indicador == 1)
                 {
                     //debe existir y estar disponible
@@ -394,9 +395,8 @@ namespace MadeInHouse.ViewModels.Seguridad
                     usuarioSeleccionado.Contrasenha = UsuarioSQL.buscarPass(u.CodEmpleado);
                     usuarioSeleccionado.Rol.IdRol = IdRolValue;
                     usuarioSeleccionado.EstadoHabilitado = EstHabilitadoValue;
-                    usuarioSeleccionado.IdTienda = SelectedTienda;
-                    //MessageBox.Show("Id Tienda: " + SelectedTienda);
-                    //usuarioSeleccionado.Estado = 1;
+                    //usuarioSeleccionado.IdTienda = SelectedTienda;
+                    //usuarioSeleccionado.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTiendaPorCodEmpleado(u.CodEmpleado);
                     int e = UsuarioSQL.EditarUsuario(usuarioSeleccionado);
 
                     if (e == 1)
