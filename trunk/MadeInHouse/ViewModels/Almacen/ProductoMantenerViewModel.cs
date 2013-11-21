@@ -16,13 +16,15 @@ namespace MadeInHouse.ViewModels.Almacen
     class ProductoMantenerViewModel : Screen, IDataErrorInfo
     {
 
-
+        private bool TxtAbreviaturaChanged = false;
         private string txtAbreviatura;
-
         public string TxtAbreviatura
         {
             get { return txtAbreviatura; }
-            set { txtAbreviatura = value; 
+            set
+            {
+                txtAbreviatura = value;
+                TxtAbreviaturaChanged = true;
                 NotifyOfPropertyChange(() => TxtAbreviatura);
 
                 txtCodigo = CodigoProducto();
@@ -30,14 +32,18 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-        
 
+        private bool TxtNombreChanged = false;
         private string txtNombre;
-
         public string TxtNombre
         {
             get { return txtNombre; }
-            set { txtNombre = value; NotifyOfPropertyChange(() => TxtNombre); }
+            set
+            {
+                txtNombre = value;
+                TxtNombreChanged = true;
+                NotifyOfPropertyChange(() => TxtNombre);
+            }
         }
         private string txtCodigo;
 
@@ -204,17 +210,26 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void GuardarProducto()
         {
+            bool isCorrect = true;
+
             if (TxtNombre == null || TxtNombre.Equals(""))
             {
-                MessageBox.Show("Debe ingresar el nombre del producto");
+                TxtNombre = "";
+                TxtNombreChanged = true;
+                isCorrect = false;
+                //MessageBox.Show("Debe ingresar el nombre del producto");
             }
-            else if (TxtAbreviatura == null || TxtAbreviatura.Equals(""))
+            
+            if (TxtAbreviatura == null || TxtAbreviatura.Equals(""))
             {
-                MessageBox.Show("Debe ingresar la abreviatura del nombre");
+                TxtAbreviatura = "";
+                TxtAbreviaturaChanged = true;
+                isCorrect = false;
+                //MessageBox.Show("Debe ingresar la abreviatura del nombre");
             }
-            else
+
+            if (isCorrect)
             {
-                
                 Producto p = new Producto();
                 
                 p.Nombre = TxtNombre;
@@ -243,11 +258,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     pSQL.ActualizarProducto(p);
                     MessageBox.Show("Se actualizó el producto correctamente");
                 }
-
-
-                
             }
-
         }
 
         public void EditarProducto()
@@ -300,8 +311,8 @@ namespace MadeInHouse.ViewModels.Almacen
                 string result = string.Empty;
                 switch (columnName)
                 {
-                    case "TxtNombre": if (string.IsNullOrEmpty(TxtNombre)) result = "El nombre del producto no se ha definido"; break;
-                    case "TxtAbreviatura": if (string.IsNullOrEmpty(TxtAbreviatura)) result = "No se ha definido la abreviatura"; break;
+                    case "TxtNombre": if (TxtNombreChanged && string.IsNullOrEmpty(TxtNombre)) result = "El nombre del producto no se ha definido"; break;
+                    case "TxtAbreviatura": if (TxtAbreviaturaChanged && string.IsNullOrEmpty(TxtAbreviatura)) result = "No se ha definido la abreviatura"; break;
                     case "TxtStockMin": if (TxtStockMin<0) result = "El stock no puede ser negativo"; break;
                     case "TxtStockMax": if (TxtStockMax<TxtStockMin) result = "El stock maximo no puede ser menor al minimo"; break;
                     
