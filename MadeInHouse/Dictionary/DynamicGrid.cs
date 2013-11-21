@@ -389,11 +389,17 @@ namespace MadeInHouse.Dictionary {
                         if (int.Parse(VolOcu) > 0) Enable = false;
                         else Enable = true;
                     }
-                    else
+                    else if (Columna[X].IdProducto==0)
+                    {
+                        CantActual = "0";
+                        VolOcu = "0";
+                        Enable = true;
+                    }
+                    else 
                     {
                         CantActual = "---";
                         VolOcu = "---";
-                        Enable = true;
+                        Enable = false;
                     }
                     
 
