@@ -22,18 +22,18 @@
         <Label Content="Fax:" HorizontalAlignment="Left" Height="23" Margin="35,241,0,0" VerticalAlignment="Top" Width="40"/>
         <Label Content="Contacto:" HorizontalAlignment="Left" Height="23" Margin="35,284,0,0" VerticalAlignment="Top" Width="61"/>
         <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="TxtCodigo"  IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-       <TextBox  Text="{Binding TxtRuc,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox Text="{Binding TxtDireccion,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox Text="{Binding TxtEmail,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" >
+        <TextBox  x:Name="TxtCodigo"  IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+       <TextBox MaxLength="15"  Text="{Binding TxtRuc,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="100" Text="{Binding TxtDireccion,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="50" Text="{Binding TxtEmail,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" >
             
             
         </TextBox>
-                <TextBox Text="{Binding TxtTelefonoContacto,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"   HorizontalAlignment="Left" Height="23" Margin="125,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox Text="{Binding TxtRazonSocial,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox Text="{Binding TxtTelefono,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox Text="{Binding TxtFax,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox Text="{Binding TxtContacto,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox  MaxLength="10" Text="{Binding TxtTelefonoContacto,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"   HorizontalAlignment="Left" Height="23" Margin="125,318,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="50" Text="{Binding TxtRazonSocial,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="10" Text="{Binding TxtTelefono,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="15" Text="{Binding TxtFax,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,243,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="50" Text="{Binding TxtContacto,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,282,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
                 <ToolBar VerticalAlignment="Top">
             <ToolBar.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -43,10 +43,8 @@
             </ToolBar.Background>
             <Button/>
                     <Button/>
-                    <Button>
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button x:Name="GuardarProveedor">
+                    <Button/>
+                    <Button x:Name="GuardarProveedor">
                 <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
             </Button>
             <Button/>

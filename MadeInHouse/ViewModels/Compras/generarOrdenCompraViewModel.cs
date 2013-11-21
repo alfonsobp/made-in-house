@@ -402,6 +402,7 @@ namespace MadeInHouse.ViewModels.Compras
                                 o.Estado = 2;
                                 oSQL.Actualizar(o);
                                 MessageBox.Show("Se EMITIÓ adecuadamente la Orden de Compra", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             }
                         }
                         else

@@ -22,13 +22,14 @@ namespace MadeInHouse.Dictionary
 
                 // Create a message and set up the recipients.
 
-                MailMessage message = new MailMessage("alonsodp2692@gmail.com", to,
+                MailMessage message = new MailMessage("madeinhouse.sw@gmail.com", to,
                                                       subject, bodyMessage);
 
                 message.IsBodyHtml = true;
 
-               
 
+                if (path != null)
+                {
                     // Create  the file attachment for this e-mail message.
                     Attachment data = new Attachment(path, MediaTypeNames.Application.Octet);
 
@@ -40,14 +41,14 @@ namespace MadeInHouse.Dictionary
 
                     // Add the file attachment to this e-mail message.
                     message.Attachments.Add(data);
-
+                }
 
                     //Send the message.
 
                     var client = new SmtpClient("smtp.gmail.com", 587)
                     {
                         // Add credentials if the SMTP server requires them.
-                        Credentials = new NetworkCredential("alonsodp2692@gmail.com", "adp980407912"),
+                        Credentials = new NetworkCredential("madeinhouse.sw@gmail.com", "insignia"),
                         EnableSsl = true
                     };
 

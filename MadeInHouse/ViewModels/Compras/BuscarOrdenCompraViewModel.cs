@@ -94,9 +94,14 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
                 if (OrdenSelected.Estado == 2)
                 {
                     OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
+                    Correo c = new Correo();
+                    c.EnviarCorreo("[MadeInHouse]OC CANCELADA | Nro " + OrdenSelected.IdAlmacen, OrdenSelected.Proveedor.Email,
+                        "<html><body>Estimados : <br> Se confirma la cancelación de la Orden de compra Nro " + OrdenSelected.IdOrden + " . <br> Saludos.<br><br> MadeInHouse - Seccion de Compras </body></html> ", null);
                     new OrdenCompraSQL().Eliminar(OrdenSelected);
                     MessageBox.Show("Se ha CANCELADO la orden de compra..", "AVISO", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     Actualizar();
+
+                 
 
                 }
                 else
@@ -217,7 +222,7 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
                         string path = "\\OrdenCompra-" + OrdenSelected.Proveedor.RazonSocial + ".pdf";
                         pdf.Borrar(Environment.CurrentDirectory + path);
                         string body = formato(OrdenSelected).ToString();
-                        string msg = "Estimados :" + Environment.NewLine + "Se adjunta la Orden de compra , Atenderla porfavor.";
+                        string msg = "<html><body>Estimados :<br> Se adjunta la Orden de compra , Atenderla porfavor. <br>Saludos.<br>MadeInHouse <br>Seccion Compras </body></html>";
                         pdf.createPDF(body, path, false);
                         c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg, Environment.CurrentDirectory + path);
 

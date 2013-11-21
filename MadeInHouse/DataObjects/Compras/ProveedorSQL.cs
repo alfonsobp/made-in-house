@@ -104,7 +104,7 @@ namespace MadeInHouse.DataObjects.Compras
 
             // MessageBox.Show("SELECT * FROM Proveedor WHERE  estado = 1 " + where);
 
-            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE  estado = 1   " + where;
+            db.cmd.CommandText = "SELECT * FROM Proveedor WHERE  estado = 1   " + where + " ORDER BY fechaReg DESC ";
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
 

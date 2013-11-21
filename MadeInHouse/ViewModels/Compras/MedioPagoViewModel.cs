@@ -119,7 +119,7 @@ namespace MadeInHouse.ViewModels.Compras
                 string path = "\\OrdenCompra-" + o.Proveedor.RazonSocial + ".pdf";
                 pdf.Borrar(Environment.CurrentDirectory + path);
                 string body = formato(o).ToString();
-                string msg = "Estimados :" + Environment.NewLine + "Se adjunta la Orden de compra , Atenderla porfavor.";
+                string msg = "<html><body>Estimados :<br> Se adjunta la Orden de compra , Atenderla porfavor. <br>Saludos.<br>MadeInHouse <br>Seccion Compras </body></html>"; ;
                 pdf.createPDF(body, path, false);
                 c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), o.Proveedor.Email, msg, Environment.CurrentDirectory + path);
 

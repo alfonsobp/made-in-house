@@ -101,7 +101,7 @@ namespace MadeInHouse.DataObjects.Compras
             db.cmd.CommandText = "SELECT  o.idOrden , o.codOrdenCompra , o.idProveedor , o.fechaReg , o.fechaSinAtencion , o.observaciones , o.medioPago,o.estado "+
                                   " FROM OrdenCompra o INNER JOIN Proveedor p  "+
                                  "ON o.idProveedor = p.idProveedor "+
-                                 "WHERE  1 = 1   "+ where;
+                                 "WHERE  1 = 1   "+ where + " Order by o.fechaReg Desc ";
             db.cmd.CommandType = CommandType.Text;
             db.cmd.Connection = db.conn;
 

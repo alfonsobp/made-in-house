@@ -144,13 +144,13 @@ namespace MadeInHouse.ViewModels.Compras
             Validacion.Evaluador e = new Validacion.Evaluador();
 
             if (String.IsNullOrEmpty(TxtRuc))
-                return "No puede ser vacio el Ruc";
+                return "No puede ser vacio el RUC";
 
             if (TxtRuc.Length != 11)
-                return "El Ruc es de 11 digitos";
+                return "El RUC es de 11 digitos";
 
             if (!e.esNumeroLargo(TxtRuc))
-                return "El Ruc es numerico";
+                return "El RUC es numerico";
 
             return string.Empty;
         }
