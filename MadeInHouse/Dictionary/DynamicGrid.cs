@@ -393,7 +393,7 @@ namespace MadeInHouse.Dictionary {
                     {
                         CantActual = "---";
                         VolOcu = "---";
-                        Enable = false;
+                        Enable = true;
                     }
                     
 

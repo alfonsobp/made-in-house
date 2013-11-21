@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using MadeInHouse.DataObjects;
 using System.Data;
 using System.Data.SqlClient;
+using MadeInHouse.Views.RRHH;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -939,6 +940,12 @@ namespace MadeInHouse.ViewModels.Almacen
             }
 
         }
+
+        public void BuscarEmpleado()
+        {
+            
+        }
+
 
         public int GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
         {
