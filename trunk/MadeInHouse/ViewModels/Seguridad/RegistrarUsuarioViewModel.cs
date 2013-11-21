@@ -271,14 +271,16 @@ namespace MadeInHouse.ViewModels.Seguridad
         {
             int k = 0;
             Empleado e = new Empleado();
+
             if (!String.IsNullOrWhiteSpace(TxtCodUsuario))
             {
-                k = DataObjects.Seguridad.UsuarioSQL.GetIdUsuario(TxtCodUsuario);
+                k = DataObjects.Seguridad.UsuarioSQL.VerificarCodEmpleado(TxtCodUsuario);
                 //Si el Empleado existe:
-                if (k == 1)
+                if (k > 0)
                 {
                     int dis = 0;
                     dis = DataObjects.Seguridad.UsuarioSQL.DisponibilidadUsuario(TxtCodUsuario);
+
                     if (dis == 1)
                     {
                         //Está disponible
@@ -351,7 +353,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                     //debe existir y estar disponible
                     if (IdRolValue != 0)
                     {
-                        int existe = DataObjects.Seguridad.UsuarioSQL.GetIdUsuario(TxtCodUsuario);
+                        int existe = DataObjects.Seguridad.UsuarioSQL.VerificarCodEmpleado(TxtCodUsuario);
                         //Empleado existente:
                         if (existe == 1)
                         {
@@ -360,9 +362,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                             if (dis == 1)
                             {
                                 //Está disponible
-
                                 //FALTA VALIDACION DE ENVIO DE CORREO
-
                                 k = DataObjects.Seguridad.UsuarioSQL.agregarUsuario(u);
 
                                 if (k == 1)
