@@ -145,8 +145,9 @@ namespace MadeInHouse.Views.Reportes
 
             for (int i = 0; i < ListBoxSede2.Items.Count; i++)
             {
-                if (ListBoxSede2.Items[i].ToString() == "ALMACEN CENTRAL")lista = DataObjects.Reportes.reporteStock.BuscarStockCentral();
-                else lista = DataObjects.Reportes.reporteStock.BuscarStock(ListBoxSede2.Items[i].ToString());
+                if (listBoxAlmacen2.Items[i].ToString() == "ALMACEN CENTRAL") lista = DataObjects.Reportes.reporteStock.BuscarStockCentral();
+                else if (listBoxAlmacen2.Items[i].ToString().Contains("anaq")) lista = DataObjects.Reportes.reporteStock.BuscarStock(ListBoxSede2.Items[i].ToString());
+                
                 for (int j = 0; j < lista.Count; j++)
                 {
                     stocks.Add(lista[j]);
