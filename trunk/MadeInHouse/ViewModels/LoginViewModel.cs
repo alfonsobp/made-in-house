@@ -77,7 +77,7 @@ namespace MadeInHouse.ViewModels
             {
                 AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                IIdentity usuario = new GenericIdentity("" + userSQL.buscarUsuarioPorCodEmpleado("ADMIN").IdUsuario, "Database");
+                IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario("ADMIN"), "Database");
                 
 
                 string[] rol = { "idRolAllenar", "otrorol" };
@@ -105,7 +105,7 @@ namespace MadeInHouse.ViewModels
                     {
                         AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                        IIdentity usuario = new GenericIdentity("" + userSQL.buscarUsuarioPorCodEmpleado(TxtUser).IdUsuario, "Database");
+                        IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario(TxtUser), "Database");
 
                         string[] rol = { "idRolAllenar", "otrorol" };
 

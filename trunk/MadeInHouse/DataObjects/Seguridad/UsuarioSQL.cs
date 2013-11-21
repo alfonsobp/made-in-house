@@ -199,6 +199,7 @@ namespace MadeInHouse.DataObjects.Seguridad
         {
             Usuario u = null;
             SqlDataReader reader;
+            int posIdTienda;
 
             db.cmd.CommandText = "SELECT * FROM Usuario WHERE codEmpleado=@codEmpleado ";
             db.cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
@@ -211,7 +212,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                 if (reader.Read())
                 {
                     u = new Usuario();
-
+                    posIdTienda=reader.GetOrdinal("idTienda");
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
                     u.Contrasenha = reader["contrasenha"].ToString();
@@ -220,7 +221,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
-                    u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
+                    u.IdTienda = reader.IsDBNull(posIdTienda) ? 0 : reader.GetInt32(posIdTienda);
                 }
 
                 if (db.cmd.Transaction == null) db.conn.Close();
@@ -373,7 +374,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
-        public static int GetIdUsuario(string codEmpleado)
+        public static int existeEmpleado(string codEmpleado)
         {
             int idUsuario = 0;
             int enc = 0;
@@ -409,6 +410,40 @@ namespace MadeInHouse.DataObjects.Seguridad
             }
 
             return enc;
+        }
+
+        public static int GetIdUsuario(string codEmpleado)
+        {
+            int idUsuario = 0;
+            Usuario u = new Usuario();
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            
+            cmd.CommandText = "SELECT * FROM Usuario WHERE upper(codEmpleado) = @codEmpleado";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    idUsuario = (int)(reader["idUsuario"]);
+                }
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return idUsuario;
         }
 
         public static int DisponibilidadUsuario(string codEmpleado)
