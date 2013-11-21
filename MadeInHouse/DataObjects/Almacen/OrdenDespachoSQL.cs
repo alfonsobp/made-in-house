@@ -9,6 +9,8 @@ using MadeInHouse.DataObjects.Ventas;
 using System.Data.SqlClient;
 using System.Windows;
 
+using System.Diagnostics;
+
 namespace MadeInHouse.DataObjects.Almacen
 {
     class OrdenDespachoSQL
@@ -59,28 +61,34 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
         }
 
-        public List<OrdenDespacho> BuscarOrdenDespacho(int idOrdenDespacho = -1, int idVenta = -1)
+        public List<OrdenDespacho> BuscarOrdenDespacho(int idOrdenDespacho, int idVenta, int estado)
         {
-            List<OrdenDespacho> listaOrdenDespacho = null;
+            List<OrdenDespacho> listaOrdenDespacho = new List<OrdenDespacho>();
 
+            string select = "SELECT * ";
+            string from = "FROM OrdenDespacho ";
+            string where = "WHERE 1 = 1";
 
-            string where = "WHERE estado >= 0 ";
-            string from = "SELECT * FROM OrdenDespacho ";
-
+            if (estado >= 0)
+            {
+                where += " AND estado = @estado ";
+                db.cmd.Parameters.AddWithValue("@estado", estado);
+            }
             if (idOrdenDespacho > 0)
             {
-                where = where + " AND idOrdenDespacho = @idOrdenDespacho ";
+                where += " AND idOrdenDespacho = @idOrdenDespacho ";
                 db.cmd.Parameters.AddWithValue("@idOrdenDespacho", idOrdenDespacho);
             }
 
             if (idVenta > 0)
             {
-                where = where + " AND idVenta = @idVenta ";
+                where += " AND idVenta = @idVenta ";
                 db.cmd.Parameters.AddWithValue("@idVenta", idVenta);
             }
 
-            db.cmd.CommandText = from + where;
+            db.cmd.CommandText = select + from + where;
 
+            Trace.WriteLine("CmdText: " + db.cmd.CommandText);
             try
             {
                 db.conn.Open();
@@ -88,14 +96,12 @@ namespace MadeInHouse.DataObjects.Almacen
 
                 while (reader.Read())
                 {
-                    if (listaOrdenDespacho == null) listaOrdenDespacho = new List<OrdenDespacho>();
                     OrdenDespacho p = new OrdenDespacho();
 
                     p.IdOrdenDespacho = Int32.Parse(reader["idOrdenDespacho"].ToString());
 
                     int id = Int32.Parse(reader["idVenta"].ToString());
                     p.Venta = new MantenerGuiaDeRemisionViewModel().getVentafromID(id);
-
                     p.Estado = Int32.Parse(reader["estado"].ToString());
                     p.FechaDespacho = DateTime.Parse(reader["fechaDespacho"].ToString());
 

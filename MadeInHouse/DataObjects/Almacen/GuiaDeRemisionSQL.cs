@@ -434,7 +434,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public OrdenDespacho getORDENfromIDorden(int id)
         {
-            List<OrdenDespacho> list = new OrdenDespachoSQL().BuscarOrdenDespacho(-1, -1);
+            List<OrdenDespacho> list = new OrdenDespachoSQL().BuscarOrdenDespacho(-1, -1, -1);
             for (int i = 0; i < list.Count; i++)
                 if (list[i].IdOrdenDespacho == id)
                 {
