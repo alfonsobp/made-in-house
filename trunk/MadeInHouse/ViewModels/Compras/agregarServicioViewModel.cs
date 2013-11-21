@@ -26,6 +26,9 @@ namespace MadeInHouse.ViewModels.Compras
         {
             //Servicio agregado desde la ventana principal
             indicador = 1;
+            Id = usql.ObtenerMaximoID("Servicio", "idServicio");
+            TxtCodigo = "SERV-" + (1000000 + Id + 1).ToString();
+
         }
 
         public agregarServicioViewModel(string codProveedor)
@@ -57,6 +60,8 @@ namespace MadeInHouse.ViewModels.Compras
             //Servicio para insertar desde la ventana principal o del buscador
             indicador = 1;
             model = m;
+            Id = usql.ObtenerMaximoID("Servicio", "idServicio");
+            TxtCodigo = "SERV-" + (1000000 + Id + 1).ToString(); 
         }
 
         private int ventanaAccion = 0;
@@ -127,7 +132,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         //Atributos de la clase
 
-        int Id;
+        int Id = 0;
 
         BuscadorServicioViewModel model;
 
@@ -226,7 +231,7 @@ namespace MadeInHouse.ViewModels.Compras
         public Boolean validar(MadeInHouse.Models.Compras.Servicio s)
         {
 
-            if (s.Descripcion == null || s.Nombre == null || TxtProveedor == null)
+            if ((s.Descripcion == null) || (s.Nombre == null) || (Prov == null))
             {
                 MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
                 return false;
@@ -242,23 +247,22 @@ namespace MadeInHouse.ViewModels.Compras
             int k, y, i;
             Servicio s = new Servicio();
 
-            s.IdServicio = Id;
+            if (validar(s) == true)
+            {
 
-            if (TxtProveedor == null)
-                TxtProveedor = Prov.CodProveedor;
-
-            s.IdProveedor = ServicioSQL.getIDfromProv(TxtProveedor);
+            s.IdProveedor = Prov.IdProveedor;
             s.Nombre = TxtNombre;
             s.Descripcion = TxtDescripcion;
             s.CodServicio = TxtCodigo;
 
 
-            if (validar(s) == true)
-            {
+            
                 if (indicador == 1)
                 {
                     k = new ServicioSQL().Agregar(s);
                     Id = usql.ObtenerMaximoID("Servicio", "idServicio");
+
+                    if (Id == 0) Id = 1;
 
                     if (LstProducto != null)
                     {
