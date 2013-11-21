@@ -22,10 +22,10 @@
                 <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="89" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
                 <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                <TextBox x:Name="TxtProveedor" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
+                <TextBox IsEnabled="False" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
                 <DataGrid
                     cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
-                    IsReadOnly="True"  AutoGenerateColumns="False"  SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="210">
+                    IsReadOnly="True"  AutoGenerateColumns="False"  SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="222">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="70" Header="Cod. Prod"/>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Width="100" Header="Nomb. Prod"/>
@@ -33,16 +33,10 @@
                             </DataGrid.Columns>
                         </DataGrid>
                 <Label Content="Productos soportados" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top"/>
-                <Button HorizontalAlignment="Left" Height="38" Margin="534,106,0,0" VerticalAlignment="Top" Width="34">
-                    <Image Source="/Assets/add.png" Height="20" Width="50" />
-                </Button>
-                <Button x:Name="BuscarProveedor" HorizontalAlignment="Left" Height="23" Margin="251,90,0,0" VerticalAlignment="Top" Width="34">
+                        <Button x:Name="BuscarProveedor" HorizontalAlignment="Left" Height="23" Margin="251,90,0,0" VerticalAlignment="Top" Width="34">
                     <Image Source="/Assets/find.png" Height="20" Width="34" />
                 </Button>
-                        <Button  HorizontalAlignment="Left" Height="38" Margin="534,154,0,0" VerticalAlignment="Top" Width="34">
-                    <Image Source="/Assets/minus.png" Height="20" Width="50" />
-                </Button>
-                <Label Content="" HorizontalAlignment="Left" Margin="11,192,0,0" VerticalAlignment="Top" Height="28"/>
+                        <Label Content="" HorizontalAlignment="Left" Margin="11,192,0,0" VerticalAlignment="Top" Height="28"/>
             </Grid>
         </GroupBox>
         <ToolBar VerticalAlignment="Top">
