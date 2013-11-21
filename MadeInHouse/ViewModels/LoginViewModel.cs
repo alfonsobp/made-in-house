@@ -25,8 +25,8 @@ namespace MadeInHouse.ViewModels
         {
             _windowManager = windowmanager;
         }
-        private string txtUser;
 
+        private string txtUser;
         public string TxtUser
         {
             get { return txtUser; }
@@ -34,7 +34,6 @@ namespace MadeInHouse.ViewModels
         }
 
         private string txtPasswordUser;
-
         public string TxtPasswordUser
         {
             get { return txtPasswordUser; }
@@ -42,30 +41,23 @@ namespace MadeInHouse.ViewModels
         }
 
         private string lblError;
-
         public string LblError
         {
             get { return lblError; }
             set { lblError = value; NotifyOfPropertyChange(() => LblError); }
         }
 
-        string response;
-
+        private string response;
         public string Response
         {
-
             get { return this.response; }
-
             set
             {
-                if (this.response == value)
-                    return;
-
+                if (this.response == value) return;
                 this.response = value;
                 NotifyOfPropertyChange("Response");
             }
         }
-
 
         public void enter()
         {
@@ -79,7 +71,6 @@ namespace MadeInHouse.ViewModels
 
                 IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario("ADMIN"), "Database");
                 
-
                 string[] rol = { "idRolAllenar", "otrorol" };
 
                 GenericPrincipal credencial = new GenericPrincipal(usuario, rol);

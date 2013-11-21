@@ -35,10 +35,13 @@ namespace MadeInHouse.ViewModels.Ventas
             this.window = window;
             if (idDevolucion > 0)
             {
+                this.idDevolucion = idDevolucion;
+                this.ObtenerProductosVenta();
                 IndMantenimiento = DETALLE;
                 IsReadOnly = true;
                 CanDelete = Visibility.Visible;
                 CanSave = Visibility.Collapsed;
+                ViewDni = Visibility.Collapsed;
             }
             else
             {
@@ -46,6 +49,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 IsReadOnly = false;
                 CanDelete = Visibility.Collapsed;
                 CanSave = Visibility.Visible;
+                ViewDni = Visibility.Visible;
             }
         }
 
@@ -106,6 +110,18 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private Visibility viewDni;
+        public Visibility ViewDni
+        {
+            get { return viewDni; }
+            set
+            {
+                if (viewDni == value) return;
+                viewDni = value;
+                NotifyOfPropertyChange(() => ViewDni);
+            }
+        }
+
         private List<DevolucionProducto> lstProductos;
         public List<DevolucionProducto> LstProductos
         {
@@ -142,20 +158,22 @@ namespace MadeInHouse.ViewModels.Ventas
         #endregion
 
         #region metodos
-
-        public void ObtenerProductos()
-        {
-            DevolucionSQL dSQL = new DevolucionSQL();
-            LstProductos = dSQL.BuscarProductos();
-        }
-
+        
         public void ObtenerProductosVenta()
         {
             DevolucionSQL dSQL = new DevolucionSQL();
-            dev.venta = dSQL.BuscarVenta(this.DocPago);
-            DNI = dev.venta == null ? null : dev.venta.dni;
-            if (dev.venta != null)
-                LstProductos = dSQL.BuscarProductos(-1, dev.venta.IdVenta);
+            if (idDevolucion > 0)
+            {
+                LstProductos = dSQL.BuscarProductos(-1, -1, null, idDevolucion);
+                DocPago = LstProductos.First().DocPago;
+            }
+            else
+            {
+                dev.venta = dSQL.BuscarVenta(this.DocPago);
+                DNI = dev.venta == null ? null : dev.venta.dni;
+                if (dev.venta != null)
+                    LstProductos = dSQL.BuscarProductos(-1, dev.venta.IdVenta);
+            }
         }
 
         public void GuardarDevolucion()
