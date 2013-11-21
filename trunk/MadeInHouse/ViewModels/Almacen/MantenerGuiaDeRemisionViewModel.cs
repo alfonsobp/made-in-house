@@ -232,14 +232,10 @@ namespace MadeInHouse.ViewModels.Almacen
             if (Nota.Tipo == 2)
             {
 
-                List<Almacenes> list = new AlmacenSQL().BuscarAlmacen();
-                for (int i = 0; i < list.Count; i++)
-                    if (list[i].IdAlmacen == Nota.IdAlmacen)
-                    {
-                        TxtDirPartida = list[i].Direccion;
-                        TxtAlmacenOrigen = list[i].Nombre;
-                        break;
-                    }
+                Almacenes almOr = new GuiaDeRemisionSQL().BuscarALMfromID(Nota.IdAlmacen);
+
+                TxtDirPartida = almOr.Direccion;
+                TxtAlmacenOrigen = almOr.Nombre;
 
                 List<ProductoxNotaIS> l = new NotaISSQL().BuscarNotasXProductos();
                 List<GuiaRemxProducto> lAux = new List<GuiaRemxProducto>();
@@ -271,10 +267,9 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void RefrescarOrden()
         {
-            Venta v = getVentafromID(Orden.Venta.IdVenta);
-            Usuario u = getUsuariofromID(v.IdUsuario);
-            Cliente c = getClientefromID(v.IdCliente);
-            Almacenes a = getAlmacenfromIDTienda(u.IdTienda);
+            Usuario u = getUsuariofromID(Orden.Venta.IdUsuario);
+            Cliente c = getClientefromID(Orden.Venta.IdCliente);
+            Tienda a = new GuiaDeRemisionSQL().BuscarTIENfromID(u.IdTienda);
 
             TxtAlmacenOrigen = a.Nombre;
             TxtDirPartida = a.Direccion;
@@ -304,7 +299,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void RefrescarAlm()
         {
             TxtDirLlegada = Alm.Direccion;
-            TxtTienda = (getTiendafromID(Alm.IdTienda)).Nombre;
+            TxtTienda = (new GuiaDeRemisionSQL().BuscarTIENfromID(Alm.IdTienda)).Nombre;
         }
 
         public void BuscarAlmacen()

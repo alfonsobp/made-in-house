@@ -82,7 +82,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public BuscarGuiasRemisionViewModel() 
         {
-            ActualizarGuiaRemision();
+            //ActualizarGuiaRemision();
         }
 
         public void BuscarAlmacen()
@@ -143,14 +143,23 @@ namespace MadeInHouse.ViewModels.Almacen
             }
 
             list = new GuiaDeRemisionSQL().BuscarGuiaDeRemision(TxtCodigo, estado, SeleccionadoTipo);
+
             if (Alm != null)
             {
                 if (!String.IsNullOrEmpty(Alm.CodAlmacen))
                 {
                     for (int i = 0; i < list.Count; i++)
                     {
-                        if (list[i].AlmOrigen.CodAlmacen == Alm.CodAlmacen)
-                            NewList.Add(list[i]);
+                        if (list[i].Nota != null)
+                        {
+                            if (list[i].NombOrigen.Equals(Alm.Direccion))
+                                NewList.Add(list[i]);
+                        }
+                        if (list[i].Orden != null)
+                        {
+                            if (list[i].NombOrigen.Equals(new GuiaDeRemisionSQL().BuscarTIENfromID(Alm.IdTienda).Nombre))
+                                NewList.Add(list[i]);
+                        }
                     }
 
                     if (NewList != null)
@@ -164,6 +173,8 @@ namespace MadeInHouse.ViewModels.Almacen
                     LstGuiaDeRemision = new List<GuiaRemision>(list);
                 }
             }
+            else
+                LstGuiaDeRemision = new List<GuiaRemision>(list);
 
         }
 
@@ -191,16 +202,21 @@ namespace MadeInHouse.ViewModels.Almacen
                 guiaSeleccionada.Estado = 2;
                 Almacenes almDesp = new Almacenes(); 
 
-                List<Almacenes> list = new AlmacenSQL().BuscarAlmacen();
-                for (int i = 0; i < list.Count; i++)
-                    if (list[i].IdAlmacen == guiaSeleccionada.AlmOrigen.IdAlmacen)
-                        almDesp = list[i];
 
                 int k = new GuiaDeRemisionSQL().editarGuiaDeRemision(guiaSeleccionada);
 
                 if (k != 0)
-                    MessageBox.Show("Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nAlmacen despachador = " + almDesp.Nombre +
-                                    "\nAlmacen receptor = " + guiaSeleccionada.Almacen.Nombre);
+                {
+                    if (guiaSeleccionada.Nota != null)
+                    {
+                        MessageBox.Show("Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nAlmacen despachador = " + guiaSeleccionada.NombOrigen +
+                                        "\nAlmacen receptor = " + guiaSeleccionada.Almacen.Nombre);
+                    }
+                    else
+                        MessageBox.Show("Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nTienda despachadora = " + guiaSeleccionada.NombOrigen +
+                                        "\nDireccion de despacho = " + guiaSeleccionada.Destino);
+                }
+
             }
 
             else

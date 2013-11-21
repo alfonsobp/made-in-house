@@ -25,29 +25,30 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlDataReader reader;
             String where = "";
 
-            if (!String.IsNullOrEmpty(codigo))
-            {
+            
+                if (!String.IsNullOrEmpty(codigo))
+                {
                     where += " and codGuiaRem = '" + codigo.ToString() + "' ";
-            }
+                }
 
-            if (estado != 0)
-            {
+                if (estado != 0)
+                {
 
-                where += " and estado = " + estado;
+                    where += " and estado = " + estado;
 
-            }
+                }
 
 
-            if (!String.IsNullOrEmpty(tipo))
-            {
-
-                where += " and tipo = '" + tipo.ToString() + "' ";
-            }
-
+                if (!String.IsNullOrEmpty(tipo))
+                {
+                    where += " and tipo = '" + tipo.ToString() + "' ";
+                }
+            
 
 
             db.cmd.CommandText = "SELECT * FROM GuiaRemision WHERE estado >= 0 " + where;
             db.cmd.CommandType = CommandType.Text;
+            
 
             try
             {
@@ -59,8 +60,8 @@ namespace MadeInHouse.DataObjects.Almacen
                 {
                     int idAlmacen = 0;
                     int idNota = 0;
+
                     GuiaRemision g = new GuiaRemision();
-                    g.Almacen = new Almacenes();
 
                     g.IdGuia = Convert.ToInt32(reader["idGuia"].ToString());
                     g.CodGuiaRem = reader["codGuiaRem"].ToString();
@@ -76,28 +77,23 @@ namespace MadeInHouse.DataObjects.Almacen
                     {
                         idAlmacen = Convert.ToInt32(reader["idAlmacen"].ToString());
                         idNota = Convert.ToInt32(reader["idNota"].ToString());
-                        g.Almacen = getALMfromIDAlm(idAlmacen);
+                        g.Almacen = BuscarALMfromID(idAlmacen);
                         g.Nota = getNOTAfromIDnota(idNota);
-                        g.AlmOrigen = getALMfromIDAlm(g.Nota.IdAlmacen);
+                        //g.AlmOrigen = BuscarALMfromID(g.Nota.IdAlmacen);
+                        g.NombOrigen = (BuscarALMfromID(g.Nota.IdAlmacen)).Nombre;
                     }
 
                     if (!reader.IsDBNull(reader.GetOrdinal("idOrdenDespacho")))
                     {
                         int idOrd = Convert.ToInt32(reader["idOrdenDespacho"].ToString());
                         g.Orden = getORDENfromIDorden(idOrd);
-
-                        Venta v = new MantenerGuiaDeRemisionViewModel().getVentafromID(g.Orden.Venta.IdVenta);
-                        Usuario u = new MantenerGuiaDeRemisionViewModel().getUsuariofromID(v.IdUsuario);
-                        Cliente c = new MantenerGuiaDeRemisionViewModel().getClientefromID(v.IdCliente);
-                        g.AlmOrigen = new MantenerGuiaDeRemisionViewModel().getAlmacenfromIDTienda(u.IdTienda);
+                        //Venta v = new MantenerGuiaDeRemisionViewModel().getVentafromID(g.Orden.Venta.IdVenta);
+                        Usuario u = new MantenerGuiaDeRemisionViewModel().getUsuariofromID(g.Orden.Venta.IdUsuario);
+                        g.TiendaOrigen = BuscarTIENfromID(u.IdTienda);
+                        g.NombOrigen = g.TiendaOrigen.Nombre;
+                        g.Destino = BuscarDIRromIDCli(g.Orden.Venta.IdCliente);
                     }
 
-                    if (idNota != 0) {
-                        g.Nota = getNOTAfromIDnota(idNota);
-                    }
-                    if (idAlmacen != 0) {
-                        g.Almacen = getALMfromIDAlm(idAlmacen);
-                    }
                     lstGuiaDeRemision.Add(g);
                 }
 
@@ -187,6 +183,129 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
+
+        public Almacenes BuscarALMfromID(int id)
+        {
+
+            DBConexion db = new DBConexion();
+            SqlDataReader reader;
+
+            db.cmd.CommandText = "SELECT * FROM Almacen WHERE idAlmacen = " + id;
+            db.cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Almacenes almacen = new Almacenes(); 
+                    almacen.Altura = reader.IsDBNull(reader.GetOrdinal("altura")) ? -1 : int.Parse(reader["altura"].ToString());
+                    almacen.CodAlmacen = reader.IsDBNull(reader.GetOrdinal("codAlmacen")) ? null : reader["codAlmacen"].ToString();
+                    almacen.Estado = reader.IsDBNull(reader.GetOrdinal("estado")) ? -1 : int.Parse(reader["estado"].ToString());
+                    almacen.Direccion = reader["direccion"].ToString();
+                    almacen.FechaReg = reader.IsDBNull(reader.GetOrdinal("fechaReg")) ? DateTime.MinValue : DateTime.Parse(reader["fechaReg"].ToString());
+                    almacen.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : int.Parse(reader["idAlmacen"].ToString());
+                    almacen.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : int.Parse(reader["idTienda"].ToString());
+                    almacen.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    almacen.NroColumnas = reader.IsDBNull(reader.GetOrdinal("nroColumnas")) ? -1 : int.Parse(reader["nroColumnas"].ToString());
+                    almacen.NroFilas = reader.IsDBNull(reader.GetOrdinal("nroFilas")) ? -1 : int.Parse(reader["nroFilas"].ToString());
+                    almacen.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? -1 : int.Parse(reader["tipo"].ToString());
+                    
+                    return almacen;
+                }
+
+
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return null;
+        }
+
+
+
+        public string BuscarDIRromIDCli(int id)
+        {
+
+            DBConexion db = new DBConexion();
+            SqlDataReader reader;
+
+            db.cmd.CommandText = "SELECT * FROM Cliente WHERE idCliente = " + id;
+            db.cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string dir;
+                    dir = reader["direccion"].ToString();
+
+                    return dir;
+                }
+
+
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return null;
+        }
+
+
+        public Tienda BuscarTIENfromID(int id)
+        {
+
+            DBConexion db = new DBConexion();
+            db.cmd.CommandText = "SELECT * FROM Tienda WHERE idTienda = " + id;
+
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    Tienda t = new Tienda();
+                    t.IdTienda = int.Parse(reader["idTienda"].ToString());
+                    t.IdUbigeo = reader.IsDBNull(reader.GetOrdinal("idUbigeo")) ? -1 : int.Parse(reader["idUbigeo"].ToString());
+                    t.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    t.Direccion = reader.IsDBNull(reader.GetOrdinal("direccion")) ? null : reader["direccion"].ToString();
+                    t.Telefono = reader.IsDBNull(reader.GetOrdinal("telefono")) ? null : reader["telefono"].ToString();
+                    t.Administrador = reader.IsDBNull(reader.GetOrdinal("administrador")) ? null : reader["administrador"].ToString();
+                    return t;  
+                }
+
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+                reader.Close();
+
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return null;
+            }
+         
+            return null;
+        }
 
 
         public int agregarGuiaDeRemision(GuiaRemision g)

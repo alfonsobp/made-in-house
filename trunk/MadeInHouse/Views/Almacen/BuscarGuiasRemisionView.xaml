@@ -66,7 +66,7 @@
                           Margin="10,49,17,0" Grid.Row="2" HeadersVisibility="All" Height="195" VerticalAlignment="Top" AutoGenerateColumns="false" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=CodGuiaRem}" Header="Código" Width="80"/>
-                        <DataGridTextColumn Binding="{Binding Path=AlmOrigen.Nombre}" Header="Almacen Origen" Width="160"/>
+                        <DataGridTextColumn Binding="{Binding Path=NombOrigen}" Header="Almacen Origen" Width="160"/>
                         <DataGridTextColumn Binding="{Binding Path=Tipo}" Header="Tipo" Width="160"/>
                 
                     </DataGrid.Columns>
