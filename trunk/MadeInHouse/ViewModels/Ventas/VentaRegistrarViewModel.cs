@@ -55,6 +55,18 @@ namespace MadeInHouse.ViewModels.Ventas
             detalleSeleccionado = ((sender as DataGrid).SelectedItem as DetalleVenta);
         }
 
+        private VentaPago detalleMontoSeleccionado;
+        public void SelectedMontoChanged(object sender)
+        {
+            detalleMontoSeleccionado = ((sender as DataGrid).SelectedItem as VentaPago);
+        }
+
+        private DetalleVentaServicio detalleServicioSeleccionado;
+        public void SelectedItemServicioChanged(object sender)
+        {
+            detalleServicioSeleccionado = ((sender as DataGrid).SelectedItem as DetalleVentaServicio);
+        }
+
         private string txtCliente;
         public string TxtCliente
         {
@@ -387,6 +399,21 @@ namespace MadeInHouse.ViewModels.Ventas
             
         }
 
+        public void QuitarDetalleProducto()
+        {
+            DetalleVenta aux;
+            aux = detalleSeleccionado;
+            if (aux != null)
+            {
+                LstVenta.Remove(aux);
+                LstVenta = new List<DetalleVenta>(LstVenta);
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun producto");
+            }
+        }
+
         public void AgregarDetalleServicio()
         {
             Evaluador ev = new Evaluador();
@@ -423,6 +450,21 @@ namespace MadeInHouse.ViewModels.Ventas
             }
             LstVentaServicios = aux;
             
+        }
+
+        public void QuitarDetalleServicio()
+        {
+            DetalleVentaServicio aux;
+            aux = detalleServicioSeleccionado;
+            if (aux != null)
+            {
+                LstVentaServicios.Remove(aux);
+                LstVentaServicios = new List<DetalleVentaServicio>(LstVentaServicios);
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado ningun servicio");
+            }
         }
 
         public void GuardarVenta(string cmbTipoVenta)
@@ -600,23 +642,47 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AgregarMonto()
         {
+            int numFilas = LstVenta.Count();
+            int numFilasServicios = LstVentaServicios.Count();
             if (ValidaMonto())
             {
-                VentaPago vp = new VentaPago();
-                vp.IdModoPago = selectedValue;
-                vp.Monto = Double.Parse(TxtMonto);
-                vp.Nombre = selectedValue.ToString();
-
-                montopago += Double.Parse(TxtMonto);
-                TxtPagaCon = montopago.ToString();
-
-                List<VentaPago> aux = new List<VentaPago>();
-                foreach (VentaPago item in LstPagos)
+                if (((numFilas > 0) || (numFilasServicios > 0)))
                 {
-                    aux.Add(item);
+                    VentaPago vp = new VentaPago();
+                    vp.IdModoPago = selectedValue;
+                    vp.Monto = Double.Parse(TxtMonto);
+                    vp.Nombre = selectedValue.ToString();
+
+                    montopago += Double.Parse(TxtMonto);
+                    TxtPagaCon = montopago.ToString();
+
+                    List<VentaPago> aux = new List<VentaPago>();
+                    foreach (VentaPago item in LstPagos)
+                    {
+                        aux.Add(item);
+                    }
+                    aux.Add(vp);
+                    LstPagos = aux;
                 }
-                aux.Add(vp);
-                LstPagos = aux;
+                else
+                {
+                    MessageBox.Show("No ha ingresado productos o servicios", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        public void QuitarMonto()
+        {
+            VentaPago aux;
+            aux = detalleMontoSeleccionado;
+            if (aux != null)
+            {
+                LstPagos.Remove(aux);
+                LstPagos = new List<VentaPago>(LstPagos);
+            }
+            else
+            {
+                MessageBox.Show("No se ha seleccionado Monto");
             }
         }
 
