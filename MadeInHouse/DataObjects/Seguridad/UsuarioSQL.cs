@@ -415,6 +415,45 @@ namespace MadeInHouse.DataObjects.Seguridad
             return enc;
         }
 
+        public static int VerificarCodEmpleado(string codEmpleado)
+        {
+            int idUsuario = 0;
+            int enc = 0;
+            Usuario u = new Usuario();
+            Empleado emp = new Empleado();
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            //cmd.CommandText = "SELECT idUsuario FROM Usuario WHERE upper(codEmpleado) like '%" +"@codEmpleado"+"%' ";
+            cmd.CommandText = "SELECT * FROM Empleado WHERE upper(codEmpleado) = @codEmpleado";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    enc = 1;
+                    idUsuario = (int)(reader["idEmpleado"]);
+                    //MessageBox.Show("idEmpleado" + idUsuario);
+                }
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return enc;
+        }
+
+
         public static int GetIdUsuario(string codEmpleado)
         {
             int idUsuario = 0;
@@ -458,7 +497,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM Usuario WHERE upper(codEmpleado) = upper(@codEmpleado) ";
+            cmd.CommandText = "SELECT codEmpleado FROM USUARIO WHERE upper(codEmpleado) = upper(@codEmpleado) ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
@@ -476,11 +515,11 @@ namespace MadeInHouse.DataObjects.Seguridad
                 conn.Close();
 
             }
+
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
-
             return disp;
         }
 
