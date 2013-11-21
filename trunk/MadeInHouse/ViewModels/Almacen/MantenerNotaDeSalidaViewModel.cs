@@ -403,6 +403,10 @@ namespace MadeInHouse.ViewModels.Almacen
         
 
         public void AgregarProducto() {
+            if (SelectedProducto == null)
+            {
+                SelectedProducto = new Producto();
+            }
             if (SelectedProducto.CodigoProd == null || TxtCantPro == null || Convert.ToInt64(TxtCantPro)<=0 )
             {
                 System.Windows.MessageBox.Show("Debe completar todos los campos y la cantidad debe ser mayor a 0");
