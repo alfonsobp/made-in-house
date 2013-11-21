@@ -247,15 +247,13 @@ namespace MadeInHouse.ViewModels.Compras
             int k, y, i;
             Servicio s = new Servicio();
 
-            if (validar(s) == true)
-            {
-
             s.IdProveedor = Prov.IdProveedor;
             s.Nombre = TxtNombre;
             s.Descripcion = TxtDescripcion;
             s.CodServicio = TxtCodigo;
 
-
+            if (validar(s) == true)
+            {
             
                 if (indicador == 1)
                 {
@@ -310,7 +308,7 @@ namespace MadeInHouse.ViewModels.Compras
             {
 
                 List<ServicioxProducto> lista = new List<ServicioxProducto>();
-
+                MessageBox.Show(path);
                 String name = "Catalogo-Serv";
                 String constr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + ";Extended Properties=Excel 12.0;Persist Security Info=False";
                 OleDbConnection con = new OleDbConnection(constr);
@@ -331,7 +329,6 @@ namespace MadeInHouse.ViewModels.Compras
                     cs.Producto.CodigoProd = ds["Codigo"].ToString();
                     cs.Producto.Nombre = ds["Nombre"].ToString();
                     cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
-
 
                     lista.Add(cs);
                   
