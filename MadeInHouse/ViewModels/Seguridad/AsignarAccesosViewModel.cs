@@ -25,13 +25,20 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public AsignarAccesosViewModel()
         {
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            //u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
 
             RolSQL rolSQL = new RolSQL();
             LstRol = rolSQL.ListarRol();
 
             AccModuloSQL moduloSQL = new AccModuloSQL();
             LstAccModulo = moduloSQL.ListarAccModulo();
+
+            AccModulo am = new AccModulo();
+            am.Nombre = "Todos";
+            am.Estado = 1;
+            am.IdAccModulo = 0;
+            LstAccModulo.Insert(0,am);
+            idAccModuloValue = 0;
 
             ActualizarListaAccVentanaAccModulo();
         }
@@ -92,6 +99,20 @@ namespace MadeInHouse.ViewModels.Seguridad
         {
             get { return lstAccVentanaAccModulo; }
             set { lstAccVentanaAccModulo = value; NotifyOfPropertyChange(() => LstAccVentanaAccModulo); }
+        }
+
+        private int allSelected;
+        public int AllSelected
+        {
+            get { return allSelected; }
+            set
+            {
+                allSelected = value;
+                LstAccVentanaAccModulo.ForEach(x => x.Estado = value);
+                NotifyOfPropertyChange(() => AllSelected);
+
+                //NotifyPropertyChanged(m => m.AllSelected);
+            }
         }
 
         public void GuardarRol()

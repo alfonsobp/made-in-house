@@ -56,11 +56,35 @@
                 <GroupBox Header="Asignación de accesos a ventanas" HorizontalAlignment="Left" Margin="10,0,0,48" VerticalAlignment="Bottom" Height="298" Width="580">
                     <Grid Margin="0,0,-2,-12">
 
-                        <DataGrid x:Name="LstAccVentanaAccModulo"  Height="268" VerticalAlignment="Top" Margin="0,10,10,0" AutoGenerateColumns="False">
+                        <DataGrid x:Name="LstAccVentanaAccModulo"  CanUserAddRows="False"
+                                        Height="268" VerticalAlignment="Top" Margin="0,10,10,0" AutoGenerateColumns="False">
+                            <!--<DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=AccModulo.Nombre}" Width="4*" Header="Módulo"/>
+                                <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="4*" Header="Ventana"/>
+                                <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Width="1*" Header="Acceso" CanUserReorder="False" />
+                            </DataGrid.Columns>-->
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=AccModulo.Nombre}" Width="120" Header="Módulo"/>
-                                <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="365" Header="Ventana"/>
-                                <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Acceso" CanUserReorder="False" />
+                                <DataGridCheckBoxColumn Binding="{Binding Path=Estado}" Width="1*" >
+                                    <DataGridCheckBoxColumn.HeaderTemplate>
+                                        <DataTemplate x:Name="dtAllChkBx">
+                                            <CheckBox  Name="cbxAll"  Content="Todo" IsChecked="{Binding Path=DataContext.AllSelected,RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                                        </DataTemplate>
+                                    </DataGridCheckBoxColumn.HeaderTemplate>
+                                </DataGridCheckBoxColumn>
+                                <DataGridTemplateColumn Header="Módulo" Width="4*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate >
+                                            <TextBlock Text="{Binding Path=AccModulo.Nombre}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Ventana" Width="4*" IsReadOnly="True">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=Nombre}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
 
