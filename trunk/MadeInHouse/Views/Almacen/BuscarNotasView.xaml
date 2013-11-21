@@ -8,7 +8,7 @@
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar notas de ingreso y salida" />
-            <Grid HorizontalAlignment="Left" Width="435">
+            <Grid HorizontalAlignment="Left" Width="435" Height="528" Margin="0,0,-4,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="38*"/>
                     <RowDefinition Height="158*"/>
@@ -54,9 +54,9 @@
                         </Button>
                     </Grid>
                 </GroupBox>
-                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="20,2,0,53" Grid.Row="2" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="394" 
+                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="20,2,0,0" Grid.Row="2" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="394" 
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action SelectedItemChanged]"
-                          SelectedItem="{Binding NotaSel, Mode=TwoWay}">
+                          SelectedItem="{Binding NotaSel, Mode=TwoWay}" Height="197" VerticalAlignment="Top">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="idNota" Binding="{Binding Path=IdNota}" Width="120"/>
                         <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaReg}" Width="100"/>

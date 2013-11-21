@@ -604,7 +604,6 @@ namespace MadeInHouse.ViewModels.Almacen
             GuiaDeRemisionSQL grsql = new GuiaDeRemisionSQL();
             selectedGuia.Estado = 2;
             grsql.editarGuiaDeRemision(selectedGuia);
-
         }
 
 
