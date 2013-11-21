@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MadeInHouse.DataObjects.Ventas
 {
@@ -268,6 +269,34 @@ namespace MadeInHouse.DataObjects.Ventas
             if (db.cmd.Transaction == null) db.conn.Close();
 
             return lstAux;
+        }
+
+        public void EstadoDevolucion(int idDevolucion)
+        {
+            DBConexion db1 = new DBConexion();
+            
+            db.cmd.CommandText = "UPDATE Devolucion  " +
+            "SET estado=2 " +
+            " WHERE idDevolucion= @idDevolucion";
+
+            db.cmd.Parameters.AddWithValue("@idDevolucion",idDevolucion);
+
+            try
+            {
+                db.conn.Open();
+
+                db.cmd.ExecuteNonQuery();
+
+                db.conn.Close();
+
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
         }
     }
 }
