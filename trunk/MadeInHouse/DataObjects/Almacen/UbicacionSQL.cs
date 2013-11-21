@@ -204,7 +204,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 db.cmd.ExecuteNonQuery();
 
                 //db.cmd.CommandText = "TRUNCATE TABLE TemporalUbicacion";
-                db.cmd.ExecuteNonQuery();
+                //db.cmd.ExecuteNonQuery();
 
                 if (tipo) db.conn.Close();
 

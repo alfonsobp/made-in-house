@@ -170,7 +170,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string VolIngresar
         {
             get { return volIngresar; }
-            set { volIngresar = value; }
+            set { volIngresar = value;
+            NotifyOfPropertyChange(() => VolIngresar);
+            }
         }
 
         private List<Ubicacion> columnaU;
@@ -315,7 +317,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 
                 else
                 {
-
+                    if (String.IsNullOrEmpty(VolIngresar)) VolIngresar = "0";
                     if (accion == 1) exito = ubicacionCol.AgregarProductos(int.Parse(CantIngresar), int.Parse(VolIngresar), SelectedProduct.IdProducto);
                     else exito=ubicacionCol.DisminuirProductos(int.Parse(CantIngresar), SelectedProduct.IdProducto);
                     
@@ -325,7 +327,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     LstProductos = new List<ProductoCant>(LstProductos);
                 }
             }
-            
+            VolIngresar = "";
         }
 
 
@@ -353,6 +355,9 @@ namespace MadeInHouse.ViewModels.Almacen
             uSQL.AgregarFilasToUbicacionesDT(temporal, almacenDG.Ubicaciones, id);
             uSQL.AgregarMasivo(temporal, trans);
             uSQL.ActualizarUbicacionMasivo();
+            UtilesSQL util = new UtilesSQL(db);
+            util.LimpiarTabla("TemporalUbicacion");
+
             trans.Commit();
             System.Windows.MessageBox.Show("Se guardo el stock");
         }
