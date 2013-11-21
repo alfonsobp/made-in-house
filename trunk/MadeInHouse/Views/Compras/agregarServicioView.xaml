@@ -20,7 +20,7 @@
                 <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top"/>
                 <Label Content="Descripcion" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="89" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
-                <TextBox x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="85,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                <TextBox IsEnabled="False" x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="86,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox IsEnabled="False" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
                 <DataGrid
