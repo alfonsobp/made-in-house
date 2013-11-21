@@ -113,5 +113,27 @@ namespace MadeInHouse.Models.Almacen
             get { return almOrigen; }
             set { almOrigen = value; }
         }
+
+        private Tienda tiendaOrigen;
+        public Tienda TiendaOrigen
+        {
+          get { return tiendaOrigen; }
+          set { tiendaOrigen = value; }
+        }
+
+        private string nombOrigen;
+        public string NombOrigen
+        {
+            get { return nombOrigen; }
+            set { nombOrigen = value; }
+        }
+
+        private string destino;
+        public string Destino
+        {
+            get { return destino; }
+            set { destino = value; }
+        }
+
     }
 }
