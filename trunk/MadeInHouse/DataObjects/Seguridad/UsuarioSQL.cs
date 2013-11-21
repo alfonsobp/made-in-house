@@ -111,10 +111,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 
                 if (reader.Read())
                     passEnc = (reader["contrasenha"]).ToString();
-                else
-                    //MessageBox.Show("No se encontro contrasenha");
-
-                    conn.Close();
+                conn.Close();
 
             }
             catch (Exception e)
@@ -238,7 +235,7 @@ namespace MadeInHouse.DataObjects.Seguridad
         public static Usuario buscarUsuarioPorIdUsuario(int idUsuario)
         {
             Usuario u = null;
-
+            int posIdTienda;
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -256,7 +253,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                 if (reader.Read())
                 {
                     u = new Usuario();
-
+                    posIdTienda = reader.GetOrdinal("idTienda");
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
                     u.Contrasenha = reader["contrasenha"].ToString();
@@ -265,9 +262,8 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Int32.Parse(reader["estadoHabilitado"].ToString());
-                    u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
+                    u.IdTienda = reader.IsDBNull(posIdTienda) ? 0 : reader.GetInt32(posIdTienda);
                 }
-                else
                     conn.Close();
 
             }
@@ -286,6 +282,8 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
+            int posIdTienda;
+
             cmd.CommandText = "SELECT * FROM Usuario WHERE estado=0";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -298,6 +296,8 @@ namespace MadeInHouse.DataObjects.Seguridad
                 while (reader.Read())
                 {
                     Usuario u = new Usuario();
+
+                    posIdTienda = reader.GetOrdinal("idTienda");
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
 
@@ -306,7 +306,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
                     u.Estado = Int32.Parse(reader["estado"].ToString());
-                    u.IdTienda = Int32.Parse(reader["idTienda"].ToString());
+                    u.IdTienda = reader.IsDBNull(posIdTienda) ? 0 : reader.GetInt32(posIdTienda);
 
                     lstUsuarioElim.Add(u);
                 }
@@ -330,6 +330,8 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
+            int posIdTienda;
+
             //cmd.CommandText = "SELECT * FROM Usuario ";
             cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod,  U.estadoHabilitado estadoHabilitado, U.Estado estado  FROM DESarrollo.Empleado E  JOIN Desarrollo.Usuario u  ON (E.codEmpleado=u.codEmpleado )  LEFT JOIN Desarrollo.Tienda T  ON (u.idTienda=T.idTienda) ORDER BY 7 DESC";
             cmd.CommandType = CommandType.Text;
@@ -343,10 +345,11 @@ namespace MadeInHouse.DataObjects.Seguridad
                 while (reader.Read())
                 {
                     Usuario u = new Usuario();
+                    posIdTienda = reader.GetOrdinal("idTienda");
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
                     u.Nombre = reader["nomEmpleado"].ToString();
-                    u.IdTienda = Convert.ToInt32(reader["idTienda"].ToString());
+                    u.IdTienda = reader.IsDBNull(posIdTienda) ? 0 : reader.GetInt32(posIdTienda);
                     u.NomTienda = reader["tienda"].ToString();
                     u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
