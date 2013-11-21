@@ -422,12 +422,13 @@ namespace MadeInHouse.Dictionary {
                         {
                             //verifico si puedo agregar o no esa ubicacion al sector ( es decir , si es contigua)
                             Ubicaciones[X][Y][0].IdSector = sector.IdSector;
-                            sector.NroUbicaciones += 1;
+                            
                             if (sector.Capacidad != 0)
                             {
-                                sector.Capacidad += sector.Capacidad ;
+                                sector.Capacidad = sector.Capacidad /sector.NroUbicaciones + sector.Capacidad ;
                                 sector.VolOcupado = (sector.Cantidad / sector.Capacidad) * 100;
                             }
+                            sector.NroUbicaciones += 1;
                             sector.LstUbicaciones.Add(Ubicaciones[X][Y][0]);
                             
                         }
