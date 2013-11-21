@@ -114,7 +114,6 @@ namespace MadeInHouse.ViewModels.Almacen
                     mantenerNotaDeIngresoViewModel.TxtDocId = guiaSeleccionada.IdGuia;
                     mantenerNotaDeIngresoViewModel.TxtDoc = guiaSeleccionada.CodGuiaRem;
                 }
-            
             }
         }
 

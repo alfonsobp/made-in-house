@@ -42,7 +42,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else 
             {
-                a = aGW.BuscarAlmacen(-1, idTienda, 3);
+                a = aGW.BuscarAlmacen(-1,-1, 3);
             }
 
             List<Usuario> ul = new List<Usuario>();
@@ -535,7 +535,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 
             }
         }
-
+        
         public void AgregarNota()
         {
 

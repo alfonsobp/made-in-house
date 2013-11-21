@@ -45,7 +45,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
-                a = aGW.BuscarAlmacen(-1, idTienda, 3);
+                a = aGW.BuscarAlmacen(-1, -1, 3);
             }
 
             List <Models.Almacen.Almacenes> al = new List<Models.Almacen.Almacenes>();
@@ -508,7 +508,14 @@ namespace MadeInHouse.ViewModels.Almacen
             else pgw.ActualizarStockSalida(list);
             
             //Actualizar Documento de Referencia
+            
+            if (SelectedDespacho != null) {
+            
+                OrdenDespachoSQL osql = new OrdenDespachoSQL();
+                SelectedDespacho.Estado = 1;
+                osql.ActualizarOrdenDespacho(SelectedDespacho);
 
+            }
             MessageBox.Show("Nota de Salida Creada");
 
         }

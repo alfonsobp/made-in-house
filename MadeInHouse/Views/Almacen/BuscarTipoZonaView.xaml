@@ -27,12 +27,7 @@
                     <Button x:Name="Eliminar">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                    </Button>
+                    
                 </ToolBar>
                 <GroupBox Header="Criterios de Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
 
@@ -42,7 +37,7 @@
                         <Label Content="Descripcion" HorizontalAlignment="Left" Margin="306,-70,0,310" VerticalAlignment="Bottom" Width="94"/>
                         <TextBox Text="{Binding Path=Descripcion, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="400,-70,0,313" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160"/>
 
-                        <DataGrid x:Name="ListaTipoZona" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,92,0,10" Width="550" AutoGenerateColumns="False">
+                        <DataGrid x:Name="ListaTipoZona" CanUserAddRows="False" IsReadOnly="True" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,92,0,10" Width="550" AutoGenerateColumns="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Width="110" Binding="{Binding Path=IdTipoZona}" Header="Codigo"/>
                                 <DataGridTextColumn Width="110" Binding="{Binding Path=Nombre}" Header="Descripcion"/>
