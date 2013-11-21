@@ -39,7 +39,7 @@
                 <Label Content="Medio de pago:" HorizontalAlignment="Left" Margin="396,115,0,0" VerticalAlignment="Top"/>
                 <Label Content="Fecha Atencion" HorizontalAlignment="Left" Margin="418,145,0,0" VerticalAlignment="Top"/>
                 <Label Content="Observaciones:" HorizontalAlignment="Left" Margin="25,342,0,0" VerticalAlignment="Top"/>
-                <TextBox MaxLength="200" x:Name="Observaciones" HorizontalAlignment="Left" Margin="18,368,0,31" TextWrapping="Wrap" Width="446"/>
+                <TextBox MaxLength="200" x:Name="Observaciones" HorizontalAlignment="Left" Margin="18,368,0,31" TextWrapping="Wrap" Width="662"/>
 
 
                 <ToolBar VerticalAlignment="Top">

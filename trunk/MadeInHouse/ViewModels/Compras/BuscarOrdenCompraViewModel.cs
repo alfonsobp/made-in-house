@@ -244,9 +244,9 @@ using MadeInHouse.ViewModels.Reportes;namespace MadeInHouse.ViewModels.Compras
         public string formato(OrdenCompra O) {
 
             string content = @"<HTML><BODY>";
-            content += "<center> MadeInHouse  S.A. </center><br><br> ";
-            content += "<center> Ruc. 99999999999 </center><br><br> ";
-            content += "ORDEN DE COMPRA  Nro "+ O.IdOrden.ToString()+"<br><br>";
+            content += "<p align='center'> MadeInHouse  S.A. <br><br>  ";
+            content += " Ruc. 99999999999 <br><br> ";
+            content += "ORDEN DE COMPRA  Nro "+ O.IdOrden.ToString()+" </p><br><br>";
             content += "<br><br>";
             content += "Proveedor : " + O.Proveedor.RazonSocial+"<br><br>";
             content += "Fecha de pedido : " + O.FechaSinAtencion.ToString()+ "<br><br>";
