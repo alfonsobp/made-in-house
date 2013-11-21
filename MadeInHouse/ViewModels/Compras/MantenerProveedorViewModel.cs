@@ -141,6 +141,7 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         private string EvaluarRuc() {
+            Validacion.Evaluador e = new Validacion.Evaluador();
 
             if (String.IsNullOrEmpty(TxtRuc))
                 return "No puede ser vacio el Ruc";
@@ -148,7 +149,26 @@ namespace MadeInHouse.ViewModels.Compras
             if (TxtRuc.Length != 11)
                 return "El Ruc es de 11 digitos";
 
+            if (!e.esNumeroLargo(TxtRuc))
+                return "El Ruc es numerico";
+
             return string.Empty;
+        }
+
+        public String EvaluarTelf(String campoEvaluado, String msg) {
+
+            Validacion.Evaluador e = new Validacion.Evaluador();
+
+            if (String.IsNullOrEmpty(TxtRuc))
+                return "No puede ser vacio el "+msg;
+
+       
+
+            if (!e.esNumeroLargo(TxtRuc))
+                return "El "+msg+" es numerico";
+
+            return string.Empty;
+        
         }
 
 
@@ -161,12 +181,12 @@ public string this[string columnName]
         {
             case "TxtEmail": if (string.IsNullOrEmpty(TxtEmail)) result="El Email no puede ser vacio" ; break;
             case "TxtRuc":  result = EvaluarRuc(); break;
-            case "TxtTelefono": if (string.IsNullOrEmpty(TxtTelefono)) result = "El telefono no debe ser vacio"; break;
+            case "TxtTelefono": if (string.IsNullOrEmpty(TxtTelefono)) result = EvaluarTelf(TxtTelefono,"Telefono"); break;
             case "TxtDireccion": if (string.IsNullOrEmpty(TxtDireccion)) result = "La direccion no puede ser vacia"; break;
             case "TxtRazonSocial": if (string.IsNullOrEmpty(TxtRazonSocial)) result = "La Razon Social no puede ser vacia"; break;
-            case "TxtTelefonoContacto": if (string.IsNullOrEmpty(TxtTelefonoContacto)) result = "El telefono del contacto no debe ser vacio"; break;
+            case "TxtTelefonoContacto": if (string.IsNullOrEmpty(TxtTelefonoContacto)) result =EvaluarTelf(TxtTelefonoContacto,"Telefono Contacto") ; break;
             case "TxtContacto": if (string.IsNullOrEmpty(TxtContacto)) result = "El nombre del contacto no debe ser vacio"; break;
-            case "TxtFax": if (string.IsNullOrEmpty(TxtFax)) result = "El Fax no puede ser vacio"; break;
+            case "TxtFax": if (string.IsNullOrEmpty(TxtFax)) result = EvaluarTelf(TxtFax,"Fax"); break;
         };
         return result;
     }
@@ -175,54 +195,71 @@ public string this[string columnName]
 
         public Boolean validar() {
 
+            Validacion.Evaluador e = new Validacion.Evaluador();
+
             if (string.IsNullOrEmpty(TxtEmail))
             {
-               MessageBox.Show("El Email no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+              // MessageBox.Show("El Email no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if (string.IsNullOrEmpty(TxtRuc))
             {
-                MessageBox.Show("El Ruc no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+               // MessageBox.Show("El Ruc no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
             if ((TxtRuc.Length != 11))
             {
-                MessageBox.Show("El Ruc es de 11 digitos", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+               // MessageBox.Show("El Ruc es de 11 digitos", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 
+           
+
             if (string.IsNullOrEmpty(TxtTelefono))
             {
-                MessageBox.Show("El telefono no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("El telefono no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if (string.IsNullOrEmpty(TxtDireccion))
             {
-                MessageBox.Show("La direccion no puede ser vacia", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+            //    MessageBox.Show("La direccion no puede ser vacia", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if (string.IsNullOrEmpty(TxtRazonSocial))
             {
-                MessageBox.Show("La Razon social no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+              //  MessageBox.Show("La Razon social no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if (string.IsNullOrEmpty(TxtTelefonoContacto))
             {
-                MessageBox.Show("El telefono del contacto no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("El telefono del contacto no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if (string.IsNullOrEmpty(TxtContacto))
             {
-                MessageBox.Show("El nombre del contacto no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("El nombre del contacto no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if (string.IsNullOrEmpty(TxtFax))
             {
-                MessageBox.Show("El Fax no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                //MessageBox.Show("El Fax no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
+
+            if (!e.esNumeroLargo(txtRuc))
+                return false;
+
+
+            if (!e.esNumeroLargo(txtFax))
+                return false;
+
+            if (!e.esNumeroLargo(txtTelefono))
+                return false;
+
+            if (!e.esNumeroLargo(txtTelefonoContacto))
+                return false;
 
              return true;
 

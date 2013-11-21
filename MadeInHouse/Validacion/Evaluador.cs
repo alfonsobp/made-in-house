@@ -14,6 +14,14 @@ namespace MadeInHouse.Validacion
             return (l.Length == n);
         }
 
+        public bool esNumeroLargo(string l) {
+            Int64 x;
+
+           return  Int64.TryParse(l,out  x);
+        
+        }
+
+
         public bool esMayor(string l, int n)
         {
 
