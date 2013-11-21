@@ -390,6 +390,138 @@ namespace MadeInHouse.ViewModels.Almacen
                 return lista;
             }
 
+
+            public DataTable CrearZonasDT()
+            {
+                /*Agrego las zonas por almacen*/
+                DataTable zonaxAlmacenData = new DataTable("ZonaxAlmacen");
+
+                // Create Column 1: idTipoZona
+
+                DataColumn idZonaCol = new DataColumn();
+                idZonaCol.DataType = Type.GetType("System.Int32");
+                idZonaCol.ColumnName = "idTipoZona";
+
+
+                // Create Column 2: idAlmacen
+                DataColumn idAlmacenCol = new DataColumn();
+                idAlmacenCol.DataType = Type.GetType("System.Int32");
+                idAlmacenCol.ColumnName = "idAlmacen";
+
+                // Create Column 3: nroBloquesDisp
+                DataColumn nroBloquesDispCol = new DataColumn();
+                nroBloquesDispCol.DataType = Type.GetType("System.Int32");
+                nroBloquesDispCol.ColumnName = "nroBloquesDisp";
+
+                // Create Column 3: nroBloquesTotal
+                DataColumn nroBloquesTotalCol = new DataColumn();
+                nroBloquesTotalCol.DataType = Type.GetType("System.Int32");
+                nroBloquesTotalCol.ColumnName = "nroBloquesTotal";
+
+                // Add the columns to the ProductSalesData DataTable
+                zonaxAlmacenData.Columns.Add(idZonaCol);
+                zonaxAlmacenData.Columns.Add(idAlmacenCol);
+                zonaxAlmacenData.Columns.Add(nroBloquesDispCol);
+                zonaxAlmacenData.Columns.Add(nroBloquesTotalCol);
+
+                return zonaxAlmacenData;
+
+            }
+
+            public void AgregarFilasToZonasDT(DataTable data, Dictionary<int, int> dic, int id)
+            {
+                for (int i = 0; i < dic.Count; i++)
+                {
+
+                    if (dic.ElementAt(i).Value > 0)
+                    {
+                        DataRow zonaxAlmacenRow = data.NewRow();
+                        zonaxAlmacenRow["idTipoZona"] = dic.ElementAt(i).Key;
+                        zonaxAlmacenRow["idAlmacen"] = id;
+                        zonaxAlmacenRow["nroBloquesDisp"] = dic.ElementAt(i).Value;
+                        zonaxAlmacenRow["nroBloquesTotal"] = dic.ElementAt(i).Value;
+
+                        // Add the row to the ProductSalesData DataTable
+                        data.Rows.Add(zonaxAlmacenRow);
+
+                    }
+
+                }
+
+            }
+
+            public DataTable CrearUbicacionesDT()
+            {
+
+
+                /*Agrego las zonas por almacen*/
+                DataTable ubicacionesData = new DataTable("Ubicacion");
+
+                // Create Column 1: idTipoZona
+
+                DataColumn idZonaCol = new DataColumn();
+                idZonaCol.DataType = Type.GetType("System.Int32");
+                idZonaCol.ColumnName = "idTipoZona";
+
+
+                // Create Column 2: idAlmacen
+                DataColumn idAlmacenCol = new DataColumn();
+                idAlmacenCol.DataType = Type.GetType("System.Int32");
+                idAlmacenCol.ColumnName = "idAlmacen";
+
+                // Create Column 3: cordX
+                DataColumn cordXCol = new DataColumn();
+                cordXCol.DataType = Type.GetType("System.Int32");
+                cordXCol.ColumnName = "cordX";
+
+                // Create Column 3: cordY
+                DataColumn cordYCol = new DataColumn();
+                cordYCol.DataType = Type.GetType("System.Int32");
+                cordYCol.ColumnName = "cordY";
+
+                // Create Column 3: cordY
+                DataColumn cordZCol = new DataColumn();
+                cordZCol.DataType = Type.GetType("System.Int32");
+                cordZCol.ColumnName = "cordZ";
+
+                // Add the columns to the ProductSalesData DataTable
+                ubicacionesData.Columns.Add(idZonaCol);
+                ubicacionesData.Columns.Add(idAlmacenCol);
+                ubicacionesData.Columns.Add(cordXCol);
+                ubicacionesData.Columns.Add(cordYCol);
+                ubicacionesData.Columns.Add(cordZCol);
+
+                return ubicacionesData;
+            }
+
+            public void AgregarFilasToUbicacionesDT(DataTable data, List<List<List<Ubicacion>>> filas, int id)
+            {
+                for (int m = 0; m < filas.Count; m++)
+                {
+                    for (int n = 0; n < filas[m].Count; n++)
+                    {
+                        for (int p = 0; p < filas[m][n].Count; p++)
+                        {
+                            filas[m][n][p].IdAlmacen = id;
+                            DataRow ubicacionxAlmacenRow = data.NewRow();
+                            ubicacionxAlmacenRow["idTipoZona"] = filas[m][n][p].IdTipoZona;
+                            ubicacionxAlmacenRow["idAlmacen"] = id;
+                            ubicacionxAlmacenRow["CordX"] = filas[m][n][p].CordX;
+                            ubicacionxAlmacenRow["CordY"] = filas[m][n][p].CordY;
+                            ubicacionxAlmacenRow["CordZ"] = filas[m][n][p].CordZ;
+
+                            // Add the row to the ProductSalesData DataTable
+                            data.Rows.Add(ubicacionxAlmacenRow);
+
+                            //ubSQL.Agregar(anaquel.Ubicaciones[m][n][p]);
+                        }
+                    }
+
+                }
+
+            }
+
+
             public int GuardarAlmacen(MadeInHouse.Dictionary.DynamicGrid deposito)
             {
 
@@ -427,36 +559,24 @@ namespace MadeInHouse.ViewModels.Almacen
 
                     if (idAlmacen > 0 && up>0)
                     {
-                    /*Agrego las zonas por almacen*/
-                              for (int i = 0; i < deposito.listaZonas.Count; i++)
-                                {
-                                    if (deposito.listaZonas.ElementAt(i).Value > 0)
-                                       exito= aSQL.AgregarZonas(deposito.listaZonas.ElementAt(i).Value, deposito.listaZonas.ElementAt(i).Key, idAlmacen);
-                                }
-                        
+                        DataTable zonaxAlmacenData = CrearZonasDT();
+                        AgregarFilasToZonasDT(zonaxAlmacenData, deposito.listaZonas, idAlmacen);
+                        /*Agrego las zonas por almacen*/
 
-                                if (exito > 0)
-                                {
+                        exito = aSQL.AgregarZonasMasivo(zonaxAlmacenData, trans);
+                         
+                        if (exito > 0)
+                          {
+                              UbicacionSQL ubSQL = new UbicacionSQL(db);
 
-                                    UbicacionSQL ubSQL = new UbicacionSQL(db);
-                                    /*Ubicaciones del deposito*/
+                              /*Ubicaciones del anaquel*/
+                              DataTable ubicacionesData = CrearUbicacionesDT();
+                              AgregarFilasToUbicacionesDT(ubicacionesData, deposito.Ubicaciones, idAlmacen);
+                              exito = ubSQL.AgregarMasivo(ubicacionesData, trans);
 
-                                    for (int m = 0; m < deposito.Ubicaciones.Count; m++)
-                                    {
-                                        for (int n = 0; n < deposito.Ubicaciones[m].Count; n++)
-                                        {
-                                            for (int p = 0; p < deposito.Ubicaciones[m][n].Count; p++)
-                                            {
-                                                deposito.Ubicaciones[m][n][p].IdAlmacen =idAlmacen;
-                                                ubSQL.Agregar(deposito.Ubicaciones[m][n][p]);
-                                            }
-                                        }
-
-                                    }
-
-                                    trans.Commit();
-                                    System.Windows.MessageBox.Show("Se creó la tienda correctamente");
-                                    return 1;
+                              trans.Commit();
+                              System.Windows.MessageBox.Show("Se creó el almacen central correctamente correctamente");
+                              return 1;
                                 }
                                 else
                                 {
