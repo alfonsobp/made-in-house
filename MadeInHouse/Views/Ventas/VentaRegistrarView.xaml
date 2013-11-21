@@ -52,13 +52,17 @@
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/find.png" Stretch="Uniform"/>
                                     </Button.Background>
                                 </Button>
-                                <TextBox x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="529,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                                <Button ToolTip="Agregar Producto" x:Name="AgregarDetalle" Content="" Margin="667,8,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="2.964,0.536" HorizontalAlignment="Left" Width="28">
+                                <TextBox x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="520,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
+                                <Button ToolTip="Agregar Producto" x:Name="AgregarDetalle" Content="" Margin="614,8,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="2.964,0.536" HorizontalAlignment="Left" Width="28">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>
                                     </Button.Background>
                                 </Button>
-
+                                <Button ToolTip="Quitar Motno" x:Name="QuitarDetalleProducto" Content="" HorizontalAlignment="Left" Margin="658,8,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/MadeInHouse;component/Assets/minus.png" Stretch="Uniform"/>
+                                    </Button.Background>
+                                </Button>
 
                                 <DataGrid x:Name="LstVenta" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
                                   Margin="10,50,10,10" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -93,9 +97,13 @@
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>
                                     </Button.Background>
                                 </Button>
+                                <Button ToolTip="Quitar Motno" x:Name="QuitarDetalleServicio" Content="" HorizontalAlignment="Left" Margin="466,10,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/MadeInHouse;component/Assets/minus.png" Stretch="Uniform"/>
+                                    </Button.Background>
+                                </Button>
 
-
-                                <DataGrid x:Name="LstVentaServicios" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
+                                <DataGrid x:Name="LstVentaServicios" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemServicioChanged($source)]"
                                   Margin="10,50,10,10" AutoGenerateColumns="False" CanUserAddRows="False">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=IdServicio}" Width="80" Header="Código"/>
@@ -141,7 +149,7 @@
                 </Button>
                 <Label Content="Fecha de despacho:" HorizontalAlignment="Left" Margin="472,10,0,0" VerticalAlignment="Top"/>
                 <Label Content="Modo de Pago:" HorizontalAlignment="Left" Margin="18,446,0,0" VerticalAlignment="Top"/>
-                <DataGrid x:Name="LstPagos" HorizontalAlignment="Left" Margin="227,446,0,94" Width="196"
+                <DataGrid x:Name="LstPagos" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedMontoChanged($source)]" HorizontalAlignment="Left" Margin="227,446,0,94" Width="196"
                           AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="113" Header="Modo"/>
@@ -171,6 +179,7 @@
                 <Label Content="Boleta o Factura:" HorizontalAlignment="Left" Margin="245,41,0,0" VerticalAlignment="Top"/>
                 <ComboBox x:Name="cmbTipoVenta" HorizontalAlignment="Left" Margin="348,45,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
                 
+
 
             </Grid>
             <ComboBox Height="763" VerticalAlignment="Top" Width="2"/>
