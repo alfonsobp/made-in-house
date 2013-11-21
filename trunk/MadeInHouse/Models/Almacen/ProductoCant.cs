@@ -32,7 +32,9 @@ namespace MadeInHouse.Models.Almacen
         public string CanAtender
         {
             get { return canAtender; }
-            set { canAtender = value;}
+            set {if (Int64.Parse(value)>= 0) canAtender = value;
+                else canAtender = "0";
+            }
         }
         private List<Ubicacion> ubicaciones;
 

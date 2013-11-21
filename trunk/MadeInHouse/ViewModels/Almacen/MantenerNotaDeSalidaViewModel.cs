@@ -61,7 +61,7 @@ namespace MadeInHouse.ViewModels.Almacen
             EstadoPro = true; 
         }
 
-        string txtDoc;
+        string txtDoc=null;
 
         public string TxtDoc
         {
@@ -275,6 +275,11 @@ namespace MadeInHouse.ViewModels.Almacen
         public void CargarProductos() {
         
             string referencia = TxtDoc;
+            if (string.IsNullOrWhiteSpace(referencia))
+            {
+                MessageBox.Show("No se ha ingresado ningun Documento de Referencia");
+                return;
+            }
             string mot = this.selectedMotivo;
            if ( string.Compare(mot,"Orden de Despacho",true)==0){
 
@@ -405,7 +410,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void AgregarProducto() {
             if (SelectedProducto == null)
             {
-                SelectedProducto = new Producto();
+                return;
             }
             if (SelectedProducto.CodigoProd == null || TxtCantPro == null || Convert.ToInt64(TxtCantPro)<=0 )
             {
