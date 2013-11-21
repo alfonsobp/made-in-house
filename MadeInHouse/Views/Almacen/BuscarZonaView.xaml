@@ -3,11 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            mc:Ignorable="d" Height="232" Width="607">
+             xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
+             xmlns:cal="http://www.caliburnproject.org"
+             
+            mc:Ignorable="d" Height="507" Width="1014">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Buscar Stock en Tiempo Real" />
-            <Grid Margin="0,0,0,10">
+            <Grid Margin="0,0,0,10" Height="474">
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -15,38 +18,46 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="24" Width="24" />
-                    </Button>
+                    <Button/>
+                    <Button/>
                     <Button>
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="24" Width="24" />
                     </Button>
-                    <Button Height="24" Width="24">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                    </Button>
+                    <Button Height="24" Width="24"/>
                 </ToolBar>
-                <GroupBox Header="Criterios de busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="144" Width="580">
-                    <Grid Margin="0,0,0,-12">
-                        <Label Content="Tienda:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="117,20,0,0" VerticalAlignment="Top" Width="160"/>
-                        <Label Content="Zona:" HorizontalAlignment="Left" Margin="17,58,0,0" VerticalAlignment="Top" Width="94"/>
-                        <ComboBox HorizontalAlignment="Left" Margin="117,58,0,0" VerticalAlignment="Top" Width="160"/>
-                        <Button x:Name="AbrirZonaDistribucion" Margin="17,89,491,0" VerticalAlignment="Top" Width="60">
-                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
-                        </Button>
-
-                    </Grid>
-                </GroupBox>
+                <Label Content="Tienda:" HorizontalAlignment="Left" Margin="23,55,0,0" VerticalAlignment="Top"/>
+                <Label Content="Zona:" HorizontalAlignment="Left" Margin="23,95,0,0" VerticalAlignment="Top"/>
+                <Label Content="Producto:" HorizontalAlignment="Left" Margin="23,137,0,0" VerticalAlignment="Top"/>
+                <DataGrid HorizontalAlignment="Left" Margin="23,191,0,0" VerticalAlignment="Top" Height="208" Width="307">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Código" Binding="{Binding Path=Nombre}" Width="1*" />
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Path=StockActual}" Width="2*" />
+                        <DataGridTextColumn Header="Stock actual" Binding="{Binding Path=PrecioVenta}" Width="1*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ComboBox HorizontalAlignment="Left" Margin="87,59,0,0" VerticalAlignment="Top" Width="243"/>
+                <ComboBox
+                    IsEnabled="{Binding Editar}"
+                                ItemsSource="{Binding CmbZonas}"
+        			            SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
+                                SelectedValuePath="IdTipoZona"
+                                DisplayMemberPath="Nombre"
+                             HorizontalAlignment="Left" Margin="87,95,0,0" VerticalAlignment="Top" Width="242"/>
+                <TextBox HorizontalAlignment="Left" Height="23" Margin="89,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184"/>
+                <Button Content="" HorizontalAlignment="Left" Margin="283,132,0,0" VerticalAlignment="Top" Width="46" Height="23"/>
+                <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="352,59,0,0" VerticalAlignment="Top" Width="624" HorizontalScrollBarVisibility="Visible">
+                    <grid:DynamicGrid  x:Name="AlmacenSalida2" ShowGridLines="True" 
+                                                   NumRows="{Binding NumRows}"
+                                                   NumColumns="{Binding  NumColumns}"
+                                                   Altura="{Binding Altura}"
+                                                   lstZonas="{Binding LstZonasAnq}"
+                                                   SelectedZona="{Binding SelectedZona}"
+                                                   Accion="3"
+                                                   HorizontalAlignment="Left" VerticalAlignment="Top" />
+                </ScrollViewer>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="352,59,0,0" VerticalAlignment="Top" Width="624"/>
             </Grid>
+
         </StackPanel>
     </Border>
 </UserControl>

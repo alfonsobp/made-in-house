@@ -314,7 +314,7 @@ namespace MadeInHouse.ViewModels.Almacen
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
             Usuario u = new Usuario();
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-            idTienda = u.IdTienda;
+            idTienda =  u.IdTienda;
             idResponsable = u.IdUsuario;
 
             aSQL = new AlmacenSQL();
@@ -507,7 +507,7 @@ namespace MadeInHouse.ViewModels.Almacen
             /*Inicializacion de la transacción*/
             DBConexion db = new DBConexion();
             db.conn.Open();
-            SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
+            SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.ReadCommitted);
             db.cmd.Transaction = trans;
 
             SectorSQL sectorSQL= new SectorSQL(db);
@@ -559,7 +559,7 @@ namespace MadeInHouse.ViewModels.Almacen
                                     /*Agrego el movimiento como un "todo" a la bd*/
                                     NotaISSQL notaSQL = new NotaISSQL(db);
                                     NotaIS nota = new NotaIS();
-                                    nota.IdMotivo = 12;
+                                    nota.IdMotivo = 8;
                                     nota.Tipo = 3;
                                     nota.Observaciones = "";
                                     nota.IdDoc = 0;
