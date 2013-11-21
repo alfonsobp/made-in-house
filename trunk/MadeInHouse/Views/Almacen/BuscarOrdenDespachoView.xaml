@@ -20,13 +20,6 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
 
-                    <Button x:Name="AbrirEditarOrdenDespacho" ToolTip="Editar usuario">
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-                    </Button>
-                    <Button x:Name="Guardar" ToolTip="Guardar cambios">
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
-                    </Button>
-
                     <Button x:Name="Limpiar" ToolTip="Limpiar criterios">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
@@ -37,6 +30,11 @@
                 <Grid Margin="10,46,0,10">
                     <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="143" Margin="10,10,10,0">
                         <Grid Margin="0,0,-2,-12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="321*"/>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="145*"/>
+                            </Grid.ColumnDefinitions>
 
                             <Label Content="Código orden de despacho: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,12,0,0"/>
                             <TextBox Text="{Binding TxtIdOrdenDespacho}"
@@ -45,21 +43,27 @@
                             <TextBox Text="{Binding TxtIdVenta}"
                                         HorizontalAlignment="Left" Height="23" Margin="181,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
                             <Label Content="Estado:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,71,0,0"/>
-                            <ComboBox Text="{Binding TxtIdVenta}"
-                                        HorizontalAlignment="Left" Height="23" Margin="181,72,0,0" VerticalAlignment="Top" Width="113"/>
-
-                            <Button x:Name="BuscarUsuarioPorCodigo" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right">
+                            <ComboBox ItemsSource="{Binding Path=LstEstado}"
+                               DisplayMemberPath="Nombre"
+                               SelectedValuePath="Estado" 
+                               SelectedValue="{Binding Path=EstadoValue}"
+                               HorizontalAlignment="Left" 
+                               Margin="181,75,0,0" 
+                               VerticalAlignment="Top" Width="113"/>
+                            
+                            <Button x:Name="BuscarOrdenDespacho" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="2">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                             </Button>
                         </Grid>
                     </GroupBox>
                     <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-                                        Height="176" VerticalAlignment="Top" Margin="10,158,10,0" AutoGenerateColumns="false">
+                                        CanUserAddRows="False"
+                                        IsReadOnly="True" Height="176" VerticalAlignment="Top" Margin="10,158,10,0" Grid.Row="0" AutoGenerateColumns="false">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=IdOrdenDespacho}" Width="120" Header="Código despacho"/>
-                            <DataGridTextColumn Binding="{Binding Path=Venta.IdVenta}" Width="120" Header="Código venta"/>
-                            <DataGridTextColumn Binding="{Binding Path=FechaDespacho}" Width="140" Header="Fecha"/>
-                            <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Estado" CanUserReorder="False" Width="65" />
+                            <DataGridTextColumn Binding="{Binding Path=IdOrdenDespacho}" Width="1.5*" Header="Código despacho"/>
+                            <DataGridTextColumn Binding="{Binding Path=Venta.IdVenta}" Width="1.5*" Header="Código venta"/>
+                            <DataGridTextColumn Binding="{Binding Path=FechaDespacho}" Width="2*" Header="Fecha"/>
+                            <DataGridTextColumn  Binding="{Binding Path=Estado}" Width="1*" Header="Estado" CanUserReorder="False" />
 
                         </DataGrid.Columns>
                     </DataGrid>

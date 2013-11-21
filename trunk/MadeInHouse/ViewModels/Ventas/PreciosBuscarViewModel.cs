@@ -38,7 +38,7 @@ namespace MadeInHouse.ViewModels.Ventas
             CmbTiendas = tSQL.BuscarTienda();
             CmbTiendas.Insert(0, deft);
             IndexTienda = 0;
-            SelectedTienda = 17;
+            SelectedTienda = UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name)).IdTienda;
         }
 
         #region atributos
