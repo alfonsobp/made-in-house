@@ -100,8 +100,8 @@ namespace MadeInHouse.DataObjects.RRHH
                     e.EmailEmpleado = reader["email"].ToString();
                     e.EmailEmpresa = reader["emailEmpresa"].ToString();
 
-                    e.FechaReg = reader["fechaReg"].ToString();
-                    e.FechNacimiento = reader["fechaNac"].ToString();
+                    e.FechaReg = DateTime.Parse(reader["fechaReg"].ToString()) ;
+                    e.FechNacimiento = DateTime.Parse(reader["fechaNac"].ToString());
                     e.Direccion = reader["direccion"].ToString();
                     e.Referecia = reader["referencia"].ToString();
 
@@ -194,8 +194,8 @@ namespace MadeInHouse.DataObjects.RRHH
                 e.EmailEmpleado = reader["email"].ToString();
                 e.EmailEmpresa = reader["emailEmpresa"].ToString();
 
-                e.FechaReg = reader["fechaReg"].ToString();
-                e.FechNacimiento = reader["fechaNac"].ToString();
+                e.FechaReg = DateTime.Parse( reader["fechaReg"].ToString());
+                e.FechNacimiento = DateTime.Parse( reader["fechaNac"].ToString());
                 e.Direccion = reader["direccion"].ToString();
                 e.Referecia = reader["referencia"].ToString();
 

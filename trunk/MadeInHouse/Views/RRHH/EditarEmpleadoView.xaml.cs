@@ -36,7 +36,7 @@ namespace MadeInHouse.Views.RRHH
             TxtNomb.Text = grid[0].Nombre;
             TxtApePat.Text = grid[0].ApePaterno;
             TxtApeMat.Text = grid[0].ApeMaterno;
-            TxtFechNac.Text = grid[0].FechNacimiento;
+            TxtFechNac.Text = grid[0].FechNacimiento.ToString();
             if (grid[0].Sexo == "M") RdbMasc.IsChecked = true; else RdbFem.IsChecked = true;
             TxtDir.Text = grid[0].Direccion;
             TxtRef.Text = grid[0].Referecia;
@@ -68,7 +68,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Nombre = TxtNomb.Text;
             emp.ApePaterno = TxtApePat.Text;
             emp.ApeMaterno = TxtApeMat.Text;
-            emp.FechNacimiento = TxtFechNac.Text;
+            emp.FechNacimiento = DateTime.Parse(TxtFechNac.Text);
             emp.Sexo = "M";
             if (RdbFem.IsChecked == true) emp.Sexo = "F";
             emp.Direccion = TxtDir.Text;
@@ -77,8 +77,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Celular = TxtCel.Text;
             emp.EmailEmpleado = TxtEmail.Text;
             emp.Estado = 1;
-            DateTime d = DateTime.Now;
-            emp.FechaReg = d.ToString("dd/MM/yyyy ");
+            emp.FechaReg = DateTime.Today;
             emp.Puesto = CmbPuesto.Text;
             emp.Tienda = CmbTienda.Text;    //esto es el nombre de la Tienda seleccionada
             emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
