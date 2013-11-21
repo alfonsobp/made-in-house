@@ -20,15 +20,15 @@
                         <DataGridTextColumn Binding="{Binding Path=Ruc}"  Width="150" Header="RUC"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <TextBox  x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="145,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox  x:Name="TxtRazonSocial" MaxLength="50" HorizontalAlignment="Left" Height="23" Margin="145,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <GroupBox Header="Criterios de Búsqueda" Margin="10,46,10,0" VerticalAlignment="Top" Height="137"/>
                 <Button x:Name="BuscarProveedor" Height="25" Margin="454,67,83,0" VerticalAlignment="Top">
                     <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                 </Button>
-                <TextBox x:Name="TxtCodigo"  HorizontalAlignment="Left" Height="23" Margin="145,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox x:Name="TxtCodigo" MaxLength="20"  HorizontalAlignment="Left" Height="23" Margin="145,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top"/>
                 <Label Content="Código:" HorizontalAlignment="Left" Margin="26,67,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtRuc" HorizontalAlignment="Left" Height="23" Margin="145,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <TextBox x:Name="TxtRuc" MaxLength="11" HorizontalAlignment="Left" Height="23" Margin="145,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <Label Content="RUC:" HorizontalAlignment="Left" Margin="26,125,0,0" VerticalAlignment="Top"/>
                 <DatePicker   x:Name="FechaIni" HorizontalAlignment="Left" Margin="145,153,0,0" VerticalAlignment="Top" Width="104" SelectedDateFormat="Short"/>
                 <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="332,155,0,0" VerticalAlignment="Top" Width="105"/>
