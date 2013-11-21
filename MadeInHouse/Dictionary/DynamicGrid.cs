@@ -610,7 +610,7 @@ namespace MadeInHouse.Dictionary {
 
         public int AgregarProductos(int cant, int vol, int idProducto)
         {
-
+            if (selectedUbicacion==null) return -1;
             int volAux;
             if (selectedUbicacion.VolOcupado != 0)
             {
