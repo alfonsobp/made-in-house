@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MadeInHouse.Models.Seguridad
 {
-    class Log
+     public class Log
     {
         public Log()
         {

@@ -44,6 +44,8 @@ namespace MadeInHouse.ViewModels.Reportes
         {
             lstLogUsuario = LogSQL.BuscarAcciones();
             NotifyOfPropertyChange("LstLogUsuario");
+            Views.Reportes.reportViewerLogs win = new Views.Reportes.reportViewerLogs(lstLogUsuario);
+            win.Show();
         }
 
     }

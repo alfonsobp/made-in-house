@@ -5,7 +5,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="411.97" Width="759.702">
+             mc:Ignorable="d" Height="184.97" Width="759.702">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Acciones" />
@@ -14,7 +14,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Reporte de Acciones de Usuarios" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="317" Width="736">
+                    <GroupBox Header="Reporte de Acciones de Usuarios" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="131" Width="736">
                         <Grid>
                             <Label Content="Usuario:" HorizontalAlignment="Left" Height="29" Margin="74,26,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Desde:" HorizontalAlignment="Left" Height="29" Margin="74,60,0,0" VerticalAlignment="Top" Width="80"/>
@@ -25,49 +25,8 @@
                             <Button x:Name="BuscarAcciones" ToolTip="Generar reporte" Margin="539,58,104,0" VerticalAlignment="Top" Width="60">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
-                            <DataGrid x:Name="LstLogUsuario" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-                                      HorizontalAlignment="Left" Margin="10,104,0,10" Width="704" AutoGenerateColumns="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Width="70" Binding="{Binding Path=FechaAccion}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
-                                    <DataGridTextColumn Width="60" Binding="{Binding Path=CodEmpleado}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                                    <DataGridTextColumn Width="170" Binding="{Binding Path=NomEmpleado}" ClipboardContentBinding="{x:Null}" Header="Usuario"/>
-                                    <DataGridTextColumn Width="150" Binding="{Binding Path=NomVentana}" ClipboardContentBinding="{x:Null}" Header="Ventana" />
-                                    <DataGridTextColumn Width="80" Binding="{Binding Path=DescAccion}" ClipboardContentBinding="{x:Null}" Header="Acción"/>
-                                    <DataGridTextColumn Width="60" Binding="{Binding Path=IdItem}" ClipboardContentBinding="{x:Null}" Header="Cod. Item"/>
-                                    <DataGridTextColumn Width="80" Binding="{Binding Path=Ip}" ClipboardContentBinding="{x:Null}" Header="IP"/>
-
-
-
-
-
-
-                                </DataGrid.Columns>
-                            </DataGrid>
                         </Grid>
                     </GroupBox>
-                    <ToolBar VerticalAlignment="Top" Height="41">
-                        <ToolBar.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF535050" Offset="0.073"/>
-                                <GradientStop Color="Snow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ToolBar.Background>
-                        <Button ToolTip="Restaurar Ventana">
-                            <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                        </Button>
-                        <Button ToolTip="Limpiar criterios del reporte">
-                            <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                        </Button>
-                        <Button ToolTip="Actualizar datos " Height="30" Width="30">
-                            <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
-                            <Image Source="/MadeInHouse;component/Assets/xls.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a PDF" Height="35" Width="35">
-                            <Image Source="/MadeInHouse;component/Assets/pdf.png" />
-                        </Button>
-                    </ToolBar>
                 </Grid>
             </Grid>
         </StackPanel>
