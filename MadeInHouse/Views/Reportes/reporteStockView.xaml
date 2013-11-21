@@ -4,14 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="604.5" Height="236">
+             mc:Ignorable="d" d:DesignWidth="604.5" Height="364">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Stocks" />
             <Grid>
-                <Grid Height="233" VerticalAlignment="Top">
-                    <GroupBox Header="Reporte de Stock en Almacenes" HorizontalAlignment="Left" Height="174" Margin="10,10,0,0" VerticalAlignment="Top" Width="580">
-                        <Grid Margin="0,9,10,0" Height="150" VerticalAlignment="Top">
+                <Grid Height="327" VerticalAlignment="Top" Margin="0,0,0,-94">
+                    <GroupBox Header="Reporte de Stock en Almacenes" HorizontalAlignment="Left" Margin="10,10,0,10" Width="580">
+                        <Grid Margin="0,9,10,-12">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
@@ -26,6 +26,18 @@
                                         <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
                                     </Button>
                                     <Button Name="izquierda3" Margin="202,49,290,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Almacen" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,138,0,0" Width="538" Height="123">
+                                <Grid Margin="0,0,-2,0">
+                                    <ListBox Name="listBoxAlmacen1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="25,10,0,8"/>
+                                    <ListBox Name="listBoxAlmacen2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="150" Margin="272,8,0,10"/>
+                                    <Button Name="derecha1" Margin="202,24,290,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda1" Margin="202,49,290,28" Click="Pasar_Todo">
                                         <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
