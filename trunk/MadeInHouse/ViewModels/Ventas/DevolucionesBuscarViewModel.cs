@@ -22,6 +22,7 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             _windowManager = windowmanager;
             CmbEstados = new List<EstadosDevolucion>();
+            SelectedIndex = 0;
             EstadosDevolucion est = new EstadosDevolucion();
             est.estado = 0;
             est.nomEstado = "Seleccionar estado";
@@ -47,7 +48,6 @@ namespace MadeInHouse.ViewModels.Ventas
             
         }
 
-
         #endregion
 
         #region atributos
@@ -56,7 +56,8 @@ namespace MadeInHouse.ViewModels.Ventas
         private object window;
         public Devolucion devolucionSel { get; set; }
         public int accion { get; set; }
-        private int SelectedEstado { get; set; }
+        public int SelectedEstado { get; set; }
+        public int SelectedIndex { get; set; }
         
         //Filtros:
         private string notaCreditoHide;
@@ -94,6 +95,30 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private string notaCredito;
+        public string NotaCredito
+        {
+            get { return notaCredito; }
+            set
+            {
+                if (this.notaCredito == value) return;
+                notaCredito = value;
+                NotifyOfPropertyChange(() => NotaCredito);
+            }
+        }
+
+        private string docPago;
+        public string DocPago
+        {
+            get { return docPago; }
+            set
+            {
+                if (this.docPago == value) return;
+                docPago = value;
+                NotifyOfPropertyChange(() => DocPago);
+            }
+        }
+
         #endregion
 
         #region metodos
@@ -125,11 +150,11 @@ namespace MadeInHouse.ViewModels.Ventas
             _windowManager.ShowWindow(new DevolucionesRegistrarViewModel(_windowManager, this));
         }
 
-        public void RealizarBusqueda(string notaCredito, string docPago, int estado, string registroDesde, string registroHasta, string dni)
+        public void RealizarBusqueda(string notaCredito, string docPago, string registroDesde, string registroHasta, string dni)
         {
             this.notaCreditoHide = notaCredito;
             this.docPagoHide = docPago;
-            this.estadoHide = estado;
+            this.estadoHide = SelectedEstado;
             this.registroDesdeHide = registroDesde;
             this.registroHastaHide = registroHasta;
             this.dniHide = dni;
@@ -141,6 +166,13 @@ namespace MadeInHouse.ViewModels.Ventas
             DevolucionSQL devSQL = new DevolucionSQL();
             Devoluciones = devSQL.buscarDevoluciones(notaCreditoHide, docPagoHide, estadoHide, registroDesdeHide, registroHastaHide, dniHide);
             NotifyOfPropertyChange("Devoluciones");
+        }
+
+        public void LimpiarBusqueda()
+        {
+            NotaCredito = "";
+            DocPago = "";
+            SelectedEstado = 1;
         }
 
         #endregion

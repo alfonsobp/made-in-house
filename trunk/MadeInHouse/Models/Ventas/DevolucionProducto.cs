@@ -10,6 +10,7 @@ namespace MadeInHouse.Models.Ventas
 {
     class DevolucionProducto
     {
+        public string DocPago { get; set; }
         public int IdProducto { get; set; }
         public string CodProducto { get; set; }
         public string Producto { get; set; }

@@ -50,54 +50,51 @@
                 </ToolBar>
                 <TabControl Margin="0,47,0,0">
                     <TabItem Header="Información general" Background="White">
-                        <Grid Background="White" Margin="0,0,0,-3">
+                        <Grid Background="White" Margin="70">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="227*"/>
-                                <RowDefinition Height="210*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Content="Nombre:" HorizontalAlignment="Left" Margin="49,57,0,0" VerticalAlignment="Top" Height="26" Width="56"/>
-                            <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="142,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" IsEnabled="{Binding Editar}" />
-                            <Label Content="Administrador:" HorizontalAlignment="Left" Margin="46,100,0,0" VerticalAlignment="Top" Width="96" Height="26"/>
-                            <TextBox x:Name="TxtAdmin" HorizontalAlignment="Left" Height="23" Margin="142,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" IsEnabled="{Binding Editar}" />
-                            <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="49,144,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
-                            <TextBox x:Name="TxtTelef" HorizontalAlignment="Left" Height="23" Margin="142,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="{Binding Editar}"/>
-                            <Label Content="Departamento:" HorizontalAlignment="Left" Margin="507,57,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
+                            <Label Content="Nombre:" Margin="20" Height="25" />
+                            <TextBox x:Name="TxtNombre" Height="25" Margin="20" TextWrapping="Wrap" Width="213" IsEnabled="{Binding Editar}" Grid.Column="1" HorizontalAlignment="Left" />
+                            <Label Content="Teléfono:" Margin="20" Height="25" Grid.Row="1" />
+                            <TextBox x:Name="TxtTelef" Height="25" Margin="20" TextWrapping="Wrap" Width="120" IsEnabled="{Binding Editar}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" />
+                            <Label Content="Departamento:" Margin="20" Height="25" Grid.Column="2" />
                             <ComboBox ItemsSource="{Binding CmbDpto}" IsEnabled="{Binding Editar}"
         						SelectedValue="{Binding SelectedDpto, Mode=OneWayToSource}"
         						DisplayMemberPath="Nombre"
                                  SelectedIndex="{Binding Path=Index1,FallbackValue=0}"
-        						SelectedValuePath="CodDpto"
-                                HorizontalAlignment="Left" 
-        						Margin="627,57,0,0" 
-        						VerticalAlignment="Top" 
-        						Width="160" Height="22"
-        						
-                                  />
-                            <Label Content="Provincia:" HorizontalAlignment="Left" Margin="507,100,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
+        						SelectedValuePath="CodDpto" 
+        						Margin="20" 
+        						Width="160" Height="25" Grid.Column="3" />
+                            <Label Content="Provincia:" Margin="20" Height="25" Grid.Row="1" Grid.Column="2"/>
                             <ComboBox IsEnabled="{Binding Editar}"
                                 ItemsSource="{Binding CmbProv}"
         						SelectedValue="{Binding SelectedProv, Mode=OneWayToSource}"
         						SelectedIndex="{Binding Path=Index2,FallbackValue=0}"
         						DisplayMemberPath="Nombre"
         						SelectedValuePath="CodProv" 
-        						HorizontalAlignment="Left" Margin="627,104,0,0" VerticalAlignment="Top" Width="160" Height="22"/>
-                            <Label Content="Distrito:" HorizontalAlignment="Left" Margin="507,148,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
+        						Margin="20" Width="160" Height="25" Grid.Row="1" Grid.Column="3"/>
+                            <Label Content="Distrito:" Margin="20" Height="25" Grid.Row="2" Grid.Column="2"/>
                             <ComboBox IsEnabled="{Binding Editar}"
                                 ItemsSource="{Binding CmbDist}"
                                 SelectedValue="{Binding SelectedDist,Mode=OneWayToSource}"
                                 SelectedIndex="{Binding Path=Index3,FallbackValue=0}"
                                 DisplayMemberPath="Nombre"
                                 SelectedValuePath="CodDist"
-                                HorizontalAlignment="Left" Margin="627,148,0,0" VerticalAlignment="Top" Width="160" Height="22"/>
-                            <Label Content="Dirección:" HorizontalAlignment="Left" Margin="49,191,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
-                            <TextBox x:Name="TxtDir" HorizontalAlignment="Left" Height="22" Margin="142,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255" IsEnabled="{Binding Editar}"/>
-                            <Button x:Name="BuscarEmpleado" HorizontalAlignment="Left" Margin="368,104,0,0" VerticalAlignment="Top" Width="29" Height="23">
-                                <Image Source="/Assets/find.png" />
-                            </Button>
-
+                                Margin="20" Width="160" Height="25" Grid.Row="2" Grid.Column="3"/>
+                            <Label Content="Dirección:" Margin="20" Height="25" Grid.Row="2" />
+                            <TextBox x:Name="TxtDir" Height="25" Margin="20" TextWrapping="Wrap" Width="255" IsEnabled="{Binding Editar}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
                         </Grid>
                     </TabItem>
-                    
+
                     <TabItem Header="Productos" >
                         <Grid Background="White" >
                             <Grid.ColumnDefinitions>
@@ -105,7 +102,7 @@
                                 <ColumnDefinition Width="469*"/>
                             </Grid.ColumnDefinitions>
                             <Label Content="Código:" HorizontalAlignment="Left" Margin="32,55,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
-                            
+
                             <Button x:Name="BuscarProductos" HorizontalAlignment="Left" Margin="331,55,0,0" VerticalAlignment="Top" Width="36" Height="23" IsEnabled="{Binding Editar}">
                                 <Button.Background>
                                     <ImageBrush ImageSource="/Assets/find.png" Stretch="Uniform" />
@@ -152,8 +149,8 @@
 
 
                         </Grid>
-                     </TabItem>
-                    
+                    </TabItem>
+
                     <TabItem Header="Anaqueles">
                         <Grid Background="White">
                             <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
@@ -174,8 +171,8 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
-                                    
-                                <!--:Message.Attach="[Event Click] = [Action Distribuir(0)]" /-->
+
+                            <!--:Message.Attach="[Event Click] = [Action Distribuir(0)]" /-->
                             <ComboBox
                                 IsEnabled="{Binding Editar}"
                         ItemsSource="{Binding CmbZonas}"
@@ -221,7 +218,7 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Button>
-                                <!--:Message.Attach="[Event Click] = [Action Distribuir(1)]" /-->
+                            <!--:Message.Attach="[Event Click] = [Action Distribuir(1)]" /-->
 
                             <ComboBox IsEnabled="{Binding Editar}"
                         ItemsSource="{Binding CmbZonas}"
