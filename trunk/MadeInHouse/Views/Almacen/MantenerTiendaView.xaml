@@ -56,9 +56,9 @@
                                 <RowDefinition Height="210*"/>
                             </Grid.RowDefinitions>
                             <Label Content="Nombre:" HorizontalAlignment="Left" Margin="49,57,0,0" VerticalAlignment="Top" Height="26" Width="56"/>
-                            <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="142,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" IsEnabled="{Binding Editar}" />
+                            <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="142,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" IsEnabled="{Binding Editar}" />
                             <Label Content="Administrador:" HorizontalAlignment="Left" Margin="46,100,0,0" VerticalAlignment="Top" Width="96" Height="26"/>
-                            <TextBox x:Name="TxtAdmin" HorizontalAlignment="Left" Height="23" Margin="142,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="255" IsEnabled="{Binding Editar}" />
+                            <TextBox x:Name="TxtAdmin" HorizontalAlignment="Left" Height="23" Margin="142,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="213" IsEnabled="{Binding Editar}" />
                             <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="49,144,0,0" VerticalAlignment="Top" Height="26" Width="59"/>
                             <TextBox x:Name="TxtTelef" HorizontalAlignment="Left" Height="23" Margin="142,147,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="{Binding Editar}"/>
                             <Label Content="Departamento:" HorizontalAlignment="Left" Margin="507,57,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
@@ -91,6 +91,9 @@
                                 HorizontalAlignment="Left" Margin="627,148,0,0" VerticalAlignment="Top" Width="160" Height="22"/>
                             <Label Content="Dirección:" HorizontalAlignment="Left" Margin="49,191,0,0" VerticalAlignment="Top" Width="94" Height="26"/>
                             <TextBox x:Name="TxtDir" HorizontalAlignment="Left" Height="22" Margin="142,191,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="255" IsEnabled="{Binding Editar}"/>
+                            <Button x:Name="BuscarEmpleado" HorizontalAlignment="Left" Margin="368,104,0,0" VerticalAlignment="Top" Width="29" Height="23">
+                                <Image Source="/Assets/find.png" />
+                            </Button>
 
                         </Grid>
                     </TabItem>
