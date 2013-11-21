@@ -164,6 +164,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 zona.IdColor = gateway.BuscarZona(this.cmbColorSelected).IdColor;
                 TipoZonaSQL gw = new TipoZonaSQL();
                 gw.agregarTipoZona(zona);
+                MessageBox.Show("Zona agregada Correctamete");
             }
             if (accion == 1) {
                 TipoZona zona = new TipoZona();
@@ -186,6 +187,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 zona.Color = this.cmbColorSelected;
                 TipoZonaSQL gw = new TipoZonaSQL();
                 gw.modificarTipoZona(zona);
+                MessageBox.Show("Zona agregada Correctamete");
             }
         }
 

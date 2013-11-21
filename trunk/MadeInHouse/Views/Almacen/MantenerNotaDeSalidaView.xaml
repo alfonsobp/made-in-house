@@ -107,7 +107,7 @@
                         <Button x:Name="AgregarProducto"  IsEnabled="{Binding EstadoPro}" HorizontalAlignment="Left" Margin="308,10,0,0" VerticalAlignment="Top" Width="39" Height="26">
                             <Image Source="/Assets/add.png" />
                         </Button>
-                        <Button x:Name="QuitarProducto"  IsEnabled="{Binding EstadoPro}" HorizontalAlignment="Left" Margin="308,50,0,0" VerticalAlignment="Top" Width="39" Height="26">
+                        <Button x:Name="Quitar"  IsEnabled="{Binding EstadoPro}" HorizontalAlignment="Left" Margin="308,50,0,0" VerticalAlignment="Top" Width="39" Height="26">
                             <Image Source="/Assets/minus.png" />
                         </Button>
 

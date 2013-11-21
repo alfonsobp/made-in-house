@@ -38,12 +38,8 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             int k = 0;
 
-            db.cmd.CommandText = "UPDATE OrdenDespacho(idVenta,fechaDespacho,estado)" +
-                                  " VALUES (@idVenta,@fechaDespacho,@estado)" +
+            db.cmd.CommandText = "UPDATE OrdenDespacho SET estado=2 " +
                                   "WHERE idOrdenDespacho=@idOrdenDespacho";
-            db.cmd.Parameters.AddWithValue("@idVenta", o.Venta.IdVenta);
-            db.cmd.Parameters.AddWithValue("@fechaDespacho", o.FechaDespacho);
-            db.cmd.Parameters.AddWithValue("@estado", o.Estado);
             db.cmd.Parameters.AddWithValue("@idOrdenDespacho", o.IdOrdenDespacho);
 
             try
