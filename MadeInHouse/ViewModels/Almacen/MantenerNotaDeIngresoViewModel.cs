@@ -312,9 +312,14 @@ namespace MadeInHouse.ViewModels.Almacen
            {
                if (string.Compare(mot, "Traslado Externo", true) == 0)
                {
-
-                   LstProductos = selectedGuia.Nota.LstProducto;
-
+                   if (selectedGuia == null)
+                   {
+                       System.Windows.MessageBox.Show("Ingrese un código de guía de remisión valido");
+                   }
+                   else
+                   {
+                       LstProductos = selectedGuia.Nota.LstProducto;
+                   }
                }
                else
                {
@@ -353,8 +358,11 @@ namespace MadeInHouse.ViewModels.Almacen
            
 
             NotifyOfPropertyChange(() => LstProductos);
-            EstadoMot = false;
-            Estado = false;
+            if (LstProductos != null)
+            {
+                EstadoMot = false;
+                Estado = false;
+            }
         }
 
         private void DeshabilitarPro(string SelectedMotivo)
