@@ -101,12 +101,12 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             //db.cmd.CommandText = "sp_AgregarTienda";
             //db.cmd.CommandType = CommandType.StoredProcedure;
-            db.cmd.CommandText = "INSERT INTO Tienda (nombre,direccion,administrador,telefono,idUbigeo,estado,fechaReg) " +
+            db.cmd.CommandText = "INSERT INTO Tienda (nombre,direccion,telefono,idUbigeo,estado,fechaReg) " +
                                 "output INSERTED.idTienda "+
-                                " VALUES (@nombre,@direccion,@admin,@telefono,@idUbigeo,@estado,@fechaReg)";
+                                " VALUES (@nombre,@direccion,@telefono,@idUbigeo,@estado,@fechaReg)";
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@direccion", p.Direccion);
-            db.cmd.Parameters.AddWithValue("@admin", p.Administrador);
+           // db.cmd.Parameters.AddWithValue("@admin", p.Administrador);
             db.cmd.Parameters.AddWithValue("@telefono", p.Telefono);
             db.cmd.Parameters.AddWithValue("@idUbigeo", p.IdUbigeo);
             db.cmd.Parameters.AddWithValue("@estado", 1);

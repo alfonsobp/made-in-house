@@ -72,7 +72,7 @@ namespace MadeInHouse.ViewModels
                 IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario("ADMIN"), "Database");
                 
                 string[] rol = { "idRolAllenar", "otrorol" };
-
+                    
                 GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
 
                 System.Threading.Thread.CurrentPrincipal = credencial;

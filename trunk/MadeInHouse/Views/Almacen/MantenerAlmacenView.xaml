@@ -103,7 +103,13 @@
                         DisplayMemberPath="Nombre"
                         HorizontalAlignment="Left" Margin="323,19,0,0" VerticalAlignment="Top" Width="391"/>
                             <ScrollViewer HorizontalAlignment="Left" Height="232" Margin="258,72,0,0" VerticalAlignment="Top" Width="456" HorizontalScrollBarVisibility="Visible">
-                                <grid:DynamicGrid x:Name="Deposito" Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <grid:DynamicGrid x:Name="Deposito" 
+                                                  Altura="{Binding Altura}" 
+                                                  IdZona="{Binding Zona}"  
+                                                  NumRows="{Binding NumRows}" 
+                                                  NumColumns="{Binding NumColumns}"  
+                                                  Accion="1"
+                                                  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 </grid:DynamicGrid>
                             </ScrollViewer>
                             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="232" Margin="258,72,0,0" VerticalAlignment="Top" Width="456"/>
