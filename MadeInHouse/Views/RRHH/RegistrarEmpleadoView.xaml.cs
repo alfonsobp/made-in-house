@@ -50,7 +50,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Nombre = TxtNomb.Text;
             emp.ApePaterno = TxtApePat.Text;
             emp.ApeMaterno = TxtApeMat.Text;
-            emp.FechNacimiento = TxtFechNac.Text;
+            emp.FechNacimiento = DateTime.Parse(TxtFechNac.Text);
             emp.Sexo = "M";
             if (RdbFem.IsChecked == true) emp.Sexo = "F";
             emp.Direccion = TxtDir.Text;
@@ -59,8 +59,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Celular = TxtCel.Text;
             emp.EmailEmpleado = TxtEmail.Text;
             emp.Estado = 1;
-                DateTime d = DateTime.Now;
-            emp.FechaReg = d.ToString("dd/MM/yyyy ");
+            emp.FechaReg = DateTime.Today;
             emp.Puesto = CmbPuesto.Text;
             emp.Tienda = CmbTienda.Text;    //esto es el nombre de la Tienda seleccionada
             emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);

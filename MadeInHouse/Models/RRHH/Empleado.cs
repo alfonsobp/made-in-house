@@ -98,9 +98,9 @@ namespace MadeInHouse.Models.RRHH
             set { estado = value; }
         }
 
-        string fechaReg;
+        DateTime fechaReg;
 
-        public string FechaReg
+        public DateTime FechaReg
         {
             get { return fechaReg; }
             set { fechaReg = value; }
@@ -152,9 +152,9 @@ namespace MadeInHouse.Models.RRHH
             set { referencia = value; }
         }
 
-        string fechNacimiento;
+        DateTime fechNacimiento;
 
-        public string FechNacimiento
+        public DateTime FechNacimiento
         {
             get { return fechNacimiento; }
             set { fechNacimiento = value; }
@@ -215,7 +215,7 @@ namespace MadeInHouse.Models.RRHH
 
         public Empleado(string dni, string sexo, string nombre, string apePaterno, string apeMaterno, string telefono,
                         string celular, string emailEmpleado, 
-                        string cuentaBancaria, int estado, string fechaReg, string idPuesto, string idCategoria,
+                        string cuentaBancaria, int estado, DateTime fechaReg, string idPuesto, string idCategoria,
                         string idEmpleado, string refFoto, string direccion)
         {
             this.dni = dni;
