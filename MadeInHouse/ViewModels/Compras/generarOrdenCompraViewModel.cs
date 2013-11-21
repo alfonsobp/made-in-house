@@ -273,58 +273,71 @@ namespace MadeInHouse.ViewModels.Compras
                 return false;
             }
 
-            if (o.LstProducto.Count == 0) {
+            if (o.LstProducto.Count == 0)
+            {
 
-                MessageBox.Show( "Ingrese algún producto..","AVISO", MessageBoxButtons.OK,  MessageBoxIcon.Exclamation);
+                MessageBox.Show("Ingrese algún producto..", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return false;
-            
+
             }
 
-
-            foreach (ProductoxOrdenCompra oc in o.LstProducto) {
-                Evaluador e = new Evaluador();
-
-                if (String.IsNullOrEmpty(oc.Cantidad))
+                if (o.Estado == 3)
                 {
-                    MessageBox.Show( "Hay cantidades que  se encuentran vacias,Corregir..","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    MessageBox.Show("No se puede editar Ordenes de compras ATENDIDAS.", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
+
                 }
 
 
-                if (!e.esNumeroEntero(oc.Cantidad))
+                foreach (ProductoxOrdenCompra oc in o.LstProducto)
                 {
-                    MessageBox.Show("No se puede ingresar valores que no sean números en cantidad", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
+                    Evaluador e = new Evaluador();
+
+                    if (String.IsNullOrEmpty(oc.Cantidad))
+                    {
+                        MessageBox.Show("Hay cantidades que  se encuentran vacias,Corregir..", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+
+
+                    if (!e.esNumeroEntero(oc.Cantidad))
+                    {
+                        MessageBox.Show("No se puede ingresar valores que no sean números en cantidad", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+
+                    }
+
+                    if (!e.esPositivo(Convert.ToInt32(oc.Cantidad)))
+                    {
+
+                        MessageBox.Show("No se puede ingresar valores negativos en cantidad", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+
+                    }
+
+                    if ((Convert.ToInt32(oc.Cantidad)) == 0)
+                    {
+
+                        MessageBox.Show("No se puede ingresar 0 como cantidad", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+
+                    }
+
+                    if (oc.CantAtendida > Convert.ToInt32(oc.Cantidad))
+                    {
+
+                        MessageBox.Show("La cantidad emitida no puede ser menor a la cantidad Atendida", "AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return false;
+                    }
+
+
+
+
+
 
                 }
-
-                if(!e.esPositivo(Convert.ToInt32(oc.Cantidad) )){
-                
-                    MessageBox.Show("No se puede ingresar valores negativos en cantidad","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
-                
-                }
-
-                if ((Convert.ToInt32(oc.Cantidad))==0)
-                {
-
-                    MessageBox.Show("No se puede ingresar 0 como cantidad","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
-
-                }
-
-                if (oc.CantAtendida > Convert.ToInt32(oc.Cantidad)) {
-
-                    MessageBox.Show("La cantidad emitida no puede ser menor a la cantidad Atendida","AVISO", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false;
-                }
-
-
 
             
-            }
-
-
             return true;
         
         }
