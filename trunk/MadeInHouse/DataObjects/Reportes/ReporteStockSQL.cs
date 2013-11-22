@@ -18,17 +18,13 @@ namespace MadeInHouse.DataObjects.Reportes
         int stockactual;
         int stockmin;
         int stockmax;
-        string almacen;
 
-        public string Tienda { get { return tienda; } set { tienda = value; } }
-        public string Almacen { get { return almacen; } set { almacen = value; } }
         public int IdProducto { get { return idproducto; } set { idproducto = value; } }
+        public string Tienda { get { return tienda; } set { tienda = value; } }
         public string Producto { get { return producto; } set { producto = value; } }
-        public int Stockactual { get { return stockactual; } set { stockactual = value; } }
         public int Stockmin { get { return stockmin; } set { stockmin = value; } }
         public int Stockmax { get { return stockmax; } set { stockmax = value; } }
-        
-        
+        public int Stockactual { get { return stockactual; } set { stockactual = value; } }
     }
 
     class reporteStock
@@ -105,7 +101,7 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "select t.nombre 'tienda', a.nombre 'almacen', p.nombre 'producto', p.idproducto 'idproducto', s.cantidad 'stock' from almacen a join sector s on (a.idAlmacen = s.idAlmacen) join tienda t on (t.idTienda = a.idTienda) join producto p on (s.idproducto = p.idproducto) where a.nombre = '" + tienda + "'";
+            cmd.CommandText = "select p.idproducto, p.nombre 'producto', t.nombre 'tienda', pt.stockActual,pt.stockmax,pt.stockmin from producto p join productoxtienda pt on (p.idproducto = pt.idproducto) join tienda t on (t.idTienda = pt.idTienda) where t.nombre ='" + tienda + "'";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -118,11 +114,10 @@ namespace MadeInHouse.DataObjects.Reportes
                     stock e = new stock();
                     e.IdProducto = Convert.ToInt32(reader["idproducto"]);
                     e.Producto = reader["producto"].ToString();
-                    e.Almacen = reader["almacen"].ToString();
                     e.Tienda = reader["tienda"].ToString();
-                    e.Stockactual = Convert.ToInt32(reader["stock"]);
-                    //e.Stockmax = Convert.ToInt32(reader["stockmax"]);
-                    //e.Stockmin = Convert.ToInt32(reader["stockmin"]);
+                    e.Stockactual = Convert.ToInt32(reader["stockActual"]);
+                    e.Stockmax = Convert.ToInt32(reader["stockmax"]);
+                    e.Stockmin = Convert.ToInt32(reader["stockmin"]);
                     lstStock.Add(e);
 
                 }

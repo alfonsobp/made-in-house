@@ -1,10 +1,10 @@
-﻿<UserControl  xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
-    x:Class="MadeInHouse.Views.Reportes.reporteStockView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="604.5" Height="364">
+﻿<UserControl xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+x:Class="MadeInHouse.Views.Reportes.reporteStockView"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+mc:Ignorable="d" d:DesignWidth="604.5" Height="364">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Stocks" />
