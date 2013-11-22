@@ -40,7 +40,7 @@ namespace MadeInHouse.Views.Reportes
             destino.Items.Add(text);
             origen.Items.Remove(origen.SelectedItem);
         }
-       
+
         private void todo_lista_a_lista(ListBox origen, ListBox destino)
         {
             while (origen.Items.Count != 0)
@@ -51,7 +51,7 @@ namespace MadeInHouse.Views.Reportes
                 origen.Items.RemoveAt(0);
             }
         }
-       
+
         private void ListBoxItem_DoubleClicked(object sender, RoutedEventArgs e)
         {
             List<Almacenes> lstAlmacenes;
@@ -64,11 +64,11 @@ namespace MadeInHouse.Views.Reportes
                 text = text.Replace("System.Windows.Controls.ListBoxItem: ", "");
                 lstAlmacenes = DataObjects.Reportes.reporteStock.BuscarAlmacenesxTienda(text);
 
-                for (int i = 0; i < lstAlmacenes.Count;i++ )
+                for (int i = 0; i < lstAlmacenes.Count; i++)
                 {
                     listBoxAlmacen1.Items.Add(lstAlmacenes[i].Nombre);
                 }
-                
+
             }
             if (ListBoxSede2.SelectedItem != null)
             {
@@ -86,7 +86,7 @@ namespace MadeInHouse.Views.Reportes
 
             }
             if (listBoxAlmacen1.SelectedItem != null)
-            {                
+            {
                 pasarListBox(listBoxAlmacen1, listBoxAlmacen2);
             }
             if (listBoxAlmacen2.SelectedItem != null)
@@ -95,14 +95,14 @@ namespace MadeInHouse.Views.Reportes
             }
 
         }
-       
+
         private void Unselect(object sender, RoutedEventArgs e)
         {
             listBoxSede1.UnselectAll();
             ListBoxSede2.UnselectAll();
 
         }
-        
+
         private void Pasar_Todo(object sender, RoutedEventArgs e)
         {
             if (sender.Equals(derecha3))
@@ -112,7 +112,7 @@ namespace MadeInHouse.Views.Reportes
                 todo_lista_a_lista(listBoxSede1, ListBoxSede2);
                 listBoxAlmacen2.Items.Clear();
                 listBoxAlmacen1.Items.Clear();
-                for (int i = 0; i < lstAlmacenes.Count;i++)
+                for (int i = 0; i < lstAlmacenes.Count; i++)
                 {
                     listBoxAlmacen1.Items.Add(lstAlmacenes[i].Nombre);
                 }
@@ -135,7 +135,7 @@ namespace MadeInHouse.Views.Reportes
             {
                 todo_lista_a_lista(listBoxAlmacen1, listBoxAlmacen2);
             }
-            
+
         }
 
         private void generar(object sender, RoutedEventArgs e)
@@ -145,15 +145,14 @@ namespace MadeInHouse.Views.Reportes
 
             for (int i = 0; i < ListBoxSede2.Items.Count; i++)
             {
-                if (listBoxAlmacen2.Items[i].ToString() == "ALMACEN CENTRAL") lista = DataObjects.Reportes.reporteStock.BuscarStockCentral();
-                else if (listBoxAlmacen2.Items[i].ToString().Contains("anaq")) lista = DataObjects.Reportes.reporteStock.BuscarStock(ListBoxSede2.Items[i].ToString());
-                
+                if (ListBoxSede2.Items[i].ToString() == "ALMACEN CENTRAL") lista = DataObjects.Reportes.reporteStock.BuscarStockCentral();
+                else lista = DataObjects.Reportes.reporteStock.BuscarStock(ListBoxSede2.Items[i].ToString());
                 for (int j = 0; j < lista.Count; j++)
                 {
                     stocks.Add(lista[j]);
                 }
             }
-            
+
             Reportes.reportViewerStock win = new reportViewerStock(stocks);
             win.Show();
         }

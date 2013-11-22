@@ -572,6 +572,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 }
                 else
                     db.conn.Close();
+                db.cmd.Parameters.Clear();
 
             }
             catch (Exception e)
