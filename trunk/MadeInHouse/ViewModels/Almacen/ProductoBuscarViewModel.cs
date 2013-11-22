@@ -77,6 +77,8 @@ namespace MadeInHouse.ViewModels.Almacen
             this.ventanaAccion = ventanaAccion;
             AlmacenSQL almSQL = new AlmacenSQL();
             idAlmacen = almSQL.obtenerDeposito(ventaRegistrarViewModel.idTienda);
+            SelectedTienda = ventaRegistrarViewModel.idTienda;
+            Index = CmbTiendas.FindIndex(x => x.IdTienda == SelectedTienda);
         }
 
         private Ventas.ProformaViewModel proformaViewModel;

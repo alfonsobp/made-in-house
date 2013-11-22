@@ -109,25 +109,25 @@ namespace MadeInHouse.DataObjects.Ventas
             {
                 where += " WHERE (v.numDocPagoProducto = UPPER(@docPago) OR v.numDocPagoServicio = UPPER(@docPago)) ";
                 db.cmd.Parameters.Add(new SqlParameter("docPago", docPago));
+
+
+                db.cmd.CommandText = "SELECT * FROM Venta v " + where;
+
+                if (db.cmd.Transaction == null) db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    if (vent == null) vent = new Venta();
+                    posDNI = reader.GetOrdinal("dni");
+                    posIdVenta = reader.GetOrdinal("idVenta");
+                    vent.IdVenta = reader.IsDBNull(posIdVenta) ? -1 : reader.GetInt32(posIdVenta);
+                    vent.dni = reader.IsDBNull(posDNI) ? null : reader.GetString(posDNI);
+                }
+
+                db.cmd.Parameters.Clear();
+                if (db.cmd.Transaction == null) db.conn.Close();
             }
-
-            db.cmd.CommandText = "SELECT * FROM Venta v " + where;
-
-            if (db.cmd.Transaction == null) db.conn.Open();
-            SqlDataReader reader = db.cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                if (vent == null) vent = new Venta();
-                posDNI = reader.GetOrdinal("dni");
-                posIdVenta = reader.GetOrdinal("idVenta");
-                vent.IdVenta = reader.IsDBNull(posIdVenta) ? -1 : reader.GetInt32(posIdVenta);
-                vent.dni = reader.IsDBNull(posDNI) ? null : reader.GetString(posDNI);
-            }
-
-            db.cmd.Parameters.Clear();
-            if (db.cmd.Transaction == null) db.conn.Close();
-
             return vent;
         }
 

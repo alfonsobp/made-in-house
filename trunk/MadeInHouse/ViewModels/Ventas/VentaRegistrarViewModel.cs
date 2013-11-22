@@ -350,15 +350,16 @@ namespace MadeInHouse.ViewModels.Ventas
                         MessageBox.Show("Tiene que poner una cantidad");
                         return;
                     }
-                    item.SubTotal = item.Cantidad * prod.Precio;
+                    item.SubTotal = Math.Round(item.Cantidad * prod.Precio, 2);
                     item.Descuento += 0;
                     if (subt > 0) subt += item.Cantidad; else subt = item.SubTotal;
+                    subt = Math.Round(subt, 2);
                     TxtSubTotal = subt.ToString();
-                    desc = item.Descuento;
+                    desc = Math.Round(item.Descuento, 2);
                     TxtDescuentoTotal = desc.ToString();
-                    igv_total = (subt - desc) * IGV;
+                    igv_total = Math.Round((subt - desc) * IGV, 2);
                     TxtIGVTotal = igv_total.ToString();
-                    total = (subt - desc) * (1 + IGV);
+                    total = Math.Round((subt - desc) * (1 + IGV), 2);
                     TxtTotal = total.ToString();
                     nuevo = 0;
                 }
@@ -373,7 +374,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.CodProducto = prod.CodigoProd;
                 dv.Descripcion = prod.Nombre;
                 dv.Descuento = 0;
-                dv.Precio = prod.Precio;
+                dv.Precio = Math.Round(prod.Precio, 2);
 
                 if (ev.esNumeroEntero(TxtCantidad)) cant = Int32.Parse(TxtCantidad);
                 else
@@ -382,17 +383,17 @@ namespace MadeInHouse.ViewModels.Ventas
                     return;
                 }
 
-                dv.SubTotal = prod.Precio * cant;
+                dv.SubTotal = Math.Round(prod.Precio * cant, 2);
                 dv.Cantidad = cant;
                 aux.Add(dv);
 
-                subt += dv.SubTotal;
+                subt += Math.Round(dv.SubTotal, 2);
                 TxtSubTotal = subt.ToString();
-                desc += dv.Descuento;
+                desc += Math.Round(dv.Descuento, 2);
                 TxtDescuentoTotal = desc.ToString();
-                igv_total = (subt - desc) * IGV;
+                igv_total = Math.Round((subt - desc) * IGV, 2);
                 TxtIGVTotal = igv_total.ToString();
-                total = (subt - desc) * (1 + IGV);
+                total = Math.Round((subt - desc) * (1 + IGV), 2);
                 TxtTotal = total.ToString();
             }
             LstVenta = aux;
@@ -437,15 +438,15 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.IdProducto = serv.Producto.IdProducto;
                 dv.IdServicio = serv.IdServicio;
                 dv.Descripcion = dv.Servicio.Descripcion;
-                dv.Precio = serv.Precio;
+                dv.Precio = Math.Round(serv.Precio, 2);
 
                 aux.Add(dv);
 
-                subt += dv.Precio;
+                subt += Math.Round(dv.Precio, 2);
                 TxtSubTotal = subt.ToString();
-                igv_total = (subt) * IGV;
+                igv_total = Math.Round((subt) * IGV, 2);
                 TxtIGVTotal = igv_total.ToString();
-                total = (subt) * (1 + IGV);
+                total = Math.Round((subt) * (1 + IGV), 2);
                 TxtTotal = total.ToString();
             }
             LstVentaServicios = aux;
