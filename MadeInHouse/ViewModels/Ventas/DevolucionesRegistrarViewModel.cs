@@ -171,7 +171,7 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 dev.venta = dSQL.BuscarVenta(this.DocPago);
                 DNI = dev.venta == null ? null : dev.venta.dni;
-                if (dev.venta != null)
+                if (dev.venta != null && dev.venta.IdVenta > 0)
                     LstProductos = dSQL.BuscarProductos(-1, dev.venta.IdVenta);
             }
         }
