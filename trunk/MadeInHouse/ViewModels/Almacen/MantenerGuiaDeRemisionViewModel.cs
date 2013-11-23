@@ -16,6 +16,7 @@ using MadeInHouse.DataObjects;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.DataObjects.Seguridad;
+using MadeInHouse.Dictionary;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -65,6 +66,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
         //Atributos
+        GuiaRemision g = new GuiaRemision();
         private int indicador; //1=insertar, 2=detalle;
         public int Indicador
         {
@@ -273,8 +275,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
             TxtAlmacenOrigen = a.Nombre;
             TxtDirPartida = a.Direccion;
-            TxtDirCliente = c.Direccion;
-            TxtRSCliente = c.RazonSocial;
+            TxtDirLlegada = c.Direccion;
+            TxtTienda = c.RazonSocial;
 
             List<DetalleVenta> l = new DetalleVentaSQL().BuscarTodos();
             List<GuiaRemxProducto> lAux = new List<GuiaRemxProducto>();
@@ -325,6 +327,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             MyWindowManager w = new MyWindowManager();
             w.ShowWindow(new BuscarNotasViewModel(this));
+            
         }
 
         public void BuscarOrden()
@@ -360,7 +363,6 @@ namespace MadeInHouse.ViewModels.Almacen
         {
 
             int k = 1;
-            GuiaRemision g = new GuiaRemision();
 
             if ((Nota != null) && (Alm != null))
             {
@@ -385,6 +387,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (((Nota != null) && (TxtTienda != null)) || (Orden != null))
                     {
+                        if (String.IsNullOrEmpty(TxtObservaciones)) TxtObservaciones = "NN";
 
                         k = new GuiaDeRemisionSQL().agregarGuiaDeRemision(g);
 
@@ -418,7 +421,7 @@ namespace MadeInHouse.ViewModels.Almacen
             if (indicador == 2)
             {
 
-                //k = DataObjects.Almacen.GuiaDeRemisionSQL.editarGuiaDeRemision(g);
+                k = new GuiaDeRemisionSQL().editarGuiaDeRemision(g);
 
                 if (k == 0)
                     MessageBox.Show("Ocurrio un error");
@@ -471,5 +474,99 @@ namespace MadeInHouse.ViewModels.Almacen
 
             return null;
         }
+
+
+
+        public void GenerarPDF()
+        {
+
+            if (g != null)
+            {
+                    try
+                    {
+                        GenerarPDF pdf = new GenerarPDF();
+                        Correo c = new Correo();
+                        //m.coloma@pucp.pe
+                        string path = "//GuiaRemision-" + g.CodGuiaRem + ".pdf";
+                        pdf.Borrar(Environment.CurrentDirectory + path);
+                        string body = formato().ToString();
+                        pdf.createPDF(body, path, true);
+                        
+                        //c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg, Environment.CurrentDirectory + path);
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("No se pudo imprimir Guia \nRevisar conexiones");
+                    }
+                
+            }
+        }
+
+        public string formato()
+        {
+
+            string content = @"<HTML><BODY>";
+            content += "<center> MadeInHouse  S.A. </center><br><br> ";
+            content += "Guia de Remision  " + TxtCodigo + "<br>";
+            content += "Tipo de traslado  " + SeleccionadoTipo + "<br>";
+            content += "<br><br>";
+            content += "DATOS DE ORIGEN: <br>";
+
+            if (Orden != null)
+                content += "Tienda : " + TxtAlmacenOrigen + "<br>";
+
+            if (Alm != null)
+                content += "Almacen : " + TxtAlmacenOrigen + "<br>";
+
+            content += "Direccion : " + TxtDirPartida + "<br>";
+            content += "<br><br>";
+            content += "DATOS DESTINO: <br>";
+
+            if (Orden != null)
+                content += "Cliente : " + TxtTienda + "<br>";
+
+            if (Alm != null)
+                content += "Almacen receptor : " + TxtTienda + "<br>";
+
+            content += "Direccion : " + TxtDirLlegada + "<br>";
+            content += "<br><br>";
+            content += "DATOS GENERALES: <br>";
+            content += "Fecha de traslado : " + TxtFechaReg.ToString() + "<br>";
+            content += "Conductor asignado : " + TxtConductor + "<br>";
+            content += "Camion asignado : " + SeleccionadoCamion + "<br>";
+            content += "Terminos de entrega : Se deberá firmar la Guia recibida para confirmar llegada, en caso <br>";
+            content += "traslado externo, registrar los productos enviados en dicha tienda<br><br>";
+            content += "<table border = 1 ><tr><th>NRO</th><th>ARTICULO</th><th>CANTIDAD</th><tr>";
+          
+            int i = 1;
+            foreach (GuiaRemxProducto o in LstProductos)
+            {
+
+                content += "<tr><td>" + i.ToString() + "</td>" +
+                               "<td>" + o.Nombre + "</td>" +
+                               "<td>" + o.Cantidad.ToString() + "</td></tr>";
+                i++;
+            }
+
+            content += "<tr><td colspan = 2 > TOTAL</td><td>" + TxtCantidad.ToString() + "</td> </tr></table>";
+            content += "<br>";
+            content += "Observaciones :" + TxtObservaciones;
+            content += "<br><br>";
+            content += "<br><br>";
+            content += "____________________________<br>";
+
+            if (Alm != null)
+                content += "Firma del encargado";
+            
+            if (Orden != null)
+                content += "Firma del Cliente";
+
+            content += "</BODY></HTML>";
+
+            return content;
+        }
+
     }
 }
