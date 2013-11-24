@@ -5,8 +5,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="1052" Height="765.16">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
+             mc:Ignorable="d" d:DesignWidth="1052" Height="627.16">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Height="700" VerticalAlignment="Top">
         <StackPanel Margin="0,0,0,83">
             <Layouts:TitleBarTemplate title="Nueva Guia de Remisión" />
             <Grid>
@@ -37,37 +37,37 @@
                     <Button x:Name="GenerarPDF">
                         <Image Source="/Assets/pdf.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
+                    <Button x:Name="Limpiar">
                         <Image Source="/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                     <Button Height="30" Width="30"/>
                 </ToolBar>
-                <GroupBox Grid.Column="3" Header="Productos" Margin="10,57,10,139" Grid.RowSpan="3">
-                    <Grid Margin="0,-10,0,10">
-                        <Label Content="Nota de Salida:" Margin="10,22,264,367"/>
+                <GroupBox Grid.Column="3" Header="Productos" Margin="10,57,0,0" HorizontalAlignment="Left" Width="386" Height="514" VerticalAlignment="Top">
+                    <Grid Margin="0,-10,0,72" HorizontalAlignment="Left" Width="374">
+                        <Label Content="Nota de Salida:" Margin="0,22,264,367" HorizontalAlignment="Right" Width="100"/>
                         <DataGrid x:Name="LstProductos" AutoGenerateColumns="False"
-                                  Margin="10,0,10,31" HeadersVisibility="Column" Height="257" VerticalAlignment="Bottom">
+            				Margin="10,0,0,88" HeadersVisibility="Column" Height="216" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="354">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=CodProd}" Header="Código" Width="90"/>
-                                <DataGridTextColumn Binding="{Binding Path=Nombre}" Header="Nombre" Width="185"/>
-                                <DataGridTextColumn Binding="{Binding Path=Cantidad}" Header="Cantidad" Width="80"/>
+                                <DataGridTextColumn Binding="{Binding CodProd}" Header="Código" Width="90"/>
+                                <DataGridTextColumn Binding="{Binding Nombre}" Header="Nombre" Width="185"/>
+                                <DataGridTextColumn Binding="{Binding Cantidad}" Header="Cantidad" Width="80"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox IsEnabled="False" Text="{Binding Path=Nota.IdNota, Mode=TwoWay}" cal:Message.Attach="[Event TextChanged]=[Action RefrescarNotas]"
-                                 HorizontalAlignment="Left" Height="23" Margin="125,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
-                        <Label Content="Cantidad total:" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Width="90"/>
+                        <TextBox IsEnabled="False" Text="{Binding Nota.IdNota, Mode=TwoWay}"
+            				HorizontalAlignment="Left" Height="23" Margin="125,22,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" cal:Message.Attach="[Event TextChanged]=[Action RefrescarNotas]"/>
+                        <Label Content="Cantidad total:" HorizontalAlignment="Right" Margin="0,82,274,0" VerticalAlignment="Top" Width="90"/>
                         <TextBox IsEnabled="False" x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="125,82,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="70"/>
-                        
-                     <Button x:Name="BuscarNotaOrden" HorizontalAlignment="Left" Margin="277,22,0,0" VerticalAlignment="Top" Width="24" Height="24">
-                         <Image Source="/Assets/find.png" RenderTransformOrigin="2.564,0.416" />
-                     </Button>
-                        <Label Content="Orden Despacho:" Margin="10,51,249,357"/>
-                        <TextBox IsEnabled="False" Text="{Binding Path=Orden.CodOrden, Mode=TwoWay}" cal:Message.Attach="[Event TextChanged]=[Action RefrescarOrden]"
-                        	     HorizontalAlignment="Left" Height="23" Margin="125,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140"/>
+
+                        <Button x:Name="BuscarNotaOrden" HorizontalAlignment="Left" Margin="277,22,0,0" VerticalAlignment="Top" Width="24" Height="24">
+                            <Image Source="/Assets/find.png" RenderTransformOrigin="2.564,0.416" />
+                        </Button>
+                        <Label Content="Orden Despacho:" Margin="10,51,249,348"/>
+                        <TextBox IsEnabled="False" Text="{Binding Orden.CodOrden, Mode=TwoWay}"
+            				HorizontalAlignment="Left" Height="23" Margin="125,50,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="140" cal:Message.Attach="[Event TextChanged]=[Action RefrescarOrden]"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Guía" Margin="10,57,10,10" Grid.Column="1">
-                    <Grid>
+                <GroupBox Header="Guía" Margin="10,57,10,0" Grid.Column="1" Height="239" VerticalAlignment="Top">
+                    <Grid Margin="0,0,0,78">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
@@ -75,15 +75,14 @@
                         <TextBox IsEnabled="False" x:Name="TxtCodigo" HorizontalAlignment="Left" Height="22" Margin="108,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
                         <TextBlock Text="Fecha Traslado:" HorizontalAlignment="Left" Margin="17,75,0,0" VerticalAlignment="Top" Width="86" Height="22"/>
                         <TextBlock Text="Tipo Traslado:" HorizontalAlignment="Left" Margin="17,50,0,0" VerticalAlignment="Top" Width="86" Height="20" RenderTransformOrigin="0.468,0.462"/>
-                        <ComboBox SelectedItem="{Binding SeleccionadoTipo, Mode=TwoWay}" ItemsSource="{Binding CbTipo, Mode=OneWay}" HorizontalAlignment="Left" Margin="108,50,0,0" VerticalAlignment="Top" Width="160" Height="22"> 
-                        </ComboBox>
+                        <ComboBox SelectedItem="{Binding SeleccionadoTipo, Mode=TwoWay}" ItemsSource="{Binding CbTipo, Mode=OneWay}" HorizontalAlignment="Left" Margin="108,50,0,0" VerticalAlignment="Top" Width="160" Height="22"/>
                         <DatePicker x:Name="TxtFechaReg" HorizontalAlignment="Left" Margin="108,77,0,0" VerticalAlignment="Top" Width="160" Height="24"/>
                         <TextBlock Text="Estado:" HorizontalAlignment="Left" Margin="17,102,0,0" VerticalAlignment="Top" Width="86" Height="22"/>
-                        <TextBox IsEnabled="False" x:Name="TxtEstado" HorizontalAlignment="Left" Height="22" Margin="108,106,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+                        <TextBox IsEnabled="False" x:Name="TxtEstado" Height="22" Margin="108,106,19,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Grid.Column="2" Header="Datos Destino" Margin="10,57,10,10">
-                    <Grid>
+                <GroupBox Grid.Column="2" Header="Datos Destino" Margin="10,57,10,0" Height="239" VerticalAlignment="Top">
+                    <Grid Height="223" VerticalAlignment="Top">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="59*"/>
                             <RowDefinition Height="32*"/>
@@ -94,28 +93,27 @@
                         <TextBox IsEnabled="False" x:Name="TxtDirLlegada" HorizontalAlignment="Left" Margin="119,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="61"/>
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Información general" Margin="10" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
-                    <Grid>
-                        <Label Content="Almacen/Tienda origen:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="143"/>
+                <GroupBox Header="Información general" Margin="10,301,10,0" Grid.Column="1" Grid.ColumnSpan="2" Height="270" VerticalAlignment="Top">
+                    <Grid Height="241" VerticalAlignment="Top">
+                        <Label Content="Almacen origen:" HorizontalAlignment="Left" Margin="20,36,0,0" VerticalAlignment="Top" Height="26" Width="143"/>
                         <Label Content="Almacen destino:" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="26" Width="112"/>
-                        <TextBox IsEnabled="False" Name="TxtDirPartida" HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="397" />
+                        <TextBox IsEnabled="False" x:Name="TxtDirPartida" HorizontalAlignment="Left" Height="23" Margin="192,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="397" />
                         <Label Content="Camión:" HorizontalAlignment="Left" Margin="20,203,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
                         <Label Content="Conductor:" HorizontalAlignment="Left" Margin="20,159,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
                         <TextBox x:Name="TxtConductor" HorizontalAlignment="Left" Height="23" Margin="192,162,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="397"/>
-                        <ComboBox SelectedItem="{Binding SeleccionadoCamion, Mode=TwoWay}" ItemsSource="{Binding CbCamion, Mode=OneWay}" HorizontalAlignment="Left" Margin="192,203,0,0" VerticalAlignment="Top" Width="160" Height="22">
-                        </ComboBox>
+                        <ComboBox SelectedItem="{Binding SeleccionadoCamion, Mode=TwoWay}" ItemsSource="{Binding CbCamion, Mode=OneWay}" HorizontalAlignment="Left" Margin="192,203,0,0" VerticalAlignment="Top" Width="160" Height="22"/>
                         <Label Content="Dirección de partida:" HorizontalAlignment="Left" Margin="20,118,0,0" VerticalAlignment="Top" Width="126" Height="26"/>
                         <TextBox x:Name="TxtAlmacenOrigen" IsEnabled="False" HorizontalAlignment="Left" Margin="192,36,0,0" VerticalAlignment="Top" Width="397" Height="22"/>
-                        <TextBox Text="{Binding Path=Alm.Nombre, Mode=TwoWay}" IsEnabled="False" HorizontalAlignment="Left" Margin="192,77,0,0" 
-                                 cal:Message.Attach="[Event TextChanged]=[Action RefrescarAlm]" VerticalAlignment="Top" Width="367" Height="22"/>
+                        <TextBox Text="{Binding Alm.Nombre, Mode=TwoWay}" IsEnabled="False" HorizontalAlignment="Left" Margin="192,77,0,0" 
+            				VerticalAlignment="Top" Width="367" Height="22" cal:Message.Attach="[Event TextChanged]=[Action RefrescarAlm]"/>
                         <Button x:Name="BuscarAlmacen" HorizontalAlignment="Left" Margin="565,75,0,0" VerticalAlignment="Top" Width="24" Height="24">
                             <Image Source="/Assets/find.png" RenderTransformOrigin="2.564,0.416" />
                         </Button>
 
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Observaciones" Grid.Column="3" Grid.Row="2" Margin="10,78,10,35"/>
-                <TextBox x:Name="TxtObservaciones" HorizontalAlignment="Left" Height="63" Margin="22,99.833,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="359" Grid.Column="3" Grid.Row="2"/>
+                <GroupBox Header="Observaciones" Grid.Column="3" Margin="10,421,0,160" HorizontalAlignment="Left" Width="386"/>
+                <TextBox x:Name="TxtObservaciones" HorizontalAlignment="Left" Height="63" Margin="24,460,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="358" Grid.Column="3"/>
             </Grid>
         </StackPanel>
     </Border>

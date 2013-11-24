@@ -149,16 +149,8 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     for (int i = 0; i < list.Count; i++)
                     {
-                        if (list[i].Nota != null)
-                        {
-                            if (list[i].NombOrigen.Equals(Alm.Direccion))
+                            if (list[i].NombOrigen.Equals(Alm.Nombre))
                                 NewList.Add(list[i]);
-                        }
-                        if (list[i].Orden != null)
-                        {
-                            if (list[i].NombOrigen.Equals(new GuiaDeRemisionSQL().BuscarTIENfromID(Alm.IdTienda).Nombre))
-                                NewList.Add(list[i]);
-                        }
                     }
 
                     if (NewList != null)

@@ -67,6 +67,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         //Atributos
         GuiaRemision g = new GuiaRemision();
+        string tiendaOrigen = null;
         private int indicador; //1=insertar, 2=detalle;
         public int Indicador
         {
@@ -235,7 +236,9 @@ namespace MadeInHouse.ViewModels.Almacen
             {
 
                 Almacenes almOr = new GuiaDeRemisionSQL().BuscarALMfromID(Nota.IdAlmacen);
+                Tienda a = new GuiaDeRemisionSQL().BuscarTIENfromID(almOr.IdTienda);
 
+                tiendaOrigen = a.Nombre;
                 TxtDirPartida = almOr.Direccion;
                 TxtAlmacenOrigen = almOr.Nombre;
 
@@ -272,8 +275,10 @@ namespace MadeInHouse.ViewModels.Almacen
             Usuario u = getUsuariofromID(Orden.Venta.IdUsuario);
             Cliente c = getClientefromID(Orden.Venta.IdCliente);
             Tienda a = new GuiaDeRemisionSQL().BuscarTIENfromID(u.IdTienda);
+            Almacenes alm = new GuiaDeRemisionSQL().BuscarALMDEPfromIdTienda(u.IdTienda);
 
-            TxtAlmacenOrigen = a.Nombre;
+            tiendaOrigen = a.Nombre;
+            TxtAlmacenOrigen = alm.Nombre;
             TxtDirPartida = a.Direccion;
             TxtDirLlegada = c.Direccion;
             TxtTienda = c.RazonSocial;
@@ -476,6 +481,17 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
+        public void Limpiar()
+        {
+            Alm = null;
+            Orden = null;
+            Nota = null;
+            TxtConductor = null;
+            SeleccionadoCamion = null;
+            SeleccionadoTipo = null;
+            
+        }
+
 
         public void GenerarPDF()
         {
@@ -513,13 +529,8 @@ namespace MadeInHouse.ViewModels.Almacen
             content += "Tipo de traslado  " + SeleccionadoTipo + "<br>";
             content += "<br><br>";
             content += "DATOS DE ORIGEN: <br>";
-
-            if (Orden != null)
-                content += "Tienda : " + TxtAlmacenOrigen + "<br>";
-
-            if (Alm != null)
-                content += "Almacen : " + TxtAlmacenOrigen + "<br>";
-
+            content += "Tienda : " + tiendaOrigen + "<br>";
+            content += "Almacen : " + TxtAlmacenOrigen + "<br>";
             content += "Direccion : " + TxtDirPartida + "<br>";
             content += "<br><br>";
             content += "DATOS DESTINO: <br>";
@@ -528,7 +539,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 content += "Cliente : " + TxtTienda + "<br>";
 
             if (Alm != null)
-                content += "Almacen receptor : " + TxtTienda + "<br>";
+                content += "Almacen : " + TxtTienda + "<br>";
 
             content += "Direccion : " + TxtDirLlegada + "<br>";
             content += "<br><br>";

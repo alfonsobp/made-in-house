@@ -90,7 +90,7 @@ namespace MadeInHouse.DataObjects.Almacen
                         //Venta v = new MantenerGuiaDeRemisionViewModel().getVentafromID(g.Orden.Venta.IdVenta);
                         Usuario u = new MantenerGuiaDeRemisionViewModel().getUsuariofromID(g.Orden.Venta.IdUsuario);
                         g.TiendaOrigen = BuscarTIENfromID(u.IdTienda);
-                        g.NombOrigen = g.TiendaOrigen.Nombre;
+                        g.NombOrigen = (BuscarALMDEPfromIdTienda(u.IdTienda)).Nombre;
                         g.Destino = BuscarDIRromIDCli(g.Orden.Venta.IdCliente);
                     }
 
@@ -230,6 +230,52 @@ namespace MadeInHouse.DataObjects.Almacen
             return null;
         }
 
+
+        public Almacenes BuscarALMDEPfromIdTienda(int idTienda)
+        {
+
+            DBConexion db = new DBConexion();
+            SqlDataReader reader;
+
+            db.cmd.CommandText = "SELECT * FROM Almacen WHERE tipo = 1 and idTienda = " + idTienda;
+            db.cmd.CommandType = CommandType.Text;
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    Almacenes almacen = new Almacenes();
+                    almacen.Altura = reader.IsDBNull(reader.GetOrdinal("altura")) ? -1 : int.Parse(reader["altura"].ToString());
+                    almacen.CodAlmacen = reader.IsDBNull(reader.GetOrdinal("codAlmacen")) ? null : reader["codAlmacen"].ToString();
+                    almacen.Estado = reader.IsDBNull(reader.GetOrdinal("estado")) ? -1 : int.Parse(reader["estado"].ToString());
+                    almacen.Direccion = reader["direccion"].ToString();
+                    almacen.FechaReg = reader.IsDBNull(reader.GetOrdinal("fechaReg")) ? DateTime.MinValue : DateTime.Parse(reader["fechaReg"].ToString());
+                    almacen.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : int.Parse(reader["idAlmacen"].ToString());
+                    almacen.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : int.Parse(reader["idTienda"].ToString());
+                    almacen.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    almacen.NroColumnas = reader.IsDBNull(reader.GetOrdinal("nroColumnas")) ? -1 : int.Parse(reader["nroColumnas"].ToString());
+                    almacen.NroFilas = reader.IsDBNull(reader.GetOrdinal("nroFilas")) ? -1 : int.Parse(reader["nroFilas"].ToString());
+                    almacen.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? -1 : int.Parse(reader["tipo"].ToString());
+
+                    return almacen;
+                }
+
+
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+
+            return null;
+        }
 
 
         public string BuscarDIRromIDCli(int id)
