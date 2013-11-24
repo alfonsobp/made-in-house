@@ -122,14 +122,37 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
 
-        public List<NotaIS> BuscarNotas()
+        public List<NotaIS> BuscarNotas(string a = null)
         {
             
         List<NotaIS> lstNotaIs = new List<NotaIS>();
 
+        AlmacenSQL asql = new AlmacenSQL();
+        if (a != null)
+        {
+            if (string.Compare("Entrada", a, true) == 0)
+            {
+                string where = " WHERE tipo=1 ORDER BY fechaReg Desc";
+                db.cmd.CommandText = "SELECT * FROM NotaIS" + where;
 
-            db.cmd.CommandText = "SELECT * FROM NotaIS";
+            }
+            if (string.Compare("Salida", a, true) == 0)
+            {
+                string where = " WHERE tipo=2 ORDER BY fechaReg Desc";
+                db.cmd.CommandText = "SELECT * FROM NotaIS" + where;
 
+            }
+            if (string.Compare("MovimientoInterno", a, true) == 0)
+            {
+                string where = " WHERE tipo=3 ORDER BY fechaReg Desc";
+                db.cmd.CommandText = "SELECT * FROM NotaIS" + where;
+
+            }
+        }
+        else {
+            db.cmd.CommandText = "SELECT * FROM NotaIS ORDER BY fechaReg Desc";
+
+        }
             try
             {
                 if (tipo)  db.conn.Open();
@@ -138,6 +161,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 while (reader.Read())
                 {
                     NotaIS nota = new NotaIS();
+                    
                     nota.FechaReg = reader.IsDBNull(reader.GetOrdinal("fechaReg")) ? DateTime.MinValue : DateTime.Parse(reader["fechaReg"].ToString());
                     nota.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : int.Parse(reader["idAlmacen"].ToString());
                     nota.IdDoc = reader.IsDBNull(reader.GetOrdinal("idDoc")) ? -1 : int.Parse(reader["idDoc"].ToString());
@@ -146,6 +170,11 @@ namespace MadeInHouse.DataObjects.Almacen
                     nota.IdResponsable = reader.IsDBNull(reader.GetOrdinal("responsable")) ? -1 : int.Parse(reader["responsable"].ToString());
                     nota.Observaciones = reader.IsDBNull(reader.GetOrdinal("observaciones")) ? "" : reader["observaciones"].ToString();
                     nota.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? -1 : int.Parse(reader["tipo"].ToString());
+                    nota.IdNotaString = "Nota00000" + nota.IdNota.ToString();
+                    nota.IdAlmacenString = asql.BuscarAlmacen(nota.IdAlmacen, -1, -1).Nombre;
+                    if (nota.Tipo == 1) nota.TipoString = "Entrada";
+                    if (nota.Tipo == 2) nota.TipoString = "Salida";
+                    if (nota.Tipo == 3) nota.TipoString = "Movimiento Interno";
                     nota.LstProducto = BuscarNotas(nota.IdNota);
                     lstNotaIs.Add(nota);
 
@@ -163,7 +192,6 @@ namespace MadeInHouse.DataObjects.Almacen
             }
 
         return lstNotaIs;
-
         }
 
         public List<ProductoCant> BuscarNotas(int p)

@@ -144,11 +144,12 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
             string where = "WHERE 1=1 ";
-            string from = "SELECT p.* , L.nombre linea, S.nombre sublinea FROM Producto p" +
+            string from = "SELECT p.* , L.nombre linea, S.nombre sublinea,U.nombre unidad FROM Producto p" +
                         " JOIN LineaProducto L " +
                         " ON (P.idLinea=L.idLinea) " +
                         " JOIN SubLineaProducto S " +
-                        " ON (P.idSubLinea=S.idSubLinea) ";
+                        " ON (P.idSubLinea=S.idSubLinea) "+
+                        "JOIN UnidadMedida U ON (p.idUnidad=U.idUnidad)";
 
 
 
@@ -170,12 +171,13 @@ namespace MadeInHouse.DataObjects.Almacen
             }
             if (idTienda > 0)
             {
-                from = "SELECT p.*, pt.stockActual stockTienda , pt.StockMin stockMinT, pt.stockMax stockMaxT , pt.precioVenta , L.nombre linea, S.nombre sublinea" +
+                from = "SELECT p.*, pt.stockActual stockTienda , U.nombre unidad, pt.StockMin stockMinT, pt.stockMax stockMaxT , pt.precioVenta , L.nombre linea, S.nombre sublinea" +
                         " FROM Producto p " +
                         " JOIN LineaProducto L " +
                         " ON (P.idLinea=L.idLinea) " +
                         " JOIN SubLineaProducto S " +
                         " ON (P.idSubLinea=S.idSubLinea) " +
+                        " JOIN UnidadMedida U ON (p.idUnidad=U.idUnidad) "+
                         " JOIN ProductoxTienda pt ON ( p.idProducto = pt.idProducto) ";
                 where += " AND  pt.idTienda = @idTienda AND vigente=1 ";
                 db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
@@ -199,32 +201,32 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     p.Abreviatura = reader.IsDBNull(reader.GetOrdinal("abreviatura")) ? null : reader["abreviatura"].ToString();
                     p.Descripcion = reader.IsDBNull(reader.GetOrdinal("Descripcion")) ? null : reader["descripcion"].ToString();
-
+                    p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? 0 : Int32.Parse(reader["stockActual"].ToString());
                     LineaProducto lp = new LineaProducto();
-                    lp.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? -1 : (int)reader["idLinea"];
+                    lp.IdLinea = reader.IsDBNull(reader.GetOrdinal("idLinea")) ? 0 : (int)reader["idLinea"];
                     lp.Nombre = reader.IsDBNull(reader.GetOrdinal("linea")) ? null : reader["linea"].ToString();
                     p.Linea = lp;
 
                     SubLineaProducto slp = new SubLineaProducto();
-                    slp.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? -1 : (int)reader["idSubLinea"];
+                    slp.IdSubLinea = reader.IsDBNull(reader.GetOrdinal("idSubLinea")) ? 0 : (int)reader["idSubLinea"];
                     slp.Nombre = reader.IsDBNull(reader.GetOrdinal("sublinea")) ? null : reader["sublinea"].ToString();
                     p.Sublinea = slp;
 
 
                     p.Percepcion = Int32.Parse(reader["percepcion"].ToString());
-
+                    p.UnidadMedida = reader.IsDBNull(reader.GetOrdinal("unidad")) ? null : reader["unidad"].ToString();
                     if (idTienda > 0)
                     {
-                        p.Precio = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? -1 : float.Parse(reader["precioVenta"].ToString());
-                        p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockTienda")) ? -1 : int.Parse(reader["stockTienda"].ToString());
-                        p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMinT")) ? -1 : int.Parse(reader["stockMinT"].ToString());
-                        p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMaxT")) ? -1 : int.Parse(reader["stockMaxT"].ToString());
+                        p.Precio = reader.IsDBNull(reader.GetOrdinal("precioVenta")) ? 0 : float.Parse(reader["precioVenta"].ToString());
+                        p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockTienda")) ? 0 : int.Parse(reader["stockTienda"].ToString());
+                        p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMinT")) ? 0 : int.Parse(reader["stockMinT"].ToString());
+                        p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMaxT")) ? 0 : int.Parse(reader["stockMaxT"].ToString());
                     }
                     else
                     {
-                        p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? -1 : int.Parse(reader["stockActual"].ToString());
-                        p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMin")) ? -1 : int.Parse(reader["stockMin"].ToString());
-                        p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMax")) ? -1 : int.Parse(reader["stockMax"].ToString());
+                        p.StockActual = reader.IsDBNull(reader.GetOrdinal("stockActual")) ? 0 : int.Parse(reader["stockActual"].ToString());
+                        p.StockMin = reader.IsDBNull(reader.GetOrdinal("stockMin")) ? 0 : int.Parse(reader["stockMin"].ToString());
+                        p.StockMax = reader.IsDBNull(reader.GetOrdinal("stockMax")) ? 0 : int.Parse(reader["stockMax"].ToString());
 
                     }
 
