@@ -94,14 +94,52 @@ namespace MadeInHouse.DataObjects.Reportes
             return lstAlmacenes;
         }
 
-        public static List<stock> BuscarStock(string tienda)
+        public static List<stock> BuscarStockAnaq(int tienda)
         {
             List<stock> lstStock = new List<stock>();
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "select p.idproducto, p.nombre 'producto', t.nombre 'tienda', pt.stockActual,pt.stockmax,pt.stockmin from producto p join productoxtienda pt on (p.idproducto = pt.idproducto) join tienda t on (t.idTienda = pt.idTienda) where t.nombre ='" + tienda + "'";
+            cmd.CommandText = "select p.idproducto, p.nombre 'producto', t.nombre 'tienda', s.cantidad 'stockActual', s.capacidad 'stockMax' from producto p join sector s on (s.idProducto = p.idProducto) join almacen t on (t.idAlmacen = s.idAlmacen) where s.idAlmacen =" + tienda;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    stock e = new stock();
+                    e.IdProducto = Convert.ToInt32(reader["idproducto"]);
+                    e.Producto = reader["producto"].ToString();
+                    e.Tienda = reader["tienda"].ToString();
+                    e.Stockactual = Convert.ToInt32(reader["stockActual"]);
+                    e.Stockmax = Convert.ToInt32(reader["stockMax"]);
+                    e.Stockmin = 0;
+                    lstStock.Add(e);
+
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return lstStock;
+        }
+
+        public static List<stock> BuscarStockTienda(int tienda)
+        {
+            List<stock> lstStock = new List<stock>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "select p.idproducto, p.nombre 'producto', t.nombre 'tienda', pt.stockActual,pt.stockmax,pt.stockmin from producto p join productoxtienda pt on (p.idproducto = pt.idproducto) join tienda t on (t.idTienda = pt.idTienda) where t.idTienda =" + tienda;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
