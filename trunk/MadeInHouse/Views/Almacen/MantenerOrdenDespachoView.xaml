@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Width="398" Height="341">
+             mc:Ignorable="d" Width="387.552" Height="335.03">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" HorizontalAlignment="Left" Width="388" Height="331" VerticalAlignment="Top">
         <StackPanel Margin="0,0,0,-2">
             <Layouts:TitleBarTemplate title="Orden de despacho" />

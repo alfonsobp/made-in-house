@@ -231,7 +231,7 @@ namespace MadeInHouse.ViewModels.Compras
         public Boolean validar(MadeInHouse.Models.Compras.Servicio s)
         {
 
-            if ((s.Descripcion == null) || (s.Nombre == null) || (Prov == null))
+            if ((s.Descripcion == null) || (s.Nombre == null))
             {
                 MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
                 return false;
