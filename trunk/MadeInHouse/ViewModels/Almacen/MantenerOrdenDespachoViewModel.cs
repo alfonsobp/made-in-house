@@ -46,7 +46,7 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 ordenDespachoSeleccionado.Estado = LstEstadoValue;
                 OrdenDespachoSQL odSQL = new OrdenDespachoSQL();
-                k = odSQL.ActualizarOrdenDespacho(ordenDespachoSeleccionado);
+                k = odSQL.EditarOrdenDespacho(ordenDespachoSeleccionado);
                 if (k == 1) MessageBox.Show("Orden de despacho actualizado con éxito");
             }
 

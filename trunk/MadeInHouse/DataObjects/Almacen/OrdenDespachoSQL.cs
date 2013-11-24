@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.ViewModels.Almacen;
 using MadeInHouse.DataObjects.Ventas;
@@ -37,38 +38,15 @@ namespace MadeInHouse.DataObjects.Almacen
 
         //Cambiar de estado a la orden de despacho
 
-        public int ActualizarOrdenDespacho(OrdenDespacho o)
-        {
-            int k = 0;
-
-            db.cmd.CommandText = "UPDATE OrdenDespacho SET estado=2 " +
-                                  "WHERE idOrdenDespacho=@idOrdenDespacho";
-            db.cmd.Parameters.AddWithValue("@idOrdenDespacho", o.IdOrdenDespacho);
-
-            try
-            {
-                if (tipo) db.conn.Open();
-                k = db.cmd.ExecuteNonQuery();
-                if (tipo) db.conn.Close();
-                db.cmd.Parameters.Clear();
-            }
-            catch (SqlException e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
-            return k;
-        }
-
         public int EditarOrdenDespacho(OrdenDespacho o)
         {
             int k = 0;
 
-            db.cmd.CommandText = "UPDATE OrdenDespacho SET @estado=@estado " +
+            db.cmd.CommandText = "UPDATE OrdenDespacho SET estado=@estado, idAlmacen=@idAlmacen " +
                                   "WHERE idOrdenDespacho=@idOrdenDespacho";
             db.cmd.Parameters.AddWithValue("@idOrdenDespacho", o.IdOrdenDespacho);
             db.cmd.Parameters.AddWithValue("@estado", o.Estado);
-            db.cmd.Parameters.AddWithValue("@idAlmacen", o.AlmOrigen.IdAlmacen);
+            if(o.AlmOrigen!=null )db.cmd.Parameters.AddWithValue("@idAlmacen", o.AlmOrigen.IdAlmacen);
 
 
             try
@@ -144,7 +122,9 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.AlmOrigen = BuscarTIENfromID(idTienda).Deposito;
 
                     Trace.WriteLine("Nombre deposito: " + p.AlmOrigen.Nombre);
-                    listaOrdenDespacho.Add(p);
+
+                    if (p.Venta.IdUsuario == Int32.Parse(Thread.CurrentPrincipal.Identity.Name)) ;
+                        listaOrdenDespacho.Add(p);
                 }
                 db.cmd.Parameters.Clear();
                 reader.Close();
