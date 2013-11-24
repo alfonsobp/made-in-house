@@ -289,6 +289,7 @@ namespace MadeInHouse.ViewModels.Almacen
             cod= GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura;
           
             return cod;
+        
         }
 
 
