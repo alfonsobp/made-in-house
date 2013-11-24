@@ -334,6 +334,47 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private void ActualizaCampos(DetalleVenta dv, int tipo, List<DetalleVenta> lst = null)
+        {
+            //tipo = 1 -> aumenta detalle de venta
+            if (tipo == 1)
+            {
+                desc += dv.Descuento;
+                total += (dv.SubTotal - desc);
+                subt = (total * (1 - IGV));
+                igv_total = total * IGV;
+                TxtDescuentoTotal = desc.ToString();
+                TxtTotal = total.ToString();
+                TxtSubTotal = subt.ToString();
+                TxtIGVTotal = igv_total.ToString();
+            }
+            //tipo 2 es para descontar al quitar una linea del detalle
+            if (tipo == 2)
+            {
+                desc -= dv.Descuento;
+                total -= dv.SubTotal - dv.Descuento;
+                igv_total -= total * IGV;
+                subt -= (total * (1 - IGV));
+                TxtDescuentoTotal = desc.ToString();
+                TxtTotal = total.ToString();
+                TxtSubTotal = subt.ToString();
+                TxtIGVTotal = igv_total.ToString();
+                int c = lst.Count();
+                if (c == 0)
+                {
+                    TxtDescuentoTotal = "";
+                    TxtTotal = "";
+                    TxtSubTotal = "";
+                    TxtIGVTotal = "";
+                }
+            }
+        }
+
+        private double CalculaDescuento(int idProd, int cant)
+        {
+            return 0;
+        }
+
         public void AgregarDetalle()
         {
             Evaluador ev = new Evaluador();
@@ -350,17 +391,21 @@ namespace MadeInHouse.ViewModels.Ventas
                         MessageBox.Show("Tiene que poner una cantidad");
                         return;
                     }
-                    item.SubTotal = Math.Round(item.Cantidad * prod.Precio, 2);
-                    item.Descuento += 0;
-                    if (subt > 0) subt += item.Cantidad; else subt = item.SubTotal;
-                    subt = Math.Round(subt, 2);
-                    TxtSubTotal = subt.ToString();
-                    desc = Math.Round(item.Descuento, 2);
+                    item.SubTotal = item.Cantidad * prod.Precio;
+                    item.Descuento += CalculaDescuento(prod.IdProducto, item.Cantidad);
+
+                    desc = item.Descuento;
                     TxtDescuentoTotal = desc.ToString();
-                    igv_total = Math.Round((subt - desc) * IGV, 2);
-                    TxtIGVTotal = igv_total.ToString();
-                    total = Math.Round((subt - desc) * (1 + IGV), 2);
+
+                    total = item.SubTotal - desc;
                     TxtTotal = total.ToString();
+
+                    subt = total * (1 - IGV);
+                    TxtSubTotal = subt.ToString();
+
+                    igv_total = total * IGV;
+                    TxtIGVTotal = igv_total.ToString();
+
                     nuevo = 0;
                 }
                 aux.Add(item);
@@ -374,7 +419,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.CodProducto = prod.CodigoProd;
                 dv.Descripcion = prod.Nombre;
                 dv.Descuento = 0;
-                dv.Precio = Math.Round(prod.Precio, 2);
+                dv.Precio = prod.Precio;
 
                 if (ev.esNumeroEntero(TxtCantidad)) cant = Int32.Parse(TxtCantidad);
                 else
@@ -383,18 +428,11 @@ namespace MadeInHouse.ViewModels.Ventas
                     return;
                 }
 
-                dv.SubTotal = Math.Round(prod.Precio * cant, 2);
+                dv.Descuento = CalculaDescuento(prod.IdProducto, cant);
+                dv.SubTotal = prod.Precio * cant;
                 dv.Cantidad = cant;
                 aux.Add(dv);
-
-                subt += Math.Round(dv.SubTotal, 2);
-                TxtSubTotal = subt.ToString();
-                desc += Math.Round(dv.Descuento, 2);
-                TxtDescuentoTotal = desc.ToString();
-                igv_total = Math.Round((subt - desc) * IGV, 2);
-                TxtIGVTotal = igv_total.ToString();
-                total = Math.Round((subt - desc) * (1 + IGV), 2);
-                TxtTotal = total.ToString();
+                ActualizaCampos(dv, 1);
             }
             LstVenta = aux;
             
@@ -408,6 +446,7 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 LstVenta.Remove(aux);
                 LstVenta = new List<DetalleVenta>(LstVenta);
+                ActualizaCampos(aux, 2, LstVenta);
             }
             else
             {
@@ -438,16 +477,16 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.IdProducto = serv.Producto.IdProducto;
                 dv.IdServicio = serv.IdServicio;
                 dv.Descripcion = dv.Servicio.Descripcion;
-                dv.Precio = Math.Round(serv.Precio, 2);
+                dv.Precio = serv.Precio;
 
                 aux.Add(dv);
 
-                subt += Math.Round(dv.Precio, 2);
-                TxtSubTotal = subt.ToString();
-                igv_total = Math.Round((subt) * IGV, 2);
-                TxtIGVTotal = igv_total.ToString();
-                total = Math.Round((subt) * (1 + IGV), 2);
+                total += dv.Precio;
                 TxtTotal = total.ToString();
+                subt += total / (1 + IGV);
+                TxtSubTotal = subt.ToString();
+                igv_total = (total) * IGV;
+                TxtIGVTotal = igv_total.ToString();
             }
             LstVentaServicios = aux;
             

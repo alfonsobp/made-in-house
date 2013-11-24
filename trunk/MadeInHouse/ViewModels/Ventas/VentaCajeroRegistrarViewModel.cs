@@ -277,10 +277,64 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        public void ExecuteFilterViewDNI(KeyEventArgs keyArgs)
+        {
+            if (keyArgs.Key == Key.Enter)
+            {
+                //buscar al cliente por la tarjeta
+                ClienteSQL csql = new ClienteSQL();
+                cliente = csql.BuscarClienteByDNI(TxtDNI);
+                TxtCliente = csql.BuscarTarjetaByIdCliente(cliente.Id);
+                TxtRazonSocial = cliente.RazonSocial;
+                TxtRuc = cliente.Ruc;
+                TxtDNI = cliente.Dni;
+            }
+        }
+
         public void BuscarServicio()
         {
             MyWindowManager ws = new MyWindowManager();
             ws.ShowWindow(new BuscadorServicioViewModel(this, 2));
+        }
+        private double CalculaDescuento(int idProd, int cantidad)
+        {
+            return 0;
+        }
+
+        private void ActualizaCampos(DetalleVenta dv, int tipo,List<DetalleVenta> lst = null)
+        {
+            //tipo = 1 -> aumenta detalle de venta
+            if (tipo == 1)
+            {
+                desc += dv.Descuento;
+                total += (dv.SubTotal - desc);
+                subt = (total * (1 - IGV));
+                igv_total = total * IGV;
+                TxtDescuentoTotal = desc.ToString();
+                TxtTotal = total.ToString();
+                TxtSubTotal = subt.ToString();
+                TxtIGVTotal = igv_total.ToString();
+            }
+            //tipo 2 es para descontar al quitar una linea del detalle
+            if (tipo == 2)
+            {
+                desc -= dv.Descuento;
+                total -= dv.SubTotal - dv.Descuento;
+                igv_total -= total * IGV;
+                subt -= (total * (1 - IGV));
+                TxtDescuentoTotal = desc.ToString();
+                TxtTotal = total.ToString();
+                TxtSubTotal = subt.ToString();
+                TxtIGVTotal = igv_total.ToString();
+                int c = lst.Count();
+                if (c == 0)
+                {
+                    TxtDescuentoTotal = "";
+                    TxtTotal = "";
+                    TxtSubTotal = "";
+                    TxtIGVTotal = "";
+                }
+            }
         }
 
         public void AgregarDetalle()
@@ -302,16 +356,20 @@ namespace MadeInHouse.ViewModels.Ventas
                         return;
                     }
                     item.SubTotal = item.Cantidad * p.Precio;
-                    item.Descuento += 0;
+                    item.Descuento += CalculaDescuento(p.IdProducto, item.Cantidad);
 
-                    if (subt > 0) subt += item.Cantidad; else subt = item.SubTotal;
-                    TxtSubTotal = subt.ToString();
                     desc = item.Descuento;
                     TxtDescuentoTotal = desc.ToString();
-                    igv_total = (subt - desc) * IGV;
-                    TxtIGVTotal = igv_total.ToString();
-                    total = (subt - desc) * (1 + IGV);
+
+                    total = item.SubTotal - desc;
                     TxtTotal = total.ToString();
+
+                    subt = total * (1 - IGV);
+                    TxtSubTotal = subt.ToString();
+                    
+                    igv_total = total * IGV;
+                    TxtIGVTotal = igv_total.ToString();
+                    
                     nuevo = 0;
                 }
                 aux.Add(item);
@@ -323,7 +381,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.IdProducto = p.IdProducto;
                 dv.CodProducto = p.CodigoProd;
                 dv.Descripcion = p.Nombre;
-                dv.Descuento = 0;
+                
                 dv.Precio = p.Precio;
                 if (ev.esNumeroEntero(TxtCantidad)) cant = Int32.Parse(TxtCantidad);
                 else
@@ -331,18 +389,12 @@ namespace MadeInHouse.ViewModels.Ventas
                     MessageBox.Show("Tiene que poner una cantidad");
                     return;
                 }
+
+                dv.Descuento = CalculaDescuento(p.IdProducto,cant);
                 dv.SubTotal = p.Precio * cant;
                 dv.Cantidad = cant;
                 aux.Add(dv);
-
-                subt += dv.SubTotal;
-                TxtSubTotal = subt.ToString();
-                desc += dv.Descuento;
-                TxtDescuentoTotal = desc.ToString();
-                igv_total = (subt - desc) * IGV;
-                TxtIGVTotal = igv_total.ToString();
-                total = (subt - desc) * (1 + IGV);
-                TxtTotal = total.ToString();
+                ActualizaCampos(dv,1);
             }
             LstVenta = aux;
         }
@@ -355,6 +407,7 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 LstVenta.Remove(aux);
                 LstVenta = new List<DetalleVenta>(LstVenta);
+                ActualizaCampos(aux, 2,LstVenta);
             }
             else
             {
@@ -389,12 +442,13 @@ namespace MadeInHouse.ViewModels.Ventas
 
                 aux.Add(dv);
 
-                subt += dv.Precio;
-                TxtSubTotal = subt.ToString();
-                igv_total = (subt) * IGV;
-                TxtIGVTotal = igv_total.ToString();
-                total = (subt) * (1 + IGV);
+                total += dv.Precio;
                 TxtTotal = total.ToString();
+                subt += total/(1+IGV);
+                TxtSubTotal = subt.ToString();
+                igv_total = (total) * IGV;
+                TxtIGVTotal = igv_total.ToString();
+                
             }
             LstVentaServicios = aux;
 
@@ -429,7 +483,20 @@ namespace MadeInHouse.ViewModels.Ventas
                 if (tipoVenta[cmbTipoVenta] == 0)
                     v.TipoDocPago = "Boleta";
                 else
+                {
                     v.TipoDocPago = "Factura";
+                    //validar que los datos de ruc y razon social
+                    if (!string.IsNullOrEmpty(TxtRuc) && !string.IsNullOrEmpty(TxtRazonSocial))
+                    {
+                        v.Ruc = TxtRuc;
+                        v.RazonSocial = TxtRazonSocial;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falta ingresar Ruc o Razón Social", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
 
                 v.NumDocPago = null;
                 v.TipoVenta = "Tienda";
@@ -578,6 +645,10 @@ namespace MadeInHouse.ViewModels.Ventas
                     }
                     aux.Add(vp);
                     LstPagos = aux;
+                }
+                else
+                {
+                    MessageBox.Show("No ha ingresado productos o servicios", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

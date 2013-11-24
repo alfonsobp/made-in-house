@@ -177,8 +177,8 @@ namespace MadeInHouse.DataObjects.Ventas
         {
             int k = 0;
 
-            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,tipoVenta,fechaReg,tipoDocPago,idUsuario)" +
-                                  "OUTPUT INSERTED.idVenta VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@tipoVenta,@fechaReg,@tipoDocPago,@idUsuario)";
+            db.cmd.CommandText = "INSERT INTO Venta(monto,descuento,IGV,ptosGanados,estado,tipoVenta,fechaReg,tipoDocPago,idUsuario,ruc,razonSocial)" +
+                                  "OUTPUT INSERTED.idVenta VALUES (@monto,@descuento,@IGV,@ptsGanados,@estado,@tipoVenta,@fechaReg,@tipoDocPago,@idUsuario,@ruc,@razonSocial)";
             //db.cmd.Parameters.AddWithValue("@numDocPago", v.NumDocPago);
             db.cmd.Parameters.AddWithValue("@tipoDocPago", v.TipoDocPago);
             db.cmd.Parameters.AddWithValue("@monto", v.Monto);
@@ -189,6 +189,16 @@ namespace MadeInHouse.DataObjects.Ventas
             db.cmd.Parameters.AddWithValue("@estado", v.Estado);
             db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
             db.cmd.Parameters.AddWithValue("@tipoVenta", v.TipoVenta);
+            if (v.TipoVenta.Equals("Boleta"))
+            {
+                db.cmd.Parameters.AddWithValue("@ruc", "");
+                db.cmd.Parameters.AddWithValue("@razonSocial", "");
+            }
+            else
+            {
+                db.cmd.Parameters.AddWithValue("@ruc", v.Ruc);
+                db.cmd.Parameters.AddWithValue("@razonSocial", v.RazonSocial);
+            }
 
             try
             {
@@ -237,13 +247,25 @@ namespace MadeInHouse.DataObjects.Ventas
 
         private int InsertaOrdenDeDespacho(Venta v)
         {
+            int idTienda = new TiendaSQL().obtenerTienda(v.IdUsuario);
+
+            db.cmd.CommandText = "SELECT * FROM Almacen WHERE idTienda=@idTienda AND tipo=@tipo";
+            db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            db.cmd.Parameters.AddWithValue("@tipo", 1);
+            SqlDataReader rs2 = db.cmd.ExecuteReader();
+            rs2.Read();
+            int idAlmacen = Convert.ToInt32(rs2["idAlmacen"].ToString());
+            rs2.Close();
+            db.cmd.Parameters.Clear();
+
             int k = 0;
 
-            db.cmd.CommandText = "INSERT INTO OrdenDespacho(idVenta,fechaDespacho,estado)" +
-                                  " VALUES (@idVenta,@fechaDespacho,@estado)";
+            db.cmd.CommandText = "INSERT INTO OrdenDespacho(idVenta,fechaDespacho,estado,idAlmacen)" +
+                                  " VALUES (@idVenta,@fechaDespacho,@estado,@idAlmacen)";
             db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
             db.cmd.Parameters.AddWithValue("@fechaDespacho", v.FechaDespacho);
             db.cmd.Parameters.AddWithValue("@estado", 1);
+            db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
 
             try
             {

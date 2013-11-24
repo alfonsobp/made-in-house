@@ -116,14 +116,14 @@
                         </TabItem>
                     </TabControl>
                 </GroupBox>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total (Sin dcto):" VerticalAlignment="Top" Width="86" Margin="483,446,0,0"/>
-                <TextBox x:Name="TxtSubTotal" HorizontalAlignment="Left" Height="23" Margin="586,446,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Descuento:" VerticalAlignment="Top" Width="73" Margin="484,474,0,0"/>
-                <TextBox x:Name="TxtDescuentoTotal" HorizontalAlignment="Left" Height="23" Margin="586,474,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="SubTotal:" VerticalAlignment="Top" Width="86" Margin="483,471,0,0"/>
+                <TextBox IsReadOnly="True" x:Name="TxtSubTotal" HorizontalAlignment="Left" Height="23" Margin="586,471,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Descuento:" VerticalAlignment="Top" Width="73" Margin="484,443,0,0"/>
+                <TextBox IsReadOnly="True" x:Name="TxtDescuentoTotal" HorizontalAlignment="Left" Height="23" Margin="586,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="IGV:" VerticalAlignment="Top" Width="86" Margin="483,502,0,0"/>
-                <TextBox x:Name="TxtTotal" HorizontalAlignment="Left" Height="23" Margin="586,530,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox IsReadOnly="True" x:Name="TxtTotal" HorizontalAlignment="Left" Height="23" Margin="586,530,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="483,530,0,0"/>
-                <TextBox x:Name="TxtIGVTotal" HorizontalAlignment="Left" Height="23" Margin="586,502,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                <TextBox IsReadOnly="True" x:Name="TxtIGVTotal" HorizontalAlignment="Left" Height="23" Margin="586,502,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="227,566,0,0"/>
                 
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="227,594,0,0"/>

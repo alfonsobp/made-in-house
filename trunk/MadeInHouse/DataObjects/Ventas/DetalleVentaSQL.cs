@@ -30,10 +30,11 @@ namespace MadeInHouse.DataObjects.Ventas
 
         }
 
-        public Producto Buscar(string idProducto, int idTienda)
+        public Producto Buscar(string codProducto, int idTienda)
         {
             Producto prod = new Producto();
-            db.cmd.CommandText = "select * from Producto where idProducto=" + Convert.ToInt32(idProducto);
+            db.cmd.CommandText = "select * from Producto where codProducto=@codProducto";
+            db.cmd.Parameters.AddWithValue("@codProducto", codProducto);
             try
             {
                 if (tipo) db.conn.Open();
@@ -54,7 +55,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 MessageBox.Show(e.Message);
             }
 
-            db.cmd.CommandText = "select * from ProductoxTienda where idProducto=" + Convert.ToInt32(idProducto) + " AND idTienda=" + idTienda;
+            db.cmd.CommandText = "select * from ProductoxTienda where idProducto=" + prod.IdProducto + " AND idTienda=" + idTienda;
             try
             {
                 if (tipo) db.conn.Open();
@@ -127,7 +128,7 @@ namespace MadeInHouse.DataObjects.Ventas
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
         }
 

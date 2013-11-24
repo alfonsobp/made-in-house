@@ -441,7 +441,7 @@ namespace MadeInHouse.DataObjects.Ventas
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show("La tarjeta ingresa no se encuentra en el sistema");
             }
             return c;
         }
@@ -491,7 +491,7 @@ namespace MadeInHouse.DataObjects.Ventas
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
             return cli;
         }
@@ -558,7 +558,57 @@ namespace MadeInHouse.DataObjects.Ventas
             }
 
             return k;
-        } 
+        }
+
+        public Cliente BuscarClienteByDNI(string dni)
+        {
+            DBConexion db = new DBConexion();
+            Cliente c = new Cliente();
+
+            db.cmd.CommandText = "SELECT idCliente FROM Cliente WHERE DNI=" + dni;
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    c = BuscarClienteByIdCliente(Convert.ToInt32(reader["idCliente"].ToString()));
+                }
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("No hay tarjetas activas para esta persona");
+            }
+            return c;
+        }
+
+        public string BuscarTarjetaByIdCliente(int p)
+        {
+            DBConexion db = new DBConexion();
+            Tarjeta t = new Tarjeta();
+
+            db.cmd.CommandText = "SELECT * FROM Tarjeta WHERE idCliente=" + p;
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    t.CodTarjeta = reader["codTarjeta"].ToString();
+                }
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("No se econtro tarjetas para esta persona");
+            }
+            return t.CodTarjeta;
+        }
     }
 }
         
