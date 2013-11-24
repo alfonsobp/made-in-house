@@ -106,12 +106,11 @@ namespace MadeInHouse.DataObjects.Almacen
                                 " VALUES (@nombre,@direccion,@telefono,@idUbigeo,@estado,@fechaReg)";
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@direccion", p.Direccion);
-           // db.cmd.Parameters.AddWithValue("@admin", p.Administrador);
             db.cmd.Parameters.AddWithValue("@telefono", p.Telefono);
             db.cmd.Parameters.AddWithValue("@idUbigeo", p.IdUbigeo);
             db.cmd.Parameters.AddWithValue("@estado", 1);
             db.cmd.Parameters.AddWithValue("@fechaReg", DateTime.Today);
-            //db.cmd.Parameters.Add("@idTienda", SqlDbType.Int).Direction = ParameterDirection.Output;
+            
 
             int idtienda=-1;
 
@@ -121,7 +120,6 @@ namespace MadeInHouse.DataObjects.Almacen
 
 
                 idtienda= (int) db.cmd.ExecuteScalar();
-               // idtienda = Convert.ToInt32(db.cmd.Parameters["@idTienda"].Value);
                 db.cmd.Parameters.Clear();
                 if (tipo) db.conn.Close();
 

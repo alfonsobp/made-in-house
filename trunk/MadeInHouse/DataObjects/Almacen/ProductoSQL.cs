@@ -33,7 +33,8 @@ namespace MadeInHouse.DataObjects.Almacen
         public void AgregarProducto(Producto p)
         {
             db.cmd.CommandText = "INSERT INTO Producto(codProducto, nombre, descripcion, percepcion,idSubLinea,idLinea,estado,idUnidad,abreviatura,stockMin,stockMax) " +
-            "VALUES (@codProducto,@nombre,@descripcion,@percepcion,@idSubLinea,@idLinea,@estado,@idUnidad,@abreviatura,@stockMin,@stockMax)";
+                "output INSERTED.idProducto " +
+                "VALUES (@codProducto,@nombre,@descripcion,@percepcion,@idSubLinea,@idLinea,@estado,@idUnidad,@abreviatura,@stockMin,@stockMax)";
             db.cmd.Parameters.AddWithValue("@codProducto", p.CodigoProd);
             db.cmd.Parameters.AddWithValue("@nombre", p.Nombre);
             db.cmd.Parameters.AddWithValue("@abreviatura", p.Abreviatura);
@@ -46,23 +47,34 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@stockMin", p.StockMin);
             db.cmd.Parameters.AddWithValue("@stockMax", p.StockMax);
 
+            int idProducto=-1;
+
             try
             {
                 db.conn.Open();
 
 
+                idProducto= (int) db.cmd.ExecuteScalar();
+                db.cmd.Parameters.Clear();
+
+                db.cmd.CommandText = "UPDATE Producto SET codProducto =@codProducto + RIGHT('000000' + cast(idProducto as varchar(2)),6) WHERE idProducto = @idProducto";
+                db.cmd.Parameters.AddWithValue("@codProducto", p.CodigoProd);
+                db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
                 db.cmd.ExecuteNonQuery();
                 db.cmd.Parameters.Clear();
+
                 db.conn.Close();
 
             }
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                
             }
         }
 

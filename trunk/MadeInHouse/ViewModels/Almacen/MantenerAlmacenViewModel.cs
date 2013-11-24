@@ -513,7 +513,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
 
 
-            public int GuardarAlmacen(MadeInHouse.Dictionary.DynamicGrid deposito)
+            public int GuardarAlmacen(MadeInHouse.Dictionary.DynamicGrid deposito) {
                 int exito = 1;
 
                 DBConexion db = new DBConexion();
