@@ -96,12 +96,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private OrdenDespacho ordenDespachoSeleccionado;
 
-
-
         public void SelectedItemChanged(object sender)
         {
             ordenDespachoSeleccionado = ((sender as DataGrid).SelectedItem as OrdenDespacho);
-            Trace.WriteLine("Orden Despacho Seleccionado: " + ordenDespachoSeleccionado.IdOrdenDespacho);
+            if (ordenDespachoSeleccionado != null)
+            {
+                Trace.WriteLine("Orden Despacho Seleccionado: " + ordenDespachoSeleccionado.IdOrdenDespacho);
+            }
         }
 
         public Boolean EstaEnOrden(OrdenDespacho ord)
@@ -121,8 +122,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void EnviarAlmacenCentral()
         {
-            //Actualizamos tipo almacen de la orden seleccionada
-            ordenDespachoSeleccionado.AlmOrigen.IdAlmacen = 2;
+            ordenDespachoSeleccionado.AlmOrigen.IdAlmacen = 2;//ALMACEN CENTRAL: idAlmacen=2
             int k = odSQL.EditarOrdenDespacho(ordenDespachoSeleccionado);
             if (k == 1) MessageBox.Show("Orden de despacho enviada a ALMACEN CENTRAL");
         }
