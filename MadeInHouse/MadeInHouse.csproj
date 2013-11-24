@@ -370,9 +370,6 @@
     <Compile Include="Views\Almacen\BuscarZonaView.xaml.cs">
       <DependentUpon>BuscarZonaView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Almacen\ListaOrdenCompraView.xaml.cs">
-      <DependentUpon>ListaOrdenCompraView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Almacen\MantenerGuiaDeRemisionView.xaml.cs">
       <DependentUpon>MantenerGuiaDeRemisionView.xaml</DependentUpon>
     </Compile>
@@ -724,10 +721,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Almacen\BuscarZonaView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Almacen\ListaOrdenCompraView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -68,7 +68,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                         if (k == 0)
                             MessageBox.Show("Ocurrio un error");
                         else
-                            MessageBox.Show("Usuario modificado \n\nCodigo = " + Thread.CurrentPrincipal.Identity.Name + "\nContraseña = " + u.Contrasenha);
+                            MessageBox.Show("Contraseña modificada con exito !  \n");
                         //Response = "Usuario modificado con éxito";
                     }
                     else

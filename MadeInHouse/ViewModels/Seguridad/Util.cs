@@ -36,18 +36,19 @@ namespace MadeInHouse.ViewModels.Seguridad
         public List<EstadoHabilitado> ListarEstadosOrdenDespacho()
         {
             EstadoHabilitado est0 = new EstadoHabilitado();
-            est0.Estado = 0;
-            est0.Nombre = "Pendiente";
+                est0.Estado = 0;
+                est0.Nombre = "Pendiente";
             EstadoHabilitado est1 = new EstadoHabilitado();
-            est1.Estado = 1;
-            est1.Nombre = "Atendido";
+                est1.Estado = 1;
+                est1.Nombre = "Atendido";
             EstadoHabilitado est2 = new EstadoHabilitado();
-            est2.Estado = 2;
+                 est2.Estado = 2;
             est2.Nombre = "Cancelado";
             List<EstadoHabilitado> lstEstado = new List<EstadoHabilitado>();
-            lstEstado.Add(est0);
-            lstEstado.Add(est1);
-            lstEstado.Add(est2);
+                lstEstado.Add(est0);
+                lstEstado.Add(est1);
+                lstEstado.Add(est2);
+
             return lstEstado;
         }
     }
