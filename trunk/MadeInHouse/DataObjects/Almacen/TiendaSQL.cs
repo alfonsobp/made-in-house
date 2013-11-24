@@ -164,6 +164,8 @@ namespace MadeInHouse.DataObjects.Almacen
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
+           
+
             try
             {
                 conn.Open();
@@ -218,6 +220,40 @@ namespace MadeInHouse.DataObjects.Almacen
                 return -1;
             }
             return 1;
+        }
+
+
+
+        public double obtenerPrecioPorIdProd(int idProd, int idTienda)
+        {
+            SqlDataReader reader;
+
+            db.cmd.CommandText = "SELECT * FROM ProductoxTienda WHERE idProducto = " + idProd.ToString() + " and idTienda = " + idTienda.ToString();
+
+
+            try
+            {
+                db.conn.Open();
+                reader = db.cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    double p = Convert.ToDouble(reader["precioVenta"].ToString());
+                    return p;
+                }
+                else
+                {
+                    db.conn.Close();
+                    return 0;
+                }
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+            }
+
+            return 0;
         }
 
 

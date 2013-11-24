@@ -225,7 +225,11 @@ namespace MadeInHouse.ViewModels.Compras
             d.FechaVencimiento = TxtFechaVen;
             d.SaldoPagado = 0;
 
-            d.Observaciones = TxtObservaciones;
+            if (d.Observaciones != null)
+                d.Observaciones = TxtObservaciones;
+            else
+                d.Observaciones = "NN";
+            
             d.TotalBruto = monto;
             d.CantProductos = cant;
             d.Descuentos = importe;

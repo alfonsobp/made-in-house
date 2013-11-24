@@ -158,8 +158,10 @@ namespace MadeInHouse.DataObjects.Compras
             Cotizacion c = entity as Cotizacion;
             int k = 0;
 
+            //MessageBox.Show("idcot = " + c.IdCotizacion + "fechaIn = " + c.FechaInicio + " ffin = " + c.FechaFin + " fehcaRP = " + c.FechaRespuesta + " obs = " + c.Observacion);
+
             db.cmd.CommandText = "UPDATE Cotizacion " +
-                                 "SET estado= @estado,fechaInicio= @fechaInicio,fechaFin= @fechaFin,fechaResp= @fechaResp,observacion= @observacion " +
+                                 "SET estado= @estado, fechaInicio= @fechaInicio, fechaFin= @fechaFin, fechaResp= @fechaResp, observacion= @observacion " +
                                  "WHERE idCotizacion= @idCotizacion ";
 
             db.cmd.Parameters.AddWithValue("@idCotizacion", c.IdCotizacion);

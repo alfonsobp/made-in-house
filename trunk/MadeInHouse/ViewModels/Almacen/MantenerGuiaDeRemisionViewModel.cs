@@ -10,6 +10,7 @@ using MadeInHouse.Views.Almacen;
 using System.Windows;
 using System.Collections.ObjectModel;
 using MadeInHouse.ViewModels.Ventas;
+using MadeInHouse.ViewModels.Compras;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.Models.Seguridad;
 using MadeInHouse.DataObjects;
@@ -20,7 +21,7 @@ using MadeInHouse.Dictionary;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class MantenerGuiaDeRemisionViewModel:PropertyChangedBase
+    class MantenerGuiaDeRemisionViewModel : PropertyChangedBase
     {
         //Constructores
         public MantenerGuiaDeRemisionViewModel(GuiaRemision g) {
@@ -399,6 +400,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         if (String.IsNullOrEmpty(TxtObservaciones)) TxtObservaciones = "NN";
 
                         k = new GuiaDeRemisionSQL().agregarGuiaDeRemision(g);
+                        indicador = 0;
 
                         if (k == 0)
                             MessageBox.Show("Ocurrio un error");
@@ -413,10 +415,10 @@ namespace MadeInHouse.ViewModels.Almacen
                     else
                     {
                         if (TxtTienda == null)
-                            MessageBox.Show("Ingrese ALMACEN DESTINO del traslado");
+                            MessageBox.Show("Ingrese DATOS faltantes");
                         
                         if (Orden == null)
-                            MessageBox.Show("Ingrese ORDEN del traslado");
+                            MessageBox.Show("Ingrese DATOS faltantes");
                     }
 
                 }
