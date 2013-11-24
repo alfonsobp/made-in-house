@@ -60,6 +60,34 @@ namespace MadeInHouse.DataObjects.Almacen
             return k;
         }
 
+        public int EditarOrdenDespacho(OrdenDespacho o)
+        {
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE OrdenDespacho SET @estado=@estado " +
+                                  "WHERE idOrdenDespacho=@idOrdenDespacho";
+            db.cmd.Parameters.AddWithValue("@idOrdenDespacho", o.IdOrdenDespacho);
+            db.cmd.Parameters.AddWithValue("@estado", o.Estado);
+            db.cmd.Parameters.AddWithValue("@idAlmacen", o.AlmOrigen.IdAlmacen);
+
+
+            try
+            {
+                if (tipo) db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                if (tipo) db.conn.Close();
+                db.cmd.Parameters.Clear();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            return k;
+        }
+
+
+
         public List<OrdenDespacho> BuscarOrdenDespacho(int idOrdenDespacho, int idVenta, int estado)
         {
             List<OrdenDespacho> listaOrdenDespacho = new List<OrdenDespacho>();

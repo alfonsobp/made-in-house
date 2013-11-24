@@ -93,33 +93,12 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private OrdenDespacho ordenDespachoSeleccionado;
 
+
+
         public void SelectedItemChanged(object sender)
         {
             ordenDespachoSeleccionado = ((sender as DataGrid).SelectedItem as OrdenDespacho);
-
-            if (ordenDespachoSeleccionado != null)
-            {
-                ordenDespachoSeleccionado.CodOrden = "OD-" + (1000000 + ordenDespachoSeleccionado.IdOrdenDespacho).ToString();
-                if (m != null)
-                {
-                    if (!(new GuiaDeRemisionSQL().BuscarIDOrden(ordenDespachoSeleccionado.IdOrdenDespacho)))
-                    {
-                        m.Orden = ordenDespachoSeleccionado;
-                        TryClose();
-                    }
-                    else
-                    {
-                        MessageBox.Show("La ORDEN ya esta en una GUIA");
-                    }
-                }
-
-                if (mantenerNotaDeSalidaViewModel != null) {
-                    mantenerNotaDeSalidaViewModel.TxtDoc = ordenDespachoSeleccionado.CodOrden;
-                    mantenerNotaDeSalidaViewModel.TxtDocId = ordenDespachoSeleccionado.IdOrdenDespacho;
-                    mantenerNotaDeSalidaViewModel.SelectedDespacho = ordenDespachoSeleccionado;
-                    this.TryClose();
-                }
-            }
+            Trace.WriteLine("Orden Despacho Seleccionado: " + ordenDespachoSeleccionado.IdOrdenDespacho);
         }
 
         public Boolean EstaEnOrden(OrdenDespacho ord)
@@ -137,7 +116,13 @@ namespace MadeInHouse.ViewModels.Almacen
             return false;
         }
 
-
+        public void EnviarAlmacenCentral()
+        {
+            //Actualizamos tipo almacen de la orden seleccionada
+            ordenDespachoSeleccionado.AlmOrigen.IdAlmacen = 2;
+            int k = odSQL.EditarOrdenDespacho(ordenDespachoSeleccionado);
+            if (k == 1) MessageBox.Show("Orden de despacho enviada a ALMACEN CENTRAL");
+        }
 
         public void BuscarOrdenDespacho()
         {
@@ -175,6 +160,34 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             if (ordenDespachoSeleccionado != null)
                 win.ShowWindow(new Almacen.MantenerOrdenDespachoViewModel(ordenDespachoSeleccionado));
+        }
+
+        public void SeleccionarOrdenDespacho()
+        {
+            if (ordenDespachoSeleccionado != null)
+            {
+                ordenDespachoSeleccionado.CodOrden = "OD-" + (1000000 + ordenDespachoSeleccionado.IdOrdenDespacho).ToString();
+                if (m != null)
+                {
+                    if (!(new GuiaDeRemisionSQL().BuscarIDOrden(ordenDespachoSeleccionado.IdOrdenDespacho)))
+                    {
+                        m.Orden = ordenDespachoSeleccionado;
+                        TryClose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("La ORDEN ya esta en una GUIA");
+                    }
+                }
+
+                if (mantenerNotaDeSalidaViewModel != null)
+                {
+                    mantenerNotaDeSalidaViewModel.TxtDoc = ordenDespachoSeleccionado.CodOrden;
+                    mantenerNotaDeSalidaViewModel.TxtDocId = ordenDespachoSeleccionado.IdOrdenDespacho;
+                    mantenerNotaDeSalidaViewModel.SelectedDespacho = ordenDespachoSeleccionado;
+                    this.TryClose();
+                }
+            }
         }
 
         public void Guardar()

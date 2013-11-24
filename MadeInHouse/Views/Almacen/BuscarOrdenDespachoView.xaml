@@ -20,12 +20,16 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
 
+                    <Button x:Name="SeleccionarOrdenDespacho" ToolTip="Actualizar tabla" Height="30" Width="30">
+                        <Image Source="/MadeInHouse;component/Assets/check.png" />
+                    </Button>
                     <Button x:Name="Limpiar" ToolTip="Limpiar criterios">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                     <Button x:Name="Actualizar" ToolTip="Actualizar tabla" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
+                    
                 </ToolBar>
                 <Grid Margin="10,46,0,10">
                     <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="143" Margin="10,10,10,0">
@@ -54,6 +58,7 @@
                             <Button x:Name="BuscarOrdenDespacho" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="2">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                             </Button>
+                            <Button x:Name="EnviarAlmacenCentral"  Content="Enviar a ALMACÉN CENTRAL" Grid.Column="1" HorizontalAlignment="Left" Margin="18,77,0,0" VerticalAlignment="Top" Width="167" Grid.ColumnSpan="2"/>
                         </Grid>
                     </GroupBox>
                     <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
