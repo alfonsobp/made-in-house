@@ -88,10 +88,9 @@
                         SelectedItem="{Binding TiendaSel, Mode=TwoWay}"
                         Margin="10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" MaxHeight="160">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Width="9*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
-                            <DataGridTextColumn Width="8*" Binding="{Binding Path=Telefono}"  Header="Teléfono"/>
+                            <DataGridTextColumn Width="15*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
                             <DataGridTextColumn Width="20*" Binding="{Binding Path=Direccion}"  Header="Dirección"/>
-                            <DataGridTextColumn Width="13*" Binding="{Binding Path=Administrador}"  Header="Administrador"/>
+                            <DataGridTextColumn Width="8*" Binding="{Binding Path=Telefono}"  Header="Teléfono"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

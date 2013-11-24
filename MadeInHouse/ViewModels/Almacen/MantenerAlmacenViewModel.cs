@@ -340,15 +340,6 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
-        MyWindowManager win = new MyWindowManager();
-            public void AbrirMantenerZona(){
-            Almacen.MantenerZonaViewModel  abrirZonaView = new Almacen.MantenerZonaViewModel();
-            win.ShowWindow(abrirZonaView);       
-        }
-
-
-
-
             public void Distribuir(int tipo, MadeInHouse.Dictionary.DynamicGrid dg)
             {
                 
@@ -523,8 +514,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
             public int GuardarAlmacen(MadeInHouse.Dictionary.DynamicGrid deposito)
-            {
-                
                 int exito = 1;
 
                 DBConexion db = new DBConexion();

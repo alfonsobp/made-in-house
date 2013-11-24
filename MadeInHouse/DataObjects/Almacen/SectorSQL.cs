@@ -29,6 +29,13 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
+        public List<ProductoCant> ObtenerProductoxSector(int idTipoZona)
+        {
+
+           // db.cmd.CommandText = "SELECT B.nombre,B.codProducto,A.* FROM Sector A join Producto B ON (A.idProducto=B.idProducto) " + where;
+            return null;
+        }
+
 
         public List<Sector> ObtenerSectores (int idAlmacen = -1, int idTipoZona = -1)
         {

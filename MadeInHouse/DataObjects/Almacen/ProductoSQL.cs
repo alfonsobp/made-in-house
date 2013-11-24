@@ -379,6 +379,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 while (reader.Read())
                 {
                     pxa = new ProductoxTienda();
+                    pxa.IdProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1: int.Parse(reader["idProducto"].ToString());
                     pxa.CodProducto = reader["codProducto"].ToString();
                     pxa.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : Int32.Parse(reader["idTienda"].ToString());
                     pxa.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
@@ -514,6 +515,123 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return prodAlmacen;
         }
+
+
+        public int ActualizarProductoxAlmacen(DataTable data, SqlTransaction transaction)
+        {
+
+            try
+            {
+
+                if (tipo) db.conn.Open();
+                using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction))
+                {
+
+                    s.DestinationTableName = "TemporalProductos";
+
+                    foreach (var column in data.Columns)
+                    {
+                        s.ColumnMappings.Add(column.ToString(), column.ToString());
+                    }
+
+                    s.WriteToServer(data);
+                    s.Close();
+                }
+
+               
+                db.cmd.CommandText = "MERGE INTO  ProductoxTienda  USING " +
+                                      "TemporalProductos on (TemporalProductos.idProducto=ProductoxTienda.idProducto and TemporalProductos.idTienda=ProductoxTienda.idTienda )" +
+                                       "when matched then update " +
+                                        "set ProductoxTienda.stockMin=TemporalProductos.stockMin ,  ProductoxTienda.stockMax=TemporalProductos.stockMax , ProductoxTienda.precioVenta=TemporalProductos.precioVenta , ProductoxTienda.vigente=TemporalProductos.vigente " +
+                                        " when not matched then " +
+                                        " insert (idProducto,idTienda,stockMin,stockMax,precioVenta,vigente) " +
+                                        " values (TemporalProductos.idProducto,TemporalProductos.idTienda,TemporalProductos.stockMin,TemporalProductos.stockMax,TemporalProductos.precioVenta, TemporalProductos.vigente) ;";
+                db.cmd.ExecuteNonQuery();
+
+                db.cmd.CommandText = "TRUNCATE TABLE TemporalProductos ";
+                db.cmd.ExecuteNonQuery();
+
+                if (tipo) db.conn.Close();
+
+
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+            return 1;
+
+        }
+
+
+        public DataTable CrearProductoxAlmacenDT()
+        {
+            /*Agrego las zonas por almacen*/
+            DataTable dataTable = new DataTable("TemporalProductos");
+
+            // Create Column 1: idProducto
+
+            DataColumn idProductoCol = new DataColumn();
+            idProductoCol.DataType = Type.GetType("System.Int32");
+            idProductoCol.ColumnName = "idProducto";
+
+
+            // Create Column 2: idTienda
+            DataColumn idTiendaCol = new DataColumn();
+            idTiendaCol.DataType = Type.GetType("System.Int32");
+            idTiendaCol.ColumnName = "idTienda";
+
+            // Create Column 3: stockMin
+            DataColumn stockMinCol = new DataColumn();
+            stockMinCol.DataType = Type.GetType("System.Int32");
+            stockMinCol.ColumnName = "stockMin";
+
+            // Create Column 3: stockMax
+            DataColumn stockMaxCol = new DataColumn();
+            stockMaxCol.DataType = Type.GetType("System.Int32");
+            stockMaxCol.ColumnName = "stockMax";
+
+            // Create Column 3: stockMax
+            DataColumn precioVentaCol = new DataColumn();
+            precioVentaCol.DataType = Type.GetType("System.Int32");
+            precioVentaCol.ColumnName = "precioVenta";
+
+            // Create Column 3: stockMax
+            DataColumn vigenteCol = new DataColumn();
+            vigenteCol.DataType = Type.GetType("System.Int32");
+            vigenteCol.ColumnName = "vigente";
+
+            // Add the columns to the ProductSalesData DataTable
+            dataTable.Columns.Add(idProductoCol);
+            dataTable.Columns.Add(idTiendaCol);
+            dataTable.Columns.Add(stockMinCol);
+            dataTable.Columns.Add(stockMaxCol);
+            dataTable.Columns.Add(precioVentaCol);
+            dataTable.Columns.Add(vigenteCol);
+
+            return dataTable;
+        }
+
+        public void AgregarFilasToDT(DataTable data, List<ProductoxTienda> filas)
+        {
+            for (int p = 0; p < filas.Count; p++)
+            {
+                DataRow pxaRow = data.NewRow();
+                pxaRow["idProducto"] = filas[p].IdProducto;
+                pxaRow["idTienda"] = filas[p].IdTienda;
+                pxaRow["stockMin"] = filas[p].StockMin;
+                pxaRow["stockMax"] = filas[p].StockMax;
+                pxaRow["precioVenta"] = filas[p].PrecioVenta;
+                pxaRow["vigente"] = filas[p].Vigente;
+                data.Rows.Add(pxaRow);
+
+            }
+        }
+
+
 
         public int AgregarProductoxAlmacen(ProductoxTienda pxa) 
         {

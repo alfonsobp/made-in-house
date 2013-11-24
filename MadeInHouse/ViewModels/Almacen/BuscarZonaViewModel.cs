@@ -38,42 +38,124 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private int numRows;
+
+        public int NumRows
+        {
+            get { return numRows; }
+            set
+            {
+                numRows = value;
+                NotifyOfPropertyChange(() => NumRows);
+            }
+        }
+
+        private int numColumns;
+
+        public int NumColumns
+        {
+            get { return numColumns; }
+            set
+            {
+                numColumns = value;
+                NotifyOfPropertyChange(() => NumColumns);
+            }
+        }
+
+        private int altura;
+
+        public int Altura
+        {
+            get { return altura; }
+            set
+            {
+                altura = value;
+                NotifyOfPropertyChange(() => Altura);
+            }
+        }
+
+        private List<TipoZona> lstZonasAnq;
+
+        public List<TipoZona> LstZonasAnq
+        {
+            get { return lstZonasAnq; }
+            set
+            {
+                lstZonasAnq = value;
+                NotifyOfPropertyChange(() => LstZonasAnq);
+            }
+        }
+
+        private List<Producto> lstProductos;
+
+        public List<Producto> LstProductos
+        {
+            get { return lstProductos; }
+            set { lstProductos = value; }
+        }
+
+        private List<Tienda> cmbTiendas;
+
+        public List<Tienda> CmbTiendas
+        {
+            get { return cmbTiendas; }
+            set
+            {
+                if (this.cmbTiendas == value)
+                {
+                    return;
+                }
+
+                cmbTiendas = value;
+                NotifyOfPropertyChange(() => CmbTiendas);
+            }
+        }
+
+        private int index;
+
+        public int Index
+        {
+            get { return index; }
+            set
+            {
+                index = value;
+                NotifyOfPropertyChange(() => Index);
+            }
+        }
+
         private int idTienda;
         private int idResponsable;
         private int idAnaquel;
 
         public BuscarZonaViewModel()
         {
+           
+
             CmbZonas = (new TipoZonaSQL()).BuscarZona();
             Usuario u = new Usuario();
             u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             idTienda = u.IdTienda;
             idResponsable = u.IdUsuario;
 
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            Index = this.CmbTiendas.FindIndex(x => x.IdTienda == idTienda);
+
             AlmacenSQL aSQL = new AlmacenSQL();
             Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
             
             idAnaquel = anaquel.IdAlmacen;
 
-         /*   NumColumnAnq = anaquel.NroColumnas;
-            NumRowsAnq = anaquel.NroFilas;
-            AlturaAnq = anaquel.Altura;
+            NumColumns = anaquel.NroColumnas;
+            NumRows = anaquel.NroFilas;
+            Altura = anaquel.Altura;
 
-            NumColumns = deposito.NroColumnas;
-            NumRows = deposito.NroFilas;
-            Altura = deposito.Altura;
-
-            tzSQL = new TipoZonaSQL();
-            LstZonas = tzSQL.ObtenerZonasxAlmacen(idDeposito);
+            
+            TipoZonaSQL tzSQL = new TipoZonaSQL();
             LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(idAnaquel, 2);
-
-            Accion2 = 2;
-            Accion1 = 2;
-
-            LstProductos = new List<ProductoCant>();
-            Atendido = false;*/
-
-
+            ProductoSQL pSQL = new ProductoSQL();
+            LstProductos = new List<Producto>();
+            
 
         }
 

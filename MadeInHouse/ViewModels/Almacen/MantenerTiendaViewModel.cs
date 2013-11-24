@@ -540,7 +540,13 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private int idTienda;
+        private int idAnaquel;
+        private int idDeposito;
+
         #endregion
+
+        
 
         #region Constructores
 
@@ -548,6 +554,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             accion = 2;
             Editar = false;
+            idTienda = t.IdTienda;
 
             /*carga de la informacion general*/
             TxtNombre = t.Nombre;
@@ -569,7 +576,10 @@ namespace MadeInHouse.ViewModels.Almacen
 
             /*Carga del deposito y los anaqueles*/
             Almacenes anaquel = aSQL.BuscarAlmacen(-1, t.IdTienda, 2);
+            idAnaquel = anaquel.IdAlmacen;
+            
             Almacenes deposito =aSQL.BuscarAlmacen(-1,t.IdTienda,1);
+            idDeposito = deposito.IdAlmacen;
 
             Content = "Ver distribución";
             TxtNumColumnsAnq = anaquel.NroColumnas.ToString();
@@ -599,7 +609,7 @@ namespace MadeInHouse.ViewModels.Almacen
             LstProdAgregados = new List<ProductoxTienda>();
             //LstProductos = pxaSQL.BuscarProductoxTienda();
             Content = "Generar distribución";
-
+            accion = 1;
 
         }
         #endregion
@@ -676,6 +686,14 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.Vigente = (ChkVigente == true) ? 1 : 0;
                         LstProductos.Add(pxa);
                         LstProductos = new List<ProductoxTienda>(LstProductos);
+                    }
+                    else if (accion == 2)
+                    {
+                        pxa.Vigente = (ChkVigente == true) ? 1 : 0;
+                        pxa.StockMin = Int32.Parse(TxtStockMin);
+                        pxa.StockMax = Int32.Parse(TxtStockMax);
+                        pxa.PrecioVenta = float.Parse(txtPrecioV);
+
                     }
                     else
                     {
@@ -849,25 +867,29 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         public void AgregarFilasToZonasDT(DataTable data, Dictionary<int, int> dic, int id)
+        
         {
-            for (int i = 0; i < dic.Count; i++)
+
+            if (dic != null)
             {
-
-                if (dic.ElementAt(i).Value > 0)
+                for (int i = 0; i < dic.Count; i++)
                 {
-                    DataRow zonaxAlmacenRow = data.NewRow();
-                    zonaxAlmacenRow["idTipoZona"] = dic.ElementAt(i).Key;
-                    zonaxAlmacenRow["idAlmacen"] = id;
-                    zonaxAlmacenRow["nroBloquesDisp"] = dic.ElementAt(i).Value;
-                    zonaxAlmacenRow["nroBloquesTotal"] = dic.ElementAt(i).Value;
 
-                    // Add the row to the ProductSalesData DataTable
-                    data.Rows.Add(zonaxAlmacenRow);
+                    if (dic.ElementAt(i).Value > 0)
+                    {
+                        DataRow zonaxAlmacenRow = data.NewRow();
+                        zonaxAlmacenRow["idTipoZona"] = dic.ElementAt(i).Key;
+                        zonaxAlmacenRow["idAlmacen"] = id;
+                        zonaxAlmacenRow["nroBloquesDisp"] = dic.ElementAt(i).Value;
+                        zonaxAlmacenRow["nroBloquesTotal"] = dic.ElementAt(i).Value;
+
+                        // Add the row to the ProductSalesData DataTable
+                        data.Rows.Add(zonaxAlmacenRow);
+
+                    }
 
                 }
-
             }
-
         }
 
         public DataTable CrearUbicacionesDT()
@@ -929,7 +951,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         ubicacionxAlmacenRow["CordX"] = filas[m][n][p].CordX;
                         ubicacionxAlmacenRow["CordY"] = filas[m][n][p].CordY;
                         ubicacionxAlmacenRow["CordZ"] = filas[m][n][p].CordZ;
-
+                        Console.WriteLine("" + filas[m][n][p].IdTipoZona + "  IdAlmacen:" + id);
                         // Add the row to the ProductSalesData DataTable
                         data.Rows.Add(ubicacionxAlmacenRow);
 
@@ -950,8 +972,8 @@ namespace MadeInHouse.ViewModels.Almacen
         public int GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
         {
 
-            int exito = 1;
-
+            int exito = 0;
+            
             DBConexion db = new DBConexion();
             db.conn.Open();
             SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
@@ -974,12 +996,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 tienda.FechaReg = DateTime.Today;
                 TiendaSQL gw = new TiendaSQL(db);
                 int idTienda=-1;
-                //accion = 1;
-                //if (accion==1)
+                
+                if (accion == 1)
                     idTienda = gw.AgregarTienda(tienda);
-                //else if(accion==2) 
-               
-               if (idTienda > 0)
+                else if (accion == 2)
+                {
+                    tienda.IdTienda = this.idTienda;
+                    exito = gw.ActualizarTienda(tienda);
+                }
+               if (idTienda > 0 || exito>0)
                 {
 
                     /*Se agregan las dos partes de la tienda*/
@@ -989,7 +1014,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     Almacenes ana = new Almacenes();
                     ana.CodAlmacen = "ANA00" + idTienda.ToString();
                     ana.IdTienda = idTienda;
-                    ana.Nombre = "Anaquel de TIENDA" + idTienda.ToString();
+                    ana.Nombre = "Anaquel de TIENDA" + ((accion == 1) ? idTienda.ToString() : this.idTienda.ToString());
                     ana.Telefono = tienda.Telefono;
                     ana.Direccion = tienda.Direccion;
                     ana.NroColumnas = int.Parse(TxtNumColumnsAnq);
@@ -997,17 +1022,21 @@ namespace MadeInHouse.ViewModels.Almacen
                     ana.Altura = int.Parse(TxtAlturaAnq);
                     ana.Tipo = 2;
                     int idAnaquel=-1;
-                    //if (accion==1)
+                    if (accion == 1)
                         idAnaquel = aSQL.Agregar(ana);
-
-                    if (idAnaquel > 0)
+                    else if (accion == 2)
+                    {
+                        ana.IdAlmacen = this.idAnaquel;
+                        exito = aSQL.Actualizar(ana);
+                    }
+                    if (idAnaquel > 0 || exito>0)
                     {
 
                         /*deposito*/
                         Almacenes dto = new Almacenes();
                         dto.CodAlmacen = "DTO00" + idTienda.ToString();
                         dto.IdTienda = idTienda;
-                        dto.Nombre = "Deposito de TIENDA" + idTienda.ToString();
+                        dto.Nombre = "Deposito de TIENDA" + ((accion == 1) ? idTienda.ToString() : this.idTienda.ToString());
                         dto.Telefono = tienda.Telefono;
                         dto.Direccion = tienda.Direccion;
                         dto.NroColumnas = int.Parse(TxtNumColumnsDto);
@@ -1015,27 +1044,49 @@ namespace MadeInHouse.ViewModels.Almacen
                         dto.Altura = int.Parse(TxtAlturaDto);
                         dto.Tipo = 1;
                         int idDeposito=-1;
-                       //if (accion==1) 
-                           idDeposito = aSQL.Agregar(dto);
-                        if (idDeposito > 0)
+                        if (accion == 1)
+                            idDeposito = aSQL.Agregar(dto);
+                        else if (accion == 2)
                         {
+                            dto.IdAlmacen = this.idDeposito;
+                            exito = aSQL.Actualizar(dto);
+                        }
 
-                            /*Productos de la tienda*/
-                            for (int i = 0; i < LstProductos.Count; i++)
+                        if (idDeposito > 0 || exito>0)
+                        {
+                            if (accion == 1)
                             {
-                                LstProductos[i].IdAlmacen = idDeposito;
-                                LstProductos[i].IdTienda = idTienda;
-                                exito = pxaSQL.AgregarProductoxAlmacen(LstProductos[i]);
-                                if (exito<=0) break;
+                                /*Productos de la tienda*/
+                                for (int i = 0; i < LstProductos.Count; i++)
+                                {
+                                    LstProductos[i].IdAlmacen = idDeposito;
+                                    LstProductos[i].IdTienda = idTienda;
+                                     exito = pxaSQL.AgregarProductoxAlmacen(LstProductos[i]);
+                                     
+
+                                    if (exito <= 0) break;
+                                }
                             }
+                            else if (accion == 2)
+                            {
+                                DataTable productoxAlmacenDT= pxaSQL.CrearProductoxAlmacenDT();
+                                pxaSQL.AgregarFilasToDT(productoxAlmacenDT, LstProductos);
+                                exito = pxaSQL.ActualizarProductoxAlmacen(productoxAlmacenDT,trans);
+                            }
+
+
 
                             if (exito > 0)
                             {
                                DataTable zonaxAlmacenData = CrearZonasDT();
-                               AgregarFilasToZonasDT(zonaxAlmacenData, anaquel.listaZonas, idAnaquel);
-                               AgregarFilasToZonasDT(zonaxAlmacenData, deposito.listaZonas, idDeposito);
+                                AgregarFilasToZonasDT(zonaxAlmacenData, anaquel.listaZonas, (accion==1) ? idAnaquel :this.idAnaquel );
+                                AgregarFilasToZonasDT(zonaxAlmacenData, deposito.listaZonas, (accion==1) ? idDeposito : this.idDeposito );
 
-                                exito=aSQL.AgregarZonasMasivo(zonaxAlmacenData, trans);
+                                if (accion==1)
+                                    exito = aSQL.AgregarZonasMasivo(zonaxAlmacenData, trans);
+                                else if (accion==2)
+                                    exito = aSQL.ActualizarZonasMasivo(zonaxAlmacenData, trans);
+
 
                                 if (exito > 0)
                                 {
@@ -1044,13 +1095,28 @@ namespace MadeInHouse.ViewModels.Almacen
 
                                     /*Ubicaciones del anaquel*/
                                     DataTable ubicacionesData = CrearUbicacionesDT();
-                                    AgregarFilasToUbicacionesDT(ubicacionesData, anaquel.Ubicaciones, idAnaquel);
-                                    AgregarFilasToUbicacionesDT(ubicacionesData, deposito.Ubicaciones, idDeposito);
-                                    exito = ubSQL.AgregarMasivo(ubicacionesData, trans);
-                                
-                                    trans.Commit();
-                                    System.Windows.MessageBox.Show("Se creó la tienda correctamente");
-                                    return 1;
+                                    AgregarFilasToUbicacionesDT(ubicacionesData, anaquel.Ubicaciones, (accion == 1) ? idAnaquel : this.idAnaquel);
+                                    AgregarFilasToUbicacionesDT(ubicacionesData, deposito.Ubicaciones, (accion == 1) ? idDeposito : this.idDeposito);
+
+                                    if (accion == 1)
+                                        exito = ubSQL.AgregarMasivo(ubicacionesData, trans);
+                                    else if (accion == 2)
+                                        exito = ubSQL.ActualizarUbicacionMasivo(ubicacionesData, trans);
+
+
+                                    if (exito > 0)
+                                    {
+                                        trans.Commit();
+                                        if (accion == 1)
+                                            System.Windows.MessageBox.Show("Se creó la tienda correctamente");
+                                        else if (accion == 2)
+                                            System.Windows.MessageBox.Show("Se editó la tienda correctamente");
+                                        return 1;
+                                    }
+                                    else
+                                    {
+                                        System.Windows.MessageBox.Show("ERROR");
+                                    }
                                 }
                                 else
                                 {

@@ -35,7 +35,14 @@
                         <DataGridTextColumn Header="Stock actual" Binding="{Binding Path=PrecioVenta}" Width="1*" />
                     </DataGrid.Columns>
                 </DataGrid>
-                <ComboBox HorizontalAlignment="Left" Margin="87,59,0,0" VerticalAlignment="Top" Width="243"/>
+                <ComboBox 
+                    ItemsSource="{Binding CmbTiendas}"
+                                SelectedIndex="{Binding Index}" 
+                                SelectedValue="{Binding SelectedTienda, Mode=OneWayToSource}"
+                                DisplayMemberPath="Nombre" 
+                                SelectedValuePath="IdTienda"
+                                IsEnabled="False"
+                    HorizontalAlignment="Left" Margin="87,59,0,0" VerticalAlignment="Top" Width="243"/>
                 <ComboBox
                     IsEnabled="{Binding Editar}"
                                 ItemsSource="{Binding CmbZonas}"

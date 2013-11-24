@@ -317,7 +317,7 @@ namespace MadeInHouse.Dictionary {
             int Y = Int16.Parse((sender as Button).Name.Substring((sender as Button).Name.IndexOf("Y") + 1));
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorClick = conv.ConvertFromString("LightSkyBlue") as SolidColorBrush;
-            //Colors.
+            
             if (Accion == 1)
             {
                 (sender as Button).Background = this.Background;
@@ -467,13 +467,18 @@ namespace MadeInHouse.Dictionary {
         {
             if (lstZonas != null) 
                 this.lstZonas = lstZonas;
+
+            listaZonas = new Dictionary<int, int>();
+            
+
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorname = conv.ConvertFromString("Black") as SolidColorBrush;
             for (int i = 0; i < this.lstZonas.Count ; i++)
             {
+                listaZonas.Add(this.lstZonas[i].IdTipoZona, 1);
                 for (int j = 0; j < this.lstZonas[i].LstUbicaciones.Count; j++)
                 {
-                    
+                            
                     SolidColorBrush brush = conv.ConvertFromString(this.lstZonas[i].Color) as SolidColorBrush;
                     (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).Background = brush;
                     (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).ToolTip = this.lstZonas[i].Nombre;
