@@ -167,12 +167,12 @@ namespace MadeInHouse.DataObjects.RRHH
                 reader = cmd.ExecuteReader();
                 if (reader.Read())
                 {
-                    emp.IdEmpleado = reader["idEmpleado"].ToString();
-                    emp.CodEmpleado = reader["codEmpleado"].ToString();
-                    emp.Nombre = reader["nombre"].ToString();
-                    emp.ApePaterno = reader["apePaterno"].ToString();
-                    emp.ApeMaterno = reader["apeMaterno"].ToString();
-                    emp.EmailEmpresa = reader["emailEmpresa"].ToString();
+                    emp.IdEmpleado = reader.IsDBNull(reader.GetOrdinal("idEmpleado")) ?  "0" : reader["idEmpleado"].ToString();
+                    emp.CodEmpleado = reader.IsDBNull(reader.GetOrdinal("codEmpleado")) ? "" : reader["codEmpleado"].ToString();
+                    emp.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? "" : reader["nombre"].ToString();
+                    emp.ApePaterno = reader.IsDBNull(reader.GetOrdinal("apePaterno")) ?  "" : reader["apePaterno"].ToString();
+                    emp.ApeMaterno = reader.IsDBNull(reader.GetOrdinal("apeMaterno")) ? "" : reader["apeMaterno"].ToString();
+                    emp.EmailEmpresa = reader.IsDBNull(reader.GetOrdinal("emailEmpresa"))? "": reader["emailEmpresa"].ToString();
                 }
                 else
                     conn.Close();
@@ -206,34 +206,34 @@ namespace MadeInHouse.DataObjects.RRHH
 
                 idTiendaNull = reader.GetOrdinal("idTienda");
                 reader = cmd.ExecuteReader();
-                e.Dni = reader["DNI"].ToString();
-                e.Sexo = reader["sexo"].ToString();
-                e.ApePaterno = reader["apePaterno"].ToString();
-                e.Nombre = reader["nombre"].ToString();
-                e.ApeMaterno = reader["apeMaterno"].ToString();
+                e.Dni = reader.IsDBNull(reader.GetOrdinal("DNI"))  ? "" : reader["DNI"].ToString();
+                e.Sexo = reader.IsDBNull(reader.GetOrdinal("sexo")) ? "" : reader["sexo"].ToString();
+                e.ApePaterno = reader.IsDBNull(reader.GetOrdinal("apePaterno")) ? "" : reader["apePaterno"].ToString();
+                e.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? "" : reader["nombre"].ToString();
+                e.ApeMaterno = reader.IsDBNull(reader.GetOrdinal("apeMaterno")) ? "" : reader["apeMaterno"].ToString();
 
-                e.Telefono = reader["telefono"].ToString();
-                e.Celular = reader["celular"].ToString();
-                e.EmailEmpleado = reader["email"].ToString();
-                e.EmailEmpresa = reader["emailEmpresa"].ToString();
+                e.Telefono = reader.IsDBNull(reader.GetOrdinal("telefono")) ? "" :  reader["telefono"].ToString();
+                e.Celular = reader.IsDBNull(reader.GetOrdinal("celular")) ? "" : reader["celular"].ToString();
+                e.EmailEmpleado = reader.IsDBNull(reader.GetOrdinal("email")) ? "" : reader["email"].ToString();
+                e.EmailEmpresa = reader.IsDBNull(reader.GetOrdinal("emailEmpresa")) ? "" : reader["emailEmpresa"].ToString();
 
-                e.FechaReg = DateTime.Parse( reader["fechaReg"].ToString());
-                e.FechNacimiento = DateTime.Parse( reader["fechaNac"].ToString());
-                e.Direccion = reader["direccion"].ToString();
-                e.Referecia = reader["referencia"].ToString();
+                e.FechaReg = reader.IsDBNull(reader.GetOrdinal("fechaReg")) ? DateTime.MinValue : DateTime.Parse( reader["fechaReg"].ToString());
+                e.FechNacimiento = reader.IsDBNull(reader.GetOrdinal("fechaNac")) ? DateTime.MinValue : DateTime.Parse( reader["fechaNac"].ToString());
+                e.Direccion = reader.IsDBNull(reader.GetOrdinal("direccion")) ? "" : reader["direccion"].ToString();
+                e.Referecia = reader.IsDBNull(reader.GetOrdinal("referencia")) ? "" : reader["referencia"].ToString();
 
-                e.Estado = Convert.ToInt32(reader["estado"].ToString());
-                e.Tienda = reader["tienda"].ToString();
-                e.IdTienda = reader.IsDBNull(idTiendaNull) ? 0 : reader.GetInt32(idTiendaNull);
+                e.Estado = reader.IsDBNull(reader.GetOrdinal("estado")) ? 0 : Convert.ToInt32(reader["estado"].ToString());
+                e.Tienda = reader.IsDBNull(reader.GetOrdinal("tienda")) ? "" :  reader["tienda"].ToString();
+                e.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? 0 : reader.GetInt32(idTiendaNull);
 
-                e.Area = reader["area"].ToString();
-                e.Puesto = reader["puesto"].ToString();
+                e.Area = reader.IsDBNull(reader.GetOrdinal("area")) ? "" : reader["area"].ToString();
+                e.Puesto = reader.IsDBNull(reader.GetOrdinal("puesto")) ? "" :reader["puesto"].ToString();
 
-                e.Sueldo = Convert.ToDecimal(reader["sueldo"].ToString());
-                e.CuentaBancaria = reader["cuentaBancaria"].ToString();
-                e.Banco = reader["banco"].ToString();
+                e.Sueldo =reader.IsDBNull(reader.GetOrdinal("sueldo")) ?   0 : Convert.ToDecimal(reader["sueldo"].ToString());
+                e.CuentaBancaria = reader.IsDBNull(reader.GetOrdinal("cuentaBancaria")) ? "" : reader["cuentaBancaria"].ToString();
+                e.Banco = reader.IsDBNull(reader.GetOrdinal("banco")) ? "" : reader["banco"].ToString();
 
-                e.IdEmpleado = reader["idEmpleado"].ToString();
+                e.IdEmpleado = reader.IsDBNull(reader.GetOrdinal("idEmpleado")) ? "" : reader["idEmpleado"].ToString();
                 conn.Close();
             }
             catch (Exception ex)
