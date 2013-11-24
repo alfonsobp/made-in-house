@@ -27,11 +27,14 @@ namespace MadeInHouse.ViewModels.Almacen
         MantenerGuiaDeRemisionViewModel m;
         public BuscarOrdenDespachoViewModel(MantenerGuiaDeRemisionViewModel m)
         {
-            this.m = m;
+            // TODO: Complete member initialization
+
             Util util = new Util();
-            EstadoValue = 1;
             LstEstado = util.ListarEstadosOrdenDespacho();
+            EstadoValue = 1;
             ActualizarListaOrdenDespacho();
+            this.m = m;
+
         }
 
         private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;

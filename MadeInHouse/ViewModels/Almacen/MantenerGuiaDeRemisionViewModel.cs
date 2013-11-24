@@ -238,7 +238,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 Almacenes almOr = new GuiaDeRemisionSQL().BuscarALMfromID(Nota.IdAlmacen);
                 Tienda a = new GuiaDeRemisionSQL().BuscarTIENfromID(almOr.IdTienda);
 
-                tiendaOrigen = a.Nombre;
+                if (a == null)
+                    tiendaOrigen = "ALMACEN CENTRAL";
+                else
+                    tiendaOrigen = a.Nombre;
+                
                 TxtDirPartida = almOr.Direccion;
                 TxtAlmacenOrigen = almOr.Nombre;
 
@@ -480,17 +484,6 @@ namespace MadeInHouse.ViewModels.Almacen
             return null;
         }
 
-
-        public void Limpiar()
-        {
-            Alm = null;
-            Orden = null;
-            Nota = null;
-            TxtConductor = null;
-            SeleccionadoCamion = null;
-            SeleccionadoTipo = null;
-            
-        }
 
 
         public void GenerarPDF()
