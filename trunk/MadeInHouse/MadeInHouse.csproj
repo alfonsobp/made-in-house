@@ -545,6 +545,9 @@
     <Compile Include="Views\Reportes\ReporteMov.xaml.cs">
       <DependentUpon>ReporteMov.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\reporteStock1.xaml.cs">
+      <DependentUpon>reporteStock1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\reporteStockView.xaml.cs">
       <DependentUpon>reporteStockView.xaml</DependentUpon>
     </Compile>
@@ -952,6 +955,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reportes\reporteStock1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reportes\reporteStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1171,6 +1178,7 @@
     <EmbeddedResource Include="ReportViewer\Report2.rdlc" />
     <EmbeddedResource Include="ReportViewer\Report3.rdlc" />
     <EmbeddedResource Include="ReportViewer\Report4.rdlc" />
+    <EmbeddedResource Include="ReportViewer\Report5.rdlc" />
     <EmbeddedResource Include="ReportViewer\ReportMov.rdlc" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
