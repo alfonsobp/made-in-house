@@ -29,7 +29,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             this.m = m;
             Util util = new Util();
-            //EstadoValue = 0;
+            EstadoValue = 1;
             LstEstado = util.ListarEstadosOrdenDespacho();
             ActualizarListaOrdenDespacho();
         }
@@ -42,7 +42,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             Util util = new Util();
             LstEstado = util.ListarEstadosOrdenDespacho();
-            //EstadoValue = 0;
+            EstadoValue = 1;
             ActualizarListaOrdenDespacho();
             this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
 
