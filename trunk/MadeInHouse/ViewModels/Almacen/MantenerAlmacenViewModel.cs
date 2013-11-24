@@ -524,8 +524,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
             public int GuardarAlmacen(MadeInHouse.Dictionary.DynamicGrid deposito)
             {
-
-           
                 
                 int exito = 1;
 
@@ -548,9 +546,12 @@ namespace MadeInHouse.ViewModels.Almacen
                 central.IdUbigeo = seleccionado.IdUbigeo;
                 central.FechaReg = DateTime.Today;
                 AlmacenSQL aSQL = new AlmacenSQL(db);
-                central.NroColumnas = int.Parse(TxtNumColumns);
+                if (TxtNumColumns != null) central.NroColumnas = int.Parse(TxtNumColumns);
+                else return -1;
                 central.NroFilas = int.Parse(TxtNumRows);
-                central.Altura = int.Parse(TxtAltura);
+
+                if (TxtAltura != null) central.Altura = int.Parse(TxtAltura);
+                else return -1;
                 central.Tipo = 3;
                 int idAlmacen = aSQL.Agregar(central);
                 central.IdAlmacen = idAlmacen;

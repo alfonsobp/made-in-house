@@ -38,7 +38,7 @@ namespace MadeInHouse.Validacion
             int x;
 
             return int.TryParse(l,out x);
-        
+            
         }
 
         public bool esNumeroReal(string l)

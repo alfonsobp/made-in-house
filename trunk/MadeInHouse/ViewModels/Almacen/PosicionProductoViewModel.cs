@@ -270,7 +270,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             idTienda = u.IdTienda;
             aSQL = new AlmacenSQL();
-            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, idTienda == 0 ? 3 : 1);
+            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda==0 ? -1:idTienda , idTienda == 0 ? 3 : 1);
 
             id = deposito.IdAlmacen;
 

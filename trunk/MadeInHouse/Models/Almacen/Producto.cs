@@ -22,6 +22,7 @@ namespace MadeInHouse.Models.Almacen
             get { return codigoProd; }
             set { codigoProd = value; }
         }
+
         String nombre;
 
         public String Nombre
