@@ -39,6 +39,7 @@ namespace MadeInHouse.ViewModels.Ventas
             CmbTiendas.Insert(0, deft);
             IndexTienda = 0;
             SelectedTienda = UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name)).IdTienda;
+            Actualizar();
         }
 
         #region atributos
@@ -241,7 +242,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
             if (LstProductos!=null){
                 for(int i=0;i<LstProductos.Count;i++){
-                    dpvSQL.ActualizarProducto(LstProductos[i].IdProducto,17,LstProductos[i].PrecioVenta);
+                    dpvSQL.ActualizarProducto(LstProductos[i].IdProducto,SelectedTienda,LstProductos[i].PrecioVenta);
                 }
             }
             //if (productoSel != null)
@@ -275,7 +276,6 @@ namespace MadeInHouse.ViewModels.Ventas
             SelectedSubLinea= 0;
             selectedLinea = 0;
             LstProductos = null;
-
         }
 
         #endregion

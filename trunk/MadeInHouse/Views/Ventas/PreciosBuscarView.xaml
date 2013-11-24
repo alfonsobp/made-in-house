@@ -20,7 +20,7 @@
                 <Button x:Name="GuardarPrecioProducto">
                     <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                 </Button>
-                <Button>
+                <Button x:Name="Limpiar">
                     <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                 </Button>
                 <Button x:Name="Actualizar" Height="30" Width="30">
@@ -29,10 +29,11 @@
             </ToolBar>
             <Grid>
                 <DataGrid x:Name="LstProductos" 
+                          CanUserAddRows="False"
                           cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
                           SelectedItem="{Binding ProductoSel, Mode=TwoWay}" 
                           HorizontalAlignment="Left" Margin="10,117,0,0" 
-                          VerticalAlignment="Top" Height="184" Width="662" 
+                          VerticalAlignment="Top" Height="184" Width="676" 
                           AutoGenerateColumns="False"
                           FocusManager.IsFocusScope="{Binding IsFocusDataGrid}"
                           >
@@ -42,41 +43,30 @@
                         <DataGridTextColumn IsReadOnly="True" Width="20*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
                         <DataGridTextColumn IsReadOnly="True" Width="10*" Binding="{Binding Path=Linea.Nombre}"  Header="Linea"/>
                         <DataGridTextColumn IsReadOnly="True" Width="10*" Binding="{Binding Path=Sublinea.Nombre}"  Header="Sublinea"/>
-                        <DataGridTextColumn Width="10*" Binding="{Binding Path=PrecioVenta}"  Header="Precio"/>
+                        <DataGridTextColumn Width="10*" Binding="{Binding Path=PrecioVenta,UpdateSourceTrigger=PropertyChanged}"  Header="Precio"/>
                         <!--<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="max. descuento"/>-->
                     </DataGrid.Columns>
                 </DataGrid>
                 <GroupBox x:Name="Busqueda" Header="Criterios de búsqueda" Margin="10,10,10,214">
-                        <Grid Margin="0,0,-2,-12">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Content="Código:" VerticalAlignment="Center" />
-                            <Label Content="Línea:" VerticalAlignment="Center" Grid.Column="2" />
-                            <Label Content="Sublínea:" VerticalAlignment="Center" Grid.Column="4" />
-                            <TextBox x:Name="TxtCodigo" TextWrapping="Wrap" Height="25" Width="150" Margin="4" Grid.Column="1" />
+                        <Grid Margin="0,0,-12,-12">
+                            
+                            <Label Content="Código:" VerticalAlignment="Center" Margin="10,15,608,49" Height="28" />
+                            <Label Content="Línea:" VerticalAlignment="Center" Margin="248,10,370,52" Height="30" />
+                            <Label Content="Sublínea:" VerticalAlignment="Center" Margin="248,45,344,15" Height="32" />
+                            <TextBox x:Name="TxtCodigo" TextWrapping="Wrap" Height="25" Margin="88,15,448,52" />
                             <ComboBox
                                 SelectedValue="{Binding Path=SelectedValueLinea, Mode=OneWayToSource}"
                                 ItemsSource="{Binding Path=LstLineasProducto}"
                                 SelectedIndex="{Binding SelectedLinea}"
                                 DisplayMemberPath="Nombre" SelectedValuePath="IdLinea"
-                                Margin="4" Height="25" Width="150" Grid.Column="3" />
+                                Margin="339,12,187,55" Height="25" Width="150" />
                             <ComboBox
                                 SelectedValue="{Binding Path=SelectedValueSubLinea, Mode=OneWayToSource}"
                                 SelectedIndex="{Binding Path=SelectedSubLinea}"
                                 ItemsSource="{Binding Path=LstSubLineasProducto}"
                                 DisplayMemberPath="Nombre" SelectedValuePath="IdSubLinea"
-                                Margin="4" Height="25"  Width="150" Grid.Column="5" />
-                            <Button x:Name="BuscarProductos" Margin="0,10,4,-6" Width="60" Grid.Column="5" Grid.Row="1" HorizontalAlignment="Right">
+                                Margin="339,45,187,22" Height="25"  Width="150" />
+                            <Button x:Name="BuscarProductos" Margin="0,10,62,56" Width="60" HorizontalAlignment="Right">
                                 <Image Source="/Assets/find.png" Height="20" Width="50" />
                             </Button>
                             <Label Content="Almacen:" HorizontalAlignment="Left" Margin="0,10,0,-5" Grid.Row="1" VerticalAlignment="Top" Visibility="Hidden"/>
@@ -90,7 +80,7 @@
                                 Visibility="Hidden"
                                 Grid.Column="1" HorizontalAlignment="Left" Margin="5,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="150"/>
                         </Grid>
-                    </GroupBox>
+                </GroupBox>
 
             </Grid>
         </DockPanel>
