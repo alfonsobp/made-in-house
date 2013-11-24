@@ -207,11 +207,11 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return editar; }
             set { editar = value; NotifyOfPropertyChange(() => Editar); }
         }
-
+        Validacion.Evaluador eval = new Validacion.Evaluador();
         public void GuardarProducto()
         {
             bool isCorrect = true;
-
+            
             if (TxtNombre == null || TxtNombre.Equals(""))
             {
                 TxtNombre = "";
@@ -226,6 +226,19 @@ namespace MadeInHouse.ViewModels.Almacen
                 TxtAbreviaturaChanged = true;
                 isCorrect = false;
                 //MessageBox.Show("Debe ingresar la abreviatura del nombre");
+            }
+
+            if ((TxtStockMax < TxtStockMin) || string.IsNullOrWhiteSpace(TxtStockMin.ToString()) || string.IsNullOrWhiteSpace(TxtStockMax.ToString()) || !(eval.esNumeroEntero(TxtStockMax.ToString())) || !(eval.esNumeroEntero(TxtStockMin.ToString())))
+            { 
+
+                  isCorrect = false;
+
+            }
+
+            if ((TxtStockMin < 0) || TxtStockMax < 0) {
+
+                isCorrect = false;
+
             }
 
             if (isCorrect)

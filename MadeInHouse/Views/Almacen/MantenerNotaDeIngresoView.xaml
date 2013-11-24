@@ -51,7 +51,7 @@
                         <Label Content="Código:" HorizontalAlignment="Left" Margin="17,20,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
                         <Label Content="Motivo:" HorizontalAlignment="Left" Margin="17,55,0,0" VerticalAlignment="Top" Height="26" Width="50"/>
                         <TextBox x:Name="TxtCod" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="120,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
-                        <TextBox x:Name="TxtDoc" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119" IsEnabled="{Binding Estado}"/>
+                        <TextBox x:Name="TxtDoc" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="120,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="119"/>
                         <ComboBox  ItemsSource="{Binding CmbMotivo}"
         						SelectedValue="{Binding SelectedMotivo, Mode=TwoWay}"
         						DisplayMemberPath="NombreMotivo"

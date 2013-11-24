@@ -412,7 +412,9 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 return;
             }
-            if (SelectedProducto.CodigoProd == null || TxtCantPro == null || Convert.ToInt64(TxtCantPro)<=0 )
+            Validacion.Evaluador eval = new Validacion.Evaluador();
+
+            if (SelectedProducto.CodigoProd == null || TxtCantPro == null || !eval.esNumeroEntero(TxtCantPro) || Convert.ToInt64(TxtCantPro) <= 0)
             {
                 System.Windows.MessageBox.Show("Debe completar todos los campos y la cantidad debe ser mayor a 0");
             }
@@ -521,8 +523,8 @@ namespace MadeInHouse.ViewModels.Almacen
             if (SelectedDespacho != null) {
             
                 OrdenDespachoSQL osql = new OrdenDespachoSQL();
-                SelectedDespacho.Estado = 1;
-                osql.ActualizarOrdenDespacho(SelectedDespacho);
+                SelectedDespacho.Estado = 2;
+                osql.EditarOrdenDespacho(selectedDespacho);
 
             }
             MessageBox.Show("Nota de Salida Creada");
