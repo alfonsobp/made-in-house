@@ -275,6 +275,7 @@ namespace MadeInHouse.DataObjects.Seguridad
             return u;
         }
 
+        ///----------------------------------------------------------
         public static List<Usuario> BuscarUsuarioEliminado()
         {
             List<Usuario> lstUsuarioElim = new List<Usuario>();
@@ -284,7 +285,7 @@ namespace MadeInHouse.DataObjects.Seguridad
 
             int posIdTienda;
 
-            cmd.CommandText = "SELECT * FROM Usuario WHERE estado=0";
+            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod,  U.estadoHabilitado estadoHabilitado, U.Estado estado  FROM DESarrollo.Empleado E  JOIN Desarrollo.Usuario u  ON (E.codEmpleado=u.codEmpleado AND u.estado=0)  LEFT JOIN Desarrollo.Tienda T  ON (u.idTienda=T.idTienda) ORDER BY 7 DESC";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -301,6 +302,11 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.IdUsuario = Int32.Parse(reader["idUsuario"].ToString());
                     u.CodEmpleado = reader["codEmpleado"].ToString();
 
+                    u.Nombre = reader["nomEmpleado"].ToString();
+                    u.IdTienda = reader.IsDBNull(posIdTienda) ? 0 : reader.GetInt32(posIdTienda);
+                    u.NomTienda = reader["tienda"].ToString();
+
+
                     u.Rol = RolSQL.buscarRolPorId(Int32.Parse(reader["idRol"].ToString()));
                     u.FechaReg = DateTime.Parse(reader["fechaReg"].ToString());
                     u.FechaMod = DateTime.Parse(reader["fechaMod"].ToString());
@@ -309,6 +315,7 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.IdTienda = reader.IsDBNull(posIdTienda) ? 0 : reader.GetInt32(posIdTienda);
 
                     lstUsuarioElim.Add(u);
+
                 }
 
                 conn.Close();
