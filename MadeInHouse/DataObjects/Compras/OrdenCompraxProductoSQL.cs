@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Threading;
+using MadeInHouse.Models.Seguridad;
+using MadeInHouse.Models.Almacen;
 
 namespace MadeInHouse.DataObjects.Compras
 {
@@ -77,10 +80,21 @@ namespace MadeInHouse.DataObjects.Compras
                     p.Producto = new ProductoSQL().Buscar_por_CodigoProducto(Convert.ToInt32(reader["idProducto"].ToString()));
                     p.Cantidad = reader["cantidad"].ToString();
                     p.IdOrden = id;
-                    p.PrecioUnitario = Convert.ToDouble(reader["PU"].ToString());
+
+                    MadeInHouse.Models.Seguridad.Usuario u = new Usuario();
+                    u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+                    Tienda a = new GuiaDeRemisionSQL().BuscarTIENfromID(u.IdTienda);
+
+                    if (a != null)
+                        p.PrecioUnitario = new TiendaSQL().obtenerPrecioPorIdProd(p.Producto.IdProducto, a.IdTienda);
+                    else
+                        p.PrecioUnitario = 0;
+                    
                     p.Monto = p.PrecioUnitario * (Convert.ToInt32(p.Cantidad));
                     p.CantAtendida = Convert.ToInt32(reader["cantAtendida"].ToString());
-                    lst.Add(p);
+                    
+                    if (p.PrecioUnitario != 0)
+                        lst.Add(p);
 
                     //MessageBox.Show("Detalle por producto: \nProducto = " + p.Producto.Nombre + "\ncant = " + p.Cantidad + 
                                     //"\nPU = " + p.PrecioUnitario);

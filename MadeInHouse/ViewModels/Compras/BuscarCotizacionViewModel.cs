@@ -126,7 +126,10 @@ namespace MadeInHouse.ViewModels.Compras
         public void BuscarCotizacion()
         {
             if (Prov == null)
+            {
+                Prov = new Proveedor();
                 Prov.CodProveedor = "";
+            }
 
             LstCotizacion = eM.Buscar(TxtCodigo, Prov.CodProveedor, SelectedEst, TxtFechaRegistro, TxtFechaHasta) as List<Cotizacion>;
         }

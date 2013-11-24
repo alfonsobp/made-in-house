@@ -43,16 +43,17 @@ namespace MadeInHouse.ViewModels.Compras
             TxtCodigo = "COT-" + (lastId + 1000001).ToString();
         }
 
-        public NuevaCotizacionViewModel(Cotizacion c, BuscarCotizacionViewModel m)
+        public NuevaCotizacionViewModel(Cotizacion cot, BuscarCotizacionViewModel m)
         {
-            Id = c.IdCotizacion;
-            prov = c.Proveedor;
+            c = cot;
+            Prov = c.Proveedor;
             model = m;
-            indicador = 2;
-            TxtCodigo = "COT-" + (c.IdCotizacion + 1000000).ToString();
-            TxtObservacion = c.Observacion;
+            TxtCodigo = "COT-" + (cot.IdCotizacion + 1000000).ToString();
+            TxtObservacion = cot.Observacion;
             EstFecha = true;
+            indicador = 2;
             LstProducto = csql.Buscar(c.IdCotizacion) as List<CotizacionxProducto>;
+
         }
 
 
@@ -61,6 +62,7 @@ namespace MadeInHouse.ViewModels.Compras
         //Atributos de la clase
 
         // 1 = insertar, 2 = editar
+        Cotizacion c = new Cotizacion();
         private int indicador, Id;
         UtilesSQL usql = new UtilesSQL();
         BuscarCotizacionViewModel model;
@@ -150,10 +152,6 @@ namespace MadeInHouse.ViewModels.Compras
         {
             int k, y, i;
 
-            Cotizacion c = new Cotizacion();
-            c.Proveedor = new Proveedor();
-
-
             MessageBox.Show("Codigo Proveedor = " + prov.CodProveedor + "\nRazon Social = " + prov.RazonSocial);
 
             c.Proveedor = prov;
@@ -164,7 +162,6 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (c.Proveedor.CodProveedor != null)
             {
-
                 if (indicador == 1)
                 {
 
@@ -193,18 +190,18 @@ namespace MadeInHouse.ViewModels.Compras
 
                     }
 
-                    if (indicador == 2)
-                    {
-
-                        c.IdCotizacion = Id;
-                        c.CodCotizacion = "COT-" + (1000000 + Id).ToString();
+                }
+                
+                if (indicador == 2)
+                {
+                        
                         k = new CotizacionSQL().Actualizar(c);
 
                         if (LstProducto != null)
                         {
                             for (i = 0; i < LstProducto.Count; i++)
                             {
-                                LstProducto[i].IdCotizacion = Id;
+                                LstProducto[i].IdCotizacion = c.IdCotizacion;
                                 y = csql.InsertarValidado(LstProducto[i]);
                             }
                         }
@@ -221,7 +218,7 @@ namespace MadeInHouse.ViewModels.Compras
                     if (model != null)
                         model.ActualizarCotizacion();
                 }
-            }
+            
 
         }
 
@@ -328,12 +325,7 @@ namespace MadeInHouse.ViewModels.Compras
                     cp.Producto.CodigoProd = ds["Codigo"].ToString();
                     cp.Producto.Nombre = ds["Descripcion"].ToString();
                     cp.Cantidad = Convert.ToInt32(ds["Cantidad"].ToString());
-
-                    string valPrecio = ds["Precio"].ToString();
-
-                    if (valPrecio != "")
-                        cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
-
+                    cp.Precio = Convert.ToDouble(ds["Precio"].ToString());
 
                     lista.Add(cp);
 
