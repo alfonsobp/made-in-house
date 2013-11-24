@@ -71,6 +71,13 @@ namespace MadeInHouse.Models.Ventas
             set { codProducto = value; }
         }
 
+        string unidad;
+
+        public string Unidad
+        {
+            get { return unidad; }
+            set { unidad = value; }
+        }
 
     }
 }

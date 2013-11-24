@@ -190,6 +190,22 @@ namespace MadeInHouse.Models.Ventas
             set { lstDetalleServicio = value; }
         }
 
+        string ruc;
+
+        public string Ruc
+        {
+            get { return ruc; }
+            set { ruc = value; }
+        }
+
+        string razonSocial;
+
+        public string RazonSocial
+        {
+            get { return razonSocial; }
+            set { razonSocial = value; }
+        }
+
 
     }
 }
