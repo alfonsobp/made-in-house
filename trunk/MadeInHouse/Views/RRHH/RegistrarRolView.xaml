@@ -7,7 +7,7 @@
              d:DesignHeight="250" d:DesignWidth="370">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="370" Height="250" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="250" VerticalAlignment="Top">
-            <Layouts:TitleBarTemplate title="Registrar Rol" DockPanel.Dock="Top"/>
+            <Layouts:TitleBarTemplate title="Registrar Perfil" DockPanel.Dock="Top"/>
 
             <Grid Height="230" VerticalAlignment="Top" Width="370">
 
@@ -27,10 +27,10 @@
 
                 </ToolBar>
 
-                <GroupBox Header="Nuevo Rol" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="159" Width="350">
+                <GroupBox Header="Nuevo Perfil" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="159" Width="350">
                     <Grid Margin="0,0,-2,-12">
 
-                        <Label Content="Nombre Rol:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="96"/>
+                        <Label Content="Nombre Perfil:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top" Width="96"/>
                         <TextBox x:Name="TxtNombRol" 
                                  Text="{Binding TxtNombRol,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                  HorizontalAlignment="Left" Height="23" Margin="111,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>

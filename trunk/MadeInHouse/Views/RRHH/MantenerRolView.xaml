@@ -8,7 +8,7 @@
              >
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" HorizontalAlignment="Left" Width="650" Height="420" VerticalAlignment="Top">
         <DockPanel Margin="0,0,-2,0" Height="420" VerticalAlignment="Top">
-            <Layouts:TitleBarTemplate title="Mantenimiento de Rol" DockPanel.Dock="Top"/>
+            <Layouts:TitleBarTemplate title="Mantenimiento de Perfil" DockPanel.Dock="Top"/>
 
             <Grid Height="390" VerticalAlignment="Top" Width="648">
 
@@ -34,10 +34,10 @@
                     </Button>
                 </ToolBar>
                 <DataGrid x:Name="LstRol" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
-                          Margin="10,60,10,0" AutoGenerateColumns="false" Height="317" VerticalAlignment="Top">
+                          CanUserAddRows="false" Margin="10,60,10,0" AutoGenerateColumns="false" Height="317" VerticalAlignment="Top">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="100" Header="Rol"/>
-                        <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="455" Header="Descripción"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Nombre}" Width="100" Header="Perfil"/>
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Descripcion}" Width="455" Header="Descripción"/>
                         <DataGridCheckBoxColumn  Binding="{Binding Path=Estado}" Header="Seleccionar" CanUserReorder="False" />
                     </DataGrid.Columns>
                 </DataGrid>
