@@ -46,26 +46,20 @@
                 <TabControl HorizontalAlignment="Left" Width="923" Margin="10,46,0,-18" Height="387" VerticalAlignment="Top">
                     <TabItem Header="Buscador de Usuarios">
                         <Grid Margin="0,0,-6,-43">
-                            <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="134" Margin="10,10,10,0">
+                            <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="80" Margin="10,9,10,0">
                                 <Grid Margin="0,0,0,-12">
 
-                                    <Label Content="ID Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="20,10,0,0"/>
+                                    <Label Content="ID Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="260,15,0,0"/>
                                     <TextBox Text="{Binding TxtCodUsuarioBuscado}"
-                                        HorizontalAlignment="Left" Height="23" Margin="129,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-                                    <Label Content="Fecha de registro:" HorizontalAlignment="Left" Height="29" Margin="20,46,0,0" VerticalAlignment="Top" Width="109"/>
-                                    <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="348,46,0,0" VerticalAlignment="Top" Width="48"/>
-                                    <DatePicker Text="{Binding FechaIni}"
-                                        HorizontalAlignment="Left" Margin="129,47,0,0" VerticalAlignment="Top" Width="113" Height="24"/>
-                                    <DatePicker Text="{Binding FechFin}"
-                                        HorizontalAlignment="Left" Margin="425,47,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
+                                        HorizontalAlignment="Left" Height="23" Margin="369,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" MaxLength="7"/>
 
-                                    <Button x:Name="BuscarUsuarioPorCodigo" Height="24" VerticalAlignment="Top" Margin="383,82,80,0" Width="50">
+                                    <Button x:Name="BuscarUsuarioPorCodigo" Height="24" VerticalAlignment="Top" Margin="542,12,299,0" Width="50">
                                         <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                                     </Button>
                                 </Grid>
                             </GroupBox>
                             <DataGrid x:Name="LstUsuario" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-                                      CanUserAddRows="false"  Height="198" VerticalAlignment="Top" Margin="10,157,10,0" AutoGenerateColumns="false">
+                                      CanUserAddRows="false"  Height="259" VerticalAlignment="Top" Margin="10,95,10,0" AutoGenerateColumns="false">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=CodEmpleado}" Width="60" Header="Código"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Nombre}" Width="170" Header="Empleado"  />
@@ -81,15 +75,29 @@
                         </Grid>
                     </TabItem>
                     <TabItem Header="Recuperar Usuario">
-
                         <Grid>
+                            <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="80" Margin="10,8,10,0">
+                                <Grid Margin="0,0,0,-12">
+
+                                    <Label Content="ID Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="92" Margin="260,15,0,0"/>
+                                    <TextBox Text="{Binding TxtCodUsuarioElimBuscado}"
+                                        HorizontalAlignment="Left" Height="23" Margin="369,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113" MaxLength="7"/>
+
+                                    <Button x:Name="BuscarUsuarioElimPorCodigo" Height="23" VerticalAlignment="Top" Margin="542,15,289,0">
+                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                                    </Button>
+                                </Grid>
+                            </GroupBox>
+
+
+
                             <DataGrid x:Name="LstUsuarioElim" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" 
-                                      CanUserAddRows="false" Height="321" VerticalAlignment="Top" Margin="10,10,10,0" AutoGenerateColumns="false">
+                                      CanUserAddRows="false" Height="259" VerticalAlignment="Top" Margin="10,96,10,0" AutoGenerateColumns="false">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=CodEmpleado}" Width="60" Header="Código"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Nombre}" Width="170" Header="Empleado"  />
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=NomTienda}" Width="120" Header="Tienda"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Rol"/>
+                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Perfil"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FechaReg}" Width="140" Header="Registro"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FechaMod}" Width="130" Header="Última modificación"/>
                                     <DataGridCheckBoxColumn  Binding="{Binding Path=Estado, UpdateSourceTrigger=PropertyChanged}" Header="Recuperar" CanUserReorder="False" Width="65" />
