@@ -208,6 +208,7 @@ namespace MadeInHouse.ViewModels.Almacen
             set { editar = value; NotifyOfPropertyChange(() => Editar); }
         }
         Validacion.Evaluador eval = new Validacion.Evaluador();
+
         public void GuardarProducto()
         {
             bool isCorrect = true;
@@ -285,7 +286,7 @@ namespace MadeInHouse.ViewModels.Almacen
             UtilesSQL util = new UtilesSQL();
             string cod=null;
             
-            cod= GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura + txtAbreviatura;
+            cod= GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura;
           
             return cod;
         }
