@@ -39,8 +39,9 @@ namespace MadeInHouse.Views.RRHH
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("","","","","","");
             List<string> tiendas = new List<string>();
             tiendas = DataObjects.RRHH.EmpleadoSQL.Tiendas();
+            string almCentral = "ALMACEN CENTRAL";
+            tiendas.Insert(0, almCentral);
             CmbTienda.ItemsSource = tiendas;
-
             Lista.ItemsSource = grid;
             Lista.Items.Refresh();            
         }

@@ -34,6 +34,8 @@ namespace MadeInHouse.Views.RRHH
             TxtCodEmp.Text = TxtCodEmp.Text = "EMP-" + grid.Count;
             List<string> tiendas = new List<string>();
             tiendas = DataObjects.RRHH.EmpleadoSQL.Tiendas();
+            string almCentral = "ALMACEN CENTRAL";
+            tiendas.Insert(0,almCentral);
             CmbTienda.ItemsSource = tiendas;
             
             
@@ -45,6 +47,7 @@ namespace MadeInHouse.Views.RRHH
 
             Empleado emp;
             emp = new Empleado();
+
             emp.CodEmpleado = TxtCodEmp.Text;
             emp.Dni = TxtDni.Text;
             emp.Nombre = TxtNomb.Text;
@@ -62,7 +65,16 @@ namespace MadeInHouse.Views.RRHH
             emp.FechaReg = DateTime.Today;
             emp.Puesto = CmbPuesto.Text;
             emp.Tienda = CmbTienda.Text;    //esto es el nombre de la Tienda seleccionada
-            emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
+            //emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
+            if (String.Compare("ALMACEN CENTRAL", emp.Tienda) == 0) { 
+                emp.IdTienda=0;
+            }
+            else{
+                emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
+            }
+
+            MessageBox.Show("IDTIENDA: "+emp.IdTienda);
+
             emp.Area = CmbArea.Text;
             emp.EmailEmpresa = TxtEmailEmpresa.Text;
             if (TxtSalario.Text != "") emp.Sueldo = decimal.Parse(TxtSalario.Text, NumberStyles.AllowThousands

@@ -82,15 +82,15 @@
                             <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="48,50,0,0" VerticalAlignment="Top" Width="105"/>
                             <Label Content="Puesto:" HorizontalAlignment="Left" Margin="48,90,0,0" VerticalAlignment="Top" Width="60"/>
 
-                            <ComboBox Name="CmbTienda" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="120">
+                            <ComboBox Name="CmbTienda" HorizontalAlignment="Left" Margin="189,10,0,0" VerticalAlignment="Top" Width="136">
                                 
                             </ComboBox>
-                            <ComboBox Name="CmbArea" HorizontalAlignment="Left" Margin="189,50,0,0" VerticalAlignment="Top" Width="120">
+                            <ComboBox Name="CmbArea" HorizontalAlignment="Left" Margin="189,50,0,0" VerticalAlignment="Top" Width="136">
                                 <ComboBoxItem Content="Almacén" HorizontalAlignment="Left" Width="118"/>
                                 <ComboBoxItem Content="Compras" HorizontalAlignment="Left" Width="118"/>
                                 <ComboBoxItem Content="Ventas" HorizontalAlignment="Left" Width="118"/>
                             </ComboBox>
-                            <ComboBox Name="CmbPuesto" HorizontalAlignment="Left" Margin="189,90,0,0" VerticalAlignment="Top" Width="120">
+                            <ComboBox Name="CmbPuesto" HorizontalAlignment="Left" Margin="189,90,0,0" VerticalAlignment="Top" Width="136">
                                 <ComboBoxItem Content="Jefe de Almacén" HorizontalAlignment="Left" Width="118"/>
                                 <ComboBoxItem Content="Jefe de Compras" HorizontalAlignment="Left" Width="118"/>
                                 <ComboBoxItem Content="Jefe de Ventas" HorizontalAlignment="Left" Width="118"/>

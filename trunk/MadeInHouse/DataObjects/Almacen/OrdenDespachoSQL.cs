@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Seguridad;
 using MadeInHouse.ViewModels.Almacen;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.DataObjects.Seguridad;
@@ -91,20 +92,39 @@ namespace MadeInHouse.DataObjects.Almacen
                 db.cmd.Parameters.AddWithValue("@idVenta", idVenta);
             }
 
+
+            Usuario u = UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            
+            // PARA USUARIO EN ALMACEN
+
+
+            if (u.IdTienda != 0)
+            {
+                AlmacenSQL aSQL = new AlmacenSQL();
+                int idTi = u.IdTienda;
+                Almacenes alm = aSQL.BuscarAlmacen(-1, idTi, 1);
+
+                if (alm != null)
+                {
+                    Trace.WriteLine("IDALMACEN: " + alm.IdAlmacen);
+                    Trace.WriteLine("IDTIENDA: " + idTi);
+
+                    where += " AND idAlmacen = @idAlmacen ";
+                    db.cmd.Parameters.AddWithValue("@idAlmacen", alm.IdAlmacen);
+                }
+            }
+
+
             db.cmd.CommandText = select + from + where;
 
-            Trace.WriteLine("CmdText: " + db.cmd.CommandText);
-            Trace.WriteLine("OD0 Lectura");
             try
             {
-                Trace.WriteLine("OD1 Lectura");
                 db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
 
-                Trace.WriteLine("OD1.1 Lectura");
                 while (reader.Read())
                 {
-                    Trace.WriteLine("OD2 Lectura");
+
                     OrdenDespacho p = new OrdenDespacho();
 
                     p.IdOrdenDespacho = Int32.Parse(reader["idOrdenDespacho"].ToString());
@@ -115,15 +135,12 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.Estado = Int32.Parse(reader["estado"].ToString());
                     p.FechaDespacho = DateTime.Parse(reader["fechaDespacho"].ToString());
 
-                    int idTienda = UsuarioSQL.buscarUsuarioPorIdUsuario(p.Venta.IdUsuario).IdTienda;
+                    int idTienda = u.IdTienda;
 
-                    Trace.WriteLine("IdTienda: "+idTienda);
-                    //GuiaDeRemisionSQL g = new GuiaDeRemisionSQL();
+                    //Trace.WriteLine("IdTienda: "+idTienda);
                     p.AlmOrigen = BuscarTIENfromID(idTienda).Deposito;
 
-                    Trace.WriteLine("Nombre deposito: " + p.AlmOrigen.Nombre);
-
-                    if (p.Venta.IdUsuario == Int32.Parse(Thread.CurrentPrincipal.Identity.Name)) ;
+                    if (p.Venta.IdUsuario == Int32.Parse(Thread.CurrentPrincipal.Identity.Name))
                         listaOrdenDespacho.Add(p);
                 }
                 db.cmd.Parameters.Clear();
@@ -141,6 +158,8 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return listaOrdenDespacho;
         }
+
+
 
         public Tienda BuscarTIENfromID(int id)
         {
