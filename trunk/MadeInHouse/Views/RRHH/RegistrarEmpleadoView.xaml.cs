@@ -28,7 +28,7 @@ namespace MadeInHouse.Views.RRHH
         public RegistrarEmpleadoView()
         {
             InitializeComponent();
-
+            TxtFechNac.Text = DateTime.Today.Day.ToString() + "/" + DateTime.Today.Month.ToString() + "/" + DateTime.Today.Year.ToString();
             grid = new List<Empleado>();
             grid = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleado("", "", "", "", "", "");
             TxtCodEmp.Text = TxtCodEmp.Text = "EMP-" + grid.Count;
@@ -50,7 +50,7 @@ namespace MadeInHouse.Views.RRHH
             emp.Nombre = TxtNomb.Text;
             emp.ApePaterno = TxtApePat.Text;
             emp.ApeMaterno = TxtApeMat.Text;
-            emp.FechNacimiento = DateTime.Parse(TxtFechNac.Text);
+            if (TxtFechNac.Text != "") emp.FechNacimiento = DateTime.Parse(TxtFechNac.Text);
             emp.Sexo = "M";
             if (RdbFem.IsChecked == true) emp.Sexo = "F";
             emp.Direccion = TxtDir.Text;
