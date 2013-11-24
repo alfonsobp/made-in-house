@@ -4,11 +4,11 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="543.667" Width="435">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
+             mc:Ignorable="d" Height="543.667" Width="590">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" HorizontalAlignment="Left" Width="590">
+        <StackPanel Margin="0,0,8,0">
             <Layouts:TitleBarTemplate title="Buscar notas de ingreso y salida" />
-            <Grid HorizontalAlignment="Left" Width="435" Height="528" Margin="0,0,-4,0">
+            <Grid Height="528" Margin="0,0,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="38*"/>
                     <RowDefinition Height="158*"/>
@@ -40,28 +40,25 @@
                         <Image Source="/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
-                <GroupBox Header="Criterios de búsqueda" Margin="20,10,21,0" Grid.Row="1"  Height="142" VerticalAlignment="Top" HorizontalAlignment="Center" Width="394">
+                <GroupBox Header="Criterios de búsqueda" Margin="46,10,25,0" Grid.Row="1"  Height="67" VerticalAlignment="Top" HorizontalAlignment="Center" Width="497">
 
-                    <Grid Height="126" VerticalAlignment="Top" HorizontalAlignment="Left" Width="384" Margin="0,0,-2,-6">
-                        <Label Content="Código:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="71" Margin="21,10,0,0" />
-                        <Label Content="Tipo:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="58" Margin="21,80,0,0"/>
-                        <Label Content="Fecha:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="61"  Margin="21,45,0,0"/>
-                        <TextBox Height="23" Margin="77,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
-                        <DatePicker Margin="77,46,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
-                        <ComboBox Margin="77,80,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"/>
-                        <Button x:Name="Buscar" Margin="274,10,0,0" HorizontalAlignment="Left" Width="76" Height="23" VerticalAlignment="Top">
+                    <Grid Height="48" VerticalAlignment="Top" HorizontalAlignment="Left" Width="384" Margin="0,0,-2,0">
+                        <Label Content="Tipo:" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="58" Margin="20,11,0,0"/>
+                        <ComboBox x:Name="CmbBox" Margin="76,11,0,0" Height="27" VerticalAlignment="Top" HorizontalAlignment="Left" Width="177"
+                                  SelectedValue="{Binding CmbBoxSelected}"/>
+                        <Button x:Name="Buscar" Margin="274,15,0,0" HorizontalAlignment="Left" Width="76" Height="23" VerticalAlignment="Top">
                             <Image Source="/Assets/find.png" />
                         </Button>
                     </Grid>
                 </GroupBox>
-                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="20,2,0,0" Grid.Row="2" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="394" 
+                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="56,82,0,0" Grid.Row="1" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="487" 
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action SelectedItemChanged]"
-                          SelectedItem="{Binding NotaSel, Mode=TwoWay}" Height="197" VerticalAlignment="Top">
+                          SelectedItem="{Binding NotaSel, Mode=TwoWay}" Height="264" VerticalAlignment="Top" Grid.RowSpan="2">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="idNota" Binding="{Binding Path=IdNota}" Width="120"/>
+                        <DataGridTextColumn Header="idNota" Binding="{Binding Path=IdNotaString}" Width="120"/>
                         <DataGridTextColumn Header="Fecha" Binding="{Binding Path=FechaReg}" Width="100"/>
-                        <DataGridTextColumn Header="Tipo" Binding="{Binding Path=Tipo}" Width="100"/>
-                        <DataGridTextColumn Header="Almacen" Binding="{Binding Path=IdAlmacen}" Width="200"/>
+                        <DataGridTextColumn Header="Tipo" Binding="{Binding Path=TipoString}" Width="100"/>
+                        <DataGridTextColumn Header="Almacen" Binding="{Binding Path=IdAlmacenString}" Width="200"/>
                     </DataGrid.Columns>
 
                 </DataGrid>

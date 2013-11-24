@@ -335,7 +335,7 @@ namespace MadeInHouse.ViewModels.Almacen
         LstProductos = pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, SelectedTienda);   
 		   if (LstProductos ==null)
                  System.Windows.Forms.MessageBox.Show("No se encontro ningún producto");
-             }
+        }
              
    
 

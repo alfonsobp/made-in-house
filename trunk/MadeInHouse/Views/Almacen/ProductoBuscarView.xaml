@@ -94,9 +94,11 @@
                         Margin="10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" MaxHeight="160">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="10*" Binding="{Binding Path=CodigoProd}"  Header="Código"/>
-                            <DataGridTextColumn Width="20*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
+                            <DataGridTextColumn Width="15*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
                             <DataGridTextColumn Width="10*" Binding="{Binding Path=Linea.Nombre}"  Header="Linea"/>
                             <DataGridTextColumn Width="10*" Binding="{Binding Path=Sublinea.Nombre}"  Header="Sublinea"/>
+                            <DataGridTextColumn Width="10*" Binding="{Binding Path=UnidadMedida}"  Header="Unidad Medidad"/>
+                            <DataGridTextColumn Width="10*" Binding="{Binding Path=StockActual}"  Header="Stock"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>

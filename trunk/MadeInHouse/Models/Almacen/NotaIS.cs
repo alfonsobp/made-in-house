@@ -89,6 +89,30 @@ namespace MadeInHouse.Models.Almacen
                 get { return alm; }
                 set { alm = value; }
             }
+            private string idNotaString;
+
+            public string IdNotaString
+            {
+                get { return idNotaString; }
+                set { idNotaString = value; }
+            }
+
+            private string tipoString;
+
+            public string TipoString
+            {
+                get { return tipoString; }
+                set { tipoString = value; }
+            }
+
+            private string idAlmacenString;
+
+            public string IdAlmacenString
+            {
+                get { return idAlmacenString; }
+                set { idAlmacenString = value; }
+            }
+
         
         }
 }

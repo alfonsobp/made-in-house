@@ -17,6 +17,10 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public BuscarNotasViewModel()
         {
+            cmbBox.Add("Entrada");
+            cmbBox.Add("Salida");
+            cmbBox.Add("MovimientoInterno");
+
         }
 
         MantenerGuiaDeRemisionViewModel g;
@@ -37,6 +41,24 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             get { return lstNotaIs; }
             set { lstNotaIs = value; NotifyOfPropertyChange("LstNotaIs"); }
+        }
+        private List<String> cmbBox= new List<string>();
+
+        public List<String> CmbBox
+        {
+            get { return cmbBox; }
+            set { cmbBox = value;
+            NotifyOfPropertyChange("CmbBox");
+            }
+        }
+        private string cmbBoxSelected = null;
+
+        public string CmbBoxSelected
+        {
+            get { return cmbBoxSelected; }
+            set { cmbBoxSelected = value;
+            NotifyOfPropertyChange("CmbBoxSelected");
+            }
         }
 
         public void AbrirMantenerNotaDeIngreso()
@@ -64,12 +86,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 }
             }
-
         }
 
         public void Buscar()
         {
-            LstNotaIs = new NotaISSQL().BuscarNotas();
+            string a = cmbBoxSelected;
+
+            LstNotaIs = new NotaISSQL().BuscarNotas(a);
         }
 
         public Boolean EstaEnGuia(NotaIS nota)
@@ -86,6 +109,5 @@ namespace MadeInHouse.ViewModels.Almacen
 
             return false;
         }
-
     }
 }
