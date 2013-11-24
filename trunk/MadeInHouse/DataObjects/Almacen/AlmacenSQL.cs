@@ -66,44 +66,36 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public int ActualizarZonasMasivo(DataTable data, SqlTransaction transaction )
         {
-            int n = 0;
-            string select="";
-            try
+           try
             {
-                
+
                 if (tipo) db.conn.Open();
                 using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction))
                 {
 
-                    s.DestinationTableName = "Temporal";
+                    s.DestinationTableName = "TemporalZonas";
 
                     foreach (var column in data.Columns)
                     {
-                        s.ColumnMappings.Add(column.ToString(), "column" + n.ToString());
-                        n++;
+                        s.ColumnMappings.Add(column.ToString(), column.ToString());
                     }
 
                     s.WriteToServer(data);
                     s.Close();
                 }
 
-                for(int i=0;i<n-1;i++) {
-                    select+="column"+i.ToString()+",";
-                }
-                select +="column"+(n-1).ToString();
-
-
-                db.cmd.CommandText = "INSERT INTO ZonaxAlmacen (idTipoZona,idAlmacen,nroBloquesDisp,nroBloquesTotal) " +
-                                    "SELECT " + select + " FROM Temporal T LEFT JOIN ZonaxAlmacen ZA " +
-                                    " ON (T.column1=ZA.idAlmacen and T.column2=ZA.idTipoZona " +
-                                    " WHERE ZA.idAlmacen is null and ZA.idTipoZona is null ";
+               
+                db.cmd.CommandText = "MERGE INTO  ZonaxAlmacen  USING " +
+                                      "TemporalZonas on (TemporalZonas.idTipoZona=ZonaxAlmacen.idTipoZona and TemporalZonas.idAlmacen=ZonaxAlmacen.idAlmacen )" +
+                                       "when matched then update " +
+                                        "set ZonaxAlmacen.nroBloquesDisp=TemporalZonas.nroBloquesDisp , ZonaxAlmacen.nroBloquesTotal=TemporalZonas.nroBloquesTotal " +
+                                        " when not matched then " +
+                                        " insert (idTipoZona,idAlmacen,nroBloquesDisp,nroBloquesTotal) " +
+                                        " values (TemporalZonas.idTipoZona , TemporalZonas.idAlmacen ,TemporalZonas.nroBloquesDisp , TemporalZonas.nroBloquesTotal) ;";
                 db.cmd.ExecuteNonQuery();
 
-                db.cmd.CommandText = "TRUNCATE TABLE Temporal";
+                db.cmd.CommandText = "TRUNCATE TABLE TemporalZonas ";
                 db.cmd.ExecuteNonQuery();
-
-
-
 
                 if (tipo) db.conn.Close();
 
@@ -116,13 +108,9 @@ namespace MadeInHouse.DataObjects.Almacen
                 return -1;
             }
 
-
-
-
-
             return 1;
+      }
 
-        }
 
 
         public int AgregarZonasMasivo(DataTable data,SqlTransaction transaction)
@@ -352,8 +340,14 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public int Actualizar(Almacenes alm)
         {
-            db.cmd.CommandText = "UPDATE Almacen SET codAlmacen=@codAlmacen WHERE idAlmacen=@idAlmacen";
-            db.cmd.Parameters.AddWithValue("@codAlmacen", alm.CodAlmacen);
+            db.cmd.CommandText = "UPDATE Almacen SET nroFilas=@nroFilas , nroColumnas=@nroColumnas , altura=@altura , " +
+                                 " direccion=@direccion , telefono=@telefono WHERE idAlmacen=@idAlmacen";
+            
+            db.cmd.Parameters.AddWithValue("@nroFilas", alm.NroFilas);
+            db.cmd.Parameters.AddWithValue("@nroColumnas", alm.NroColumnas);
+            db.cmd.Parameters.AddWithValue("@altura", alm.Altura);
+            db.cmd.Parameters.AddWithValue("@direccion", alm.Direccion);
+            db.cmd.Parameters.AddWithValue("@telefono", alm.Telefono);
             db.cmd.Parameters.AddWithValue("@idAlmacen", alm.IdAlmacen);
 
             try

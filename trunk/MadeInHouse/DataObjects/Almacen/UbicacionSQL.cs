@@ -190,6 +190,56 @@ namespace MadeInHouse.DataObjects.Almacen
             return lstUbicaciones;
         }
 
+
+        public int ActualizarUbicacionMasivo(DataTable data , SqlTransaction transaction)
+        {
+            try
+            {
+
+                if (tipo) db.conn.Open();
+                using (SqlBulkCopy s = new SqlBulkCopy(db.conn, SqlBulkCopyOptions.Default, transaction))
+                {
+
+                    s.DestinationTableName = "TemporalUbicacion";
+
+                    foreach (var column in data.Columns)
+                    {
+                        s.ColumnMappings.Add(column.ToString(), column.ToString());
+                    }
+
+                    s.WriteToServer(data);
+                    s.Close();
+                }
+
+
+                db.cmd.CommandText = "MERGE INTO  Ubicacion  USING " +
+                                      "TemporalUbicacion on (TemporalUbicacion.idUbicacion=Ubicacion.idUbicacion)" +
+                                       "when matched then update " +
+                                        "set Ubicacion.idTipoZona=TemporalUbicacion.idTipoZona " +
+                                        " when not matched then " +
+                                        " insert (idTipoZona,idAlmacen,cordX,cordY,cordZ) " +
+                                        " values (TemporalUbicacion.idTipoZona,TemporalUbicacion.idAlmacen , TemporalUbicacion.cordX,TemporalUbicacion.cordY, TemporalUbicacion.cordZ ) ;";
+                db.cmd.ExecuteNonQuery();
+
+                db.cmd.CommandText = "TRUNCATE TABLE TemporalUbicacion ";
+                db.cmd.ExecuteNonQuery();
+
+                if (tipo) db.conn.Close();
+
+
+
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+
+            return 1;
+
+        }
+
+
         public int ActualizarUbicacionMasivo()
         {
             try
@@ -202,9 +252,6 @@ namespace MadeInHouse.DataObjects.Almacen
                                        "when matched then update " +
                                         "set Ubicacion.idProducto=TemporalUbicacion.idProducto , Ubicacion.cantidad = TemporalUbicacion.cantidad , Ubicacion.volOcupado=TemporalUbicacion.volOcupado , Ubicacion.idSector=TemporalUbicacion.idSector;";
                 db.cmd.ExecuteNonQuery();
-
-                //db.cmd.CommandText = "TRUNCATE TABLE TemporalUbicacion";
-                //db.cmd.ExecuteNonQuery();
 
                 if (tipo) db.conn.Close();
 

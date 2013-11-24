@@ -196,5 +196,32 @@ namespace MadeInHouse.DataObjects.Almacen
             return t;
         }
 
+        public int ActualizarTienda(Tienda t)
+        {
+            db.cmd.CommandText = "UPDATE Tienda SET nombre=@nombre , direccion=@direccion , idUbigeo=@idUbigeo , telefono=@telefono " +
+                                 "WHERE idTienda=@idTienda ";
+            db.cmd.Parameters.AddWithValue("@nombre", t.Nombre);
+            db.cmd.Parameters.AddWithValue("@direccion", t.Direccion);
+            db.cmd.Parameters.AddWithValue("@idUbigeo", t.IdUbigeo);
+            db.cmd.Parameters.AddWithValue("@telefono", t.Telefono);
+            db.cmd.Parameters.AddWithValue("@idTienda", t.IdTienda);
+
+            try
+            {
+                if (tipo) db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+                
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e);
+                return -1;
+            }
+            return 1;
+        }
+
+
     }
 }

@@ -105,7 +105,7 @@
                             <ScrollViewer HorizontalAlignment="Left" Height="232" Margin="258,72,0,0" VerticalAlignment="Top" Width="456" HorizontalScrollBarVisibility="Visible">
                                 <grid:DynamicGrid x:Name="Deposito" 
                                                   Altura="{Binding Altura}" 
-                                                  IdZona="{Binding Zona}"  
+IdZona="{Binding Zona}"  
                                                   NumRows="{Binding NumRows}" 
                                                   NumColumns="{Binding NumColumns}"  
                                                   Accion="1"
