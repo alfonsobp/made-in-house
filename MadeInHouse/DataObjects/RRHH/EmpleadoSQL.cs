@@ -23,9 +23,17 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado,idTienda) " +
-            "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado,@idTienda)";
-            cmd.CommandType = CommandType.Text;
+            if (p.IdTienda != 0)
+            {
+                cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado,idTienda) " +
+                    "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado,@idTienda)";
+            }
+            else
+            {//ALMACEN CENTRAL
+                cmd.CommandText = "insert into Empleado (DNI,sexo,nombre,apePaterno,apeMaterno,telefono,celular,email,estado,fechaReg,direccion,referencia,fechaNac,tienda,area,puesto,emailEmpresa,sueldo,cuentaBancaria,banco,codEmpleado) " +
+                    "VALUES (@DNI,@sexo,@nombre,@apePaterno,@apeMaterno,@telefono,@celular,@email,@estado,@fechaReg,@direccion,@referencia,@fechaNac,@tienda,@area,@puesto,@emailEmpresa,@sueldo,@cuentaBancaria,@banco,@codEmpleado)";
+            }
+             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@codEmpleado", p.CodEmpleado);
             cmd.Parameters.AddWithValue("@DNI", p.Dni);
@@ -46,7 +54,10 @@ namespace MadeInHouse.DataObjects.RRHH
 
             cmd.Parameters.AddWithValue("@estado", p.Estado);
             cmd.Parameters.AddWithValue("@tienda", p.Tienda);
-            cmd.Parameters.AddWithValue("@idTienda", p.IdTienda);
+
+            if (p.IdTienda != 0)
+                cmd.Parameters.AddWithValue("@idTienda", p.IdTienda);
+
             cmd.Parameters.AddWithValue("@area", p.Area);
             cmd.Parameters.AddWithValue("@puesto", p.Puesto);
 
@@ -77,17 +88,21 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
+            int idTiendaNull;
+
             cmd.CommandText = "SELECT * FROM Empleado where nombre like '" + nombre + "%' and apePaterno like '" + paterno + "%' and DNI like '" + dni + "%' and tienda like '" + tienda + "%' and area like '" + area + "%' and puesto like '" + puesto + "%' and estado = 1";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
             try
             {
-                conn.Open();
+
+                if (cmd.Transaction == null) conn.Open();
                 reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
                     Empleado e = new Empleado();
+                    idTiendaNull = reader.GetOrdinal("idTienda");
                     e.CodEmpleado = reader["codEmpleado"].ToString();
                     e.Dni = reader["DNI"].ToString();
                     e.Sexo = reader["sexo"].ToString();
@@ -107,6 +122,9 @@ namespace MadeInHouse.DataObjects.RRHH
 
                     e.Estado = Convert.ToInt32(reader["estado"].ToString());
                     e.Tienda = reader["tienda"].ToString();
+
+                    e.IdTienda = reader.IsDBNull(idTiendaNull) ? 0 : reader.GetInt32(idTiendaNull);
+
                     e.Area = reader["area"].ToString();
                     e.Puesto = reader["puesto"].ToString();
 
@@ -174,6 +192,8 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
+            int idTiendaNull;
+
             cmd.CommandText = "SELECT * FROM Empleado WHERE codEmpleado=@codEmpleado ";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
@@ -181,7 +201,10 @@ namespace MadeInHouse.DataObjects.RRHH
 
             try
             {
-                conn.Open();
+                if (cmd.Transaction == null) conn.Open();
+                reader = cmd.ExecuteReader();
+
+                idTiendaNull = reader.GetOrdinal("idTienda");
                 reader = cmd.ExecuteReader();
                 e.Dni = reader["DNI"].ToString();
                 e.Sexo = reader["sexo"].ToString();
@@ -201,6 +224,8 @@ namespace MadeInHouse.DataObjects.RRHH
 
                 e.Estado = Convert.ToInt32(reader["estado"].ToString());
                 e.Tienda = reader["tienda"].ToString();
+                e.IdTienda = reader.IsDBNull(idTiendaNull) ? 0 : reader.GetInt32(idTiendaNull);
+
                 e.Area = reader["area"].ToString();
                 e.Puesto = reader["puesto"].ToString();
 
@@ -256,9 +281,19 @@ namespace MadeInHouse.DataObjects.RRHH
             SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "update Empleado set sexo = @sexo,nombre = @nombre,apePaterno = @apePaterno,apeMaterno = @apeMaterno,telefono = @telefono,celular = @celular, " +
-            "email = @email,estado = @estado,direccion = @direccion,referencia = @referencia,fechaNac = @fechaNac,tienda = @tienda,idTienda=@idTienda,area = @area,puesto = @puesto,emailEmpresa = @emailEmpresa,sueldo = @sueldo, cuentaBancaria = @cuentaBancaria, banco = @banco where DNI = " + p.Dni;
 
+            if (p.IdTienda != 0)
+            {
+                cmd.CommandText = "update Empleado set sexo = @sexo,nombre = @nombre,apePaterno = @apePaterno,apeMaterno = @apeMaterno,telefono = @telefono,celular = @celular, " +
+            "email = @email,estado = @estado,direccion = @direccion,referencia = @referencia,fechaNac = @fechaNac,tienda = @tienda,idTienda=@idTienda,area = @area,puesto = @puesto,emailEmpresa = @emailEmpresa,sueldo = @sueldo, cuentaBancaria = @cuentaBancaria, banco = @banco where DNI = " + p.Dni;
+            }
+            else
+            {
+                cmd.CommandText = "update Empleado set sexo = @sexo,nombre = @nombre,apePaterno = @apePaterno,apeMaterno = @apeMaterno,telefono = @telefono,celular = @celular, " +
+            "email = @email,estado = @estado,direccion = @direccion,referencia = @referencia,fechaNac = @fechaNac,tienda = @tienda, area = @area,puesto = @puesto,emailEmpresa = @emailEmpresa,sueldo = @sueldo, cuentaBancaria = @cuentaBancaria, banco = @banco where DNI = " + p.Dni;
+
+            }
+            
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -280,7 +315,12 @@ namespace MadeInHouse.DataObjects.RRHH
 
             cmd.Parameters.AddWithValue("@estado", p.Estado);
             cmd.Parameters.AddWithValue("@tienda", p.Tienda);
-            cmd.Parameters.AddWithValue("@idTienda", p.IdTienda);
+
+            if (p.IdTienda != 0)
+            {
+                cmd.Parameters.AddWithValue("@idTienda", p.IdTienda);
+            }
+
             cmd.Parameters.AddWithValue("@area", p.Area);
             cmd.Parameters.AddWithValue("@puesto", p.Puesto);
 
@@ -289,7 +329,8 @@ namespace MadeInHouse.DataObjects.RRHH
             cmd.Parameters.AddWithValue("@banco", p.Banco);
             try
             {
-                conn.Open();
+                if (cmd.Transaction == null) conn.Open();
+
                 k = cmd.ExecuteNonQuery();
                 conn.Close();
 
@@ -309,10 +350,23 @@ namespace MadeInHouse.DataObjects.RRHH
 
             int k = 0;
 
-            cmd.CommandText = "UPDATE USUARIO set idTienda=@idTienda where codEmpleado=@codEmpleado ";
+            if (idTienda != 0)
+            {
+                cmd.CommandText = "UPDATE USUARIO set idTienda=@idTienda where codEmpleado=@codEmpleado ";
+            }
+            else
+            {
+                cmd.CommandText = "UPDATE USUARIO set idTienda=null where codEmpleado=@codEmpleado ";
+            }
+
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@idTienda", idTienda);
+
+            if (idTienda != 0)
+            {
+                cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            }
+            
             cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
 
             try
