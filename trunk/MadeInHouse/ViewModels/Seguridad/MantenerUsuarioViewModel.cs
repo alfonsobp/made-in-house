@@ -107,10 +107,10 @@ namespace MadeInHouse.ViewModels.Seguridad
                 if (lstUsuario[i].Estado == 1)
                 {
                     lstUsuario[i].Estado = 0;
-                    lstUsuarioElim[i].EstadoHabilitado = 0;
+                    lstUsuario[i].EstadoHabilitado = 0;
                     UsuarioSQL.ActualizarEstadoUsuarios(lstUsuario[i]);
                     //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
-                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 3);
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuario[i].CodEmpleado, 3);
                 }
             }
 
@@ -122,7 +122,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                 {
                     UsuarioSQL.HabilitarUsuario(lstUsuario[i]);
                     //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
-                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 5);
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuario[i].CodEmpleado, 5);
                 }
             }
             Actualizar();
@@ -155,7 +155,8 @@ namespace MadeInHouse.ViewModels.Seguridad
                     lstUsuario[i].EstadoHabilitado = 0;
                     UsuarioSQL.ActualizarEstadoUsuarios(lstUsuario[i]);
                     //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
-                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuarioElim[i].CodEmpleado, 3);
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Mantenimiento Usuario", lstUsuario[i].CodEmpleado, 1);
+                    //MessageBox.Show("---");
                 }
             }
             Actualizar();

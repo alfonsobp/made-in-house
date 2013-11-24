@@ -21,7 +21,6 @@ namespace MadeInHouse.DataObjects.Seguridad
             SqlCommand cmd = new SqlCommand();
             int k = 0;
             string dirIp;
-
             cmd.CommandText = "INSERT INTO Log(fechaAccion,nomVentana,idItem,idAccion,idUsuario,ip) " +
             "VALUES (getdate(),@nomVentana,@idItem,@idAccion,@idUsuario,@dirIp)";
             cmd.CommandType = CommandType.Text;
