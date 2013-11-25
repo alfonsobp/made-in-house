@@ -420,6 +420,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.Descripcion = prod.Nombre;
                 dv.Descuento = 0;
                 dv.Precio = prod.Precio;
+                dv.Unidad = prod.UnidadMedida;
 
                 if (ev.esNumeroEntero(TxtCantidad)) cant = Int32.Parse(TxtCantidad);
                 else
@@ -435,7 +436,8 @@ namespace MadeInHouse.ViewModels.Ventas
                 ActualizaCampos(dv, 1);
             }
             LstVenta = aux;
-            
+            TxtProducto = "";
+            TxtCantidad = "";
         }
 
         public void QuitarDetalleProducto()
@@ -489,7 +491,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 TxtIGVTotal = igv_total.ToString();
             }
             LstVentaServicios = aux;
-            
+            TxtServicio = "";
         }
 
         public void QuitarDetalleServicio()
@@ -691,7 +693,8 @@ namespace MadeInHouse.ViewModels.Ventas
                     VentaPago vp = new VentaPago();
                     vp.IdModoPago = selectedValue;
                     vp.Monto = Double.Parse(TxtMonto);
-                    vp.Nombre = selectedValue.ToString();
+                    if (selectedValue.ToString().Equals("1")) vp.Nombre = "Efectivo";
+                    else vp.Nombre = "Tarjeta";
 
                     montopago += Double.Parse(TxtMonto);
                     TxtPagaCon = montopago.ToString();

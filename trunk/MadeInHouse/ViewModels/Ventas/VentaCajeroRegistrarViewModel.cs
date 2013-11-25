@@ -271,12 +271,21 @@ namespace MadeInHouse.ViewModels.Ventas
                 //buscar al cliente por la tarjeta
                 ClienteSQL csql = new ClienteSQL();
                 cliente = csql.BuscarClienteByTarjeta(TxtCliente);
-                TxtRazonSocial = cliente.RazonSocial;
-                TxtRuc = cliente.Ruc;
-                TxtDNI = cliente.Dni;
+                if (cliente != null)
+                {
+                    TxtRazonSocial = cliente.RazonSocial;
+                    TxtRuc = cliente.Ruc;
+                    TxtDNI = cliente.Dni;
+                }
+                else
+                {
+                    MessageBox.Show("La tarjeta ingresada no se encuentra en el sistema", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    TxtCliente = "";
+                }
             }
         }
 
+        //sacara datos del cliente por DNI
         public void ExecuteFilterViewDNI(KeyEventArgs keyArgs)
         {
             if (keyArgs.Key == Key.Enter)
@@ -284,10 +293,18 @@ namespace MadeInHouse.ViewModels.Ventas
                 //buscar al cliente por la tarjeta
                 ClienteSQL csql = new ClienteSQL();
                 cliente = csql.BuscarClienteByDNI(TxtDNI);
-                TxtCliente = csql.BuscarTarjetaByIdCliente(cliente.Id);
-                TxtRazonSocial = cliente.RazonSocial;
-                TxtRuc = cliente.Ruc;
-                TxtDNI = cliente.Dni;
+                if (cliente != null)
+                {
+                    TxtCliente = csql.BuscarTarjetaByIdCliente(cliente.Id);
+                    TxtRazonSocial = cliente.RazonSocial;
+                    TxtRuc = cliente.Ruc;
+                    TxtDNI = cliente.Dni;
+                }
+                else
+                {
+                    MessageBox.Show("El DNI ingresado no corresponde a ningun cliente registrado", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    TxtDNI = "";
+                }
             }
         }
 
@@ -381,6 +398,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 dv.IdProducto = p.IdProducto;
                 dv.CodProducto = p.CodigoProd;
                 dv.Descripcion = p.Nombre;
+                dv.Unidad = p.UnidadMedida;
                 
                 dv.Precio = p.Precio;
                 if (ev.esNumeroEntero(TxtCantidad)) cant = Int32.Parse(TxtCantidad);
@@ -397,6 +415,8 @@ namespace MadeInHouse.ViewModels.Ventas
                 ActualizaCampos(dv,1);
             }
             LstVenta = aux;
+            TxtProducto = "";
+            TxtCantidad = "";
         }
 
         public void QuitarDetalleProducto()
@@ -451,7 +471,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 
             }
             LstVentaServicios = aux;
-
+            TxtServicio = "";
         }
 
         public void QuitarDetalleServicio()
@@ -633,7 +653,8 @@ namespace MadeInHouse.ViewModels.Ventas
                     VentaPago vp = new VentaPago();
                     vp.IdModoPago = selectedValue;
                     vp.Monto = Double.Parse(TxtMonto);
-                    vp.Nombre = selectedValue.ToString();
+                    if (selectedValue.ToString().Equals("1")) vp.Nombre = "Efectivo";
+                    else vp.Nombre = "Tarjeta";
 
                     montopago += Double.Parse(TxtMonto);
                     TxtPagaCon = montopago.ToString();

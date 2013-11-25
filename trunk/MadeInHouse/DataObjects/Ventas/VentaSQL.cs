@@ -189,7 +189,7 @@ namespace MadeInHouse.DataObjects.Ventas
             db.cmd.Parameters.AddWithValue("@estado", v.Estado);
             db.cmd.Parameters.AddWithValue("@idUsuario", v.IdUsuario);
             db.cmd.Parameters.AddWithValue("@tipoVenta", v.TipoVenta);
-            if (v.TipoVenta.Equals("Boleta"))
+            if (v.TipoDocPago.Equals("Boleta"))
             {
                 db.cmd.Parameters.AddWithValue("@ruc", "");
                 db.cmd.Parameters.AddWithValue("@razonSocial", "");
@@ -319,7 +319,7 @@ namespace MadeInHouse.DataObjects.Ventas
             int estado = Convert.ToInt32(filters[6]);
             string sql = "";
 
-            sql = "SELECT v.idVenta,v.codTarjeta,v.descuento,v.estado,v.fechaReg,v.idCliente   " +
+            sql = "SELECT v.idVenta,v.idUsuario,v.tipoVenta,v.codTarjeta,v.descuento,v.estado,v.fechaReg,v.idCliente   " +
                   " , c.tipoCliente as tipoC , c.razonSocial as rsC , c.nombre as nombreC      " +
                   " ,v.numDocPagoProducto,v.tipoDocPago,v.monto,v.descuento,v.IGV,v.ptosGanados,v.numDocPagoServicio " +
                     "FROM  Venta v LEFT JOIN  Cliente c ON c.IdCliente = v.IdCliente  ";
@@ -375,7 +375,7 @@ namespace MadeInHouse.DataObjects.Ventas
 
 
 
-            db.cmd.CommandText = sql + where;
+            db.cmd.CommandText = sql + where + "order by fechaReg DESC";
 
             try
             {
@@ -391,6 +391,8 @@ namespace MadeInHouse.DataObjects.Ventas
                     v.IdCliente = reader.IsDBNull(reader.GetOrdinal("idCliente")) ? 0 : Convert.ToInt32(reader["idCliente"]);
                     v.Monto = Convert.ToDouble(reader["monto"]);
                     v.Estado = Convert.ToInt32(reader["estado"]);
+                    v.TipoVenta = reader["tipoVenta"].ToString();
+                    v.IdUsuario = Convert.ToInt32(reader["idUsuario"].ToString());
 
                     if (v.IdCliente != 0)
                     {
@@ -431,7 +433,7 @@ namespace MadeInHouse.DataObjects.Ventas
             throw new NotImplementedException();
         }
 
-        private void descontarDeSector(Venta v, DetalleVenta dv)
+        private void descontarDeSector(Venta v, DetalleVenta dv, int tipoDescuento=1)
         {
             int idTienda = new TiendaSQL().obtenerTienda(v.IdUsuario);
 
@@ -444,7 +446,14 @@ namespace MadeInHouse.DataObjects.Ventas
             rs2.Close();
             db.cmd.Parameters.Clear();
 
-            db.cmd.CommandText = "UPDATE Sector SET cantidad=cantidad-@cantidad WHERE idAlmacen=@idAlmacen AND idProducto=@idProducto; UPDATE ProductoxTienda SET stockActual=stockActual-@cantidad WHERE idTienda=@idTienda AND idProducto=@idProducto";
+            if (tipoDescuento == 2) // cuando se tiene que reponer el stock
+            {
+                db.cmd.CommandText = "UPDATE Sector SET cantidad=cantidad+@cantidad WHERE idAlmacen=@idAlmacen AND idProducto=@idProducto; UPDATE ProductoxTienda SET stockActual=stockActual+@cantidad WHERE idTienda=@idTienda AND idProducto=@idProducto";
+            }
+            else
+            {
+                db.cmd.CommandText = "UPDATE Sector SET cantidad=cantidad-@cantidad WHERE idAlmacen=@idAlmacen AND idProducto=@idProducto; UPDATE ProductoxTienda SET stockActual=stockActual-@cantidad WHERE idTienda=@idTienda AND idProducto=@idProducto";
+            }
             db.cmd.Parameters.AddWithValue("@cantidad", dv.Cantidad);
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
             db.cmd.Parameters.AddWithValue("@idProducto", dv.IdProducto);
@@ -603,6 +612,90 @@ namespace MadeInHouse.DataObjects.Ventas
             }
 
             return v;
+        }
+
+        public int AnularVentaTienda(Venta v)
+        {
+            int k = 0;
+
+            db.cmd.CommandText = "UPDATE Venta SET estado=0 WHERE idVenta = @idVenta";
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+
+            try
+            {
+                if (tipo) db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            if (k != 0)
+            {
+                //devolver el detalle de la venta a la tienda
+                DetalleVentaSQL dvsql = new DetalleVentaSQL(db);
+                List<DetalleVenta> detalle = dvsql.BuscarTodos(v.IdVenta);
+                foreach (DetalleVenta dv in detalle)
+                {
+                    descontarDeSector(v, dv, 2);
+                }
+            }
+
+            return k;
+        }
+
+        public int AnularVentaObra(Venta v)
+        {
+            int k = 0;
+            int estado=0;
+
+            //verificar si la venta ha sido despachada
+            db.cmd.CommandText = "select estado from OrdenDespacho where idVenta=@idVenta";
+            db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+            try
+            {
+                if (tipo) db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                reader.Read();
+                estado = Convert.ToInt32(reader["estado"].ToString());
+                reader.Close();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            if (estado == 2)
+            {
+                //la venta ya fue atendida
+                return 3;
+            }
+
+            if (estado == 1)
+            {
+                //la venta aun no ha sido atendida
+                db.cmd.CommandText = "UPDATE Venta SET estado=0 WHERE idVenta = @idVenta; UPDATE OrdenDespacho SET estado=3 where idVenta=@idVenta";
+                db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
+
+                try
+                {
+                    if (tipo) db.conn.Open();
+                    k = db.cmd.ExecuteNonQuery();
+                    db.cmd.Parameters.Clear();
+                    if (tipo) db.conn.Close();
+                }
+                catch (SqlException e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            
+            return k;
         }
     }
 }

@@ -12,25 +12,38 @@ namespace MadeInHouse.DataObjects.Almacen
 {
     class UnidadMedidaSQL
     {
+        private DBConexion db;
+        private bool tipo = true;
+
+        public UnidadMedidaSQL(DBConexion db = null)
+        {
+
+            if (db == null)
+            {
+                this.db = new DBConexion();
+            }
+            else
+            {
+                this.db = db;
+                tipo = false;
+            }
+
+        }
 
         public int AgregarUnidadMedida(UnidadMedida u)
         {
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
             int k = 0;
             
-            cmd.CommandText = "INSERT INTO UnidadMedida(nombre,estado) VALUES (@nombre,1)";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@nombre", u.Nombre);
+            db.cmd.CommandText = "INSERT INTO UnidadMedida(nombre,estado) VALUES (@nombre,1)";
+            db.cmd.Parameters.AddWithValue("@nombre", u.Nombre);
 
             try
             {
-                conn.Open();
+                if(tipo)db.conn.Open();
 
-                k = cmd.ExecuteNonQuery();
-
-                conn.Close();
+                k = db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
 
             }
             catch (SqlException e)
@@ -45,19 +58,13 @@ namespace MadeInHouse.DataObjects.Almacen
         {
 
             List<UnidadMedida> listaUnidadMedidas = new List<UnidadMedida>();
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
 
-            cmd.CommandText = "SELECT * FROM UnidadMedida WHERE estado=1";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
-
+            db.cmd.CommandText = "SELECT * FROM UnidadMedida WHERE estado=1";
+           
             try
             {
-                 conn.Open();
-                 reader = cmd.ExecuteReader();
-
+                 if(tipo) db.conn.Open();
+                 SqlDataReader reader = db.cmd.ExecuteReader();
                  while (reader.Read())
                 {
                     UnidadMedida u = new UnidadMedida();
@@ -65,8 +72,9 @@ namespace MadeInHouse.DataObjects.Almacen
                     u.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
                     listaUnidadMedidas.Add(u);
                 }
-
-                conn.Close();
+                 reader.Close();
+                 db.cmd.Parameters.Clear();
+                 if (tipo) db.conn.Close();
             }
             catch (Exception e)
             {
@@ -76,34 +84,54 @@ namespace MadeInHouse.DataObjects.Almacen
             return listaUnidadMedidas;
         }
 
-        internal static int Eliminar(UnidadMedida tz)
+        public int Eliminar(UnidadMedida tz)
         {
-
-            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
-            SqlCommand cmd = new SqlCommand();
             int k = 0;
 
-            cmd.CommandText = "UPDATE UnidadMedida SET estado=0 WHERE idUnidad = @idUnidad";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = conn;
-            cmd.Parameters.AddWithValue("@idUnidad", tz.IdUnidad);
+            db.cmd.CommandText = "UPDATE UnidadMedida SET estado=0 WHERE idUnidad = @idUnidad";
+            db.cmd.Parameters.AddWithValue("@idUnidad", tz.IdUnidad);
 
             try
             {
-                conn.Open();
-
-                k = cmd.ExecuteNonQuery();
-
-                conn.Close();
-
+                if(tipo) db.conn.Open();
+                k = db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
 
             return k;
 
+        }
+
+        public string BuscarUnidadById(int idUnidad)
+        {
+            UnidadMedida u = null;
+            db.cmd.CommandText = "select * from UnidadMedida where idUnidad=@idUnidad";
+            db.cmd.Parameters.AddWithValue("@idUnidad", idUnidad);
+            try
+            {
+                if (tipo) db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    u = new UnidadMedida();
+                    u.IdUnidad = Convert.ToInt32(reader["idUnidad"].ToString());
+                    u.Nombre = reader["nombre"].ToString();
+                }
+                reader.Close();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return u.Nombre;
         }
     }
 }

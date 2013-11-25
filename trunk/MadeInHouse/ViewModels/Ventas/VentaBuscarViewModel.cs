@@ -12,6 +12,9 @@ using MadeInHouse.Models;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.Validacion;
+using System.Data.SqlClient;
+using System.Data;
+using MadeInHouse.DataObjects;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -208,6 +211,56 @@ namespace MadeInHouse.ViewModels.Ventas
 
             this.BuscarVentas();
          
+        }
+
+        public void AnularVenta()
+        {
+            
+            int resultado;
+
+            if (VentaSeleccionada != null)
+            {
+                if (ventaSeleccionada.TipoVenta.Equals("Tienda"))
+                {
+                    DBConexion db = new DBConexion();
+                    db.conn.Open();
+                    SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
+                    db.cmd.Transaction = trans;
+                    VentaSQL vsql = new VentaSQL(db);
+                    resultado = vsql.AnularVentaTienda(ventaSeleccionada);
+                    if (resultado == 0)
+                    {
+                        trans.Rollback();
+                        MessageBox.Show("No se pudo anular la venta", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        trans.Commit();
+                        MessageBox.Show("Se ha anulado la venta satistactoriamente");
+                    }
+                }
+                else
+                {
+                    VentaSQL vsql = new VentaSQL();
+                    resultado = vsql.AnularVentaObra(ventaSeleccionada);
+                    if (resultado == 0)
+                    {
+                        MessageBox.Show("No se pudo anular la venta", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    if (resultado == 3)
+                    {
+                        MessageBox.Show("No se puede anular esta venta, pues ya fue atendida", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    if(resultado == 2)
+                    {
+                        MessageBox.Show("La venta ha sido anulada satistactoriamente");
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No ha seleccionado ninguna Venta", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

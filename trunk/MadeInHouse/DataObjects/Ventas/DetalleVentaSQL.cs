@@ -44,6 +44,7 @@ namespace MadeInHouse.DataObjects.Ventas
                     prod.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
                     prod.CodigoProd = reader["codProducto"].ToString();
                     prod.Nombre = reader["nombre"].ToString();
+                    prod.UnidadMedida = new DataObjects.Almacen.UnidadMedidaSQL().BuscarUnidadById(Convert.ToInt32(reader["idUnidad"].ToString()));
                 }
                 db.cmd.Parameters.Clear();
                 if (tipo) db.conn.Close();
@@ -132,11 +133,19 @@ namespace MadeInHouse.DataObjects.Ventas
             }
         }
 
-        public List<DetalleVenta> BuscarTodos()
+        public List<DetalleVenta> BuscarTodos(int idVenta = 0)
         {
             List<DetalleVenta> lista = new List<DetalleVenta>();
 
-            db.cmd.CommandText = "select * from DetalleVenta ";
+            if (idVenta == 0)
+            {
+                db.cmd.CommandText = "select * from DetalleVenta ";
+            }
+            else
+            {
+                db.cmd.CommandText = "select * from DetalleVenta where idVenta=@idVenta";
+                db.cmd.Parameters.AddWithValue("@idVenta", idVenta);
+            }
 
             try
             {
@@ -153,12 +162,13 @@ namespace MadeInHouse.DataObjects.Ventas
 
                     lista.Add(d);
                 }
+                reader.Close();
                 db.cmd.Parameters.Clear();
                 if (tipo) db.conn.Close();
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show(e.Message);
             }
             return lista;
         

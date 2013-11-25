@@ -67,7 +67,7 @@ namespace MadeInHouse.ViewModels.Almacen
             tz = unidadMedidaSeleccionada;
             if (tz != null)
             {
-                int a = DataObjects.Almacen.UnidadMedidaSQL.Eliminar(tz);
+                int a = new DataObjects.Almacen.UnidadMedidaSQL().Eliminar(tz);
                 if (a > 0) LstUnidadesDeMedida.Remove(tz);
                 else
                 {
