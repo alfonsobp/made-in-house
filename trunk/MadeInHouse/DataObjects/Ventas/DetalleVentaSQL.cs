@@ -39,6 +39,11 @@ namespace MadeInHouse.DataObjects.Ventas
             {
                 if (tipo) db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
+                if (!reader.HasRows)
+                {
+                    MessageBox.Show("El producto ingreasado no existe en el sistema", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return null;
+                }
                 while (reader.Read())
                 {
                     prod.IdProducto = Convert.ToInt32(reader["idProducto"].ToString());
@@ -61,6 +66,11 @@ namespace MadeInHouse.DataObjects.Ventas
             {
                 if (tipo) db.conn.Open();
                 SqlDataReader rs = db.cmd.ExecuteReader();
+                if (!rs.HasRows)
+                {
+                    MessageBox.Show("El producto ingresado no esta en la tienda", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return null;
+                }
                 while (rs.Read())
                 {
                     prod.Precio = Double.Parse(rs["precioVenta"].ToString());
