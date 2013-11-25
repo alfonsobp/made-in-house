@@ -655,7 +655,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void Agregar()
         {
 
-            if (TxtCodProducto == null || TxtStockIni == null || TxtStockMax == null || TxtStockMin == null || TxtPrecioV == null)
+            if (TxtCodProducto == null || TxtStockMax == null || TxtStockMin == null || TxtPrecioV == null)
             {
                 System.Windows.MessageBox.Show("Debe completar todos los campos");
             }
@@ -675,7 +675,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.CodProducto = lstAux[0].CodigoProd;
                         pxa.IdProducto = lstAux[0].IdProducto;
                         pxa.Nombre = lstAux[0].Nombre;
-                        pxa.StockActual = Int32.Parse(TxtStockIni);
+                        pxa.StockActual = String.IsNullOrEmpty(TxtStockIni) ? 0 : Int32.Parse(TxtStockIni);
                         pxa.StockMin = Int32.Parse(TxtStockMin);
                         pxa.StockMax = Int32.Parse(TxtStockMax);
                         pxa.PrecioVenta = float.Parse(txtPrecioV);
@@ -923,12 +923,18 @@ namespace MadeInHouse.ViewModels.Almacen
             cordZCol.DataType = Type.GetType("System.Int32");
             cordZCol.ColumnName = "cordZ";
 
+            DataColumn idUbicacionCol = new DataColumn();
+            idUbicacionCol.DataType = Type.GetType("System.Int32");
+            idUbicacionCol.ColumnName = "idUbicacion";
+            
             // Add the columns to the ProductSalesData DataTable
             ubicacionesData.Columns.Add(idZonaCol);
             ubicacionesData.Columns.Add(idAlmacenCol);
             ubicacionesData.Columns.Add(cordXCol);
             ubicacionesData.Columns.Add(cordYCol);
             ubicacionesData.Columns.Add(cordZCol);
+            ubicacionesData.Columns.Add(idUbicacionCol);
+            
 
             return ubicacionesData;
         }
@@ -948,7 +954,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         ubicacionxAlmacenRow["CordX"] = filas[m][n][p].CordX;
                         ubicacionxAlmacenRow["CordY"] = filas[m][n][p].CordY;
                         ubicacionxAlmacenRow["CordZ"] = filas[m][n][p].CordZ;
-                        Console.WriteLine("" + filas[m][n][p].IdTipoZona + "  IdAlmacen:" + id);
+                        ubicacionxAlmacenRow["idUbicacion"] = filas[m][n][p].IdUbicacion;
                         // Add the row to the ProductSalesData DataTable
                         data.Rows.Add(ubicacionxAlmacenRow);
 
@@ -1155,11 +1161,6 @@ namespace MadeInHouse.ViewModels.Almacen
 
         #endregion
     }
-
-        
-
-        
-
 
     }
 
