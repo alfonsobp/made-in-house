@@ -14,6 +14,13 @@ namespace MadeInHouse.Dictionary {
     class DynamicGrid : Grid {
 
 
+        public static readonly DependencyProperty PermitirProperty = DependencyProperty.Register("Permitir", typeof(bool), typeof(DynamicGrid));
+        public bool Permitir
+        {
+            get { return (bool)GetValue(PermitirProperty); }
+            set { SetValue(PermitirProperty, value); }
+        }
+
         private static readonly DependencyProperty SelectedZonaProperty = DependencyProperty.Register("SelectedZona", typeof(int), typeof(DynamicGrid), new PropertyMetadata(0, new PropertyChangedCallback(OnZonaChanged)));
         public int SelectedZona
         {
@@ -68,9 +75,6 @@ namespace MadeInHouse.Dictionary {
             set { SetValue(AlturaUProperty, value); }
         }
 
-
-
-
         public static readonly DependencyProperty EnableProperty = DependencyProperty.Register("Enable", typeof(bool), typeof(DynamicGrid));
         public bool Enable
         {
@@ -98,14 +102,6 @@ namespace MadeInHouse.Dictionary {
         {
             get { return (string)GetValue(VolOcuProperty); }
             set { SetValue(VolOcuProperty, value); }
-        }
-
-
-        public static readonly DependencyProperty ObjetoProperty = DependencyProperty.Register("Objeto", typeof(Prueba), typeof(DynamicGrid));
-        public Prueba Objeto
-        {
-            get { return (Prueba)GetValue(ObjetoProperty); }
-            set { SetValue(ObjetoProperty, value); }
         }
 
         public static readonly DependencyProperty AccionProperty = DependencyProperty.Register("Accion", typeof(int), typeof(DynamicGrid));//, new PropertyMetadata(1, new PropertyChangedCallback(OnNumRowsOrColumnsChanged)));
@@ -388,18 +384,22 @@ namespace MadeInHouse.Dictionary {
                         VolOcu = Columna[X].VolOcupado.ToString();
                         if (int.Parse(VolOcu) > 0) Enable = false;
                         else Enable = true;
+                        Permitir = true;
                     }
                     else if (Columna[X].IdProducto==0)
                     {
                         CantActual = "0";
                         VolOcu = "0";
                         Enable = true;
+                        Permitir = true;
+                        
                     }
                     else 
                     {
                         CantActual = "---";
                         VolOcu = "---";
                         Enable = false;
+                        Permitir = false;
                     }
                     
 

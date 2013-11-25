@@ -445,6 +445,16 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        private bool enbl;
+
+        public bool Enbl
+        {
+            get { return enbl; }
+            set { enbl = value;
+            NotifyOfPropertyChange(() => Enbl);
+            }
+        }
+
         public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid anaquel)
         {
             SelectedProduct = ((sender as DataGrid).SelectedItem as ProductoCant);
@@ -459,9 +469,13 @@ namespace MadeInHouse.ViewModels.Almacen
                     TxtVolOcupado = anaquel.VolOcupadoActual + "%";
                     TxtStockActual = anaquel.StockActual;
                     Atendido = SelectedProduct.Atendido;
-
+                    //(sender as DataGrid).SelectedItem = null;
 
                 }
+            }
+            else
+            {
+                (sender as DataGrid).SelectedItem = null;
             }
         }
 
