@@ -356,7 +356,17 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AgregarDetalle()
         {
-            Producto p = new DetalleVentaSQL().Buscar(TxtProducto,idTienda);
+            if (String.IsNullOrEmpty(TxtProducto))
+            {
+                MessageBox.Show("No ha ingresado ningún producto", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            DetalleVentaSQL dvsql = new DetalleVentaSQL();
+            Producto p = dvsql.Buscar(TxtProducto,idTienda);
+            if (p == null)
+            {
+                return;
+            }
             Evaluador ev = new Evaluador();
             int nuevo = 1;
             int cant;
@@ -415,7 +425,6 @@ namespace MadeInHouse.ViewModels.Ventas
                 ActualizaCampos(dv,1);
             }
             LstVenta = aux;
-            TxtProducto = "";
             TxtCantidad = "";
         }
 
@@ -634,12 +643,13 @@ namespace MadeInHouse.ViewModels.Ventas
             TxtCliente = "";
             TxtDescuentoTotal = "";
             LstVenta = null;
-            subt = 0;
             desc = 0;
+            total = 0;
+            subt = 0;
             igv_total = 0;
             lstVenta = new List<DetalleVenta>();
             lstVentaServicios = new List<DetalleVentaServicio>();
-            lstPagos = new List<VentaPago>();
+            LstPagos = new List<VentaPago>();
         }
 
         public void AgregarMonto()
@@ -666,6 +676,7 @@ namespace MadeInHouse.ViewModels.Ventas
                     }
                     aux.Add(vp);
                     LstPagos = aux;
+                    TxtMonto = "";
                 }
                 else
                 {

@@ -381,6 +381,12 @@ namespace MadeInHouse.ViewModels.Ventas
             int nuevo = 1;
             int cant;
 
+            if (String.IsNullOrEmpty(TxtProducto))
+            {
+                MessageBox.Show("No ha ingresado ningún producto", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             List<DetalleVenta> aux = new List<DetalleVenta>();
             foreach (DetalleVenta item in LstVenta)
             {
@@ -436,7 +442,6 @@ namespace MadeInHouse.ViewModels.Ventas
                 ActualizaCampos(dv, 1);
             }
             LstVenta = aux;
-            TxtProducto = "";
             TxtCantidad = "";
         }
 
@@ -602,7 +607,7 @@ namespace MadeInHouse.ViewModels.Ventas
             }
             else
             {
-                MessageBox.Show("Debe ingreasar datos de productos a la venta");
+                MessageBox.Show("Falta ingresar produtos", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }
@@ -674,8 +679,9 @@ namespace MadeInHouse.ViewModels.Ventas
             subt = 0;
             desc = 0;
             igv_total = 0;
+            total = 0;
             lstVenta = new List<DetalleVenta>();
-            lstPagos = new List<VentaPago>();
+            LstPagos = new List<VentaPago>();
             TxtMonto = "";
             TxtServicio = "";
             TxtTarjetaCliente = "";
@@ -706,6 +712,7 @@ namespace MadeInHouse.ViewModels.Ventas
                     }
                     aux.Add(vp);
                     LstPagos = aux;
+                    TxtMonto = "";
                 }
                 else
                 {
