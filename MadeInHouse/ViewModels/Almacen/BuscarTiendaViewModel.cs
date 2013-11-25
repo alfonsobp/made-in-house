@@ -251,10 +251,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     System.Windows.MessageBox.Show("No se encontraron tiendas");
                 }
-                else
-                {
-                    System.Windows.MessageBox.Show("Se encontró: "+ LstTiendas.Count.ToString() +" tienda/as ");
-                }
+                
 
             }
         }

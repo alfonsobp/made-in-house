@@ -663,7 +663,7 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 ProductoxTienda pxa;
                 List<Producto> lstAux = null;
-                lstAux = pxaSQL.BuscarProducto(TxtCodProducto);
+                lstAux = pxaSQL.BuscarProducto(TxtCodProducto,-1,-1,idTienda);
 
                 if (lstAux != null)
                 {
@@ -689,7 +689,8 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.StockMin = Int32.Parse(TxtStockMin);
                         pxa.StockMax = Int32.Parse(TxtStockMax);
                         pxa.PrecioVenta = float.Parse(txtPrecioV);
-
+                        LstProductos = new List<ProductoxTienda>(LstProductos);
+                        System.Windows.MessageBox.Show("El actualizaron los datos del producto correctamente");
                     }
                     else
                     {

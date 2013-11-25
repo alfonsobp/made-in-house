@@ -136,7 +136,7 @@
                                 </Button.Background>
                             </Button>
                             <TextBox  x:Name="TxtCodProducto" HorizontalAlignment="Left" Height="23" Margin="184,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="{Binding Editar}"/>
-                            <TextBox x:Name="TxtStockIni" HorizontalAlignment="Left" Height="23" Margin="184,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
+                            <TextBox  IsEnabled="False" x:Name="TxtStockIni" HorizontalAlignment="Left" Height="23" Margin="184,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" />
                             <TextBox x:Name="TxtStockMin" HorizontalAlignment="Left" Height="23" Margin="184,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
                             <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="23" Margin="184,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
                             <TextBox x:Name="TxtPrecioV" HorizontalAlignment="Left" Height="23" Margin="184,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
