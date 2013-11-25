@@ -69,7 +69,7 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="60" Header="Código"/>
                                         <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="250" Header="Descripción"/>
-                                        <DataGridTextColumn Binding="{Binding Path=UnidadMediad}" Width="60" Header="Unidad"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Unidad}" Width="60" Header="Unidad"/>
                                         <DataGridTextColumn Binding="{Binding Path=Precio}" Width="90" Header="Precio Unitario"/>
                                         <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="70" Header="Cantidad"/>
                                         <DataGridTextColumn Binding="{Binding Path=Descuento}" Width="70" Header="Descuento"/>

@@ -424,9 +424,9 @@ namespace MadeInHouse.DataObjects.Ventas
         public Cliente BuscarClienteByTarjeta(string cod)
         {
             DBConexion db = new DBConexion();
-            Cliente c = new Cliente();
+            Cliente c = null;
 
-            db.cmd.CommandText = "SELECT idCLiente FROM Tarjeta WHERE codTarjeta=" + cod;
+            db.cmd.CommandText = "SELECT idCLiente FROM Tarjeta WHERE codTarjeta='" + cod + "'";
 
             try
             {
@@ -434,14 +434,15 @@ namespace MadeInHouse.DataObjects.Ventas
                 SqlDataReader reader = db.cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    c = new Cliente();
                     c = BuscarClienteByIdCliente(Convert.ToInt32(reader["idCliente"].ToString()));
                 }
                 db.cmd.Parameters.Clear();
                 db.conn.Close();
             }
-            catch (Exception e)
+            catch (SqlException e)
             {
-                MessageBox.Show("La tarjeta ingresa no se encuentra en el sistema");
+                MessageBox.Show(e.Message);
             }
             return c;
         }
@@ -563,7 +564,7 @@ namespace MadeInHouse.DataObjects.Ventas
         public Cliente BuscarClienteByDNI(string dni)
         {
             DBConexion db = new DBConexion();
-            Cliente c = new Cliente();
+            Cliente c = null;
 
             db.cmd.CommandText = "SELECT idCliente FROM Cliente WHERE DNI=" + dni;
 
@@ -573,6 +574,7 @@ namespace MadeInHouse.DataObjects.Ventas
                 SqlDataReader reader = db.cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    c = new Cliente();
                     c = BuscarClienteByIdCliente(Convert.ToInt32(reader["idCliente"].ToString()));
                 }
                 db.cmd.Parameters.Clear();
