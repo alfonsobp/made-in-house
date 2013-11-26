@@ -86,8 +86,7 @@
 
         <!--rectangulos medio transparentes-->
         <Rectangle Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Stroke="Black" Width="300"/>
-        <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="300,26,0,0" Height="50" VerticalAlignment="Top"/>
-        <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="838,0,155,0" Height="120" VerticalAlignment="Top"/>
+        <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="808,7,185,0" Height="102" VerticalAlignment="Top"/>
 
         <!--Almacen-->
         <Expander Name="expanderAlmacen" FontFamily="/Assets/#Moire" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
@@ -113,9 +112,9 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <!--RowDefinition Height="30"/-->
-                    
+
                 </Grid.RowDefinitions>
-                
+
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Almacén" FontSize="20" Grid.Row="0"/>
                 <Button x:Name="AbrirMantenimientoAlmacen" Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Almacen Central" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left"/>
                 <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Productos" FontSize="20" Grid.Row="2"/>
@@ -267,7 +266,7 @@
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="11"/>
                 <Button x:Name="AbrirListadoPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="12" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="81"/>
                 <Button x:Name="AbrirNuevaPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,30,116,4" Grid.RowSpan="2" Width="182"/>
-                
+
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Precios" FontSize="20" Grid.Row="15"/>
                 <Button x:Name="AbrirListadoPrecios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
 
@@ -336,15 +335,15 @@
 
 
         <!--Botones Extra-->
-        <Button x:Name="Cerrar" Click="CloseWin_Click" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1236,31,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="42" >
+        <Button x:Name="Cerrar" Click="CloseWin_Click" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="1236,1,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Width="42" >
             <Image Source="/Assets/cancel.png" Width="35" Height="33"/>
         </Button>
-        <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1179,32,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
+        <Button x:Name="AbrirConfigurarUsuario" Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="1179,2,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
             <Image Source="/Assets/gear.png" Width="35" Height="33"/>
         </Button>
-        <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,10,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
-        <Label Name="rol" Content="PERFIL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,76,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
-        <Label Name="tienda" Content="TIENDA" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,44,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="nombreUsuario" Content="USUARIO" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="819,10,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="rol" Content="PERFIL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="821,78,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="tienda" Content="TIENDA" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="819,44,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
         <!--fin-->
 
     </Grid>
