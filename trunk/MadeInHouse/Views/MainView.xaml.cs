@@ -31,7 +31,7 @@ namespace MadeInHouse.Views
             lstEmpleado = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleadoId(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             nombreUsuario.Content = "Usuario: " + lstEmpleado[0].Nombre + " " + lstEmpleado[0].ApePaterno + " " + lstEmpleado[0].ApeMaterno;
             tienda.Content = "Tienda: " + lstEmpleado[0].Tienda;
-            rol.Content = "Puesto: " + lstEmpleado[0].Puesto;
+            rol.Content = "Puesto: " + DataObjects.RRHH.EmpleadoSQL.BuscarRolEmpleadoId(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             
         }
 
