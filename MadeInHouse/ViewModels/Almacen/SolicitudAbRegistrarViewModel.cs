@@ -35,8 +35,7 @@ namespace MadeInHouse.ViewModels.Almacen
             this.idTiendaUsuario = tiendSQL.obtenerTienda(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             if (idSolicitud > 0)
             {
-                AbastecimientoSQL abSQL = new AbastecimientoSQL();
-                Productos = abSQL.buscarProductosAbastecimiento(idSolicitud, idTienda);
+                ActualizarTabla();
                 if (indEdicion)
                 {
                     IndMantenimiento = EDICION;
@@ -197,6 +196,12 @@ namespace MadeInHouse.ViewModels.Almacen
 
         #region metodos
 
+        public void ActualizarTabla()
+        {
+            AbastecimientoSQL abSQL = new AbastecimientoSQL();
+            Productos = abSQL.buscarProductosAbastecimiento(idSolicitud, idTienda);
+        }
+
         public void EditarSolicitud()
         {
             IndMantenimiento = EDICION;
@@ -221,12 +226,14 @@ namespace MadeInHouse.ViewModels.Almacen
         public void GuardarSolicitud()
         {
             AbastecimientoModel solModel = new AbastecimientoModel();
+            int id;
             int idUsuario = Int32.Parse(Thread.CurrentPrincipal.Identity.Name);
             string message = "Hubo error en el proceso";
             switch (IndMantenimiento)
             {
                 case REGISTRO:
-                    message = solModel.registrarAbastecimiento(idUsuario, Productos);
+                    message = solModel.registrarAbastecimiento(idUsuario, Productos, out id);
+                    idSolicitud = id;
                     break;
                 case EDICION:
                     message = solModel.editarAbastecimiento(idUsuario, idSolicitud, Productos);

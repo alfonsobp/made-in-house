@@ -9,6 +9,7 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.ViewModels.Layouts;
 using System.Threading;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -61,7 +62,10 @@ namespace MadeInHouse.ViewModels.Almacen
             int idUsuario = Int32.Parse(Thread.CurrentPrincipal.Identity.Name);
             string message = solModel.atenderAbastecimiento(idUsuario, idSolicitud, Productos);
             _windowManager.ShowDialog(new AlertViewModel(_windowManager, message));
-            this.TryClose();
+            if (window != null)
+                window.ActualizarTabla();
+            ((Window)this.GetView()).Owner.Focus();
+            TryClose();
         }
 
         #endregion

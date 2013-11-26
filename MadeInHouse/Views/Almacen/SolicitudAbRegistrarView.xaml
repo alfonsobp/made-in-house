@@ -38,11 +38,11 @@
                     <Button x:Name="EditarSolicitud" ToolTip="Editar solicitud de abastecimiento" Visibility="{Binding Path=CanEdit}">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button x:Name="AnularSolicitud" ToolTip="Eliminar solicitud de abastecimiento" Visibility="{Binding Path=CanDelete}">
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                    </Button>
                     <Button x:Name="AtenderSolicitud" ToolTip="Atender solicitud de abastecimiento" Visibility="{Binding Path=CanAtent}">
                         <Image Source="/MadeInHouse;component/Assets/compras2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="AnularSolicitud" ToolTip="Eliminar solicitud de abastecimiento" Visibility="{Binding Path=CanDelete}">
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
                     <Button x:Name="SeleccionarProductos" ToolTip="Seleccionar productos" Visibility="{Binding Path=CanUpload}">
                         <Image Source="/MadeInHouse;component/Assets/almacen.png" Height="30" Width="30" />

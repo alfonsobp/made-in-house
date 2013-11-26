@@ -9,6 +9,7 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.ViewModels.Layouts;
 using System.Windows;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -21,9 +22,40 @@ namespace MadeInHouse.ViewModels.Almacen
         public SolicitudAbListadoViewModel(IWindowManager windowmanager)
         {
             _windowManager = windowmanager;
+            CmbEstados = new List<EstadosSolicitud>();
+            SelectedIndex = 0;
+            EstadosSolicitud est = new EstadosSolicitud();
+            est.estado = -1;
+            est.nomEstado = "Seleccionar estado";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 0;
+            est.nomEstado = "Anulado";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 1;
+            est.nomEstado = "Registrado";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 2;
+            est.nomEstado = "En revisión";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 3;
+            est.nomEstado = "Revisado";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 4;
+            est.nomEstado = "Consolidado";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 5;
+            est.nomEstado = "Atendido";
+            CmbEstados.Add(est);
         }
 
-        public SolicitudAbListadoViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int acciones)
+        public SolicitudAbListadoViewModel(IWindowManager windowmanager, MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int acciones)
+            : this(windowmanager)
         {
             // TODO: Complete member initialization
             this.MantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
@@ -39,8 +71,9 @@ namespace MadeInHouse.ViewModels.Almacen
         private string registroDesdeHide;
         private string registroHastaHide;
         private int estadoHide;
+        public int SelectedEstado { get; set; }
+        public int SelectedIndex { get; set; }
 
-        private List<Abastecimiento> solicitudes;
         private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
 
         public MantenerNotaDeIngresoViewModel MantenerNotaDeIngresoViewModel
@@ -55,6 +88,48 @@ namespace MadeInHouse.ViewModels.Almacen
             get { return accion; }
             set { accion = value; }
         }
+
+        private List<EstadosSolicitud> cmbEstados;
+        public List<EstadosSolicitud> CmbEstados
+        {
+            get { return cmbEstados; }
+            set
+            {
+                if (this.cmbEstados == value)
+                {
+                    return;
+                }
+
+                cmbEstados = value;
+                NotifyOfPropertyChange(() => CmbEstados);
+            }
+        }
+
+        private string registroDesde;
+        public string RegistroDesde
+        {
+            get { return registroDesde; }
+            set
+            {
+                if (this.registroDesde == value) return;
+                registroDesde = value;
+                NotifyOfPropertyChange(() => RegistroDesde);
+            }
+        }
+
+        private string registroHasta;
+        public string RegistroHasta
+        {
+            get { return registroHasta; }
+            set
+            {
+                if (this.registroHasta == value) return;
+                registroHasta = value;
+                NotifyOfPropertyChange(() => RegistroHasta);
+            }
+        }
+
+        private List<Abastecimiento> solicitudes;
         public List<Abastecimiento> Solicitudes
         {
             get { return solicitudes; }
@@ -76,7 +151,17 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             this.registroDesdeHide = registroDesde;
             this.registroHastaHide = registroHasta;
+            this.estadoHide = SelectedEstado;
             ActualizarTabla();
+        }
+
+        public void LimpiarBusqueda()
+        {
+            SelectedEstado = -1;
+            SelectedIndex = 0;
+            NotifyOfPropertyChange("SelectedIndex");
+            RegistroDesde = "";
+            RegistroHasta = "";
         }
 
         public void ActualizarTabla()
@@ -120,5 +205,11 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         #endregion
+    }
+
+    class EstadosSolicitud
+    {
+        public int estado { get; set; }
+        public string nomEstado { get; set; }
     }
 }

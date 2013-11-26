@@ -21,7 +21,7 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button x:Name="ConsolidarSolicitudes" ToolTip="Consolidar">
+                    <Button x:Name="ConsolidarSolicitud" ToolTip="Consolidar">
                         <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="30" />
                     </Button>
                     <Button x:Name="ActualizarTabla" ToolTip="Actualizar">
