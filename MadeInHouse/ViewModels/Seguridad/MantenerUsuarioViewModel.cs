@@ -38,6 +38,14 @@ namespace MadeInHouse.ViewModels.Seguridad
             set { txtCodUsuarioBuscado = value; NotifyOfPropertyChange(() => txtCodUsuarioBuscado); }
         }
 
+        private string txtCodUsuarioElimBuscado;
+
+        public string TxtCodUsuarioElimBuscado
+        {
+            get { return TxtCodUsuarioElimBuscado; }
+            set { TxtCodUsuarioElimBuscado = value; }
+        }
+
         private List<Usuario> lstUsuarioElim;
         public List<Usuario> LstUsuarioElim
         {
@@ -64,8 +72,24 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public void BuscarUsuarioPorCodigo()
         {
-            lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado);
-            NotifyOfPropertyChange("LstUsuario");
+            if (TxtCodUsuarioBuscado == null || TxtCodUsuarioBuscado == "")
+                Actualizar();
+            else
+            {
+                lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado);
+                NotifyOfPropertyChange("LstUsuario");
+            }
+        }
+
+        public void BuscarUsuarioElimPorCodigo()
+        {
+            if (TxtCodUsuarioElimBuscado == null || TxtCodUsuarioElimBuscado == "")
+                Actualizar();
+            else
+            {
+                lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado);
+                NotifyOfPropertyChange("LstUsuario");
+            }
         }
 
         public void ActualizarListaUsuario()
