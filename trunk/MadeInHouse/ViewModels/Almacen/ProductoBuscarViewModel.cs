@@ -448,7 +448,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 prodPedido.nombre = productoSel.Nombre;
                 List<ProductoxTienda> prod = pSQL.BuscarProductoxTienda(idAlmacen, productoSel.IdProducto);
                 prodPedido.stock = prod.ElementAt(0).StockActual;
-                prodPedido.sugerido = prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual;
+                prodPedido.sugerido = prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual > 0 ? prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual : 0;
                 prodPedido.pedido = prodPedido.sugerido;
                 prodPedido.atendido = 0;
                 solicitudView.addProducto(prodPedido);

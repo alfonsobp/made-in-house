@@ -197,7 +197,7 @@ namespace MadeInHouse.ViewModels.Ventas
             }
             else
             {
-                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La devolución ya se encuentra anulada"));
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La devolución ya no puede ser anulada"));
             }
         }
 
@@ -223,6 +223,10 @@ namespace MadeInHouse.ViewModels.Ventas
             dev.idUsuario = Int32.Parse(Thread.CurrentPrincipal.Identity.Name);
             string message = dModel.registrarDevolucion(dev, lstProductos);
             _windowManager.ShowDialog(new AlertViewModel(_windowManager, message));
+            if (window != null)
+                window.ActualizarTabla();
+            ((Window)this.GetView()).Owner.Focus();
+            TryClose();
         }
 
         #endregion

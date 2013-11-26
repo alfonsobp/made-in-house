@@ -310,7 +310,7 @@ namespace MadeInHouse.DataObjects.Ventas
             bool result = true;
 
             db.cmd.CommandText = " SELECT idDevolucion FROM Devolucion " +
-                                 " WHERE idDevolucion = @idDevolucion AND estado = 3 ";
+                                 " WHERE idDevolucion = @idDevolucion AND estado != 1 ";
             db.cmd.Parameters.AddWithValue("@idDevolucion", idDevolucion);
 
             if (db.cmd.Transaction == null) db.conn.Open();

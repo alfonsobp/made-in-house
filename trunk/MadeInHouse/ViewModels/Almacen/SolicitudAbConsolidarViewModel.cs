@@ -9,6 +9,7 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -91,6 +92,8 @@ namespace MadeInHouse.ViewModels.Almacen
             AbastecimientoModel abaModel = new AbastecimientoModel();
             string message = abaModel.consolidarSolicitudes(Solicitudes);
             NotifyOfPropertyChange("Solicitudes");
+            _windowManager.ShowDialog(new AlertViewModel(_windowManager, message));
+            ActualizarTabla();
         }
 
         #endregion

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -12,7 +13,7 @@ namespace MadeInHouse.Models.Almacen
 {
     class AbastecimientoModel
     {
-        public string registrarAbastecimiento(int idUsuario, List<AbastecimientoProducto> prod)
+        public string registrarAbastecimiento(int idUsuario, List<AbastecimientoProducto> prod, out int idSolicitud)
         {
             DBConexion db = new DBConexion();
             db.conn.Open();
@@ -21,7 +22,7 @@ namespace MadeInHouse.Models.Almacen
             AbastecimientoSQL solSQL = new AbastecimientoSQL(db);
             TiendaSQL tiendaSQL = new TiendaSQL(db);
             int idTienda;
-            int idSolicitud;
+            idSolicitud = 0;
             string message;
 
             if ((idTienda = tiendaSQL.obtenerTienda(idUsuario)) > 0)
@@ -72,7 +73,7 @@ namespace MadeInHouse.Models.Almacen
                     message = "No se pudo eliminar los productos";
             }
             else
-                message = "No se pudo crear la solicitud";
+                message = "No se pudo actualizar la solicitud";
 
             trans.Rollback();
             db.conn.Close();
@@ -125,30 +126,31 @@ namespace MadeInHouse.Models.Almacen
             int idSolicitud;
             int index;
             string message ="";
-
-            if ((idSolicitud = adSQL.insertarAdquisicion(solicitudes.First().idTienda)) > 0)
+            try
             {
-                foreach (Abastecimiento sol in solicitudes)
+                if ((idSolicitud = adSQL.insertarAdquisicion(solicitudes.First().idTienda)) > 0)
                 {
-                    temp = abSQL.buscarProductosAbastecimiento(sol.idSolicitudAB);
-
-                    foreach (AbastecimientoProducto item in temp)
+                    foreach (Abastecimiento sol in solicitudes)
                     {
-                        if ((index = prod.FindIndex(x => x.idProducto == item.idProducto)) >= 0)
-                        {
-                            prod.ElementAt(index).atendido += item.atendido;
-                            prod.ElementAt(index).pedido += item.pedido;
-                        }
-                        else
-                        {
-                            prod.Add(item);
-                        }
-                    }
-                }
+                        temp = abSQL.buscarProductosAbastecimiento(sol.idSolicitudAB);
 
-                /*if (adSQL.insertarProductos(idSolicitud, solicitudes) >= 0)
-                {
-                    if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
+                        foreach (AbastecimientoProducto item in temp)
+                        {
+                            if ((index = prod.FindIndex(x => x.idProducto == item.idProducto)) >= 0)
+                            {
+                                prod.ElementAt(index).atendido += item.atendido;
+                                prod.ElementAt(index).pedido += item.pedido;
+                            }
+                            else
+                            {
+                                prod.Add(item);
+                            }
+                        }
+
+                        abSQL.actualizarAbastecimiento(sol.idSolicitudAB, Int32.Parse(Thread.CurrentPrincipal.Identity.Name), 4);
+                    }
+
+                    if (adSQL.insertarProductosAdquisicion(idSolicitud, prod) > 0)
                     {
                         trans.Commit();
                         db.conn.Close();
@@ -158,11 +160,18 @@ namespace MadeInHouse.Models.Almacen
                         message = "Hubo un error al agregar los productos";
                 }
                 else
-                    message = "No se pudo eliminar los productos";*/
+                    message = "No se pudo crear la solicitud";
             }
-            else
-                message = "No se pudo crear la solicitud";
-
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace.ToString());
+            }
             trans.Rollback();
             db.conn.Close();
             return message;

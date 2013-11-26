@@ -48,7 +48,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 {
                     if (!String.IsNullOrEmpty(values)) values += " , ";
                     values += " (@idSolicitudAB, " + item.idProducto + " , " + item.pedido + " , " + item.atendido + " ) ";
-                    if (!this.actualizarStock(item.idProducto, item.atendido, item.stock, item.stockPendiente))
+                    if (!this.actualizarStock(item.idProducto, item.atendido - item.atendidoReal, item.stock, item.stockPendiente))
                         return false;
                 }
 
@@ -84,7 +84,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 db.cmd.Parameters.Add(new SqlParameter("registroHasta", registroHasta));
             }
 
-            if (estado > 0)
+            if (estado >= 0)
             {
                 where += " AND sa.estado = @estado ";
                 db.cmd.Parameters.Add(new SqlParameter("estado", estado));
@@ -113,7 +113,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 posNomTienda = reader.GetOrdinal("nombre");
                 abTemp.idSolicitudAB = reader.IsDBNull(posId)? -1 : reader.GetInt32(posId);
                 abTemp.estado = reader.IsDBNull(posState)? -1 : reader.GetInt32(posState);
-                abTemp.txtEstado = (abTemp.estado == 1) ? "Registrada" : ((abTemp.estado == 2) ? "En revisión" : ((abTemp.estado == 3) ? "Revisada" : ((abTemp.estado == 4) ? "Atendida" : "Anulada")));
+                abTemp.txtEstado = (abTemp.estado == 1) ? "Registrada" : ((abTemp.estado == 2) ? "En revisión" : ((abTemp.estado == 3) ? "Revisada" : ((abTemp.estado == 4) ? "Consolidada" : ((abTemp.estado == 5) ? "Atendida" : "Anulada"))));
                 abTemp.fechaReg = reader.IsDBNull(posReg)? null : reader.GetDateTime(posReg).ToString();
                 abTemp.fechaAtencion = reader.IsDBNull(posAtent)? null : reader.GetDateTime(posAtent).ToString();
                 abTemp.idTienda = reader.IsDBNull(posTienda)? -1 : reader.GetInt32(posTienda);
@@ -157,27 +157,37 @@ namespace MadeInHouse.DataObjects.Almacen
                 abTemp.nombre = reader.IsDBNull(posNomProd) ? null : reader.GetString(posNomProd);
                 abTemp.pedido = reader.IsDBNull(posCant) ? -1 : reader.GetInt32(posCant);
                 abTemp.atendido = reader.IsDBNull(posAtent) ? -1 : reader.GetInt32(posAtent);
+                abTemp.atendidoReal = reader.IsDBNull(posAtent) ? -1 : reader.GetInt32(posAtent);
                 if (idTienda == 0)
                     prod = pSQL.BuscarProductoxCentral(idAlmacen, abTemp.idProducto);
                 else
                     prod = pSQL.BuscarProductoxTienda(idAlmacen, abTemp.idProducto);
                 abTemp.stock = prod == null? -1 : prod.ElementAt(0).StockActual;
                 abTemp.stockPendiente = prod == null ? -1 : prod.ElementAt(0).StockPendiente;
-                abTemp.sugerido = prod == null ? -1 : (prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual);
+                abTemp.sugerido = prod == null ? -1 : ((prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual) > 0 ? (prod.ElementAt(0).StockMin - prod.ElementAt(0).StockActual) : 0);
                 lstAux.Add(abTemp);
             }
 
             db.cmd.Parameters.Clear();
+            reader.Close();
             if (db.cmd.Transaction == null) db.conn.Close();
             
             return lstAux;
         }
 
-        public int actualizarAbastecimiento(int idSolicitudAB, int idUsuario)
+        public int actualizarAbastecimiento(int idSolicitudAB, int idUsuario, int estado = -1)
         {
             int result = -1;
+            string set = "";
+            if (estado > -1)
+            {
+                set = " , estado = @estado ";
+                db.cmd.Parameters.AddWithValue("@estado", estado);
+            }
+
             db.cmd.CommandText = " UPDATE SolicitudAbastecimiento SET " +
                                  " fechaMod = GETDATE(), idUsuario = @idUsuario " +
+                                 set +
                                  " WHERE idSolicitudAB =  @idSolicitudAB ";
             db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
             db.cmd.Parameters.AddWithValue("@idSolicitudAB", idSolicitudAB);
@@ -232,7 +242,7 @@ namespace MadeInHouse.DataObjects.Almacen
         {
             int result = -1;
             db.cmd.CommandText = " UPDATE SolicitudAbastecimiento SET " +
-                                 " estado = 3, idUsuario = @idUsuario " +
+                                 " estado = 3, idUsuario = @idUsuario, fechaAtencion = GETDATE() " +
                                  " WHERE idSolicitudAB =  @idSolicitudAB ";
             db.cmd.Parameters.AddWithValue("@idUsuario", idUsuario);
             db.cmd.Parameters.AddWithValue("@idSolicitudAB", idSolicitudAB);
@@ -265,24 +275,5 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return result > 0 ? true : false;
         }
-        /*
-        public bool consolidarSolicitudes(List<Abastecimiento> Solicitudes)
-        {
-            db.cmd.CommandText = " UPDATE Producto SET " +
-                                 " stockActual = @stockActual, stockPendiente = @stockPendiente " +
-                                 " WHERE idProducto = @idProducto ";
-            db.cmd.Parameters.AddWithValue("@stockActual", stockActual - cantidad);
-            db.cmd.Parameters.AddWithValue("@stockPendiente", stockPendiente + cantidad);
-            db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
-
-            if (db.cmd.Transaction == null) db.conn.Open();
-
-            int result = db.cmd.ExecuteNonQuery();
-
-            if (db.cmd.Transaction == null) db.conn.Close();
-            db.cmd.Parameters.Clear();
-
-            return result > 0 ? true : false;
-        }*/
     }
 }

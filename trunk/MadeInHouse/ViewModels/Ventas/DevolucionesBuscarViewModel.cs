@@ -120,6 +120,42 @@ namespace MadeInHouse.ViewModels.Ventas
             }
         }
 
+        private string registroDesde;
+        public string RegistroDesde
+        {
+            get { return registroDesde; }
+            set
+            {
+                if (this.registroDesde == value) return;
+                registroDesde = value;
+                NotifyOfPropertyChange(() => RegistroDesde);
+            }
+        }
+
+        private string registroHasta;
+        public string RegistroHasta
+        {
+            get { return registroHasta; }
+            set
+            {
+                if (this.registroHasta == value) return;
+                registroHasta = value;
+                NotifyOfPropertyChange(() => RegistroHasta);
+            }
+        }
+
+        private string dni;
+        public string Dni
+        {
+            get { return dni; }
+            set
+            {
+                if (this.dni == value) return;
+                dni = value;
+                NotifyOfPropertyChange(() => Dni);
+            }
+        }
+
         #endregion
 
         #region metodos
@@ -149,11 +185,18 @@ namespace MadeInHouse.ViewModels.Ventas
         public void AnularDevolucion()
         {
             DevolucionSQL dSQL = new DevolucionSQL();
-            if (!dSQL.cambiarEstado(devolucionSel.IdDevolucion, 3))
+            if (dSQL.puedeAnular(devolucionSel.IdDevolucion))
             {
-                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo anular la devolución"));
+                if (!dSQL.cambiarEstado(devolucionSel.IdDevolucion, 3))
+                {
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo anular la devolución"));
+                }
+                ActualizarTabla();
             }
-            ActualizarTabla();
+            else
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La devolución ya no puede ser anulada"));
+            }
         }
 
         public void AbrirRegistrarDevolucion()
@@ -184,6 +227,11 @@ namespace MadeInHouse.ViewModels.Ventas
             NotaCredito = "";
             DocPago = "";
             SelectedEstado = 1;
+            SelectedIndex = 0;
+            NotifyOfPropertyChange("SelectedIndex");
+            RegistroDesde = "";
+            RegistroHasta = "";
+            Dni = "";
         }
 
         #endregion

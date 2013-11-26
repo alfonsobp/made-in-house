@@ -361,14 +361,6 @@ namespace MadeInHouse.ViewModels
                 _windowManager.ShowWindow(new Ventas.DevolucionesRegistrarViewModel(_windowManager, null, 0));
         }
 
-        //Ventana Externa: 3.9
-        public void AbrirListadoNotaCredito()
-        {
-            CargarAccesosRol(out accVentana);
-            if (accVentana[33] == 1)
-                _windowManager.ShowWindow(new Ventas.ListadoNotaCreditoViewModel { DisplayName = "Maestro de Notas de Crédito" });
-        }
-
         //Ventana Externa: 3.10
         public void AbrirListadoPromoProducto()
         {

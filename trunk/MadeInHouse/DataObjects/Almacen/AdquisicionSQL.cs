@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MadeInHouse.Models.Almacen;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,6 +34,33 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.Clear();
 
             return idSolicitud;
+        }
+
+        public int insertarProductosAdquisicion(int idSolicitud, List<AbastecimientoProducto> prod)
+        {
+            int result = 0;
+            string values = "";
+            if (prod != null && prod.Count > 0)
+            {
+                foreach (AbastecimientoProducto item in prod)
+                {
+                    if (!String.IsNullOrEmpty(values)) values += " , ";
+                    values += " (@idSolicitudAD, " + item.idProducto + " , " + (item.pedido - item.atendido) + " , 0 ) ";
+                }
+
+                db.cmd.CommandText = " INSERT INTO ProductoxSolicitudAd (idSolicitudAD , idProducto , cantidad , cantidadAtendida) " +
+                                     " VALUES " + values;
+                db.cmd.Parameters.AddWithValue("@idSolicitudAD", idSolicitud);
+
+                if (db.cmd.Transaction == null) db.conn.Open();
+
+                result = db.cmd.ExecuteNonQuery();
+
+                if (db.cmd.Transaction == null) db.conn.Close();
+                db.cmd.Parameters.Clear();
+            }
+
+            return result;
         }
     }
 }

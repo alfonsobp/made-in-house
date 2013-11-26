@@ -442,7 +442,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         if (string.Compare(selectedMotivo, "Abastecimiento", true) == 0)
                         {
                             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-                            wm.ShowWindow(new SolicitudAbListadoViewModel(this, 1));
+                            wm.ShowWindow(new SolicitudAbListadoViewModel(wm, this, 1));
                         }
                         else
                         {
