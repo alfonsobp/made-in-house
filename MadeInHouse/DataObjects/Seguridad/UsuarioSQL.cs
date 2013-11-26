@@ -275,7 +275,7 @@ namespace MadeInHouse.DataObjects.Seguridad
         }
 
         ///----------------------------------------------------------
-        ///
+
         public bool ProbarConexion()
         {
             bool b = false;

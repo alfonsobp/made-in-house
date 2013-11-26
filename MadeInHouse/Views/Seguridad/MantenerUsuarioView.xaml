@@ -64,7 +64,7 @@
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=CodEmpleado}" Width="60" Header="Código"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Nombre}" Width="170" Header="Empleado"  />
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=NomTienda}" Width="120" Header="Tienda"/>
-                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Rol"/>
+                                    <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=Rol.Nombre}" Width="120" Header="Perfil"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FechaReg}" Width="140" Header="Registro"/>
                                     <DataGridTextColumn IsReadOnly="True" Binding="{Binding Path=FechaMod}" Width="140" Header="Última modificación"/>
                                     <DataGridCheckBoxColumn  Binding="{Binding Path=EstadoHabilitado,UpdateSourceTrigger=PropertyChanged}" Header="¿Activo?" CanUserReorder="False" Width="65" />

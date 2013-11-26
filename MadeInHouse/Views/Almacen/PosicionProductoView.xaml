@@ -11,7 +11,7 @@
         <StackPanel>
             <Layouts:TitleBarTemplate title="Ubicar producto" />
             <Grid Margin="0,0,1,0" Height="609" HorizontalAlignment="Right" Width="1246">
-                
+
 
                 <ToolBar VerticalAlignment="Top" Height="41">
                     <ToolBar.Background>
@@ -20,12 +20,6 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-                    </Button>
                     <Button>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="Click">
@@ -37,9 +31,6 @@
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                     <Button>
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                     <Button Height="30" Width="30">
@@ -49,10 +40,10 @@
                 <TextBox x:Name="CantIngresar"  HorizontalAlignment="Right" Height="26" Margin="0,0,225,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
                 <TextBox x:Name="VolIngresar" IsEnabled="{Binding Enable}" HorizontalAlignment="Right" Height="26" Margin="0,0,87,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
                 <Label Content="Cant." HorizontalAlignment="Right" Margin="0,0,292,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
-                <Label Content="Vol." HorizontalAlignment="Right" Margin="0,0,154,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
+                <Label Content="Vol." HorizontalAlignment="Right" Margin="0,0,167,409" VerticalAlignment="Bottom" Height="26" Width="33"/>
                 <Label Content="Distribuón en almacén" HorizontalAlignment="Right" Margin="0,68,761,0" VerticalAlignment="Top" Height="26" Width="136"/>
                 <Label Content="Ubicacion" HorizontalAlignment="Right" Margin="0,0,276,457" VerticalAlignment="Bottom" Height="26" Width="62"/>
-                <Button HorizontalAlignment="Right" Margin="0,0,22,409" VerticalAlignment="Bottom" Width="43" Height="26">
+                <Button HorizontalAlignment="Right" Margin="0,0,10,409" VerticalAlignment="Bottom" Width="43" Height="26">
                     <Image Source="{Binding ImSource}"  />
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
@@ -90,8 +81,8 @@
                                            Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}" 
                                            AlturaU="{Binding AlturaU,Mode=TwoWay}" NumRowsU="{Binding NumRowsU,Mode=TwoWay}" NumColumnsU="{Binding NumColumnsU,Mode=TwoWay}"
                                            Accion="{Binding Accion1}" Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}"   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    </grid:DynamicGrid>
-                  
+                        </grid:DynamicGrid>
+
                     </Grid>
                 </ScrollViewer>
                 <ScrollViewer HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251">
@@ -110,6 +101,7 @@
                 <Label Content="Vol.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="1046,216,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="TxtCantActual" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="959,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
                 <TextBox x:Name="TxtVolActual"  IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="1097,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
+                <Label Content="%" HorizontalAlignment="Right" Margin="0,0,58,409" VerticalAlignment="Bottom" Height="26" Width="24"/>
 
             </Grid>
         </StackPanel>
