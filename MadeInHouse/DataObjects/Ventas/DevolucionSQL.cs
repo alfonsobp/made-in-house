@@ -22,7 +22,9 @@ namespace MadeInHouse.DataObjects.Ventas
         {
             List<DevolucionProducto> lstProducto = null;
             DevolucionProducto detTemp;
-            int posDocPago, posCantidad, posNombre, posCodProducto, posPrecio, posIdProducto, posDevuelto, posObservaciones;
+            int posDocPago, posCantidad, posNombre, posCodProducto, posPrecio, posIdProducto;
+            int posDevuelto, posObservaciones, posDescuento;
+            double precioTemp, descuentoTemp;
             string where = "";
 
             if (idProducto != -1)
@@ -49,9 +51,9 @@ namespace MadeInHouse.DataObjects.Ventas
                 db.cmd.Parameters.Add(new SqlParameter("idDevolucion", idDevolucion));
             }
 
-            db.cmd.CommandText = " select v.idVenta, dv.cantidad as cantidad, p.Nombre as nombre, " +
+            db.cmd.CommandText = " select v.idVenta as id, dv.cantidad as cantidad, p.Nombre as nombre, " +
                                  " p.codProducto as codProducto, p.idProducto as idProducto, " +
-                                 " p.precio as precio, v.numDocPagoProducto as docPago, " +
+                                 " dv.precio as precioV, dv.descuento as descuentoV, v.numDocPagoProducto as docPago, " +
                                  " sum(dd.cantidad) as devuelto, max(dd.motivo) as observaciones " +
                                  " from DetalleVenta dv join Venta v on v.idVenta = dv.idVenta " +
                                  " join Producto p on dv.idProducto = p.idProducto " +
@@ -63,34 +65,48 @@ namespace MadeInHouse.DataObjects.Ventas
                                  " and dd.idProducto = dv.idProducto " +
                                  " WHERE 1 = 1 " + where +
                                  " GROUP BY v.idVenta, dv.cantidad, p.Nombre, p.codProducto, " +
-                                 " p.idProducto, p.precio, v.numDocPagoProducto " +
-                                 " ORDER BY v.idVenta, p.idProducto ASC ";
-
-            if (db.cmd.Transaction == null) db.conn.Open();
-            SqlDataReader reader = db.cmd.ExecuteReader();
-
-            while (reader.Read())
+                                 " p.idProducto, dv.precio, dv.descuento, v.numDocPagoProducto ";
+            try
             {
-                if (lstProducto == null) lstProducto = new List<DevolucionProducto>();
-                detTemp = new DevolucionProducto();
-                posDocPago = reader.GetOrdinal("docPago");
-                posCantidad = reader.GetOrdinal("cantidad");
-                posDevuelto = reader.GetOrdinal("devuelto");
-                posNombre = reader.GetOrdinal("nombre");
-                posCodProducto = reader.GetOrdinal("codProducto");
-                posIdProducto = reader.GetOrdinal("idProducto");
-                posPrecio = reader.GetOrdinal("precio");
-                posObservaciones = reader.GetOrdinal("observaciones");
-                detTemp.DocPago = reader.IsDBNull(posDocPago) ? null : reader.GetString(posDocPago);
-                detTemp.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
-                detTemp.CodProducto = reader.IsDBNull(posCodProducto) ? null : reader.GetString(posCodProducto);
-                detTemp.Producto = reader.IsDBNull(posNombre) ? null : reader.GetString(posNombre);
-                detTemp.Cantidad = reader.IsDBNull(posCantidad) ? -1 : reader.GetInt32(posCantidad);
-                detTemp.Devuelto = reader.IsDBNull(posDevuelto) ? 0 : reader.GetInt32(posDevuelto);
-                detTemp.Precio = reader.IsDBNull(posPrecio) ? -1 : (double)reader.GetDecimal(posPrecio);
-                if (idDevolucion != -1)
-                    detTemp.Observaciones = reader.IsDBNull(posObservaciones) ? null : reader.GetString(posObservaciones);
-                lstProducto.Add(detTemp);
+                if (db.cmd.Transaction == null) db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    if (lstProducto == null) lstProducto = new List<DevolucionProducto>();
+                    detTemp = new DevolucionProducto();
+                    posDocPago = reader.GetOrdinal("docPago");
+                    posCantidad = reader.GetOrdinal("cantidad");
+                    posDevuelto = reader.GetOrdinal("devuelto");
+                    posNombre = reader.GetOrdinal("nombre");
+                    posCodProducto = reader.GetOrdinal("codProducto");
+                    posIdProducto = reader.GetOrdinal("idProducto");
+                    posPrecio = reader.GetOrdinal("precioV");
+                    posDescuento = reader.GetOrdinal("descuentoV");
+                    posObservaciones = reader.GetOrdinal("observaciones");
+                    detTemp.DocPago = reader.IsDBNull(posDocPago) ? null : reader.GetString(posDocPago);
+                    detTemp.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
+                    detTemp.CodProducto = reader.IsDBNull(posCodProducto) ? null : reader.GetString(posCodProducto);
+                    detTemp.Producto = reader.IsDBNull(posNombre) ? null : reader.GetString(posNombre);
+                    detTemp.Cantidad = reader.IsDBNull(posCantidad) ? -1 : reader.GetInt32(posCantidad);
+                    detTemp.Devuelto = reader.IsDBNull(posDevuelto) ? 0 : reader.GetInt32(posDevuelto);
+                    precioTemp = reader.IsDBNull(posPrecio) ? -1 : (double)reader.GetDecimal(posPrecio);
+                    descuentoTemp = reader.IsDBNull(posDescuento) ? -1 : (double)reader.GetDecimal(posDescuento);
+                    detTemp.Precio = (precioTemp >= 0 && descuentoTemp >= 0) ? precioTemp - descuentoTemp : -1;
+                    if (idDevolucion != -1)
+                        detTemp.Observaciones = reader.IsDBNull(posObservaciones) ? null : reader.GetString(posObservaciones);
+                    lstProducto.Add(detTemp);
+                }
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace.ToString());
             }
 
             db.cmd.Parameters.Clear();
@@ -271,32 +287,40 @@ namespace MadeInHouse.DataObjects.Ventas
             return lstAux;
         }
 
-        public void EstadoDevolucion(int idDevolucion)
+        public bool cambiarEstado (int idDevolucion, int estado)
         {
-            DBConexion db1 = new DBConexion();
-            
-            db.cmd.CommandText = "UPDATE Devolucion  " +
-            "SET estado=2 " +
-            " WHERE idDevolucion= @idDevolucion";
+            int result = 0;
+            db.cmd.CommandText = " UPDATE Devolucion SET estado = @estado " +
+                                    " WHERE idDevolucion = @idDevolucion ";
+            db.cmd.Parameters.AddWithValue("@estado", estado);
+            db.cmd.Parameters.AddWithValue("@idDevolucion", idDevolucion);
 
-            db.cmd.Parameters.AddWithValue("@idDevolucion",idDevolucion);
+            if (db.cmd.Transaction == null) db.conn.Open();
 
-            try
-            {
-                db.conn.Open();
+            result = db.cmd.ExecuteNonQuery();
 
-                db.cmd.ExecuteNonQuery();
+            if (db.cmd.Transaction == null) db.conn.Close();
+            db.cmd.Parameters.Clear();
 
-                db.conn.Close();
+            return (result > 0) ? true : false;
+        }
 
-            }
+        public bool puedeAnular(int idDevolucion)
+        {
+            bool result = true;
 
-            catch (Exception e)
-            {
-                MessageBox.Show(e.StackTrace.ToString());
-            }
+            db.cmd.CommandText = " SELECT idDevolucion FROM Devolucion " +
+                                 " WHERE idDevolucion = @idDevolucion AND estado = 3 ";
+            db.cmd.Parameters.AddWithValue("@idDevolucion", idDevolucion);
 
+            if (db.cmd.Transaction == null) db.conn.Open();
 
+            result = db.cmd.ExecuteScalar() == null? true: false;
+
+            if (db.cmd.Transaction == null) db.conn.Close();
+            db.cmd.Parameters.Clear();
+
+            return result;
         }
     }
 }

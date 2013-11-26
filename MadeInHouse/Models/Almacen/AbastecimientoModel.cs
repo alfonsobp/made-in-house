@@ -111,5 +111,61 @@ namespace MadeInHouse.Models.Almacen
             db.conn.Close();
             return message;
         }
+
+        public string consolidarSolicitudes(List<Abastecimiento> solicitudes)
+        {
+            DBConexion db = new DBConexion();
+            db.conn.Open();
+            SqlTransaction trans = db.conn.BeginTransaction();
+            db.cmd.Transaction = trans;
+            AdquisicionSQL adSQL = new AdquisicionSQL(db);
+            AbastecimientoSQL abSQL = new AbastecimientoSQL(db);
+            List<AbastecimientoProducto> prod = new List<AbastecimientoProducto>();
+            List<AbastecimientoProducto> temp = new List<AbastecimientoProducto>();
+            int idSolicitud;
+            int index;
+            string message ="";
+
+            if ((idSolicitud = adSQL.insertarAdquisicion(solicitudes.First().idTienda)) > 0)
+            {
+                foreach (Abastecimiento sol in solicitudes)
+                {
+                    temp = abSQL.buscarProductosAbastecimiento(sol.idSolicitudAB);
+
+                    foreach (AbastecimientoProducto item in temp)
+                    {
+                        if ((index = prod.FindIndex(x => x.idProducto == item.idProducto)) >= 0)
+                        {
+                            prod.ElementAt(index).atendido += item.atendido;
+                            prod.ElementAt(index).pedido += item.pedido;
+                        }
+                        else
+                        {
+                            prod.Add(item);
+                        }
+                    }
+                }
+
+                /*if (adSQL.insertarProductos(idSolicitud, solicitudes) >= 0)
+                {
+                    if (solSQL.insertarProductosAbastecimiento(idSolicitud, prod))
+                    {
+                        trans.Commit();
+                        db.conn.Close();
+                        return "La operacion fue exitosa";
+                    }
+                    else
+                        message = "Hubo un error al agregar los productos";
+                }
+                else
+                    message = "No se pudo eliminar los productos";*/
+            }
+            else
+                message = "No se pudo crear la solicitud";
+
+            trans.Rollback();
+            db.conn.Close();
+            return message;
+        }
     }
 }

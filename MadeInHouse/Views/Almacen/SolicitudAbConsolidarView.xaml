@@ -5,49 +5,57 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:designHeight="362" d:designWidth="334" >
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
-            <Layouts:TitleBarTemplate  title="Consolidar Solicitudes"/>
-            <Grid Height="419">
-                <ToolBar VerticalAlignment="Top">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Consolidar solicitudes" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button ToolTip="Consolidar">
-                        <Image Source="/MadeInHouse;component/Assets/check.png" Height="24" Width="24" />
+                    <Button x:Name="ConsolidarSolicitudes" ToolTip="Consolidar">
+                        <Image Source="/MadeInHouse;component/Assets/check.png" Height="30" Width="30" />
                     </Button>
-                    
-                    <Button ToolTip="Guardar">
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
-                    </Button>
-                    
-                    <Button ToolTip="Refresh" Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                    <Button x:Name="ActualizarTabla" ToolTip="Actualizar">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Height="30" Width="30" />
                     </Button>
                 </ToolBar>
-                <Grid HorizontalAlignment="Left" Height="363" Margin="0,46,0,0" VerticalAlignment="Top" Width="388">
-
-                    <DataGrid Margin="10,0,0,39" HorizontalAlignment="Left" Width="368" Height="220" VerticalAlignment="Bottom">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="130" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Codigo"/>
-                            <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Fecha"/>
-                            <DataGridTextColumn Width="120" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Estado"/>
-                        </DataGrid.Columns>
-                        
-                    </DataGrid>
-                    <GroupBox Header="Tienda a consolidar" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Height="82" Width="368">
-                        <Grid Margin="0,0,-2,0">
-                            <Label Content="Tienda" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="50" Margin="17,14,0,0"/>
-                            <ComboBox HorizontalAlignment="Left" Margin="100,19,0,0" VerticalAlignment="Top" Width="194"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox x:Name="Busqueda" Header="Tienda a consolidar" Margin="10">
+                        <Grid Margin="10" HorizontalAlignment="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Tienda" Height="25" />
+                            <ComboBox ItemsSource="{Binding CmbTiendas}" SelectedValue="{Binding SelectedTienda, Mode=TwoWay}"
+                                      DisplayMemberPath="Nombre" SelectedValuePath="IdTienda" Margin="4" Width="150" Height="25"
+                                      Grid.Column="1" SelectedIndex="{Binding SelectedIndex}"/>
                         </Grid>
                     </GroupBox>
+                    <DataGrid Width="{Binding ElementName=Busqueda, Path=ActualWidth }" Margin="10"
+                              Height="200" Grid.Row="1" x:Name="Solicitudes" IsReadOnly="True"
+                              AutoGenerateColumns="False" CanUserResizeColumns="False"
+                              SelectedItem="{Binding abastecimientoSel, Mode=TwoWay}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="120" Binding="{Binding Path=fechaReg}" Header="Fecha"/>
+                            <DataGridTextColumn Width="*" Binding="{Binding Path=txtEstado}" Header="Estado"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
-
-
-            </Grid>
-        </StackPanel>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

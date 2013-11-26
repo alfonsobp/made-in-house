@@ -9,6 +9,7 @@ using System.ComponentModel.Composition;
 using MadeInHouse.ViewModels.Almacen;
 using MadeInHouse.Models.Ventas;
 using MadeInHouse.DataObjects.Ventas;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Ventas
 {
@@ -143,6 +144,16 @@ namespace MadeInHouse.ViewModels.Ventas
         public void AbrirDetalle()
         {
             _windowManager.ShowWindow(new DevolucionesRegistrarViewModel(_windowManager, this, devolucionSel.IdDevolucion));
+        }
+
+        public void AnularDevolucion()
+        {
+            DevolucionSQL dSQL = new DevolucionSQL();
+            if (!dSQL.cambiarEstado(devolucionSel.IdDevolucion, 3))
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo anular la devolución"));
+            }
+            ActualizarTabla();
         }
 
         public void AbrirRegistrarDevolucion()

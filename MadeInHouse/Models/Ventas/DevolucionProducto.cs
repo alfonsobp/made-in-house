@@ -18,6 +18,7 @@ namespace MadeInHouse.Models.Ventas
         public int Devuelve { get; set; }
         public int Devuelto { get; set; }
         public double Precio { get; set; }
+        public double Descuento { get; set; }
         public string Observaciones { get; set; }
     }
 }

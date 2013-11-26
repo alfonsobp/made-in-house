@@ -133,7 +133,7 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[10] == 1)
-                _windowManager.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel());
+                _windowManager.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel(_windowManager));
         }
 
         //Ventana Externa: 1.11
