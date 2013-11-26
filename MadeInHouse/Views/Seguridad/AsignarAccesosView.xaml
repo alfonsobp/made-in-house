@@ -12,7 +12,7 @@
 
             <Grid Height="509" VerticalAlignment="Top" Width="612" Margin="0,0,0,-39">
 
-                <ToolBar VerticalAlignment="Top">
+                <ToolBar VerticalAlignment="Top" Margin="0,0,22,0">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -22,38 +22,25 @@
                     <Button x:Name="GuardarRol" ToolTip="Guardar cambios">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar ventana" Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
-                    </Button>
-                    <Button x:Name="ActualizarLstAccesos" ToolTip="Refrescar ventana" Height="50" Width="50">
+                    <Button x:Name="ActualizarLstAccesosz" ToolTip="Refrescar ventana" Height="50" Width="50">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
-                    
+
                 </ToolBar>
 
-                <GroupBox Header="Privilegios" HorizontalAlignment="Left" Margin="10,46,0,0" VerticalAlignment="Top" Height="103" Width="580">
+                <GroupBox Header="Elegir Perfil" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Height="94" Width="289">
                     <Grid Margin="0,0,-2,0" Height="79" VerticalAlignment="Top">
-                        <Label Content="Módulo:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,37,0,0"/>
-
-                        <Label Content="Perfil:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="162,10,0,0"/>
                         <ComboBox ItemsSource="{Binding Path=LstRol}"
                                DisplayMemberPath="Nombre"
                                SelectedValuePath="IdRol" 
                                SelectedValue="{Binding Path=IdRolValue}"
                                HorizontalAlignment="Left" 
-                               Margin="232,10,0,0" 
-                               VerticalAlignment="Top" Width="135"/>
-                        <ComboBox ItemsSource="{Binding Path=LstAccModulo}"
-                               DisplayMemberPath="Nombre"
-                               SelectedValuePath="IdAccModulo" 
-                               SelectedValue="{Binding Path=IdAccModuloValue}"
-                               HorizontalAlignment="Left" 
-                               Margin="232,37,0,0" 
+                               Margin="87,24,0,0" 
                                VerticalAlignment="Top" Width="135"/>
                     </Grid>
                 </GroupBox>
 
-                <GroupBox Header="Asignación de accesos a ventanas" HorizontalAlignment="Left" Margin="10,0,0,48" VerticalAlignment="Bottom" Height="298" Width="580">
+                <GroupBox Header="Asignar Accesos" HorizontalAlignment="Left" Margin="10,0,0,57" VerticalAlignment="Bottom" Height="298" Width="571">
                     <Grid Margin="0,0,-2,-12">
 
                         <DataGrid x:Name="LstAccVentanaAccModulo"  CanUserAddRows="False"
@@ -89,6 +76,21 @@
                         </DataGrid>
 
                     </Grid>
+                </GroupBox>
+                <GroupBox Header="Filtrar por Módulo" HorizontalAlignment="Left" Margin="304,55,0,0" VerticalAlignment="Top" Height="94" Width="277">
+                    <Grid Margin="0,0,-2,0" Height="79" VerticalAlignment="Top">
+                        <ComboBox ItemsSource="{Binding LstAccModulo}"
+                			DisplayMemberPath="Nombre"
+                			SelectedValuePath="IdAccModulo" 
+                			SelectedValue="{Binding IdAccModuloValue}"
+                			HorizontalAlignment="Left" 
+                			Margin="10,23,0,0" 
+                			VerticalAlignment="Top" Width="135"/>
+                        <Button x:Name="ActualizarLstAccesos" Height="24" VerticalAlignment="Top" Margin="165,21,33,0">
+                            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                        </Button>
+                    </Grid>
+                    
                 </GroupBox>
 
             </Grid>

@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MadeInHouse.Models.RRHH;
+using MadeInHouse.Validacion;
 
 namespace MadeInHouse.Views.RRHH
 {
@@ -47,6 +48,8 @@ namespace MadeInHouse.Views.RRHH
 
             Empleado emp;
             emp = new Empleado();
+            Evaluador eva = new Evaluador();
+
 
             emp.CodEmpleado = TxtCodEmp.Text;
             emp.Dni = TxtDni.Text;
@@ -82,7 +85,6 @@ namespace MadeInHouse.Views.RRHH
             else emp.Sueldo = 0;
             emp.Banco = TxtBanco.Text;
             emp.CuentaBancaria = TxtCuentaBancaria.Text;
-            
             if (!Regex.IsMatch(emp.Dni, "^[0-9]{8}$")) { MessageBox.Show("Inserte un DNI valido"); }
             else if (revisarDNI(emp.Dni)) { MessageBox.Show("El DNI ya existe"); }
             else if (emp.Nombre == "") { MessageBox.Show("Inserte un nombre valido"); }
@@ -90,11 +92,13 @@ namespace MadeInHouse.Views.RRHH
             else if (emp.ApeMaterno == "") { MessageBox.Show("Inserte un apellido materno valido"); }
             else if (emp.Direccion == "") { MessageBox.Show("Inserte una direccion valida"); }
             else if (emp.Telefono == "") { MessageBox.Show("Inserte un telefono valido"); }
+            else if (!eva.esNumeroEntero(TxtTelef.Text)) { MessageBox.Show("Inserte un número Telefónico válido"); }
+            else if (!eva.esNumeroEntero(TxtCel.Text)) { MessageBox.Show("Inserte un número de Celular válido"); }
             else if (emp.Tienda == "") { MessageBox.Show("Inserte un nombre valido"); }
             else if (emp.Puesto == "") { MessageBox.Show("Inserte un puesto valido"); }
             else if (emp.Area == "") { MessageBox.Show("Inserte una area valida"); }
             else if (emp.Banco == "") { MessageBox.Show("Inserte un banco valido"); }
-            else if (emp.CuentaBancaria == "") { MessageBox.Show("Inserte una cuenta bancaria valida"); }            
+            else if (emp.CuentaBancaria == "") { MessageBox.Show("Inserte una cuenta bancaria valida"); }
             else
             {
                 int k;
@@ -105,7 +109,7 @@ namespace MadeInHouse.Views.RRHH
                 else
                 {
                     MessageBox.Show("Los datos han sido guardados exitosamente");
-                    Limpiar(sender,e);
+                    Limpiar(sender, e);
                 }
             }
 
