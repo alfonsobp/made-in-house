@@ -28,14 +28,14 @@
             </ToolBar>
             <Grid Margin="30,30,30,19">
                 <TextBlock HorizontalAlignment="Left" Margin="47,10,0,0" TextWrapping="Wrap" Text="Cliente:" VerticalAlignment="Top" Height="22" Width="40"/>
-                <TextBox x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="117,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306"/>
-                <TextBox IsReadOnly="True"
+                <TextBox IsReadOnly="True" x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="117,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="306"/>
+                <TextBox MaxLength="11"
                     cal:Message.Attach="[Event KeyDown] = [Action ExecuteFilterView($eventArgs)]" 
                     x:Name="TxtTarjetaCliente" HorizontalAlignment="Left" Height="23" Margin="117,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.269,0.565"/>
-                <TextBox x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="117,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
+                <TextBox IsReadOnly="True" x:Name="TxtRazonSocial" HorizontalAlignment="Left" Height="23" Margin="117,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="351"/>
                 <DatePicker x:Name="FechaDespacho" VerticalAlignment="Top" Margin="591,12,34,0"/>
                 <TextBlock HorizontalAlignment="Left" Margin="552,81,0,0" TextWrapping="Wrap" Text="RUC:" VerticalAlignment="Top" RenderTransformOrigin="-0.16,0.438"/>
-                <TextBox MaxLength="11" x:Name="TxtRuc" Height="23" Margin="591,81,34,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                <TextBox IsReadOnly="True" MaxLength="11" x:Name="TxtRuc" Height="23" Margin="591,81,34,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                 <GroupBox Header="Detalle de la Venta" Margin="10,162,10,0" Height="263" VerticalAlignment="Top">
                     <TabControl>
                         <TabItem Header="Productos" Background="White">
@@ -52,7 +52,7 @@
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/find.png" Stretch="Uniform"/>
                                     </Button.Background>
                                 </Button>
-                                <TextBox x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="520,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
+                                <TextBox MaxLength="10" x:Name="TxtCantidad" HorizontalAlignment="Left" Height="23" Margin="520,8,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79"/>
                                 <Button ToolTip="Agregar Producto" x:Name="AgregarDetalle" Content="" Margin="614,8,0,0" VerticalAlignment="Top" Height="23" RenderTransformOrigin="2.964,0.536" HorizontalAlignment="Left" Width="28">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/MadeInHouse;component/Assets/add.png" Stretch="Uniform"/>

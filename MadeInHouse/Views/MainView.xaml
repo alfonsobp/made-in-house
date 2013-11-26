@@ -311,6 +311,7 @@
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="AbrirBuscarTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Tiendas" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,2,139,3" Width="158"/>
                 <Button x:Name="AbrirMantenerTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,1,157,2" Width="139"/>
@@ -318,7 +319,7 @@
                 <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,39,1" Width="259"/>
                 <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,122,2" Width="176"/>
                 <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,4" Width="288"/>
-
+                <Button x:Name="AbrirMantenerIgvPuntos"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener IGV y Puntos" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,4" Width="288"/>
             </Grid>
         </Expander>
         <!--Clima Laboral-->

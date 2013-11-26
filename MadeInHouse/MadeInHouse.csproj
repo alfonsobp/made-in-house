@@ -314,6 +314,7 @@
     <Compile Include="ViewModels\Ventas\DetalleVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
+    <Compile Include="ViewModels\Ventas\MantenerIgvPuntosViewModel.cs" />
     <Compile Include="ViewModels\Ventas\PromoProductoEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\PromoServicioEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteBuscarViewModel.cs" />
@@ -634,6 +635,9 @@
     </Compile>
     <Compile Include="Views\Ventas\EditarNotaCreditoView.xaml.cs">
       <DependentUpon>EditarNotaCreditoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ventas\MantenerIgvPuntosView.xaml.cs">
+      <DependentUpon>MantenerIgvPuntosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\PromoProductoEditarView.xaml.cs">
       <DependentUpon>PromoProductoEditarView.xaml</DependentUpon>
@@ -1069,6 +1073,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ventas\EditarNotaCreditoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Ventas\MantenerIgvPuntosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -230,7 +230,7 @@ namespace MadeInHouse.ViewModels.Ventas
             set { txtVuelto = value; NotifyOfPropertyChange(() => TxtVuelto); }
         }
 
-        private DateTime fechaDespacho = new DateTime(DateTime.Now.Year, 1, 1);
+        private DateTime fechaDespacho = DateTime.Now;
         public DateTime FechaDespacho
         {
             get { return fechaDespacho; }
@@ -326,7 +326,13 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 //buscar al cliente por la tarjeta
                 ClienteSQL csql = new ClienteSQL();
-                c = csql.BuscarClienteByTarjeta(TxtCliente);
+                c = csql.BuscarClienteByTarjeta(TxtTarjetaCliente);
+                if (c == null)
+                {
+                    MessageBox.Show("La Tarjeta ingresada no esta registrata en el sistema", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                    TxtTarjetaCliente = "";
+                    return;
+                }
                 TxtRazonSocial = c.RazonSocial;
                 TxtRuc = c.Ruc.Trim();
                 TxtCliente = c.NombreCompleto;
@@ -392,7 +398,7 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 if (item.IdProducto == prod.IdProducto)
                 {
-                    if (ev.esNumeroEntero(TxtCantidad)) item.Cantidad += Int32.Parse(TxtCantidad);
+                    if (ev.esNumeroEntero(TxtCantidad) && ev.esPositivo(Convert.ToInt32(TxtCantidad))) item.Cantidad += Int32.Parse(TxtCantidad);
                     else {
                         MessageBox.Show("Tiene que poner una cantidad");
                         return;
@@ -530,10 +536,20 @@ namespace MadeInHouse.ViewModels.Ventas
                     if (tipoVenta[cmbTipoVenta] == 0)
                         v.TipoDocPago = "Boleta";
                     else
+                    {
                         v.TipoDocPago = "Factura";
+                        if (String.IsNullOrEmpty(TxtRazonSocial) || String.IsNullOrEmpty(TxtRuc))
+                        {
+                            MessageBox.Show("Se requiere Razón Social y ruc para la factura", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+
 
                     v.NumDocPago = null;
                     v.IdUsuario = Convert.ToInt32(Thread.CurrentPrincipal.Identity.Name);
+                    v.Direccion = TxtDireccion;
+                    v.Telefono = TxtTelefono;
                     v.IdCliente = cli.Cliente.Id;
                     v.CodTarjeta = Convert.ToInt32(cli.CodTarjeta);
 
@@ -615,12 +631,11 @@ namespace MadeInHouse.ViewModels.Ventas
         private bool Validar()
         {
             Evaluador e = new Evaluador();
-            if (!e.evalString(TxtRazonSocial))
+            if (String.IsNullOrEmpty(TxtRazonSocial) || String.IsNullOrEmpty(TxtTelefono))
             {
-                MessageBox.Show("No ha ingresado la razon social del cliente", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Los datos de direccion y/o telefono son requeridos", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-
             if (!e.evalString(TxtDireccion))
             {
                 MessageBox.Show("No ha ingresado la direccion del cliente", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -739,7 +754,12 @@ namespace MadeInHouse.ViewModels.Ventas
         private bool ValidaMonto()
         {
             Evaluador e = new Evaluador();
-            if (String.IsNullOrEmpty(TxtMonto) && !e.esNumeroReal(TxtMonto))
+            if (String.IsNullOrEmpty(TxtMonto))
+            {
+                MessageBox.Show("Debe ingresar un monto", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            if (!e.esNumeroReal(TxtMonto) && e.esPositivo(Convert.ToInt32(TxtMonto)))
             {
                 MessageBox.Show("No ha ingresado un valor correcto en el Monto de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
