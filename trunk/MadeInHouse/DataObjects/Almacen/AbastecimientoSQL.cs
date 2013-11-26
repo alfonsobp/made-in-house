@@ -67,7 +67,7 @@ namespace MadeInHouse.DataObjects.Almacen
             return (result > 0) ? true : false;
         }
 
-        public List<Abastecimiento> buscarAbastecimientos(string registroDesde, string registroHasta)
+        public List<Abastecimiento> buscarAbastecimientos(string registroDesde, string registroHasta, int estado, int idTienda = -1)
         {
             List<Abastecimiento> lstAux = null;
             Abastecimiento abTemp;
@@ -82,6 +82,18 @@ namespace MadeInHouse.DataObjects.Almacen
             if (!String.IsNullOrEmpty(registroHasta)){
                 where += " AND convert (char, sa.fechaReg, 103) <= @registroHasta ";
                 db.cmd.Parameters.Add(new SqlParameter("registroHasta", registroHasta));
+            }
+
+            if (estado > 0)
+            {
+                where += " AND sa.estado = @estado ";
+                db.cmd.Parameters.Add(new SqlParameter("estado", estado));
+            }
+
+            if (idTienda > 0)
+            {
+                where += " AND sa.idTienda = @idTienda ";
+                db.cmd.Parameters.Add(new SqlParameter("idTienda", idTienda));
             }
 
             db.cmd.CommandText = "SELECT * FROM SolicitudAbastecimiento sa, Tienda t WHERE sa.idTienda = t.idTienda " + where + " ORDER by idSolicitudAB ASC";
@@ -253,5 +265,24 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return result > 0 ? true : false;
         }
+        /*
+        public bool consolidarSolicitudes(List<Abastecimiento> Solicitudes)
+        {
+            db.cmd.CommandText = " UPDATE Producto SET " +
+                                 " stockActual = @stockActual, stockPendiente = @stockPendiente " +
+                                 " WHERE idProducto = @idProducto ";
+            db.cmd.Parameters.AddWithValue("@stockActual", stockActual - cantidad);
+            db.cmd.Parameters.AddWithValue("@stockPendiente", stockPendiente + cantidad);
+            db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
+
+            if (db.cmd.Transaction == null) db.conn.Open();
+
+            int result = db.cmd.ExecuteNonQuery();
+
+            if (db.cmd.Transaction == null) db.conn.Close();
+            db.cmd.Parameters.Clear();
+
+            return result > 0 ? true : false;
+        }*/
     }
 }

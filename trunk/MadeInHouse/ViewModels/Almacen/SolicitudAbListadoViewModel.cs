@@ -38,6 +38,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private string registroDesdeHide;
         private string registroHastaHide;
+        private int estadoHide;
 
         private List<Abastecimiento> solicitudes;
         private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
@@ -81,7 +82,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void ActualizarTabla()
         {
             AbastecimientoSQL abaSQL = new AbastecimientoSQL();
-            Solicitudes = abaSQL.buscarAbastecimientos(registroDesdeHide, registroHastaHide);
+            Solicitudes = abaSQL.buscarAbastecimientos(registroDesdeHide, registroHastaHide, estadoHide);
             NotifyOfPropertyChange("Solicitudes");
         }
 

@@ -63,6 +63,7 @@ namespace MadeInHouse.ViewModels.Ventas
         {
             // TODO: Complete member initialization
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
+            ind = 1;
         }
 
         private string txtNombre;

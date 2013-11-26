@@ -610,7 +610,7 @@ namespace MadeInHouse.ViewModels.Almacen
         private void CambiarEstadoDevolucion(Devolucion SelectedDevolucion)
         {
             DevolucionSQL dsql = new DevolucionSQL();
-            dsql.EstadoDevolucion(SelectedDevolucion.IdDevolucion);       
+            dsql.cambiarEstado(SelectedDevolucion.IdDevolucion, 2);       
         }
 
         private void CambiarEstadoGuia(GuiaRemision SelectedGuia)

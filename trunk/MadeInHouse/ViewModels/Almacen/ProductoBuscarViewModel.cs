@@ -107,6 +107,7 @@ namespace MadeInHouse.ViewModels.Almacen
             AlmacenSQL almSQL = new AlmacenSQL();
             idAlmacen = solicitudView.idTienda;
             SelectedTienda = solicitudView.idTienda;
+            Index = CmbTiendas.FindIndex(x => x.IdTienda == SelectedTienda);
         }
 
         public ProductoBuscarViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion):this()

@@ -16,7 +16,7 @@ using MadeInHouse.ViewModels.Layouts;
 namespace MadeInHouse.ViewModels.Ventas
 {
     [Export(typeof(DevolucionesRegistrarViewModel))]
-    class DevolucionesRegistrarViewModel : PropertyChangedBase
+    class DevolucionesRegistrarViewModel : Screen
     {
         #region constantes
 
@@ -39,7 +39,10 @@ namespace MadeInHouse.ViewModels.Ventas
                 this.ObtenerProductosVenta();
                 IndMantenimiento = DETALLE;
                 IsReadOnly = true;
-                CanDelete = Visibility.Visible;
+                if ((new DevolucionSQL()).puedeAnular(idDevolucion))
+                    CanDelete = Visibility.Visible;
+                else
+                    CanDelete = Visibility.Collapsed;
                 CanSave = Visibility.Collapsed;
                 ViewDni = Visibility.Collapsed;
             }
@@ -173,6 +176,28 @@ namespace MadeInHouse.ViewModels.Ventas
                 DNI = dev.venta == null ? null : dev.venta.dni;
                 if (dev.venta != null && dev.venta.IdVenta > 0)
                     LstProductos = dSQL.BuscarProductos(-1, dev.venta.IdVenta);
+                else
+                    LstProductos = null;
+            }
+        }
+
+        public void AnularDevolucion()
+        {
+            DevolucionSQL dSQL = new DevolucionSQL();
+            if (dSQL.puedeAnular(idDevolucion))
+            {
+                if (!dSQL.cambiarEstado(idDevolucion, 0))
+                {
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo anular la devolución"));
+                }
+                if (window != null)
+                    window.ActualizarTabla();
+                ((Window)this.GetView()).Owner.Focus();
+                TryClose();
+            }
+            else
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La devolución ya se encuentra anulada"));
             }
         }
 

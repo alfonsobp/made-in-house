@@ -104,6 +104,7 @@
     </ApplicationDefinition>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="DataObjects\Almacen\AbastecimientoSQL.cs" />
+    <Compile Include="DataObjects\Almacen\AdquisicionSQL.cs" />
     <Compile Include="DataObjects\Almacen\AlmacenSQL.cs" />
     <Compile Include="DataObjects\Almacen\NotaISSQL.cs" />
     <Compile Include="DataObjects\Almacen\OrdenDespachoSQL.cs" />
