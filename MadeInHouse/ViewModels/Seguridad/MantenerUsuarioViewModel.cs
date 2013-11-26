@@ -42,8 +42,8 @@ namespace MadeInHouse.ViewModels.Seguridad
 
         public string TxtCodUsuarioElimBuscado
         {
-            get { return TxtCodUsuarioElimBuscado; }
-            set { TxtCodUsuarioElimBuscado = value; }
+            get { return txtCodUsuarioElimBuscado; }
+            set { txtCodUsuarioElimBuscado = value; }
         }
 
         private List<Usuario> lstUsuarioElim;
