@@ -153,31 +153,20 @@ namespace MadeInHouse.Views
 
         private void mover(Expander e,Button b)
         {
-            e.Height = 0;
-            e.Margin = b.Margin;
-
-            ThicknessAnimation anima = new ThicknessAnimation(e.Margin, new Thickness(0, 0, 0, 0), new Duration(TimeSpan.FromSeconds(0.15)), FillBehavior.HoldEnd);
-            e.BeginAnimation(Border.MarginProperty, anima);
+           
 
             DoubleAnimation animation = new DoubleAnimation(300, TimeSpan.FromSeconds(0.15));
             e.BeginAnimation(Expander.WidthProperty, animation);
 
-            DoubleAnimation animation2 = new DoubleAnimation(1024.5, TimeSpan.FromSeconds(0.1));
-            e.BeginAnimation(Expander.HeightProperty, animation2);
 
         }
 
         private void salir(Expander e, Button b)
         {
-            e.Height = 1024.5;
-            ThicknessAnimation anima = new ThicknessAnimation(e.Margin, b.Margin, new Duration(TimeSpan.FromSeconds(0.15)), FillBehavior.HoldEnd);
-            e.BeginAnimation(Border.MarginProperty, anima);
-
+            
             DoubleAnimation animation = new DoubleAnimation(0, TimeSpan.FromSeconds(0.18));
             e.BeginAnimation(Expander.WidthProperty, animation);
 
-            DoubleAnimation animation2 = new DoubleAnimation(0, TimeSpan.FromSeconds(0.1));
-            e.BeginAnimation(Expander.HeightProperty, animation2);
 
         }
 

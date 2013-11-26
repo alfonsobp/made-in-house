@@ -129,7 +129,7 @@ namespace MadeInHouse.Views.RRHH
             TxtDir.Text = "";
 
             TxtRef.Text = "";
-            TxtRutFoto.Text = "";
+            
             TxtCel.Text = "";
 
             TxtEmail.Text = "";
