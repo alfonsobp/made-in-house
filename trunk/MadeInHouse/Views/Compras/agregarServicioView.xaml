@@ -6,30 +6,30 @@
                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
                xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                mc:Ignorable="d" 
-               d:DesignHeight="499.514" d:DesignWidth="600">
+               d:DesignHeight="495.036" d:DesignWidth="664.179">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Servicios" />
+        <StackPanel Margin="0,0,-2,0">
+            <Layouts:TitleBarTemplate title="SERVICIOS" />
             
-            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-        <GroupBox Header="Ingresar Servicio" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="580" Margin="10,60,0,0">
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Margin="0,0,10,0">
+        <GroupBox Header="Ingresar Servicio" HorizontalAlignment="Left" Height="380" VerticalAlignment="Top" Width="632" Margin="10,60,0,0">
           
-                    <Grid >
+                    <Grid Margin="0,0,-2,0" >
                 <Label Content="Codigo:" HorizontalAlignment="Left" Margin="13,30,0,0" VerticalAlignment="Top"/>
                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="13,60,0,0" VerticalAlignment="Top"/>
                 <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="13,90,0,0" VerticalAlignment="Top"/>
                 <Label Content="Descripcion" HorizontalAlignment="Left" Margin="10,166,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="89" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
+                <TextBox x:Name="TxtDescripcion" HorizontalAlignment="Left" Height="150" Margin="10,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
                 <TextBox IsEnabled="False" x:Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="86,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="85,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                 <TextBox IsEnabled="False" Text="{Binding Path=Prov.CodProveedor, Mode=TwoWay}" HorizontalAlignment="Left" Height="23" Margin="85,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="159"/>
                 <DataGrid
                     cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
-                    IsReadOnly="True"  AutoGenerateColumns="False"  SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" HorizontalAlignment="Left" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" Width="222">
+                    IsReadOnly="True"  AutoGenerateColumns="False"  SelectedItem="{Binding Seleccionado, Mode=TwoWay}" ItemsSource="{Binding LstProducto, Mode=OneWay}" Height="297" Margin="316,45,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="296">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="70" Header="Cod. Prod"/>
+                                <DataGridTextColumn Binding="{Binding Path=Producto.CodigoProd}" Width="110" Header="Código Producto"/>
                                 <DataGridTextColumn Binding="{Binding Path=Producto.Nombre}" Width="100" Header="Nomb. Prod"/>
-                                <DataGridTextColumn Binding="{Binding Path=Precio}" Width="80" Header="Precio"/>
+                                <DataGridTextColumn Binding="{Binding Path=Precio}" Width="80" Header="Precio (S/.)"/>
                             </DataGrid.Columns>
                         </DataGrid>
                 <Label Content="Productos soportados" HorizontalAlignment="Left" Margin="316,14,0,0" VerticalAlignment="Top"/>
