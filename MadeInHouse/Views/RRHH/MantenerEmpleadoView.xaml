@@ -41,14 +41,12 @@
                     <Grid Margin="0,0,0,8">
                         <GroupBox Header="Filtrar por" Margin="10,10,10,0" VerticalAlignment="Top" Height="167">
                             <Grid>
-                                <Label Content="Código:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="59" Margin="15,14,0,0"/>
-                                <Label Content="DNI:" HorizontalAlignment="Left" Margin="15,45,0,0" VerticalAlignment="Top" Width="59"/>
-                                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="15,76,0,0" VerticalAlignment="Top" Width="59"/>
-                                <Label Content="A. Paterno:" HorizontalAlignment="Left" Margin="15,107,0,0" VerticalAlignment="Top" Width="70"/>
-                                <TextBox Name="TxtCodigo" MaxLength="7" HorizontalAlignment="Left" Height="23" Margin="101,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox Name="TxtDni" MaxLength="8" HorizontalAlignment="Left" Height="23" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox Name="TxtNombre" MaxLength="30" AcceptsReturn="False" HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox Name="TxtApePaterno" MaxLength="30" AcceptsReturn="False" HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <Label Content="DNI:" HorizontalAlignment="Left" Margin="10,16,0,0" VerticalAlignment="Top" Width="59"/>
+                                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="10,47,0,0" VerticalAlignment="Top" Width="59"/>
+                                <Label Content="A. Paterno:" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="70"/>
+                                <TextBox Name="TxtDni" MaxLength="8" HorizontalAlignment="Left" Height="23" Margin="96,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtNombre" MaxLength="30" AcceptsReturn="False" HorizontalAlignment="Left" Height="23" Margin="96,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtApePaterno" MaxLength="30" AcceptsReturn="False" HorizontalAlignment="Left" Height="23" Margin="96,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
 
                                 <Label Content="Tienda:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="49"/>
                                 <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="96"/>
@@ -80,7 +78,7 @@
                         <DataGrid Name="Lista" Margin="10,182,10,0" CanUserAddRows="False" IsReadOnly="True">
                             <DataGrid.Columns >
                                 <!-- aqui van las columnas en caso no kiera mostrar todas -->
-                            </DataGrid.Columns>                            
+                            </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
                 </GroupBox>
