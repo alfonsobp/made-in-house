@@ -117,7 +117,7 @@ namespace MadeInHouse.ViewModels.Compras
                 GenerarPDF pdf = new GenerarPDF();
                 Correo c = new Correo();
                 //m.coloma@pucp.pe
-                string path = "\\OrdenCompra-" + numOC + ".pdf";
+                string path = "\\" + numOC + ".pdf";
                 pdf.Borrar(Environment.CurrentDirectory + path);
                 string body = formato(o).ToString();
                 string msg = "<html><body>Estimados :<br> Se adjunta la Orden de compra , Atenderla porfavor. <br>Saludos.<br>MadeInHouse <br>Seccion Compras </body></html>"; ;
