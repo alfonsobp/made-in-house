@@ -24,7 +24,7 @@ namespace MadeInHouse.Views.Layouts
         public static readonly DependencyProperty titleProperty = DependencyProperty.Register("title", typeof(string), typeof(TitleBarTemplate), new PropertyMetadata(string.Empty));
 		public static readonly DependencyProperty isAlertProperty = DependencyProperty.Register("isAlert", typeof(bool), typeof(TitleBarTemplate), new PropertyMetadata(false));
 
-        private const int ALTURA = 58;
+        private const int ALTURA = 55;
         private const int ANCHO = 200;
         private static int tabsXColumna = 0;
 

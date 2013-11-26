@@ -22,7 +22,7 @@
         </Border.Effect>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
             <DockPanel>
-                <Border DockPanel.Dock="Top" Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
                     <Layouts:TitleBarTemplate title="Advertencia" isAlert="True" />
                 </Border>
                 <StackPanel>

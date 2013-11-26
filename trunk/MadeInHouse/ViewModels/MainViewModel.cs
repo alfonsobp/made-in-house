@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
-using Caliburn.Micro;
-using MadeInHouse.Models;
-using System.Windows;
-using System.Windows.Input;
-using System.ComponentModel.Composition;
+﻿using Caliburn.Micro;
 using MadeInHouse.Models.Seguridad;
-using MadeInHouse.Views.Seguridad;
-using MadeInHouse.Models.RRHH;
-using MadeInHouse.Views.RRHH;
-using MadeInHouse.Views.Reportes;
-using System.Diagnostics;
 using MadeInHouse.ViewModels.Ventas;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Threading;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels
 {
 	[Export(typeof(MainViewModel))]
     public class MainViewModel : Screen
     {
+        #region constructores
+
+        [ImportingConstructor]
+        public MainViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+        }
+
+        #endregion
 
         #region overrides
 
@@ -33,20 +32,17 @@ namespace MadeInHouse.ViewModels
 
         #endregion
 
+        #region atributos
+
+        public static List<List<Window>> MinWin = new List<List<Window>>();
         public static double height;
         public static double width;
 
-		private readonly IWindowManager _windowManager;
-
-        [ImportingConstructor]
-        public MainViewModel(IWindowManager windowmanager)
-        {
-            _windowManager = windowmanager;
-        }
-		
-        public static List<List<Window>> MinWin = new List<List<Window>>();
+        private readonly IWindowManager _windowManager;
 
         int[] accVentana = new int[100];
+
+        #endregion
 
         public void CargarAccesosRol(out int[] ventana)
         {
@@ -76,14 +72,14 @@ namespace MadeInHouse.ViewModels
             //CargarAccesosRol(u, out accesoRol);
             CargarAccesosRol(out accVentana);
             if (accVentana[1] == 1)
-                _windowManager.ShowWindow(new Almacen.MantenerAlmacenViewModel());
+                _windowManager.ShowWindow(new Almacen.MantenerAlmacenViewModel(_windowManager));
         }
         //Ventana Externa: 1.2
         public void AbrirNuevoProducto()
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[2] == 1)
-                _windowManager.ShowWindow(new Almacen.ProductoMantenerViewModel());
+                _windowManager.ShowWindow(new Almacen.ProductoMantenerViewModel(_windowManager));
         }
 
         //Ventana Externa: 1.3

@@ -315,7 +315,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void AbrirMantenerProducto()
         {
             MyWindowManager wm = new MyWindowManager();
-            wm.ShowWindow(new Almacen.ProductoMantenerViewModel());
+            wm.ShowWindow(new Almacen.ProductoMantenerViewModel(wm));
         }
 
 
@@ -455,7 +455,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
-                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(ProductoSel);
+                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(win, ProductoSel);
                 win.ShowWindow(pmVM);
             }
         }
