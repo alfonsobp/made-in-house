@@ -661,11 +661,11 @@ namespace MadeInHouse.ViewModels
                 _windowManager.ShowWindow(new Almacen.BuscarTiendaViewModel());
         }
 
-        //Ventana Externa: 8.9
+        //Ventana Externa: 8.9  ASOCIADO A VENTAS!!!!!!!!
         public void AbrirMantenerIgvPuntos()
         {
             CargarAccesosRol(out accVentana);
-            if (accVentana[68] == 1)
+            if (accVentana[27] == 1)
                 _windowManager.ShowWindow(new Ventas.MantenerIgvPuntosViewModel());
         }
 
