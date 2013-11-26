@@ -54,6 +54,13 @@ namespace MadeInHouse.Models.Compras
             set { precioUnitario = value; }
         }
 
+        private double precioCot;
+        public double PrecioCot
+        {
+            get { return precioCot; }
+            set { precioCot = value; }
+        }
+
         private double importe;
         public double Importe
         {

@@ -55,6 +55,22 @@ namespace MadeInHouse.Models.Almacen
             set { almOrigen = value; }
         }
 
+
+        private string direccion;
+        public string Direccion
+        {
+            get { return direccion; }
+            set { direccion = value; }
+        }
+
+        private string telefono;
+        public string Telefono
+        {
+            get { return telefono; }
+            set { telefono = value; }
+        }
+
+
         public void OrdenDeDespacho()
         {
 

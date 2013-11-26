@@ -285,7 +285,7 @@ namespace MadeInHouse.ViewModels.Almacen
             tiendaOrigen = a.Nombre;
             TxtAlmacenOrigen = alm.Nombre;
             TxtDirPartida = a.Direccion;
-            TxtDirLlegada = c.Direccion;
+            TxtDirLlegada = Orden.Direccion;
             TxtTienda = c.RazonSocial;
 
             List<DetalleVenta> l = new DetalleVentaSQL().BuscarTodos();
@@ -531,7 +531,10 @@ namespace MadeInHouse.ViewModels.Almacen
             content += "DATOS DESTINO: <br>";
 
             if (Orden != null)
+            {
                 content += "Cliente : " + TxtTienda + "<br>";
+                content += "Telefono : " + Orden.Telefono + "<br>";
+            }
 
             if (Alm != null)
                 content += "Almacen : " + TxtTienda + "<br>";
