@@ -45,10 +45,10 @@
 
                             <Label Content="Dirección:" Margin="13,196,531,0" VerticalAlignment="Top" RenderTransformOrigin="1.426,0.654"/>
                             <Label Content="Fecha de nacimiento:" HorizontalAlignment="Left" Margin="13,140,0,0" VerticalAlignment="Top" Width="124"/>
-                            <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="449,25,0,0" VerticalAlignment="Top" Width="62"/>
+                            <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="444,0,0,0" VerticalAlignment="Top" Width="62"/>
                             <Label Content="Sexo:" HorizontalAlignment="Left" Margin="13,166,0,0" VerticalAlignment="Top" Width="119"/>
-                            <Label Content="Celular:" HorizontalAlignment="Left" Margin="449,53,0,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="1.17,0.385"/>
-                            <Label Content="E-mail:" HorizontalAlignment="Left" Margin="449,84,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.043,0.538"/>
+                            <Label Content="Celular:" HorizontalAlignment="Left" Margin="444,28,0,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="1.17,0.385"/>
+                            <Label Content="E-mail:" HorizontalAlignment="Left" Margin="444,56,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.043,0.538"/>
 
                             <TextBox Name="TxtCodEmp" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="137,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73"/>
                             <TextBox Name="TxtDni" MaxLength="8" HorizontalAlignment="Left" Height="23" Margin="137,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="73" />
@@ -60,9 +60,9 @@
                             <RadioButton Name="RdbFem" GroupName="Sexo" Content="Femenino" HorizontalAlignment="Left" Margin="223,171,0,0" VerticalAlignment="Top"/>
                             <TextBox Name="TxtDir" MaxLength="50" HorizontalAlignment="Left" Height="23" Margin="137,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                             <TextBox Name="TxtRef" MaxLength="50" HorizontalAlignment="Left" Height="45" Margin="137,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                            <TextBox Name="TxtTelef" MaxLength="9" HorizontalAlignment="Left" Height="23" Margin="545,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" />
-                            <TextBox Name="TxtCel" MaxLength="9" HorizontalAlignment="Left" Height="23" Margin="545,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
-                            <TextBox Name="TxtEmail" MaxLength="30" HorizontalAlignment="Left" Height="23" Margin="545,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" />
+                            <TextBox  Name="TxtTelef" MaxLength="9" HorizontalAlignment="Left" Height="23" Margin="539,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103" />
+                            <TextBox Name="TxtCel" MaxLength="9" HorizontalAlignment="Left" Height="23" Margin="539,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="103"/>
+                            <TextBox Name="TxtEmail" MaxLength="30" HorizontalAlignment="Left" Height="23" Margin="539,56,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201" />
 
                         </Grid>
                     </TabItem>
@@ -70,7 +70,7 @@
                     <TabItem Header="Información Laboral">
                         <Grid Margin="0,10,-12,-12">
 
-                            <Label Content="Tienda:" VerticalAlignment="Top" Margin="48,10,660,0"/>
+                            <Label Content="Tienda:" VerticalAlignment="Top" Margin="48,10,642,0"/>
                             <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="48,50,0,0" VerticalAlignment="Top" Width="105"/>
                             <Label Content="Puesto:" HorizontalAlignment="Left" Margin="48,90,0,0" VerticalAlignment="Top" Width="60"/>
 
@@ -93,11 +93,11 @@
                             <Label Content="E-mail Empresa:" HorizontalAlignment="Left" Margin="48,128,0,0" VerticalAlignment="Top" Width="96"/>
                             <TextBox MaxLength="30" Name="TxtEmailEmpresa" HorizontalAlignment="Left" Height="23" Margin="189,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195"/>
                             <Label Content="Sueldo:" HorizontalAlignment="Left" Margin="419,13,0,0" VerticalAlignment="Top" Width="96"/>
-                            <TextBox Name="TxtSalario" HorizontalAlignment="Left" Height="23" Margin="560,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+                            <TextBox MaxLength="9" Name="TxtSalario" HorizontalAlignment="Left" Height="23" Margin="560,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
                             <Label Content="Cuenta Bancaria:" HorizontalAlignment="Left" Margin="419,46,0,0" VerticalAlignment="Top" Width="96"/>
-                            <TextBox MaxLength="20" Name="TxtCuentaBancaria" HorizontalAlignment="Left" Height="23" Margin="560,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+                            <TextBox MaxLength="20" Name="TxtCuentaBancaria" HorizontalAlignment="Left" Height="23" Margin="560,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
                             <Label Content="Banco:" HorizontalAlignment="Left" Margin="419,78,0,0" VerticalAlignment="Top" Width="96"/>
-                            <TextBox MaxLength="20" Name="TxtBanco" HorizontalAlignment="Left" Height="23" Margin="560,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136"/>
+                            <TextBox MaxLength="20" Name="TxtBanco" HorizontalAlignment="Left" Height="23" Margin="560,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178"/>
 
                         </Grid>
                     </TabItem>

@@ -444,6 +444,7 @@ namespace MadeInHouse.DataObjects.RRHH
         {
             int idTienda = 0;
 
+
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
@@ -458,7 +459,7 @@ namespace MadeInHouse.DataObjects.RRHH
                 conn.Open();
                 reader = cmd.ExecuteReader();
                 if (reader.Read())
-                    idTienda = Convert.ToInt32(reader["idTienda"].ToString());
+                    idTienda = Convert.ToInt32(reader.IsDBNull(reader.GetOrdinal("idTienda")) ? "0":reader["idTienda"].ToString());
                 else
                     conn.Close();
             }
