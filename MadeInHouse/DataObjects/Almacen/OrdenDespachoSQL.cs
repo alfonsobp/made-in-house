@@ -134,6 +134,9 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.Venta = new MantenerGuiaDeRemisionViewModel().getVentafromID(id);
                     p.Estado = Int32.Parse(reader["estado"].ToString());
                     p.FechaDespacho = DateTime.Parse(reader["fechaDespacho"].ToString());
+                    p.Direccion = reader["direccion"].ToString();
+                    p.Telefono = reader["telefono"].ToString();
+
 
                     int idTienda = u.IdTienda;
 

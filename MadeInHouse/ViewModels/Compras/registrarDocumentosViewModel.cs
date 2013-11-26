@@ -193,10 +193,15 @@ namespace MadeInHouse.ViewModels.Compras
                             int catCot = (int)((Convert.ToInt32(list[i].Cantidad))/lstProdCot[z].Cantidad);
                             int resto = (Convert.ToInt32(list[i].Cantidad)) - (catCot*lstProdCot[z].Cantidad);
 
-                            list[i].Importe = list[i].Monto - (catCot * lstProdCot[z].Precio + resto * list[i].PrecioUnitario);
+                            if (lstProdCot[z].Precio != 0)
+                                list[i].Importe = catCot * lstProdCot[z].Precio + resto * list[i].PrecioUnitario;
+
                         }
                         
                     }
+
+                    if (list[i].Importe == 0)
+                        list[i].Importe = list[i].Monto;
                 }
 
                 cant += Convert.ToInt32(list[i].Cantidad);
@@ -206,8 +211,8 @@ namespace MadeInHouse.ViewModels.Compras
 
             TxtIGV = (0.18) * monto;
             TxtTotalBruto = monto;
-            TxtDescuento = importe;
-            TxtTotalFinal = monto - TxtDescuento;
+            TxtDescuento = monto - importe;
+            TxtTotalFinal = importe;
 
             LstProducto = new List<ProductoxOrdenCompra>(list);
         }
