@@ -376,7 +376,7 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 if (item.IdProducto == p.IdProducto)
                 {
-                    if (ev.esNumeroEntero(TxtCantidad)) item.Cantidad += Int32.Parse(TxtCantidad);
+                    if (ev.esNumeroEntero(TxtCantidad) && ev.esPositivo(Convert.ToInt32(TxtCantidad))) item.Cantidad += Int32.Parse(TxtCantidad);
                     else
                     {
                         MessageBox.Show("Tiene que poner una cantidad");
@@ -703,7 +703,7 @@ namespace MadeInHouse.ViewModels.Ventas
         private bool ValidaMonto()
         {
             Evaluador e = new Evaluador();
-            if (String.IsNullOrEmpty(TxtMonto) && !e.esNumeroReal(TxtMonto))
+            if (String.IsNullOrEmpty(TxtMonto) && !e.esNumeroReal(TxtMonto) && e.esPositivo(Convert.ToInt32(TxtMonto)))
             {
                 MessageBox.Show("No ha ingresado un valor correcto en el Monto de pago", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;

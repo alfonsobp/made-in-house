@@ -260,12 +260,14 @@ namespace MadeInHouse.DataObjects.Ventas
 
             int k = 0;
 
-            db.cmd.CommandText = "INSERT INTO OrdenDespacho(idVenta,fechaDespacho,estado,idAlmacen)" +
-                                  " VALUES (@idVenta,@fechaDespacho,@estado,@idAlmacen)";
+            db.cmd.CommandText = "INSERT INTO OrdenDespacho(idVenta,fechaDespacho,estado,idAlmacen,direccion,telefono)" +
+                                  " VALUES (@idVenta,@fechaDespacho,@estado,@idAlmacen,@direccion,@telefono)";
             db.cmd.Parameters.AddWithValue("@idVenta", v.IdVenta);
             db.cmd.Parameters.AddWithValue("@fechaDespacho", v.FechaDespacho);
             db.cmd.Parameters.AddWithValue("@estado", 1);
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
+            db.cmd.Parameters.AddWithValue("@direccion", v.Direccion);
+            db.cmd.Parameters.AddWithValue("@telefono", v.Telefono);
 
             try
             {

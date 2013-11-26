@@ -206,6 +206,20 @@ namespace MadeInHouse.Models.Ventas
             set { razonSocial = value; }
         }
 
+        string direccion;
 
+        public string Direccion
+        {
+            get { return direccion; }
+            set { direccion = value; }
+        }
+
+        string telefono;
+
+        public string Telefono
+        {
+            get { return telefono; }
+            set { telefono = value; }
+        }
     }
 }
