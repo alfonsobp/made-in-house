@@ -1,4 +1,5 @@
-﻿using MadeInHouse.Models.Compras;
+﻿using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -275,6 +276,58 @@ namespace MadeInHouse.DataObjects.Compras
             }
 
             return k;
+        
+        }
+
+        public Almacenes  getAlmacenCentral() {
+
+
+
+          
+            DBConexion db = new DBConexion();
+            SqlDataReader reader;
+
+            Almacenes a = new Almacenes();
+
+
+            //  MessageBox.Show(where);
+
+
+
+            db.cmd.CommandText = "SELECT * FROM Almacen where tipo = 3";
+            db.cmd.CommandType = CommandType.Text;
+            db.cmd.Connection = db.conn;
+
+
+
+            try
+            {
+                db.conn.Open();
+
+                reader = db.cmd.ExecuteReader();
+
+
+                while (reader.Read())
+                {
+
+                    a.Telefono = reader["telefono"].ToString();
+                    a.Direccion = reader["direccion"].ToString();
+
+
+                }
+
+                db.conn.Close();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+
+            return a;
+
+        
         
         }
 
