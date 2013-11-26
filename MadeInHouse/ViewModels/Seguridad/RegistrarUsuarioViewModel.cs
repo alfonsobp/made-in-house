@@ -331,14 +331,12 @@ namespace MadeInHouse.ViewModels.Seguridad
             if (validar())
             {
 
-                //String.Compare(TxtContrasenhaTB, TxtContrasenhaTB2) == 0 && !String.IsNullOrWhiteSpace(TxtCodUsuario) && !String.IsNullOrWhiteSpace(TxtContrasenhaTB)
                 Util util = new Util();
                 int k = 0;
                 CifrarAES cifradoAES = new CifrarAES();
                 string contrasenhaGenerada = util.generarContrasenha();
                 string contrasenhaCifrada = cifradoAES.cifrarTextoAES(contrasenhaGenerada, "MadeInHouse",
                         "MadeInHouse", "MD5", 22, "1234567891234567", 128);
-                //MessageBox.Show("PASS: " + contrasenhaGenerada);
 
                 Usuario u = new Usuario();
                 u.CodEmpleado = txtCodUsuario;
@@ -372,6 +370,8 @@ namespace MadeInHouse.ViewModels.Seguridad
                                     EnviarCorreo(e, contrasenhaGenerada);
                                     MessageBox.Show("¡Empleado registrado con Éxito!");
                                 }
+
+                                Limpiar();
 
                                 //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
                                 DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Usuario", u.CodEmpleado, 1);
@@ -428,35 +428,31 @@ namespace MadeInHouse.ViewModels.Seguridad
 
                 message.IsBodyHtml = true;
 
-                MessageBoxResult r = MessageBox.Show("¿Desea enviar el correo?", "EnviarCorreo",
-                                                     MessageBoxButton.YesNo);
-
-                if (r == MessageBoxResult.Yes)
+                var client = new SmtpClient("smtp.gmail.com", 587)
                 {
-
-                    //Send the message.
-
-                    var client = new SmtpClient("smtp.gmail.com", 587)
-                    {
-                        // Add credentials if the SMTP server requires them.
+                    // Add credentials if the SMTP server requires them.
                       
-                        Credentials = new NetworkCredential("madeinhouse.sw@gmail.com", "insignia"),//adp980407912
-                        EnableSsl = true
-                    };
+                    Credentials = new NetworkCredential("madeinhouse.sw@gmail.com", "insignia"),//adp980407912
+                    EnableSsl = true
+                };
 
-
-                    try
-                    {
-                        client.Send(message);
-                        MessageBox.Show("Mensaje enviado satisfactoriamente");
-                    }
-
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.StackTrace.ToString());
-                    }
+                try
+                {
+                    client.Send(message);
+                    MessageBox.Show("Contraseña enviada a: " + empleado.EmailEmpresa);
                 }
 
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.StackTrace.ToString());
+                }
+
+        }
+
+        public void Limpiar()
+        {
+            TxtCodUsuario = "";
+            IdRolValue = 0;
         }
 
         #endregion
@@ -488,7 +484,6 @@ namespace MadeInHouse.ViewModels.Seguridad
             if (string.IsNullOrEmpty(TxtCodUsuario))
             {
                 MessageBox.Show("El Código de usuario no puede ser vacio", "AVISO", MessageBoxButton.OK, MessageBoxImage.Error);
-
                 return false;
             }
 

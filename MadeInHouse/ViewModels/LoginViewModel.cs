@@ -64,70 +64,79 @@ namespace MadeInHouse.ViewModels
             UsuarioSQL userSQL = new UsuarioSQL();
             Usuario u = new Usuario();
 
-            //INGRESO POR DEFECTO COMO USUARIO ADMIN
-            if (String.IsNullOrWhiteSpace(TxtUser) || String.IsNullOrWhiteSpace(TxtPasswordUser)) 
+            int verificado;
+            Response = "";
+            //Verificar existencia de usuario
+
+            if (userSQL.ProbarConexion())
             {
-                AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
-
-                IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario("ADMIN"), "Database");
-                
-                string[] rol = { "idRolAllenar", "otrorol" };
-                    
-                GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
-
-                System.Threading.Thread.CurrentPrincipal = credencial;
-
-                _windowManager.ShowWindow(new MainViewModel(_windowManager));
-                this.TryClose();
-            }
-
-            else
-            {
-                int verificado;
-
-                verificado = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
-                u = userSQL.buscarUsuarioPorCodEmpleado(TxtUser);
-                //0 = Incorrecto
-                //1 = Correcto
-
-                if (verificado == 1)
+                if (TxtUser != null && TxtPasswordUser != null)
                 {
-                    if (u.EstadoHabilitado == 1)
+                    if (UsuarioSQL.existeUsuario(TxtUser) == 1)
                     {
-                        AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
+                        verificado = DataObjects.Seguridad.UsuarioSQL.autenticarUsuario(TxtUser, TxtPasswordUser);
 
-                        IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario(TxtUser), "Database");
+                        //0 = Incorrecto
+                        //1 = Correcto
 
-                        string[] rol = { "idRolAllenar", "otrorol" };
+                        u = userSQL.buscarUsuarioPorCodEmpleado(TxtUser);
 
-                        GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
+                        if (verificado == 1)
+                        {
+                            if (u.EstadoHabilitado == 1)
+                            {
+                                AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.UnauthenticatedPrincipal);
 
-                        System.Threading.Thread.CurrentPrincipal = credencial;
+                                IIdentity usuario = new GenericIdentity("" + UsuarioSQL.GetIdUsuario(TxtUser), "Database");
 
-                        _windowManager.ShowWindow(new MainViewModel(_windowManager));
+                                string[] rol = { "rol", };
 
-                        this.TryClose();
+                                GenericPrincipal credencial = new GenericPrincipal(usuario, rol);
+
+                                System.Threading.Thread.CurrentPrincipal = credencial;
+
+                                _windowManager.ShowWindow(new MainViewModel(_windowManager));
+
+                                this.TryClose();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Usted fue inhabilitado");
+                            }
+                            u.NumIntentos = 0;
+                            DataObjects.Seguridad.UsuarioSQL.ActualizarNumIntentos(u);
+                        }
+
+                        else
+                        {
+                            u.NumIntentos = DataObjects.Seguridad.UsuarioSQL.GetNumIntentos(u);
+                            u.NumIntentos++;
+                            if (u.NumIntentos >= 4)
+                            {
+                                u.EstadoHabilitado = 0;
+                                u.NumIntentos = 0;
+                            }
+                            DataObjects.Seguridad.UsuarioSQL.ActualizarNumIntentos(u);
+                            //Response = "Datos incorrectos";
+                            MessageBox.Show("Datos incorrectos");
+                        }
                     }
                     else
-                        MessageBox.Show("Usted fue inhabilitado");
-                    u.NumIntentos = 0;
-                    DataObjects.Seguridad.UsuarioSQL.ActualizarNumIntentos(u);
+                    {
+                        //Response = "Datos incorrectos";
+                        MessageBox.Show("Usuario inexistente");
+                    }
                 }
-
                 else
                 {
-                    u.NumIntentos= DataObjects.Seguridad.UsuarioSQL.GetNumIntentos(u);
-                    u.NumIntentos++;
-                    if (u.NumIntentos >= 4)
-                    {
-                        u.EstadoHabilitado = 0;
-                        u.NumIntentos = 0;
-                    }
-                    DataObjects.Seguridad.UsuarioSQL.ActualizarNumIntentos(u);
-                    Response = "Datos incorrectos";
+                    MessageBox.Show("Campos vacíos");
                 }
             }
-
+            //else
+            //{
+            //    MessageBox.Show("No es posible conectarse. Verifique su conexíon");
+            //}
+            
         }
  
 

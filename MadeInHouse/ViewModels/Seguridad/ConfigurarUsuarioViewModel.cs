@@ -68,7 +68,7 @@ namespace MadeInHouse.ViewModels.Seguridad
                         if (k == 0)
                             MessageBox.Show("Ocurrio un error");
                         else
-                            MessageBox.Show("Contraseña modificada con exito !  \n");
+                            MessageBox.Show("Contraseña modificada con exito!  \n");
                         //Response = "Usuario modificado con éxito";
                     }
                     else
@@ -88,6 +88,13 @@ namespace MadeInHouse.ViewModels.Seguridad
             Trace.WriteLine("PassActual: " + TxtPassActual);
             Trace.WriteLine("" + Thread.CurrentPrincipal.Identity.Name);
             return 1;
+        }
+
+        public void Limpiar()
+        {
+            TxtPassActual = "";
+            TxtPassNuevo1 = "";
+            TxtPassNuevo2 = "";
         }
     }
 }

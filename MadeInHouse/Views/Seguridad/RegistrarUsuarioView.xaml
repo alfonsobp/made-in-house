@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="320" Width="437">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" HorizontalAlignment="Left" Width="436" Height="380" VerticalAlignment="Top">
-        <StackPanel Margin="0,0,8,67">
+             mc:Ignorable="d" Height="349.091" Width="476.273">
+    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" Height="349" VerticalAlignment="Top" Margin="0,0,10,0">
+        <StackPanel Margin="0,0,8,8">
             <Layouts:TitleBarTemplate title="Usuario" />
-            <Grid Height="274">
+            <Grid Height="323" Margin="0,0,10,0">
                 <ToolBar VerticalAlignment="Top">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -18,17 +18,15 @@
                     <Button ToolTip="Guardar usuario" x:Name="GuardarUsuario">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar celdas">
+                    <Button x:Name="Limpiar" ToolTip="Limpiar celdas">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Actualizar tabla" Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                    </Button>
                 </ToolBar>
-                <GroupBox Header="Datos de Usuario" HorizontalAlignment="Left" Margin="10,46,0,0" Width="404" Height="228" VerticalAlignment="Top">
-                    <Grid Margin="0,10,-2,0" Height="218" VerticalAlignment="Top">
+                <GroupBox Header="Datos de Usuario" HorizontalAlignment="Left" Margin="10,46,0,0" Width="441" Height="267" VerticalAlignment="Top">
+                    <Grid Margin="0,10,-2,-12" Height="247" VerticalAlignment="Top">
                         <Label Content="Código Usuario:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Margin="-1,22,0,0"/>
-                        <TextBox x:Name="TxtCodUsuario"  
+                        <TextBox x:Name="TxtCodUsuario" 
+                                 MaxLength="7"
                                  IsEnabled="{Binding IsEnabledCodEmpleado}" 
                                  Text="{Binding TxtCodUsuario,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Margin="131,22,0,0"/>
@@ -50,8 +48,8 @@
                                HorizontalAlignment="Left" 
                                Margin="131,109,0,0" 
                                VerticalAlignment="Top" Width="135"/>
-                        <Button x:Name="VerificarUsuario" IsEnabled="{Binding IsEnabledVerificar}" Content="Verificar" HorizontalAlignment="Left" Margin="304,22,0,0" VerticalAlignment="Top" Width="75"/>
-                        <Button x:Name="ResetContrasenha" IsEnabled="{Binding IsEnabledResetContrasenha}" Content="Reinicializar contraseña" HorizontalAlignment="Left" Margin="131,152,0,0" VerticalAlignment="Top" Width="135" Height="36"/>
+                        <Button x:Name="VerificarUsuario" IsEnabled="{Binding IsEnabledVerificar}" Content="Verificar" HorizontalAlignment="Left" Margin="316,22,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button x:Name="ResetContrasenha" IsEnabled="{Binding IsEnabledResetContrasenha}" Content="Reinicializar contraseña" HorizontalAlignment="Left" Margin="131,168,0,0" VerticalAlignment="Top" Width="135" Height="36"/>
                         <Label x:Name="LblError" Foreground="Red" Content="" VerticalAlignment="Top" Margin="258,43,10,0"/>
                     </Grid>
                 </GroupBox>
