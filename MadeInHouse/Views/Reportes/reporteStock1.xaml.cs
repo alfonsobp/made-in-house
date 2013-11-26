@@ -34,7 +34,12 @@ namespace MadeInHouse.Views.Reportes
             cmbAlmacen.Items.Add("Todos");
             cmbAlmacen.Items.Add("Anaquel");
             cmbAlmacen.Items.Add("Deposito");
+            cmbAlmacen.SelectedIndex = 0;
+            cmbTienda.SelectedIndex = 0;
             List<Tienda> tiendas = DataObjects.Reportes.ReporteVentasSQL.BuscarTienda();
+            Tienda central = new Tienda();
+            central.Nombre = "ALMACEN CENTRAL";
+            tiendas.Add(central);
             cmbTienda.ItemsSource = tiendas;
             PrepareReport();
 
@@ -90,6 +95,10 @@ namespace MadeInHouse.Views.Reportes
             if (cmbAlmacen.SelectedItem.ToString() == "Todos")
             {
                 lista = DataObjects.Reportes.reporteStock.BuscarStockTienda(i.IdTienda);
+            }
+            if (i.Nombre == "ALMACEN CENTRAL")
+            {
+                lista = DataObjects.Reportes.reporteStock.BuscarStockCentral();
             }
             Window_Loaded(sender,e);
 
