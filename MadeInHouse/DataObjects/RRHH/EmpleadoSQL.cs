@@ -508,6 +508,43 @@ namespace MadeInHouse.DataObjects.RRHH
 
             return lstEmpleado;
         }
+        //////////////////////////////////////////////////////////////////////
+
+        public static string BuscarRolEmpleadoId(int id)
+        {
+            List<Empleado> lstEmpleado = new List<Empleado>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "select r.nombre from rol r join usuario u on (u.idRol = r.idRol) join empleado e on (e.codEmpleado = u.codEmpleado) where e.idEmpleado = " +id;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            string e = "";
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+
+                    
+                    e = reader["nombre"].ToString();
+
+                    
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return e;
+        }
+
         ////////////////////////ELIMINAR USUARIO//////////////////////////////
         public static int eliminarUsuario(string p)
         {
