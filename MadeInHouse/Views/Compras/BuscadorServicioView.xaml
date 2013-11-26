@@ -7,56 +7,55 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-43">
         <StackPanel>
-            <Layouts:TitleBarTemplate title="Listado Servicios" />
-          
-            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
-        <ToolBar Margin="1,13,-1,396" Grid.ColumnSpan="2">
-            <ToolBar.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF535050" Offset="0.073"/>
-                    <GradientStop Color="Snow" Offset="1"/>
-                </LinearGradientBrush>
-            </ToolBar.Background>
-            <Button
-                 x:Name="NuevoServicio" >
-                <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-            </Button>
+            <Layouts:TitleBarTemplate title="Listado Servicios" Height="48" />
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="454">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="0*"/>
+                </Grid.ColumnDefinitions>
+                <ToolBar Margin="0,0,0,409">
+                    <ToolBar.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                            <GradientStop Color="#FF535050" Offset="0.073"/>
+                            <GradientStop Color="Snow" Offset="1"/>
+                        </LinearGradientBrush>
+                    </ToolBar.Background>
+                    <Button
+            			x:Name="NuevoServicio" >
+                        <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
+                    </Button>
                     <Button  x:Name="EditarServicio">
-                <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
-            </Button>
-            <Button x:Name="EliminarServicio">
-                <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-            </Button>
-            <Button/>
-            <Button x:Name="ControlServicios" Height="40" Width="40">
-                <Image Source="/MadeInHouse;component/Assets/config.png" RenderTransformOrigin="-2.693,0.289" />
-            </Button>
-            <Button x:Name="ActualizarServicio" Height="50" Width="50">
-                <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-            </Button>
-            </ToolBar>
-            <DataGrid x:Name="LstServicio" 
-                      cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
-                      Margin="27,201,32,0" Height="191" VerticalAlignment="Top" AutoGenerateColumns="false">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=CodServicio}" Width="130" Header="Código de Servicio"/>
-                <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="280" Header="Descripcion"/>
-                <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="130" Header="Nombre"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <GroupBox Header="Criterios de Búsqueda" Margin="11,59,9,0" VerticalAlignment="Top" Height="137"/>
-        <Button x:Name="BuscarServicio" Height="25" Margin="463,90,74,0" VerticalAlignment="Top">
-            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
-        </Button>
-        <TextBox x:Name="TxtProveedor" HorizontalAlignment="Left" Height="23" Margin="146,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-        <Label Content="Producto:" HorizontalAlignment="Left" Margin="27,153,0,0" VerticalAlignment="Top"/>
-        <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,92,0,0" VerticalAlignment="Top"/>
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
+                    </Button>
+                    <Button x:Name="EliminarServicio">
+                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
+                    </Button>
+                    <Button/>
+                    <Button x:Name="ControlServicios" Height="40" Width="40">
+                        <Image Source="/MadeInHouse;component/Assets/config.png" RenderTransformOrigin="-2.693,0.289" />
+                    </Button>
+                    <Button x:Name="ActualizarServicio" Height="50" Width="50">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
+                    </Button>
+                </ToolBar>
+                <DataGrid CanUserAddRows="False" IsReadOnly="True"  x:Name="LstServicio" 
+            		cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
+            		Margin="11,201,10,0" Height="225" VerticalAlignment="Top" AutoGenerateColumns="false">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding CodServicio}" Width="130" Header="Código de Servicio"/>
+                        <DataGridTextColumn Binding="{Binding Descripcion}" Width="280" Header="Descripcion"/>
+                        <DataGridTextColumn Binding="{Binding Nombre}" Width="130" Header="Nombre"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <GroupBox Header="Criterios de Búsqueda" Margin="11,59,9,0" VerticalAlignment="Top" Height="137"/>
+                <Button x:Name="BuscarServicio" Height="25" Margin="511,151,26,0" VerticalAlignment="Top">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                </Button>
+                <TextBox x:Name="TxtProveedor" HorizontalAlignment="Left" Height="23" Margin="146,92,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <Label Content="Producto:" HorizontalAlignment="Left" Margin="27,153,0,0" VerticalAlignment="Top"/>
+                <Label Content="Proveedor:" HorizontalAlignment="Left" Margin="27,92,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="TxtProducto" HorizontalAlignment="Left" Height="23" Margin="146,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
                 <Label Content="Nombre Serv:" HorizontalAlignment="Left" Margin="27,123,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="146,123,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>

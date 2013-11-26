@@ -6,35 +6,38 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
-             d:DesignHeight="474.324" d:DesignWidth="600">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
-            <Layouts:TitleBarTemplate  title="Listado de proveedores" />
-            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}">
-                <DataGrid IsReadOnly="True" x:Name="LstProveedor" SelectedItem="{Binding Path=ProveedorSeleccionado}"  
-                          cal:Message.Attach="[Event MouseDoubleClick]=[Action SelectedItemChanged]" 
-                          Margin="10,188,10,-1" Height="234" VerticalAlignment="Top" AutoGenerateColumns="false">
+             d:DesignHeight="556.414" Width="674.627">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="2" Height="556" VerticalAlignment="Top" HorizontalAlignment="Left" Width="675">
+        <StackPanel Margin="0,5,-6,0" Height="544" VerticalAlignment="Top">
+            <Layouts:TitleBarTemplate  title="BUSCAR PROVEEDORES" Height="40" Margin="0,0,7,0"  />
+            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="491" HorizontalAlignment="Left" Width="667">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <DataGrid IsReadOnly="True" x:Name="LstProveedor" SelectedItem="{Binding ProveedorSeleccionado}"  
+        			cal:Message.Attach="[Event MouseDoubleClick]=[Action SelectedItemChanged]" 
+        			Margin="0,265,0,0" Height="226" VerticalAlignment="Top" AutoGenerateColumns="false" HorizontalAlignment="Left" Width="660">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=CodProveedor}"  Width="100" Header="Código"/>
-                        <DataGridTextColumn Binding="{Binding Path=RazonSocial}"  Width="330" Header="Razón Social"/>
-                        <DataGridTextColumn Binding="{Binding Path=Ruc}"  Width="150" Header="RUC"/>
+                        <DataGridTextColumn Binding="{Binding CodProveedor}"  Width="100" Header="Código"/>
+                        <DataGridTextColumn Binding="{Binding RazonSocial}"  Width="330" Header="Razón Social"/>
+                        <DataGridTextColumn Binding="{Binding Ruc}"  Width="150" Header="RUC"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <TextBox  x:Name="TxtRazonSocial" MaxLength="50" HorizontalAlignment="Left" Height="23" Margin="145,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                <GroupBox Header="Criterios de Búsqueda" Margin="10,46,10,0" VerticalAlignment="Top" Height="137"/>
-                <Button x:Name="BuscarProveedor" Height="25" Margin="454,67,83,0" VerticalAlignment="Top">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                <TextBox  x:Name="TxtRazonSocial" MaxLength="50" HorizontalAlignment="Left" Height="23" Margin="145,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <Button x:Name="BuscarProveedor" Height="51" Margin="525,176,29,0" VerticalAlignment="Top">
+                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="25" Width="62" />
                 </Button>
-                <TextBox x:Name="TxtCodigo" MaxLength="20"  HorizontalAlignment="Left" Height="23" Margin="145,67,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top"/>
-                <Label Content="Código:" HorizontalAlignment="Left" Margin="26,67,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtRuc" MaxLength="11" HorizontalAlignment="Left" Height="23" Margin="145,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                <Label Content="RUC:" HorizontalAlignment="Left" Margin="26,125,0,0" VerticalAlignment="Top"/>
-                <DatePicker   x:Name="FechaIni" HorizontalAlignment="Left" Margin="145,153,0,0" VerticalAlignment="Top" Width="104" SelectedDateFormat="Short"/>
-                <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="332,155,0,0" VerticalAlignment="Top" Width="105"/>
-                <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="26,152,0,0" VerticalAlignment="Top"/>
-                <Label Content="Hasta:" HorizontalAlignment="Left" Margin="265,153,0,0" VerticalAlignment="Top"/>
-                <ToolBar VerticalAlignment="Top" Height="41">
+                <GroupBox Header="Criterios de Búsqueda" Margin="10,65,0,0" VerticalAlignment="Top" Height="182"/>
+                <TextBox x:Name="TxtCodigo" MaxLength="20"  HorizontalAlignment="Left" Height="23" Margin="145,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="26,113,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
+                <TextBox x:Name="TxtRuc" MaxLength="11" HorizontalAlignment="Left" Height="23" Margin="145,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
+                <Label Content="Código:" HorizontalAlignment="Left" Margin="26,82,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
+                <Label Content="RUC:" HorizontalAlignment="Left" Margin="26,158,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
+                <DatePicker   x:Name="FechaIni" HorizontalAlignment="Left" Margin="145,201,0,0" VerticalAlignment="Top" Width="104" SelectedDateFormat="Short" Height="24"/>
+                <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="333,203,0,0" VerticalAlignment="Top" Width="105" Height="24"/>
+                <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="26,201,0,0" VerticalAlignment="Top" Height="26" Width="90"/>
+                <Label Content="Hasta:" HorizontalAlignment="Left" Margin="265,201,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
+                <ToolBar VerticalAlignment="Bottom" Height="60" Margin="0,0,0,431">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -42,7 +45,7 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button
-        		        x:Name="NuevoProveedor" >
+        				x:Name="NuevoProveedor" >
                         <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
                     <Button x:Name="EditarProveedor">
@@ -64,7 +67,7 @@
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                     <Button x:Name="Importar" Height="50" Width="50">
-                    <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,1,0,3" RenderTransformOrigin="1.779,1.036" Width="43" />
+                        <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,1,0,3" RenderTransformOrigin="1.779,1.036" Width="43" />
                     </Button>
                 </ToolBar>
 

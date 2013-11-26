@@ -26,6 +26,8 @@ namespace MadeInHouse.Views.Compras
             InitializeComponent();
         }
 
+      
+
      
     }
 }

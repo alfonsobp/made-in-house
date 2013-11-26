@@ -20,7 +20,7 @@
                 <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
                 <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
                 <DataGrid  x:Name="LstProveedores"  
-                     cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones];[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="235" Width="276" >
+                     cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones];[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="250" Width="276" >
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Prov.RazonSocial}"  Width="120" Header="Razon Social" />
                         <DataGridTextColumn Binding="{Binding Path=Costo}" Width="170" Header="Costo Unitario ( S/. )"/>

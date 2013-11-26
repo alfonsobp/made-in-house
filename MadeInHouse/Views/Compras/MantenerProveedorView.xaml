@@ -4,15 +4,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="400.403" d:DesignHeight="479.303" >
+             mc:Ignorable="d" Width="425.776" Height="483.78" >
     
     
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="1">
         <StackPanel Margin="0,0,-2,-2">
-            <Layouts:TitleBarTemplate title="MANTENIMIENTO DE PROVEEDORES" />
+            <Layouts:TitleBarTemplate title="PROVEEDORES" Height="29" />
             <!-- CAMBIAR NOMBREEEE -->
 
-            <Grid RenderTransformOrigin="0.482,0.483" Height="446">
+            <Grid RenderTransformOrigin="0.482,0.483" Height="449" HorizontalAlignment="Left" Width="414">
         <Label Content="Código:" HorizontalAlignment="Left" Height="38" Margin="35,81,0,0" VerticalAlignment="Top" Width="51"/>
         <Label Content="Razón Social:" HorizontalAlignment="Left" Height="38" Margin="35,161,0,0" VerticalAlignment="Top" Width="85"/>
         <Label Content="Dirección:" HorizontalAlignment="Left" Height="41" Margin="35,380,0,0" VerticalAlignment="Top" Width="61"/>
@@ -24,7 +24,7 @@
         <Label Content="RUC:" HorizontalAlignment="Left" Height="23" Margin="35,124,0,0" VerticalAlignment="Top" Width="40"/>
         <TextBox  x:Name="TxtCodigo"  IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="125,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
        <TextBox MaxLength="15"  Text="{Binding TxtRuc,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
-                <TextBox MaxLength="100" Text="{Binding TxtDireccion,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="45" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" />
+                <TextBox MaxLength="100" Text="{Binding TxtDireccion,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="59" Margin="125,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="279" />
                 <TextBox MaxLength="50" Text="{Binding TxtEmail,ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="125,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" >
             
             
@@ -55,18 +55,8 @@
                 <Image Source="/MadeInHouse;component/Assets/modificarEmpleado.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
             </Button>
         </ToolBar>
-                <GroupBox Header="Proveedor" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Height="376" Width="374" RenderTransformOrigin="0.5,0.5">
-                    <GroupBox.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform AngleY="0.479"/>
-                            <RotateTransform/>
-                            <TranslateTransform Y="1.492"/>
-                        </TransformGroup>
-                    </GroupBox.RenderTransform>
-                </GroupBox>
-                
-                
+
+
             </Grid>
         </StackPanel>
     </Border>
