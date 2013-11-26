@@ -35,8 +35,8 @@
                                SelectedValuePath="IdRol" 
                                SelectedValue="{Binding Path=IdRolValue}"
                                HorizontalAlignment="Left" 
-                               Margin="87,24,0,0" 
-                               VerticalAlignment="Top" Width="135"/>
+                               Margin="39,24,0,0" 
+                               VerticalAlignment="Top" Width="201"/>
                     </Grid>
                 </GroupBox>
 
@@ -54,7 +54,7 @@
                                 <DataGridCheckBoxColumn Binding="{Binding Path=Estado}" Width="1*" >
                                     <DataGridCheckBoxColumn.HeaderTemplate>
                                         <DataTemplate x:Name="dtAllChkBx">
-                                            <CheckBox  Name="cbxAll"  Content="Todo" IsChecked="{Binding Path=DataContext.AllSelected,RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                                            <CheckBox  Name="cbxAll"  Content="Todo" IsChecked="{Binding Path=DataContext.AllSelected,RelativeSource={RelativeSource AncestorType=DataGrid},UpdateSourceTrigger=PropertyChanged}"/>
                                         </DataTemplate>
                                     </DataGridCheckBoxColumn.HeaderTemplate>
                                 </DataGridCheckBoxColumn>
@@ -90,7 +90,7 @@
                             <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                         </Button>
                     </Grid>
-                    
+
                 </GroupBox>
 
             </Grid>
