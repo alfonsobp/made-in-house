@@ -300,7 +300,7 @@
         </Expander>
 
         <!--Configuracion-->
-        <Expander Name="expanderConfiguracion" IsExpanded="True" Background="Transparent" Header="Configuración" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="300" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
+        <Expander Name="expanderConfiguracion" IsExpanded="True" Background="Transparent" Header="Configuración" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30"/>
@@ -340,6 +340,8 @@
             <Image Source="/Assets/gear.png" Width="35" Height="33"/>
         </Button>
         <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,10,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="rol" Content="Tienda: San Miki" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,76,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="tienda" Content="Puesto: Jefe de Compras" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,44,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
         <!--fin-->
 
     </Grid>

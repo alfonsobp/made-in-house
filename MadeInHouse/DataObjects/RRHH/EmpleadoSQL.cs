@@ -493,6 +493,8 @@ namespace MadeInHouse.DataObjects.RRHH
                     e.ApePaterno = reader["apePaterno"].ToString();
                     e.Nombre = reader["nombre"].ToString();
                     e.ApeMaterno = reader["apeMaterno"].ToString();
+                    e.Tienda = reader["tienda"].ToString();
+                    e.Puesto = reader["puesto"].ToString();
 
                     lstEmpleado.Add(e);
                 }
