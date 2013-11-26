@@ -73,7 +73,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public int TxtStockMin
         {
             get { return txtStockMin; }
-            set { txtStockMin = value; }
+            set { txtStockMin = value;
+            NotifyOfPropertyChange(() => TxtStockMin);
+            }
         }
 
         private int txtStockMax;
@@ -81,11 +83,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int TxtStockMax
         {
             get { return txtStockMax; }
-            set { txtStockMax = value; }
+            set { txtStockMax = value;
+            NotifyOfPropertyChange(() => TxtStockMax);
+            }
         }
-
-        
-     
 
         private BindableCollection<LineaProducto> lstLineasProducto;
 
@@ -265,6 +266,8 @@ namespace MadeInHouse.ViewModels.Almacen
                     TxtNombre = "";
                     Percepcion = false;
                     TxtDescrip = "";
+                    TxtStockMin = 0;
+                    TxtStockMin = 0;
                 }
                 else
                 {
@@ -273,6 +276,16 @@ namespace MadeInHouse.ViewModels.Almacen
                     MessageBox.Show("Se actualizó el producto correctamente");
                 }
             }
+        }
+
+        public void LimpiarCampos()
+        {
+            TxtAbreviatura = "";
+            TxtNombre = "";
+            Percepcion = false;
+            TxtDescrip = "";
+            TxtStockMin = 0;
+            TxtStockMin = 0;
         }
 
         public void EditarProducto()

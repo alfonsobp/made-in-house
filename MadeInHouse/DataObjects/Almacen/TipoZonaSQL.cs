@@ -161,8 +161,6 @@ namespace MadeInHouse.DataObjects.Almacen
                                 " WHERE A.idAlmacen=@idAlmacen";
             db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
 
-
-
             try
             {
 

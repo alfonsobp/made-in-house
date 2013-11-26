@@ -163,8 +163,7 @@ namespace MadeInHouse.DataObjects.Almacen
                         " ON (P.idSubLinea=S.idSubLinea) "+
                         "JOIN UnidadMedida U ON (p.idUnidad=U.idUnidad)";
 
-
-
+            
             if (!String.IsNullOrEmpty(codigo))
             {
                 where = where + " AND codProducto = @codigo ";
@@ -251,10 +250,14 @@ namespace MadeInHouse.DataObjects.Almacen
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
             }
 
             return listaProductos;

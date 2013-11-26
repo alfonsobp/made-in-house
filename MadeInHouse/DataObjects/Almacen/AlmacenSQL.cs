@@ -32,6 +32,34 @@ namespace MadeInHouse.DataObjects.Almacen
         }
 
 
+        public int existeCentral()
+        {
+            db.cmd.CommandText = "SELECT COUNT(*) central FROM Almacen WHERE idTienda=0 or idTienda is null ";
+            int central;
+            try
+            {
+                db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                
+                while (reader.Read())
+                {
+                    central = int.Parse(reader["central"].ToString());
+
+                    reader.Close();
+                    db.conn.Close();
+                    return central;
+                }
+                db.conn.Close();
+
+            } catch (SqlException e ) {
+                db.conn.Close();
+                return -1;
+            }
+
+            return -1;
+
+        }
+
         public int AgregarZonas(int nroBloques,int idTipoZona,int idAlmacen) 
         {
             db.cmd.CommandType = CommandType.Text;
@@ -143,11 +171,10 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public int Agregar(Almacenes alm)
         {
-            //db.cmd.CommandText = "sp_AgregarAlmacen";
-            //db.cmd.CommandType = CommandType.StoredProcedure;
-            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono,nroFilas,nroColumnas,altura,fechaReg,estado) "+
+            
+            db.cmd.CommandText = "INSERT INTO Almacen (nombre,codAlmacen,direccion,tipo,idTienda,telefono,nroFilas,nroColumnas,altura,fechaReg,idUbigeo,estado) "+
                                     "output INSERTED.idAlmacen "+
-                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono,@nroFilas,@nroColumnas,@altura,@fechaReg,@estado)";
+                                    "VALUES (@nombre,@codAlmacen,@direccion,@tipo,@idTienda,@telefono,@nroFilas,@nroColumnas,@altura,@fechaReg,@idUbigeo,@estado)";
             db.cmd.Parameters.AddWithValue("@nombre", alm.Nombre);
             db.cmd.Parameters.AddWithValue("@codAlmacen",alm.CodAlmacen);
             db.cmd.Parameters.AddWithValue("@direccion", alm.Direccion);
@@ -158,10 +185,8 @@ namespace MadeInHouse.DataObjects.Almacen
             db.cmd.Parameters.AddWithValue("@nroColumnas", alm.NroColumnas);
             db.cmd.Parameters.AddWithValue("@altura", alm.Altura);
             db.cmd.Parameters.AddWithValue("@fechaReg", DateTime.Today);
+            db.cmd.Parameters.AddWithValue("@idUbigeo", alm.IdUbigeo);
             db.cmd.Parameters.AddWithValue("@estado", 1);
-
-
-            //db.cmd.Parameters.Add("@idAlmacen", SqlDbType.Int).Direction = ParameterDirection.Output;
 
             int idalmacen = -1;
 
@@ -219,6 +244,7 @@ namespace MadeInHouse.DataObjects.Almacen
             
             try
             {
+                
                 if (tipo)  db.conn.Open();
                 SqlDataReader reader = db.cmd.ExecuteReader();
 
@@ -228,11 +254,13 @@ namespace MadeInHouse.DataObjects.Almacen
                     almacen.Altura = reader.IsDBNull(reader.GetOrdinal("altura")) ? -1 : int.Parse(reader["altura"].ToString());
                     almacen.CodAlmacen = reader.IsDBNull(reader.GetOrdinal("codAlmacen")) ? null : reader["codAlmacen"].ToString();
                     almacen.Estado = reader.IsDBNull(reader.GetOrdinal("estado")) ? -1 : int.Parse(reader["estado"].ToString());
-
+                    almacen.IdUbigeo = reader.IsDBNull(reader.GetOrdinal("idUbigeo")) ? -1 : int.Parse(reader["idUbigeo"].ToString());
                     almacen.FechaReg = reader.IsDBNull(reader.GetOrdinal("fechaReg")) ? DateTime.MinValue : DateTime.Parse(reader["fechaReg"].ToString());
                     almacen.IdAlmacen = reader.IsDBNull(reader.GetOrdinal("idAlmacen")) ? -1 : int.Parse(reader["idAlmacen"].ToString());
                     almacen.IdTienda = reader.IsDBNull(reader.GetOrdinal("idTienda")) ? -1 : int.Parse(reader["idTienda"].ToString());
                     almacen.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? null : reader["nombre"].ToString();
+                    almacen.Telefono = reader.IsDBNull(reader.GetOrdinal("telefono")) ? null : reader["telefono"].ToString();
+                    almacen.Direccion = reader.IsDBNull(reader.GetOrdinal("direccion")) ? null : reader["direccion"].ToString();
                     almacen.NroColumnas = reader.IsDBNull(reader.GetOrdinal("nroColumnas")) ? -1 : int.Parse(reader["nroColumnas"].ToString());
                     almacen.NroFilas = reader.IsDBNull(reader.GetOrdinal("nroFilas")) ? -1 : int.Parse(reader["nroFilas"].ToString());
                     almacen.Tipo = reader.IsDBNull(reader.GetOrdinal("tipo")) ? -1: int.Parse(reader["tipo"].ToString());
@@ -244,10 +272,14 @@ namespace MadeInHouse.DataObjects.Almacen
             catch (SqlException e)
             {
                 Console.WriteLine(e.ToString());
+                db.conn.Close();
+                db.cmd.Parameters.Clear();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                db.conn.Close();
+                db.cmd.Parameters.Clear();
             }
 
             return almacen;
@@ -340,9 +372,10 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public int Actualizar(Almacenes alm)
         {
-            db.cmd.CommandText = "UPDATE Almacen SET nroFilas=@nroFilas , nroColumnas=@nroColumnas , altura=@altura , " +
+            db.cmd.CommandText = "UPDATE Almacen SET codAlmacen=@codAlmacen nroFilas=@nroFilas , nroColumnas=@nroColumnas , altura=@altura , " +
                                  " direccion=@direccion , telefono=@telefono WHERE idAlmacen=@idAlmacen";
-            
+
+            db.cmd.Parameters.AddWithValue("@codAlmacen", alm.CodAlmacen);
             db.cmd.Parameters.AddWithValue("@nroFilas", alm.NroFilas);
             db.cmd.Parameters.AddWithValue("@nroColumnas", alm.NroColumnas);
             db.cmd.Parameters.AddWithValue("@altura", alm.Altura);
@@ -362,11 +395,15 @@ namespace MadeInHouse.DataObjects.Almacen
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                db.conn.Close();
+                db.cmd.Parameters.Clear();
                 return -1;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                db.conn.Close();
+                db.cmd.Parameters.Clear();
                 return -1;
             }
 

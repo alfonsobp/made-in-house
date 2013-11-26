@@ -313,7 +313,8 @@ namespace MadeInHouse.Dictionary {
             int Y = Int16.Parse((sender as Button).Name.Substring((sender as Button).Name.IndexOf("Y") + 1));
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorClick = conv.ConvertFromString("LightSkyBlue") as SolidColorBrush;
-            
+           
+
             if (Accion == 1)
             {
                 (sender as Button).Background = this.Background;
@@ -376,34 +377,36 @@ namespace MadeInHouse.Dictionary {
                     xAntU = X;
                     yAntU = Y;
                     ColorAntU = (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background as LinearGradientBrush;
+                    if (SelectedProduct != null)
+                    {
+                        if (Columna[X].IdProducto == SelectedProduct.IdProducto)
+                        {
 
-                    if (Columna[X].IdProducto == SelectedProduct.IdProducto)
-                    {
-                        
-                        CantActual = Columna[X].Cantidad.ToString();
-                        VolOcu = Columna[X].VolOcupado.ToString();
-                        if (int.Parse(VolOcu) > 0) Enable = false;
-                        else Enable = true;
-                        Permitir = true;
+                            CantActual = Columna[X].Cantidad.ToString();
+                            VolOcu = Columna[X].VolOcupado.ToString();
+                            if (int.Parse(VolOcu) > 0) Enable = false;
+                            else Enable = true;
+                            Permitir = true;
+                        }
+                        else if (Columna[X].IdProducto == 0)
+                        {
+                            CantActual = "0";
+                            VolOcu = "0";
+                            Enable = true;
+                            Permitir = true;
+
+                        }
+                        else
+                        {
+                            CantActual = "---";
+                            VolOcu = "---";
+                            Enable = false;
+                            Permitir = false;
+                        }
+                        selectedUbicacion = Columna[X];
                     }
-                    else if (Columna[X].IdProducto==0)
-                    {
-                        CantActual = "0";
-                        VolOcu = "0";
-                        Enable = true;
-                        Permitir = true;
-                        
-                    }
-                    else 
-                    {
-                        CantActual = "---";
-                        VolOcu = "---";
-                        Enable = false;
-                        Permitir = false;
-                    }
+
                     
-
-                    selectedUbicacion = Columna[X];
                 }
                 (this.Children[Ubicaciones[X][Y][0].CordY + Ubicaciones[X][Y][0].CordX * NumColumns] as Button).Background = colorClick;
 

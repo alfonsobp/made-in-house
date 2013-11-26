@@ -9,6 +9,7 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.DataObjects;
 using System.Windows.Controls;
 using MadeInHouse.ViewModels.Compras;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -308,6 +309,15 @@ namespace MadeInHouse.ViewModels.Almacen
         #endregion
 
         #region metodos
+
+
+        public void AbrirMantenerProducto()
+        {
+            MyWindowManager wm = new MyWindowManager();
+            wm.ShowWindow(new Almacen.ProductoMantenerViewModel());
+        }
+
+
 
         private LineaProducto GetLinea(int idLinea)
         {

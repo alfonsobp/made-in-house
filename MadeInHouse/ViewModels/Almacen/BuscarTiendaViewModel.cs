@@ -7,6 +7,7 @@ using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using System.Windows.Controls;
+using MadeInHouse.Models;
 
 
 namespace MadeInHouse.ViewModels.Almacen
@@ -254,6 +255,35 @@ namespace MadeInHouse.ViewModels.Almacen
                 
 
             }
+        }
+
+
+        public void DeshabilitarTienda()
+        {
+            if (TiendaSel != null)
+            {
+                TiendaSQL tSQL = new TiendaSQL();
+                int exito = tSQL.DeshabilitarTienda(TiendaSel.IdTienda);
+                if (exito > 0)
+                {
+                    System.Windows.MessageBox.Show("Se deshabilitó la tienda correctamente");
+                }
+                else
+                {
+                    System.Windows.MessageBox.Show("No se puede deshabilitar la tienda porque aun hay stock en ella ");
+                }
+
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Debe seleccionar una tienda");
+            }
+        }
+
+        public void AbrirMantenerTienda()
+        {
+            MyWindowManager wm = new MyWindowManager();
+            wm.ShowWindow(new MantenerTiendaViewModel());
         }
 
         public void Acciones(object sender) {
