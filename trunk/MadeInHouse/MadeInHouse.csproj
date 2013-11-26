@@ -1322,6 +1322,8 @@
     <Resource Include="Assets\recover.png" />
     <Resource Include="Assets\psp.jpg" />
     <Resource Include="Assets\background.jpg" />
+    <Resource Include="Assets\gear_white.png" />
+    <Resource Include="Assets\cancel_white.png" />
     <Content Include="Dictionary\Libraries\Caliburn.Micro.dll" />
     <Content Include="Dictionary\Libraries\itextsharp.dll" />
     <Content Include="Dictionary\Libraries\Microsoft.Windows.Shell.dll" />

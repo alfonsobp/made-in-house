@@ -22,6 +22,20 @@ namespace MadeInHouse.ViewModels
 	[Export(typeof(MainViewModel))]
     public class MainViewModel : Screen
     {
+
+        #region overrides
+
+        protected override void OnViewLoaded(object view)
+        {
+            height = ((Window)this.GetView()).ActualHeight;
+            width = ((Window)this.GetView()).ActualWidth;
+        }
+
+        #endregion
+
+        public static double height;
+        public static double width;
+
 		private readonly IWindowManager _windowManager;
 
         [ImportingConstructor]

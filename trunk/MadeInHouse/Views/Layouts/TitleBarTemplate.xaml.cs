@@ -26,7 +26,7 @@ namespace MadeInHouse.Views.Layouts
 
         private const int ALTURA = 58;
         private const int ANCHO = 200;
-        private static int tabsXfila = 0;
+        private static int tabsXColumna = 0;
 
         public string title
         {
@@ -56,7 +56,11 @@ namespace MadeInHouse.Views.Layouts
 
         private void CloseWin_Click(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.MainWindow.Owner != null) Window.GetWindow(this).Owner.Focus();
+            try
+            {
+                if (Window.GetWindow(this).Owner != null) Window.GetWindow(this).Owner.Focus();
+            }
+            catch (Exception ex) { }
             Window.GetWindow(this).Close();
             if (Window.GetWindow(this).Width == ANCHO)
                 fixTabs();
@@ -64,17 +68,17 @@ namespace MadeInHouse.Views.Layouts
 
         private void MinimizeWin_Click(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.MainWindow.Owner == null)
+            if (Window.GetWindow(this).Owner == null)
             {
                 Window.GetWindow(this).WindowState = WindowState.Minimized;
             }
             else
             {
-                if (tabsXfila == 0)
+                if (tabsXColumna == 0)
                 {
-                    double anchoWin = Application.Current.MainWindow.Owner.ActualWidth;
-                    double calcTabs = ((anchoWin / 636) * 477) / (ANCHO);
-                    tabsXfila = (int)Math.Truncate(calcTabs);
+                    double altoWin = MainViewModel.height - 250;
+                    double calcTabs = (altoWin / ALTURA);
+                    tabsXColumna = (int)Math.Truncate(calcTabs);
                 }
                 if (Window.GetWindow(this).Width != ANCHO)
                 {
@@ -86,7 +90,7 @@ namespace MadeInHouse.Views.Layouts
                         MainViewModel.MinWin.Add(new List<Window>());
                     }
 
-                    if (MainViewModel.MinWin.Last().Count < tabsXfila)
+                    if (MainViewModel.MinWin.Last().Count < tabsXColumna)
                     {
                         MainViewModel.MinWin.Last().Add(Window.GetWindow(this));
                     }
@@ -97,14 +101,14 @@ namespace MadeInHouse.Views.Layouts
                     }
 
 
-                    Window.GetWindow(this).Left = Application.Current.MainWindow.Owner.ActualWidth - 5 - (ANCHO + 5) * (MainViewModel.MinWin.Last().Count);
-                    Window.GetWindow(this).Top = Application.Current.MainWindow.Owner.ActualHeight - 5 - (ALTURA + 5) * (MainViewModel.MinWin.Count);
+                    Window.GetWindow(this).Left = MainViewModel.width - 5 - (ANCHO + 5) * (MainViewModel.MinWin.Count);
+                    Window.GetWindow(this).Top = MainViewModel.height - 120 - (ALTURA + 5) * (MainViewModel.MinWin.Last().Count);
                 }
                 else
                 {
                     Window.GetWindow(this).SizeToContent = SizeToContent.WidthAndHeight;
-                    Window.GetWindow(this).Top = 0.5 * (Application.Current.MainWindow.Owner.ActualHeight - Window.GetWindow(this).ActualHeight);
-                    Window.GetWindow(this).Left = 0.5 * (Application.Current.MainWindow.Owner.ActualWidth - Window.GetWindow(this).ActualWidth);
+                    Window.GetWindow(this).Top = 0.5 * (MainViewModel.height - Window.GetWindow(this).ActualHeight);
+                    Window.GetWindow(this).Left = 0.5 * (MainViewModel.width - Window.GetWindow(this).ActualWidth);
 
                     fixTabs();
                 }
@@ -122,7 +126,7 @@ namespace MadeInHouse.Views.Layouts
                 }
                 if (i < MainViewModel.MinWin.Count - 1)
                 {
-                    if (MainViewModel.MinWin.ElementAt(i).Count < tabsXfila)
+                    if (MainViewModel.MinWin.ElementAt(i).Count < tabsXColumna)
                     {
                         MainViewModel.MinWin.ElementAt(i).Add(MainViewModel.MinWin.ElementAt(i + 1).First());
                         MainViewModel.MinWin.ElementAt(i + 1).Remove(MainViewModel.MinWin.ElementAt(i + 1).First());
@@ -134,8 +138,8 @@ namespace MadeInHouse.Views.Layouts
             {
                 for (int j = 0; j < MainViewModel.MinWin.ElementAt(i).Count; j++)
                 {
-                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Left = Application.Current.MainWindow.Owner.ActualWidth - 5 - (ANCHO + 5) * (j + 1);
-                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Top = Application.Current.MainWindow.Owner.ActualHeight - 5 - (ALTURA + 5) * (i + 1);
+                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Left = MainViewModel.width - 5 - (ANCHO + 5) * (i + 1);
+                    MainViewModel.MinWin.ElementAt(i).ElementAt(j).Top = MainViewModel.height - 120 - (ALTURA + 5) * (j + 1);
                 }
             }
         }
