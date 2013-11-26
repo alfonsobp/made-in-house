@@ -87,6 +87,7 @@
         <!--rectangulos medio transparentes-->
         <Rectangle Fill="Black" Opacity="0.3" HorizontalAlignment="Left" Stroke="Black" Width="300"/>
         <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="300,0,0,0" Height="50" VerticalAlignment="Top"/>
+        <Rectangle Fill="Black" Opacity="0.3" Stroke="Black" Margin="838,50,155,0" Height="70" VerticalAlignment="Top"/>
 
         <!--Almacen-->
         <Expander Name="expanderAlmacen" FontFamily="/Assets/#Moire" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
@@ -147,7 +148,6 @@
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Empleado" FontSize="20"  Grid.Row="0"/>
                 <Button x:Name="AbrirRegistrarEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,230,1" Width="68"/>
                 <Button x:Name="AbrirMantenerEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Administrar" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,177,1" Width="121"/>
-                <Button x:Name="AbrirCargarOrganigrama"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Cargar Organigrama" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,84,0" Height="30" Width="214"/>
             </Grid>
         </Expander>
 
@@ -300,11 +300,9 @@
         </Expander>
 
         <!--Configuracion-->
-        <Expander Name="expanderConfiguracion" IsExpanded="True" Background="Transparent" Header="Configuración" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
+        <Expander Name="expanderConfiguracion" IsExpanded="True" Background="Transparent" Header="Configuración" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="300" FontFamily="/Assets/#Moire" Margin="0,0,0,0">
             <Grid Background="Transparent" Height="Auto">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
                     <RowDefinition Height="30"/>
@@ -314,12 +312,10 @@
                 </Grid.RowDefinitions>
                 <Button x:Name="AbrirBuscarTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Tiendas" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="1,2,139,3" Width="158"/>
                 <Button x:Name="AbrirMantenerTienda"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Tienda" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="2,1,157,2" Width="139"/>
-                <Button x:Name="AbrirControlarAsistenciaEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Controlar asistencia" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,91,2" Width="207" />
-                <Button x:Name="AbrirMantenerTipoZona"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,91,1" Width="207"/>
-                <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,39,1" Width="259"/>
-                <Button x:Name="AbrirMantenerSubLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Sublinea Producto" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,2" Width="288"/>
-                <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,122,2" Width="176"/>
-                <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,4" Width="288"/>
+                <Button x:Name="AbrirMantenerTipoZona"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Tipo Zona" FontSize="20"  Grid.Row="2" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,91,1" Width="207"/>
+                <Button x:Name="AbrirMantenerLineaProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Registrar Linea Producto" FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,39,1" Width="259"/>
+                <Button x:Name="AbrirMantenerMotivo"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Motivo" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,122,2" Width="176"/>
+                <Button x:Name="AbrirMantenerUnidadMedida"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Unidad de Medida" FontSize="20"  Grid.Row="5" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,10,4" Width="288"/>
 
             </Grid>
         </Expander>
@@ -331,7 +327,6 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Button x:Name="AbrirBuscarEmpleado"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Empleado" FontSize="20"  Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,117,2" Width="181"/>
-                <Button x:Name="AbrirBuscarOrganigrama"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Ver Organigrama" FontSize="20"  Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,117,-10" Height="40" Width="181"/>
 
             </Grid>
         </Expander>
@@ -345,15 +340,6 @@
             <Image Source="/Assets/gear.png" Width="35" Height="33"/>
         </Button>
         <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,10,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
-        <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="764,8,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/commentblack32.png" Width="35" Height="33"/>
-        </Button>
-        <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="712,5,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/warning.png" Width="35" Height="33"/>
-        </Button>
-        <Button  Background="Transparent" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="42" Margin="820,6,0,0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" >
-            <Image Source="/Assets/cake.png" Width="35" Height="33"/>
-        </Button>
         <!--fin-->
 
     </Grid>
