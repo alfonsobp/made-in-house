@@ -16,6 +16,8 @@ namespace MadeInHouse.Models.Ventas
     {
         public string GenerarNotaCredito(Devolucion d, int num, List<DevolucionProducto> lstProductos)
         {
+            string pathString = Environment.CurrentDirectory + @"\Archivos\NotasCredito";
+            System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
             string body = formatoBP(d, num, lstProductos).ToString();
             string date = DateTime.Now.ToString("yyyyMMddHHmmss");
