@@ -268,11 +268,9 @@
                 <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Promociones de Productos" FontSize="20" Grid.Row="12"/>
                 <Button x:Name="AbrirListadoPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="81"/>
                 <Button x:Name="AbrirNuevaPromoProducto"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,30,116,4" Grid.RowSpan="2" Width="182"/>
-                <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Promociones de Servicios" FontSize="20" Grid.Row="15"/>
-                <Button x:Name="AbrirListadoPromoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="81"/>
-                <Button x:Name="AbrirNuevaPromoServicio"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Promoción" FontSize="20" Grid.Row="17" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="3,0,116,3" Width="179"/>
-                <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Precios" FontSize="20" Grid.Row="18"/>
-                <Button x:Name="AbrirListadoPrecios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="19" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
+                
+                <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Precios" FontSize="20" Grid.Row="15"/>
+                <Button x:Name="AbrirListadoPrecios"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
 
             </Grid>
         </Expander>
