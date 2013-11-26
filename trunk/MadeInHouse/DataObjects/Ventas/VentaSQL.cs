@@ -699,5 +699,49 @@ namespace MadeInHouse.DataObjects.Ventas
             
             return k;
         }
+
+        public IgvPuntos sacarDatos()
+        {
+            IgvPuntos ip = null;
+            db.cmd.CommandText = "Select * from IgvPuntos";
+            try
+            {
+                if (tipo) db.conn.Open();
+                SqlDataReader reader = db.cmd.ExecuteReader();
+                reader.Read();
+                ip = new IgvPuntos();
+                ip.Igv = Convert.ToInt32(reader["igv"].ToString());
+                ip.Puntos = Convert.ToInt32(reader["puntos"].ToString());
+                reader.Close();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.cmd.Clone();
+
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return ip;
+        }
+
+        public void ActualizarIgvPuntos(string igv, string puntos)
+        {
+            db.cmd.CommandText = "UPDATE IgvPuntos SET igv=@igv, puntos=@puntos";
+            db.cmd.Parameters.AddWithValue("@igv", Convert.ToInt32(igv));
+            db.cmd.Parameters.AddWithValue("@puntos", Convert.ToInt32(puntos));
+
+            try
+            {
+                if (tipo) db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                if (tipo) db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                MessageBox.Show(e.Message);
+            }
+        }
+
     }
 }
