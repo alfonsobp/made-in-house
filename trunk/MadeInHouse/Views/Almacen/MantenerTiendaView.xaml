@@ -38,14 +38,9 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
+                    <Button/>
+                    <Button x:Name="LimpiarCampos" >
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
                 </ToolBar>
                 <TabControl Margin="0,47,0,0">
@@ -182,7 +177,11 @@
                             <Label Content="Zonas:" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top" Width="75"/>
 
                             <ScrollViewer  HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
-                                <grid:DynamicGrid x:Name="Anaquel" Accion="1" Altura="{Binding AlturaAnq}" IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" NumColumns="{Binding NumColumnsAnq}"  Background="{Binding Fondo, FallbackValue=Green}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                                <grid:DynamicGrid x:Name="Anaquel" Accion="1" Altura="{Binding AlturaAnq}" 
+                                                  IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" 
+                                                  NumColumns="{Binding NumColumnsAnq}"  
+                                                  Background="{Binding Fondo, FallbackValue=Green}"
+                                                  ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
                                 </grid:DynamicGrid>
                             </ScrollViewer>
                             <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530"/>

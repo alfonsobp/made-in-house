@@ -322,24 +322,79 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private int accion=1;
-        
+
+        private bool editar;
+
+        public bool Editar
+        {
+            get { return editar; }
+            set { editar = value;
+            NotifyOfPropertyChange(() => Editar);
+            }
+        }
+
 
         #endregion
+
 
         public MantenerAlmacenViewModel()
         {
             uSQL = new UbigeoSQL();
             tSQL = new TiendaSQL();
             pxaSQL = new ProductoSQL();
-            
+            aSQL = new AlmacenSQL();
+            tzSQL = new TipoZonaSQL();
+            int existe = aSQL.existeCentral();
+            Editar = true;
 
-            CmbZonas = (new TipoZonaSQL()).BuscarZona();
-            CmbDpto = uSQL.BuscarDpto();
-            Content = "Generar distribución";
+
+
+            if (existe > 0)
+            {
+                Almacenes central= aSQL.BuscarAlmacen(-1, -1, 3);
+                accion = 2;
+                Editar = false;
+               /* idTienda = t.IdTienda;  */
+                /*carga de la informacion general*/
+                TxtNombre = central.Nombre;
+                TxtTelefono = central.Telefono;
+                TxtDir = central.Direccion;
+                List<Ubigeo> u = uSQL.buscarUbigeo2(central.IdUbigeo);
+
+                /*carga de los combobox*/
+                CmbDpto = uSQL.BuscarDpto();
+                Index1 = CmbDpto.FindIndex(x => x.CodDpto == u[0].CodDpto);
+                SelectedDpto = u[0].CodDpto;
+                Index2 = CmbProv.FindIndex(x => x.CodProv == u[0].CodProv);
+                SelectedProv = u[0].CodProv;
+                Index3 = CmbDist.FindIndex(x => x.CodDist == u[0].CodDist);
+
+                
+
+                Content = "Ver distribución";
+                TxtNumColumns = central.NroColumnas.ToString();
+                TxtNumRows = central.NroFilas.ToString();
+                TxtAltura = central.Altura.ToString();
+
+
+                lstZonas = tzSQL.ObtenerZonasxAlmacen(central.IdAlmacen,3);
+                System.Windows.MessageBox.Show("El almacen central ya existe");
+            }
+            else if (existe == 0)
+            {
+
+                CmbZonas = (new TipoZonaSQL()).BuscarZona();
+                CmbDpto = uSQL.BuscarDpto();
+                Content = "Generar distribución";
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Ocurrió un problema");
+            }
 
         }
 
-
+        List<TipoZona> lstZonas;
             public void Distribuir(int tipo, MadeInHouse.Dictionary.DynamicGrid dg)
             {
                 
@@ -349,7 +404,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
                     if (accion == 2)
                     {
-                        //dg.cargarGrid(lstZonas);
+                        dg.cargarGrid(lstZonas);
                     }
             }
 
@@ -381,6 +436,13 @@ namespace MadeInHouse.ViewModels.Almacen
                 return lista;
             }
 
+
+
+            public void AbrirMantenerAlmacen()
+            {
+                MyWindowManager wm = new MyWindowManager();
+                wm.ShowWindow(new MantenerAlmacenViewModel());
+            }
 
             public DataTable CrearZonasDT()
             {
@@ -521,10 +583,10 @@ namespace MadeInHouse.ViewModels.Almacen
                 SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);
                 db.cmd.Transaction = trans;
                 
-                /*Agrega una tienda*/
+                
                 Almacenes central = new Almacenes();
                 central.Estado = 1;
-                central.CodAlmacen = "xxx";
+                central.CodAlmacen = "CENTRAL001";
                 central.Nombre = TxtNombre;
                 central.Direccion = TxtDir;
                 central.Telefono = TxtTelefono;

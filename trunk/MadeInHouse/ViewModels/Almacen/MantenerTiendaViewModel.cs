@@ -12,6 +12,7 @@ using MadeInHouse.DataObjects;
 using System.Data;
 using System.Data.SqlClient;
 using MadeInHouse.Views.RRHH;
+using MadeInHouse.Validacion;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -109,7 +110,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNombre
         {
             get { return txtNombre; }
-            set { txtNombre = value; }
+            set { txtNombre = value;
+            NotifyOfPropertyChange(() => TxtNombre);
+            }
         }
 
 
@@ -126,7 +129,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtTelef
         {
             get { return txtTelef; }
-            set { txtTelef = value; }
+            set { txtTelef = value;
+            NotifyOfPropertyChange(() => TxtTelef);
+            }
         }
 
         private List<Ubigeo> cmbDpto;
@@ -226,7 +231,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtDir
         {
             get { return txtDir; }
-            set { txtDir = value; }
+            set { txtDir = value;
+            NotifyOfPropertyChange(() => TxtDir);
+            }
         }
 
         /*Configuracion de productos en tienda*/
@@ -326,7 +333,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumRowsAnq
         {
             get { return txtNumRowsAnq; }
-            set { txtNumRowsAnq = value; }
+            set { txtNumRowsAnq = value;
+            NotifyOfPropertyChange(() => TxtNumRowsAnq);
+            }
         }
 
         private string txtNumColumnsAnq;
@@ -334,7 +343,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumColumnsAnq
         {
             get { return txtNumColumnsAnq; }
-            set { txtNumColumnsAnq = value; }
+            set { txtNumColumnsAnq = value;
+            NotifyOfPropertyChange(() => TxtNumColumnsAnq);
+            }
         }
 
 
@@ -344,7 +355,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtAlturaAnq
         {
             get { return txtAlturaAnq; }
-            set { txtAlturaAnq = value; }
+            set { txtAlturaAnq = value;
+            NotifyOfPropertyChange(() => TxtAlturaAnq);
+            }
         }
 
 
@@ -356,7 +369,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumRowsDto
         {
             get { return txtNumRowsDto; }
-            set { txtNumRowsDto = value; }
+            set { txtNumRowsDto = value;
+            NotifyOfPropertyChange(() => TxtNumRowsDto);
+            }
         }
 
         private string txtNumColumnsDto;
@@ -364,7 +379,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtNumColumnsDto
         {
             get { return txtNumColumnsDto; }
-            set { txtNumColumnsDto = value; }
+            set { txtNumColumnsDto = value;
+            NotifyOfPropertyChange(() => TxtNumColumnsDto);
+            }
         }
 
         private string txtAlturaDto;
@@ -372,7 +389,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtAlturaDto
         {
             get { return txtAlturaDto; }
-            set { txtAlturaDto = value; }
+            set { txtAlturaDto = value;
+            NotifyOfPropertyChange(() => TxtAlturaDto);
+            }
         }
 
         private string fondo;
@@ -618,8 +637,27 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Distribuir(int tipo, MadeInHouse.Dictionary.DynamicGrid dg)
         {
+
+            Evaluador eva = new Evaluador();
+            
+
             if (tipo == 0)
             {
+                if (String.IsNullOrEmpty(TxtAlturaAnq) || String.IsNullOrEmpty(TxtNumColumnsAnq) || String.IsNullOrEmpty(TxtNumRowsAnq) ||
+                   !eva.esNumeroEntero(TxtNumColumnsAnq) || !eva.esNumeroEntero(TxtNumRowsAnq) || !eva.esNumeroEntero(TxtAlturaAnq)
+                )
+                {
+                    System.Windows.MessageBox.Show("Debes ingresar un numero entero para el numero de filas , columnas y altura");
+                    return;
+                }
+                else if (int.Parse(TxtAlturaAnq) <= 0 ||  int.Parse(TxtNumColumnsAnq) <= 0 ||
+                        int.Parse(TxtNumRowsAnq) <= 0  )
+                    {
+                    System.Windows.MessageBox.Show("Debes ingresar un numero entero para el numero de filas , columnas y altura");
+                    return;
+                    }
+
+
                 NumColumnsAnq = Int32.Parse(TxtNumColumnsAnq);
                 NumRowsAnq = Int32.Parse(TxtNumRowsAnq);
                 AlturaAnq = Int32.Parse(TxtAlturaAnq);
@@ -634,6 +672,20 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
+
+                if (String.IsNullOrEmpty(TxtAlturaAnq) || String.IsNullOrEmpty(TxtNumColumnsDto) || String.IsNullOrEmpty(TxtNumRowsDto)
+                     || !eva.esNumeroEntero(TxtAlturaDto) || !eva.esNumeroEntero(TxtNumColumnsDto) || !eva.esNumeroEntero(TxtNumRowsDto))
+                {
+                    System.Windows.MessageBox.Show("Debes ingresar un numero entero para el numero de filas , columnas y altura");
+                    return;
+                }
+                else if (int.Parse(TxtAlturaDto) <= 0 || int.Parse(TxtNumColumnsAnq) <= 0 ||
+                    int.Parse(TxtNumRowsDto) <= 0)
+                {
+                    System.Windows.MessageBox.Show("Debes ingresar un numero entero para el numero de filas , columnas y altura");
+                    return;
+                }
+
                 NumColumnsDto = Int32.Parse(TxtNumColumnsDto);
                 NumRowsDto = Int32.Parse(TxtNumRowsDto);
                 AlturaDto = Int32.Parse(TxtAlturaDto);
@@ -972,11 +1024,44 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
 
+        public void LimpiarCampos()
+        {
+            TxtNombre = "";
+            TxtTelef = "";
+            TxtDir = "";
+            TxtCodProducto = "";
+            TxtStockMin = "";
+            TxtStockMax = "";
+            TxtPrecioV = "";
+            LstProductos = null;
+
+            TxtNumRowsAnq = "";
+            TxtNumColumnsAnq = "";
+            TxtAlturaAnq = "";
+
+            TxtNumRowsDto = "";
+            TxtNumColumnsDto = "";
+            TxtAlturaDto = "";
+        }
+
+
         public int GuardarTienda(MadeInHouse.Dictionary.DynamicGrid anaquel, MadeInHouse.Dictionary.DynamicGrid deposito)
         {
 
+            Evaluador eva = new Evaluador();
+            if (String.IsNullOrEmpty(TxtAlturaAnq) || String.IsNullOrEmpty(TxtNumColumnsAnq) || String.IsNullOrEmpty(TxtNumRowsAnq) ||
+                 String.IsNullOrEmpty(TxtAlturaDto) || String.IsNullOrEmpty(TxtNumColumnsDto) || String.IsNullOrEmpty(TxtNumRowsDto) ||
+                !eva.esNumeroEntero(TxtNumColumnsAnq) || !eva.esNumeroEntero(TxtNumColumnsDto) || !eva.esNumeroEntero(TxtNumRowsAnq) || !eva.esNumeroEntero(TxtNumRowsDto) ||
+                !eva.esNumeroEntero(TxtAlturaAnq) || !eva.esNumeroEntero(TxtAlturaDto) || 
+                int.Parse(TxtAlturaDto) <= 0 || int.Parse(TxtAlturaAnq) <= 0 || int.Parse(TxtNumColumnsAnq) <= 0 || int.Parse(TxtNumColumnsDto) <= 0 ||
+                int.Parse(TxtNumRowsAnq) <= 0 || int.Parse(TxtNumRowsDto) <= 0  )
+            {
+                System.Windows.MessageBox.Show("Debes ingresar un numero entero para el numero de filas , columnas y altura");
+                return 1;
+            }
+
             int exito = 0;
-            
+                
             DBConexion db = new DBConexion();
             db.conn.Open();
             SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.Serializable);

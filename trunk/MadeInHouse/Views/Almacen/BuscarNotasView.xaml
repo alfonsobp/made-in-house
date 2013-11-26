@@ -7,14 +7,14 @@
              mc:Ignorable="d" Height="543.667" Width="590">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White" HorizontalAlignment="Left" Width="590">
         <StackPanel Margin="0,0,8,0">
-            <Layouts:TitleBarTemplate title="Buscar notas de ingreso y salida" />
-            <Grid Height="528" Margin="0,0,10,0">
+            <Layouts:TitleBarTemplate title="Buscar notas de ingreso y salida" Margin="0,0,-7,0" />
+            <Grid Height="500" Margin="0,0,10,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="38*"/>
                     <RowDefinition Height="158*"/>
                     <RowDefinition Height="373*"/>
                 </Grid.RowDefinitions>
-                <ToolBar VerticalAlignment="Top" Height="38">
+                <ToolBar VerticalAlignment="Top" Height="43" Grid.RowSpan="2" Margin="0,0,-17,0">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -27,18 +27,9 @@
                     <Button>
                         <Image Source="/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/Assets/save.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
-                        <Image Source="/Assets/delete.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
-                        <Image Source="/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/Assets/refresh.png" />
-                    </Button>
+                    <Button/>
+                    <Button/>
+                    <Button/>
                 </ToolBar>
                 <GroupBox Header="Criterios de búsqueda" Margin="46,10,25,0" Grid.Row="1"  Height="67" VerticalAlignment="Top" HorizontalAlignment="Center" Width="497">
 
@@ -51,7 +42,7 @@
                         </Button>
                     </Grid>
                 </GroupBox>
-                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="56,82,0,0" Grid.Row="1" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="487" 
+                <DataGrid x:Name="LstNotaIs" IsReadOnly="True" Margin="56,98,0,0" Grid.Row="1" HeadersVisibility="All" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="487" 
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action SelectedItemChanged]"
                           SelectedItem="{Binding NotaSel, Mode=TwoWay}" Height="264" VerticalAlignment="Top" Grid.RowSpan="2">
                     <DataGrid.Columns>

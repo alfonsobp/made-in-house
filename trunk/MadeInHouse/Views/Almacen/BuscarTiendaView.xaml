@@ -22,18 +22,14 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button ToolTip="Nueva tienda">
+                    <Button ToolTip="Nueva tienda" x:Name="AbrirMantenerTienda">
                         <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Deshabilitar tienda">
+                    <Button ToolTip="Deshabilitar tienda" x:Name="DeshabilitarTienda" >
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar búsqueda" x:Name="Limpiar">
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button ToolTip="Refrescar búsqueda">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Height="30" Width="30" />
-                    </Button>
+                    <Button ToolTip="Limpiar búsqueda" x:Name="Limpiar"/>
+                    <Button ToolTip="Refrescar búsqueda"/>
                 </ToolBar>
                 <Grid>
                     <Grid.RowDefinitions>

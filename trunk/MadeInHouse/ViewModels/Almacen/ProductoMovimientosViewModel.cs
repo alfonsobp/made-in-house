@@ -17,6 +17,7 @@ using MadeInHouse.Models;
 using System.Windows;
 using MadeInHouse.Dictionary;
 using System.Windows.Media;
+using MadeInHouse.Validacion;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -394,10 +395,17 @@ namespace MadeInHouse.ViewModels.Almacen
         public void Disminuir(DynamicGrid ubicacionCol, DynamicGrid almacen)
         {
 
+            Evaluador  eva = new Evaluador();
+
             int exito = 0;
             if (String.IsNullOrEmpty(TxtCantidad))
             {
                 MessageBox.Show("Debe ingresar una cantidad");
+                return;
+            }
+            else if (!eva.esNumeroEntero(TxtCantidad))
+            {
+                MessageBox.Show("Debe ingresar un número");
                 return;
             }
             else if (int.Parse(TxtCantidad) < 0)
@@ -506,6 +514,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     sector.VolOcupado = (int)(((double)sector.Cantidad / sector.Capacidad) * 100);
                     TxtVolOcupado = sector.VolOcupado + "%";
                     TxtStockActual = sector.Cantidad;
+                    TxtCapacidad = sector.Capacidad;
                     SelectedProduct.Atendido = false;
                     Atendido = false;
                 }
@@ -520,96 +529,104 @@ namespace MadeInHouse.ViewModels.Almacen
 
             /*Inicializacion de la transacción*/
             DBConexion db = new DBConexion();
-            db.conn.Open();
-            SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.ReadCommitted);
-            db.cmd.Transaction = trans;
-
-            SectorSQL sectorSQL= new SectorSQL(db);
-            UbicacionSQL ubicacionSQL= new UbicacionSQL(db);
-
-            /*Tablas temporales*/
-            DataTable sectoresDT= sectorSQL.CrearSectoresDT();
-            DataTable ubicacionesDT= ubicacionSQL.CrearUbicacionesDT();
-            
-            List<Sector> lstSectores= new List<Sector>();
-            List<Ubicacion> ubicacionesModificadas= new List<Ubicacion>();
-
-            /*Agrupo todos los sectores y ubicaciones modificadas*/
-            for(int i=0;i<anaquel.lstZonas.Count;i++) 
+            try
             {
-               lstSectores.AddRange(anaquel.lstZonas[i].LstSectores);
-                for (int j=0;j<anaquel.lstZonas[i].LstSectores.Count;j++){
-                    ubicacionesModificadas.AddRange(anaquel.lstZonas[i].LstSectores[j].LstUbicaciones) ;
+                db.conn.Open();
+                SqlTransaction trans = db.conn.BeginTransaction(IsolationLevel.ReadCommitted);
+
+                db.cmd.Transaction = trans;
+
+                SectorSQL sectorSQL = new SectorSQL(db);
+                UbicacionSQL ubicacionSQL = new UbicacionSQL(db);
+
+                /*Tablas temporales*/
+                DataTable sectoresDT = sectorSQL.CrearSectoresDT();
+                DataTable ubicacionesDT = ubicacionSQL.CrearUbicacionesDT();
+
+                List<Sector> lstSectores = new List<Sector>();
+                List<Ubicacion> ubicacionesModificadas = new List<Ubicacion>();
+
+                /*Agrupo todos los sectores y ubicaciones modificadas*/
+                for (int i = 0; i < anaquel.lstZonas.Count; i++)
+                {
+                    lstSectores.AddRange(anaquel.lstZonas[i].LstSectores);
+                    for (int j = 0; j < anaquel.lstZonas[i].LstSectores.Count; j++)
+                    {
+                        ubicacionesModificadas.AddRange(anaquel.lstZonas[i].LstSectores[j].LstUbicaciones);
+                    }
+
                 }
 
-            }
+                /*Agrego las filas a los DT*/
+                sectorSQL.AgregarFilasToSectoresDT(sectoresDT, lstSectores);
+                ubicacionSQL.AgregarFilasToUbicacionesDT(ubicacionesDT, ubicacionesModificadas);
 
-            /*Agrego las filas a los DT*/
-            sectorSQL.AgregarFilasToSectoresDT(sectoresDT,lstSectores);
-            ubicacionSQL.AgregarFilasToUbicacionesDT(ubicacionesDT, ubicacionesModificadas);
-
-            /*empieza el guardado en la bd*/
-            exito = sectorSQL.AgregarMasivo(sectoresDT,trans); //insertados en TemporalSector
-            if (exito > 0)
-            {
-                exito=sectorSQL.ActualizarSectorMasivo(); //actualizados en tabla Sector
+                /*empieza el guardado en la bd*/
+                exito = sectorSQL.AgregarMasivo(sectoresDT, trans); //insertados en TemporalSector
                 if (exito > 0)
                 {
-
-                    exito=sectorSQL.ActualizarIdSector(); //actualizo idSector en tabla sector
+                    exito = sectorSQL.ActualizarSectorMasivo(); //actualizados en tabla Sector
                     if (exito > 0)
                     {
-                        /*Agrego las ubicaciones de almacen de salida*/
-                        ubicacionSQL.AgregarFilasToUbicacionesDT(ubicacionesDT, deposito.Ubicaciones, deposito.Ubicaciones[0][0][0].IdAlmacen);                     
-                        exito=ubicacionSQL.AgregarMasivo(ubicacionesDT,trans);
+
+                        exito = sectorSQL.ActualizarIdSector(); //actualizo idSector en tabla sector
                         if (exito > 0)
                         {
-                            exito=ubicacionSQL.ActualizarIdSector();
+                            /*Agrego las ubicaciones de almacen de salida*/
+                            ubicacionSQL.AgregarFilasToUbicacionesDT(ubicacionesDT, deposito.Ubicaciones, deposito.Ubicaciones[0][0][0].IdAlmacen);
+                            exito = ubicacionSQL.AgregarMasivo(ubicacionesDT, trans);
                             if (exito > 0)
                             {
-                                exito=ubicacionSQL.ActualizarUbicacionMasivo();
+                                exito = ubicacionSQL.ActualizarIdSector();
                                 if (exito > 0)
                                 {
-                                    /*Agrego el movimiento como un "todo" a la bd*/
-                                    NotaISSQL notaSQL = new NotaISSQL(db);
-                                    NotaIS nota = new NotaIS();
-                                    nota.IdMotivo = 8;
-                                    nota.Tipo = 3;
-                                    nota.Observaciones = "";
-                                    nota.IdDoc = 0;
-                                    nota.IdAlmacen = idDeposito;
-                                    nota.IdResponsable = idResponsable;
-                                    int idNota = notaSQL.AgregarNota(nota, 1);
-                                    if (idNota > 0)
+                                    exito = ubicacionSQL.ActualizarUbicacionMasivo();
+                                    if (exito > 0)
                                     {
-                                       exito= sectorSQL.ActualizarTemporalSector(idNota);
-                                       if (exito > 0)
-                                       {
-                                           exito=notaSQL.AgregarNotaxSector();
-                                           if (exito > 0)
-                                           {
-                                               UtilesSQL util = new UtilesSQL(db);
-                                               util.LimpiarTabla("TemporalUbicacion");
-                                               util.LimpiarTabla("TemporalSector");
+                                        /*Agrego el movimiento como un "todo" a la bd*/
+                                        NotaISSQL notaSQL = new NotaISSQL(db);
+                                        NotaIS nota = new NotaIS();
+                                        nota.IdMotivo = 8;
+                                        nota.Tipo = 3;
+                                        nota.Observaciones = "";
+                                        nota.IdDoc = 0;
+                                        nota.IdAlmacen = idDeposito;
+                                        nota.IdResponsable = idResponsable;
+                                        int idNota = notaSQL.AgregarNota(nota, 1);
+                                        if (idNota > 0)
+                                        {
+                                            exito = sectorSQL.ActualizarTemporalSector(idNota);
+                                            if (exito > 0)
+                                            {
+                                                exito = notaSQL.AgregarNotaxSector();
+                                                if (exito > 0)
+                                                {
+                                                    UtilesSQL util = new UtilesSQL(db);
+                                                    util.LimpiarTabla("TemporalUbicacion");
+                                                    util.LimpiarTabla("TemporalSector");
 
-                                               trans.Commit();
-                                               MessageBox.Show("Los productos fueron transferidos correctamente");
-                                               return;
-                                           }
-                                       }
-                                 
+                                                    trans.Commit();
+                                                    MessageBox.Show("Los productos fueron transferidos correctamente");
+                                                    return;
+                                                }
+                                            }
+
+                                        }
+
                                     }
-                                   
                                 }
                             }
                         }
                     }
                 }
+
+                MessageBox.Show("Lo sentimos , se produjo un error");
+                trans.Rollback();
             }
-
-            MessageBox.Show("Lo sentimos , se produjo un error");
-            trans.Rollback();
-
+            catch (SqlException e)
+            {
+                MessageBox.Show("Se fue la conexión");
+            }
         }
 
 

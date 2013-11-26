@@ -139,6 +139,46 @@ namespace MadeInHouse.DataObjects.Almacen
 
         }
 
+        public int DeshabilitarTienda(int idTienda)
+        {
+            bool estado = false;
+            db.cmd.CommandText = "SELECT SUM(stockActual) stock FROM ProductoxTienda WHERE idTienda=@idTienda ";
+            db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+
+            try
+            {
+                db.conn.Open();
+                SqlDataReader  reader= db.cmd.ExecuteReader();
+                db.cmd.Parameters.Clear();
+
+                while (reader.Read())
+                {
+                    int stock = int.Parse(reader["stock"].ToString());
+                    if (stock==0) estado = true;
+                }
+
+                if (estado)
+                {
+                    db.cmd.CommandText = "UPDATE Tienda SET estado=0 WHERE idTienda=@idTienda";
+                    db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+                    db.cmd.ExecuteNonQuery();
+                    db.conn.Close();
+                }
+                else
+                {
+                    db.conn.Close();
+                    return -1;
+                }
+
+
+            } catch (SqlException e) 
+            {
+                return -1;
+            }
+
+            return 1;
+        }
+
         public int obtenerTienda(int idUsuario)
         {
             int idTienda = -1;

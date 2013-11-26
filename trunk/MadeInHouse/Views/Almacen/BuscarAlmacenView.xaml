@@ -16,24 +16,13 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
+                    <Button x:Name="AbrirMantenerAlmacen" >
                         <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                    </Button>
+                    <Button/>
+                    <Button/>
+                    <Button/>
+                    <Button/>
                 </ToolBar>
                 <GroupBox Header="Criterios de busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="144" Width="580">
                     <Grid Margin="0,0,0,-218">
