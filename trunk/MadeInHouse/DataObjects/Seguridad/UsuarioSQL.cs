@@ -141,24 +141,21 @@ namespace MadeInHouse.DataObjects.Seguridad
 
         }
 
-        public static List<Usuario> BuscarUsuarioPorCodigo(string codEmpleado)
+        public static List<Usuario> BuscarUsuarioPorCodigo(string codEmpleado, int est)
         {
             List<Usuario> lstUsuario = new List<Usuario>();
-
             SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
-
-            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod,  U.estadoHabilitado estadoHabilitado, U.Estado estado  FROM DESarrollo.Empleado E  JOIN Desarrollo.Usuario u  ON (E.codEmpleado=u.codEmpleado AND UPPER(u.codEmpleado)=UPPER(@codEmpleado)) LEFT JOIN Desarrollo.Tienda T  ON (u.idTienda=T.idTienda) ORDER BY 7 DESC";
+            cmd.CommandText = "SELECT U.idUsuario idUsuario, E.codEmpleado codEmpleado, E.nombre + ' ' + E.apePaterno + ' ' + E.apeMaterno nomEmpleado, U.idTienda idTienda, T.nombre tienda, U.idRol idRol, U.fechaReg fechaReg, U.fechaMod fechaMod,  U.estadoHabilitado estadoHabilitado, U.Estado estado  FROM DESarrollo.Empleado E  JOIN Desarrollo.Usuario u  ON (E.codEmpleado=u.codEmpleado AND UPPER(u.codEmpleado)=UPPER(@codEmpleado) AND u.estado=@estado) LEFT JOIN Desarrollo.Tienda T  ON (u.idTienda=T.idTienda) ORDER BY 7 DESC";
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
             cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
-
+            cmd.Parameters.AddWithValue("@estado", est);
             try
             {
                 conn.Open();
                 reader = cmd.ExecuteReader();
-
                 while (reader.Read())
                 {
                     Usuario u = new Usuario();
@@ -173,22 +170,24 @@ namespace MadeInHouse.DataObjects.Seguridad
                     u.EstadoHabilitado = Convert.ToInt32(reader["estadoHabilitado"].ToString());
                     u.Estado = Int32.Parse(reader["estado"].ToString());
                     //MessageBox.Show("IDTIENDA: " + Convert.ToInt32(reader["idTienda"].ToString()));
-
-                    if (u.Estado == 1)
+                    if (est == 1 && u.Estado == 1)
                     {
                         u.Estado = 0;
                         lstUsuario.Add(u);
                     }
+                    else if (est == 0 && u.Estado == 0)
+                    {
+                        u.Estado = 0;
+                        lstUsuario.Add(u);
+                    }
+
                 }
-
                 conn.Close();
-
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
             }
-
             return lstUsuario;
         }
 
@@ -276,6 +275,33 @@ namespace MadeInHouse.DataObjects.Seguridad
         }
 
         ///----------------------------------------------------------
+        ///
+        public bool ProbarConexion()
+        {
+            bool b = false;
+            DBConexion db = new DBConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            //db.cmd.CommandText = "select * from usuario";
+
+            //db.cmd.Parameters.AddWithValue("@idUsuario", u.IdUsuario);
+            //db.cmd.Parameters.AddWithValue("@estadoHabilitado", 1);
+
+            try
+            {
+                db.conn.Open();
+                b=true;
+                //db.cmd.ExecuteNonQuery();
+                db.conn.Close();
+            }
+
+            catch (Exception e)
+            {
+                //MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show("No es posible conectarse. Verifique su conexíon");
+            }
+            return b;
+        }
         public static List<Usuario> BuscarUsuarioEliminado()
         {
             List<Usuario> lstUsuarioElim = new List<Usuario>();
@@ -422,6 +448,41 @@ namespace MadeInHouse.DataObjects.Seguridad
             return enc;
         }
 
+        public static int existeUsuario(string codEmpleado)
+        {
+
+            int enc = 0;
+
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM Usuario WHERE upper(codEmpleado) = @codEmpleado";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+            cmd.Parameters.AddWithValue("@codEmpleado", codEmpleado);
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    enc = 1;
+                    //idUsuario = (int)(reader["idEmpleado"]);
+                    //MessageBox.Show("idEmpleado" + idUsuario);
+                }
+                conn.Close();
+
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.StackTrace.ToString());
+                //MessageBox.Show("No es posible conectarse. Verifique su conexíon");
+            }
+
+            return enc;
+        }
         public static int VerificarCodEmpleado(string codEmpleado)
         {
             int idUsuario = 0;

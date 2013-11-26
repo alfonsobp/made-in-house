@@ -4,8 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="330" d:DesignWidth="480.59">
+             mc:Ignorable="d" d:DesignWidth="480.59" Height="250.896">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Configuración de usuario" />
@@ -21,7 +20,7 @@
                     <Button ToolTip="Guardar usuario" x:Name="GuardarDatosUsuario">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button ToolTip="Limpiar celdas">
+                    <Button x:Name="Limpiar" ToolTip="Limpiar celdas">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
 
@@ -33,10 +32,10 @@
                             <ColumnDefinition Width="133*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Contraseña Actual:" HorizontalAlignment="Right" VerticalAlignment="Top" Width="136" Margin="0,10,150,0" Height="26" Grid.ColumnSpan="2"/>
-                        <Label Content="Confirmar Contraseña:+++++++++++++++" HorizontalAlignment="Right" Margin="0,76,155,0" VerticalAlignment="Top" Width="131" Height="26" Grid.ColumnSpan="2"/>
+                        <Label Content="Confirmar Contraseña:" HorizontalAlignment="Right" Margin="0,76,155,0" VerticalAlignment="Top" Width="131" Height="26" Grid.ColumnSpan="2"/>
                         <Label Content="Contraseña Nueva:" HorizontalAlignment="Right" Margin="0,43,174,0" VerticalAlignment="Top" Width="112" Height="26" Grid.ColumnSpan="2"/>
                         <PasswordBox x:Name="psbPassActual" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="135" Height="26" PasswordChanged="psbPassActual_PasswordChanged"/>
-                        <PasswordBox x:Name="psbPassNuevo1" Grid.Column="1" HorizontalAlignment="Right" Margin="0,43,10,0" VerticalAlignment="Top" Width="135" Height="26" PasswordChanged="psbPassNuevo1_PasswordChanged"/>
+                        <PasswordBox x:Name="psbPassNuevo1"  Grid.Column="1" HorizontalAlignment="Right" Margin="0,43,10,0" VerticalAlignment="Top" Width="135" Height="26" PasswordChanged="psbPassNuevo1_PasswordChanged"/>
                         <PasswordBox x:Name="psbPassNuevo2" Grid.Column="1" HorizontalAlignment="Right" Margin="0,76,10,0" VerticalAlignment="Top" Width="135" Height="26" PasswordChanged="psbPassNuevo2_PasswordChanged"/>
                         <TextBox x:Name="TxtPassActual" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Grid.Column="1" Margin="12,10,0,0" Visibility="Hidden"/>
                         <TextBox x:Name="TxtPassNuevo1" HorizontalAlignment="Left" Height="26" TextWrapping="Wrap" VerticalAlignment="Top" Width="135" Grid.Column="1" Margin="12,43,0,0" Visibility="Hidden"/>
@@ -45,14 +44,7 @@
 
                     </Grid>
                 </GroupBox>
-                <GroupBox Header="Contacto" Margin="10,201,18,10">
-                    <Grid>
-                        <Label Content="Teléfono:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="66" Margin="10,16,0,0"/>
-                        <TextBox HorizontalAlignment="Left" Margin="81,19,0,15" TextWrapping="Wrap" Width="135"/>
-                        <Label Content="Email:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="56" Margin="240,16,0,0"/>
-                        <TextBox Margin="296,19,10,15" TextWrapping="Wrap"/>
-                    </Grid>
-                </GroupBox>
+                
                 <Image Source="/MadeInHouse;component/Assets/fotoEmpleadoAsistencia.jpg" HorizontalAlignment="Left" Height="138" Margin="27,48,0,0" VerticalAlignment="Top" Width="136"/>
 
             </Grid>

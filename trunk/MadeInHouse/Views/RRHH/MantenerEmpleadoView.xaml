@@ -45,10 +45,10 @@
                                 <Label Content="DNI:" HorizontalAlignment="Left" Margin="15,45,0,0" VerticalAlignment="Top" Width="59"/>
                                 <Label Content="Nombre:" HorizontalAlignment="Left" Margin="15,76,0,0" VerticalAlignment="Top" Width="59"/>
                                 <Label Content="A. Paterno:" HorizontalAlignment="Left" Margin="15,107,0,0" VerticalAlignment="Top" Width="70"/>
-                                <TextBox Name="TxtCodigo" HorizontalAlignment="Left" Height="23" Margin="101,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox Name="TxtDni" HorizontalAlignment="Left" Height="23" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox Name="TxtNombre" HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                                <TextBox Name="TxtApePaterno" HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtCodigo" MaxLength="7" HorizontalAlignment="Left" Height="23" Margin="101,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtDni" MaxLength="8" HorizontalAlignment="Left" Height="23" Margin="101,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtNombre" MaxLength="30" AcceptsReturn="False" HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
+                                <TextBox Name="TxtApePaterno" MaxLength="30" AcceptsReturn="False" HorizontalAlignment="Left" Height="23" Margin="101,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
 
                                 <Label Content="Tienda:" HorizontalAlignment="Left" Margin="334,17,0,0" VerticalAlignment="Top" Width="49"/>
                                 <Label Content="Área de trabajo:" HorizontalAlignment="Left" Margin="334,45,0,0" VerticalAlignment="Top" Width="96"/>

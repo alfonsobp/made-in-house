@@ -76,19 +76,18 @@ namespace MadeInHouse.ViewModels.Seguridad
                 Actualizar();
             else
             {
-                lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado);
+                lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado, 1);
                 NotifyOfPropertyChange("LstUsuario");
             }
         }
-
         public void BuscarUsuarioElimPorCodigo()
         {
             if (TxtCodUsuarioElimBuscado == null || TxtCodUsuarioElimBuscado == "")
                 Actualizar();
             else
             {
-                lstUsuario = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioBuscado);
-                NotifyOfPropertyChange("LstUsuario");
+                lstUsuarioElim = UsuarioSQL.BuscarUsuarioPorCodigo(TxtCodUsuarioElimBuscado, 0);
+                NotifyOfPropertyChange("LstUsuarioElim");
             }
         }
 
