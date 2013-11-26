@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MadeInHouse.DataObjects.Seguridad;
 using MadeInHouse.Models.RRHH;
+using MadeInHouse.Models.Seguridad;
 
 namespace MadeInHouse.Views.RRHH
 {
@@ -96,6 +98,13 @@ namespace MadeInHouse.Views.RRHH
             {
                 k = DataObjects.RRHH.EmpleadoSQL.EliminarEmpleado(grid[indice].Dni);
                 k = DataObjects.RRHH.EmpleadoSQL.eliminarUsuario(grid[indice].CodEmpleado);
+                UsuarioSQL userSQL = new UsuarioSQL();
+                Usuario u = new Usuario();
+
+                u = userSQL.buscarUsuarioPorCodEmpleado(grid[indice].CodEmpleado);
+                DataObjects.Seguridad.UsuarioSQL.EliminarUsuarios(u);
+
+                //DataObjects.Seguridad.UsuarioSQL.EliminarUsuarios()
                 Refrescar(sender, e);
             }
         }
