@@ -340,8 +340,8 @@
             <Image Source="/Assets/gear.png" Width="35" Height="33"/>
         </Button>
         <Label Name="nombreUsuario" Content="Usuario: Tony Stark Mamani" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,10,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
-        <Label Name="rol" Content="Tienda: San Miki" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,76,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
-        <Label Name="tienda" Content="Puesto: Jefe de Compras" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,44,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="rol" Content="PERFIL" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,76,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
+        <Label Name="tienda" Content="TIENDA" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="868,44,0,0" Foreground="White" FontSize="16" FontFamily="/Assets/#Moire"/>
         <!--fin-->
 
     </Grid>

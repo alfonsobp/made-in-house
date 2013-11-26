@@ -15,6 +15,8 @@ using System.Windows.Media.Animation;
 using System.Threading;
 using MadeInHouse.Models.RRHH;
 using MadeInHouse.Views.Reportes;
+using MadeInHouse.DataObjects.Seguridad;
+using MadeInHouse.Models.Seguridad;
 
 namespace MadeInHouse.Views
 {
@@ -31,7 +33,14 @@ namespace MadeInHouse.Views
             lstEmpleado = DataObjects.RRHH.EmpleadoSQL.BuscarEmpleadoId(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             nombreUsuario.Content = "Usuario: " + lstEmpleado[0].Nombre + " " + lstEmpleado[0].ApePaterno + " " + lstEmpleado[0].ApeMaterno;
             tienda.Content = "Tienda: " + lstEmpleado[0].Tienda;
-            rol.Content = "Puesto: " + DataObjects.RRHH.EmpleadoSQL.BuscarRolEmpleadoId(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+
+            UsuarioSQL userSQL = new UsuarioSQL();
+            Usuario u = new Usuario();
+
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            rol.Content = "Perfil: " + u.Rol.Nombre;
+
+            //            rol.Content = "Perfil: " + DataObjects.RRHH.EmpleadoSQL.BuscarRolEmpleadoId(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
             
         }
 
