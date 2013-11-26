@@ -101,7 +101,7 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "select p.idproducto, p.nombre 'producto', t.nombre 'tienda', s.cantidad 'stockActual', s.capacidad 'stockMax' from producto p join sector s on (s.idProducto = p.idProducto) join almacen t on (t.idAlmacen = s.idAlmacen) where s.idAlmacen =" + tienda;
+            cmd.CommandText = "select p.idproducto, p.nombre 'producto', t.nombre 'tienda', s.cantidad 'stockActual', s.capacidad 'stockMax' from producto p join sector s on (s.idProducto = p.idProducto) join almacen t on (t.idAlmacen = s.idAlmacen) where t.idtienda =" + tienda;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
