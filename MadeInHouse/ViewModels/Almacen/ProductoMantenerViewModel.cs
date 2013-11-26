@@ -1,22 +1,53 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
+using MadeInHouse.DataObjects;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
-using MadeInHouse.DataObjects;
-using System.Windows;
+using MadeInHouse.ViewModels.Layouts;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
+using System.Linq;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-
+    [Export(typeof(SolicitudAbListadoViewModel))]
     class ProductoMantenerViewModel : Screen, IDataErrorInfo
     {
+        #region constructores
 
+        [ImportingConstructor]
+        public ProductoMantenerViewModel(IWindowManager windowmanager)
+        {
+            LineaProductoSQL lpSQL = new LineaProductoSQL();
+            UnidadMedidaSQL umSQL = new UnidadMedidaSQL();
+            LstLineasProducto = lpSQL.ObtenerLineasProducto();
+            LstUnidadMedida = umSQL.BuscarUnidadMedida();
+        }
+
+        public ProductoMantenerViewModel(IWindowManager windowmanager, Producto p)
+            : this(windowmanager)
+        {
+
+
+            TxtNombre = p.Nombre;
+            TxtCodigo = p.CodigoProd;
+            txtAbreviatura = p.Abreviatura;
+            TxtDescrip = p.Descripcion;
+            TxtStockMin = p.StockMin;
+            txtStockMax = p.StockMax;
+            Percepcion = p.Percepcion == 0 ? false : true;
+            Editar = false;
+            estado = p.IdProducto;
+        }
+
+        #endregion
+
+        #region atributos
+
+        private readonly IWindowManager _windowManager;
         private bool TxtAbreviaturaChanged = false;
+
         private string txtAbreviatura;
         public string TxtAbreviatura
         {
@@ -32,7 +63,6 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-
         private bool TxtNombreChanged = false;
         private string txtNombre;
         public string TxtNombre
@@ -45,15 +75,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 NotifyOfPropertyChange(() => TxtNombre);
             }
         }
-        private string txtCodigo;
 
+        private string txtCodigo;
         public string TxtCodigo
         {
             get { return txtCodigo; }
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
-        private string txtDescrip;
 
+        private string txtDescrip;
         public string TxtDescrip
         {
             get { return txtDescrip; }
@@ -61,7 +91,6 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private bool percepcion;
-
         public bool Percepcion
         {
             get { return percepcion; }
@@ -69,31 +98,33 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private int txtStockMin;
-
         public int TxtStockMin
         {
             get { return txtStockMin; }
-            set { txtStockMin = value;
-            NotifyOfPropertyChange(() => TxtStockMin);
+            set
+            {
+                txtStockMin = value;
+                NotifyOfPropertyChange(() => TxtStockMin);
             }
         }
 
         private int txtStockMax;
-
         public int TxtStockMax
         {
             get { return txtStockMax; }
-            set { txtStockMax = value;
-            NotifyOfPropertyChange(() => TxtStockMax);
+            set
+            {
+                txtStockMax = value;
+                NotifyOfPropertyChange(() => TxtStockMax);
             }
         }
 
         private BindableCollection<LineaProducto> lstLineasProducto;
-
         public BindableCollection<LineaProducto> LstLineasProducto
         {
             get { return lstLineasProducto; }
-            set {
+            set
+            {
                 if (this.lstLineasProducto == value)
                 {
                     return;
@@ -104,7 +135,6 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private BindableCollection<SubLineaProducto> lstSubLineasProducto;
-
         public BindableCollection<SubLineaProducto> LstSubLineasProducto
         {
             get { return lstSubLineasProducto; }
@@ -120,7 +150,6 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private List<UnidadMedida> lstUnidadMedida;
-
         public List<UnidadMedida> LstUnidadMedida
         {
             get { return lstUnidadMedida; }
@@ -135,53 +164,65 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
-
         private int selectedValueUnid;
-
         public int SelectedValueUnid
         {
             get { return selectedValueUnid; }
-            set { selectedValueUnid = value;
+            set
+            {
+                selectedValueUnid = value;
             }
         }
 
-
-
         private int selectedIndex;
-
         public int SelectedIndex
         {
             get { return selectedIndex; }
-            set { selectedIndex = value; NotifyOfPropertyChange(() => SelectedIndex ); }
+            set { selectedIndex = value; NotifyOfPropertyChange(() => SelectedIndex); }
         }
 
-
         private int selectedValue;
-
         public int SelectedValue
         {
             get { return selectedValue; }
-            set { 
-                   selectedValue = value;
-                   SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
-                   LstSubLineasProducto= slpSQL.ObtenerSubLineas(selectedValue);
-                   SelectedIndex = 0;
-                   
+            set
+            {
+                selectedValue = value;
+                SubLineaProductoSQL slpSQL = new SubLineaProductoSQL();
+                LstSubLineasProducto = slpSQL.ObtenerSubLineas(selectedValue);
+                SelectedIndex = 0;
+
             }
         }
 
         private int selectedValueSub;
-
         public int SelectedValueSub
         {
             get { return selectedValueSub; }
             set
             {
-                
+
                 selectedValueSub = value;
-                TxtCodigo=CodigoProducto();
+                TxtCodigo = CodigoProducto();
             }
         }
+
+        private ProductoSQL pSQL = new ProductoSQL();
+
+        private int estado = 0;
+
+        private bool editar = true;
+        public bool Editar
+        {
+            get { return editar; }
+            set { editar = value; NotifyOfPropertyChange(() => Editar); }
+        }
+
+        Validacion.Evaluador eval = new Validacion.Evaluador();
+
+        #endregion
+
+        #region metodos
 
         private LineaProducto GetLinea(int idLinea)
         {
@@ -189,6 +230,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     where lp.IdLinea == idLinea
                     select lp).FirstOrDefault();
         }
+
         private SubLineaProducto GetSubLinea(int idSubLinea)
         {
             return (from slp in LstSubLineasProducto
@@ -196,57 +238,38 @@ namespace MadeInHouse.ViewModels.Almacen
                     select slp).FirstOrDefault();
         }
 
-
-        private ProductoSQL pSQL = new ProductoSQL();
-
-        private bool editar = true;
-
-        private int estado = 0;
-
-        public bool Editar
-        {
-            get { return editar; }
-            set { editar = value; NotifyOfPropertyChange(() => Editar); }
-        }
-        Validacion.Evaluador eval = new Validacion.Evaluador();
-
         public void GuardarProducto()
         {
             bool isCorrect = true;
-            
+
             if (TxtNombre == null || TxtNombre.Equals(""))
             {
                 TxtNombre = "";
                 TxtNombreChanged = true;
                 isCorrect = false;
-                //MessageBox.Show("Debe ingresar el nombre del producto");
             }
-            
+
             if (TxtAbreviatura == null || TxtAbreviatura.Equals(""))
             {
                 TxtAbreviatura = "";
                 TxtAbreviaturaChanged = true;
                 isCorrect = false;
-                //MessageBox.Show("Debe ingresar la abreviatura del nombre");
             }
 
             if ((TxtStockMax < TxtStockMin) || string.IsNullOrWhiteSpace(TxtStockMin.ToString()) || string.IsNullOrWhiteSpace(TxtStockMax.ToString()) || !(eval.esNumeroEntero(TxtStockMax.ToString())) || !(eval.esNumeroEntero(TxtStockMin.ToString())))
-            { 
-
-                  isCorrect = false;
-
+            {
+                isCorrect = false;
             }
 
-            if ((TxtStockMin < 0) || TxtStockMax < 0) {
-
+            if ((TxtStockMin < 0) || TxtStockMax < 0)
+            {
                 isCorrect = false;
-
             }
 
             if (isCorrect)
             {
                 Producto p = new Producto();
-                
+
                 p.Nombre = TxtNombre;
                 p.Abreviatura = TxtAbreviatura;
                 p.CodigoProd = TxtCodigo;
@@ -261,7 +284,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (estado == 0)
                 {
                     pSQL.AgregarProducto(p);
-                    MessageBox.Show("Se agregó el producto correctamente");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se agregó el producto correctamente"));
                     TxtAbreviatura = "";
                     TxtNombre = "";
                     Percepcion = false;
@@ -273,7 +296,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     p.IdProducto = estado;
                     pSQL.ActualizarProducto(p);
-                    MessageBox.Show("Se actualizó el producto correctamente");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se actualizó el producto correctamente"));
                 }
             }
         }
@@ -291,45 +314,20 @@ namespace MadeInHouse.ViewModels.Almacen
         public void EditarProducto()
         {
             Editar = true;
-            
         }
 
         private string CodigoProducto()
         {
             UtilesSQL util = new UtilesSQL();
-            string cod=null;
-            
-            cod= GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura;
-          
+            string cod = null;
+
+            cod = GetLinea(SelectedValue).Abreviatura + GetSubLinea(selectedValueSub).Abreviatura;
+
             return cod;
-        
+
         }
 
-
-
-        public ProductoMantenerViewModel()
-        {
-
-            LineaProductoSQL lpSQL = new LineaProductoSQL();
-            UnidadMedidaSQL umSQL = new UnidadMedidaSQL();
-            LstLineasProducto = lpSQL.ObtenerLineasProducto();
-            LstUnidadMedida = umSQL.BuscarUnidadMedida();
-        }
-
-        public ProductoMantenerViewModel(Producto p):this()
-        {
-
-        
-            TxtNombre = p.Nombre;
-            TxtCodigo = p.CodigoProd;
-            txtAbreviatura = p.Abreviatura;
-            TxtDescrip = p.Descripcion;
-            TxtStockMin = p.StockMin;
-            txtStockMax = p.StockMax;
-            Percepcion = p.Percepcion==0 ? false:true;
-            Editar = false;
-            estado = p.IdProducto;
-        }
+        #endregion
 
         #region Validaciones
         public string this[string columnName]
