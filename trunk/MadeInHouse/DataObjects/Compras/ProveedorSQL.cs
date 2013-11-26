@@ -44,7 +44,7 @@ namespace MadeInHouse.DataObjects.Compras
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.Message );
+                MessageBox.Show("Ocurrio un error al ingresar los datos" );
             }
 
 
@@ -139,7 +139,7 @@ namespace MadeInHouse.DataObjects.Compras
             }
             catch (SqlException e)
             {
-                MessageBox.Show(e.Message );
+                MessageBox.Show("Ocurrio un error en el ingreso de parametros a filtrar" );
             }
 
 
@@ -183,7 +183,7 @@ namespace MadeInHouse.DataObjects.Compras
 
             catch (SqlException e)
             {
-                MessageBox.Show(e.Message );
+                MessageBox.Show("Ocurrio un error en los parametros de actualizacion , verificar" );
             }
 
             return k;
@@ -265,7 +265,7 @@ namespace MadeInHouse.DataObjects.Compras
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.StackTrace.ToString());
+                MessageBox.Show("Ocurrio un error en el momento de eliminar al proveedor");
             }
 
 

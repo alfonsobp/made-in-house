@@ -2,6 +2,7 @@
 using MadeInHouse.DataObjects;
 using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Dictionary;
+using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Compras;
 using System;
 using System.Collections.Generic;
@@ -112,11 +113,11 @@ namespace MadeInHouse.ViewModels.Compras
 
 
 
-            
+            string numOC = "OC-" + 1000000 + o.IdOrden;
                 GenerarPDF pdf = new GenerarPDF();
                 Correo c = new Correo();
                 //m.coloma@pucp.pe
-                string path = "\\OrdenCompra-" + o.Proveedor.RazonSocial + ".pdf";
+                string path = "\\OrdenCompra-" + numOC + ".pdf";
                 pdf.Borrar(Environment.CurrentDirectory + path);
                 string body = formato(o).ToString();
                 string msg = "<html><body>Estimados :<br> Se adjunta la Orden de compra , Atenderla porfavor. <br>Saludos.<br>MadeInHouse <br>Seccion Compras </body></html>"; ;
@@ -128,14 +129,19 @@ namespace MadeInHouse.ViewModels.Compras
 
         public string formato(OrdenCompra O)
         {
+            OrdenCompraSQL osql = new OrdenCompraSQL();
+            Almacenes a = osql.getAlmacenCentral();
 
+            string numOC = "OC-" + 1000000 + O.IdOrden;
             string content = @"<HTML><BODY>";
             content += "<p align='center'> MadeInHouse  S.A. <br><br> ";
             content += "< Ruc. 99999999999 <br><br> ";
-            content += "ORDEN DE COMPRA  Nro " + O.IdOrden.ToString() + " </p><br><br>";
+            content += "ORDEN DE COMPRA  Nro " +  numOC + " </p><br><br>";
             content += "<br><br>";
             content += "Proveedor : " + O.Proveedor.RazonSocial + "<br><br>";
             content += "Fecha de pedido : " + O.FechaSinAtencion.ToString() + "<br><br>";
+            content += "Terminos de entrega : Entrega en Almacen central de la Empresa <br><br>";
+            content += "Lugar de entrega : " + a.Direccion + "<br><br>";
             content += "Terminos de entrega : Entrega en Almacen central de la Empresa <br><br>";
             content += "Sirvase por este medio suministrar los siguientes articulos <br><br>";
             content += "<table border = 1 ><tr><th>NRO</th><th>ARTICULO</th><th>PRECIO UNITARIO</th>" +

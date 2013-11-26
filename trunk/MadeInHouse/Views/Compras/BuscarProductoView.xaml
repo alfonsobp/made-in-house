@@ -16,7 +16,7 @@
                 <Label Content="Proveedor:" Margin="23,86,544,338"/>
                 <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
                 <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
-                <DataGrid HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="235" Width="276">
+                <DataGrid CanUserAddRows="False" IsReadOnly="True"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="235" Width="276">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="120" Header="Razon Social" />
                         <DataGridTextColumn Width="170" Header="Costo Unitario ( S/. )"/>
