@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -284,7 +285,8 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (estado == 0)
                 {
                     pSQL.AgregarProducto(p);
-                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se agregó el producto correctamente"));
+                    //_windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se agregó el producto correctamente"));
+                    MessageBox.Show("Se agregó el producto correctamente");
                     TxtAbreviatura = "";
                     TxtNombre = "";
                     Percepcion = false;

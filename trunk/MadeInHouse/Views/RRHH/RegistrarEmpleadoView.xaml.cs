@@ -76,7 +76,7 @@ namespace MadeInHouse.Views.RRHH
                 emp.IdTienda = DataObjects.RRHH.EmpleadoSQL.GetIdTienda(emp.Tienda);
             }
 
-            MessageBox.Show("IDTIENDA: "+emp.IdTienda);
+            //MessageBox.Show("IDTIENDA: "+emp.IdTienda);
 
             emp.Area = CmbArea.Text;
             emp.EmailEmpresa = TxtEmailEmpresa.Text;
