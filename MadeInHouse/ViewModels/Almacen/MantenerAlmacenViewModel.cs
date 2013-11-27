@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    [Export(typeof(SolicitudAbRegistrarViewModel))]
+    [Export(typeof(MantenerAlmacenViewModel))]
     class MantenerAlmacenViewModel : Screen
     {
         #region Atributos
@@ -313,8 +313,6 @@ namespace MadeInHouse.ViewModels.Almacen
             tzSQL = new TipoZonaSQL();
             int existe = aSQL.existeCentral();
             Editar = true;
-
-
 
             if (existe > 0)
             {

@@ -15,6 +15,7 @@ using System.Windows;
 
 
 using System.Diagnostics;
+using MadeInHouse.Models;
 
 namespace MadeInHouse.DataObjects.Almacen
 {
@@ -131,7 +132,7 @@ namespace MadeInHouse.DataObjects.Almacen
                     p.CodOrden = "OD-" + (1000000 + p.IdOrdenDespacho).ToString();
 
                     int id = Int32.Parse(reader["idVenta"].ToString());
-                    p.Venta = new MantenerGuiaDeRemisionViewModel().getVentafromID(id);
+                    p.Venta = new MantenerGuiaDeRemisionViewModel(new MyWindowManager()).getVentafromID(id);
                     p.Estado = Int32.Parse(reader["estado"].ToString());
                     p.FechaDespacho = DateTime.Parse(reader["fechaDespacho"].ToString());
                     p.Direccion = reader["direccion"].ToString();

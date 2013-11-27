@@ -125,8 +125,8 @@ public bool Validar() {
 
 public void Buscar(){
 
-    ProductoBuscarViewModel pb = new ProductoBuscarViewModel(this);
     MyWindowManager m = new MyWindowManager();
+    ProductoBuscarViewModel pb = new ProductoBuscarViewModel(m,this);
     m.ShowWindow(pb);
 }
 

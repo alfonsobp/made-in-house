@@ -1,34 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
-using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
-using System.Windows;
+using MadeInHouse.ViewModels.Layouts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(BuscarNotasViewModel))]
     class BuscarNotasViewModel : Screen
     {
-        private MyWindowManager win = new MyWindowManager();
+        #region constructores
 
-        public BuscarNotasViewModel()
+        [ImportingConstructor]
+        public BuscarNotasViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             cmbBox.Add("Entrada");
             cmbBox.Add("Salida");
             cmbBox.Add("MovimientoInterno");
-
         }
 
-        MantenerGuiaDeRemisionViewModel g;
-        public BuscarNotasViewModel(MantenerGuiaDeRemisionViewModel g)
+        public BuscarNotasViewModel(IWindowManager windowmanager, MantenerGuiaDeRemisionViewModel g):this(windowmanager)
         {
             this.g = g;
         }
 
+        #endregion
+
+        #region atributos
+
+        MantenerGuiaDeRemisionViewModel g;
+
+        private readonly IWindowManager _windowManager;
         private NotaIS notaSel;
         public NotaIS NotaSel
         {
@@ -61,9 +66,13 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        #endregion
+
+        #region metodos
+
         public void AbrirMantenerNotaDeIngreso()
         {
-            win.ShowWindow(new Almacen.MantenerNotaDeIngresoViewModel());
+            _windowManager.ShowWindow(new MantenerNotaDeIngresoViewModel(_windowManager));
         }
 
         public void SelectedItemChanged()
@@ -75,13 +84,13 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (!(new GuiaDeRemisionSQL().BuscarIDNota(NotaSel.IdNota)))
                     {
-                        MessageBox.Show("chauuuuu");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "chauuuuu"));
                         g.Nota = NotaSel;
                         TryClose();
                     }
                     else
                     {
-                        MessageBox.Show("La NOTA ya esta en una GUIA");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La NOTA ya esta en una GUIA"));
                     }
 
                 }
@@ -109,5 +118,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             return false;
         }
+
+        #endregion
     }
 }

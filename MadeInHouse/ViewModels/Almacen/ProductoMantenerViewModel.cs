@@ -12,7 +12,7 @@ using System.Windows;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    [Export(typeof(SolicitudAbListadoViewModel))]
+    [Export(typeof(ProductoMantenerViewModel))]
     class ProductoMantenerViewModel : Screen, IDataErrorInfo
     {
         #region constructores
@@ -20,6 +20,7 @@ namespace MadeInHouse.ViewModels.Almacen
         [ImportingConstructor]
         public ProductoMantenerViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             LineaProductoSQL lpSQL = new LineaProductoSQL();
             UnidadMedidaSQL umSQL = new UnidadMedidaSQL();
             LstLineasProducto = lpSQL.ObtenerLineasProducto();
@@ -29,8 +30,6 @@ namespace MadeInHouse.ViewModels.Almacen
         public ProductoMantenerViewModel(IWindowManager windowmanager, Producto p)
             : this(windowmanager)
         {
-
-
             TxtNombre = p.Nombre;
             TxtCodigo = p.CodigoProd;
             txtAbreviatura = p.Abreviatura;
@@ -285,8 +284,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (estado == 0)
                 {
                     pSQL.AgregarProducto(p);
-                    //_windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se agregó el producto correctamente"));
-                    MessageBox.Show("Se agregó el producto correctamente");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se agregó el producto correctamente"));
                     TxtAbreviatura = "";
                     TxtNombre = "";
                     Percepcion = false;

@@ -1,22 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using MadeInHouse.Models;
-using System.Collections.ObjectModel;
-using MadeInHouse.Models.Almacen;
+﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Seguridad;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Threading;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class BuscarZonaViewModel:Screen
+    [Export(typeof(BuscarZonaViewModel))]
+    class BuscarZonaViewModel : Screen
     {
+        #region constructores
 
-        
+        [ImportingConstructor]
+        public BuscarZonaViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+            CmbZonas = (new TipoZonaSQL()).BuscarZona();
+            Usuario u = new Usuario();
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            idTienda = u.IdTienda;
+            idResponsable = u.IdUsuario;
+
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            Index = this.CmbTiendas.FindIndex(x => x.IdTienda == idTienda);
+
+            AlmacenSQL aSQL = new AlmacenSQL();
+            Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
+
+            idAnaquel = anaquel.IdAlmacen;
+
+            NumColumns = anaquel.NroColumnas;
+            NumRows = anaquel.NroFilas;
+            Altura = anaquel.Altura;
+
+
+            TipoZonaSQL tzSQL = new TipoZonaSQL();
+            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(idAnaquel, 2);
+            ProductoSQL pSQL = new ProductoSQL();
+            LstProductos = new List<Producto>();
+
+
+        }
+
+        #endregion
+
+        private readonly IWindowManager _windowManager;
 
         private ObservableCollection<TipoZona> cmbZonas;
         public ObservableCollection<TipoZona> CmbZonas
@@ -126,42 +159,5 @@ namespace MadeInHouse.ViewModels.Almacen
         private int idTienda;
         private int idResponsable;
         private int idAnaquel;
-
-        public BuscarZonaViewModel()
-        {
-           
-
-            CmbZonas = (new TipoZonaSQL()).BuscarZona();
-            Usuario u = new Usuario();
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-            idTienda = u.IdTienda;
-            idResponsable = u.IdUsuario;
-
-            TiendaSQL tSQL = new TiendaSQL();
-            CmbTiendas = tSQL.BuscarTienda();
-            Index = this.CmbTiendas.FindIndex(x => x.IdTienda == idTienda);
-
-            AlmacenSQL aSQL = new AlmacenSQL();
-            Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
-            
-            idAnaquel = anaquel.IdAlmacen;
-
-            NumColumns = anaquel.NroColumnas;
-            NumRows = anaquel.NroFilas;
-            Altura = anaquel.Altura;
-
-            
-            TipoZonaSQL tzSQL = new TipoZonaSQL();
-            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(idAnaquel, 2);
-            ProductoSQL pSQL = new ProductoSQL();
-            LstProductos = new List<Producto>();
-            
-
-        }
-
-
-
-
-
     }
 }

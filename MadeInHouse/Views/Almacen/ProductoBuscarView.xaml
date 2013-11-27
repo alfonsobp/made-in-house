@@ -13,7 +13,7 @@
         </Border.Effect>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
             <DockPanel>
-                <Border DockPanel.Dock="Top" Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
                     <Layouts:TitleBarTemplate title="Buscar productos" />
                 </Border>
                 <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
@@ -26,15 +26,19 @@
                     <Button ToolTip="Nuevo producto" x:Name="AbrirMantenerProducto" >
                         <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
+                    <!--
                     <Button ToolTip="Eliminar producto">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
+                    -->
                     <Button ToolTip="Limpiar búsqueda" x:Name="Limpiar">
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
+                    <!--
                     <Button ToolTip="Refrescar búsqueda">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" Height="30" Width="30" />
                     </Button>
+                    -->
                 </ToolBar>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -90,8 +94,8 @@
                         Width="{Binding ElementName=Busqueda, Path=ActualWidth }"
                         cal:Message.Attach="[Event MouseDoubleClick] = [Action Acciones($source)]"
                         SelectedItem="{Binding ProductoSel, Mode=TwoWay}"
-                        x:Name="LstProductos"
-                        Margin="10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" MaxHeight="160">
+                        x:Name="LstProductos" Height="250"
+                        Margin="10" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="10*" Binding="{Binding Path=CodigoProd}"  Header="Código"/>
                             <DataGridTextColumn Width="15*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>

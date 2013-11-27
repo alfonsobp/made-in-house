@@ -1,28 +1,66 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using MadeInHouse.DataObjects.Almacen;
-using MadeInHouse.Models.Almacen;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
+﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects;
+using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Dictionary;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.Models.Seguridad;
+using MadeInHouse.Validacion;
+using MadeInHouse.ViewModels.Layouts;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Data;
 using System.Data.SqlClient;
-using MadeInHouse.Models.Seguridad;
 using System.Threading;
-using MadeInHouse.Models;
-using System.Windows;
-using MadeInHouse.Dictionary;
+using System.Windows.Controls;
 using System.Windows.Media;
-using MadeInHouse.Validacion;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    class ProductoMovimientosViewModel:PropertyChangedBase
+    [Export(typeof(ProductoMovimientosViewModel))]
+    class ProductoMovimientosViewModel : PropertyChangedBase
     {
+        #region constructores
+
+        [ImportingConstructor]
+        public ProductoMovimientosViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+            CmbZonas = (new TipoZonaSQL()).BuscarZona();
+            Usuario u = new Usuario();
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+            idTienda = u.IdTienda;
+            idResponsable = u.IdUsuario;
+
+            aSQL = new AlmacenSQL();
+            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
+            Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
+            idDeposito = deposito.IdAlmacen;
+            idAnaquel = anaquel.IdAlmacen;
+
+            NumColumnAnq = anaquel.NroColumnas;
+            NumRowsAnq = anaquel.NroFilas;
+            AlturaAnq = anaquel.Altura;
+
+            NumColumns = deposito.NroColumnas;
+            NumRows = deposito.NroFilas;
+            Altura = deposito.Altura;
+
+            tzSQL = new TipoZonaSQL();
+            LstZonas = tzSQL.ObtenerZonasxAlmacen(idDeposito);
+            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(idAnaquel, 2);
+
+            Accion2 = 2;
+            Accion1 = 2;
+
+            LstProductos = new List<ProductoCant>();
+            Atendido = false;
+        }
+
+        #endregion
+
+        private readonly IWindowManager _windowManager;
 
         private int numRows;
 
@@ -146,8 +184,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int SelectedZona
         {
             get { return selectedZona; }
-            set { selectedZona = value;
-            NotifyOfPropertyChange(() => SelectedZona);    
+            set
+            {
+                selectedZona = value;
+                NotifyOfPropertyChange(() => SelectedZona);
 
             }
         }
@@ -170,9 +210,11 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtProducto
         {
             get { return txtProducto; }
-            set { txtProducto = value; 
-            
-            NotifyOfPropertyChange(()=>TxtProducto);
+            set
+            {
+                txtProducto = value;
+
+                NotifyOfPropertyChange(() => TxtProducto);
             }
         }
 
@@ -190,8 +232,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtCantidad
         {
             get { return txtCantidad; }
-            set { txtCantidad = value;
-            NotifyOfPropertyChange(() => TxtCantidad);
+            set
+            {
+                txtCantidad = value;
+                NotifyOfPropertyChange(() => TxtCantidad);
             }
         }
 
@@ -200,8 +244,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public LinearGradientBrush ColorAnt
         {
             get { return colorAnt; }
-            set { colorAnt = value;
-            NotifyOfPropertyChange(() => ColorAnt);
+            set
+            {
+                colorAnt = value;
+                NotifyOfPropertyChange(() => ColorAnt);
             }
         }
         private List<ProductoCant> lstProductos;
@@ -209,8 +255,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public List<ProductoCant> LstProductos
         {
             get { return lstProductos; }
-            set { lstProductos = value;
-            NotifyOfPropertyChange(() => LstProductos);
+            set
+            {
+                lstProductos = value;
+                NotifyOfPropertyChange(() => LstProductos);
             }
         }
 
@@ -219,8 +267,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int NumColumnAnq
         {
             get { return numColumnAnq; }
-            set { numColumnAnq = value;
-            NotifyOfPropertyChange(() => NumColumnAnq);
+            set
+            {
+                numColumnAnq = value;
+                NotifyOfPropertyChange(() => NumColumnAnq);
             }
         }
 
@@ -229,8 +279,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int NumRowsAnq
         {
             get { return numRowsAnq; }
-            set { numRowsAnq = value;
-            NotifyOfPropertyChange(() => NumRowsAnq);
+            set
+            {
+                numRowsAnq = value;
+                NotifyOfPropertyChange(() => NumRowsAnq);
             }
         }
 
@@ -239,8 +291,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int AlturaAnq
         {
             get { return alturaAnq; }
-            set { alturaAnq = value;
-            NotifyOfPropertyChange(() => AlturaAnq);
+            set
+            {
+                alturaAnq = value;
+                NotifyOfPropertyChange(() => AlturaAnq);
             }
         }
 
@@ -249,8 +303,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public List<TipoZona> LstZonasAnq
         {
             get { return lstZonasAnq; }
-            set { lstZonasAnq = value;
-            NotifyOfPropertyChange(() => LstZonasAnq);
+            set
+            {
+                lstZonasAnq = value;
+                NotifyOfPropertyChange(() => LstZonasAnq);
             }
         }
 
@@ -267,8 +323,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int TxtStockActual
         {
             get { return txtStockActual; }
-            set { txtStockActual = value;
-            NotifyOfPropertyChange(() => TxtStockActual);
+            set
+            {
+                txtStockActual = value;
+                NotifyOfPropertyChange(() => TxtStockActual);
             }
         }
 
@@ -277,8 +335,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public string TxtVolOcupado
         {
             get { return txtVolOcupado; }
-            set { txtVolOcupado = value;
-            NotifyOfPropertyChange(() => TxtVolOcupado);
+            set
+            {
+                txtVolOcupado = value;
+                NotifyOfPropertyChange(() => TxtVolOcupado);
             }
         }
 
@@ -287,8 +347,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int TxtCapacidad
         {
             get { return txtCapacidad; }
-            set { txtCapacidad = value;
-            NotifyOfPropertyChange(() => TxtCapacidad);
+            set
+            {
+                txtCapacidad = value;
+                NotifyOfPropertyChange(() => TxtCapacidad);
             }
         }
 
@@ -297,8 +359,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public bool Enable
         {
             get { return enable; }
-            set { enable = value;
-            NotifyOfPropertyChange(() => Enable);
+            set
+            {
+                enable = value;
+                NotifyOfPropertyChange(() => Enable);
             }
         }
 
@@ -308,54 +372,18 @@ namespace MadeInHouse.ViewModels.Almacen
         private int idTienda;
         private int idDeposito;
         private int idAnaquel;
-        private int idResponsable;  
-
-        public ProductoMovimientosViewModel()
-        {
-            CmbZonas = (new TipoZonaSQL()).BuscarZona();
-            Usuario u = new Usuario();
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-            idTienda =  u.IdTienda;
-            idResponsable = u.IdUsuario;
-
-            aSQL = new AlmacenSQL();
-            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda, 1);
-            Almacenes anaquel = aSQL.BuscarAlmacen(-1, idTienda, 2);
-            idDeposito = deposito.IdAlmacen;
-            idAnaquel = anaquel.IdAlmacen;
-
-            NumColumnAnq = anaquel.NroColumnas;
-            NumRowsAnq = anaquel.NroFilas;
-            AlturaAnq = anaquel.Altura;
-
-            NumColumns = deposito.NroColumnas;
-            NumRows = deposito.NroFilas;
-            Altura = deposito.Altura;
-
-            tzSQL = new TipoZonaSQL();
-            LstZonas = tzSQL.ObtenerZonasxAlmacen(idDeposito);
-            LstZonasAnq = tzSQL.ObtenerZonasxAlmacen(idAnaquel, 2);
-
-            Accion2 = 2;
-            Accion1 = 2;
-
-            LstProductos=new List<ProductoCant>();
-            Atendido = false;
+        private int idResponsable;
 
 
 
-        }
-
-        public void BuscarProductos( MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
+        public void BuscarProductos(MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
         {
 
-            if (TxtProducto == null || TxtProducto=="")
+            if (TxtProducto == null || TxtProducto == "")
             {
-                MyWindowManager w = new MyWindowManager();
-                w.ShowWindow(new ProductoBuscarViewModel(this, 7,idTienda));
-
+                _windowManager.ShowWindow(new ProductoBuscarViewModel(_windowManager, this, 7, idTienda));
             }
-            
+
             else
             {
 
@@ -363,11 +391,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 //Buscar producto del textBox Inicial:
                 if (productoSeleccionado == null)
                 {
-                    ProductoSQL prodSQL= new ProductoSQL();
+                    ProductoSQL prodSQL = new ProductoSQL();
                     List<Producto> lstProd;
-                    lstProd= prodSQL.BuscarProducto(TxtProducto);
+                    lstProd = prodSQL.BuscarProducto(TxtProducto);
                     if (lstProd == null)
-                        MessageBox.Show("Producto no existente con ese código");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Producto no existente con ese código"));
                     else
                     {
                         pc.Nombre = lstProd[0].Nombre;
@@ -395,22 +423,22 @@ namespace MadeInHouse.ViewModels.Almacen
         public void Disminuir(DynamicGrid ubicacionCol, DynamicGrid almacen)
         {
 
-            Evaluador  eva = new Evaluador();
+            Evaluador eva = new Evaluador();
 
             int exito = 0;
             if (String.IsNullOrEmpty(TxtCantidad))
             {
-                MessageBox.Show("Debe ingresar una cantidad");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe ingresar una cantidad"));
                 return;
             }
             else if (!eva.esNumeroEntero(TxtCantidad))
             {
-                MessageBox.Show("Debe ingresar un número");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe ingresar un número"));
                 return;
             }
             else if (int.Parse(TxtCantidad) < 0)
             {
-                MessageBox.Show("Debe ingresar una cantidad mayor a cero");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe ingresar una cantidad mayor a cero"));
                 return;
             }
             else if (ubicacionCol.SelectedProduct != null)
@@ -448,8 +476,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public bool Atendido
         {
             get { return atendido; }
-            set { atendido = value;
-            NotifyOfPropertyChange(() => Atendido);
+            set
+            {
+                atendido = value;
+                NotifyOfPropertyChange(() => Atendido);
             }
         }
 
@@ -458,8 +488,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public bool Enbl
         {
             get { return enbl; }
-            set { enbl = value;
-            NotifyOfPropertyChange(() => Enbl);
+            set
+            {
+                enbl = value;
+                NotifyOfPropertyChange(() => Enbl);
             }
         }
 
@@ -489,15 +521,15 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void GuardarCantidadParcial()
         {
-            
+
             TipoZona tz = LstZonasAnq.Find(x => x.IdTipoZona == SelectedZona);
             if (tz != null)
             {
-                
+
                 Sector sector = tz.LstSectores.Find(x => x.IdProducto == SelectedProduct.IdProducto);
                 if (sector == null)
                 {
-                    MessageBox.Show("El producto no tiene un espacio separado en los anaqueles , separe un espacio");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "El producto no tiene un espacio separado en los anaqueles , separe un espacio"));
                     return;
                 }
                 else
@@ -505,12 +537,11 @@ namespace MadeInHouse.ViewModels.Almacen
                     sector.Cantidad += int.Parse(SelectedProduct.CanAtender);
                     if (sector.Cantidad > sector.Capacidad)
                     {
-
-                        MessageBox.Show("Se superó la capacidad , debe separar más espacio en los anaqueles");
-                        sector.Cantidad -= int.Parse(SelectedProduct.CanAtender);    
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se superó la capacidad , debe separar más espacio en los anaqueles"));
+                        sector.Cantidad -= int.Parse(SelectedProduct.CanAtender);
                         return;
                     }
-                    sector.CantidadIngresada = int.Parse(SelectedProduct.CanAtender); 
+                    sector.CantidadIngresada = int.Parse(SelectedProduct.CanAtender);
                     sector.VolOcupado = (int)(((double)sector.Cantidad / sector.Capacidad) * 100);
                     TxtVolOcupado = sector.VolOcupado + "%";
                     TxtStockActual = sector.Cantidad;
@@ -523,7 +554,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         }
 
-        public void GuardarMovimiento(DynamicGrid anaquel , DynamicGrid deposito)
+        public void GuardarMovimiento(DynamicGrid anaquel, DynamicGrid deposito)
         {
             int exito;
 
@@ -606,7 +637,7 @@ namespace MadeInHouse.ViewModels.Almacen
                                                     util.LimpiarTabla("TemporalSector");
 
                                                     trans.Commit();
-                                                    MessageBox.Show("Los productos fueron transferidos correctamente");
+                                                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Los productos fueron transferidos correctamente"));
                                                     return;
                                                 }
                                             }
@@ -619,18 +650,13 @@ namespace MadeInHouse.ViewModels.Almacen
                         }
                     }
                 }
-
-                MessageBox.Show("Lo sentimos , se produjo un error");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Lo sentimos , se produjo un error"));
                 trans.Rollback();
             }
             catch (SqlException e)
             {
-                MessageBox.Show("Se fue la conexión");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se fue la conexión"));
             }
         }
-
-
-
-
     }
 }

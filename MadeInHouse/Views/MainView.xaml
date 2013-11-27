@@ -1,16 +1,52 @@
-﻿
-<Window x:Class="MadeInHouse.Views.MainView"
+﻿<Window x:Class="MadeInHouse.Views.MainView"
         xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:cal="http://www.caliburnproject.org"
-
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         Title="MadeInHouse" WindowState="Maximized" WindowStyle="None" 
         ResizeMode="NoResize" d:DesignWidth="1280" d:DesignHeight="1024.5">
     <Window.Resources>
+        <Style x:Key="HeadButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FontSize" Value="25" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="Gray" Height="35">
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="WindowButton" TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="wb" Background="Transparent" Height="30">
+                            <Grid>
+                                <ContentPresenter HorizontalAlignment="Left" 
+                            VerticalAlignment="Center" Name="content"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="wb" Property="BorderBrush" Value="Transparent" />
+                                <Setter TargetName="wb" Property="Background" Value="{DynamicResource {x:Static SystemColors.HotTrackBrushKey}}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="5"/>
@@ -116,50 +152,26 @@
         </Grid>
         <!--Almacen-->
         <Expander Name="expanderAlmacen" FontFamily="/Assets/#Moire" IsExpanded="True" Background="Transparent" Header="Almacén" Foreground="White" FontSize="40" HorizontalAlignment="Left" Width="0" Margin="0,0,0,0">
-
-            <Grid Background="Transparent" Height="Auto" Margin="0,0,0,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="30"/>
-                    <!--RowDefinition Height="30"/-->
-                </Grid.RowDefinitions>
-                <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Almacén" FontSize="20" Grid.Row="0"/>
-                <Button x:Name="AbrirMantenimientoAlmacen" Background="Transparent" Foreground="White" BorderThickness="0" Content="Mantener Almacen Central" FontSize="20" Grid.Row="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left"/>
-                <Button Background="Gray" Foreground="White" BorderThickness="0" Content="Productos" FontSize="20" Grid.Row="2"/>
-                <Button x:Name="AbrirNuevoProducto"  Background="Transparent" Foreground="White" BorderThickness="0" Content="Nuevo                    "  FontSize="20"  Grid.Row="3" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="left" Height="31"  Width="179" />
-                <Button x:Name="AbrirBuscarProducto" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar Producto" FontSize="20"  Grid.Row="4" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="left" Width="179"/>
-
-                <Button Background="Gray" Foreground="white" BorderThickness="0" Content="Guias de Remisión" FontSize="20"  Grid.Row="5"/>
-                <Button  x:Name="AbrirBuscarGuiaDeRemision"  Background="Transparent" Foreground="White"  BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="6" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,2,217,1" Width="81"/>
-                <Button  x:Name="AbrirMantenerGuiaDeRemision" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva Guía" FontSize="20"  Grid.Row="7" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,177,2" Width="121"/>
-                <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Notas de I/S" FontSize="20"  Grid.Row="8"/>
-                <Button  x:Name="AbrirBuscarNotas" Background="Transparent" Foreground="White" BorderThickness="0" Content="Buscar" FontSize="20"  Grid.Row="9" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,217,2" Width="82"/>
-                <Button  x:Name="AbrirMantenerNotaDeIngreso" Background="Transparent" Foreground="White" BorderThickness="0"  Content="Nueva NI" FontSize="20" Height="Auto"  Grid.Row="10" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,199,2" Width="99"/>
-                <Button  x:Name="AbrirMantenerNotaDeSalida" Background="Transparent" Foreground="White" BorderThickness="0" Content="Nueva NS" FontSize="20" Height="Auto" Grid.Row="11" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="0,1,190,2" Width="108"/>
-                <Button  Background="Gray" Foreground="white" BorderThickness="0" Content="Control de stock" FontSize="20"  Grid.Row="12"/>
-                <!--Button  x:Name="AbrirBuscarZona" Background="Transparent" Foreground="White" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="13" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Width="220" HorizontalAlignment="Left" /-->
-                <Button  x:Name="AbrirSolicitudAbConsolidar" Background="Transparent" Foreground="White" BorderThickness="0" Content="Consolidar sol. abastecimiento" FontSize="20" Height="32" Grid.Row="13"  Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" />
-                <Button  x:Name="AbrirMovimientos" Background="Transparent" Foreground="White" BorderThickness="0" Content="Movimientos entre zonas" FontSize="20" Height="Auto" Grid.Row="15" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" />
-                <Button  x:Name="RegistrarSolicitud" Background="Transparent" Foreground="White" BorderThickness="0" Content="Solicitar abastecimiento" FontSize="20" Height="Auto" Grid.Row="16" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" />
-                <Button  x:Name="ListadoSolicitud" Background="Transparent" Foreground="White" BorderThickness="0" Content="Listar abastecimiento" FontSize="20" Height="Auto" Grid.Row="17" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" HorizontalAlignment="Left" />
-            </Grid>
-
+            <StackPanel>
+                <Button Content="Almacén" Style="{StaticResource HeadButton}" />
+                <Button x:Name="AbrirMantenimientoAlmacen" Content="Mantener Almacen Central" Style="{StaticResource WindowButton}" />
+                <Button Content="Productos" Style="{StaticResource HeadButton}" />
+                <Button x:Name="AbrirNuevoProducto"  Content="Nuevo"  Style="{StaticResource WindowButton}" />
+                <Button x:Name="AbrirBuscarProducto" Content="Buscar Producto" Style="{StaticResource WindowButton}" />
+                <Button Content="Guias de Remisión" Style="{StaticResource HeadButton}" />
+                <Button  x:Name="AbrirBuscarGuiaDeRemision" Content="Buscar" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="AbrirMantenerGuiaDeRemision" Content="Nueva Guía" Style="{StaticResource WindowButton}" />
+                <Button Content="Notas de I/S" Style="{StaticResource HeadButton}" />
+                <Button  x:Name="AbrirBuscarNotas" Content="Buscar" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="AbrirMantenerNotaDeIngreso" Content="Nueva NI" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="AbrirMantenerNotaDeSalida" Content="Nueva NS" Style="{StaticResource WindowButton}" />
+                <Button Content="Control de stock" Style="{StaticResource HeadButton}" />
+                <!--Button  x:Name="AbrirBuscarZona" Background="Transparent" Foreground="White" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="14" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Width="220" HorizontalAlignment="Left" /-->
+                <Button  x:Name="AbrirSolicitudAbConsolidar" Content="Consolidar sol. abastecimiento" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="AbrirMovimientos" Content="Movimientos entre zonas" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="RegistrarSolicitud" Content="Solicitar abastecimiento" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="ListadoSolicitud" Content="Listar abastecimiento" Style="{StaticResource WindowButton}" />
+            </StackPanel>
         </Expander>
 
         <!--recursos humanos-->

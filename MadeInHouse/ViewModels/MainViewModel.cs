@@ -74,8 +74,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[1] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerAlmacenViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
-
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
         //Ventana Externa: 1.2
         public void AbrirNuevoProducto()
@@ -84,7 +83,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[2] == 1)
                 _windowManager.ShowWindow(new Almacen.ProductoMantenerViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.3
@@ -92,9 +91,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[3] == 1)
-                _windowManager.ShowWindow(new Almacen.ProductoBuscarViewModel());
+                _windowManager.ShowWindow(new Almacen.ProductoBuscarViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.4
@@ -102,9 +101,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[4] == 1)
-                _windowManager.ShowWindow(new Almacen.BuscarGuiasRemisionViewModel());
+                _windowManager.ShowWindow(new Almacen.BuscarGuiasRemisionViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.5
@@ -112,9 +111,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[5] == 1)
-                _windowManager.ShowWindow(new Almacen.MantenerGuiaDeRemisionViewModel());
+                _windowManager.ShowWindow(new Almacen.MantenerGuiaDeRemisionViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.6
@@ -122,9 +121,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[6] == 1)
-                _windowManager.ShowWindow(new Almacen.BuscarNotasViewModel());
+                _windowManager.ShowWindow(new Almacen.BuscarNotasViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.7
@@ -132,9 +131,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[7] == 1)
-                _windowManager.ShowWindow(new Almacen.MantenerNotaDeIngresoViewModel());
+                _windowManager.ShowWindow(new Almacen.MantenerNotaDeIngresoViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.8
@@ -142,9 +141,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[8] == 1)
-				_windowManager.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
+				_windowManager.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.9
@@ -152,9 +151,9 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[9] == 1)
-                _windowManager.ShowWindow(new Almacen.BuscarZonaViewModel());
+                _windowManager.ShowWindow(new Almacen.BuscarZonaViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.10
@@ -164,7 +163,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[10] == 1)
                 _windowManager.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         //Ventana Externa: 1.11
@@ -172,20 +171,20 @@ namespace MadeInHouse.ViewModels
         {
             CargarAccesosRol(out accVentana);
             if (accVentana[11] == 1)
-                _windowManager.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+                _windowManager.ShowWindow(new Almacen.ProductoMovimientosViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 		
 		//Ventana Externa: 1.12
-        public void AbrirAnularDocumentos()
+        /*public void AbrirAnularDocumentos()
         {
 			CargarAccesosRol(out accVentana);
             if (accVentana[12] == 1)
 				_windowManager.ShowWindow(new Almacen.AnularDocumentosViewModel());
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
-        }
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
+        }*/
 		
 		public void RegistrarSolicitud()
         {
@@ -193,7 +192,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[12] == 1)
 				_windowManager.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel(_windowManager, null, 0));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         public void ListadoSolicitud()
@@ -202,7 +201,7 @@ namespace MadeInHouse.ViewModels
             if (accVentana[12] == 1)
                 _windowManager.ShowWindow(new Almacen.SolicitudAbListadoViewModel(_windowManager));
             else
-                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
         #endregion Almacen

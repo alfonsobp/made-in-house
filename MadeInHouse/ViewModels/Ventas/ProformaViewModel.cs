@@ -71,7 +71,7 @@ namespace MadeInHouse.ViewModels.Ventas
         public void AbrirBuscarProducto()
         {
             MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new Almacen.ProductoBuscarViewModel(this,5) );
+            w.ShowWindow(new Almacen.ProductoBuscarViewModel(w,this,5) );
         }
 
         public void AgregarDetalle()

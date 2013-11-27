@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using MadeInHouse.Models.Almacen;
+﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
-using MadeInHouse.DataObjects;
-using System.Windows.Controls;
+using MadeInHouse.Models.Almacen;
 using MadeInHouse.ViewModels.Compras;
-using MadeInHouse.Models;
+using MadeInHouse.ViewModels.Layouts;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Linq;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-
     class ExtendedProduct : Producto
     {
         public string Linea { get; set; }
         public string SubLinea { get; set; }
-
     }
 
-
+    [Export(typeof(ProductoBuscarViewModel))]
     class ProductoBuscarViewModel : Screen
     {
-        private MadeInHouse.Models.MyWindowManager win = new MadeInHouse.Models.MyWindowManager();
-
         #region constructores
 
-        public ProductoBuscarViewModel()
+        [ImportingConstructor]
+        public ProductoBuscarViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             LineaProductoSQL lpSQL = new LineaProductoSQL();
             LstLineasProducto = lpSQL.ObtenerLineasProducto();
             LineaProducto deftlinea = new LineaProducto();
@@ -46,17 +41,11 @@ namespace MadeInHouse.ViewModels.Almacen
             CmbTiendas.Insert(0, deft);
             Index = 0;
             Estado = true;
-
         }
 
-        private int ventanaAccion = 0;
-        
-        
-
-
         private Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel;
-        public ProductoBuscarViewModel(Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel, int ventanaAccion,int idTienda=-1)
-            : this()
+        public ProductoBuscarViewModel(IWindowManager windowmanager, Almacen.ProductoMovimientosViewModel ProductoMovimientosViewModel, int ventanaAccion, int idTienda = -1)
+            : this(windowmanager)
         {
             this.ProductoMovimientosViewModel = ProductoMovimientosViewModel;
             this.ventanaAccion = ventanaAccion;
@@ -65,14 +54,16 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private Almacen.MantenerTiendaViewModel mantenerTiendaViewModel;
-        public ProductoBuscarViewModel(Almacen.MantenerTiendaViewModel mantenerTiendaViewModel, int ventanaAccion):this()
+        public ProductoBuscarViewModel(IWindowManager windowmanager, Almacen.MantenerTiendaViewModel mantenerTiendaViewModel, int ventanaAccion)
+            : this(windowmanager)
         {
             this.mantenerTiendaViewModel = mantenerTiendaViewModel;
             this.ventanaAccion = ventanaAccion;
-        }        
+        }
 
         private Ventas.VentaRegistrarViewModel ventaRegistrarViewModel;
-        public ProductoBuscarViewModel(Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion):this()
+        public ProductoBuscarViewModel(IWindowManager windowmanager, Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
+            : this(windowmanager)
         {
             this.ventaRegistrarViewModel = ventaRegistrarViewModel;
             this.ventanaAccion = ventanaAccion;
@@ -83,7 +74,8 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private Ventas.ProformaViewModel proformaViewModel;
-        public ProductoBuscarViewModel(Ventas.ProformaViewModel proformaViewModel, int ventanaAccion)
+        public ProductoBuscarViewModel(IWindowManager windowmanager, Ventas.ProformaViewModel proformaViewModel, int ventanaAccion)
+            : this(windowmanager)
         {
             this.proformaViewModel = proformaViewModel;
             LineaProductoSQL lpSQL = new LineaProductoSQL();
@@ -101,7 +93,8 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private SolicitudAbRegistrarViewModel solicitudView = null;
-        public ProductoBuscarViewModel(SolicitudAbRegistrarViewModel solicitudView) : this()
+        public ProductoBuscarViewModel(IWindowManager windowmanager, SolicitudAbRegistrarViewModel solicitudView)
+            : this(windowmanager)
         {
             this.solicitudView = solicitudView;
             AlmacenSQL almSQL = new AlmacenSQL();
@@ -110,23 +103,27 @@ namespace MadeInHouse.ViewModels.Almacen
             Index = CmbTiendas.FindIndex(x => x.IdTienda == SelectedTienda);
         }
 
-        public ProductoBuscarViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion):this()
+        public ProductoBuscarViewModel(IWindowManager windowmanager, MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int ventanaAccion)
+            : this(windowmanager)
         {
             // TODO: Complete member initialization
 
             this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
             this.ventanaAccion = ventanaAccion;
-            int i=0;
+            int i = 0;
             Index = i;
-            for (i = 0; i < CmbTiendas.Count; i++) {
-                if (CmbTiendas.ElementAt(i).IdTienda == mantenerNotaDeSalidaViewModel.Almacen.ElementAt(0).IdTienda) {
+            for (i = 0; i < CmbTiendas.Count; i++)
+            {
+                if (CmbTiendas.ElementAt(i).IdTienda == mantenerNotaDeSalidaViewModel.Almacen.ElementAt(0).IdTienda)
+                {
                     Index = i;
                 }
             }
             Estado = false;
         }
 
-        public ProductoBuscarViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
+        public ProductoBuscarViewModel(IWindowManager windowmanager, MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p)
+            : this(windowmanager)
         {
             // TODO: Complete member initialization
             this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
@@ -144,38 +141,46 @@ namespace MadeInHouse.ViewModels.Almacen
             Estado = false;
         }
 
-        public ProductoBuscarViewModel(ProductoViewModel pvm):this() {
+        public ProductoBuscarViewModel(IWindowManager windowmanager, ProductoViewModel pvm)
+            : this(windowmanager)
+        {
             this.pvm = pvm;
-            
+
         }
 
         #endregion
 
         #region atributos
 
-	public ProductoViewModel pvm = null;
-    private bool estado;
+        private readonly IWindowManager _windowManager;
 
-    public bool Estado
-    {
-        get { return estado; }
-        set { estado = value;
-        NotifyOfPropertyChange("Estado");
+        private int ventanaAccion = 0;
+        public ProductoViewModel pvm = null;
+        private bool estado;
+
+        public bool Estado
+        {
+            get { return estado; }
+            set
+            {
+                estado = value;
+                NotifyOfPropertyChange("Estado");
+            }
         }
-    }
-	private List<Tienda> cmbTiendas;
+        private List<Tienda> cmbTiendas;
 
         public List<Tienda> CmbTiendas
         {
             get { return cmbTiendas; }
-            set {
+            set
+            {
                 if (this.cmbTiendas == value)
                 {
                     return;
                 }
 
-            cmbTiendas = value;
-            NotifyOfPropertyChange(() => CmbTiendas);
+                cmbTiendas = value;
+                NotifyOfPropertyChange(() => CmbTiendas);
             }
         }
 
@@ -192,8 +197,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int Index
         {
             get { return index; }
-            set { index = value;
-            NotifyOfPropertyChange(() => Index);
+            set
+            {
+                index = value;
+                NotifyOfPropertyChange(() => Index);
             }
         }
         private int selectedIndex1;
@@ -201,8 +208,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public int SelectedIndex1
         {
             get { return selectedIndex1; }
-            set { selectedIndex1 = value; 
-            NotifyOfPropertyChange(()=>SelectedIndex1);
+            set
+            {
+                selectedIndex1 = value;
+                NotifyOfPropertyChange(() => SelectedIndex1);
             }
         }        public int idAlmacen { get; set; }
 
@@ -215,7 +224,7 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private List<Producto> lstProductos;
-  
+
         public List<Producto> LstProductos
         {
             get { return lstProductos; }
@@ -314,8 +323,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void AbrirMantenerProducto()
         {
-            MyWindowManager wm = new MyWindowManager();
-            wm.ShowWindow(new Almacen.ProductoMantenerViewModel(wm));
+            _windowManager.ShowWindow(new Almacen.ProductoMantenerViewModel(_windowManager));
         }
 
 
@@ -339,16 +347,16 @@ namespace MadeInHouse.ViewModels.Almacen
         private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
         //private LineaProductoSQL lsql;
         //private SubLineaProductoSQL ssql;
-        
+
 
         public void BuscarProductos()
         {
-        LstProductos = pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, SelectedTienda);   
-		   if (LstProductos ==null)
-                 System.Windows.Forms.MessageBox.Show("No se encontro ningún producto");
+            LstProductos = pSQL.BuscarProducto(TxtCodigo, SelectedValue, SelectedValueSub, SelectedTienda);
+            if (LstProductos == null)
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se encontro ningún producto"));
         }
-             
-   
+
+
 
 
         public void Acciones(object sender)
@@ -373,7 +381,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     mantenerTiendaViewModel.TxtCodProducto = productoSel.CodigoProd;
                     this.TryClose();
-                    
+
                 }
             }
             else if (ventanaAccion == 3)
@@ -411,7 +419,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     proformaViewModel.Prod = productoSel;
                     this.TryClose();
                 }
-                
+
             }
             else if (ventanaAccion == 7)
             {
@@ -425,13 +433,14 @@ namespace MadeInHouse.ViewModels.Almacen
 
             }
 
-            if (pvm != null) {
+            if (pvm != null)
+            {
 
                 productoSel = ((sender as DataGrid).SelectedItem as Producto);
-                
-                    pvm.P = productoSel;
-                    this.TryClose();
-                
+
+                pvm.P = productoSel;
+                this.TryClose();
+
 
             }
 
@@ -455,8 +464,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
-                ProductoMantenerViewModel pmVM = new ProductoMantenerViewModel(win, ProductoSel);
-                win.ShowWindow(pmVM);
+                _windowManager.ShowWindow(new ProductoMantenerViewModel(_windowManager, ProductoSel));
             }
         }
 
@@ -469,8 +477,7 @@ namespace MadeInHouse.ViewModels.Almacen
             LstProductos = null;
 
         }
-        
-        
+
         #endregion
     }
 }

@@ -18,13 +18,16 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.DataObjects.Seguridad;
 using MadeInHouse.Dictionary;
+using System.ComponentModel.Composition;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(MantenerGuiaDeRemisionViewModel))]
     class MantenerGuiaDeRemisionViewModel : PropertyChangedBase
     {
-        //Constructores
-        public MantenerGuiaDeRemisionViewModel(GuiaRemision g) {
+        #region constructores
+
+        public MantenerGuiaDeRemisionViewModel(IWindowManager windowmanager, GuiaRemision g):this(windowmanager) {
 
             if (g.Nota != null)
             {
@@ -53,9 +56,10 @@ namespace MadeInHouse.ViewModels.Almacen
             indicador = 2;
         }
 
-
-        public MantenerGuiaDeRemisionViewModel()
+        [ImportingConstructor]
+        public MantenerGuiaDeRemisionViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             int k=0;
             indicador = 1;
 
@@ -64,9 +68,11 @@ namespace MadeInHouse.ViewModels.Almacen
             TxtEstado = "POR EMITIR";
         }
 
-
+        #endregion
 
         //Atributos
+        private readonly IWindowManager _windowManager;
+
         GuiaRemision g = new GuiaRemision();
         string tiendaOrigen = null;
         private int indicador; //1=insertar, 2=detalle;
@@ -336,7 +342,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void BuscarNota()
         {
             MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new BuscarNotasViewModel(this));
+            w.ShowWindow(new BuscarNotasViewModel(w,this));
             
         }
 
