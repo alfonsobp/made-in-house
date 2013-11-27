@@ -532,6 +532,9 @@
     <Compile Include="Views\Reportes\reporteEnSaProductosView.xaml.cs">
       <DependentUpon>reporteEnSaProductosView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\ReporteKardex.xaml.cs">
+      <DependentUpon>ReporteKardex.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\reporteProductosCanjePuntosView.xaml.cs">
       <DependentUpon>reporteProductosCanjePuntosView.xaml</DependentUpon>
     </Compile>
@@ -934,6 +937,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Reportes\reporteEnSaProductosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Reportes\ReporteKardex.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
