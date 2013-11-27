@@ -4,13 +4,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             
              mc:Ignorable="d" d:designWidth="395" d:designHeight="222" Height="240" Width="310">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Mantener tipos de zonas" />
-            <Grid Margin="0" Height="203">
-                <ToolBar VerticalAlignment="Top">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Busqueda de solicitudes" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -20,29 +24,27 @@
                     <Button x:Name="AgregarTipoZona">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    
-                                       
                 </ToolBar>
-
-                <Label  Content="Codigo:" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                <TextBox x:Name="TxtIdTipoZona" HorizontalAlignment="Left" Height="23" IsEnabled="False"  Margin="113,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
-                <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,83,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox  Text="{Binding Path=TxtNombre, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="113,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
-                <Label Content="Color:" HorizontalAlignment="Left" Margin="24,109,0,0" VerticalAlignment="Top"/>
-                <ComboBox ItemsSource="{Binding CmbColor}" SelectedValuePath="CodHex" SelectedValue="{Binding CmbColorSelected}"  HorizontalAlignment="Left" Margin="113,114,0,0" VerticalAlignment="Top" Width="160">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Width="20" Height="20" Margin="5" 
+                <Grid Margin="0" Height="203">
+                    <Label  Content="Codigo:" HorizontalAlignment="Left" Margin="24,57,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                    <TextBox x:Name="TxtIdTipoZona" HorizontalAlignment="Left" Height="23" IsEnabled="False"  Margin="113,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                    <Label Content="Descripcion:" HorizontalAlignment="Left" Margin="24,83,0,0" VerticalAlignment="Top" Width="94"/>
+                    <TextBox  Text="{Binding Path=TxtNombre, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="113,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" />
+                    <Label Content="Color:" HorizontalAlignment="Left" Margin="24,109,0,0" VerticalAlignment="Top"/>
+                    <ComboBox ItemsSource="{Binding CmbColor}" SelectedValuePath="CodHex" SelectedValue="{Binding CmbColorSelected}"  HorizontalAlignment="Left" Margin="113,114,0,0" VerticalAlignment="Top" Width="160">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Width="20" Height="20" Margin="5" 
             						Background="{Binding CodHex}"/>
-                                <TextBlock Text="{Binding Nombre}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
+                                    <TextBlock Text="{Binding Nombre}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
 
-            </Grid>
-
-        </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

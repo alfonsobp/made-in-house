@@ -379,7 +379,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             if (string.Compare(selectedMotivo, "Orden de despacho", true) == 0)
             {
-                _windowManager.ShowWindow(new BuscarOrdenDespachoViewModel(this));
+                _windowManager.ShowWindow(new BuscarOrdenDespachoViewModel(_windowManager, this));
             }
             else
             {
@@ -491,7 +491,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void AbrirPosicionProducto()
         {
-            _windowManager.ShowWindow(new PosicionProductoViewModel(this, 2));
+            _windowManager.ShowWindow(new PosicionProductoViewModel(_windowManager, this, 2));
         }
 
 

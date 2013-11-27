@@ -5,25 +5,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
-             
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:local="clr-namespace:MadeInHouse.Views.Almacen"  x:Class="MadeInHouse.Views.Almacen.MantenerTiendaView" 
-             mc:Ignorable="d" d:designHeight="345" d:designWidth="390" Width="880" Background="White">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Administrar tiendas"/>
-            <Grid Height="513">
-
-                <ToolBar Height="47" VerticalAlignment="Top">
+             mc:Ignorable="d" d:designHeight="345" d:designWidth="390" Background="White">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Administrar tiendas" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button >
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
-                    </Button>
                     <Button x:Name="EditarTienda">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
@@ -38,211 +38,211 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </Button>
-                    <Button/>
                     <Button x:Name="LimpiarCampos" >
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                 </ToolBar>
-                <TabControl Margin="0,47,0,0">
-                    <TabItem Header="Información general" Background="White">
-                        <Grid Background="White" Margin="70">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label Content="Nombre:" Margin="20" Height="25" />
-                            <TextBox MaxLength="30" x:Name="TxtNombre" Height="25" Margin="20" TextWrapping="Wrap" Width="213" IsEnabled="{Binding Editar}" Grid.Column="1" HorizontalAlignment="Left" />
-                            <Label Content="Teléfono:" Margin="20" Height="25" Grid.Row="1" />
-                            <TextBox MaxLength="7" x:Name="TxtTelef" Height="25" Margin="20" TextWrapping="Wrap" Width="120" IsEnabled="{Binding Editar}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" />
-                            <Label Content="Departamento:" Margin="20" Height="25" Grid.Column="2" />
-                            <ComboBox ItemsSource="{Binding CmbDpto}" IsEnabled="{Binding Editar}"
+                <Grid Height="513">
+                    <TabControl Margin="0,0,0,0">
+                        <TabItem Header="Información general" Background="White">
+                            <Grid Background="White" Margin="70">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Nombre:" Margin="20" Height="25" />
+                                <TextBox MaxLength="30" x:Name="TxtNombre" Height="25" Margin="20" TextWrapping="Wrap" Width="213" IsEnabled="{Binding Editar}" Grid.Column="1" HorizontalAlignment="Left" />
+                                <Label Content="Teléfono:" Margin="20" Height="25" Grid.Row="1" />
+                                <TextBox MaxLength="7" x:Name="TxtTelef" Height="25" Margin="20" TextWrapping="Wrap" Width="120" IsEnabled="{Binding Editar}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" />
+                                <Label Content="Departamento:" Margin="20" Height="25" Grid.Column="2" />
+                                <ComboBox ItemsSource="{Binding CmbDpto}" IsEnabled="{Binding Editar}"
         						SelectedValue="{Binding SelectedDpto, Mode=OneWayToSource}"
         						DisplayMemberPath="Nombre"
                                  SelectedIndex="{Binding Path=Index1,FallbackValue=0}"
         						SelectedValuePath="CodDpto" 
         						Margin="20" 
         						Width="160" Height="25" Grid.Column="3" />
-                            <Label Content="Provincia:" Margin="20" Height="25" Grid.Row="1" Grid.Column="2"/>
-                            <ComboBox IsEnabled="{Binding Editar}"
+                                <Label Content="Provincia:" Margin="20" Height="25" Grid.Row="1" Grid.Column="2"/>
+                                <ComboBox IsEnabled="{Binding Editar}"
                                 ItemsSource="{Binding CmbProv}"
         						SelectedValue="{Binding SelectedProv, Mode=OneWayToSource}"
         						SelectedIndex="{Binding Path=Index2,FallbackValue=0}"
         						DisplayMemberPath="Nombre"
         						SelectedValuePath="CodProv" 
         						Margin="20" Width="160" Height="25" Grid.Row="1" Grid.Column="3"/>
-                            <Label Content="Distrito:" Margin="20" Height="25" Grid.Row="2" Grid.Column="2"/>
-                            <ComboBox IsEnabled="{Binding Editar}"
+                                <Label Content="Distrito:" Margin="20" Height="25" Grid.Row="2" Grid.Column="2"/>
+                                <ComboBox IsEnabled="{Binding Editar}"
                                 ItemsSource="{Binding CmbDist}"
                                 SelectedValue="{Binding SelectedDist,Mode=OneWayToSource}"
                                 SelectedIndex="{Binding Path=Index3,FallbackValue=0}"
                                 DisplayMemberPath="Nombre"
                                 SelectedValuePath="CodDist"
                                 Margin="20" Width="160" Height="25" Grid.Row="2" Grid.Column="3"/>
-                            <Label Content="Dirección:" Margin="20" Height="25" Grid.Row="2" />
-                            <TextBox MaxLength="25" x:Name="TxtDir" Height="25" Margin="20" TextWrapping="Wrap" Width="255" IsEnabled="{Binding Editar}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
-                        </Grid>
-                    </TabItem>
+                                <Label Content="Dirección:" Margin="20" Height="25" Grid.Row="2" />
+                                <TextBox MaxLength="25" x:Name="TxtDir" Height="25" Margin="20" TextWrapping="Wrap" Width="255" IsEnabled="{Binding Editar}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </TabItem>
 
-                    <TabItem Header="Productos" >
-                        <Grid Background="White" >
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="401*"/>
-                                <ColumnDefinition Width="469*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Content="Código:" HorizontalAlignment="Left" Margin="32,55,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
+                        <TabItem Header="Productos" >
+                            <Grid Background="White" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="401*"/>
+                                    <ColumnDefinition Width="469*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Código:" HorizontalAlignment="Left" Margin="32,55,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
 
-                            <Button x:Name="BuscarProductos" HorizontalAlignment="Left" Margin="331,55,0,0" VerticalAlignment="Top" Width="36" Height="23" IsEnabled="{Binding Editar}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Assets/find.png" Stretch="Uniform" />
-                                </Button.Background>
-                            </Button>
-                            <Label Content="Stock actual:" HorizontalAlignment="Left" Margin="32,93,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
-                            <Label Content="Sotck mínimo:" HorizontalAlignment="Left" Margin="32,127,0,0" VerticalAlignment="Top" Height="26" Width="85"/>
-                            <Label Content="Stock máximo:" HorizontalAlignment="Left" Margin="32,161,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
-                            <Label Content="Precio de venta (S/.):" HorizontalAlignment="Left" Margin="32,199,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-                            <CheckBox x:Name="ChkVigente" Content="Vigente" HorizontalAlignment="Left" Margin="32,243,0,0" VerticalAlignment="Top" Height="15" Width="61" IsEnabled="{Binding Editar}"/>
-                            <DataGrid EnableRowVirtualization="False"  x:Name="LstProductos" 
+                                <Button x:Name="BuscarProductos" HorizontalAlignment="Left" Margin="331,55,0,0" VerticalAlignment="Top" Width="36" Height="23" IsEnabled="{Binding Editar}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Assets/find.png" Stretch="Uniform" />
+                                    </Button.Background>
+                                </Button>
+                                <Label Content="Stock actual:" HorizontalAlignment="Left" Margin="32,93,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+                                <Label Content="Sotck mínimo:" HorizontalAlignment="Left" Margin="32,127,0,0" VerticalAlignment="Top" Height="26" Width="85"/>
+                                <Label Content="Stock máximo:" HorizontalAlignment="Left" Margin="32,161,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
+                                <Label Content="Precio de venta (S/.):" HorizontalAlignment="Left" Margin="32,199,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
+                                <CheckBox x:Name="ChkVigente" Content="Vigente" HorizontalAlignment="Left" Margin="32,243,0,0" VerticalAlignment="Top" Height="15" Width="61" IsEnabled="{Binding Editar}"/>
+                                <DataGrid EnableRowVirtualization="False"  x:Name="LstProductos" 
                                       SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                       cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
                                 Grid.Column="1" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Margin="48,93,0,0" VerticalAlignment="Top" Height="260" Width="392">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}" Width="130" />
-                                    <DataGridTextColumn Header="Stock actual" Binding="{Binding Path=StockActual}" />
-                                    <DataGridTextColumn Header="Stock min." Binding="{Binding Path=StockMin}"/>
-                                    <DataGridTextColumn Header="Stock max." Binding="{Binding Path=StockMax}"/>
-                                    <DataGridTextColumn Header="Precio" Binding="{Binding Path=PrecioVenta}" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <Button x:Name="Agregar"  Grid.Column="1" HorizontalAlignment="Left" Margin="336,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Assets/add.png" Stretch="Uniform" />
-                                </Button.Background>
-                            </Button>
-                            <Button x:Name="Quitar"  Grid.Column="1" HorizontalAlignment="Left" Margin="397,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Assets/minus.png" Stretch="Uniform" />
-                                </Button.Background>
-                            </Button>
-                            <TextBox  x:Name="TxtCodProducto" HorizontalAlignment="Left" Height="23" Margin="184,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="{Binding Editar}"/>
-                            <TextBox  IsEnabled="False" x:Name="TxtStockIni" HorizontalAlignment="Left" Height="23" Margin="184,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" />
-                            <TextBox x:Name="TxtStockMin" HorizontalAlignment="Left" Height="23" Margin="184,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
-                            <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="23" Margin="184,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
-                            <TextBox x:Name="TxtPrecioV" HorizontalAlignment="Left" Height="23" Margin="184,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
-                            <Button x:Name="Importar" Grid.Column="1" HorizontalAlignment="Left" Margin="48,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
-                                <Button.Background>
-                                    <ImageBrush ImageSource="/Assets/importar.png" Stretch="Uniform" />
-                                </Button.Background>
-                            </Button>
-                            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="409" Margin="0,19,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="1"/>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}" Width="130" />
+                                        <DataGridTextColumn Header="Stock actual" Binding="{Binding Path=StockActual}" />
+                                        <DataGridTextColumn Header="Stock min." Binding="{Binding Path=StockMin}"/>
+                                        <DataGridTextColumn Header="Stock max." Binding="{Binding Path=StockMax}"/>
+                                        <DataGridTextColumn Header="Precio" Binding="{Binding Path=PrecioVenta}" />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button x:Name="Agregar"  Grid.Column="1" HorizontalAlignment="Left" Margin="336,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Assets/add.png" Stretch="Uniform" />
+                                    </Button.Background>
+                                </Button>
+                                <Button x:Name="Quitar"  Grid.Column="1" HorizontalAlignment="Left" Margin="397,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Assets/minus.png" Stretch="Uniform" />
+                                    </Button.Background>
+                                </Button>
+                                <TextBox  x:Name="TxtCodProducto" HorizontalAlignment="Left" Height="23" Margin="184,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="{Binding Editar}"/>
+                                <TextBox  IsEnabled="False" x:Name="TxtStockIni" HorizontalAlignment="Left" Height="23" Margin="184,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" />
+                                <TextBox x:Name="TxtStockMin" HorizontalAlignment="Left" Height="23" Margin="184,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
+                                <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="23" Margin="184,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
+                                <TextBox x:Name="TxtPrecioV" HorizontalAlignment="Left" Height="23" Margin="184,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
+                                <Button x:Name="Importar" Grid.Column="1" HorizontalAlignment="Left" Margin="48,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
+                                    <Button.Background>
+                                        <ImageBrush ImageSource="/Assets/importar.png" Stretch="Uniform" />
+                                    </Button.Background>
+                                </Button>
+                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="409" Margin="0,19,0,0" Stroke="Black" VerticalAlignment="Top" Width="2" Grid.Column="1"/>
 
 
-                        </Grid>
-                    </TabItem>
+                            </Grid>
+                        </TabItem>
 
-                    <TabItem Header="Anaqueles">
-                        <Grid Background="White">
-                            <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
-                            <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumRowsAnq" HorizontalAlignment="Left" Height="23" Margin="172,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" />
-                            <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top" Width="94"/>
-                            <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumColumnsAnq" HorizontalAlignment="Left" Height="23" Margin="172,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
-                            <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94"/>
-                            <TextBox IsEnabled="{Binding Editar}" x:Name="TxtAlturaAnq" HorizontalAlignment="Left" Height="23" Margin="172,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                        <TabItem Header="Anaqueles">
+                            <Grid Background="White">
+                                <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94"/>
+                                <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumRowsAnq" HorizontalAlignment="Left" Height="23" Margin="172,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" />
+                                <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top" Width="94"/>
+                                <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumColumnsAnq" HorizontalAlignment="Left" Height="23" Margin="172,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75"/>
+                                <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94"/>
+                                <TextBox IsEnabled="{Binding Editar}" x:Name="TxtAlturaAnq" HorizontalAlignment="Left" Height="23" Margin="172,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
 
-                            <Button x:Name="boton1" Content="{Binding Content}" 
+                                <Button x:Name="boton1" Content="{Binding Content}" 
                             HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <cal:ActionMessage MethodName="Distribuir" >
-                                            <cal:Parameter Value="0"/>
-                                            <cal:Parameter Value="{Binding ElementName=Anaquel}"/>
-                                        </cal:ActionMessage>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Button>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <cal:ActionMessage MethodName="Distribuir" >
+                                                <cal:Parameter Value="0"/>
+                                                <cal:Parameter Value="{Binding ElementName=Anaquel}"/>
+                                            </cal:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
 
-                            <!--:Message.Attach="[Event Click] = [Action Distribuir(0)]" /-->
-                            <ComboBox
+                                <!--:Message.Attach="[Event Click] = [Action Distribuir(0)]" /-->
+                                <ComboBox
                                 IsEnabled="{Binding Editar}"
                         ItemsSource="{Binding CmbZonas}"
         			    SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
                         DisplayMemberPath="Nombre"
                         HorizontalAlignment="Left" Margin="392,26,0,0" VerticalAlignment="Top" Width="450"/>
-                            <Label Content="Zonas:" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top" Width="75"/>
+                                <Label Content="Zonas:" HorizontalAlignment="Left" Margin="312,26,0,0" VerticalAlignment="Top" Width="75"/>
 
-                            <ScrollViewer  HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
-                                <grid:DynamicGrid x:Name="Anaquel" Accion="1" Altura="{Binding AlturaAnq}" 
+                                <ScrollViewer  HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible">
+                                    <grid:DynamicGrid x:Name="Anaquel" Accion="1" Altura="{Binding AlturaAnq}" 
                                                   IdZona="{Binding ZonaAnaquel}"  NumRows="{Binding NumRowsAnq}" 
                                                   NumColumns="{Binding NumColumnsAnq}"  
                                                   Background="{Binding Fondo, FallbackValue=Green}"
                                                   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                                </grid:DynamicGrid>
-                            </ScrollViewer>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530"/>
-                            <ScrollViewer  HorizontalAlignment="Left" Height="100" Margin="187,310,0,0" VerticalAlignment="Top" Width="60">
-                                <Grid/>
-                            </ScrollViewer>
-                            <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="187,310,0,0" VerticalAlignment="Top" Width="60"/>
-                            <Label Content="Vista de frente de&#xD;&#xA; una ubicación" HorizontalAlignment="Left" Margin="52,310,0,0" VerticalAlignment="Top" Width="109" Height="74"/>
+                                    </grid:DynamicGrid>
+                                </ScrollViewer>
+                                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="340" Margin="312,70,0,0" VerticalAlignment="Top" Width="530"/>
+                                <ScrollViewer  HorizontalAlignment="Left" Height="100" Margin="187,310,0,0" VerticalAlignment="Top" Width="60">
+                                    <Grid/>
+                                </ScrollViewer>
+                                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="187,310,0,0" VerticalAlignment="Top" Width="60"/>
+                                <Label Content="Vista de frente de&#xD;&#xA; una ubicación" HorizontalAlignment="Left" Margin="52,310,0,0" VerticalAlignment="Top" Width="109" Height="74"/>
 
 
-                        </Grid>
-                    </TabItem>
-                    <TabItem Header="Depósito">
-                        <Grid Background="White">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="71*"/>
-                                <ColumnDefinition Width="366*"/>
-                            </Grid.ColumnDefinitions>
-                            <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94" Grid.ColumnSpan="2"/>
-                            <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumRowsDto" HorizontalAlignment="Left" Height="23" Margin="30,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1" />
-                            <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
-                            <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumColumnsDto" HorizontalAlignment="Left" Height="23" Margin="30,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                            <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
-                            <TextBox IsEnabled="{Binding Editar}" x:Name="TxtAlturaDto" HorizontalAlignment="Left" Height="23" Margin="30,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                            <Button x:Name="boton2" Content="{Binding Content}" 
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Depósito">
+                            <Grid Background="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="71*"/>
+                                    <ColumnDefinition Width="366*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Filas:" HorizontalAlignment="Left" Margin="52,70,0,0" VerticalAlignment="Top" Height="26" Width="94" Grid.ColumnSpan="2"/>
+                                <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumRowsDto" HorizontalAlignment="Left" Height="23" Margin="30,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1" />
+                                <Label Content="Columnas:" HorizontalAlignment="Left" Margin="52,111,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                                <TextBox IsEnabled="{Binding Editar}" x:Name="TxtNumColumnsDto" HorizontalAlignment="Left" Height="23" Margin="30,111,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                                <Label Content="Altura:" HorizontalAlignment="Left" Margin="52,152,0,0" VerticalAlignment="Top" Width="94" Grid.ColumnSpan="2"/>
+                                <TextBox IsEnabled="{Binding Editar}" x:Name="TxtAlturaDto" HorizontalAlignment="Left" Height="23" Margin="30,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                                <Button x:Name="boton2" Content="{Binding Content}" 
                             HorizontalAlignment="Left" Margin="52,206,0,0" VerticalAlignment="Top" Width="195" Height="42" Grid.ColumnSpan="2">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger EventName="Click">
-                                        <cal:ActionMessage MethodName="Distribuir" >
-                                            <cal:Parameter Value="1"/>
-                                            <cal:Parameter Value="{Binding ElementName=Deposito}"/>
-                                        </cal:ActionMessage>
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                            </Button>
-                            <!--:Message.Attach="[Event Click] = [Action Distribuir(1)]" /-->
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Click">
+                                            <cal:ActionMessage MethodName="Distribuir" >
+                                                <cal:Parameter Value="1"/>
+                                                <cal:Parameter Value="{Binding ElementName=Deposito}"/>
+                                            </cal:ActionMessage>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Button>
+                                <!--:Message.Attach="[Event Click] = [Action Distribuir(1)]" /-->
 
-                            <ComboBox IsEnabled="{Binding Editar}"
+                                <ComboBox IsEnabled="{Binding Editar}"
                         ItemsSource="{Binding CmbZonas}"
         			    SelectedValue="{Binding SelectedZona, Mode=OneWayToSource}"
                         DisplayMemberPath="Nombre"
                         HorizontalAlignment="Left" Margin="250,26,0,0" VerticalAlignment="Top" Width="450" Grid.Column="1"/>
-                            <Label Content="Zonas:" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-                            <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible" Grid.Column="1">
-                                <grid:DynamicGrid x:Name="Deposito" Accion="1" 
+                                <Label Content="Zonas:" HorizontalAlignment="Left" Margin="170,26,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
+                                <ScrollViewer HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530" HorizontalScrollBarVisibility="Visible" Grid.Column="1">
+                                    <grid:DynamicGrid x:Name="Deposito" Accion="1" 
                                                   IdZona="{Binding ZonaDeposito}" 
                                                   Altura="{Binding AlturaDto}" 
                                                   NumRows="{Binding NumRowsDto}" 
                                                   NumColumns="{Binding NumColumnsDto}"  
                                                   Background="{Binding Fondo,FallbackValue=Red}" 
                                                   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                            </ScrollViewer>
-                            <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530"/>
-                        </Grid>
-                    </TabItem>
-                </TabControl>
+                                </ScrollViewer>
+                                <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="340" Margin="170,70,0,0" VerticalAlignment="Top" Width="530"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
 
 
 
-            </Grid>
-        </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
-
 </UserControl>

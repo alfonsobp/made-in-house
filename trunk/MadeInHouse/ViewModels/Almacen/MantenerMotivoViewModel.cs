@@ -9,13 +9,18 @@ using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.ComponentModel;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(MantenerMotivoViewModel))]
     class MantenerMotivoViewModel : PropertyChangedBase, IDataErrorInfo
     {
-
-        public MantenerMotivoViewModel() {
+        [ImportingConstructor]
+        public MantenerMotivoViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
             LstMotivos = DataObjects.Almacen.MotivoSQL.BuscarMotivos();
         }
         private Motivo motivoSeleccionado;
@@ -24,6 +29,8 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             motivoSeleccionado = ((sender as DataGrid).SelectedItem as Motivo);
         }
+
+        private readonly IWindowManager _windowManager;
 
         private string txtMotivo=null;
 
@@ -54,13 +61,11 @@ namespace MadeInHouse.ViewModels.Almacen
             k = DataObjects.Almacen.MotivoSQL.AgregarMotivo(m);
             if (k == 0)
             {
-                MessageBox.Show("Ocurrio un error");
-                
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ocurrio un error"));
             }
             else
             {
-                MessageBox.Show("Motivo: = " + txtMotivo + " registrado con éxtio");
-                
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Motivo: = " + txtMotivo + " registrado con éxtio"));
             }
             refrescar();
         }
@@ -74,12 +79,12 @@ namespace MadeInHouse.ViewModels.Almacen
                 if (a > 0) LstMotivos.Remove(tz);
                 else
                 {
-                    MessageBox.Show("No se pudo borrar borrar el motivo porque esta siendo usado");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo borrar borrar el motivo porque esta siendo usado"));
                 }
             }
             else
             {
-                MessageBox.Show("No se ha seleccionado ninguna Motivo");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se ha seleccionado ninguna Motivo"));
             }
             refrescar();
         }

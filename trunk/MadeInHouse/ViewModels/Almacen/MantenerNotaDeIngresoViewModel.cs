@@ -562,7 +562,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void AbrirPosicionProducto()
         {
-            _windowManager.ShowWindow(new PosicionProductoViewModel(this, 1));
+            _windowManager.ShowWindow(new PosicionProductoViewModel(_windowManager, this, 1));
         }
 
         public void AbrirListarOrdenesCompra()

@@ -13,13 +13,17 @@ using System.Data;
 using System.Data.SqlClient;
 using MadeInHouse.Views.RRHH;
 using MadeInHouse.Validacion;
+using System.ComponentModel.Composition;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(MantenerTiendaViewModel))]
     class MantenerTiendaViewModel : PropertyChangedBase
     {
 
         #region Atributos
+
+        private readonly IWindowManager _windowManager;
         private UbigeoSQL uSQL;
         private TiendaSQL tSQL;
         private ProductoSQL pxaSQL;
@@ -569,7 +573,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         #region Constructores
 
-        public MantenerTiendaViewModel(Tienda t) :this()
+        public MantenerTiendaViewModel(IWindowManager windowmanager, Tienda t) :this(windowmanager)
         {
             accion = 2;
             Editar = false;
@@ -614,8 +618,10 @@ namespace MadeInHouse.ViewModels.Almacen
             
         }
 
-        public MantenerTiendaViewModel()
+        [ImportingConstructor]
+        public MantenerTiendaViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             uSQL = new UbigeoSQL();
             tSQL = new TiendaSQL();
             pxaSQL = new ProductoSQL();

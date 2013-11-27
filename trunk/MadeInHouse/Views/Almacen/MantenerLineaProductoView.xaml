@@ -5,58 +5,52 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
-             mc:Ignorable="d" d:designWidth="500" d:designHeight="177" Height="379" >
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Nueva línea de producto"/>
-            <Grid Height="344" Width="379" >
-                <ToolBar VerticalAlignment="Top">
+             mc:Ignorable="d" d:designWidth="500" d:designHeight="177">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Nueva línea de producto" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
-                    </Button>
                     <Button x:Name="GuardarLineaProducto">
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="24" Width="24" />
-                    </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="24" Width="24" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
+                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
                 </ToolBar>
-                
-                <Label Content="Nombre:" HorizontalAlignment="Left" Margin="21,58,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox Text="{Binding Path=TxtNombre, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="140,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
-                <Label  Content="Abreviatura:" HorizontalAlignment="Left" Margin="21,89,0,0" VerticalAlignment="Top" Width="94"/>
-                <TextBox Text="{ Binding Path=TxtAbrv, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="140,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                <DataGrid x:Name="LstSubLinea" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]" HorizontalAlignment="Left" Margin="21,164,0,0" VerticalAlignment="Top" Width="328" Height="144" AutoGenerateColumns="false">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}" Width="250"/>
-                        <DataGridTextColumn Header="Abreviatura" Binding="{Binding Path=Abreviatura}" Width="180"/>      
-                    </DataGrid.Columns>
-                </DataGrid>
-                
-                <Button x:Name="AgregarSubLinea" HorizontalAlignment="Left" Margin="288,127,0,0" VerticalAlignment="Top" Width="23">
-                    <Image Source="/Assets/add.png"></Image>
-                </Button>
-                <Button x:Name="Borrar"  HorizontalAlignment="Left" Margin="326,127,0,0" VerticalAlignment="Top" Width="23">
-                    <Image Source="/Assets/minus.png"></Image>
-                </Button>
-                <Label Content="Sublineas
+                <Grid Height="344" Width="379" >
+                    <Label Content="Nombre:" HorizontalAlignment="Left" Margin="21,58,0,0" VerticalAlignment="Top" Width="94"/>
+                    <TextBox Text="{Binding Path=TxtNombre, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="140,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="209"/>
+                    <Label  Content="Abreviatura:" HorizontalAlignment="Left" Margin="21,89,0,0" VerticalAlignment="Top" Width="94"/>
+                    <TextBox Text="{ Binding Path=TxtAbrv, ValidatesOnDataErrors=True,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="140,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                    <DataGrid x:Name="LstSubLinea" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]" HorizontalAlignment="Left" Margin="21,164,0,0" VerticalAlignment="Top" Width="328" Height="144" AutoGenerateColumns="false">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Nombre" Binding="{Binding Path=Nombre}" Width="250"/>
+                            <DataGridTextColumn Header="Abreviatura" Binding="{Binding Path=Abreviatura}" Width="180"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Button x:Name="AgregarSubLinea" HorizontalAlignment="Left" Margin="288,127,0,0" VerticalAlignment="Top" Width="23">
+                        <Image Source="/Assets/add.png"></Image>
+                    </Button>
+                    <Button x:Name="Borrar"  HorizontalAlignment="Left" Margin="326,127,0,0" VerticalAlignment="Top" Width="23">
+                        <Image Source="/Assets/minus.png"></Image>
+                    </Button>
+                    <Label Content="Sublineas
 " HorizontalAlignment="Left" Margin="21,127,0,0" VerticalAlignment="Top"/>
 
 
 
-            </Grid>
-        </StackPanel>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

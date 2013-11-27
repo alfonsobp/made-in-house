@@ -6,20 +6,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="430" Width="560">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel Margin="0,0,0,8">
-            <Layouts:TitleBarTemplate title="Mantenimiento de Orden de Despacho" />
-            <Grid Height="390">
-
-                <ToolBar VerticalAlignment="Top">
+             d:DesignHeight="430" d:DesignWidth="560">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Mantenimiento de Orden de Despacho" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-
                     <Button x:Name="SeleccionarOrdenDespacho" ToolTip="Actualizar tabla" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/check.png" />
                     </Button>
@@ -29,51 +32,51 @@
                     <Button x:Name="ActualizarListaOrdenDespacho" ToolTip="Actualizar tabla" Height="30" Width="30">
                         <Image Source="/MadeInHouse;component/Assets/refresh.png" />
                     </Button>
-                    
                 </ToolBar>
-                <Grid Margin="10,46,0,10">
-                    <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="143" Margin="10,10,10,0">
-                        <Grid Margin="0,0,-2,-12">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="321*"/>
-                                <ColumnDefinition Width="50*"/>
-                                <ColumnDefinition Width="145*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Label Content="Código orden de despacho: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,12,0,0"/>
-                            <TextBox Text="{Binding TxtIdOrdenDespacho}"
+                <Grid Height="390">
+                    <Grid Margin="10">
+                        <GroupBox Header="Filtrar por:" VerticalAlignment="Top" Height="143" Margin="10,10,10,0">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="321*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="145*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="Código orden de despacho: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,12,0,0"/>
+                                <TextBox Text="{Binding TxtIdOrdenDespacho}"
                                         HorizontalAlignment="Left" Height="23" Margin="181,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-                            <Label Content="Código de venta:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,43,0,0"/>
-                            <TextBox Text="{Binding TxtIdVenta}"
+                                <Label Content="Código de venta:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,43,0,0"/>
+                                <TextBox Text="{Binding TxtIdVenta}"
                                         HorizontalAlignment="Left" Height="23" Margin="181,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
-                            <Label Content="Estado:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,71,0,0"/>
-                            <ComboBox ItemsSource="{Binding Path=LstEstado}"
+                                <Label Content="Estado:  " HorizontalAlignment="Left" VerticalAlignment="Top" Width="156" Margin="20,71,0,0"/>
+                                <ComboBox ItemsSource="{Binding Path=LstEstado}"
                                DisplayMemberPath="Nombre"
                                SelectedValuePath="Estado" 
                                SelectedValue="{Binding Path=EstadoValue}"
                                HorizontalAlignment="Left" 
                                Margin="181,75,0,0" 
                                VerticalAlignment="Top" Width="113"/>
-                            
-                            <Button x:Name="BuscarOrdenDespacho" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="2">
-                                <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
-                            </Button>
-                            <Button x:Name="EnviarAlmacenCentral"  Content="Enviar a ALMACÉN CENTRAL" Grid.Column="1" HorizontalAlignment="Left" Margin="18,77,0,0" VerticalAlignment="Top" Width="167" Grid.ColumnSpan="2"/>
-                        </Grid>
-                    </GroupBox>
-                    <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Action SelectedItemChanged( $source)]" 
+
+                                <Button x:Name="BuscarOrdenDespacho" Height="24" VerticalAlignment="Top" Margin="0,13,127,0" Width="50" HorizontalAlignment="Right" Grid.Column="1" Grid.ColumnSpan="2">
+                                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
+                                </Button>
+                                <Button x:Name="EnviarAlmacenCentral"  Content="Enviar a ALMACÉN CENTRAL" Grid.Column="1" HorizontalAlignment="Left" Margin="18,77,0,0" VerticalAlignment="Top" Width="167" Grid.ColumnSpan="2"/>
+                            </Grid>
+                        </GroupBox>
+                        <DataGrid x:Name="LstOrdenDespacho" cal:Message.Attach="[Action SelectedItemChanged( $source)]" 
                                         CanUserAddRows="False"
                                         IsReadOnly="True" Height="176" VerticalAlignment="Top" Margin="10,158,10,0" Grid.Row="0" AutoGenerateColumns="false">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=CodOrden}" Width="1.5*" Header="Código despacho"/>
-                            <DataGridTextColumn Binding="{Binding Path=Venta.IdVenta}" Width="1.5*" Header="Código venta"/>
-                            <DataGridTextColumn Binding="{Binding Path=FechaDespacho}" Width="2*" Header="Fecha"/>
-                            <DataGridTextColumn Binding="{Binding Path=AlmOrigen.Nombre}" Width="2*" Header="Deposito"/>
-                            
-                        </DataGrid.Columns>
-                    </DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=CodOrden}" Width="1.5*" Header="Código despacho"/>
+                                <DataGridTextColumn Binding="{Binding Path=Venta.IdVenta}" Width="1.5*" Header="Código venta"/>
+                                <DataGridTextColumn Binding="{Binding Path=FechaDespacho}" Width="2*" Header="Fecha"/>
+                                <DataGridTextColumn Binding="{Binding Path=AlmOrigen.Nombre}" Width="2*" Header="Deposito"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </StackPanel>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

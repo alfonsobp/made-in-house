@@ -9,18 +9,23 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Seguridad;
 using MadeInHouse.ViewModels.Seguridad;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(MantenerOrdenDespachoViewModel))]
     class MantenerOrdenDespachoViewModel:Screen
     {
         #region constructor
-        public MantenerOrdenDespachoViewModel()
-        {
 
+        [ImportingConstructor]
+        public MantenerOrdenDespachoViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
         }
 
-        public MantenerOrdenDespachoViewModel(OrdenDespacho od)
+        public MantenerOrdenDespachoViewModel(IWindowManager windowmanager, OrdenDespacho od) :this(windowmanager)
         {
             //IPHostEntry IPHost = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
             TxtIdOrdenDespacho = od.IdOrdenDespacho.ToString();
@@ -47,10 +52,13 @@ namespace MadeInHouse.ViewModels.Almacen
                 ordenDespachoSeleccionado.Estado = LstEstadoValue;
                 OrdenDespachoSQL odSQL = new OrdenDespachoSQL();
                 k = odSQL.EditarOrdenDespacho(ordenDespachoSeleccionado);
-                if (k == 1) MessageBox.Show("Orden de despacho actualizado con éxito");
+                if (k == 1)
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Orden de despacho actualizado con éxito"));
             }
 
         }
+
+        private readonly IWindowManager _windowManager;
         #endregion
 
         #region atributos

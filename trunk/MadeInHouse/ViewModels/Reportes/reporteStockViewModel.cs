@@ -84,7 +84,7 @@ namespace MadeInHouse.ViewModels.Reportes
         public void BuscarTienda()
         {
             MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new BuscarTiendaViewModel(this, 1));
+            w.ShowWindow(new BuscarTiendaViewModel(w, this, 1));
         }
 
         private List<Almacenes> cmbDpto;
