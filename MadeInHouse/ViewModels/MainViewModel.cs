@@ -73,6 +73,9 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[1] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerAlmacenViewModel(_windowManager));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
+
         }
         //Ventana Externa: 1.2
         public void AbrirNuevoProducto()
@@ -80,6 +83,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[2] == 1)
                 _windowManager.ShowWindow(new Almacen.ProductoMantenerViewModel(_windowManager));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.3
@@ -88,6 +93,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[3] == 1)
                 _windowManager.ShowWindow(new Almacen.ProductoBuscarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.4
@@ -96,6 +103,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[4] == 1)
                 _windowManager.ShowWindow(new Almacen.BuscarGuiasRemisionViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.5
@@ -104,6 +113,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[5] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerGuiaDeRemisionViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.6
@@ -112,6 +123,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[6] == 1)
                 _windowManager.ShowWindow(new Almacen.BuscarNotasViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.7
@@ -120,6 +133,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[7] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerNotaDeIngresoViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.8
@@ -128,6 +143,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[8] == 1)
 				_windowManager.ShowWindow(new Almacen.MantenerNotaDeSalidaViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.9
@@ -136,6 +153,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[9] == 1)
                 _windowManager.ShowWindow(new Almacen.BuscarZonaViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.10
@@ -144,6 +163,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[10] == 1)
                 _windowManager.ShowWindow(new Almacen.SolicitudAbConsolidarViewModel(_windowManager));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 1.11
@@ -152,6 +173,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[11] == 1)
                 _windowManager.ShowWindow(new Almacen.ProductoMovimientosViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 		
 		//Ventana Externa: 1.12
@@ -160,6 +183,8 @@ namespace MadeInHouse.ViewModels
 			CargarAccesosRol(out accVentana);
             if (accVentana[12] == 1)
 				_windowManager.ShowWindow(new Almacen.AnularDocumentosViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 		
 		public void RegistrarSolicitud()
@@ -167,6 +192,8 @@ namespace MadeInHouse.ViewModels
 			CargarAccesosRol(out accVentana);
             if (accVentana[12] == 1)
 				_windowManager.ShowWindow(new Almacen.SolicitudAbRegistrarViewModel(_windowManager, null, 0));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         public void ListadoSolicitud()
@@ -174,6 +201,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[12] == 1)
                 _windowManager.ShowWindow(new Almacen.SolicitudAbListadoViewModel(_windowManager));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         #endregion Almacen
@@ -187,6 +216,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[13] == 1)
                 _windowManager.ShowWindow(new Compras.BuscadorProveedorViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.2
@@ -195,6 +226,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[14] == 1)
                 _windowManager.ShowWindow(new Compras.MantenerProveedorViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.3
@@ -203,6 +236,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[15] == 1)
                 _windowManager.ShowWindow(new Compras.CatalogoProductoProveedorViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.4
@@ -211,6 +246,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[16] == 1)
                 _windowManager.ShowWindow(new Compras.agregarServicioViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.5
@@ -219,6 +256,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[17] == 1)
                 _windowManager.ShowWindow(new Compras.BuscadorServicioViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.6
@@ -227,6 +266,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[18] == 1)
                 _windowManager.ShowWindow(new Compras.BuscadorSolicitudesAdquisicionViewModel {  });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.7
@@ -235,6 +276,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[19] == 1)
                 _windowManager.ShowWindow(new Compras.SeleccionDeProveedoresViewModel { DisplayName = "Seleccion de proveedores" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.8
@@ -243,6 +286,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[20] == 1)
                 _windowManager.ShowWindow(new Compras.generarOrdenCompraViewModel { DisplayName = "Orden de compra" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.9
@@ -254,6 +299,8 @@ namespace MadeInHouse.ViewModels
                 Compras.BuscarOrdenCompraViewModel obj = new Compras.BuscarOrdenCompraViewModel { DisplayName = "Buscador Orden de compra" };
                 _windowManager.ShowWindow(obj);
             }
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.10
@@ -265,6 +312,8 @@ namespace MadeInHouse.ViewModels
                 Compras.NuevaCotizacionViewModel obj = new Compras.NuevaCotizacionViewModel { };
                 _windowManager.ShowWindow(obj);
             }
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.11
@@ -276,6 +325,8 @@ namespace MadeInHouse.ViewModels
                 Compras.BuscarCotizacionViewModel obj = new Compras.BuscarCotizacionViewModel { };
                 _windowManager.ShowWindow(obj);
             }
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.12
@@ -287,6 +338,8 @@ namespace MadeInHouse.ViewModels
                 Compras.registrarDocumentosViewModel obj = new Compras.registrarDocumentosViewModel();
                 _windowManager.ShowWindow(obj);
             }
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 2.13
@@ -298,6 +351,8 @@ namespace MadeInHouse.ViewModels
                 Compras.BuscarDocumentoViewModel obj = new Compras.BuscarDocumentoViewModel();
                 _windowManager.ShowWindow(obj);
             }
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
 
@@ -313,6 +368,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[25] == 1)
                 _windowManager.ShowWindow(new Ventas.ClienteBuscarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.2
@@ -321,6 +378,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[26] == 1)
                 _windowManager.ShowWindow(new Ventas.ClienteRegistrarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.3
@@ -329,6 +388,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[27] == 1)
                 _windowManager.ShowWindow(new Ventas.VentaBuscarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.4
@@ -337,6 +398,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[28] == 1)
                 _windowManager.ShowWindow(new Ventas.VentaRegistrarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.5
@@ -345,6 +408,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[29] == 1)
                 _windowManager.ShowWindow(new Ventas.VentaCajeroRegistrarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.6
@@ -353,6 +418,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[30] == 1)
                 _windowManager.ShowWindow(new Ventas.ProformaViewModel { DisplayName = "Proformas" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.7
@@ -361,6 +428,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[31] == 1)
                 _windowManager.ShowWindow(new DevolucionesBuscarViewModel(_windowManager));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.8
@@ -369,6 +438,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[32] == 1)
                 _windowManager.ShowWindow(new Ventas.DevolucionesRegistrarViewModel(_windowManager, null, 0));
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.10
@@ -377,6 +448,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[34] == 1)
                 _windowManager.ShowWindow(new Ventas.PromoProductoBuscarViewModel { DisplayName = "Promociones de Productos" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.11
@@ -385,6 +458,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[35] == 1)
                 _windowManager.ShowWindow(new Ventas.PromoProductoRegistrarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.12
@@ -393,6 +468,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[36] == 1)
                 _windowManager.ShowWindow(new Ventas.PromoServicioBuscarViewModel { DisplayName = "Promociones de Servicios" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.13
@@ -401,6 +478,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[37] == 1)
                 _windowManager.ShowWindow(new Ventas.PromoServicioRegistrarViewModel { DisplayName = "Nueva Promoción de Servicio" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 3.13
@@ -409,6 +488,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[38] == 1)
                 _windowManager.ShowWindow(new Ventas.PreciosBuscarViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
 
@@ -451,7 +532,10 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[42] == 1)
                 _windowManager.ShowWindow(new RRHH.BuscadorEmpleadoViewModel { DisplayName = "Buscar Empleado" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
+
 
         //Ventana Externa: 5.2
         public void AbrirBuscarOrganigrama()
@@ -459,6 +543,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[43] == 1)
                 _windowManager.ShowWindow(new RRHH.BuscarOrganigramaViewModel { DisplayName = "Buscar Organigrama" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
         #endregion Clima_Laboral
 
@@ -471,6 +557,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[44] == 1)
                 _windowManager.ShowWindow(new Seguridad.RegistrarUsuarioViewModel { });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 6.2
@@ -488,6 +576,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[46] == 1)
                 _windowManager.ShowWindow(new RRHH.MantenerRolViewModel { DisplayName = "Mantenimiento Rol" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 6.4
@@ -496,6 +586,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[47] == 1)
                 _windowManager.ShowWindow(new Seguridad.AsignarAccesosViewModel { });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 6.5
@@ -504,6 +596,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[48] == 1)
                 _windowManager.ShowWindow(new Seguridad.ConfigurarUsuarioViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
 
@@ -519,6 +613,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[49] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteTardanzasViewModel { DisplayName = "Reporte de Tardanzas" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.2
@@ -527,6 +623,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[50] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteAccionesViewModel { DisplayName = "Logs de Acciones de Usuarios" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.3
@@ -535,6 +633,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[51] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteVentasViewModel { DisplayName = "Reporte de Ventas" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.4
@@ -543,6 +643,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[52] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteServiciosViewModel { DisplayName = "Reporte de Servicios" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.5
@@ -551,6 +653,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[53] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteDevolucionesViewModel { DisplayName = "Reporte de Devoluciones" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.6
@@ -559,6 +663,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[54] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteComprasViewModel { DisplayName = "Reporte de Compras" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.7
@@ -567,6 +673,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[55] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteEnSaProductosViewModel { DisplayName = "Reporte de Ent/Sal de productos" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.8
@@ -575,6 +683,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[56] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteSolicitudesViewModel { DisplayName = "Reporte de Solicitudes de compra" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.9
@@ -583,6 +693,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[57] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteStockViewModel { DisplayName = "Reporte de Stock de productos" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.10
@@ -591,6 +703,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[58] == 1)
                 _windowManager.ShowWindow(new Reportes.reportePromocionesFrecuentesViewModel { DisplayName = "Reporte de Promociones Top" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 7.11
@@ -599,6 +713,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[59] == 1)
                 _windowManager.ShowWindow(new Reportes.reporteProductosCanjePuntosViewModel { DisplayName = "Reporte de Productos canjeados por Puntos" });
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
 
@@ -613,6 +729,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[60] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerTiendaViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 8.2
@@ -629,6 +747,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[62] == 1)
                 _windowManager.ShowWindow(new Almacen.BuscarTipoZonaViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 8.4
@@ -637,6 +757,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[63] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerLineaProductoViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 8.5
@@ -645,6 +767,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[64] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerSubLineaProductoViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 8.6
@@ -653,6 +777,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[65] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerMotivoViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         //Ventana Externa: 8.7
@@ -661,6 +787,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[66] == 1)
                 _windowManager.ShowWindow(new Almacen.MantenerUnidadMedidaViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
 
@@ -669,6 +797,7 @@ namespace MadeInHouse.ViewModels
             //CargarAccesosRol(out accVentana);
             //if (accVentana[67] == 1)
                 _windowManager.ShowWindow(new Almacen.BuscarTiendaViewModel());
+
         }
 
         //Ventana Externa: 8.9  ASOCIADO A VENTAS!!!!!!!!
@@ -677,6 +806,8 @@ namespace MadeInHouse.ViewModels
             CargarAccesosRol(out accVentana);
             if (accVentana[27] == 1)
                 _windowManager.ShowWindow(new Ventas.MantenerIgvPuntosViewModel());
+            else
+                MessageBox.Show("No tiene permisos para abrir esta Ventana");
         }
 
         #endregion Configuracion
