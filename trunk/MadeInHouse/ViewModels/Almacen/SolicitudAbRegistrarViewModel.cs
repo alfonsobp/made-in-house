@@ -220,7 +220,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void SeleccionarProductos()
         {
-            _windowManager.ShowWindow(new ProductoBuscarViewModel(this));
+            _windowManager.ShowWindow(new ProductoBuscarViewModel(_windowManager, this));
         }
 
         public void GuardarSolicitud()

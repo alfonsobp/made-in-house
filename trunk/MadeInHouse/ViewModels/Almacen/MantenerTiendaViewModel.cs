@@ -701,7 +701,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void BuscarProductos()
         {
             MadeInHouse.Models.MyWindowManager wm = new Models.MyWindowManager();
-            wm.ShowWindow(new ProductoBuscarViewModel(this, 2));
+            wm.ShowWindow(new ProductoBuscarViewModel(wm, this, 2));
         }
 
         public void Agregar()

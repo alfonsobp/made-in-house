@@ -1,25 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using MadeInHouse.Models;
-using MadeInHouse.Models.Almacen;
-using MadeInHouse.Views.Almacen;
-using System.Windows;
-using System.Collections.ObjectModel;
-using System.Windows.Controls;
+﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
+using MadeInHouse.Models.Almacen;
+using MadeInHouse.ViewModels.Layouts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(SolicitudAbListadoViewModel))]
     class BuscarGuiasRemisionViewModel : PropertyChangedBase
     {
+        #region constructores
 
+        [ImportingConstructor]
+        public BuscarGuiasRemisionViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+            //ActualizarGuiaRemision();
+        }
 
-        //Atributos
-        private MyWindowManager win = new MyWindowManager();
+        public BuscarGuiasRemisionViewModel(IWindowManager windowmanager, MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p)
+            : this(windowmanager)
+        {
+            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.Accion = p;
+        }
+
+        #endregion
+
+        #region atributos
+
+        private readonly IWindowManager _windowManager;
 
         private string txtCodigo;
         public string TxtCodigo
@@ -80,33 +93,22 @@ namespace MadeInHouse.ViewModels.Almacen
             set { accion = value; }
         }
 
-        public BuscarGuiasRemisionViewModel() 
-        {
-            //ActualizarGuiaRemision();
-        }
+        #endregion
 
         public void BuscarAlmacen()
         {
-
-                MyWindowManager w = new MyWindowManager();
-                w.ShowWindow(new BuscarAlmacenViewModel(this));
-        }
-
-        public BuscarGuiasRemisionViewModel(MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int p):this()
-        {
-            this.mantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
-            this.Accion = p;
+            _windowManager.ShowWindow(new BuscarAlmacenViewModel(this));
         }
 
         public void SelectedItemChanged(object sender)
         {
             guiaSeleccionada = ((sender as DataGrid).SelectedItem as GuiaRemision);
-
         }
 
         public void Acciones(object sender)
         {
-            if (accion == 1) {
+            if (accion == 1)
+            {
                 guiaSeleccionada = ((sender as DataGrid).SelectedItem as GuiaRemision);
                 if (mantenerNotaDeIngresoViewModel != null)
                 {
@@ -119,12 +121,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void AbrirMantenerGuiaDeRemision()
         {
-            
-            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel() ;
-            win.ShowWindow(abrirGuiaView);
-
+            _windowManager.ShowWindow(new MantenerGuiaDeRemisionViewModel(_windowManager));
         }
-
 
         public void BuscarGuiaRemision()
         {
@@ -149,8 +147,8 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     for (int i = 0; i < list.Count; i++)
                     {
-                            if (list[i].NombOrigen.Equals(Alm.Nombre))
-                                NewList.Add(list[i]);
+                        if (list[i].NombOrigen.Equals(Alm.Nombre))
+                            NewList.Add(list[i]);
                     }
 
                     if (NewList != null)
@@ -171,8 +169,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void EditarGuiaDeRemision()
         {
-            Almacen.MantenerGuiaDeRemisionViewModel abrirGuiaView = new Almacen.MantenerGuiaDeRemisionViewModel(guiaSeleccionada);
-            win.ShowWindow(abrirGuiaView);
+            _windowManager.ShowWindow(new MantenerGuiaDeRemisionViewModel(_windowManager, guiaSeleccionada));
             ActualizarGuiaRemision();
         }
 
@@ -191,8 +188,7 @@ namespace MadeInHouse.ViewModels.Almacen
             if (guiaSeleccionada != null)
             {
                 guiaSeleccionada.Estado = 2;
-                Almacenes almDesp = new Almacenes(); 
-
+                Almacenes almDesp = new Almacenes();
 
                 int k = new GuiaDeRemisionSQL().editarGuiaDeRemision(guiaSeleccionada);
 
@@ -200,19 +196,19 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     if (guiaSeleccionada.Nota != null)
                     {
-                        MessageBox.Show("Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nAlmacen despachador = " + guiaSeleccionada.NombOrigen +
-                                        "\nAlmacen receptor = " + guiaSeleccionada.Almacen.Nombre);
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nAlmacen despachador = " + guiaSeleccionada.NombOrigen +
+                                        "\nAlmacen receptor = " + guiaSeleccionada.Almacen.Nombre));
                     }
                     else
-                        MessageBox.Show("Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nTienda despachadora = " + guiaSeleccionada.NombOrigen +
-                                        "\nDireccion de despacho = " + guiaSeleccionada.Destino);
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Guia RECIBIA satisfactoriamente \nCódigo Guia = " + guiaSeleccionada.CodGuiaRem + "\nTienda despachadora = " + guiaSeleccionada.NombOrigen +
+                                        "\nDireccion de despacho = " + guiaSeleccionada.Destino));
                 }
 
             }
 
             else
             {
-                MessageBox.Show("Seleccione una GUIA que fue RECIBIDA satisfactoriamente");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Seleccione una GUIA que fue RECIBIDA satisfactoriamente"));
             }
         }
     }

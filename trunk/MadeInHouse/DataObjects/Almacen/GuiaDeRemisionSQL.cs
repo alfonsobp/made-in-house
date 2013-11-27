@@ -88,7 +88,7 @@ namespace MadeInHouse.DataObjects.Almacen
                         int idOrd = Convert.ToInt32(reader["idOrdenDespacho"].ToString());
                         g.Orden = getORDENfromIDorden(idOrd);
                         //Venta v = new MantenerGuiaDeRemisionViewModel().getVentafromID(g.Orden.Venta.IdVenta);
-                        Usuario u = new MantenerGuiaDeRemisionViewModel().getUsuariofromID(g.Orden.Venta.IdUsuario);
+                        Usuario u = new MantenerGuiaDeRemisionViewModel(new MyWindowManager()).getUsuariofromID(g.Orden.Venta.IdUsuario);
                         g.TiendaOrigen = BuscarTIENfromID(u.IdTienda);
                         g.NombOrigen = (BuscarALMDEPfromIdTienda(u.IdTienda)).Nombre;
                         g.Destino = BuscarDIRromIDCli(g.Orden.Venta.IdCliente);

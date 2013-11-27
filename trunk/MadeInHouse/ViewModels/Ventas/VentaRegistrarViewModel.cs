@@ -667,7 +667,7 @@ namespace MadeInHouse.ViewModels.Ventas
         public void BuscarProducto()
         {
             MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new ProductoBuscarViewModel(this,1));
+            w.ShowWindow(new ProductoBuscarViewModel(w,this,1));
         }
 
         public void BuscarServicio()
