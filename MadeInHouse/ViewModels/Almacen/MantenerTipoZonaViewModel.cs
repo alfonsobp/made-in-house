@@ -9,11 +9,42 @@ using System.Windows;
 using Caliburn.Micro;
 using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.Models.Almacen;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(MantenerTipoZonaViewModel))]
     class MantenerTipoZonaViewModel : PropertyChangedBase, IDataErrorInfo
     {
+        #region constructores
+
+        [ImportingConstructor]
+        public MantenerTipoZonaViewModel()
+        {
+            cmbColor = gateway.BuscarZona();
+            cambioColorNombre();
+            //Nuevo
+            indicador = 1;
+
+        }
+        private BuscarTipoZonaViewModel buscarTipoZonaViewModel;
+        private int accion = 0;
+        public MantenerTipoZonaViewModel(IWindowManager windowmanager, BuscarTipoZonaViewModel buscarTipoZonaViewModel, int p)
+            : this()
+        {
+            // TODO: Complete member initialization
+            this.buscarTipoZonaViewModel = buscarTipoZonaViewModel;
+            this.CmbColorSelected = null;
+            this.TxtNombre = buscarTipoZonaViewModel.TipoZonaSeleccionada.Nombre;
+            this.TxtIdTipoZona = buscarTipoZonaViewModel.TipoZonaSeleccionada.IdTipoZona;
+            this.accion = p;
+        }
+
+        #endregion
+
+        private readonly IWindowManager _windowManager;
+
         private TipoZona tipoZonaSeleccionada;
         
         private DataObjects.Almacen.ColorSQL gateway= new DataObjects.Almacen.ColorSQL();
@@ -121,25 +152,7 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
        
-        public MantenerTipoZonaViewModel()
-        {
-            cmbColor = gateway.BuscarZona();
-            cambioColorNombre();
-            //Nuevo
-            indicador = 1;
-                    
-        }
-        private BuscarTipoZonaViewModel buscarTipoZonaViewModel;
-        private int accion=0;
-        public MantenerTipoZonaViewModel(BuscarTipoZonaViewModel buscarTipoZonaViewModel, int p):this()
-        {
-            // TODO: Complete member initialization
-            this.buscarTipoZonaViewModel = buscarTipoZonaViewModel;
-            this.CmbColorSelected = null;
-            this.TxtNombre = buscarTipoZonaViewModel.TipoZonaSeleccionada.Nombre;
-            this.TxtIdTipoZona = buscarTipoZonaViewModel.TipoZonaSeleccionada.IdTipoZona;
-            this.accion = p;
-        }
+        
         Validacion.Evaluador eval = new Validacion.Evaluador();
 
         public void AgregarTipoZona()
@@ -152,19 +165,19 @@ namespace MadeInHouse.ViewModels.Almacen
                 
                 if (!eval.evalString(zona.Nombre))
                 {
-                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Algunos de los valores no es correcto, verifique e intente de nuevo"));
                     return;
                 }
                 
                 if (cmbColorSelected == null) {
-                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Algunos de los valores no es correcto, verifique e intente de nuevo"));
                     return;
                 }
 
                 zona.IdColor = gateway.BuscarZona(this.cmbColorSelected).IdColor;
                 TipoZonaSQL gw = new TipoZonaSQL();
                 gw.agregarTipoZona(zona);
-                MessageBox.Show("Zona agregada Correctamete");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Zona agregada Correctamete"));
             }
             if (accion == 1) {
                 TipoZona zona = new TipoZona();
@@ -173,13 +186,13 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 if (!eval.evalString(zona.Nombre))
                 {
-                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Algunos de los valores no es correcto, verifique e intente de nuevo"));
                     return;
                 }
 
                 if (cmbColorSelected == null)
                 {
-                    MessageBox.Show("Algunos de los valores no es correcto, verifique e intente de nuevo");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Algunos de los valores no es correcto, verifique e intente de nuevo"));
                     return;
                 }
 
@@ -187,7 +200,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 zona.Color = this.cmbColorSelected;
                 TipoZonaSQL gw = new TipoZonaSQL();
                 gw.modificarTipoZona(zona);
-                MessageBox.Show("Zona agregada Correctamete");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Zona agregada Correctamete"));
             }
         }
 

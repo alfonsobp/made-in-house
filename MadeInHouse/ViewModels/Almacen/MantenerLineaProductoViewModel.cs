@@ -9,15 +9,23 @@ using MadeInHouse.DataObjects.Almacen;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-
+    [Export(typeof(MantenerLineaProductoViewModel))]
     class MantenerLineaProductoViewModel : PropertyChangedBase,IDataErrorInfo
     {
+        [ImportingConstructor]
+        public MantenerLineaProductoViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+        }
 
-        private MadeInHouse.Models.MyWindowManager win = new MadeInHouse.Models.MyWindowManager();
+        private readonly IWindowManager _windowManager;
+
         private LineaProductoSQL lpSQL = null;
         
         private string txtNombre;
@@ -45,7 +53,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void GuardarProducto()
         {
             if (string.IsNullOrWhiteSpace(TxtNombre) || string.IsNullOrWhiteSpace(TxtAbrv) || LstSubLinea == null) {
-                MessageBox.Show("Inserte Valores validos o inserte minimo una SubLinea");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Inserte Valores validos o inserte minimo una SubLinea"));
                 return;
             }
             LineaProducto lp = new LineaProducto();
@@ -73,10 +81,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public void AgregarSubLinea()
         {
             if (string.IsNullOrWhiteSpace(TxtNombre)) {
-                MessageBox.Show("Ingrese en Nombre una cadena no vacia");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ingrese en Nombre una cadena no vacia"));
                 return;
             }
-            win.ShowWindow(new MantenerSubLineaProductoViewModel(this));   
+            _windowManager.ShowWindow(new MantenerSubLineaProductoViewModel(_windowManager, this));
         }
 
         public void ActualizaTablaSubLineas(SubLineaProducto slp)
@@ -103,12 +111,12 @@ namespace MadeInHouse.ViewModels.Almacen
         public void GuardarLineaProducto()
         {
             if (string.IsNullOrWhiteSpace(TxtAbrv) || string.IsNullOrWhiteSpace(TxtNombre) || LstSubLinea == null) {
-                MessageBox.Show("Datos no validos, ingrese minimo una Sublinea");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Datos no validos, ingrese minimo una Sublinea"));
                 return;
             }
             if (LstSubLinea != null) {
                 if (LstSubLinea.Count == 0) {
-                    MessageBox.Show("Datos no validos, ingrese minimo una Sublinea");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Datos no validos, ingrese minimo una Sublinea"));
                     return;
                 }
             }
@@ -145,7 +153,7 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstSubLinea = new List<SubLineaProducto>(LstSubLinea);   
             }
             else {
-                MessageBox.Show("No se ha seleccionado ninguna Zona");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se ha seleccionado ninguna Zona"));
             }
         }
  

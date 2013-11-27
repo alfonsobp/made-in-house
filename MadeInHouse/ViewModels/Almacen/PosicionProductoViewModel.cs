@@ -15,11 +15,62 @@ using MadeInHouse.Models.Seguridad;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(SolicitudAbListadoViewModel))]
     class PosicionProductoViewModel : PropertyChangedBase
     {
+        #region constructores
+
+        [ImportingConstructor]
+        public PosicionProductoViewModel(IWindowManager windowmanager, object sender, int accion)
+        {
+            _windowManager = windowmanager;
+            this.accion = accion;
+            if (accion == 1)
+            {
+                this.mantenerNotaDeIngresoViewModel = (sender as MantenerNotaDeIngresoViewModel);
+                this.LstProductos = (sender as MantenerNotaDeIngresoViewModel).LstProductos;
+                ImSource = "/Assets/add.png";
+                Ejecutar = "Agregar";
+
+            }
+            else
+            {
+                this.mantenerNotaDeSalidaViewModel = (sender as MantenerNotaDeSalidaViewModel);
+                this.LstProductos = (sender as MantenerNotaDeSalidaViewModel).LstProductos;
+                ImSource = "/Assets/minus.png";
+                Ejecutar = "Disminuir";
+
+            }
+
+            Usuario u = new Usuario();
+            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
+
+            idTienda = u.IdTienda;
+            aSQL = new AlmacenSQL();
+            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda == 0 ? -1 : idTienda, idTienda == 0 ? 3 : 1);
+
+            id = deposito.IdAlmacen;
+
+            NumColumns = deposito.NroColumnas;
+            NumRows = deposito.NroFilas;
+            Altura = deposito.Altura;
+
+            tzSQL = new TipoZonaSQL();
+            LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
+
+            Accion2 = 2;
+            Accion1 = 2;
+            Enable = true;
+        }
+
+        #endregion
+
+        private readonly IWindowManager _windowManager;
         List<ProductoCant> lstProductos;
 
         public List<ProductoCant> LstProductos
@@ -240,51 +291,12 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Disminuir(DynamicGrid ubicacionCol, DynamicGrid almacen)
         {
-            MessageBox.Show("funciono");
+            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "funciono"));
         }
 
         private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
 
-        public PosicionProductoViewModel(object sender, int accion)
-        {
-            this.accion = accion;
-            if (accion == 1)
-            {
-                this.mantenerNotaDeIngresoViewModel = (sender as MantenerNotaDeIngresoViewModel);
-                this.LstProductos = (sender as MantenerNotaDeIngresoViewModel).LstProductos;
-                ImSource = "/Assets/add.png";
-                Ejecutar = "Agregar";
-
-            }
-            else
-            {
-                this.mantenerNotaDeSalidaViewModel = (sender as MantenerNotaDeSalidaViewModel);
-                this.LstProductos = (sender as MantenerNotaDeSalidaViewModel).LstProductos;
-                ImSource = "/Assets/minus.png";
-                Ejecutar = "Disminuir";
-
-            }
-            
-            Usuario u = new Usuario();
-            u = DataObjects.Seguridad.UsuarioSQL.buscarUsuarioPorIdUsuario(Int32.Parse(Thread.CurrentPrincipal.Identity.Name));
-
-            idTienda = u.IdTienda;
-            aSQL = new AlmacenSQL();
-            Almacenes deposito = aSQL.BuscarAlmacen(-1, idTienda==0 ? -1:idTienda , idTienda == 0 ? 3 : 1);
-
-            id = deposito.IdAlmacen;
-
-            NumColumns = deposito.NroColumnas;
-            NumRows = deposito.NroFilas;
-            Altura = deposito.Altura;
-
-            tzSQL = new TipoZonaSQL();
-            LstZonas = tzSQL.ObtenerZonasxAlmacen(deposito.IdAlmacen);
-
-            Accion2 = 2;
-            Accion1 = 2;
-            Enable = true;
-        }
+        
 
         private bool enable;
 
@@ -303,7 +315,7 @@ namespace MadeInHouse.ViewModels.Almacen
             int exito=0;
             if (String.IsNullOrEmpty(CantIngresar))
             {
-                MessageBox.Show("Debe ingresar una cantidad");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe ingresar una cantidad"));
                 return;
             }
 
@@ -311,8 +323,10 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 if (int.Parse(selectedProduct.CanAtender) < int.Parse(CantIngresar))
                 {
-                  if (accion==1)  System.Windows.MessageBox.Show("La cantidad que se intenta ingresar es mayor a la cantidad pendiente");
-                  else System.Windows.MessageBox.Show("La cantidad que se intenta retirar es mayor a la cantidad pendiente");
+                    if (accion == 1)
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La cantidad que se intenta ingresar es mayor a la cantidad pendiente"));
+                    else
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La cantidad que se intenta retirar es mayor a la cantidad pendiente"));
                 }
                 
                 else
@@ -359,7 +373,7 @@ namespace MadeInHouse.ViewModels.Almacen
             util.LimpiarTabla("TemporalUbicacion");
 
             trans.Commit();
-            System.Windows.MessageBox.Show("Se guardo el stock");
+            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se guardo el stock"));
         }
 
 

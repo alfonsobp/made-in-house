@@ -19,6 +19,7 @@ using MadeInHouse.DataObjects.Ventas;
 using MadeInHouse.DataObjects.Seguridad;
 using MadeInHouse.Dictionary;
 using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -275,7 +276,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             else
             {
-                MessageBox.Show("Transacción única para NOTAS DE SALIDA");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Transacción única para NOTAS DE SALIDA"));
             }
 
 
@@ -325,38 +326,34 @@ namespace MadeInHouse.ViewModels.Almacen
             if (seleccionadoTipo != null)
                 if (SeleccionadoTipo.Equals("GR-TRASLADO EXTERNO"))
                 {
-                    MyWindowManager w = new MyWindowManager();
-                    w.ShowWindow(new BuscarAlmacenViewModel(this));
+                    _windowManager.ShowWindow(new BuscarAlmacenViewModel(_windowManager, this));
                 }
 
                 else
                 {
-                    MessageBox.Show("Es un traslado por ORDEN DE DESPACHO \nNo entre ALMACENES");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Es un traslado por ORDEN DE DESPACHO \nNo entre ALMACENES"));
                 }
             else 
             {
-                MessageBox.Show("No se Selecciona tipo de la Guia");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se Selecciona tipo de la Guia"));
             }
         }
 
         public void BuscarNota()
         {
-            MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new BuscarNotasViewModel(w,this));
-            
+            _windowManager.ShowWindow(new BuscarNotasViewModel(_windowManager, this));
         }
 
         public void BuscarOrden()
         {
-            MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new BuscarOrdenDespachoViewModel(this));
+            _windowManager.ShowWindow(new BuscarOrdenDespachoViewModel(_windowManager, this));
         }
 
         public void BuscarNotaOrden()
         {
             if (String.IsNullOrEmpty(SeleccionadoTipo))
             {
-                MessageBox.Show("Seleccione el TIPO de traslado");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Seleccione el TIPO de traslado"));
             }
 
             else
@@ -409,29 +406,29 @@ namespace MadeInHouse.ViewModels.Almacen
                         indicador = 0;
 
                         if (k == 0)
-                            MessageBox.Show("Ocurrio un error");
+                            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ocurrio un error"));
                         else
                         {
-                            MessageBox.Show("Guia de Remision Registrada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
+                            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Guia de Remision Registrada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
                                             "\nTipo Guia = " + seleccionadoTipo + "\nConductor = " + txtConductor + "\nCamion= " +
-                                            seleccionadoCamion + "\nObservaciones = " + txtObservaciones);
+                                            seleccionadoCamion + "\nObservaciones = " + txtObservaciones));
                         }
                     }
 
                     else
                     {
                         if (TxtTienda == null)
-                            MessageBox.Show("Ingrese DATOS faltantes");
-                        
+                            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ingrese DATOS faltantes"));
+
                         if (Orden == null)
-                            MessageBox.Show("Ingrese DATOS faltantes");
+                            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ingrese DATOS faltantes"));
                     }
 
                 }
 
                 else
                 {
-                    MessageBox.Show("Ingrese datos VALIDOS, por favor REVISAR");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ingrese datos VALIDOS, por favor REVISAR"));
                 }
             }
 
@@ -441,11 +438,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 k = new GuiaDeRemisionSQL().editarGuiaDeRemision(g);
 
                 if (k == 0)
-                    MessageBox.Show("Ocurrio un error");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ocurrio un error"));
                 else
-                    MessageBox.Show("Guia de Remision Actualizada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Guia de Remision Actualizada \n\nCodigo = " + txtCodigo + "\nFecha de Registro = " + txtFechaReg + "\nDireccion Partida = " + txtDirPartida +
                                     "\nTipo Guia = " + cbTipo + "\nConductor = " + txtConductor + "\nCamion= " +
-                                     cbCamion + "\nObservaciones = " + txtObservaciones);
+                                     cbCamion + "\nObservaciones = " + txtObservaciones));
             }
             
         }
@@ -515,7 +512,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     }
                     catch (Exception e)
                     {
-                        MessageBox.Show("No se pudo imprimir Guia \nRevisar conexiones");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo imprimir Guia \nRevisar conexiones"));
                     }
                 
             }

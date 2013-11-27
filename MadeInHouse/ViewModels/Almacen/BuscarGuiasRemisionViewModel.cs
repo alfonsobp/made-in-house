@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-    [Export(typeof(SolicitudAbListadoViewModel))]
+    [Export(typeof(BuscarGuiasRemisionViewModel))]
     class BuscarGuiasRemisionViewModel : PropertyChangedBase
     {
         #region constructores
@@ -97,7 +97,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void BuscarAlmacen()
         {
-            _windowManager.ShowWindow(new BuscarAlmacenViewModel(this));
+            _windowManager.ShowWindow(new BuscarAlmacenViewModel(_windowManager, this));
         }
 
         public void SelectedItemChanged(object sender)

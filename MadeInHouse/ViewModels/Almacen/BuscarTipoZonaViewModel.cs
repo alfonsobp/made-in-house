@@ -11,11 +11,12 @@ using System.Windows.Controls;
 using Caliburn.Micro;
 using MadeInHouse.Models;
 using MadeInHouse.Models.Almacen;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
-
-
+    [Export(typeof(BuscarTipoZonaViewModel))]
     class BuscarTipoZonaViewModel : PropertyChangedBase
     {
         public class ExtendedZona : TipoZona {
@@ -29,10 +30,38 @@ namespace MadeInHouse.ViewModels.Almacen
               
         }
 
+        #region constructores
+
+        [ImportingConstructor]
+        public BuscarTipoZonaViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+            gateway = new DataObjects.Almacen.TipoZonaSQL();
+            gw = new DataObjects.Almacen.ColorSQL();
+
+            ObservableCollection<TipoZona> listaTipoZonaExt = new ObservableCollection<TipoZona>();
+            listaTipoZonaExt = gateway.BuscarZona();
+
+            listaTipoZona = new ObservableCollection<ExtendedZona>();
+            foreach (TipoZona p in listaTipoZonaExt)
+            {
+                ExtendedZona exp = new ExtendedZona();
+                exp.Color = p.Color;
+                exp.IdColor = p.IdColor;
+                exp.IdTipoZona = p.IdTipoZona;
+                exp.Nombre = p.Nombre;
+                exp.NombreColor = gw.BuscarZona(p.Color).Nombre;
+                listaTipoZona.Add(exp);
+            }
+
+        }
+
+        #endregion
+
+        private readonly IWindowManager _windowManager;
         private DataObjects.Almacen.TipoZonaSQL gateway;
 
         private DataObjects.Almacen.ColorSQL gw;
-        private MyWindowManager win = new MyWindowManager();
 
 
         private ObservableCollection<ExtendedZona> listaTipoZona;
@@ -44,25 +73,6 @@ namespace MadeInHouse.ViewModels.Almacen
             set { tipoZonaSeleccionada = value; }
         }
 
-        public BuscarTipoZonaViewModel() {
-            gateway = new DataObjects.Almacen.TipoZonaSQL();
-            gw = new DataObjects.Almacen.ColorSQL();
-
-            ObservableCollection<TipoZona> listaTipoZonaExt = new ObservableCollection<TipoZona>();
-            listaTipoZonaExt = gateway.BuscarZona();
-
-            listaTipoZona = new ObservableCollection<ExtendedZona>();
-            foreach (TipoZona p in listaTipoZonaExt) {
-                ExtendedZona exp = new ExtendedZona();
-                exp.Color = p.Color;
-                exp.IdColor = p.IdColor;
-                exp.IdTipoZona = p.IdTipoZona;
-                exp.Nombre = p.Nombre;
-                exp.NombreColor = gw.BuscarZona(p.Color).Nombre;
-                listaTipoZona.Add(exp);
-            }
-            
-        }
 
         public ObservableCollection<ExtendedZona> ListaTipoZona
         {
@@ -85,9 +95,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void AbrirNuevaZona()
         {
-
-            win.ShowWindow(new Almacen.MantenerTipoZonaViewModel());
-
+            _windowManager.ShowWindow(new MantenerTipoZonaViewModel());
         }
 
         public void Eliminar()
@@ -100,11 +108,11 @@ namespace MadeInHouse.ViewModels.Almacen
                 a = gateway.eliminarTipoZona(tz as TipoZona);
                 if (a > 0) listaTipoZona.Remove(tz);
                 else {
-                    MessageBox.Show("No se pudo borrar borrar el tipo de zona porque esta siendo usado");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo borrar borrar el tipo de zona porque esta siendo usado"));
                 }
             }
             else {
-                MessageBox.Show("No se ha seleccionado ninguna Zona");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se ha seleccionado ninguna Zona"));
             }
         }
 
@@ -118,11 +126,10 @@ namespace MadeInHouse.ViewModels.Almacen
         public void EditarTipoZona()
         {
             if (tipoZonaSeleccionada == null) {
-                MessageBox.Show("No se ha seleccionado ninguna zona a modificar");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se ha seleccionado ninguna zona a modificar"));
                 return; 
             }
-            Almacen.MantenerTipoZonaViewModel obj = new Almacen.MantenerTipoZonaViewModel (this,1);
-            win.ShowWindow(obj);
+            _windowManager.ShowWindow(new MantenerTipoZonaViewModel(_windowManager, this, 1));
         }
         string codigo;
 
@@ -152,7 +159,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
             ObservableCollection<TipoZona> listaTipoZonaExt = new ObservableCollection<TipoZona>();
             if (!eval.esNumeroEntero(codigo)) {
-                MessageBox.Show("Ingrese en codigo un numero entero valido");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ingrese en codigo un numero entero valido"));
                 return;
             }
             listaTipoZonaExt = gateway.BuscarZona(int.Parse(codigo), descripcion);
@@ -167,7 +174,8 @@ namespace MadeInHouse.ViewModels.Almacen
                 exp.NombreColor = gw.BuscarZona(p.Color).Nombre;
                 listaTipoZona.Add(exp);
             }
-            if (listaTipoZona.Count() == 0) MessageBox.Show("La busqueda no retorno items. Intente con nuevos parametro");
+            if (listaTipoZona.Count() == 0)
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La busqueda no retorno items. Intente con nuevos parametro"));
             NotifyOfPropertyChange("ListaTipoZona");
         }
 

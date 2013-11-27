@@ -7,12 +7,33 @@ using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using MadeInHouse.Models.Almacen;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(SolicitudAbListadoViewModel))]
     class MantenerSubLineaProductoViewModel :PropertyChangedBase,IDataErrorInfo
     {
+        #region constructores
 
+        public MantenerSubLineaProductoViewModel(IWindowManager windowmanager) {
+            _windowManager = windowmanager;
+        }
+
+        /*Creacion a partir de linea producto*/
+        public MantenerSubLineaProductoViewModel(IWindowManager windowmanager, MantenerLineaProductoViewModel lp):this(windowmanager)
+        {
+
+            Estado = false;
+            lineasProducto.Add(lp.TxtNombre, 0);
+
+            lpVM = lp;
+        }
+
+        #endregion
+
+        private readonly IWindowManager _windowManager;
         private Dictionary<string, int> lineasProducto = new Dictionary<string, int>();
         private MantenerLineaProductoViewModel lpVM;
 
@@ -56,22 +77,12 @@ namespace MadeInHouse.ViewModels.Almacen
 
 
 
-        public MantenerSubLineaProductoViewModel() { }
-
-        /*Creacion a partir de linea producto*/
-        public MantenerSubLineaProductoViewModel(MantenerLineaProductoViewModel lp)
-        {
-
-            Estado = false;
-            lineasProducto.Add(lp.TxtNombre, 0);
-            
-            lpVM=lp;
-        }
+        
         
         public void GuardarSubLinea()
         {
             if (string.IsNullOrWhiteSpace(TxtAbrv) || string.IsNullOrWhiteSpace(TxtNombre)) {
-                MessageBox.Show("Ingrese valores validos en los campos");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ingrese valores validos en los campos"));
                 return;
             }
             

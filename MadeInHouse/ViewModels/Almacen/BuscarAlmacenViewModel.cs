@@ -11,23 +11,38 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using MadeInHouse.DataObjects.Almacen;
+using System.ComponentModel.Composition;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(BuscarAlmacenViewModel))]
     class BuscarAlmacenViewModel:Screen
     {
+        #region constructores
+
+        [ImportingConstructor]
+        public BuscarAlmacenViewModel(IWindowManager windowmanager)
+        {
+            _windowManager = windowmanager;
+        }
+
         MantenerGuiaDeRemisionViewModel g;
-        public BuscarAlmacenViewModel(MantenerGuiaDeRemisionViewModel g)
+        public BuscarAlmacenViewModel(IWindowManager windowmanager, MantenerGuiaDeRemisionViewModel g)
+            : this(windowmanager)
         {
             this.g = g;
         }
 
         BuscarGuiasRemisionViewModel b;
-        public BuscarAlmacenViewModel(BuscarGuiasRemisionViewModel b)
+        public BuscarAlmacenViewModel(IWindowManager windowmanager, BuscarGuiasRemisionViewModel b)
+            : this(windowmanager)
         {
             this.b = b;
         }
 
+        #endregion
+
+        private readonly IWindowManager _windowManager;
         //Atributos
         private string txtCodigo;
         public string TxtCodigo

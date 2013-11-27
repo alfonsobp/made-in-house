@@ -6,14 +6,17 @@
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             mc:Ignorable="d" d:designHeight="468" d:designWidth="761.5" Height="644" Width="1251">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Ubicar producto" />
-            <Grid Margin="0,0,1,0" Height="609" HorizontalAlignment="Right" Width="1246">
-
-
-                <ToolBar VerticalAlignment="Top" Height="41">
+             mc:Ignorable="d" d:designHeight="468" d:designWidth="761.5">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Ubicar producto" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -30,80 +33,95 @@
                         </i:Interaction.Triggers>
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                    </Button>
-                    <Button Height="30" Width="30">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                    </Button>
                 </ToolBar>
-                <TextBox x:Name="CantIngresar"  HorizontalAlignment="Right" Height="26" Margin="0,0,225,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
-                <TextBox x:Name="VolIngresar" IsEnabled="{Binding Enable}" HorizontalAlignment="Right" Height="26" Margin="0,0,87,409" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="62"/>
-                <Label Content="Cant." HorizontalAlignment="Right" Margin="0,0,292,409" VerticalAlignment="Bottom" Height="26" Width="46"/>
-                <Label Content="Vol." HorizontalAlignment="Right" Margin="0,0,167,409" VerticalAlignment="Bottom" Height="26" Width="33"/>
-                <Label Content="Distribuón en almacén" HorizontalAlignment="Right" Margin="0,68,761,0" VerticalAlignment="Top" Height="26" Width="136"/>
-                <Label Content="Ubicacion" HorizontalAlignment="Right" Margin="0,0,276,457" VerticalAlignment="Bottom" Height="26" Width="62"/>
-                <Button HorizontalAlignment="Right" Margin="0,0,10,409" VerticalAlignment="Bottom" Width="43" Height="26">
-                    <Image Source="{Binding ImSource}"  />
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <cal:ActionMessage MethodName="Agregar" >
-                                <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
-                                <cal:Parameter Value="{Binding ElementName=Almacen}" />
-                            </cal:ActionMessage>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-                <DataGrid x:Name="LstProductosGrid" ItemsSource="{Binding Path=LstProductos}" Margin="0,68,922,0" HeadersVisibility="Column" HorizontalAlignment="Right" Width="304" Height="488" VerticalAlignment="Top" AutoGenerateColumns="False"
-                                      SelectedItem="{Binding Path=SelectedProduct,Mode=TwoWay}"
-                                       >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="SelectionChanged">
-                            <cal:ActionMessage MethodName="SelectedItemChanged" >
-                                <cal:Parameter Value="{Binding ElementName=LstProductosGrid}" />
-                                <cal:Parameter Value="{Binding ElementName=Almacen}" />
-                                <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
-                            </cal:ActionMessage>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=CodigoProd}" IsReadOnly="True" Header="Codigo" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=Nombre}" IsReadOnly="True" Header="Nombre" Width="73"/>
-                        <DataGridTextColumn Binding="{Binding Path=CanAtender}" IsReadOnly="True" Header="A Mover" Width="73"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <ScrollViewer HorizontalAlignment="Left" Height="444"  VerticalAlignment="Bottom" Width="530" HorizontalScrollBarVisibility="Visible" Margin="349,0,0,53">
-                    <Grid>
-                        <grid:DynamicGrid  x:Name="Almacen" Tipo="1" 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="322*"/>
+                        <ColumnDefinition Width="566*"/>
+                        <ColumnDefinition Width="331*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="LstProductosGrid" ItemsSource="{Binding Path=LstProductos}"
+                              Margin="10" HeadersVisibility="Column" Width="220"
+                              AutoGenerateColumns="False" SelectedItem="{Binding Path=SelectedProduct,Mode=TwoWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <cal:ActionMessage MethodName="SelectedItemChanged" >
+                                    <cal:Parameter Value="{Binding ElementName=LstProductosGrid}" />
+                                    <cal:Parameter Value="{Binding ElementName=Almacen}" />
+                                    <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Path=CodigoProd}" IsReadOnly="True" Header="Codigo" Width="73"/>
+                            <DataGridTextColumn Binding="{Binding Path=Nombre}" IsReadOnly="True" Header="Nombre" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Path=CanAtender}" IsReadOnly="True" Header="A Mover" Width="73"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Distribuón en almacén" Grid.Column="1" Margin="10">
+                        <Border BorderBrush="Black" BorderThickness="1" Margin="10" Width="400" Height="400">
+                            <ScrollViewer HorizontalScrollBarVisibility="Visible">
+                                <Grid>
+                                    <grid:DynamicGrid  x:Name="Almacen" Tipo="1" 
                                            ColumnaU="{Binding ColumnaU,Mode=TwoWay}"
                                            ColorAntU="{Binding ColorAnt,Mode=TwoWay}"
                                            Altura="{Binding Altura}" IdZona="{Binding Zona}"  NumRows="{Binding NumRows}" NumColumns="{Binding NumColumns}" 
                                            AlturaU="{Binding AlturaU,Mode=TwoWay}" NumRowsU="{Binding NumRowsU,Mode=TwoWay}" NumColumnsU="{Binding NumColumnsU,Mode=TwoWay}"
                                            Accion="{Binding Accion1}" Background="{Binding Fondo, FallbackValue=Green}" lstZonas="{Binding LstZonas}"   ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                        </grid:DynamicGrid>
-
-                    </Grid>
-                </ScrollViewer>
-                <ScrollViewer HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251">
-                    <grid:DynamicGrid  x:Name="UbicacionCol" Tipo="2"
+                                    </grid:DynamicGrid>
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </GroupBox>
+                    <GroupBox Header="Ubicacion" Grid.Column="2" Margin="10">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Cantidad:" Height="25" />
+                            <Label Content="Volumen (%):" Height="25" Grid.Column="1" />
+                            <Label Content="Cantidad&#xD;&#xA;Actual:" Height="50" Grid.Row="2" />
+                            <Label Content="Volumen&#xD;&#xA;Actual (%):" Height="50" Grid.Row="2" Grid.Column="1" />
+                            <TextBox x:Name="CantIngresar" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="1"/>
+                            <TextBox x:Name="VolIngresar" IsEnabled="{Binding Enable}" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="1" Grid.Column="1"/>
+                            <TextBox x:Name="TxtCantActual" IsEnabled="False" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="3" />
+                            <TextBox x:Name="TxtVolActual"  IsEnabled="False" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="3" Grid.Column="1"/>
+                            <Button Margin="4" Width="25" Height="25" Grid.Column="2">
+                                <Image Source="{Binding ImSource}"  />
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <cal:ActionMessage MethodName="Agregar" >
+                                            <cal:Parameter Value="{Binding ElementName=UbicacionCol}" />
+                                            <cal:Parameter Value="{Binding ElementName=Almacen}" />
+                                        </cal:ActionMessage>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                            <Border BorderBrush="Black" BorderThickness="1" Height="280" Grid.Row="4" Grid.ColumnSpan="3">
+                                <ScrollViewer>
+                                    <grid:DynamicGrid  x:Name="UbicacionCol" Tipo="2"
                                        ColorAntU="{Binding ColorAnt, Mode=TwoWay}"
                                        Columna="{Binding ColumnaU}" Accion="{Binding Accion2}"  
                                        IdZona="0" Altura="{Binding AlturaU}" 
                                        NumRows="{Binding NumRowsU}" 
                                        NumColumns="{Binding NumColumnsU}" 
                                        CantActual="{Binding Path=TxtCantActual,Mode=TwoWay}" VolOcu="{Binding Path=TxtVolActual,Mode=TwoWay}"  Enable="{Binding Path=Enable, Mode=TwoWay}" ShowGridLines="True" HorizontalAlignment="Left" VerticalAlignment="Top" >
-                    </grid:DynamicGrid>
-                </ScrollViewer>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="444" Margin="349,112,0,0" VerticalAlignment="Top" Width="530"/>
-                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="282" Margin="908,274,0,0" VerticalAlignment="Top" Width="251"/>
-                <Label Content="Cant.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="908,216,0,0" VerticalAlignment="Top"/>
-                <Label Content="Vol.&#xD;&#xA;Actual:" HorizontalAlignment="Left" Margin="1046,216,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="TxtCantActual" IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="959,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
-                <TextBox x:Name="TxtVolActual"  IsEnabled="False" HorizontalAlignment="Left" Height="26" Margin="1097,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="62"/>
-                <Label Content="%" HorizontalAlignment="Right" Margin="0,0,58,409" VerticalAlignment="Bottom" Height="26" Width="24"/>
-
-            </Grid>
-        </StackPanel>
+                                    </grid:DynamicGrid>
+                                </ScrollViewer>
+                            </Border>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

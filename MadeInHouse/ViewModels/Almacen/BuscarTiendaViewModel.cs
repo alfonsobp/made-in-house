@@ -8,14 +8,19 @@ using MadeInHouse.Models.Almacen;
 using MadeInHouse.DataObjects.Almacen;
 using System.Windows.Controls;
 using MadeInHouse.Models;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(BuscarTiendaViewModel))]
     class BuscarTiendaViewModel: Screen
     {
 
         #region Atributos
+
+        private readonly IWindowManager _windowManager;
         private UbigeoSQL uSQL;
         private TiendaSQL tSQL;
         private Ubigeo deft;
@@ -182,8 +187,11 @@ namespace MadeInHouse.ViewModels.Almacen
         #endregion
 
         #region Constructores
-        public BuscarTiendaViewModel()
+
+        [ImportingConstructor]
+        public BuscarTiendaViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             uSQL = new UbigeoSQL();
             CmbDpto = uSQL.BuscarDpto();
             deft= new Ubigeo();
@@ -194,12 +202,13 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private Reportes.reporteStockViewModel reporteStockViewModel;
-        public BuscarTiendaViewModel(Reportes.reporteStockViewModel reporteStockViewModel, int ventanaAccion)
+        public BuscarTiendaViewModel(IWindowManager windowmanager, Reportes.reporteStockViewModel reporteStockViewModel, int ventanaAccion)
+            : this(windowmanager)
         {
             uSQL = new UbigeoSQL();
             CmbDpto = uSQL.BuscarDpto();
-            deft= new Ubigeo();
-            deft.Nombre="TODOS";
+            deft = new Ubigeo();
+            deft.Nombre = "TODOS";
             CmbDpto.Insert(0, deft);
             Index1 = 0;
             this.reporteStockViewModel = reporteStockViewModel;
@@ -207,7 +216,8 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private Reportes.reporteServiciosViewModel reporteServiciosViewModel;
-        public BuscarTiendaViewModel(Reportes.reporteServiciosViewModel reporteServiciosViewModel, int ventanaAccion)
+        public BuscarTiendaViewModel(IWindowManager windowmanager, Reportes.reporteServiciosViewModel reporteServiciosViewModel, int ventanaAccion)
+            : this(windowmanager)
         {
             uSQL = new UbigeoSQL();
             CmbDpto = uSQL.BuscarDpto();
@@ -232,8 +242,8 @@ namespace MadeInHouse.ViewModels.Almacen
             string lista="";
 
             if (lstUbigeo == null)
-            { 
-                System.Windows.MessageBox.Show("ERROR: Se produjo un error");
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "ERROR: Se produjo un error"));
             
             }
             else if (lstUbigeo.Count > 0)
@@ -246,14 +256,12 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstTiendas= tSQL.BuscarTienda(lista);
                 if (LstTiendas == null)
                 {
-                    System.Windows.MessageBox.Show("ERROR: Se produjo un error");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "ERROR: Se produjo un error"));
                 }
                 else if (LstTiendas.Count == 0)
                 {
-                    System.Windows.MessageBox.Show("No se encontraron tiendas");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se encontraron tiendas"));
                 }
-                
-
             }
         }
 
@@ -266,24 +274,23 @@ namespace MadeInHouse.ViewModels.Almacen
                 int exito = tSQL.DeshabilitarTienda(TiendaSel.IdTienda);
                 if (exito > 0)
                 {
-                    System.Windows.MessageBox.Show("Se deshabilitó la tienda correctamente");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se deshabilitó la tienda correctamente"));
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("No se puede deshabilitar la tienda porque aun hay stock en ella ");
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se puede deshabilitar la tienda porque aun hay stock en ella "));
                 }
 
             }
             else
             {
-                System.Windows.MessageBox.Show("Debe seleccionar una tienda");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe seleccionar una tienda"));
             }
         }
 
         public void AbrirMantenerTienda()
         {
-            MyWindowManager wm = new MyWindowManager();
-            wm.ShowWindow(new MantenerTiendaViewModel());
+            _windowManager.ShowWindow(new MantenerTiendaViewModel(_windowManager));
         }
 
         public void Acciones(object sender) {
@@ -308,8 +315,7 @@ namespace MadeInHouse.ViewModels.Almacen
             }
             else
             {
-                MantenerTiendaViewModel mtVM = new MantenerTiendaViewModel(TiendaSel);
-                (new MadeInHouse.Models.MyWindowManager()).ShowWindow(mtVM);
+                _windowManager.ShowWindow(new MantenerTiendaViewModel(_windowManager, TiendaSel));
             }
         }
 

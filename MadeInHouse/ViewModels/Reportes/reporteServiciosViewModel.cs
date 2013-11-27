@@ -72,7 +72,7 @@ namespace MadeInHouse.ViewModels.Reportes
         public void BuscarTienda()
         {
             MyWindowManager w = new MyWindowManager();
-            w.ShowWindow(new BuscarTiendaViewModel(this, 2));
+            w.ShowWindow(new BuscarTiendaViewModel(w, this, 2));
         }
 
         private String txtCliente;

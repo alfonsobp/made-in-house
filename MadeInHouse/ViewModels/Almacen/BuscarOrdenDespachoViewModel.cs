@@ -13,19 +13,26 @@ using MadeInHouse.ViewModels.Seguridad;
 using MadeInHouse.Models.Seguridad;
 
 using System.Diagnostics;
+using System.ComponentModel.Composition;
+using MadeInHouse.ViewModels.Layouts;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
+    [Export(typeof(BuscarOrdenDespachoViewModel))]
     class BuscarOrdenDespachoViewModel:Screen
     {
-        OrdenDespachoSQL odSQL = new OrdenDespachoSQL();
-        public BuscarOrdenDespachoViewModel()
+        #region constructores
+
+        [ImportingConstructor]
+        public BuscarOrdenDespachoViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             ActualizarListaOrdenDespacho();
         }
 
         MantenerGuiaDeRemisionViewModel m;
-        public BuscarOrdenDespachoViewModel(MantenerGuiaDeRemisionViewModel m)
+        public BuscarOrdenDespachoViewModel(IWindowManager windowmanager, MantenerGuiaDeRemisionViewModel m)
+            : this(windowmanager)
         {
             // TODO: Complete member initialization
 
@@ -39,7 +46,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
         private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
 
-        public BuscarOrdenDespachoViewModel(MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel):this()
+        public BuscarOrdenDespachoViewModel(IWindowManager windowmanager, MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel)
+            : this(windowmanager)
         {
             // TODO: Complete member initialization
 
@@ -50,8 +58,12 @@ namespace MadeInHouse.ViewModels.Almacen
             this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
 
         }
-        
-        private MyWindowManager win = new MyWindowManager();
+
+        #endregion
+
+        OrdenDespachoSQL odSQL = new OrdenDespachoSQL();
+
+        private readonly IWindowManager _windowManager;
         private List<OrdenDespacho> lstOrdenDespacho;
         public List<OrdenDespacho> LstOrdenDespacho
         {
@@ -124,7 +136,8 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             ordenDespachoSeleccionado.AlmOrigen.IdAlmacen = 2;//ALMACEN CENTRAL: idAlmacen=2
             int k = odSQL.EditarOrdenDespacho(ordenDespachoSeleccionado);
-            if (k == 1) MessageBox.Show("Orden de despacho enviada a ALMACEN CENTRAL");
+            if (k == 1)
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Orden de despacho enviada a ALMACEN CENTRAL"));
         }
 
         public void BuscarOrdenDespacho()
@@ -162,7 +175,7 @@ namespace MadeInHouse.ViewModels.Almacen
         public void AbrirEditarOrdenDespacho()
         {
             if (ordenDespachoSeleccionado != null)
-                win.ShowWindow(new Almacen.MantenerOrdenDespachoViewModel(ordenDespachoSeleccionado));
+                _windowManager.ShowWindow(new MantenerOrdenDespachoViewModel(_windowManager, ordenDespachoSeleccionado));
         }
 
         public void SeleccionarOrdenDespacho()
@@ -179,7 +192,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     }
                     else
                     {
-                        MessageBox.Show("La ORDEN ya esta en una GUIA");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "La ORDEN ya esta en una GUIA"));
                     }
                 }
 

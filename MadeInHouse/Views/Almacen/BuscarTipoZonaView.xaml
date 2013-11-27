@@ -5,12 +5,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" d:DesignWidth="600" Height="472">
-    <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
-        <StackPanel>
-            <Layouts:TitleBarTemplate title="Buscar tipos de zonas"/>
-            <Grid Height="447">
-                <ToolBar VerticalAlignment="Top">
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="472">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Buscar tipos de zonas" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
@@ -18,39 +23,40 @@
                         </LinearGradientBrush>
                     </ToolBar.Background>
                     <Button x:Name="AbrirNuevaZona">
-                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="24" Width="24" />
+                        <Image Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
                     <Button x:Name="EditarTipoZona">
-                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="24" Width="24" />
+                        <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
 
                     <Button x:Name="Eliminar">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    
                 </ToolBar>
-                <GroupBox Header="Criterios de Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
+                <Grid>
+                    <GroupBox Header="Criterios de Busqueda" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Height="85" Width="580">
 
-                    <Grid Margin="0,-14,0,-282" Height="359" VerticalAlignment="Bottom">
-                        <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,-73,0,313" VerticalAlignment="Bottom" Height="26" Width="94"/>
-                        <TextBox Text="{Binding Path=Codigo, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="118,-70,0,313" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" RenderTransformOrigin="0.717,-0.522" />
-                        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="306,-70,0,310" VerticalAlignment="Bottom" Width="94"/>
-                        <TextBox Text="{Binding Path=Descripcion, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="400,-70,0,313" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160"/>
+                        <Grid Margin="0,-14,0,-282" Height="359" VerticalAlignment="Bottom">
+                            <Label Content="Codigo" HorizontalAlignment="Left" Margin="24,-73,0,313" VerticalAlignment="Bottom" Height="26" Width="94"/>
+                            <TextBox Text="{Binding Path=Codigo, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="118,-70,0,313" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160" RenderTransformOrigin="0.717,-0.522" />
+                            <Label Content="Descripcion" HorizontalAlignment="Left" Margin="306,-70,0,310" VerticalAlignment="Bottom" Width="94"/>
+                            <TextBox Text="{Binding Path=Descripcion, ValidatesOnDataErrors=True}" HorizontalAlignment="Left" Height="23" Margin="400,-70,0,313" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="160"/>
 
-                        <DataGrid x:Name="ListaTipoZona" CanUserAddRows="False" IsReadOnly="True" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,92,0,10" Width="550" AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Width="110" Binding="{Binding Path=IdTipoZona}" Header="Codigo"/>
-                                <DataGridTextColumn Width="110" Binding="{Binding Path=Nombre}" Header="Descripcion"/>
-                                <DataGridTextColumn Width="110" Binding="{Binding Path=NombreColor}" Header="Color"/>
-                                
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </GroupBox>
-                <Button x:Name="BuscarTipoZona" Margin="416,95,0,0" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
-                </Button>
-            </Grid>
-        </StackPanel>
+                            <DataGrid x:Name="ListaTipoZona" CanUserAddRows="False" IsReadOnly="True" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]" HorizontalAlignment="Left" Margin="10,92,0,10" Width="550" AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Width="110" Binding="{Binding Path=IdTipoZona}" Header="Codigo"/>
+                                    <DataGridTextColumn Width="110" Binding="{Binding Path=Nombre}" Header="Descripcion"/>
+                                    <DataGridTextColumn Width="110" Binding="{Binding Path=NombreColor}" Header="Color"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="BuscarTipoZona" Margin="416,95,0,0" VerticalAlignment="Top" Width="60" HorizontalAlignment="Left">
+                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+                    </Button>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>
