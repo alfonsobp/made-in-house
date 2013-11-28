@@ -84,8 +84,6 @@ namespace MadeInHouse.Views.Reportes
                 DateTime desde = Convert.ToDateTime(fechaIni.Text);
                 DateTime hasta = Convert.ToDateTime(fechaFin.Text);
 
-                MessageBox.Show(desde.ToString());
-                MessageBox.Show(hasta.ToString());
                 List<Producto> lst = lstSelectedProducto.ItemsSource as List<Producto>;
                 Almacenes alm = cmbAlmacen.SelectedItem as Almacenes;
                 List<notas> aux = new List<notas>();
