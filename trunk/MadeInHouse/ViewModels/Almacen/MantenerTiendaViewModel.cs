@@ -1108,7 +1108,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     Almacenes ana = new Almacenes();
                     ana.CodAlmacen = "ANA00" + idTienda.ToString();
                     ana.IdTienda = idTienda;
-                    ana.Nombre = "Anaquel de TIENDA" + ((accion == 1) ? idTienda.ToString() : this.idTienda.ToString());
+                    ana.Nombre = "Anaquel de "+ txtNombre;
                     ana.Telefono = tienda.Telefono;
                     ana.Direccion = tienda.Direccion;
                     ana.NroColumnas = int.Parse(TxtNumColumnsAnq);
@@ -1130,7 +1130,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         Almacenes dto = new Almacenes();
                         dto.CodAlmacen = "DTO00" + idTienda.ToString();
                         dto.IdTienda = idTienda;
-                        dto.Nombre = "Deposito de TIENDA" + ((accion == 1) ? idTienda.ToString() : this.idTienda.ToString());
+                        dto.Nombre = "Deposito de " + txtNombre;
                         dto.Telefono = tienda.Telefono;
                         dto.Direccion = tienda.Direccion;
                         dto.NroColumnas = int.Parse(TxtNumColumnsDto);
