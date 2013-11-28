@@ -171,6 +171,7 @@
                 <Button  x:Name="AbrirMovimientos" Content="Movimientos entre zonas" Style="{StaticResource WindowButton}" />
                 <Button  x:Name="RegistrarSolicitud" Content="Solicitar abastecimiento" Style="{StaticResource WindowButton}" />
                 <Button  x:Name="ListadoSolicitud" Content="Listar abastecimiento" Style="{StaticResource WindowButton}" />
+                <Button  x:Name="ListadoStockMin" Content="Listar stocks mínimos" Style="{StaticResource WindowButton}" />
             </StackPanel>
         </Expander>
 
