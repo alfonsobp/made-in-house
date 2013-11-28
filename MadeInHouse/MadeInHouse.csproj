@@ -1193,6 +1193,7 @@
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.OrdenDeCompra.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.reporteKardexSQL.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.ReporteOrdenCompraSQL.datasource" />
+    <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.reporteServiciosSQL.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.reporteStock.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.ReporteVentasSQL.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.Servi.datasource" />

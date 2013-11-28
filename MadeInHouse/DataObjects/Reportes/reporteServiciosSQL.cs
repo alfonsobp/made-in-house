@@ -106,7 +106,7 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "select v.idventa, t.nombre tienda, c.nombre cliente, s.nombre servicio, v.fechareg fecha from venta v join DetalleVentaServicio d on (v.idVenta = d.idVenta)  join servicio s on (d.idServicio = s.idServicio) join usuario u on ( v.idUsuario = u.idusuario) join tienda t on (u.idTienda = t.idtienda) , cliente c where t.idtienda =" + tienda + "and c.idcliente = " + cliente;
+            cmd.CommandText = "select v.numDocPagoServicio, t.nombre tienda, c.nombre cliente, s.nombre servicio, v.fechareg fecha from venta v join DetalleVentaServicio d on (v.idVenta = d.idVenta)  join servicio s on (d.idServicio = s.idServicio) join usuario u on ( v.idUsuario = u.idusuario) join tienda t on (u.idTienda = t.idtienda) , cliente c where t.idtienda =" + tienda + "and c.idcliente = " + cliente;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -118,7 +118,7 @@ namespace MadeInHouse.DataObjects.Reportes
                 {
                     Servi e = new Servi();
 
-                    e.Doc = reader["numdocpagoservicio"].ToString();
+                    e.Doc = reader["numDocPagoServicio"].ToString();
                     e.Servicio = reader["Servicio"].ToString();
                     e.Tienda = reader["tienda"].ToString();
                     e.Cliente = reader["cliente"].ToString();
