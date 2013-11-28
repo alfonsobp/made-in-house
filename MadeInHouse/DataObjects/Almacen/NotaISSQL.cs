@@ -274,5 +274,74 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return lista;
         }
+
+        public void AgregarNotaxSector(NotaIS nota)
+        {
+            DBConexion db1 = new DBConexion();
+            for (int i = 0; i < nota.LstProducto.Count; i++)
+            {
+                int retorno = 0;
+                db1.cmd.CommandText = "SELECT idSector from Sector WHERE idAlmacen=@idAlmacen AND idProducto=@idProducto ";
+                
+                try
+                {
+                    db1.conn.Open();
+
+                    db1.cmd.Parameters.AddWithValue("@idProducto", nota.LstProducto.ElementAt(i).IdProducto);
+                    db1.cmd.Parameters.AddWithValue("@idAlmacen", nota.IdAlmacen);
+
+                    SqlDataReader reader = db1.cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        retorno = Convert.ToInt32(reader["idSector"].ToString());
+                    }
+
+                    db1.cmd.Parameters.Clear();
+                    db1.conn.Close();
+
+                }
+                catch (SqlException e)
+                {
+                    Console.WriteLine(e);
+                    return;
+                    
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace.ToString());
+                    return;
+                }
+                
+                //Agregamos en SectorxMovimiento
+                db1.cmd.CommandText = "INSERT INTO SectorxMovimiento (idSector,idNota,cantidad) " +
+                    "VALUES (@idSector,@idNota,@cantidad)";
+                    try
+                    {
+                        db1.conn.Open();
+
+                        db1.cmd.Parameters.AddWithValue("@idSector", retorno);
+                                db1.cmd.Parameters.AddWithValue("@idNota", nota.IdNota);
+                                db1.cmd.Parameters.AddWithValue("@cantidad",nota.LstProducto.ElementAt(i).CanAtender);
+                                db1.cmd.ExecuteNonQuery();
+                                db1.cmd.Parameters.Clear();
+
+                         
+                        db1.conn.Close();
+                    }
+                    catch (SqlException e)
+                    {
+                        Console.WriteLine(e);
+                       
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.StackTrace.ToString());
+                        
+                    }
+                
+
+            }
+        }
     }
 }
