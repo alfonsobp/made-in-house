@@ -48,12 +48,11 @@
                                   Margin="10,40,0,10" HorizontalAlignment="Left" Width="574" AutoGenerateColumns="False" CanUserAddRows="False">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="70" Header="Código"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="180" Header="Descripción"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="*" Header="Descripción"/>
                                         <DataGridTextColumn Binding="{Binding Path=Unidad}" Width="60" Header="Unidad"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="60" Header="Precio (S/.)"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="70" Header="Precio (S/.)"/>
                                         <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="70" Header="Cantidad"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Descuento}" Width="70"  Header="Descuento (S/.)"/>
-                                        <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="70"  Header="Subtotal (S/.)"/>
+                                        <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="80"  Header="Subtotal (S/.)"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Producto:" VerticalAlignment="Top" Width="73" Margin="10,12,0,0"/>
@@ -96,11 +95,11 @@
                                     </Button.Background>
                                 </Button>
 
-                                <DataGrid x:Name="LstVentaServicios" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
-                                  Margin="10,50,10,10" AutoGenerateColumns="False" CanUserAddRows="False">
+                                <DataGrid x:Name="LstVentaServicios" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemServicioChanged($source)]"
+                                  Margin="10,50,10,10" AutoGenerateColumns="False" CanUserAddRows="False" Width="565">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=IdServicio}" Width="80" Header="Código"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="400" Header="Descripción"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="*" Header="Descripción"/>
                                         <DataGridTextColumn Binding="{Binding Path=Precio}" Width="100" Header="Precio (S/.)"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
@@ -111,11 +110,9 @@
                 </GroupBox>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Subtotal:" VerticalAlignment="Top" Width="86" Margin="436,432,0,0"/>
                 <TextBox IsReadOnly="True" x:Name="TxtSubTotal" HorizontalAlignment="Left" Height="23" Margin="536,432,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Descuento:" VerticalAlignment="Top" Width="73" Margin="436,404,0,0"/>
-                <TextBox IsReadOnly="True" x:Name="TxtDescuentoTotal" HorizontalAlignment="Left" Height="23" Margin="536,404,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="IGV:" VerticalAlignment="Top" Width="86" Margin="436,463,0,0"/>
                 <TextBox IsReadOnly="True" x:Name="TxtIGVTotal" HorizontalAlignment="Left" Height="23" Margin="536,463,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="436,491,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar (S/.):" VerticalAlignment="Top" Width="100" Margin="436,491,0,0"/>
                 <TextBox IsReadOnly="True" x:Name="TxtTotal" HorizontalAlignment="Left" Height="23" Margin="536,491,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
 
 
@@ -126,7 +123,7 @@
                     x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="341,26,0,0" 
                     TextWrapping="Wrap" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.269,0.565"/>
                 <TextBlock HorizontalAlignment="Left" Margin="297,28,0,0" TextWrapping="Wrap" Text="Tarjeta:" VerticalAlignment="Top" RenderTransformOrigin="2.872,0.438"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga conñlllm, za:" VerticalAlignment="Top" Width="60" Margin="244,527,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="244,527,0,0"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="244,555,0,0"/>
                 <TextBox x:Name="TxtPagaCon" IsEnabled="False" Height="23" Margin="314,527,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
                 <TextBox x:Name="TxtVuelto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="314,555,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
@@ -134,7 +131,7 @@
                 <DataGrid x:Name="LstPagos" HorizontalAlignment="Left" Margin="244,407,0,84" Width="172"
                 	AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="113" Header="Modo"/>
+                        <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="*" Header="Modo"/>
                         <DataGridTextColumn Binding="{Binding Path=Monto}" Width="75" Header="Monto (S/.)"/>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -144,7 +141,7 @@
                     DisplayMemberPath="Nombre" SelectedValuePath="IdModoPago"
                     x:Name="CmbModoPago" HorizontalAlignment="Left" Margin="35,433,0,0" 
                     VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.475,1.409"/>
-                <Label Content="Monto:" HorizontalAlignment="Left" Margin="35,465,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-0.154"/>
+                <Label Content="Monto (S/.):" HorizontalAlignment="Left" Margin="35,465,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.526,-0.154"/>
                 <TextBox x:Name="TxtMonto" HorizontalAlignment="Left" Height="23" Margin="35,491,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                 <Button ToolTip="Agregar Monto" x:Name="AgregarMonto" Content="" HorizontalAlignment="Left" Margin="188,443,0,0" VerticalAlignment="Top" Width="28" Height="23" RenderTransformOrigin="2.964,0.536">
                     <Button.Background>
