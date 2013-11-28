@@ -330,7 +330,7 @@ namespace MadeInHouse.ViewModels.Compras
 
                 if (this.mantenerNotaDeIngresoViewModel != null)
                 {
-                     OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
+                    OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                     mantenerNotaDeIngresoViewModel.TxtDoc = OrdenSelected.CodOrdenCompra;
                     mantenerNotaDeIngresoViewModel.TxtDocId = OrdenSelected.IdOrden;
                     mantenerNotaDeIngresoViewModel.SelectedOrden = OrdenSelected;

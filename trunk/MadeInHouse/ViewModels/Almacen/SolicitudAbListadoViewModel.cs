@@ -14,7 +14,7 @@ using MadeInHouse.Models;
 namespace MadeInHouse.ViewModels.Almacen
 {
     [Export(typeof(SolicitudAbListadoViewModel))]
-    class SolicitudAbListadoViewModel : PropertyChangedBase
+    class SolicitudAbListadoViewModel : Screen
     {
         #region constructor
 
@@ -59,6 +59,14 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             // TODO: Complete member initialization
             this.MantenerNotaDeIngresoViewModel = mantenerNotaDeIngresoViewModel;
+            this.Accion = acciones;
+        }
+
+        public SolicitudAbListadoViewModel(IWindowManager _windowManager, MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel, int acciones)
+        :this(_windowManager)
+        {
+            // TODO: Complete member initialization
+            this.mantenerNotaDeSalidaViewModel = mantenerNotaDeSalidaViewModel;
             this.Accion = acciones;
         }
 
@@ -130,6 +138,8 @@ namespace MadeInHouse.ViewModels.Almacen
         }
 
         private List<Abastecimiento> solicitudes;
+        private MantenerNotaDeSalidaViewModel mantenerNotaDeSalidaViewModel;
+        private int p;
         public List<Abastecimiento> Solicitudes
         {
             get { return solicitudes; }
@@ -173,7 +183,34 @@ namespace MadeInHouse.ViewModels.Almacen
 
         public void Acciones(object sender)
         {
-            AbrirDetalle();
+            if (Accion == 1) {
+                if (this.mantenerNotaDeIngresoViewModel != null)
+                {
+                   
+//                    OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
+                    mantenerNotaDeIngresoViewModel.TxtDoc ="SOLAB00000"+abastecimientoSel.idSolicitudAB.ToString();
+                    mantenerNotaDeIngresoViewModel.TxtDocId = abastecimientoSel.idSolicitudAB;
+                    mantenerNotaDeIngresoViewModel.SelectedSolicitud = abastecimientoSel;
+                    this.TryClose();
+                }
+            }
+            else
+            {
+                if (Accion == 2) {
+
+                    if (this.mantenerNotaDeSalidaViewModel != null)
+                    {
+
+                        //OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
+                        mantenerNotaDeSalidaViewModel.TxtDoc = "SOLAB00000" + abastecimientoSel.idSolicitudAB.ToString();
+                        mantenerNotaDeSalidaViewModel.TxtDocId = abastecimientoSel.idSolicitudAB;
+                        mantenerNotaDeSalidaViewModel.SelectedSolicitud = abastecimientoSel;
+                        this.TryClose();
+                    }
+
+                }
+                else AbrirDetalle();
+            }
         }
 
         public void AbrirDetalle()
