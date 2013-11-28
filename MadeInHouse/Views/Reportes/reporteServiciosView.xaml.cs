@@ -172,8 +172,8 @@ namespace MadeInHouse.Views.Reportes
                 final[i].TipoVenta = ventaAux4[i].TipoVenta;
 
             }
-            Reportes.reportViewerVentas neva = new reportViewerVentas(final);
-            neva.Show();
+            //Reportes.reportViewerVentas neva = new reportViewerVentas();
+           // neva.Show();
         }
 
     }

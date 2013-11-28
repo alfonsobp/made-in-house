@@ -128,6 +128,7 @@
     <Compile Include="DataObjects\EntitySQL.cs" />
     <Compile Include="DataObjects\Reportes\reporteKardexSQL.cs" />
     <Compile Include="DataObjects\Reportes\ReporteOrdenCompraSQL.cs" />
+    <Compile Include="DataObjects\Reportes\reporteServiciosSQL.cs" />
     <Compile Include="DataObjects\Reportes\ReporteStockSQL.cs" />
     <Compile Include="DataObjects\Reportes\ReporteVentasSQL.cs" />
     <Compile Include="DataObjects\RRHH\EmpleadoSQL.cs" />
@@ -567,6 +568,9 @@
     <Compile Include="Views\Reportes\reportViewerLogs.xaml.cs">
       <DependentUpon>reportViewerLogs.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Reportes\reportViewerServicios.xaml.cs">
+      <DependentUpon>reportViewerServicios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reportes\reportViewerStock.xaml.cs">
       <DependentUpon>reportViewerStock.xaml</DependentUpon>
     </Compile>
@@ -981,6 +985,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Reportes\reportViewerServicios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Reportes\reportViewerStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1175,6 +1183,7 @@
     <EmbeddedResource Include="ReportViewer\Report5.rdlc" />
     <EmbeddedResource Include="ReportViewer\Report6.rdlc" />
     <EmbeddedResource Include="ReportViewer\Report7.rdlc" />
+    <EmbeddedResource Include="ReportViewer\Report8.rdlc" />
     <EmbeddedResource Include="ReportViewer\ReportMov.rdlc" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -1186,6 +1195,7 @@
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.ReporteOrdenCompraSQL.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.reporteStock.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.ReporteVentasSQL.datasource" />
+    <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.Servi.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.DataObjects.Reportes.stock.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.Models.Reportes.StockRepor.datasource" />
     <None Include="Properties\DataSources\MadeInHouse.Models.Seguridad.Log.datasource" />
