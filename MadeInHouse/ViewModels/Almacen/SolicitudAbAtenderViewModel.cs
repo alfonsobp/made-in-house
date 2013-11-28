@@ -10,6 +10,7 @@ using MadeInHouse.DataObjects.Almacen;
 using MadeInHouse.ViewModels.Layouts;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Almacen
 {
@@ -52,6 +53,8 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        public AbastecimientoProducto prodSel { get; set; }
+
         #endregion
 
         #region metodos
@@ -66,6 +69,18 @@ namespace MadeInHouse.ViewModels.Almacen
                 window.ActualizarTabla();
             ((Window)this.GetView()).Owner.Focus();
             TryClose();
+        }
+
+        public void Validate(DataGridCellEditEndingEventArgs sender)
+        {
+            if (prodSel != null)
+            {
+                if (prodSel.stock - Int32.Parse((sender.EditingElement as TextBox).Text) + prodSel.atendidoReal < 0)
+                {
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No cuenta con suficiente stock"));
+                    (sender.EditingElement as TextBox).Text = "0";
+                }
+            }
         }
 
         #endregion

@@ -51,8 +51,8 @@
                         <DataGrid  x:Name="LstProforma" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]" Margin="10,50,10,10">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="80" Header="Cantidad"/>
-                                <DataGridTextColumn Binding="{Binding Path=Producto}" Width="266" Header="Producto"/>
-                                <DataGridTextColumn Binding="{Binding Path=Subtotal}" Width="80" Header="Subtotal"/>
+                                <DataGridTextColumn Binding="{Binding Path=Producto}" Width="*" Header="Producto"/>
+                                <DataGridTextColumn Binding="{Binding Path=Subtotal}" Width="90" Header="Subtotal (S/.)"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Producto:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>

@@ -165,7 +165,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
                 try
                 {
-                    if (!txtPagaCon.Equals(""))
+                    if (txtPagaCon != null && !txtPagaCon.Equals(""))
                     {
                         txtVuelto = (Convert.ToDouble(txtPagaCon) - Convert.ToDouble(txtTotal)).ToString();
                         NotifyOfPropertyChange(() => TxtVuelto);
@@ -324,10 +324,10 @@ namespace MadeInHouse.ViewModels.Ventas
             if (tipo == 1)
             {
                 desc += dv.Descuento;
-                total += (dv.SubTotal - desc);
-                subt = (total / (1 + IGV));
-                igv_total = subt * IGV;
-                TxtDescuentoTotal = desc.ToString();
+                total += Math.Round(dv.SubTotal - desc, 2);
+                subt = Math.Round(total / (1 + IGV), 2);
+                igv_total = Math.Round(subt * IGV, 2);
+                //TxtDescuentoTotal = desc.ToString();
                 TxtTotal = total.ToString();
                 TxtSubTotal = subt.ToString();
                 TxtIGVTotal = igv_total.ToString();
@@ -336,22 +336,24 @@ namespace MadeInHouse.ViewModels.Ventas
             if (tipo == 2)
             {
                 desc -= dv.Descuento;
-                total -= dv.SubTotal - dv.Descuento;
-                igv_total -= total * IGV;
-                subt -= (total * (1 - IGV));
+                total -= Math.Round(dv.SubTotal - dv.Descuento, 2);
+                subt = Math.Round(total / (1 + IGV), 2);
+                igv_total = Math.Round(subt * IGV, 2);
                 TxtDescuentoTotal = desc.ToString();
                 TxtTotal = total.ToString();
                 TxtSubTotal = subt.ToString();
                 TxtIGVTotal = igv_total.ToString();
-                int c = lst.Count();
+                /*int c = lst.Count();
                 if (c == 0)
                 {
                     TxtDescuentoTotal = "";
                     TxtTotal = "";
                     TxtSubTotal = "";
                     TxtIGVTotal = "";
-                }
+                }*/
             }
+
+            TxtPagaCon = txtPagaCon;
         }
 
         public void AgregarDetalle()
@@ -382,21 +384,23 @@ namespace MadeInHouse.ViewModels.Ventas
                         MessageBox.Show("Tiene que poner una cantidad");
                         return;
                     }
-                    item.SubTotal = item.Cantidad * (p.Precio / (1 + IGV));
-                    item.Descuento += CalculaDescuento(p.IdProducto, item.Cantidad);
+                    item.SubTotal = item.Cantidad * p.Precio;
+                    //item.Descuento += CalculaDescuento(p.IdProducto, item.Cantidad);
 
-                    desc = item.Descuento;
-                    TxtDescuentoTotal = desc.ToString();
+                    desc = 0;// item.Descuento;
+                    //TxtDescuentoTotal = desc.ToString();
 
-                    subt = item.SubTotal - desc;
+                    total += Math.Round(Int32.Parse(TxtCantidad) * p.Precio, 2);
                     TxtTotal = total.ToString();
 
-                    total = subt * (1 - IGV);
+                    subt = Math.Round(total / (1 + IGV), 2);
                     TxtSubTotal = subt.ToString();
-                    
-                    igv_total = total * IGV;
+
+                    igv_total = Math.Round(subt * IGV, 2);
                     TxtIGVTotal = igv_total.ToString();
-                    
+
+                    TxtPagaCon = txtPagaCon;
+
                     nuevo = 0;
                 }
                 aux.Add(item);
@@ -471,13 +475,13 @@ namespace MadeInHouse.ViewModels.Ventas
 
                 aux.Add(dv);
 
-                total += dv.Precio;
+                total += Math.Round(dv.Precio, 2);
                 TxtTotal = total.ToString();
-                subt += total/(1+IGV);
+                subt = Math.Round(total / (1 + IGV), 2);
                 TxtSubTotal = subt.ToString();
-                igv_total = (total) * IGV;
+                igv_total = Math.Round((subt) * IGV, 2);
                 TxtIGVTotal = igv_total.ToString();
-                
+                TxtPagaCon = txtPagaCon;
             }
             LstVentaServicios = aux;
             TxtServicio = "";
@@ -491,6 +495,14 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 LstVentaServicios.Remove(aux);
                 LstVentaServicios = new List<DetalleVentaServicio>(LstVentaServicios);
+                total -= Math.Round(aux.Precio, 2);
+                subt = Math.Round(total / (1 + IGV), 2);
+                igv_total = Math.Round(subt * IGV, 2);
+                //TxtDescuentoTotal = desc.ToString();
+                TxtTotal = total.ToString();
+                TxtSubTotal = subt.ToString();
+                TxtIGVTotal = igv_total.ToString();
+                TxtPagaCon = txtPagaCon;
             }
             else
             {
@@ -806,7 +818,7 @@ namespace MadeInHouse.ViewModels.Ventas
             string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
             System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
-            string body = formatoBP(v).ToString();
+            string body = formatoBS(v).ToString();
             string date = DateTime.Now.ToString("yyyyMMddHHmmss");
             pdf.createPDF(body, "\\Archivos\\DocumentosPago\\BS" + date + ".pdf", true);
         }
@@ -816,7 +828,7 @@ namespace MadeInHouse.ViewModels.Ventas
             string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
             System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
-            string body = formatoBP(v).ToString();
+            string body = formatoFP(v).ToString();
             string date = DateTime.Now.ToString("yyyyMMddHHmmss");
             pdf.createPDF(body, "\\Archivos\\DocumentosPago\\FP" + date + ".pdf", true);
         }
@@ -826,7 +838,7 @@ namespace MadeInHouse.ViewModels.Ventas
             string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
             System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
-            string body = formatoBP(v).ToString();
+            string body = formatoFS(v).ToString();
             string date = DateTime.Now.ToString("yyyyMMddHHmmss");
             pdf.createPDF(body, "\\Archivos\\DocumentosPago\\FS" + date + ".pdf", true);
         }
@@ -892,8 +904,8 @@ namespace MadeInHouse.ViewModels.Ventas
                                 "<th><span style='font-size: 0.5em'>CODIGO</span></th>" +
                                 "<th><span style='font-size: 0.5em'>CANTIDAD</span></th>" +
                                 "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
-                                "<th><span style='font-size: 0.5em'>PRECIO</span></th>" +
-                                "<th><span style='font-size: 0.5em'>SUB TOTAL</span></th>" +
+                                "<th><span style='font-size: 0.5em'>PRECIO (S/.)</span></th>" +
+                                "<th><span style='font-size: 0.5em'>SUB TOTAL (S/.)</span></th>" +
                             "</tr>";
             if (v.LstDetalle != null)
             {
@@ -912,11 +924,11 @@ namespace MadeInHouse.ViewModels.Ventas
                         "<br>" +
                         "<table border=1>" +
                             "<tr>" +
-                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
                             "</tr>" +
                         "</table>" +
@@ -984,7 +996,7 @@ namespace MadeInHouse.ViewModels.Ventas
                         "<table border=1 height=700>" +
                             "<tr>" +
                                 "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
-                                "<th><span style='font-size: 0.5em'>VALOR</span></th>" +
+                                "<th><span style='font-size: 0.5em'>VALOR (S/.)</span></th>" +
                             "</tr>";
             if (v.LstDetalle != null)
             {
@@ -1000,11 +1012,11 @@ namespace MadeInHouse.ViewModels.Ventas
                         "<br>" +
                         "<table border=1>" +
                             "<tr>" +
-                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
                             "</tr>" +
                         "</table>" +
@@ -1050,7 +1062,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 ClienteSQL cSQL = new ClienteSQL();
                 Cliente cli = cSQL.BuscarClienteByIdCliente(v.IdCliente);
                 content += "<span style='font-size: 0.5em'>" +
-                                        "Señor (es): " + cli.ApePaterno + " " + cli.ApeMaterno + ", " + cli.Nombre + "<br>" +
+                                        "Señor (es): " + cli.RazonSocial + "<br>" +
                                         "Dirección : " + cli.Direccion + "<br>" +
                                         "R.U.C. N° : " + cli.Ruc +
                                     "</span>";
@@ -1058,7 +1070,9 @@ namespace MadeInHouse.ViewModels.Ventas
             else
             {
                 content += "<span style='font-size: 0.5em'>" +
-                                        "DNI: " + v.dni + "<br>" +
+                                        "Señor (es): " + v.RazonSocial + "<br>" +
+                                        "Dirección : " + v.Direccion + "<br>" +
+                                        "R.U.C. N° : " + v.Ruc +
                                     "</span>";
             }
             content += "</td>" +
@@ -1076,8 +1090,8 @@ namespace MadeInHouse.ViewModels.Ventas
                                 "<th><span style='font-size: 0.5em'>CODIGO</span></th>" +
                                 "<th><span style='font-size: 0.5em'>CANTIDAD</span></th>" +
                                 "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
-                                "<th><span style='font-size: 0.5em'>PRECIO</span></th>" +
-                                "<th><span style='font-size: 0.5em'>SUB TOTAL</span></th>" +
+                                "<th><span style='font-size: 0.5em'>PRECIO (S/.)</span></th>" +
+                                "<th><span style='font-size: 0.5em'>SUB TOTAL (S/.)</span></th>" +
                             "</tr>";
             if (v.LstDetalle != null)
             {
@@ -1096,11 +1110,11 @@ namespace MadeInHouse.ViewModels.Ventas
                         "<br>" +
                         "<table border=1>" +
                             "<tr>" +
-                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
                             "</tr>" +
                         "</table>" +
@@ -1145,7 +1159,7 @@ namespace MadeInHouse.ViewModels.Ventas
                 ClienteSQL cSQL = new ClienteSQL();
                 Cliente cli = cSQL.BuscarClienteByIdCliente(v.IdCliente);
                 content += "<span style='font-size: 0.5em'>" +
-                                        "Señor (es): " + cli.ApePaterno + " " + cli.ApeMaterno + ", " + cli.Nombre + "<br>" +
+                                        "Señor (es): " + cli.RazonSocial + "<br>" +
                                         "Dirección : " + cli.Direccion + "<br>" +
                                         "R.U.C. N° : " + cli.Ruc +
                                     "</span>";
@@ -1153,7 +1167,9 @@ namespace MadeInHouse.ViewModels.Ventas
             else
             {
                 content += "<span style='font-size: 0.5em'>" +
-                                        "DNI: " + v.dni + "<br>" +
+                                        "Señor (es): " + v.RazonSocial + "<br>" +
+                                        "Dirección : " + v.Direccion + "<br>" +
+                                        "R.U.C. N° : " + v.Ruc +
                                     "</span>";
             }
             content += "</td>" +
@@ -1169,7 +1185,7 @@ namespace MadeInHouse.ViewModels.Ventas
                         "<table border=1 height=700>" +
                             "<tr>" +
                                 "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
-                                "<th><span style='font-size: 0.5em'>VALOR</span></th>" +
+                                "<th><span style='font-size: 0.5em'>VALOR (S/.)</span></th>" +
                             "</tr>";
             if (v.LstDetalle != null)
             {
@@ -1185,11 +1201,11 @@ namespace MadeInHouse.ViewModels.Ventas
                         "<br>" +
                         "<table border=1>" +
                             "<tr>" +
-                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
-                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR (S/.)</span></td>" +
                                 "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
                             "</tr>" +
                         "</table>" +
