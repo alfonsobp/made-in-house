@@ -13,12 +13,12 @@ namespace MadeInHouse.DataObjects.Reportes
 {
     public class Servi
     {
-        int idventa;
+        string doc;
         string tienda;
         string cliente;
         string servicio;
         string fecha;
-        public int IdVenta { get { return idventa; } set { idventa = value; } }
+        public string Doc { get { return doc; } set { doc = value; } }
         public string Tienda { get { return tienda; } set { tienda = value; } }
         public string Cliente { get { return cliente; } set { cliente = value; } }
         public string Servicio { get { return servicio; } set { servicio = value; } }
@@ -69,7 +69,7 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "select v.idventa, t.nombre tienda, c.nombre cliente, s.nombre servicio, v.fechareg fecha from venta v join DetalleVentaServicio d on (v.idVenta = d.idVenta)  join servicio s on (d.idServicio = s.idServicio) join usuario u on ( v.idUsuario = u.idusuario) join tienda t on (u.idTienda = t.idtienda) , cliente c where t.idtienda =" + tienda + "and c.idcliente = " + cliente + "and s.idservicio= " + servicio;
+            cmd.CommandText = "select v.numdocpagoservicio, t.nombre tienda, c.nombre cliente, s.nombre servicio, v.fechareg fecha from venta v join DetalleVentaServicio d on (v.idVenta = d.idVenta)  join servicio s on (d.idServicio = s.idServicio) join usuario u on ( v.idUsuario = u.idusuario) join tienda t on (u.idTienda = t.idtienda) , cliente c where t.idtienda =" + tienda + "and c.idcliente = " + cliente + "and s.idservicio= " + servicio;
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
 
@@ -81,7 +81,7 @@ namespace MadeInHouse.DataObjects.Reportes
                 {
                     Servi e = new Servi();
 
-                    e.IdVenta = Convert.ToInt32(reader["idventa"]);                    
+                    e.Doc = reader["numdocpagoservicio"].ToString();                    
                     e.Servicio = reader["Servicio"].ToString();
                     e.Tienda = reader["tienda"].ToString();
                     e.Cliente = reader["cliente"].ToString();
