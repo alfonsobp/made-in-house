@@ -70,10 +70,10 @@
                                         <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="60" Header="Código"/>
                                         <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="250" Header="Descripción"/>
                                         <DataGridTextColumn Binding="{Binding Path=Unidad}" Width="60" Header="Unidad"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="90" Header="Precio Unitario"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="90" Header="Precio Unitario (S/.)"/>
                                         <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="70" Header="Cantidad"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Descuento}" Width="70" Header="Descuento"/>
-                                        <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="90" Header="Subtotal"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Descuento}" Width="70" Header="Descuento (S/.)"/>
+                                        <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="90" Header="Subtotal (S/.)"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
@@ -122,7 +122,7 @@
                 <TextBox IsReadOnly="True" x:Name="TxtDescuentoTotal" HorizontalAlignment="Left" Height="23" Margin="586,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="IGV:" VerticalAlignment="Top" Width="86" Margin="483,502,0,0"/>
                 <TextBox IsReadOnly="True" x:Name="TxtTotal" HorizontalAlignment="Left" Height="23" Margin="586,530,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total a pagar:" VerticalAlignment="Top" Width="73" Margin="483,530,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Total pagar (S/.):" VerticalAlignment="Top" Width="94" Margin="483,530,0,0"/>
                 <TextBox IsReadOnly="True" x:Name="TxtIGVTotal" HorizontalAlignment="Left" Height="23" Margin="586,502,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="227,566,0,0"/>
                 

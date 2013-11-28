@@ -50,10 +50,10 @@
                                         <DataGridTextColumn Binding="{Binding Path=CodProducto}" Width="70" Header="Código"/>
                                         <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="180" Header="Descripción"/>
                                         <DataGridTextColumn Binding="{Binding Path=Unidad}" Width="60" Header="Unidad"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="60" Header="Precio"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="60" Header="Precio (S/.)"/>
                                         <DataGridTextColumn Binding="{Binding Path=Cantidad}" Width="70" Header="Cantidad"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Descuento}" Width="70"  Header="Descuento"/>
-                                        <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="70"  Header="Subtotal"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Descuento}" Width="70"  Header="Descuento (S/.)"/>
+                                        <DataGridTextColumn Binding="{Binding Path=SubTotal}" Width="70"  Header="Subtotal (S/.)"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Producto:" VerticalAlignment="Top" Width="73" Margin="10,12,0,0"/>
@@ -101,7 +101,7 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=IdServicio}" Width="80" Header="Código"/>
                                         <DataGridTextColumn Binding="{Binding Path=Descripcion}" Width="400" Header="Descripción"/>
-                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="100" Header="Precio"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Precio}" Width="100" Header="Precio (S/.)"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
@@ -126,7 +126,7 @@
                     x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" Margin="341,26,0,0" 
                     TextWrapping="Wrap" VerticalAlignment="Top" Width="114" RenderTransformOrigin="0.269,0.565"/>
                 <TextBlock HorizontalAlignment="Left" Margin="297,28,0,0" TextWrapping="Wrap" Text="Tarjeta:" VerticalAlignment="Top" RenderTransformOrigin="2.872,0.438"/>
-                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga con:" VerticalAlignment="Top" Width="60" Margin="244,527,0,0"/>
+                <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Paga conñlllm, za:" VerticalAlignment="Top" Width="60" Margin="244,527,0,0"/>
                 <TextBlock HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="Vuelto:" VerticalAlignment="Top" Width="60" Margin="244,555,0,0"/>
                 <TextBox x:Name="TxtPagaCon" IsEnabled="False" Height="23" Margin="314,527,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="102"/>
                 <TextBox x:Name="TxtVuelto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="314,555,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="102"/>
@@ -135,7 +135,7 @@
                 	AutoGenerateColumns="False" CanUserAddRows="False">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Path=Nombre}" Width="113" Header="Modo"/>
-                        <DataGridTextColumn Binding="{Binding Path=Monto}" Width="75" Header="Monto"/>
+                        <DataGridTextColumn Binding="{Binding Path=Monto}" Width="75" Header="Monto (S/.)"/>
                     </DataGrid.Columns>
                 </DataGrid>
                 <ComboBox

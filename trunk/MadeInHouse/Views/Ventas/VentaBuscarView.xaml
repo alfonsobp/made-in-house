@@ -93,7 +93,7 @@
                             <DataGridTextColumn Binding="{Binding Path=NumDocPago}" Width="85" Header="Doc. Pago"/>
                             <DataGridTextColumn Binding="{Binding Path=NombreCliente}" Width="350" Header="Nombre Cliente"/>
                             <DataGridTextColumn Binding="{Binding Path=FechaRegS}" Width="150" Header="Fecha de emisión"/>
-                            <DataGridTextColumn Binding="{Binding Path=Monto}" Width="140" Header="Monto Total (S/.) "/>
+                            <DataGridTextColumn Binding="{Binding Path=Monto}" Width="140" Header="Monto Total (S/.)"/>
                             <DataGridTextColumn Binding="{Binding Path=EstadoS}" Width="95" Header="Estado"/>
                         </DataGrid.Columns>
                     </DataGrid>

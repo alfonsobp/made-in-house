@@ -7,7 +7,7 @@
              xmlns:grid="clr-namespace:MadeInHouse.Dictionary"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:local="clr-namespace:MadeInHouse.Views.Almacen"  x:Class="MadeInHouse.Views.Almacen.MantenerTiendaView" 
-             mc:Ignorable="d" d:designHeight="345" d:designWidth="390" Background="White">
+             mc:Ignorable="d" d:designHeight="345" d:designWidth="390">
     <Border BorderThickness="10" CornerRadius="6">
         <Border.Effect>
             <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
@@ -42,10 +42,10 @@
                         <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
                 </ToolBar>
-                <Grid Height="513">
-                    <TabControl Margin="0,0,0,0">
-                        <TabItem Header="Información general" Background="White">
-                            <Grid Background="White" Margin="70">
+                <Grid Height="500" Width="880">
+                    <TabControl>
+                        <TabItem Header="Información general">
+                            <Grid Margin="70">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="Auto"/>
@@ -93,21 +93,40 @@
                         <TabItem Header="Productos" >
                             <Grid Background="White" >
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="401*"/>
-                                    <ColumnDefinition Width="469*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Label Content="Código:" HorizontalAlignment="Left" Margin="32,55,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
-
-                                <Button x:Name="BuscarProductos" HorizontalAlignment="Left" Margin="331,55,0,0" VerticalAlignment="Top" Width="36" Height="23" IsEnabled="{Binding Editar}">
-                                    <Button.Background>
-                                        <ImageBrush ImageSource="/Assets/find.png" Stretch="Uniform" />
-                                    </Button.Background>
-                                </Button>
-                                <Label Content="Stock actual:" HorizontalAlignment="Left" Margin="32,93,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
-                                <Label Content="Sotck mínimo:" HorizontalAlignment="Left" Margin="32,127,0,0" VerticalAlignment="Top" Height="26" Width="85"/>
-                                <Label Content="Stock máximo:" HorizontalAlignment="Left" Margin="32,161,0,0" VerticalAlignment="Top" Height="26" Width="87"/>
-                                <Label Content="Precio de venta (S/.):" HorizontalAlignment="Left" Margin="32,199,0,0" VerticalAlignment="Top" Width="125" Height="26"/>
-                                <CheckBox x:Name="ChkVigente" Content="Vigente" HorizontalAlignment="Left" Margin="32,243,0,0" VerticalAlignment="Top" Height="15" Width="61" IsEnabled="{Binding Editar}"/>
+                                <Grid Margin="20" VerticalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Content="Código:" Height="25" />
+                                    <Label Content="Stock actual:" Height="25" Grid.Row="1" />
+                                    <Label Content="Stock mínimo:" Height="25" Grid.Row="2" />
+                                    <Label Content="Stock máximo:" Height="25" Grid.Row="3" />
+                                    <Label Content="Precio de venta (S/.):" Height="25" Grid.Row="4" />
+                                    <Button x:Name="BuscarProductos" Margin="4" Width="40" Height="25" IsEnabled="{Binding Editar}" Grid.Column="2">
+                                        <Button.Background>
+                                            <ImageBrush ImageSource="/Assets/find.png" Stretch="Uniform" />
+                                        </Button.Background>
+                                    </Button>
+                                    <TextBox  x:Name="TxtCodProducto" Height="25" Margin="4" TextWrapping="Wrap" Width="150" IsEnabled="{Binding Editar}" Grid.Column="1" />
+                                    <TextBox  IsEnabled="False" x:Name="TxtStockIni" Height="25" Margin="4" TextWrapping="Wrap" Width="75" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" />
+                                    <TextBox x:Name="TxtStockMin" Height="25" Margin="4" TextWrapping="Wrap" Width="75" IsEnabled="{Binding Editar}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left"/>
+                                    <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="25" Margin="4" TextWrapping="Wrap" Width="75" IsEnabled="{Binding Editar}" Grid.Column="1" Grid.Row="3" />
+                                    <TextBox x:Name="TxtPrecioV" HorizontalAlignment="Left" Height="25" Margin="4" TextWrapping="Wrap" Width="75" IsEnabled="{Binding Editar}" Grid.Column="1" Grid.Row="4" />
+                                    <CheckBox x:Name="ChkVigente" Content="Vigente" Height="25" IsEnabled="{Binding Editar}" Grid.Row="5" />
+                                </Grid>
                                 <DataGrid EnableRowVirtualization="False"  x:Name="LstProductos" 
                                       SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
                                       cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged($source)]"
@@ -130,11 +149,11 @@
                                         <ImageBrush ImageSource="/Assets/minus.png" Stretch="Uniform" />
                                     </Button.Background>
                                 </Button>
-                                <TextBox  x:Name="TxtCodProducto" HorizontalAlignment="Left" Height="23" Margin="184,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="{Binding Editar}"/>
-                                <TextBox  IsEnabled="False" x:Name="TxtStockIni" HorizontalAlignment="Left" Height="23" Margin="184,93,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" />
-                                <TextBox x:Name="TxtStockMin" HorizontalAlignment="Left" Height="23" Margin="184,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
-                                <TextBox x:Name="TxtStockMax" HorizontalAlignment="Left" Height="23" Margin="184,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
-                                <TextBox x:Name="TxtPrecioV" HorizontalAlignment="Left" Height="23" Margin="184,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78" IsEnabled="{Binding Editar}"/>
+
+                                
+                                
+                                
+                                
                                 <Button x:Name="Importar" Grid.Column="1" HorizontalAlignment="Left" Margin="48,55,0,0" VerticalAlignment="Top" Width="40" Height="28" IsEnabled="{Binding Editar}">
                                     <Button.Background>
                                         <ImageBrush ImageSource="/Assets/importar.png" Stretch="Uniform" />

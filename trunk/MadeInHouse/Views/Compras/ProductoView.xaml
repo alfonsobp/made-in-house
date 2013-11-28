@@ -1,57 +1,72 @@
-﻿<UserControl
+﻿<UserControl x:Class="MadeInHouse.Views.Compras.ProductoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts" x:Class="MadeInHouse.Views.Compras.ProductoView" 
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts"
+             mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="300">
-    <Grid>
-
-        <StackPanel Margin="2,0,0,0" Height="500" VerticalAlignment="Top" HorizontalAlignment="Left" Width="298">
-            <Layouts:TitleBarTemplate title="MANTENER PRODUCTOS" />
-            <Grid   Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"  RenderTransformOrigin="0.444,0.693" Height="469" Margin="2,0,-2,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label Content="Proveedor:" Margin="23,86,544,338"/>
-
-                <ToolBar VerticalAlignment="Top" Height="41">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Mantener productos" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    
                     <Button  x:Name="guardar">
                         <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
                     </Button>
-                   
-
                 </ToolBar>
-                <Label Content="Importar Catalogo de Excel" Margin="84,370,398,54"/>
-                <TextBox  Margin="84,394,245,33" TextWrapping="Wrap"/>
-                <TextBox  x:Name="Precio" HorizontalAlignment="Left" Height="38" Margin="59,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-                <Label Content="Precio:" HorizontalAlignment="Left" Margin="24,184,0,0" VerticalAlignment="Top" Width="60"/>
-                <Label Content="Codigo Comercial" HorizontalAlignment="Left" Margin="23,258,0,0" VerticalAlignment="Top"/>
-                <Button IsEnabled="{Binding EsBuscar}" x:Name="Buscar" Margin="0,86,25,0"  HorizontalAlignment="Right" Width="27" Height="33" VerticalAlignment="Top">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
-                </Button>
-                <GroupBox Header="GroupBox" HorizontalAlignment="Left" Margin="-164,-133,0,0" VerticalAlignment="Top" Height="53" Width="292"/>
-                <GroupBox Header="Producto" HorizontalAlignment="Left" Margin="6,41,0,0" VerticalAlignment="Top" Height="143" Width="282"/>
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Header="Producto" Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Codigo:" />
+                            <Label Content="Nombre:" Grid.Row="2" />
+                            <TextBox Height="25" Width="150" Margin="4" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Path= P.CodigoProd}" Grid.Row="1" />
+                            <TextBox Height="25" Width="150" Margin="4" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Path= P.Nombre}" Grid.Row="3" />
+                            <Button IsEnabled="{Binding EsBuscar}" x:Name="Buscar" Margin="4" Width="25" Height="25" VerticalAlignment="Top" Grid.Column="1" Grid.Row="1">
+                                <Image Source="/MadeInHouse;component/Assets/find.png" Height="15" Width="50" />
+                            </Button>
+                        </Grid>
+                    </GroupBox>
 
-            </Grid>
-            <!-- CAMBIAR NOMBREEEE -->
-        </StackPanel>
-        <TextBox  Height="33" Margin="24,113,59,0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Path= P.CodigoProd}" VerticalAlignment="Top"/>
-        <TextBox  Height="34" Margin="24,172,59,0" TextWrapping="Wrap" IsReadOnly="True" Text="{Binding Path= P.Nombre}" VerticalAlignment="Top"/>
-        <TextBox   HorizontalAlignment="Left" Height="95" Margin="24,395,0,0" TextWrapping="Wrap" x:Name="Descripcion" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Codigo:" HorizontalAlignment="Left" Margin="24,87,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox   HorizontalAlignment="Left" Height="44" Margin="24,315,0,0" TextWrapping="Wrap" x:Name="CodComercial" VerticalAlignment="Top" Width="251"/>
-        <Label Content="Descripcion" HorizontalAlignment="Left" Margin="24,364,0,0" VerticalAlignment="Top"/>
-        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="24,146,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="S/." HorizontalAlignment="Left" Margin="36,258,0,0" VerticalAlignment="Top" Width="60"/>
-
-    </Grid>
+                    <Label Content="Precio (S/.):" Grid.Row="1" />
+                    <TextBox x:Name="Precio" Margin="4" Height="25" TextWrapping="Wrap" Width="90" Grid.Row="2" />
+                    <Label Content="Codigo Comercial" Grid.Row="3" />
+                    <TextBox Margin="4" Height="25" TextWrapping="Wrap" x:Name="CodComercial" Width="150" Grid.Row="4" />
+                    <Label Content="Descripcion" Grid.Row="5" />
+                    <TextBox Height="50" Margin="4" TextWrapping="Wrap" x:Name="Descripcion" Width="150" Grid.Row="6"/>
+                    
+                </Grid>
+            </DockPanel>
+        </Border>
+    </Border>
 </UserControl>

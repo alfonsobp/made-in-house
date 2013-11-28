@@ -85,7 +85,7 @@
                             <DataGridTextColumn Width="100" Binding="{Binding venta.dni}" Header="DNI"/>
                             <DataGridTextColumn Width="150" Binding="{Binding venta.NumDocPago}" Header="Documento de Pago"/>
                             <DataGridTextColumn Width="150" Binding="{Binding NumDocCredito}" Header="Nota de crédito"/>
-                            <DataGridTextColumn Width="80" Binding="{Binding Monto}" Header="Monto"/>
+                            <DataGridTextColumn Width="80" Binding="{Binding Monto}" Header="Monto (S/.)"/>
                             <DataGridTextColumn Width="150" Binding="{Binding fechaReg}" Header="Fecha registro"/>
                             <DataGridTextColumn Width="*" Binding="{Binding nomEstado}" Header="Estado"/>
                         </DataGrid.Columns>
