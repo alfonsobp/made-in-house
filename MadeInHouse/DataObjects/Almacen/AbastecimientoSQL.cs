@@ -113,7 +113,7 @@ namespace MadeInHouse.DataObjects.Almacen
                 posNomTienda = reader.GetOrdinal("nombre");
                 abTemp.idSolicitudAB = reader.IsDBNull(posId)? -1 : reader.GetInt32(posId);
                 abTemp.estado = reader.IsDBNull(posState)? -1 : reader.GetInt32(posState);
-                abTemp.txtEstado = (abTemp.estado == 1) ? "Registrada" : ((abTemp.estado == 2) ? "En revisión" : ((abTemp.estado == 3) ? "Revisada" : ((abTemp.estado == 4) ? "Consolidada" : ((abTemp.estado == 5) ? "Atendida" : "Anulada"))));
+                abTemp.txtEstado = (abTemp.estado == 1) ? "Registrada" : ((abTemp.estado == 2) ? "En revisión" : ((abTemp.estado == 3) ? "Revisada" : ((abTemp.estado == 4) ? "Consolidada" : ((abTemp.estado == 5) ? "Enviada" : ((abTemp.estado == 6) ? "Atendida" : "Anulada")))));
                 abTemp.fechaReg = reader.IsDBNull(posReg)? null : reader.GetDateTime(posReg).ToString();
                 abTemp.fechaAtencion = reader.IsDBNull(posAtent)? null : reader.GetDateTime(posAtent).ToString();
                 abTemp.idTienda = reader.IsDBNull(posTienda)? -1 : reader.GetInt32(posTienda);

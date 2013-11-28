@@ -50,8 +50,19 @@ namespace MadeInHouse.ViewModels.Almacen
             CmbEstados.Add(est);
             est = new EstadosSolicitud();
             est.estado = 5;
+            est.nomEstado = "Enviado";
+            CmbEstados.Add(est);
+            est = new EstadosSolicitud();
+            est.estado = 6;
             est.nomEstado = "Atendido";
             CmbEstados.Add(est);
+            TiendaSQL tSQL = new TiendaSQL();
+            CmbTiendas = tSQL.BuscarTienda();
+            Tienda ti = new Tienda();
+            ti.IdTienda = -1;
+            ti.Nombre = "Seleccionar tienda";
+            CmbTiendas.Insert(0, ti);
+            RealizarBusqueda(null, null);
         }
 
         public SolicitudAbListadoViewModel(IWindowManager windowmanager, MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel, int acciones)
@@ -79,8 +90,11 @@ namespace MadeInHouse.ViewModels.Almacen
         private string registroDesdeHide;
         private string registroHastaHide;
         private int estadoHide;
+        private int tiendaHide;
         public int SelectedEstado { get; set; }
         public int SelectedIndex { get; set; }
+        public int SelectedTienda { get; set; }
+        public int SelectedIndexTienda { get; set; }
 
         private MantenerNotaDeIngresoViewModel mantenerNotaDeIngresoViewModel;
 
@@ -110,6 +124,18 @@ namespace MadeInHouse.ViewModels.Almacen
 
                 cmbEstados = value;
                 NotifyOfPropertyChange(() => CmbEstados);
+            }
+        }
+
+        private List<Tienda> cmbTiendas;
+        public List<Tienda> CmbTiendas
+        {
+            get { return cmbTiendas; }
+            set
+            {
+                if (this.cmbTiendas == value) return;
+                cmbTiendas = value;
+                NotifyOfPropertyChange(() => CmbTiendas);
             }
         }
 
@@ -162,6 +188,7 @@ namespace MadeInHouse.ViewModels.Almacen
             this.registroDesdeHide = registroDesde;
             this.registroHastaHide = registroHasta;
             this.estadoHide = SelectedEstado;
+            this.tiendaHide = SelectedTienda;
             ActualizarTabla();
         }
 
@@ -170,6 +197,9 @@ namespace MadeInHouse.ViewModels.Almacen
             SelectedEstado = -1;
             SelectedIndex = 0;
             NotifyOfPropertyChange("SelectedIndex");
+            SelectedTienda = -1;
+            SelectedIndexTienda = 0;
+            NotifyOfPropertyChange("SelectedIndexTienda");
             RegistroDesde = "";
             RegistroHasta = "";
         }
@@ -177,39 +207,37 @@ namespace MadeInHouse.ViewModels.Almacen
         public void ActualizarTabla()
         {
             AbastecimientoSQL abaSQL = new AbastecimientoSQL();
-            Solicitudes = abaSQL.buscarAbastecimientos(registroDesdeHide, registroHastaHide, estadoHide);
+            Solicitudes = abaSQL.buscarAbastecimientos(registroDesdeHide, registroHastaHide, estadoHide, tiendaHide);
             NotifyOfPropertyChange("Solicitudes");
         }
 
         public void Acciones(object sender)
         {
-            if (Accion == 1) {
-                if (this.mantenerNotaDeIngresoViewModel != null)
-                {
-                   
-//                    OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
-                    mantenerNotaDeIngresoViewModel.TxtDoc ="SOLAB00000"+abastecimientoSel.idSolicitudAB.ToString();
-                    mantenerNotaDeIngresoViewModel.TxtDocId = abastecimientoSel.idSolicitudAB;
-                    mantenerNotaDeIngresoViewModel.SelectedSolicitud = abastecimientoSel;
-                    this.TryClose();
-                }
-            }
-            else
+            switch (Accion)
             {
-                if (Accion == 2) {
-
+                case 1:
+                    if (this.mantenerNotaDeIngresoViewModel != null)
+                    {
+                        //OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
+                        mantenerNotaDeIngresoViewModel.TxtDoc = "SOLAB00000" + abastecimientoSel.idSolicitudAB.ToString();
+                        mantenerNotaDeIngresoViewModel.TxtDocId = abastecimientoSel.idSolicitudAB;
+                        mantenerNotaDeIngresoViewModel.SelectedSolicitud = abastecimientoSel;
+                        this.TryClose();
+                    }
+                    break;
+                case 2:
                     if (this.mantenerNotaDeSalidaViewModel != null)
                     {
-
                         //OrdenSelected.LstProducto = new OrdenCompraxProductoSQL().Buscar(OrdenSelected.IdOrden) as List<ProductoxOrdenCompra>;
                         mantenerNotaDeSalidaViewModel.TxtDoc = "SOLAB00000" + abastecimientoSel.idSolicitudAB.ToString();
                         mantenerNotaDeSalidaViewModel.TxtDocId = abastecimientoSel.idSolicitudAB;
                         mantenerNotaDeSalidaViewModel.SelectedSolicitud = abastecimientoSel;
                         this.TryClose();
                     }
-
-                }
-                else AbrirDetalle();
+                    break;
+                default:
+                    AbrirDetalle();
+                    break;
             }
         }
 

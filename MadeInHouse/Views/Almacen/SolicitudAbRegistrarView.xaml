@@ -8,7 +8,7 @@
              d:DesignHeight="509" d:DesignWidth="556">
     <UserControl.Resources>
         <ControlTemplate x:Key="Title">
-            <Border Background="Black" BorderBrush="Black" CornerRadius="6,6,0,0" BorderThickness="2">
+            <Border Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
                 <Layouts:TitleBarTemplate title="Detalle solicitud" Name="txtTitle" />
             </Border>
             <ControlTemplate.Triggers>

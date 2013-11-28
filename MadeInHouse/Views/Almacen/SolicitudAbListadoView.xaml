@@ -55,16 +55,21 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Content="Fecha desde:" VerticalAlignment="Center" />
-                            <Label Content="Fecha hasta:" VerticalAlignment="Center" Grid.Row="1" />
-                            <Label Content="Estado:" VerticalAlignment="Center" Grid.Column="2" />
+                            <Label Content="Fecha desde:" VerticalAlignment="Center" Margin="4" />
+                            <Label Content="Fecha hasta:" VerticalAlignment="Center" Grid.Row="1" Margin="4" />
+                            <Label Content="Estado:" VerticalAlignment="Center" Grid.Column="2" Margin="4" />
+                            <Label Content="Tienda:" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2" Margin="4" />
                             <DatePicker x:Name="RegistroDesde" Height="25" Width="150" Grid.Column="1" Margin="4" />
                             <DatePicker x:Name="RegistroHasta" Height="25" Width="150" Grid.Row="1" Grid.Column="1" Margin="4" />
                             <ComboBox ItemsSource="{Binding CmbEstados}" SelectedValue="{Binding SelectedEstado, Mode=TwoWay}"
                                       DisplayMemberPath="nomEstado" SelectedValuePath="estado" Margin="4" Width="150" Height="25"
                                       Grid.Column="3" SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"/>
-                            <Button x:Name="RealizarBusqueda" Height="25" Width="60" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Right" Margin="4">
+                            <ComboBox ItemsSource="{Binding CmbTiendas}" SelectedValue="{Binding SelectedTienda, Mode=TwoWay}"
+                                      DisplayMemberPath="Nombre" SelectedValuePath="IdTienda" Margin="4" Width="150" Height="25"
+                                      Grid.Row="1" Grid.Column="3" SelectedIndex="{Binding SelectedIndexTienda}"/>
+                            <Button x:Name="RealizarBusqueda" Height="25" Width="60" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Right" Margin="4">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50" />
                             </Button>
                         </Grid>
