@@ -192,5 +192,11 @@ namespace MadeInHouse.Views
             Views.Reportes.reporteStock1 rs = new Views.Reportes.reporteStock1();
             rs.Show();
         }
+        private void ReporteServicio_Click(object sender, RoutedEventArgs e)
+        {
+
+            Views.Reportes.reportViewerServicios rs = new Views.Reportes.reportViewerServicios();
+            rs.Show();
+        }
     }
 }

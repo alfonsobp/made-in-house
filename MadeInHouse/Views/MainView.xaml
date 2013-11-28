@@ -250,10 +250,10 @@
                 <!--Button x:Name="AbrirReporteTardanzas"   Background="Transparent" Foreground="White" BorderThickness="0" Content="Tardanzas" FontSize="20" Grid.Row="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Margin="6,2,184,1" Width="108"/>-->
                 <Button x:Name="AbrirReporteAcciones" Content="Log de Acciones" Style="{StaticResource WindowButton}"/>
                 <Button x:Name="AbrirReporteVentas" Content="Ventas" Style="{StaticResource WindowButton}"/>
-                <Button x:Name="AbrirReporteServicios" Content="Servicios" Style="{StaticResource WindowButton}"/>
+                <Button x:Name="AbrirReporteServicios" Content="Servicios" Style="{StaticResource WindowButton}" Click="ReporteServicio_Click"/>
                 <Button x:Name="AbrirReporteCompra" Content="Compras" Style="{StaticResource WindowButton}"/>
-                <Button Name="ReporteStock" Content="Stock de Productos" Style="{StaticResource WindowButton}"/>
-                <Button Name="reporteStock" Content="Reporte Entradas/Salidas" Style="{StaticResource WindowButton}"/>
+                <Button Name="ReporteStock" Content="Stock de Productos" Style="{StaticResource WindowButton}" Click="ReporteStock_Click"/>
+                <Button Name="reporteStock" Content="Reporte Entradas/Salidas" Style="{StaticResource WindowButton}" Click="reporteStock_Click"/>
             </StackPanel>
         </Expander>
 
