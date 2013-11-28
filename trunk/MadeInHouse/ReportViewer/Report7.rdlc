@@ -6,7 +6,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>2.06197cm</Width>
+              <Width>2.36366cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -69,7 +69,6 @@
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <FontSize>8pt</FontSize>
-                                <Color>#4d4d4d</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -106,7 +105,7 @@
           <TablixMembers>
             <TablixMember>
               <TablixHeader>
-                <Size>2.06197cm</Size>
+                <Size>2.36366cm</Size>
                 <CellContents>
                   <Textbox Name="Textbox17">
                     <CanGrow>true</CanGrow>
@@ -147,7 +146,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>2.06197cm</Size>
+                    <Size>2.36366cm</Size>
                     <CellContents>
                       <Textbox Name="Textbox15">
                         <CanGrow>true</CanGrow>
@@ -204,7 +203,7 @@
                   <TablixMembers>
                     <TablixMember>
                       <TablixHeader>
-                        <Size>2.06197cm</Size>
+                        <Size>2.36366cm</Size>
                         <CellContents>
                           <Textbox Name="Textbox13">
                             <CanGrow>true</CanGrow>
@@ -245,7 +244,7 @@
                       <TablixMembers>
                         <TablixMember>
                           <TablixHeader>
-                            <Size>2.06197cm</Size>
+                            <Size>2.36366cm</Size>
                             <CellContents>
                               <Textbox Name="Textbox11">
                                 <CanGrow>true</CanGrow>
@@ -286,7 +285,7 @@
                           <TablixMembers>
                             <TablixMember>
                               <TablixHeader>
-                                <Size>2.06197cm</Size>
+                                <Size>2.36366cm</Size>
                                 <CellContents>
                                   <Textbox Name="Textbox9">
                                     <CanGrow>true</CanGrow>
@@ -327,7 +326,7 @@
                               <TablixMembers>
                                 <TablixMember>
                                   <TablixHeader>
-                                    <Size>2.06197cm</Size>
+                                    <Size>2.36366cm</Size>
                                     <CellContents>
                                       <Textbox Name="Textbox7">
                                         <CanGrow>true</CanGrow>
@@ -368,7 +367,7 @@
                                   <TablixMembers>
                                     <TablixMember>
                                       <TablixHeader>
-                                        <Size>2.06197cm</Size>
+                                        <Size>2.36366cm</Size>
                                         <CellContents>
                                           <Textbox Name="Textbox5">
                                             <CanGrow>true</CanGrow>
@@ -425,7 +424,7 @@
                                       <TablixMembers>
                                         <TablixMember>
                                           <TablixHeader>
-                                            <Size>2.06197cm</Size>
+                                            <Size>2.36366cm</Size>
                                             <CellContents>
                                               <Textbox Name="Textbox3">
                                                 <CanGrow>true</CanGrow>
@@ -493,7 +492,7 @@
                 </SortExpression>
               </SortExpressions>
               <TablixHeader>
-                <Size>2.06197cm</Size>
+                <Size>2.36366cm</Size>
                 <CellContents>
                   <Textbox Name="IdNota">
                     <CanGrow>true</CanGrow>
@@ -507,7 +506,6 @@
                               <FontFamily>Tahoma</FontFamily>
                               <FontSize>8pt</FontSize>
                               <FontWeight>Bold</FontWeight>
-                              <Color>#465678</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -544,7 +542,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>2.06197cm</Size>
+                    <Size>2.36366cm</Size>
                     <CellContents>
                       <Textbox Name="TipoNota">
                         <CanGrow>true</CanGrow>
@@ -558,7 +556,6 @@
                                   <FontFamily>Tahoma</FontFamily>
                                   <FontSize>8pt</FontSize>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>#4c68a2</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -595,7 +592,7 @@
                         </SortExpression>
                       </SortExpressions>
                       <TablixHeader>
-                        <Size>2.06197cm</Size>
+                        <Size>2.36366cm</Size>
                         <CellContents>
                           <Textbox Name="IdAlmacen">
                             <CanGrow>true</CanGrow>
@@ -609,7 +606,6 @@
                                       <FontFamily>Tahoma</FontFamily>
                                       <FontSize>8pt</FontSize>
                                       <FontWeight>Bold</FontWeight>
-                                      <Color>#4c68a2</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -646,7 +642,7 @@
                             </SortExpression>
                           </SortExpressions>
                           <TablixHeader>
-                            <Size>2.06197cm</Size>
+                            <Size>2.36366cm</Size>
                             <CellContents>
                               <Textbox Name="NombreAlmacen">
                                 <CanGrow>true</CanGrow>
@@ -660,7 +656,6 @@
                                           <FontFamily>Tahoma</FontFamily>
                                           <FontSize>8pt</FontSize>
                                           <FontWeight>Bold</FontWeight>
-                                          <Color>#4c68a2</Color>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
@@ -697,7 +692,7 @@
                                 </SortExpression>
                               </SortExpressions>
                               <TablixHeader>
-                                <Size>2.06197cm</Size>
+                                <Size>2.36366cm</Size>
                                 <CellContents>
                                   <Textbox Name="CodProducto">
                                     <CanGrow>true</CanGrow>
@@ -711,7 +706,6 @@
                                               <FontFamily>Tahoma</FontFamily>
                                               <FontSize>8pt</FontSize>
                                               <FontWeight>Bold</FontWeight>
-                                              <Color>#4c68a2</Color>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
@@ -748,7 +742,7 @@
                                     </SortExpression>
                                   </SortExpressions>
                                   <TablixHeader>
-                                    <Size>2.06197cm</Size>
+                                    <Size>2.36366cm</Size>
                                     <CellContents>
                                       <Textbox Name="NombreProducto">
                                         <CanGrow>true</CanGrow>
@@ -762,7 +756,6 @@
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontSize>8pt</FontSize>
                                                   <FontWeight>Bold</FontWeight>
-                                                  <Color>#4c68a2</Color>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -799,7 +792,7 @@
                                         </SortExpression>
                                       </SortExpressions>
                                       <TablixHeader>
-                                        <Size>2.06197cm</Size>
+                                        <Size>2.36366cm</Size>
                                         <CellContents>
                                           <Textbox Name="Motivo">
                                             <CanGrow>true</CanGrow>
@@ -813,7 +806,6 @@
                                                       <FontFamily>Tahoma</FontFamily>
                                                       <FontSize>8pt</FontSize>
                                                       <FontWeight>Bold</FontWeight>
-                                                      <Color>#4c68a2</Color>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -850,7 +842,7 @@
                                             </SortExpression>
                                           </SortExpressions>
                                           <TablixHeader>
-                                            <Size>2.06197cm</Size>
+                                            <Size>2.36366cm</Size>
                                             <CellContents>
                                               <Textbox Name="FechaReg">
                                                 <CanGrow>true</CanGrow>
@@ -864,7 +856,6 @@
                                                           <FontFamily>Tahoma</FontFamily>
                                                           <FontSize>8pt</FontSize>
                                                           <FontWeight>Bold</FontWeight>
-                                                          <Color>#4c68a2</Color>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -910,9 +901,8 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet10</DataSetName>
         <Top>0.17639cm</Top>
-        <Left>0.26328cm</Left>
         <Height>1.91438cm</Height>
-        <Width>18.55771cm</Width>
+        <Width>21.27295cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -923,7 +913,7 @@
     <Height>4.57142in</Height>
     <Style />
   </Body>
-  <Width>7.50359in</Width>
+  <Width>8.39601in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -935,7 +925,7 @@
           <Value>logoMadeInHouse</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.34396cm</Top>
-          <Left>4.7078cm</Left>
+          <Left>4.75205cm</Left>
           <Height>1.40229cm</Height>
           <Width>3.49583cm</Width>
           <Style>
@@ -982,7 +972,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
           <Top>0.34396cm</Top>
-          <Left>7.04565cm</Left>
+          <Left>7.0899cm</Left>
           <Height>1.98438cm</Height>
           <Width>7.72375cm</Width>
           <ZIndex>1</ZIndex>
@@ -1012,7 +1002,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox4</rd:DefaultName>
           <Top>1.69306cm</Top>
-          <Left>4.54565cm</Left>
+          <Left>4.5899cm</Left>
           <Height>0.6cm</Height>
           <Width>3.83437cm</Width>
           <ZIndex>2</ZIndex>

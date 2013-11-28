@@ -11,7 +11,7 @@
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.6cm</Height>
+              <Height>1.15562cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -66,7 +66,6 @@
                               <Value>=Sum(Fields!Monto.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
-                                <Color>#4d4d4d</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -79,6 +78,7 @@
                           <Color>#e5e5e5</Color>
                           <Style>Solid</Style>
                         </Border>
+                        <BackgroundColor>LightGrey</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -575,7 +575,6 @@
                             <Style>
                               <FontFamily>Tahoma</FontFamily>
                               <FontWeight>Bold</FontWeight>
-                              <Color>#465678</Color>
                             </Style>
                           </TextRun>
                         </TextRuns>
@@ -588,7 +587,7 @@
                         <Color>#c6daf8</Color>
                         <Style>Solid</Style>
                       </Border>
-                      <BackgroundColor>#9eb6e4</BackgroundColor>
+                      <BackgroundColor>LightGrey</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -623,7 +622,6 @@
                                 <Style>
                                   <FontFamily>Tahoma</FontFamily>
                                   <FontWeight>Bold</FontWeight>
-                                  <Color>#4c68a2</Color>
                                 </Style>
                               </TextRun>
                             </TextRuns>
@@ -636,7 +634,7 @@
                             <Color>#e6eefc</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>#c6daf8</BackgroundColor>
+                          <BackgroundColor>LightGrey</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -671,7 +669,6 @@
                                     <Style>
                                       <FontFamily>Tahoma</FontFamily>
                                       <FontWeight>Bold</FontWeight>
-                                      <Color>#4c68a2</Color>
                                     </Style>
                                   </TextRun>
                                 </TextRuns>
@@ -684,7 +681,7 @@
                                 <Color>White</Color>
                                 <Style>Solid</Style>
                               </Border>
-                              <BackgroundColor>#e6eefc</BackgroundColor>
+                              <BackgroundColor>LightGrey</BackgroundColor>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
                               <PaddingTop>2pt</PaddingTop>
@@ -719,7 +716,6 @@
                                         <Style>
                                           <FontFamily>Tahoma</FontFamily>
                                           <FontWeight>Bold</FontWeight>
-                                          <Color>#4c68a2</Color>
                                         </Style>
                                       </TextRun>
                                     </TextRuns>
@@ -732,7 +728,7 @@
                                     <Color>White</Color>
                                     <Style>Solid</Style>
                                   </Border>
-                                  <BackgroundColor>#e6eefc</BackgroundColor>
+                                  <BackgroundColor>LightGrey</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
                                   <PaddingTop>2pt</PaddingTop>
@@ -767,7 +763,6 @@
                                             <Style>
                                               <FontFamily>Tahoma</FontFamily>
                                               <FontWeight>Bold</FontWeight>
-                                              <Color>#4c68a2</Color>
                                             </Style>
                                           </TextRun>
                                         </TextRuns>
@@ -780,7 +775,7 @@
                                         <Color>White</Color>
                                         <Style>Solid</Style>
                                       </Border>
-                                      <BackgroundColor>#e6eefc</BackgroundColor>
+                                      <BackgroundColor>LightGrey</BackgroundColor>
                                       <PaddingLeft>2pt</PaddingLeft>
                                       <PaddingRight>2pt</PaddingRight>
                                       <PaddingTop>2pt</PaddingTop>
@@ -815,7 +810,6 @@
                                                 <Style>
                                                   <FontFamily>Tahoma</FontFamily>
                                                   <FontWeight>Bold</FontWeight>
-                                                  <Color>#4c68a2</Color>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -828,7 +822,7 @@
                                             <Color>White</Color>
                                             <Style>Solid</Style>
                                           </Border>
-                                          <BackgroundColor>#e6eefc</BackgroundColor>
+                                          <BackgroundColor>LightGrey</BackgroundColor>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -863,7 +857,6 @@
                                                     <Style>
                                                       <FontFamily>Tahoma</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
-                                                      <Color>#4c68a2</Color>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -876,7 +869,7 @@
                                                 <Color>White</Color>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <BackgroundColor>#e6eefc</BackgroundColor>
+                                              <BackgroundColor>LightGrey</BackgroundColor>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
@@ -911,7 +904,6 @@
                                                         <Style>
                                                           <FontFamily>Tahoma</FontFamily>
                                                           <FontWeight>Bold</FontWeight>
-                                                          <Color>#4c68a2</Color>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
@@ -924,7 +916,7 @@
                                                     <Color>White</Color>
                                                     <Style>Solid</Style>
                                                   </Border>
-                                                  <BackgroundColor>#e6eefc</BackgroundColor>
+                                                  <BackgroundColor>LightGrey</BackgroundColor>
                                                   <PaddingLeft>2pt</PaddingLeft>
                                                   <PaddingRight>2pt</PaddingRight>
                                                   <PaddingTop>2pt</PaddingTop>
@@ -959,7 +951,6 @@
                                                             <Style>
                                                               <FontFamily>Tahoma</FontFamily>
                                                               <FontWeight>Bold</FontWeight>
-                                                              <Color>#4c68a2</Color>
                                                             </Style>
                                                           </TextRun>
                                                         </TextRuns>
@@ -972,7 +963,7 @@
                                                         <Color>White</Color>
                                                         <Style>Solid</Style>
                                                       </Border>
-                                                      <BackgroundColor>#e6eefc</BackgroundColor>
+                                                      <BackgroundColor>LightGrey</BackgroundColor>
                                                       <PaddingLeft>2pt</PaddingLeft>
                                                       <PaddingRight>2pt</PaddingRight>
                                                       <PaddingTop>2pt</PaddingTop>
@@ -1007,7 +998,6 @@
                                                                 <Style>
                                                                   <FontFamily>Tahoma</FontFamily>
                                                                   <FontWeight>Bold</FontWeight>
-                                                                  <Color>#4c68a2</Color>
                                                                 </Style>
                                                               </TextRun>
                                                             </TextRuns>
@@ -1020,7 +1010,7 @@
                                                             <Color>White</Color>
                                                             <Style>Solid</Style>
                                                           </Border>
-                                                          <BackgroundColor>#e6eefc</BackgroundColor>
+                                                          <BackgroundColor>LightGrey</BackgroundColor>
                                                           <PaddingLeft>2pt</PaddingLeft>
                                                           <PaddingRight>2pt</PaddingRight>
                                                           <PaddingTop>2pt</PaddingTop>
@@ -1055,7 +1045,6 @@
                                                                     <Style>
                                                                       <FontFamily>Tahoma</FontFamily>
                                                                       <FontWeight>Bold</FontWeight>
-                                                                      <Color>#4c68a2</Color>
                                                                     </Style>
                                                                   </TextRun>
                                                                 </TextRuns>
@@ -1068,7 +1057,7 @@
                                                                 <Color>White</Color>
                                                                 <Style>Solid</Style>
                                                               </Border>
-                                                              <BackgroundColor>#e6eefc</BackgroundColor>
+                                                              <BackgroundColor>LightGrey</BackgroundColor>
                                                               <PaddingLeft>2pt</PaddingLeft>
                                                               <PaddingRight>2pt</PaddingRight>
                                                               <PaddingTop>2pt</PaddingTop>
@@ -1105,7 +1094,7 @@
         </TablixRowHierarchy>
         <DataSetName>DataSet2</DataSetName>
         <Top>2.8575cm</Top>
-        <Height>1.2cm</Height>
+        <Height>1.75563cm</Height>
         <Width>30cm</Width>
         <Style>
           <Border>
@@ -1138,7 +1127,7 @@
                 <Value>Ventas</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
-                  <FontSize>20pt</FontSize>
+                  <FontSize>18pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
@@ -1154,7 +1143,7 @@
                 <Value>Reporte de Ventas de Productos</Value>
                 <Style>
                   <FontFamily>Calibri</FontFamily>
-                  <FontSize>11pt</FontSize>
+                  <FontSize>18pt</FontSize>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
               </TextRun>
@@ -1168,7 +1157,7 @@
         <Top>0.42774cm</Top>
         <Left>9.87389cm</Left>
         <Height>1.98438cm</Height>
-        <Width>7.72375cm</Width>
+        <Width>8.72917cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
