@@ -61,11 +61,11 @@ namespace MadeInHouse.Views.Reportes
 
 
 
-            reportDataSource1.Name = "DataSet8";
+            reportDataSource1.Name = "DataSet10";
             reportDataSource1.Value = this.ProductBindingSource;
 
             this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this._reportViewer.LocalReport.ReportEmbeddedResource = "MadeInHouse.ReportViewer.Report6.rdlc";
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "MadeInHouse.ReportViewer.Report7.rdlc";
             this._reportViewer.Location = new System.Drawing.Point(0, 0);
 
             ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).EndInit();
@@ -80,14 +80,21 @@ namespace MadeInHouse.Views.Reportes
         {
 
             if (Validar())
-            {   
-                List<Producto> lst = lstProducto.ItemsSource as List<Producto>;
+            {
+                List<Producto> lst = lstSelectedProducto.ItemsSource as List<Producto>;
                 Almacenes alm = cmbAlmacen.SelectedItem as Almacenes;
                 List<notas> aux = new List<notas>();
+                lista = new List<notas>();
 
-                /////////////AQUI////////////
-               lista = DataObjects.Reportes.reporteKardexSQL.BuscarEntradaSalida(alm.IdAlmacen, lst[0].IdProducto);
-
+                for (int i = 0; i < lst.Count; i++)
+                {
+                    aux = DataObjects.Reportes.reporteKardexSQL.BuscarEntradaSalida(alm.IdAlmacen, lst[i].IdProducto);
+                    for (int j = 0; j < aux.Count; j++)
+                    {
+                        lista.Add(aux[j]);
+                    }
+                }
+                             
 
                 Window_Loaded(sender, e);
             }

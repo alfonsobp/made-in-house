@@ -8,20 +8,20 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Productos" HorizontalAlignment="Left" Margin="18,102,0,0" VerticalAlignment="Top" Height="169" Width="727"/>
-        <WindowsFormsHost Margin="28,286,18,60">
+        <GroupBox Header="Productos" HorizontalAlignment="Left" Margin="7,66,0,0" VerticalAlignment="Top" Height="154" Width="727"/>
+        <WindowsFormsHost Margin="7,225,10,10">
             <rv:ReportViewer x:Name="_reportViewer"/>
         </WindowsFormsHost>
-        <Label Content="Almacenes:" HorizontalAlignment="Left" Margin="28,31,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
-        <DatePicker x:Name="fechaIni" HorizontalAlignment="Left" Margin="423,68,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
-        <DatePicker x:Name="fechaFin" HorizontalAlignment="Left" Margin="593,68,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
-        <Label Content="Desde" HorizontalAlignment="Left" Margin="423,44,0,0" VerticalAlignment="Top" Height="26" Width="43"/>
-        <Label Content="Hasta" HorizontalAlignment="Left" Margin="593,43,0,0" VerticalAlignment="Top" Height="26" Width="40"/>
-        <Button  Content="OK" HorizontalAlignment="Left" Margin="660,193,0,0" VerticalAlignment="Top" Width="77" Height="45" Click="Button_Click_1"/>
-        <ComboBox x:Name="cmbAlmacen" DisplayMemberPath="Nombre" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="28,56,0,0" Width="240" RenderTransformOrigin="0.5,0.5" Height="38" VerticalAlignment="Top" />
-        <ListBox x:Name="lstProducto"  DisplayMemberPath="Nombre"    ItemsSource="{Binding}" HorizontalAlignment="Left" Height="110" Margin="46,128,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstProducto_MouseDoubleClick"/>
-        <ListBox x:Name="lstSelectedProducto" ItemsSource="{Binding}" DisplayMemberPath="Nombre" HorizontalAlignment="Left" Height="110" Margin="396,128,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstSelectedProducto_MouseDoubleClick"/>
-        <Button x:Name="AgregarProductos" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="277,128,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="AgregarProductos_Click" />
-        <Button x:Name="QuitarProductos" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="277,200,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="QuitarProductos_Click"/>
+        <Label Content="Almacenes:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
+        <DatePicker x:Name="fechaIni" HorizontalAlignment="Left" Margin="356,34,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
+        <DatePicker x:Name="fechaFin" HorizontalAlignment="Left" Margin="526,34,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
+        <Label Content="Desde" HorizontalAlignment="Left" Margin="356,10,0,0" VerticalAlignment="Top" Height="26" Width="43"/>
+        <Label Content="Hasta" HorizontalAlignment="Left" Margin="526,9,0,0" VerticalAlignment="Top" Height="26" Width="40"/>
+        <Button  Content="OK" HorizontalAlignment="Left" Margin="594,157,0,0" VerticalAlignment="Top" Width="77" Height="45" Click="Button_Click_1"/>
+        <ComboBox x:Name="cmbAlmacen" DisplayMemberPath="Nombre" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="10,35,0,0" Width="240" RenderTransformOrigin="0.5,0.5" Height="23" VerticalAlignment="Top" />
+        <ListBox x:Name="lstProducto"  DisplayMemberPath="Nombre"    ItemsSource="{Binding}" HorizontalAlignment="Left" Height="110" Margin="19,92,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstProducto_MouseDoubleClick"/>
+        <ListBox x:Name="lstSelectedProducto" ItemsSource="{Binding}" DisplayMemberPath="Nombre" HorizontalAlignment="Left" Height="110" Margin="356,92,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstSelectedProducto_MouseDoubleClick"/>
+        <Button x:Name="AgregarProductos" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="240,92,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="AgregarProductos_Click" />
+        <Button x:Name="QuitarProductos" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="240,157,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="QuitarProductos_Click"/>
     </Grid>
 </Window>
