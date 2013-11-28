@@ -14,17 +14,18 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <GroupBox Header="Reporte de Acciones de Usuarios" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="131" Width="736">
+                    <GroupBox Header="Reporte de Acciones de los productos " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="131" Width="736">
                         <Grid>
-                            <Label Content="Usuario:" HorizontalAlignment="Left" Height="29" Margin="74,26,0,0" VerticalAlignment="Top" Width="80"/>
-                            <Label Content="Desde:" HorizontalAlignment="Left" Height="29" Margin="74,60,0,0" VerticalAlignment="Top" Width="80"/>
-                            <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="278,58,0,0" VerticalAlignment="Top" Width="45"/>
-                            <TextBox Margin="132,27,422,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="132,60,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <DatePicker HorizontalAlignment="Left" Margin="333,59,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <Button x:Name="BuscarAcciones" ToolTip="Generar reporte" Margin="539,58,104,0" VerticalAlignment="Top" Width="60">
+                            <GroupBox Header="Fecha" HorizontalAlignment="Left" Margin="224,6,0,0" VerticalAlignment="Top" Height="93" Width="274"/>
+                            <Label Content="Desde:" HorizontalAlignment="Left" Height="24" Margin="236,29,0,0" VerticalAlignment="Top" Width="80"/>
+                            <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="236,60,0,0" VerticalAlignment="Top" Width="45"/>
+                            <TextBox Margin="24,50,530,0" TextWrapping="Wrap" Height="23" VerticalAlignment="Top"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="316,29,0,0" VerticalAlignment="Top" Width="140" Height="24"/>
+                            <DatePicker HorizontalAlignment="Left" Margin="316,60,0,0" VerticalAlignment="Top" Width="140" Height="24"/>
+                            <Button x:Name="BuscarAcciones" ToolTip="Generar reporte" Margin="607,60,27,0" VerticalAlignment="Top" Height="39">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
+                            <GroupBox Header="Usuario" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="89" Width="199"/>
                         </Grid>
                     </GroupBox>
                 </Grid>

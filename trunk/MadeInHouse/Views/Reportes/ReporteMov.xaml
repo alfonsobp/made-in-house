@@ -3,25 +3,32 @@
         xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Layouts="clr-namespace:MadeInHouse.Views.Layouts" x:Class="MadeInHouse.Views.Reportes.ReporteMov"
-        Title="Reporte Movimientos ENTRADA / SALIDA" Height="581.058" Width="931.857">
+        Title="Reporte KARDEX- Entradas Vs Salidas" Height="581.058" Width="931.857">
     <Grid Margin="0,0,2,7">
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Productos" HorizontalAlignment="Left" Margin="89,65,0,0" VerticalAlignment="Top" Height="154" Width="727"/>
-        <WindowsFormsHost  Margin="7,225,10,10">
+        <GroupBox Header="Almacen" HorizontalAlignment="Left" Margin="12,5,0,0" VerticalAlignment="Top" Height="64" Width="300"/>
+        <GroupBox Header="Fecha" HorizontalAlignment="Left" Margin="12,74,0,0" VerticalAlignment="Top" Height="85" Width="300"/>
+        <GroupBox Header="Productos" HorizontalAlignment="Left" Margin="317,5,0,0" VerticalAlignment="Top" Height="154" Width="542"/>
+        <WindowsFormsHost  Margin="7,176,10,10">
             <rv:ReportViewer   x:Name="_reportViewer"/>
         </WindowsFormsHost>
-        <Label Content="Almacenes:" HorizontalAlignment="Left" Margin="92,9,0,0" VerticalAlignment="Top" Height="26" Width="66"/>
-        <DatePicker x:Name="fechaIni" HorizontalAlignment="Left" Margin="438,33,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
-        <DatePicker x:Name="fechaFin" HorizontalAlignment="Left" Margin="608,33,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
-        <Label Content="Desde" HorizontalAlignment="Left" Margin="438,9,0,0" VerticalAlignment="Top" Height="26" Width="43"/>
-        <Label Content="Hasta" HorizontalAlignment="Left" Margin="608,8,0,0" VerticalAlignment="Top" Height="26" Width="40"/>
-        <Button  Content="OK" HorizontalAlignment="Left" Margin="676,156,0,0" VerticalAlignment="Top" Width="77" Height="45" Click="Button_Click_1"/>
-        <ComboBox x:Name="cmbAlmacen" DisplayMemberPath="Nombre" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="92,34,0,0" Width="240" RenderTransformOrigin="0.5,0.5" Height="23" VerticalAlignment="Top" />
-        <ListBox x:Name="lstProducto"  DisplayMemberPath="Nombre"    ItemsSource="{Binding}" HorizontalAlignment="Left" Height="110" Margin="101,91,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstProducto_MouseDoubleClick"/>
-        <ListBox x:Name="lstSelectedProducto" ItemsSource="{Binding}" DisplayMemberPath="Nombre" HorizontalAlignment="Left" Height="110" Margin="438,91,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstSelectedProducto_MouseDoubleClick"/>
-        <Button x:Name="AgregarProductos" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="322,91,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="AgregarProductos_Click" />
-        <Button x:Name="QuitarProductos" Content="&lt;&lt;" HorizontalAlignment="Left" Margin="322,156,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="QuitarProductos_Click"/>
+        <DatePicker x:Name="fechaIni" HorizontalAlignment="Left" Margin="94,96,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
+        <DatePicker x:Name="fechaFin" HorizontalAlignment="Left" Margin="94,125,0,0" VerticalAlignment="Top" Height="24" Width="145"/>
+        <Label Content="Desde" HorizontalAlignment="Left" Margin="35,96,0,0" VerticalAlignment="Top" Height="26" Width="43"/>
+        <Label Content="Hasta" HorizontalAlignment="Left" Margin="38,122,0,0" VerticalAlignment="Top" Height="26" Width="40"/>
+        <Button  HorizontalAlignment="Left" Margin="864,113,0,0" VerticalAlignment="Top" Width="48" Height="45" Click="Button_Click_1">
+            <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
+        </Button>
+        <ComboBox x:Name="cmbAlmacen" DisplayMemberPath="Nombre" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="35,31,0,0" Width="240" RenderTransformOrigin="0.5,0.5" Height="23" VerticalAlignment="Top" />
+        <ListBox x:Name="lstProducto"  DisplayMemberPath="Nombre"    ItemsSource="{Binding}" HorizontalAlignment="Left" Height="110" Margin="329,31,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstProducto_MouseDoubleClick"/>
+        <ListBox x:Name="lstSelectedProducto" ItemsSource="{Binding}" DisplayMemberPath="Nombre" HorizontalAlignment="Left" Height="110" Margin="644,31,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstSelectedProducto_MouseDoubleClick"/>
+        <Button x:Name="AgregarProductos"  HorizontalAlignment="Left" Margin="550,31,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="AgregarProductos_Click" >
+            <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+        </Button>
+        <Button x:Name="QuitarProductos"  HorizontalAlignment="Left" Margin="550,96,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="QuitarProductos_Click">
+            <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+        </Button>
     </Grid>
 </Window>

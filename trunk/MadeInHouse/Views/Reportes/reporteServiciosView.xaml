@@ -14,7 +14,7 @@
                 <Grid Margin="0,0,0,-21">
                     <GroupBox Header="Reporte de Ventas de Servicios" HorizontalAlignment="Left" Height="462" Margin="10,10,0,0" VerticalAlignment="Top" Width="576">
                         <Grid>
-                            <Button Name="GenerarReporte" ToolTip="Generar reporte" Margin="401,21,93,0" VerticalAlignment="Top" Click="Generar">
+                            <Button Name="GenerarReporte" ToolTip="Generar reporte" Margin="466,10,15,0" VerticalAlignment="Top" Click="Generar" Height="36">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
                             <GroupBox Header="Cliente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">

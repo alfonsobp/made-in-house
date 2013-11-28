@@ -118,5 +118,7 @@ namespace MadeInHouse.Views.Reportes
             }
             Window_Loaded(sender, e);
         }
+
+      
     }
 }
