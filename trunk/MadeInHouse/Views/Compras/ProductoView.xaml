@@ -11,7 +11,7 @@
             <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
         </Border.Effect>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
-            <DockPanel>
+            <DockPanel Margin="0,0,-2,-2">
                 <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
                     <Layouts:TitleBarTemplate title="Mantener productos" />
                 </Border>
@@ -36,7 +36,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <GroupBox Header="Producto" Margin="10">
+                    <GroupBox Header="Producto" Margin="0,10">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -59,11 +59,11 @@
                     </GroupBox>
 
                     <Label Content="Precio (S/.):" Grid.Row="1" />
-                    <TextBox x:Name="Precio" Margin="4" Height="25" TextWrapping="Wrap" Width="90" Grid.Row="2" />
+                    <TextBox x:Name="Precio" Margin="10,5,138,5" Height="25" TextWrapping="Wrap" Width="90" Grid.Row="2" />
                     <Label Content="Codigo Comercial" Grid.Row="3" />
-                    <TextBox Margin="4" Height="25" TextWrapping="Wrap" x:Name="CodComercial" Width="150" Grid.Row="4" />
+                    <TextBox Margin="10,3,78,5" Height="25" TextWrapping="Wrap" x:Name="CodComercial" Width="150" Grid.Row="4" />
                     <Label Content="Descripcion" Grid.Row="5" />
-                    <TextBox Height="50" Margin="4" TextWrapping="Wrap" x:Name="Descripcion" Width="150" Grid.Row="6"/>
+                    <TextBox Height="50" Margin="10,24,10,10" TextWrapping="Wrap" x:Name="Descripcion" Grid.Row="5" Grid.RowSpan="2"/>
                     
                 </Grid>
             </DockPanel>
