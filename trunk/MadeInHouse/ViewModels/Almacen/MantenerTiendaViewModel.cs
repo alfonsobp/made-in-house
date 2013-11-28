@@ -577,6 +577,7 @@ namespace MadeInHouse.ViewModels.Almacen
         {
             accion = 2;
             Editar = false;
+            if (t == null) return;
             idTienda = t.IdTienda;
 
             /*carga de la informacion general*/
@@ -758,7 +759,25 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
                 else
                 {
-                    System.Windows.MessageBox.Show("El código proporcionado no existe");
+                    if (accion == 2) {
+                        pxa = new ProductoxTienda();
+                        lstAux = pxaSQL.BuscarProducto(TxtCodProducto, -1, -1, -1);
+                        pxa.CodProducto = lstAux[0].CodigoProd;
+                        pxa.IdProducto = lstAux[0].IdProducto;
+                        pxa.Nombre = lstAux[0].Nombre;
+                        pxa.StockActual = String.IsNullOrEmpty(TxtStockIni) ? 0 : Int32.Parse(TxtStockIni);
+                        pxa.StockMin = Int32.Parse(TxtStockMin);
+                        pxa.StockMax = Int32.Parse(TxtStockMax);
+                        pxa.PrecioVenta = float.Parse(txtPrecioV);
+                        pxa.Vigente = (ChkVigente == true) ? 1 : 0;
+                        pxa.IdTienda = this.idTienda;
+                        LstProductos.Add(pxa);
+                        LstProductos = new List<ProductoxTienda>(LstProductos);
+
+                        System.Windows.MessageBox.Show("El actualizaron los datos del producto correctamente");
+                    }
+                    else
+                        System.Windows.MessageBox.Show("El código proporcionado no existe");
                 }
             }
         }
@@ -1106,8 +1125,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
                     /*anaquel*/
                     Almacenes ana = new Almacenes();
-                    ana.CodAlmacen = "ANA00" + idTienda.ToString();
-                    ana.IdTienda = idTienda;
+                    ana.CodAlmacen = "ANA00" + tienda.IdTienda.ToString();
+                    ana.IdTienda = tienda.IdTienda;
                     ana.Nombre = "Anaquel de "+ txtNombre;
                     ana.Telefono = tienda.Telefono;
                     ana.Direccion = tienda.Direccion;
@@ -1128,8 +1147,8 @@ namespace MadeInHouse.ViewModels.Almacen
 
                         /*deposito*/
                         Almacenes dto = new Almacenes();
-                        dto.CodAlmacen = "DTO00" + idTienda.ToString();
-                        dto.IdTienda = idTienda;
+                        dto.CodAlmacen = "DTO00" + tienda.IdTienda.ToString();
+                        dto.IdTienda = tienda.IdTienda;
                         dto.Nombre = "Deposito de " + txtNombre;
                         dto.Telefono = tienda.Telefono;
                         dto.Direccion = tienda.Direccion;
