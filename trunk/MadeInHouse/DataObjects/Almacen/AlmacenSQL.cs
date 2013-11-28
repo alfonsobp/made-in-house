@@ -372,7 +372,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
         public int Actualizar(Almacenes alm)
         {
-            db.cmd.CommandText = "UPDATE Almacen SET codAlmacen=@codAlmacen nroFilas=@nroFilas , nroColumnas=@nroColumnas , altura=@altura , " +
+            db.cmd.CommandText = "UPDATE Almacen SET codAlmacen=@codAlmacen ,  nroFilas=@nroFilas , nroColumnas=@nroColumnas , altura=@altura , " +
                                  " direccion=@direccion , telefono=@telefono WHERE idAlmacen=@idAlmacen";
 
             db.cmd.Parameters.AddWithValue("@codAlmacen", alm.CodAlmacen);

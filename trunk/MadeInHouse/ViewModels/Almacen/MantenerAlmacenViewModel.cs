@@ -568,7 +568,7 @@ namespace MadeInHouse.ViewModels.Almacen
             central.Tipo = 3;
             int idAlmacen = aSQL.Agregar(central);
             central.IdAlmacen = idAlmacen;
-            central.CodAlmacen = "CENTRAL00" + idAlmacen.ToString();
+            central.CodAlmacen = "CENTRAL001";
             int up = aSQL.Actualizar(central);
 
             if (idAlmacen > 0 && up > 0)
@@ -589,7 +589,7 @@ namespace MadeInHouse.ViewModels.Almacen
                     exito = ubSQL.AgregarMasivo(ubicacionesData, trans);
 
                     trans.Commit();
-                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se creó el almacen central correctamente correctamente"));
+                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se creó el almacen central correctamente"));
                     return 1;
                 }
                 else
