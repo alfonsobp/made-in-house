@@ -325,8 +325,8 @@ namespace MadeInHouse.ViewModels.Ventas
             {
                 desc += dv.Descuento;
                 total += (dv.SubTotal - desc);
-                subt = (total * (1 - IGV));
-                igv_total = total * IGV;
+                subt = (total / (1 + IGV));
+                igv_total = subt * IGV;
                 TxtDescuentoTotal = desc.ToString();
                 TxtTotal = total.ToString();
                 TxtSubTotal = subt.ToString();
@@ -382,16 +382,16 @@ namespace MadeInHouse.ViewModels.Ventas
                         MessageBox.Show("Tiene que poner una cantidad");
                         return;
                     }
-                    item.SubTotal = item.Cantidad * p.Precio;
+                    item.SubTotal = item.Cantidad * (p.Precio / (1 + IGV));
                     item.Descuento += CalculaDescuento(p.IdProducto, item.Cantidad);
 
                     desc = item.Descuento;
                     TxtDescuentoTotal = desc.ToString();
 
-                    total = item.SubTotal - desc;
+                    subt = item.SubTotal - desc;
                     TxtTotal = total.ToString();
 
-                    subt = total * (1 - IGV);
+                    total = subt * (1 - IGV);
                     TxtSubTotal = subt.ToString();
                     
                     igv_total = total * IGV;
@@ -794,170 +794,408 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void GenerarPDFBoletaProductos(Venta v)
         {
+            string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
+            System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
             string body = formatoBP(v).ToString();
-            pdf.createPDF(body, "\\BP.pdf",true);
+            string date = DateTime.Now.ToString("yyyyMMddHHmmss");
+            pdf.createPDF(body, "\\Archivos\\DocumentosPago\\BP" + date + ".pdf", true);
         }
 
         public void GenerarPDFBoletaServicios(Venta v)
         {
+            string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
+            System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
-            string body = formatoBS(v).ToString();
-            pdf.createPDF(body, "\\BS.pdf",true);
+            string body = formatoBP(v).ToString();
+            string date = DateTime.Now.ToString("yyyyMMddHHmmss");
+            pdf.createPDF(body, "\\Archivos\\DocumentosPago\\BS" + date + ".pdf", true);
         }
 
         public void GenerarPDFFacturaProductos(Venta v)
         {
+            string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
+            System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
-            string body = formatoFP(v).ToString();
-            pdf.createPDF(body, "\\FP.pdf",true);
+            string body = formatoBP(v).ToString();
+            string date = DateTime.Now.ToString("yyyyMMddHHmmss");
+            pdf.createPDF(body, "\\Archivos\\DocumentosPago\\FP" + date + ".pdf", true);
         }
 
         public void GenerarPDFFacturaServicios(Venta v)
         {
+            string pathString = Environment.CurrentDirectory + @"\Archivos\DocumentosPago";
+            System.IO.Directory.CreateDirectory(pathString);
             GenerarPDF pdf = new GenerarPDF();
-            string body = formatoFS(v).ToString();
-            pdf.createPDF(body, "\\FS.pdf",true);
+            string body = formatoBP(v).ToString();
+            string date = DateTime.Now.ToString("yyyyMMddHHmmss");
+            pdf.createPDF(body, "\\Archivos\\DocumentosPago\\FS" + date + ".pdf", true);
         }
 
         public string formatoBP(Venta v)
         {
-            string content = @"<HTML><BODY>";
-            content += "<center> MadeInHouse  S.A. </center><br><br> ";
-            content += "<center> Ruc. 99999999999 </center><br><br> ";
-            content += "BOLETA " + v.NumDocPago + "<br><br>";
-            content += "<br><br>";
+            double valorVenta = 0;
+            double precioReal;
+            string content =
+                @"<html>
+                    <body>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style='text-align: center; text-decoration: underline; font-size: 1em; font-weight: bold'>MadeInHouse S.A.</span><br>
+                                    <span style='text-align: center; font-size: 0.5em'>
+                                        Av. Priority N° xxx - San Miguel - Lima<br>
+                                        Telf: 999-9999<br>
+                                        www.MadeInHouse.com Email: info@mih.com
+                                    </span>
+                                </td>
+                                <td></td>
+                                <td border=1>
+                                    <span style='text-align: center; font-size: 1em'>
+                                        R.U.C. N° XXXXXXXXXXX<br>
+                                        BOLETA<br>
+                                        001 - N° " + v.NumDocPago.ToString().PadLeft(10,'0');
+            content += "</span>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table width=100%>" +
+                            "<tr>" +
+                                "<td width=200 border=1>";
             if (v.IdCliente != -1)
             {
-                content += "Cliente : " + cliente.Nombre + " " + cliente.ApePaterno + " " + cliente.ApeMaterno + "<br><br>";
+                ClienteSQL cSQL = new ClienteSQL();
+                Cliente cli = cSQL.BuscarClienteByIdCliente(v.IdCliente);
+                content += "<span style='font-size: 0.5em'>" +
+                                        "Señor (es): " + cli.ApePaterno + " " + cli.ApeMaterno + ", " + cli.Nombre + "<br>" +
+                                        "Dirección : " + cli.Direccion + "<br>" +
+                                    "</span>";
             }
             else
             {
-                content += "Cliente : " + " " + "<br><br>";
+                content += "<span style='font-size: 0.5em'>" +
+                                        "DNI: " + v.dni + "<br>" +
+                                    "</span>";
             }
-            content += "Fecha : " + v.FechaReg.ToString() + "<br><br>";
-            content += "Detalle de Artículos: <br><br>";
-            content += "<table border = 1 ><tr><th>COD</th><th>ARTICULO</th><th>PRECIO UNITARIO</th>" +
-                        "<th>CANTIDAD</th><th>SUBTOTAL</th><tr>";
-            double sumaAporte = 0;
-            int i = 1;
-            foreach (DetalleVenta dv in v.LstDetalle)
+            content += "</td>" +
+                                "<td width=100>" +
+                                    "<table border=1 width=150 align=center>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>FECHA DE EMISIÓN</span></td></tr>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>" + DateTime.Now.ToString("dd/MM/yyyy") + "</span></td></tr>" +
+                                    "</table>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table border=1 height=700>" +
+                            "<tr>" +
+                                "<th><span style='font-size: 0.5em'>CODIGO</span></th>" +
+                                "<th><span style='font-size: 0.5em'>CANTIDAD</span></th>" +
+                                "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
+                                "<th><span style='font-size: 0.5em'>PRECIO</span></th>" +
+                                "<th><span style='font-size: 0.5em'>SUB TOTAL</span></th>" +
+                            "</tr>";
+            if (v.LstDetalle != null)
             {
-                double parcial = dv.Precio * dv.Cantidad;
-                content += "<tr><td>" + dv.IdProducto.ToString() + "</td>" +
-                               "<td>" + dv.Descripcion + "</td>" +
-                               "<td>" + dv.Precio.ToString() + "</td>" +
-                               "<td>" + dv.Cantidad.ToString() + "</td>" +
-                "<td>" + parcial.ToString() + "</td></tr>";
-                i++;
-                sumaAporte += parcial;
+                foreach (DetalleVenta dv in v.LstDetalle)
+                {
+                    content += "<tr>" +
+                                "<td><span style='font-size: 0.5em'>" + dv.CodProducto + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + dv.Cantidad + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + dv.Descripcion + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(precioReal = (dv.Precio / 1.18), 2) + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta += dv.Cantidad * precioReal, 2) + "</span></th>" +
+                                "</tr>";
+                }
             }
-
-            content += "<tr><td colspan = 4 > TOTAL</td><td>" + sumaAporte.ToString() + "</td> </tr></table>";
-            content += "</BODY></HTML>";
+            content += "</table>" +
+                        "<br>" +
+                        "<table border=1>" +
+                            "<tr>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
+                            "</tr>" +
+                        "</table>" +
+                    "</body>" +
+                "</html>";
 
             return content;
         }
 
         public string formatoBS(Venta v)
         {
-            string content = @"<HTML><BODY>";
-            content += "<center> MadeInHouse  S.A. </center><br><br> ";
-            content += "<center> Ruc. 99999999999 </center><br><br> ";
-            content += "BOLETA " + v.NumDocPagoServicio + "<br><br>";
-            content += "<br><br>";
+            double valorVenta = 0;
+            string content =
+                @"<html>
+                    <body>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style='text-align: center; text-decoration: underline; font-size: 1em; font-weight: bold'>MadeInHouse S.A.</span><br>
+                                    <span style='text-align: center; font-size: 0.5em'>
+                                        Av. Priority N° xxx - San Miguel - Lima<br>
+                                        Telf: 999-9999<br>
+                                        www.MadeInHouse.com Email: info@mih.com
+                                    </span>
+                                </td>
+                                <td></td>
+                                <td border=1>
+                                    <span style='text-align: center; font-size: 1em'>
+                                        R.U.C. N° XXXXXXXXXXX<br>
+                                        BOLETA<br>
+                                        001 - N° " + v.NumDocPagoServicio.ToString().PadLeft(10, '0');
+            content += "</span>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table width=100%>" +
+                            "<tr>" +
+                                "<td width=200 border=1>";
             if (v.IdCliente != -1)
             {
-                content += "Cliente : " + cliente.Nombre + " " + cliente.ApePaterno + " " + cliente.ApeMaterno + "<br><br>";
+                ClienteSQL cSQL = new ClienteSQL();
+                Cliente cli = cSQL.BuscarClienteByIdCliente(v.IdCliente);
+                content += "<span style='font-size: 0.5em'>" +
+                                        "Señor (es): " + cli.ApePaterno + " " + cli.ApeMaterno + ", " + cli.Nombre + "<br>" +
+                                        "Dirección : " + cli.Direccion + "<br>" +
+                                    "</span>";
             }
             else
             {
-                content += "Cliente : " + " " + "<br><br>";
+                content += "<span style='font-size: 0.5em'>" +
+                                        "DNI: " + v.dni + "<br>" +
+                                    "</span>";
             }
-            content += "Fecha : " + v.FechaReg.ToString() + "<br><br>";
-            content += "Detalle de Artículos: <br><br>";
-            content += "<table border = 1 ><tr><th>COD</th><th>ARTICULO</th><th>PRECIO UNITARIO</th><tr>";
-            double sumaAporte = 0;
-            int i = 1;
-            foreach (DetalleVentaServicio dvs in v.LstDetalleServicio)
+            content += "</td>" +
+                                "<td width=100>" +
+                                    "<table border=1 width=150 align=center>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>FECHA DE EMISIÓN</span></td></tr>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>" + DateTime.Now.ToString("dd/MM/yyyy") + "</span></td></tr>" +
+                                    "</table>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table border=1 height=700>" +
+                            "<tr>" +
+                                "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
+                                "<th><span style='font-size: 0.5em'>VALOR</span></th>" +
+                            "</tr>";
+            if (v.LstDetalle != null)
             {
-                double parcial = dvs.Precio;
-                content += "<tr><td>" + dvs.IdServicio.ToString() + "</td>" +
-                               "<td>" + dvs.Descripcion + "</td>" +
-                               "<td>" + dvs.Precio.ToString() + "</td></tr>";
-                i++;
-                sumaAporte += parcial;
+                foreach (DetalleVentaServicio dvs in v.LstDetalleServicio)
+                {
+                    content += "<tr>" +
+                                "<td><span style='font-size: 0.5em'>" + dvs.Descripcion + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta += (dvs.Precio / 1.18), 2) + "</span></th>" +
+                                "</tr>";
+                }
             }
-
-            content += "<tr><td colspan = 4 > TOTAL</td><td>" + sumaAporte.ToString() + "</td> </tr></table>";
-            content += "</BODY></HTML>";
+            content += "</table>" +
+                        "<br>" +
+                        "<table border=1>" +
+                            "<tr>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
+                            "</tr>" +
+                        "</table>" +
+                    "</body>" +
+                "</html>";
 
             return content;
         }
 
         public string formatoFP(Venta v)
         {
-            string content = @"<HTML><BODY>";
-            content += "<center> MadeInHouse  S.A. </center><br><br> ";
-            content += "<center> Ruc. 99999999999 </center><br><br> ";
-            content += "Factura " + v.NumDocPago + "<br><br>";
-            content += "<br><br>";
-            content += "Razón Social : " + TxtRazonSocial + "<br>";
-            content += "RUC : " + TxtRuc + "<br>";
-            content += "Fecha : " + v.FechaReg.ToString() + "<br>";
-            content += "Detalle de Artículos: <br><br>";
-            content += "<table border = 1 ><tr><th>COD</th><th>ARTICULO</th><th>PRECIO UNITARIO</th>" +
-                        "<th>CANTIDAD</th><th>SUBTOTAL</th><tr>";
-            double sumaAporte = 0;
-            int i = 1;
-            foreach (DetalleVenta dv in v.LstDetalle)
+            double valorVenta = 0;
+            double precioReal;
+            string content =
+                @"<html>
+                    <body>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style='text-align: center; text-decoration: underline; font-size: 1em; font-weight: bold'>MadeInHouse S.A.</span><br>
+                                    <span style='text-align: center; font-size: 0.5em'>
+                                        Av. Priority N° xxx - San Miguel - Lima<br>
+                                        Telf: 999-9999<br>
+                                        www.MadeInHouse.com Email: info@mih.com
+                                    </span>
+                                </td>
+                                <td></td>
+                                <td border=1>
+                                    <span style='text-align: center; font-size: 1em'>
+                                        R.U.C. N° XXXXXXXXXXX<br>
+                                        FACTURA<br>
+                                        001 - N° " + v.NumDocPago.ToString().PadLeft(10, '0');
+            content += "</span>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table width=100%>" +
+                            "<tr>" +
+                                "<td width=200 border=1>";
+            if (v.IdCliente != -1)
             {
-                double parcial = dv.Precio * dv.Cantidad;
-                content += "<tr><td>" + dv.IdProducto.ToString() + "</td>" +
-                               "<td>" + dv.Descripcion + "</td>" +
-                               "<td>" + dv.Precio.ToString() + "</td>" +
-                               "<td>" + dv.Cantidad.ToString() + "</td>" +
-                "<td>" + parcial.ToString() + "</td></tr>";
-                i++;
-                sumaAporte += parcial;
+                ClienteSQL cSQL = new ClienteSQL();
+                Cliente cli = cSQL.BuscarClienteByIdCliente(v.IdCliente);
+                content += "<span style='font-size: 0.5em'>" +
+                                        "Señor (es): " + cli.ApePaterno + " " + cli.ApeMaterno + ", " + cli.Nombre + "<br>" +
+                                        "Dirección : " + cli.Direccion + "<br>" +
+                                        "R.U.C. N° : " + cli.Ruc +
+                                    "</span>";
             }
-
-            content += "<tr><td colspan = 4 > SUBTOTAL</td><td>" + sumaAporte.ToString() + "</td> </tr>";
-            content += "<tr><td colspan = 4 > IGV</td><td>" + (sumaAporte * 0.18).ToString() + "</td> </tr>";
-            content += "<tr><td colspan = 4 > TOTAL</td><td>" + (sumaAporte * 1.18).ToString() + "</td> </tr></table>";
-            content += "</BODY></HTML>";
+            else
+            {
+                content += "<span style='font-size: 0.5em'>" +
+                                        "DNI: " + v.dni + "<br>" +
+                                    "</span>";
+            }
+            content += "</td>" +
+                                "<td width=100>" +
+                                    "<table border=1 width=150 align=center>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>FECHA DE EMISIÓN</span></td></tr>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>" + DateTime.Now.ToString("dd/MM/yyyy") + "</span></td></tr>" +
+                                    "</table>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table border=1 height=700>" +
+                            "<tr>" +
+                                "<th><span style='font-size: 0.5em'>CODIGO</span></th>" +
+                                "<th><span style='font-size: 0.5em'>CANTIDAD</span></th>" +
+                                "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
+                                "<th><span style='font-size: 0.5em'>PRECIO</span></th>" +
+                                "<th><span style='font-size: 0.5em'>SUB TOTAL</span></th>" +
+                            "</tr>";
+            if (v.LstDetalle != null)
+            {
+                foreach (DetalleVenta dv in v.LstDetalle)
+                {
+                    content += "<tr>" +
+                                "<td><span style='font-size: 0.5em'>" + dv.CodProducto + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + dv.Cantidad + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + dv.Descripcion + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(precioReal = (dv.Precio / 1.18), 2) + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta += dv.Cantidad * precioReal, 2) + "</span></th>" +
+                                "</tr>";
+                }
+            }
+            content += "</table>" +
+                        "<br>" +
+                        "<table border=1>" +
+                            "<tr>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
+                            "</tr>" +
+                        "</table>" +
+                    "</body>" +
+                "</html>";
 
             return content;
         }
 
         public string formatoFS(Venta v)
         {
-            string content = @"<HTML><BODY>";
-            content += "<center> MadeInHouse  S.A. </center><br><br> ";
-            content += "<center> Ruc. 99999999999 </center><br><br> ";
-            content += "FACTURA " + v.NumDocPagoServicio + "<br><br>";
-            content += "<br><br>";
-            content += "Razón Social : " + TxtRazonSocial + "<br>";
-            content += "RUC : " + TxtRuc + "<br>";
-            content += "Fecha : " + v.FechaReg.ToString() + "<br>";
-            content += "Detalle de Artículos: <br><br>";
-            content += "<table border = 1 ><tr><th>COD</th><th>ARTICULO</th><th>PRECIO UNITARIO</th><tr>";
-            double sumaAporte = 0;
-            int i = 1;
-            foreach (DetalleVentaServicio dvs in v.LstDetalleServicio)
+            double valorVenta = 0;
+            string content =
+                @"<html>
+                    <body>
+                        <table>
+                            <tr>
+                                <td>
+                                    <span style='text-align: center; text-decoration: underline; font-size: 1em; font-weight: bold'>MadeInHouse S.A.</span><br>
+                                    <span style='text-align: center; font-size: 0.5em'>
+                                        Av. Priority N° xxx - San Miguel - Lima<br>
+                                        Telf: 999-9999<br>
+                                        www.MadeInHouse.com Email: info@mih.com
+                                    </span>
+                                </td>
+                                <td></td>
+                                <td border=1>
+                                    <span style='text-align: center; font-size: 1em'>
+                                        R.U.C. N° XXXXXXXXXXX<br>
+                                        FACTURA<br>
+                                        001 - N° " + v.NumDocPagoServicio.ToString().PadLeft(10, '0');
+            content += "</span>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table width=100%>" +
+                            "<tr>" +
+                                "<td width=200 border=1>";
+            if (v.IdCliente != -1)
             {
-                double parcial = dvs.Precio;
-                content += "<tr><td>" + dvs.IdServicio.ToString() + "</td>" +
-                               "<td>" + dvs.Descripcion + "</td>" +
-                               "<td>" + dvs.Precio.ToString() + "</td></tr>";
-                i++;
-                sumaAporte += parcial;
+                ClienteSQL cSQL = new ClienteSQL();
+                Cliente cli = cSQL.BuscarClienteByIdCliente(v.IdCliente);
+                content += "<span style='font-size: 0.5em'>" +
+                                        "Señor (es): " + cli.ApePaterno + " " + cli.ApeMaterno + ", " + cli.Nombre + "<br>" +
+                                        "Dirección : " + cli.Direccion + "<br>" +
+                                        "R.U.C. N° : " + cli.Ruc +
+                                    "</span>";
             }
-
-            content += "<tr><td colspan = 4 > SUBTOTAL</td><td>" + sumaAporte.ToString() + "</td> </tr>";
-            content += "<tr><td colspan = 4 > IGV</td><td>" + (sumaAporte * 0.18).ToString() + "</td> </tr>";
-            content += "<tr><td colspan = 4 > TOTAL</td><td>" + (sumaAporte * 1.18).ToString() + "</td> </tr></table>";
-            content += "</BODY></HTML>";
+            else
+            {
+                content += "<span style='font-size: 0.5em'>" +
+                                        "DNI: " + v.dni + "<br>" +
+                                    "</span>";
+            }
+            content += "</td>" +
+                                "<td width=100>" +
+                                    "<table border=1 width=150 align=center>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>FECHA DE EMISIÓN</span></td></tr>" +
+                                        "<tr><td><span style='text-align: center; font-size: 0.5em'>" + DateTime.Now.ToString("dd/MM/yyyy") + "</span></td></tr>" +
+                                    "</table>" +
+                                "</td>" +
+                            "</tr>" +
+                        "</table>" +
+                        "<br>" +
+                        "<table border=1 height=700>" +
+                            "<tr>" +
+                                "<th><span style='font-size: 0.5em'>DESCRIPCION</span></th>" +
+                                "<th><span style='font-size: 0.5em'>VALOR</span></th>" +
+                            "</tr>";
+            if (v.LstDetalle != null)
+            {
+                foreach (DetalleVentaServicio dvs in v.LstDetalleServicio)
+                {
+                    content += "<tr>" +
+                                "<td><span style='font-size: 0.5em'>" + dvs.Descripcion + "</span></th>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta += (dvs.Precio / 1.18), 2) + "</span></th>" +
+                                "</tr>";
+                }
+            }
+            content += "</table>" +
+                        "<br>" +
+                        "<table border=1>" +
+                            "<tr>" +
+                                "<td><span style='font-size: 0.5em'>VALOR VENTA</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>IGV</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(0.18 * valorVenta, 2) + "</span></td>" +
+                                "<td><span style='font-size: 0.5em'>TOTAL A PAGAR</span></td>" +
+                                "<td><span style='font-size: 0.5em'>" + Math.Round(1.18 * valorVenta, 2) + "</span></td>" +
+                            "</tr>" +
+                        "</table>" +
+                    "</body>" +
+                "</html>";
 
             return content;
         }

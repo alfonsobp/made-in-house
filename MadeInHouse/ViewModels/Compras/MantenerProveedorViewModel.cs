@@ -272,7 +272,7 @@ public string this[string columnName]
                 List<Proveedor> lstProveedor = new ProveedorSQL().Buscar() as List<Proveedor>;
                 txtCodigo = lstProveedor[lstProveedor.Count - 1].CodProveedor;
 
-                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(txtCodigo);
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(win, txtCodigo);
                 win.ShowWindow(obj);
             }
         }

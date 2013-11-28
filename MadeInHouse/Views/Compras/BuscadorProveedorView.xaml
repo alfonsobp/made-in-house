@@ -6,72 +6,88 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"              
              mc:Ignorable="d" 
-             d:DesignHeight="556.414" Width="674.627">
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="2" Height="556" VerticalAlignment="Top" HorizontalAlignment="Left" Width="675">
-        <StackPanel Margin="0,5,-6,0" Height="544" VerticalAlignment="Top">
-            <Layouts:TitleBarTemplate  title="BUSCAR PROVEEDORES" Height="40" Margin="0,0,7,0"  />
-            <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="491" HorizontalAlignment="Left" Width="667">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <DataGrid IsReadOnly="True" x:Name="LstProveedor" SelectedItem="{Binding ProveedorSeleccionado}"  
-        			cal:Message.Attach="[Event MouseDoubleClick]=[Action SelectedItemChanged]" 
-        			Margin="0,265,0,0" Height="226" VerticalAlignment="Top" AutoGenerateColumns="false" HorizontalAlignment="Left" Width="660">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding CodProveedor}"  Width="100" Header="Código"/>
-                        <DataGridTextColumn Binding="{Binding RazonSocial}"  Width="330" Header="Razón Social"/>
-                        <DataGridTextColumn Binding="{Binding Ruc}"  Width="150" Header="RUC"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-                <TextBox  x:Name="TxtRazonSocial" MaxLength="50" HorizontalAlignment="Left" Height="23" Margin="145,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                <Button x:Name="BuscarProveedor" Height="51" Margin="525,176,29,0" VerticalAlignment="Top">
-                    <Image Source="/MadeInHouse;component/Assets/find.png" Height="25" Width="62" />
-                </Button>
-                <GroupBox Header="Criterios de Búsqueda" Margin="10,65,0,0" VerticalAlignment="Top" Height="182"/>
-                <TextBox x:Name="TxtCodigo" MaxLength="20"  HorizontalAlignment="Left" Height="23" Margin="145,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                <Label Content="Razón Social:" HorizontalAlignment="Left" Margin="26,113,0,0" VerticalAlignment="Top" Height="26" Width="79"/>
-                <TextBox x:Name="TxtRuc" MaxLength="11" HorizontalAlignment="Left" Height="23" Margin="145,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="293"/>
-                <Label Content="Código:" HorizontalAlignment="Left" Margin="26,82,0,0" VerticalAlignment="Top" Height="26" Width="51"/>
-                <Label Content="RUC:" HorizontalAlignment="Left" Margin="26,158,0,0" VerticalAlignment="Top" Height="26" Width="35"/>
-                <DatePicker   x:Name="FechaIni" HorizontalAlignment="Left" Margin="145,201,0,0" VerticalAlignment="Top" Width="104" SelectedDateFormat="Short" Height="24"/>
-                <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="333,203,0,0" VerticalAlignment="Top" Width="105" Height="24"/>
-                <Label Content="Fecha Registro:" HorizontalAlignment="Left" Margin="26,201,0,0" VerticalAlignment="Top" Height="26" Width="90"/>
-                <Label Content="Hasta:" HorizontalAlignment="Left" Margin="265,201,0,0" VerticalAlignment="Top" Height="26" Width="42"/>
-                <ToolBar VerticalAlignment="Bottom" Height="60" Margin="0,0,0,431">
+             d:DesignHeight="556.414" d:DesignWidth="674.627">
+    <Border BorderThickness="10" CornerRadius="6">
+        <Border.Effect>
+            <DropShadowEffect Color="Gray" ShadowDepth="0" RenderingBias="Quality" BlurRadius="10" />
+        </Border.Effect>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="8" Background="White">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Background="#919090" BorderBrush="#919090" CornerRadius="6,6,0,0" BorderThickness="2">
+                    <Layouts:TitleBarTemplate title="Buscar proveedores" />
+                </Border>
+                <ToolBar DockPanel.Dock="Top" Margin="-3,-3,-1,0" Loaded="ToolBar_Loaded">
                     <ToolBar.Background>
                         <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
                             <GradientStop Color="#FF535050" Offset="0.073"/>
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button
-        				x:Name="NuevoProveedor" >
+                    <Button x:Name="NuevoProveedor" ToolTip="Nuevo proveedor" >
                         <Image  Source="/MadeInHouse;component/Assets/new2.png" Height="30" Width="30" />
                     </Button>
-                    <Button x:Name="EditarProveedor">
+                    <Button x:Name="EditarProveedor" ToolTip="Editar proveedor">
                         <Image Source="/MadeInHouse;component/Assets/edit2.png" Height="30" Width="30" />
                     </Button>
-                    <Button x:Name="EliminarProveedor">
+                    <Button x:Name="EliminarProveedor" ToolTip="Eliminar proveedor">
                         <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/save.png" Height="30" Width="30" />
+                    <Button x:Name="Limpiar" ToolTip="Limpiar criterios">
+                        <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
                     </Button>
-                    <Button>
-                        <Image Source="/MadeInHouse;component/Assets/cancel.png" Height="30" Width="30" />
+                    <Button x:Name="ActualizarProveedor" ToolTip="Actualizar">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Height="30" Width="30" />
                     </Button>
-                    <Button Height="30" Width="30" x:Name="Limpiar">
-                        <Image Source="/MadeInHouse;component/Assets/eraser.png" RenderTransformOrigin="-2.693,0.289" />
-                    </Button>
-                    <Button x:Name="ActualizarProveedor" Height="50" Width="50">
-                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Margin="0,7,0,5" RenderTransformOrigin="1.779,1.036" Width="43" />
-                    </Button>
-                    <Button x:Name="Importar" Height="50" Width="50">
-                        <Image Source="/MadeInHouse;component/Assets/importar.png" Margin="0,1,0,3" RenderTransformOrigin="1.779,1.036" Width="43" />
+                    <Button x:Name="Importar" ToolTip="Importar proveedores">
+                        <Image Source="/MadeInHouse;component/Assets/importar.png" Height="30" Width="30" />
                     </Button>
                 </ToolBar>
-
-            </Grid>
-        </StackPanel>
+                <Grid Background="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" Height="491" HorizontalAlignment="Left" Width="667">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <GroupBox x:Name="Busqueda" Header="Criterios de Búsqueda" Margin="10">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Código:" Height="25" />
+                            <Label Content="RUC:" Height="25" Grid.Column="2"/>
+                            <Label Content="Razón Social:" Height="25" Grid.Row="1" />
+                            <Label Content="Fecha Registro:" Height="25" Grid.Row="2" />
+                            <Label Content="hasta:" Height="25" Grid.Column="2" Grid.Row="2" />
+                            <TextBox x:Name="TxtCodigo" MaxLength="20" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="1" />
+                            <TextBox x:Name="TxtRuc" MaxLength="11" Height="25" Margin="4" TextWrapping="Wrap" Width="150" Grid.Column="3" />
+                            <TextBox x:Name="TxtRazonSocial" MaxLength="50" Height="25" Margin="4" TextWrapping="Wrap" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" />
+                            <DatePicker x:Name="FechaIni" Margin="4" Width="150" SelectedDateFormat="Short" Height="25" Grid.Row="2" Grid.Column="1"/>
+                            <DatePicker x:Name="FechaFin" Margin="4" Width="150" Height="25" Grid.Column="3" Grid.Row="2" />
+                            <Button x:Name="BuscarProveedor" Height="25" Width="60" Margin="4" Grid.Column="4" Grid.Row="2" >
+                                <Image Source="/MadeInHouse;component/Assets/find.png"/>
+                            </Button>
+                        </Grid>
+                    </GroupBox>
+                    <DataGrid IsReadOnly="True" x:Name="LstProveedor" SelectedItem="{Binding ProveedorSeleccionado}"
+                              cal:Message.Attach="[Event MouseDoubleClick]=[Action SelectedItemChanged]"
+                              Margin="10" Height="250" AutoGenerateColumns="false" Grid.Row="1"
+                              Width="{Binding ElementName=Busqueda, Path=ActualWidth }">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding CodProveedor}"  Width="100" Header="Código"/>
+                            <DataGridTextColumn Binding="{Binding RazonSocial}"  Width="330" Header="Razón Social"/>
+                            <DataGridTextColumn Binding="{Binding Ruc}"  Width="150" Header="RUC"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </DockPanel>
+        </Border>
     </Border>
 </UserControl>

@@ -143,7 +143,7 @@ namespace MadeInHouse.ViewModels.Compras
         public void BuscarProveedor()
         {
             MadeInHouse.Models.MyWindowManager w = new MadeInHouse.Models.MyWindowManager();
-            w.ShowWindow(new BuscadorProveedorViewModel(this));
+            w.ShowWindow(new BuscadorProveedorViewModel(w, this));
         }
 
         
