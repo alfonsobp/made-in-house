@@ -179,6 +179,7 @@ namespace MadeInHouse.ViewModels.Ventas
 
         public void AbrirDetalle()
         {
+            if (devolucionSel!=null)
             _windowManager.ShowWindow(new DevolucionesRegistrarViewModel(_windowManager, this, devolucionSel.IdDevolucion));
         }
 
