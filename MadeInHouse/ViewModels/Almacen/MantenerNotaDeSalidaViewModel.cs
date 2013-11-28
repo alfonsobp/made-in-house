@@ -522,6 +522,13 @@ namespace MadeInHouse.ViewModels.Almacen
                 //Si existe documento de referencia colocar el ID
                 nota.IdDoc = TxtDocId;
             }
+
+            if (String.IsNullOrEmpty(SelectedMotivo))
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo guardar"));
+                return;
+            }
+
             nota.IdMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivo(SelectedMotivo).Id;
             nota.IdResponsable = Responsable.ElementAt(0).IdUsuario;
             nota.Observaciones = Observaciones;
@@ -531,27 +538,39 @@ namespace MadeInHouse.ViewModels.Almacen
 
             nota.IdNota = ntgw.AgregarNota(nota);
 
-            //Actualizar Documentos de Referencia para darlos por Terminados! :)
-
-            //Actualizar Stock
-            ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
-            ProductoSQL pgw = new ProductoSQL();
-
-            List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
-            if (u.IdTienda != 0) ptgw.ActualizarStockSalida(list, u.IdTienda);
-            else pgw.ActualizarStockSalida(list);
-
-            //Actualizar Documento de Referencia
-
-            if (SelectedDespacho != null)
+            if (nota.IdNota > 0)
             {
 
-                OrdenDespachoSQL osql = new OrdenDespachoSQL();
-                SelectedDespacho.Estado = 2;
-                osql.EditarOrdenDespacho(selectedDespacho);
+                //Actualizar Documentos de Referencia para darlos por Terminados! :)
 
+                //Actualizar Stock
+                ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
+                ProductoSQL pgw = new ProductoSQL();
+
+                List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
+                if (u.IdTienda != 0) ptgw.ActualizarStockSalida(list, u.IdTienda);
+                else pgw.ActualizarStockSalida(list);
+
+                //Actualizar Documento de Referencia
+
+                if (SelectedDespacho != null)
+                {
+
+                    OrdenDespachoSQL osql = new OrdenDespachoSQL();
+                    SelectedDespacho.Estado = 2;
+                    osql.EditarOrdenDespacho(selectedDespacho);
+
+                }
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Nota de Salida Creada"));
+                //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Nota de Salida", nota.IdNota.ToString(), 1);
             }
-            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Nota de Salida Creada"));
+            else
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo guardar"));
+            }
+
+
         }
     }
 }

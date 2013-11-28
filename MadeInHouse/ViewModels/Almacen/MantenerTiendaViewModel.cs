@@ -1202,9 +1202,17 @@ namespace MadeInHouse.ViewModels.Almacen
                                     {
                                         trans.Commit();
                                         if (accion == 1)
+                                        {
+                                            //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                                            DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Tienda", tienda.IdTienda+"", 1);
                                             System.Windows.MessageBox.Show("Se creó la tienda correctamente");
+                                        }
                                         else if (accion == 2)
+                                        {
+                                            //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                                            DataObjects.Seguridad.LogSQL.RegistrarActividad("Actualizar Tienda",tienda.IdTienda+"" , 2);
                                             System.Windows.MessageBox.Show("Se editó la tienda correctamente");
+                                        }
                                         return 1;
                                     }
                                     else

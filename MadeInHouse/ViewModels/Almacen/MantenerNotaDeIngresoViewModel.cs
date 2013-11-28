@@ -596,6 +596,13 @@ namespace MadeInHouse.ViewModels.Almacen
                 //Si existe documento de referencia colocar el ID
                 nota.IdDoc = TxtDocId;
             }
+            if (String.IsNullOrEmpty(SelectedMotivo))
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo guardar"));
+                return;
+            }
+
+  
             nota.IdMotivo = DataObjects.Almacen.MotivoSQL.BuscarMotivo(SelectedMotivo).Id;
             nota.IdResponsable = Responsable.ElementAt(0).IdUsuario;
             nota.Observaciones = Observaciones;
@@ -605,34 +612,45 @@ namespace MadeInHouse.ViewModels.Almacen
 
             nota.IdNota = ntgw.AgregarNota(nota);
 
-            ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
-            ProductoSQL pgw = new ProductoSQL();
-
-            List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
-            if (u.IdTienda != 0) ptgw.ActualizarStockEntrada(list, u.IdTienda);
-            else pgw.ActualizarStockEntrada(list);
-
-            //Actualizar Documentos de Referencia para darlos por Terminados! :)
-
-            if (SelectedOrden != null)
-            {
-                guardarOrden(list);
-            }
-
-            if (SelectedGuia != null)
+            if (nota.IdNota > 0)
             {
 
-                CambiarEstadoGuia(SelectedGuia);
+                ProductoxTiendaSQL ptgw = new ProductoxTiendaSQL();
+                ProductoSQL pgw = new ProductoSQL();
+
+                List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
+                if (u.IdTienda != 0) ptgw.ActualizarStockEntrada(list, u.IdTienda);
+                else pgw.ActualizarStockEntrada(list);
+
+                //Actualizar Documentos de Referencia para darlos por Terminados! :)
+
+                if (SelectedOrden != null)
+                {
+                    guardarOrden(list);
+                }
+
+                if (SelectedGuia != null)
+                {
+
+                    CambiarEstadoGuia(SelectedGuia);
+
+                }
+
+                if (SelectedDevolucion != null)
+                {
+
+                    CambiarEstadoDevolucion(SelectedDevolucion);
+
+                }
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Nota Creada"));
+                //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Nota de Ingreso",  nota.IdNota.ToString(), 1);
 
             }
-
-            if (SelectedDevolucion != null)
+            else
             {
-
-                CambiarEstadoDevolucion(SelectedDevolucion);
-
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo guardar"));
             }
-            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Nota Creada"));
         }
 
         private void CambiarEstadoDevolucion(Devolucion SelectedDevolucion)
