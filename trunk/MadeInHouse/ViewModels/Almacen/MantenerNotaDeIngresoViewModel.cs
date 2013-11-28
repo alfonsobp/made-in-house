@@ -678,7 +678,7 @@ namespace MadeInHouse.ViewModels.Almacen
 
                     if (pc.IdProducto == op.Producto.IdProducto)
                     {
-                        MessageBox.Show(" cant atendida = " + pc.CanAtender);
+                       // MessageBox.Show(" cant atendida = " + pc.CanAtender);
                         op.CantAtendida += Convert.ToInt32(pc.CanAtender);
                         ocSQL.Actualizar(op);
                     }
