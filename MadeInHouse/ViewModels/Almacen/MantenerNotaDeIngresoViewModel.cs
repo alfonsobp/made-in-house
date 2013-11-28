@@ -225,6 +225,17 @@ namespace MadeInHouse.ViewModels.Almacen
             }
         }
 
+        Abastecimiento selectedSolicitud = null;
+        public Abastecimiento SelectedSolicitud
+        {
+            get { return selectedSolicitud; }
+            set
+            {
+                selectedSolicitud = value;
+                NotifyOfPropertyChange("SelectedSolicitud");
+            }
+        }
+
         GuiaRemision selectedGuia = null;
 
         public GuiaRemision SelectedGuia
@@ -383,7 +394,7 @@ namespace MadeInHouse.ViewModels.Almacen
                             pcan.CodigoProd = p.CodigoProd;
                             lpcan.Add(pcan);
                         }
-                        LstProductos = lpcan;
+                        LstProductos = new List<ProductoCant>(lpcan);
                     }
                     else
                     {
@@ -391,7 +402,27 @@ namespace MadeInHouse.ViewModels.Almacen
                         if (string.Compare(mot, "Abastecimiento", true) == 0)
                         {
 
-                            LstProductos = new List<ProductoCant>();
+                            List<ProductoCant> psa = new List<ProductoCant>();
+                            ProductoxSolicitudAbSQL pasql = new ProductoxSolicitudAbSQL();
+
+                            psa = pasql.ListaProductos(SelectedSolicitud.idSolicitudAB.ToString());
+
+                            List<ProductoCant> lpcan = new List<ProductoCant>();
+                            for (int i = 0; i < psa.Count; i++)
+                            {
+                                ProductoCant pcan = new ProductoCant();
+                                pcan.IdProducto = psa.ElementAt(i).IdProducto;
+                                pcan.Can = psa.ElementAt(i).Can;
+                                pcan.CodigoProd = psa.ElementAt(i).CodigoProd;
+                                pcan.Nombre = psa.ElementAt(i).Nombre;
+                                pcan.CanAtend = "0";
+                                pcan.CanAtender = psa.ElementAt(i).CanAtend; 
+                                pcan.Ubicaciones = new List<Ubicacion>();
+                                lpcan.Add(pcan);
+                            }
+
+                            LstProductos = new List<ProductoCant>(lpcan);
+
                         }
                     }
                 }
@@ -441,7 +472,7 @@ namespace MadeInHouse.ViewModels.Almacen
                             {
 
                                 //Cualquier otro motivo
-                                Estado = true;
+                                EstadoPro = true;
                             }
                         }
 
@@ -586,15 +617,15 @@ namespace MadeInHouse.ViewModels.Almacen
             NotaIS nota = new NotaIS();
             nota.IdAlmacen = Almacen.ElementAt(0).IdAlmacen;
             // Logica de  Referencia de documento
-            if (Estado == false)
+            if (SelectedOrden!=null || SelectedGuia!=null || SelectedDevolucion!=null || SelectedSolicitud !=null)
             {
-                // no hay documento de referencia colocar 0;
-                nota.IdDoc = 0;
+                // si hay documento de referencia colocar id;
+                nota.IdDoc = TxtDocId;
             }
             else
             {
-                //Si existe documento de referencia colocar el ID
-                nota.IdDoc = TxtDocId;
+                //Si no existe documento de referencia colocar 0
+                nota.IdDoc = 0;
             }
             if (String.IsNullOrEmpty(SelectedMotivo))
             {
@@ -642,6 +673,10 @@ namespace MadeInHouse.ViewModels.Almacen
                     CambiarEstadoDevolucion(SelectedDevolucion);
 
                 }
+
+                if (SelectedSolicitud != null) {
+                    CambiarEstadoSolicitud(SelectedSolicitud);
+                }
                 _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Nota Creada"));
                 //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
                 DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Nota de Ingreso",  nota.IdNota.ToString(), 1);
@@ -651,6 +686,14 @@ namespace MadeInHouse.ViewModels.Almacen
             {
                 _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo guardar"));
             }
+        }
+
+        private void CambiarEstadoSolicitud(Abastecimiento SelectedSolicitud)
+        {
+            ProductoxSolicitudAbSQL sasql = new ProductoxSolicitudAbSQL();
+            selectedSolicitud.estado = 5;
+            sasql.Atendida(selectedSolicitud);
+
         }
 
         private void CambiarEstadoDevolucion(Devolucion SelectedDevolucion)
@@ -685,5 +728,6 @@ namespace MadeInHouse.ViewModels.Almacen
                 }
             }
         }
+
     }
 }

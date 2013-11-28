@@ -39,12 +39,12 @@ namespace MadeInHouse.DataObjects.Almacen
                 while (reader.Read())
                 {
                     ProductoCant pa = new ProductoCant();
-                    int codigoProducto = reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
-                    p = pGw.Buscar_por_CodigoProducto(codigoProducto);
-                    
+                    pa.IdProducto= reader.IsDBNull(reader.GetOrdinal("idProducto")) ? -1 : int.Parse(reader["idProducto"].ToString());
+                    p = pGw.Buscar_por_CodigoProducto(pa.IdProducto);                    
                     pa.CodigoProd = p.CodigoProd.ToString();
                     pa.Nombre = p.Nombre;
-                    pa.Can = reader.IsDBNull(reader.GetOrdinal("cantidadAtendida")) ? null : reader["cantidadAtendida"].ToString();
+                    pa.Can = reader.IsDBNull(reader.GetOrdinal("cantidad")) ? null : reader["cantidad"].ToString();
+                    pa.CanAtend = reader.IsDBNull(reader.GetOrdinal("cantidadAtendida")) ? null : reader["cantidadAtendida"].ToString();
 
                     productos.Add(pa);
                 
@@ -63,6 +63,33 @@ namespace MadeInHouse.DataObjects.Almacen
 
             return productos;
 
+        }
+
+        public void Atendida(Abastecimiento selectedSolicitud)
+        {
+
+            
+            db.cmd.CommandText = "UPDATE SolicitudAbastecimiento SET estado=@estado WHERE idSolicitudAB=@idSolicitudAB ";
+
+            db.cmd.Parameters.AddWithValue("@idSolicitudAB",selectedSolicitud.idSolicitudAB);
+            db.cmd.Parameters.AddWithValue("@estado", selectedSolicitud.estado);
+
+
+            try
+            {
+                db.conn.Open();
+                db.cmd.ExecuteNonQuery();
+                db.cmd.Parameters.Clear();
+                db.conn.Close();
+            }
+            catch (SqlException e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace.ToString());
+            }
         }
     }
 

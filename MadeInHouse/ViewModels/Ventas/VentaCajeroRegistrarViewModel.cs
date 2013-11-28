@@ -621,7 +621,6 @@ namespace MadeInHouse.ViewModels.Ventas
                         nota.IdNota = ntgw.AgregarNota(nota);
                         
                         
-
                         trans.Commit();
                         ntgw.AgregarNotaxSector(nota);
                         MessageBox.Show("Venta Realizada con Exito");

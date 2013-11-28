@@ -65,6 +65,16 @@ namespace MadeInHouse.ViewModels.Almacen
         int idTienda;
         List<Usuario> responsable = new List<Usuario>();
 
+        Abastecimiento selectedSolicitud = null;
+        public Abastecimiento SelectedSolicitud
+        {
+            get { return selectedSolicitud; }
+            set
+            {
+                selectedSolicitud = value;
+                NotifyOfPropertyChange("SelectedSolicitud");
+            }
+        }
 
         string txtDoc = null;
 
@@ -174,8 +184,15 @@ namespace MadeInHouse.ViewModels.Almacen
                             }
                             else
                             {
-                                //Cualquier otro motivo
-                                Estado = false;
+                                if (selectedMotivo.Equals("Abastecimiento"))
+                                {
+                                    Estado = true;
+                                }
+                                else
+                                {
+                                    //Cualquier otro motivo
+                                    Estado = false;
+                                }
                             }
 
                         }
@@ -325,6 +342,35 @@ namespace MadeInHouse.ViewModels.Almacen
                 LstProductos = new List<ProductoCant>(lpcan);
 
             }
+            else
+            {
+                if (string.Compare(mot, "Abastecimiento", true) == 0)
+                {
+
+                    List<ProductoCant> psa = new List<ProductoCant>();
+                    ProductoxSolicitudAbSQL pasql = new ProductoxSolicitudAbSQL();
+
+                    psa = pasql.ListaProductos(SelectedSolicitud.idSolicitudAB.ToString());
+
+                    List<ProductoCant> lpcan = new List<ProductoCant>();
+                    for (int i = 0; i < psa.Count; i++)
+                    {
+                        ProductoCant pcan = new ProductoCant();
+                        pcan.IdProducto = psa.ElementAt(i).IdProducto;
+                        pcan.Can = psa.ElementAt(i).Can;
+                        pcan.CodigoProd = psa.ElementAt(i).CodigoProd;
+                        pcan.Nombre = psa.ElementAt(i).Nombre;
+                        pcan.CanAtend = "0";
+                        pcan.CanAtender = psa.ElementAt(i).CanAtend;
+                        pcan.Ubicaciones = new List<Ubicacion>();
+                        lpcan.Add(pcan);
+                    }
+
+                    LstProductos = new List<ProductoCant>(lpcan);
+
+                }
+            }
+
             NotifyOfPropertyChange(() => LstProductos);
             EstadoMot = false;
             Estado = false;
@@ -363,8 +409,15 @@ namespace MadeInHouse.ViewModels.Almacen
                             }
                             else
                             {
-                                //Cualquier otro motivo
-                                EstadoPro = true;
+                                if (selectedMotivo.Equals("Abastecimiento"))
+                                {
+                                    EstadoPro = false;
+                                }
+                                else
+                                {
+                                    //Cualquier otro motivo
+                                    EstadoPro = false;
+                                }
                             }
 
                         }
@@ -407,8 +460,16 @@ namespace MadeInHouse.ViewModels.Almacen
                             }
                             else
                             {
-                                //cualquier otro motivo
-                                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "El motivo seleccionado no admite Documento de referencia"));
+                                if (string.Compare(selectedMotivo, "Abastecimiento", true) == 0)
+                                {
+                                    _windowManager.ShowWindow(new SolicitudAbListadoViewModel(_windowManager, this,2));
+                                }
+                                else
+                                {
+                                    //cualquier otro motivo
+                                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "El motivo seleccionado no admite Documento de referencia"));
+                                }    
+                            
                             }
                         }
 
@@ -512,15 +573,15 @@ namespace MadeInHouse.ViewModels.Almacen
             NotaIS nota = new NotaIS();
             nota.IdAlmacen = Almacen.ElementAt(0).IdAlmacen;
             // Logica de  Referencia de documento
-            if (Estado == false)
+            if (SelectedDespacho != null || SelectedSolicitud != null)
             {
-                // no hay documento de referencia colocar 0;
-                nota.IdDoc = 0;
+                // si hay documento de referencia colocar id;
+                nota.IdDoc = TxtDocId;
             }
             else
             {
-                //Si existe documento de referencia colocar el ID
-                nota.IdDoc = TxtDocId;
+                //Si no existe documento de referencia colocar 0
+                nota.IdDoc = 0;
             }
 
             if (String.IsNullOrEmpty(SelectedMotivo))
