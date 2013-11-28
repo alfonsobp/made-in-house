@@ -18,7 +18,7 @@
         <Label Content="Desde" HorizontalAlignment="Left" Margin="423,44,0,0" VerticalAlignment="Top" Height="26" Width="43"/>
         <Label Content="Hasta" HorizontalAlignment="Left" Margin="593,43,0,0" VerticalAlignment="Top" Height="26" Width="40"/>
         <Button  Content="OK" HorizontalAlignment="Left" Margin="660,193,0,0" VerticalAlignment="Top" Width="77" Height="45" Click="Button_Click_1"/>
-        <ComboBox x:Name="cmbAlmacen" DisplayMemberPath="Nombre" ItemsSource="{Binding}" HorizontalAlignment="Right" Margin="0,56,487,450" Width="240" RenderTransformOrigin="0.5,0.5" />
+        <ComboBox x:Name="cmbAlmacen" DisplayMemberPath="Nombre" ItemsSource="{Binding}" HorizontalAlignment="Left" Margin="28,56,0,0" Width="240" RenderTransformOrigin="0.5,0.5" Height="38" VerticalAlignment="Top" />
         <ListBox x:Name="lstProducto"  DisplayMemberPath="Nombre"    ItemsSource="{Binding}" HorizontalAlignment="Left" Height="110" Margin="46,128,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstProducto_MouseDoubleClick"/>
         <ListBox x:Name="lstSelectedProducto" ItemsSource="{Binding}" DisplayMemberPath="Nombre" HorizontalAlignment="Left" Height="110" Margin="396,128,0,0" VerticalAlignment="Top" Width="201" MouseDoubleClick="lstSelectedProducto_MouseDoubleClick"/>
         <Button x:Name="AgregarProductos" Content="&gt;&gt;" HorizontalAlignment="Left" Margin="277,128,0,0" VerticalAlignment="Top" Width="75" Height="38" Click="AgregarProductos_Click" />
