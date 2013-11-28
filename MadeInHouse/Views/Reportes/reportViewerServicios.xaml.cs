@@ -39,6 +39,9 @@ namespace MadeInHouse.Views.Reportes
             FechaDesde.Text = "01/01/" + DateTime.Today.Year;
             FechaHasta.Text = "31/12/" + DateTime.Today.Year;
             List<Servicio> lstServicio = DataObjects.Reportes.reporteServiciosSQL.BuscarServicio();
+            Servicio ser = new Servicio();
+            ser.Nombre = "TODOS";
+            lstServicio.Add(ser);
             cmbServicio.ItemsSource = lstServicio;
             List<Cliente> lstCliente = DataObjects.Reportes.ReporteVentasSQL.BuscarCliente();
             cmbCliente.ItemsSource = lstCliente;
@@ -47,7 +50,8 @@ namespace MadeInHouse.Views.Reportes
 
             cmbTienda.SelectedIndex = 0;
             cmbCliente.SelectedIndex = 0;
-            cmbServicio.SelectedIndex = 0;
+            
+            cmbServicio.SelectedIndex = cmbServicio.Items.Count-1;
 
             PrepareReport();
         }
@@ -85,7 +89,15 @@ namespace MadeInHouse.Views.Reportes
             Tienda tienda = cmbTienda.SelectedItem as Tienda;
             Cliente cliente = cmbCliente.SelectedItem as Cliente;
             Servicio servicio = cmbServicio.SelectedItem as Servicio;
-            lista = DataObjects.Reportes.reporteServiciosSQL.BuscarServi(tienda.IdTienda, cliente.Id,servicio.IdServicio);
+
+            if (servicio.Nombre == "TODOS")
+            {
+                lista = DataObjects.Reportes.reporteServiciosSQL.BuscarServiTodos(tienda.IdTienda, cliente.Id);
+            }
+            else
+            {
+                lista = DataObjects.Reportes.reporteServiciosSQL.BuscarServi(tienda.IdTienda, cliente.Id, servicio.IdServicio);
+            }
             Window_Loaded(sender, e);
         }
     }
