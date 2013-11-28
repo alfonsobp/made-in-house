@@ -118,7 +118,7 @@ namespace MadeInHouse.DataObjects.Reportes
                 {
                     Servi e = new Servi();
 
-                    e.IdVenta = Convert.ToInt32(reader["idventa"]);
+                    e.Doc = reader["numdocpagoservicio"].ToString();
                     e.Servicio = reader["Servicio"].ToString();
                     e.Tienda = reader["tienda"].ToString();
                     e.Cliente = reader["cliente"].ToString();
