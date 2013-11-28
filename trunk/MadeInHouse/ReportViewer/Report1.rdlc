@@ -40,7 +40,7 @@
                           <Color>#7292cc</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#4c68a2</BackgroundColor>
+                        <BackgroundColor>Black</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -127,7 +127,7 @@
                         <Color>#7292cc</Color>
                         <Style>Solid</Style>
                       </Border>
-                      <BackgroundColor>#4c68a2</BackgroundColor>
+                      <BackgroundColor>Black</BackgroundColor>
                       <PaddingLeft>2pt</PaddingLeft>
                       <PaddingRight>2pt</PaddingRight>
                       <PaddingTop>2pt</PaddingTop>
@@ -166,7 +166,7 @@
                             <Color>#7292cc</Color>
                             <Style>Solid</Style>
                           </Border>
-                          <BackgroundColor>#4c68a2</BackgroundColor>
+                          <BackgroundColor>Black</BackgroundColor>
                           <PaddingLeft>2pt</PaddingLeft>
                           <PaddingRight>2pt</PaddingRight>
                           <PaddingTop>2pt</PaddingTop>
@@ -205,7 +205,7 @@
                                 <Color>#7292cc</Color>
                                 <Style>Solid</Style>
                               </Border>
-                              <BackgroundColor>#4c68a2</BackgroundColor>
+                              <BackgroundColor>Black</BackgroundColor>
                               <PaddingLeft>2pt</PaddingLeft>
                               <PaddingRight>2pt</PaddingRight>
                               <PaddingTop>2pt</PaddingTop>
@@ -244,7 +244,7 @@
                                     <Color>#7292cc</Color>
                                     <Style>Solid</Style>
                                   </Border>
-                                  <BackgroundColor>#4c68a2</BackgroundColor>
+                                  <BackgroundColor>Black</BackgroundColor>
                                   <PaddingLeft>2pt</PaddingLeft>
                                   <PaddingRight>2pt</PaddingRight>
                                   <PaddingTop>2pt</PaddingTop>
@@ -283,7 +283,7 @@
                                         <Color>#7292cc</Color>
                                         <Style>Solid</Style>
                                       </Border>
-                                      <BackgroundColor>#4c68a2</BackgroundColor>
+                                      <BackgroundColor>Black</BackgroundColor>
                                       <PaddingLeft>2pt</PaddingLeft>
                                       <PaddingRight>2pt</PaddingRight>
                                       <PaddingTop>2pt</PaddingTop>
@@ -322,7 +322,7 @@
                                             <Color>#7292cc</Color>
                                             <Style>Solid</Style>
                                           </Border>
-                                          <BackgroundColor>#4c68a2</BackgroundColor>
+                                          <BackgroundColor>Black</BackgroundColor>
                                           <PaddingLeft>2pt</PaddingLeft>
                                           <PaddingRight>2pt</PaddingRight>
                                           <PaddingTop>2pt</PaddingTop>
@@ -361,7 +361,7 @@
                                                 <Color>#7292cc</Color>
                                                 <Style>Solid</Style>
                                               </Border>
-                                              <BackgroundColor>#4c68a2</BackgroundColor>
+                                              <BackgroundColor>Black</BackgroundColor>
                                               <PaddingLeft>2pt</PaddingLeft>
                                               <PaddingRight>2pt</PaddingRight>
                                               <PaddingTop>2pt</PaddingTop>
@@ -400,7 +400,7 @@
                                                     <Color>#7292cc</Color>
                                                     <Style>Solid</Style>
                                                   </Border>
-                                                  <BackgroundColor>#4c68a2</BackgroundColor>
+                                                  <BackgroundColor>Black</BackgroundColor>
                                                   <PaddingLeft>2pt</PaddingLeft>
                                                   <PaddingRight>2pt</PaddingRight>
                                                   <PaddingTop>2pt</PaddingTop>
@@ -439,7 +439,7 @@
                                                         <Color>#7292cc</Color>
                                                         <Style>Solid</Style>
                                                       </Border>
-                                                      <BackgroundColor>#4c68a2</BackgroundColor>
+                                                      <BackgroundColor>Black</BackgroundColor>
                                                       <PaddingLeft>2pt</PaddingLeft>
                                                       <PaddingRight>2pt</PaddingRight>
                                                       <PaddingTop>2pt</PaddingTop>
@@ -478,7 +478,7 @@
                                                             <Color>#7292cc</Color>
                                                             <Style>Solid</Style>
                                                           </Border>
-                                                          <BackgroundColor>#4c68a2</BackgroundColor>
+                                                          <BackgroundColor>Black</BackgroundColor>
                                                           <PaddingLeft>2pt</PaddingLeft>
                                                           <PaddingRight>2pt</PaddingRight>
                                                           <PaddingTop>2pt</PaddingTop>
@@ -517,7 +517,7 @@
                                                                 <Color>#7292cc</Color>
                                                                 <Style>Solid</Style>
                                                               </Border>
-                                                              <BackgroundColor>#4c68a2</BackgroundColor>
+                                                              <BackgroundColor>Black</BackgroundColor>
                                                               <PaddingLeft>2pt</PaddingLeft>
                                                               <PaddingRight>2pt</PaddingRight>
                                                               <PaddingTop>2pt</PaddingTop>
@@ -1104,6 +1104,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSet2</DataSetName>
+        <Top>2.8575cm</Top>
         <Height>1.2cm</Height>
         <Width>30cm</Width>
         <Style>
@@ -1112,6 +1113,103 @@
           </Border>
         </Style>
       </Tablix>
+      <Image Name="logoMIH">
+        <Source>Embedded</Source>
+        <Value>logoMadeInHouse</Value>
+        <Sizing>FitProportional</Sizing>
+        <Top>0.42774cm</Top>
+        <Left>7.53604cm</Left>
+        <Height>1.40229cm</Height>
+        <Width>3.49583cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Image>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Ventas</Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontSize>20pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Reporte de Ventas de Productos</Value>
+                <Style>
+                  <FontFamily>Calibri</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox1</rd:DefaultName>
+        <Top>0.42774cm</Top>
+        <Left>9.87389cm</Left>
+        <Height>1.98438cm</Height>
+        <Width>7.72375cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox4">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>MadeInHouse</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox4</rd:DefaultName>
+        <Top>1.77684cm</Top>
+        <Left>7.37389cm</Left>
+        <Height>0.6cm</Height>
+        <Width>3.83437cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
     <Height>2in</Height>
     <Style />
@@ -1228,6 +1326,19 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logoMadeInHouse">
+      <MIMEType>image/png</MIMEType>
+      <ImageData>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
+l6dHCF0AAAAASUVORK5CYII=</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>8369b1f8-d137-4c7e-b687-18415e1757d1</rd:ReportID>
 </Report>

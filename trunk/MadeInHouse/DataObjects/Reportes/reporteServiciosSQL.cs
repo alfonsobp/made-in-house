@@ -99,5 +99,43 @@ namespace MadeInHouse.DataObjects.Reportes
             return lstServicio;
         }
 
+        public static List<Servi> BuscarServiTodos(int tienda, int cliente)
+        {
+            List<Servi> lstServicio = new List<Servi>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "select v.idventa, t.nombre tienda, c.nombre cliente, s.nombre servicio, v.fechareg fecha from venta v join DetalleVentaServicio d on (v.idVenta = d.idVenta)  join servicio s on (d.idServicio = s.idServicio) join usuario u on ( v.idUsuario = u.idusuario) join tienda t on (u.idTienda = t.idtienda) , cliente c where t.idtienda =" + tienda + "and c.idcliente = " + cliente;
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Servi e = new Servi();
+
+                    e.IdVenta = Convert.ToInt32(reader["idventa"]);
+                    e.Servicio = reader["Servicio"].ToString();
+                    e.Tienda = reader["tienda"].ToString();
+                    e.Cliente = reader["cliente"].ToString();
+                    e.Fecha = reader["fecha"].ToString();
+                    lstServicio.Add(e);
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return lstServicio;
+        }
+
+
     }
 }
