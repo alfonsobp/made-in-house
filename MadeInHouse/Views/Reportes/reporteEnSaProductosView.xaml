@@ -120,7 +120,8 @@
                         </Grid>
                     </GroupBox>
                 </Grid>
-            </Grid>       
+            </Grid>
+            <GroupBox Header="GroupBox"/>
         </StackPanel>
     </Border>
 </UserControl>
