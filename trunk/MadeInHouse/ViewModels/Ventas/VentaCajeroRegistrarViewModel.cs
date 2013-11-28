@@ -585,7 +585,45 @@ namespace MadeInHouse.ViewModels.Ventas
                     int k = vsql.AgregarSinCliente(v);
                     if (k != 0)
                     {
+
+                        NotaISSQL ntgw = new NotaISSQL();
+                        NotaIS nota = new NotaIS();
+                        AlmacenSQL asql = new AlmacenSQL();
+                        nota.IdAlmacen = asql.BuscarAlmacen(-1, idTienda, 2).IdAlmacen;
+                        // Logica de  Referencia de documento
+
+                        //Si existe documento de referencia colocar el ID
+                        nota.IdDoc = v.IdVenta;
+
+                        nota.IdMotivo = 9;
+                        nota.IdResponsable = v.IdUsuario;
+                        nota.Observaciones = "Venta en Cajero";
+                        nota.Tipo = 2;
+                        List<ProductoCant> LstProductos = new List<ProductoCant>();
+                        List<ProductoCant> lpcan = new List<ProductoCant>();
+
+                        for (int i = 0; i < v.LstDetalle.Count; i++)
+                        {
+                            Producto p = new ProductoSQL().Buscar_por_CodigoProducto(v.LstDetalle.ElementAt(i).IdProducto);
+                            ProductoCant pcan = new ProductoCant();
+                            pcan.IdProducto = p.IdProducto;
+                            pcan.CodigoProd = p.CodigoProd;
+                            pcan.Nombre = p.Nombre;
+                            pcan.CanAtender = v.LstDetalle.ElementAt(i).Cantidad.ToString();
+                            lpcan.Add(pcan);
+
+                        }
+                        LstProductos = new List<ProductoCant>(lpcan);
+
+
+                        nota.LstProducto = LstProductos;
+
+                        nota.IdNota = ntgw.AgregarNota(nota);
+                        
+                        
+
                         trans.Commit();
+                        ntgw.AgregarNotaxSector(nota);
                         MessageBox.Show("Venta Realizada con Exito");
                         Limpiar();
                     }
@@ -600,7 +638,44 @@ namespace MadeInHouse.ViewModels.Ventas
                     int k = vsql.Agregar(v);
                     if (k != 0)
                     {
+
+                        NotaISSQL ntgw = new NotaISSQL();
+                        NotaIS nota = new NotaIS();
+                        AlmacenSQL asql = new AlmacenSQL();
+                        nota.IdAlmacen = asql.BuscarAlmacen(-1, idTienda, 2).IdAlmacen;
+                        // Logica de  Referencia de documento
+
+                        //Si existe documento de referencia colocar el ID
+                        nota.IdDoc = v.IdVenta;
+
+                        nota.IdMotivo = 9;
+                        nota.IdResponsable = v.IdUsuario;
+                        nota.Observaciones = "Venta en Cajero";
+                        nota.Tipo = 2;
+                        List<ProductoCant> LstProductos = new List<ProductoCant>();
+                        List<ProductoCant> lpcan = new List<ProductoCant>();
+
+                        for (int i = 0; i < v.LstDetalle.Count; i++)
+                        {
+                            Producto p = new ProductoSQL().Buscar_por_CodigoProducto(v.LstDetalle.ElementAt(i).IdProducto);
+                            ProductoCant pcan = new ProductoCant();
+                            pcan.IdProducto = p.IdProducto;
+                            pcan.CodigoProd = p.CodigoProd;
+                            pcan.Nombre = p.Nombre;
+                            pcan.CanAtender = v.LstDetalle.ElementAt(i).Cantidad.ToString();
+                            lpcan.Add(pcan);
+
+                        }
+                        LstProductos = new List<ProductoCant>(lpcan);
+
+
+                        nota.LstProducto = LstProductos;
+
+                        nota.IdNota = ntgw.AgregarNota(nota);
+
                         trans.Commit();
+
+                        ntgw.AgregarNotaxSector(nota);
                         MessageBox.Show("Venta Realizada con Exito");
                         Limpiar();
                     }
