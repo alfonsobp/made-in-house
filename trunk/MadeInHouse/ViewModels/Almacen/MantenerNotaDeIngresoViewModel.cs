@@ -691,7 +691,7 @@ namespace MadeInHouse.ViewModels.Almacen
         private void CambiarEstadoSolicitud(Abastecimiento SelectedSolicitud)
         {
             ProductoxSolicitudAbSQL sasql = new ProductoxSolicitudAbSQL();
-            selectedSolicitud.estado = 5;
+            selectedSolicitud.estado = 6;
             sasql.Atendida(selectedSolicitud);
 
         }

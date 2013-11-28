@@ -609,9 +609,14 @@ namespace MadeInHouse.ViewModels.Almacen
                 ProductoSQL pgw = new ProductoSQL();
 
                 List<ProductoCant> list = ntgw.BuscarNotas(nota.IdNota);
-                if (u.IdTienda != 0) ptgw.ActualizarStockSalida(list, u.IdTienda);
-                else pgw.ActualizarStockSalida(list);
-
+                if (SelectedSolicitud != null) {
+                    pgw.ActualizarStockTemporalSalida(list);
+                }
+                else
+                {
+                    if (u.IdTienda != 0) ptgw.ActualizarStockSalida(list, u.IdTienda);
+                    else pgw.ActualizarStockSalida(list);
+                }
                 //Actualizar Documento de Referencia
 
                 if (SelectedDespacho != null)
@@ -622,6 +627,11 @@ namespace MadeInHouse.ViewModels.Almacen
                     osql.EditarOrdenDespacho(selectedDespacho);
 
                 }
+                if (SelectedSolicitud != null)
+                {
+                    CambiarEstadoSolicitud(SelectedSolicitud);
+                }
+
                 _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Nota de Salida Creada"));
                 //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
                 DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar Nota de Salida", nota.IdNota.ToString(), 1);
@@ -631,6 +641,15 @@ namespace MadeInHouse.ViewModels.Almacen
                 _windowManager.ShowDialog(new AlertViewModel(_windowManager, "No se pudo guardar"));
             }
 
+
+        }
+
+        private void CambiarEstadoSolicitud(Abastecimiento SelectedSolicitud)
+        {
+
+            ProductoxSolicitudAbSQL sasql = new ProductoxSolicitudAbSQL();
+            selectedSolicitud.estado = 5;
+            sasql.Atendida(selectedSolicitud);
 
         }
     }
