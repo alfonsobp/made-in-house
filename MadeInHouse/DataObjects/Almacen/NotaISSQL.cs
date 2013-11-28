@@ -104,7 +104,7 @@ namespace MadeInHouse.DataObjects.Almacen
         public int AgregarNotaxSector()
         {
             db.cmd.CommandText="INSERT INTO SectorxMovimiento (idSector,idNota,cantidad) "+
-                                "SELECT idSector,idNota,cantidadIngresada FROM TemporalSector";
+                                "SELECT idSector,idNota,cantidadIngresada FROM TemporalSector WHERE cantidadIngresada>0";
 
             try {
                 if (tipo) db.conn.Open();
