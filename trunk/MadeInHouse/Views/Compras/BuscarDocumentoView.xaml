@@ -8,7 +8,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" d:DesignWidth="600" Height="525">
     <!-- COPIAR DESDE AKI -->
-    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-39">
+    <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6" Margin="0,0,0,-71" Height="596" VerticalAlignment="Top">
         <StackPanel Margin="0,0,0,72">
             <Layouts:TitleBarTemplate title="Listado Documentos de pago" />
             <!-- CAMBIAR NOMBREEEE -->
@@ -78,8 +78,10 @@
                         <DataGridTextColumn Binding="{Binding Monto}" Width="130" Header="Pago Parcial"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="Monto Faltante:" HorizontalAlignment="Left" Margin="462,393,0,0" VerticalAlignment="Top" Width="101"/>
-                <TextBox x:Name="TxtTotalPago" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="462,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                <Label Content="Monto Faltante:" HorizontalAlignment="Left" Margin="462,367,0,0" VerticalAlignment="Top" Width="101"/>
+                <TextBox x:Name="TxtTotalPago" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="462,396,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
+                <Label Content="Vuelto:" HorizontalAlignment="Left" Margin="462,424,0,0" VerticalAlignment="Top" Width="101"/>
+                <TextBox x:Name="TxtVuelto" IsEnabled="False" HorizontalAlignment="Left" Height="23" Margin="462,450,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="113"/>
 
             </Grid>
         </StackPanel>

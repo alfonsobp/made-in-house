@@ -63,6 +63,15 @@ namespace MadeInHouse.ViewModels.Compras
             set { txtCodigo = value; NotifyOfPropertyChange(() => TxtCodigo); }
         }
 
+        private double txtVuelto;
+
+        public double TxtVuelto
+        {
+            get { return txtVuelto; }
+            set { txtVuelto = value; NotifyOfPropertyChange(() => TxtVuelto); }
+        }
+
+
         private string txtProveedor;
 
         public string TxtProveedor
@@ -80,7 +89,7 @@ namespace MadeInHouse.ViewModels.Compras
         }
 
         
-        private string txtPago;
+        private string txtPago = "0";
 
         public string TxtPago
         {
@@ -213,7 +222,11 @@ namespace MadeInHouse.ViewModels.Compras
                     docSeleccionado.SaldoPagado += Convert.ToDouble(TxtPago);
 
                     if (docSeleccionado.SaldoPagado >= docSeleccionado.MontoTotal)
+                    {
+                        TxtVuelto = docSeleccionado.SaldoPagado - docSeleccionado.MontoTotal;
                         docSeleccionado.SaldoPagado = docSeleccionado.MontoTotal;
+                        
+                    }
 
                     p.Monto = Convert.ToDouble(TxtPago);
                     p.DocPago = docSeleccionado;
