@@ -616,29 +616,57 @@ namespace MadeInHouse.ViewModels.Almacen
                                     {
                                         /*Agrego el movimiento como un "todo" a la bd*/
                                         NotaISSQL notaSQL = new NotaISSQL(db);
+                                        
+                                        /*Salida para el depósito*/
                                         NotaIS nota = new NotaIS();
                                         nota.IdMotivo = 8;
-                                        nota.Tipo = 3;
+                                        nota.Tipo = 2;
                                         nota.Observaciones = "";
                                         nota.IdDoc = 0;
                                         nota.IdAlmacen = idDeposito;
                                         nota.IdResponsable = idResponsable;
-                                        int idNota = notaSQL.AgregarNota(nota, 1);
-                                        if (idNota > 0)
+
+                                        /*Entrada para el anaquel*/
+                                        NotaIS notaAn = new NotaIS();
+                                        notaAn.IdMotivo = 8;
+                                        notaAn.Tipo = 1;
+                                        notaAn.Observaciones = "";
+                                        notaAn.IdDoc = 0;
+                                        notaAn.IdAlmacen = idAnaquel;
+                                        notaAn.IdResponsable = idResponsable;
+
+                                        int idNotaDeposito = notaSQL.AgregarNota(nota, 1);
+                                        int idNotaAnaquel = notaSQL.AgregarNota(notaAn, 1);
+                                        
+                                        if (idNotaDeposito > 0 && idNotaAnaquel> 0)
                                         {
-                                            exito = sectorSQL.ActualizarTemporalSector(idNota);
+                                            exito = sectorSQL.ActualizarTemporalSector(idNotaDeposito);
+
                                             if (exito > 0)
                                             {
                                                 exito = notaSQL.AgregarNotaxSector();
+
                                                 if (exito > 0)
                                                 {
-                                                    UtilesSQL util = new UtilesSQL(db);
-                                                    util.LimpiarTabla("TemporalUbicacion");
-                                                    util.LimpiarTabla("TemporalSector");
+                                                    exito = sectorSQL.ActualizarTemporalSector(idNotaAnaquel);
 
-                                                    trans.Commit();
-                                                    _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Los productos fueron transferidos correctamente"));
-                                                    return;
+                                                    if (exito > 0)
+                                                    {
+                                                        exito = notaSQL.AgregarNotaxSector();
+                                                        if (exito > 0)
+                                                        {
+                                                            UtilesSQL util = new UtilesSQL(db);
+                                                            util.LimpiarTabla("TemporalUbicacion");
+                                                            util.LimpiarTabla("TemporalSector");
+
+                                                            trans.Commit();
+                                                            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Los productos fueron transferidos correctamente"));
+                                                            return;
+                                                        }
+
+                                                    }
+
+                                                    
                                                 }
                                             }
 
