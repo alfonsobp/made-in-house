@@ -343,6 +343,8 @@ namespace MadeInHouse.ViewModels.Ventas
                 TxtTotal = total.ToString();
                 TxtSubTotal = subt.ToString();
                 TxtIGVTotal = igv_total.ToString();
+
+             
                 /*int c = lst.Count();
                 if (c == 0)
                 {

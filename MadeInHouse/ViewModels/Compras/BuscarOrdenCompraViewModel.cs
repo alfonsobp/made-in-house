@@ -223,12 +223,12 @@ namespace MadeInHouse.ViewModels.Compras
                         Correo c = new Correo();
                         //m.coloma@pucp.pe                     
                         string path = "\\" + numOC+".pdf";
-                        pdf.Borrar(Environment.CurrentDirectory + path);
+                        
                         string body = formato(OrdenSelected).ToString();
                         string msg = "<html><body>Estimados :<br> Se adjunta la Orden de compra , Atenderla porfavor. <br>Saludos.<br>MadeInHouse <br>Seccion Compras </body></html>";
                         pdf.createPDF(body, path,false);
                         c.EnviarCorreo("ORDEN DE COMPRA AL " + DateTime.Now.ToString(), OrdenSelected.Proveedor.Email, msg, Environment.CurrentDirectory + path);
-
+                        pdf.Borrar(Environment.CurrentDirectory + path);
 
                     }
                     catch (Exception e)
@@ -248,20 +248,26 @@ namespace MadeInHouse.ViewModels.Compras
             OrdenCompraSQL osql = new OrdenCompraSQL();
             Almacenes a = osql.getAlmacenCentral();
 
+         
+
             string numOC = "OC-" + 1000000 + O.IdOrden;
             string content = @"<HTML><BODY>";
             content += "<p align='center'> MadeInHouse  S.A. <br><br>  ";
             content += " Ruc. 99999999999 <br><br> ";
+            content += "  Av. Priority N° xxx - San Miguel - Lima<br><br>";
+            content += " Telf: 999-9999<br><br";
+            content += "  www.MadeInHouse.com Email: info@mih.com<br><br>";
             content += "ORDEN DE COMPRA  Nro "+ numOC+" </p><br><br>";
             content += "<br><br>";
             content += "Proveedor : " + O.Proveedor.RazonSocial+"<br><br>";
             content += "Fecha de pedido : " + O.FechaSinAtencion.ToString()+ "<br><br>";
             content += "Terminos de entrega : Entrega en Almacen central de la Empresa <br><br>";
             content += "Lugar de entrega : " + a.Direccion + "<br><br>";
+            content += "Moneda de pago : Nuevos Soles <br><br>";
             content += "Telefono para contacto : " + a.Telefono + "<br><br>";
             content += "Sirvase por este medio suministrar los siguientes articulos <br><br>";
-            content += "<table border = 1 ><tr><th>NRO</th><th>ARTICULO</th><th>PRECIO UNITARIO</th>"+
-                        "<th>CANTIDAD</th><th>PRECIO TOTAL</th><tr>";
+            content += "<table border = 1 ><tr><th>NRO</th><th>ARTICULO</th><th>PRECIO UNITARIO S/.</th>"+
+                        "<th>CANTIDAD</th><th>PRECIO TOTAL S/.</th><tr>";
             double sumaAporte = 0; 
             int i = 1;
             foreach (ProductoxOrdenCompra o in O.LstProducto) {
@@ -277,8 +283,9 @@ namespace MadeInHouse.ViewModels.Compras
                 sumaAporte += parcial;
             } 
             
-            content += "<tr><td colspan = 4 > TOTAL</td><td>"+sumaAporte.ToString()+"</td> </tr></table>";
+            content += "<tr><td colspan = 4 >TOTAL S/.</td><td>"+sumaAporte.ToString()+"</td> </tr></table>";
             content += "<br><br>";
+            content += "Porfavor,Tomar en cuenta las cotizaciones respectivas a la fecha. <br><br>";
             content += "Observaciones :<br><br>" + O.Observaciones ;
             content += "</BODY></HTML>";
 
