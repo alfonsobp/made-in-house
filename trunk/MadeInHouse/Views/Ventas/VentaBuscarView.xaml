@@ -90,10 +90,10 @@
                     <DataGrid Width="800" Height="300" CanUserAddRows="False" IsReadOnly="True" x:Name="LstVentas"  SelectedItem="{Binding VentaSeleccionada}"    Margin="21,12,21,10" Grid.Row="1" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=IdVenta}" Width="85" Header="ID Venta"/>
-                            
+                            <DataGridTextColumn Binding="{Binding Path=NumDocPago}" Width="85" Header="Doc. Pago"/>
                             <DataGridTextColumn Binding="{Binding Path=NombreCliente}" Width="350" Header="Nombre Cliente"/>
                             <DataGridTextColumn Binding="{Binding Path=FechaRegS}" Width="150" Header="Fecha de emisión"/>
-                            <DataGridTextColumn Binding="{Binding Path=Monto}" Width="140" Header="Monto Total"/>
+                            <DataGridTextColumn Binding="{Binding Path=Monto}" Width="140" Header="Monto Total (S/.) "/>
                             <DataGridTextColumn Binding="{Binding Path=EstadoS}" Width="95" Header="Estado"/>
                         </DataGrid.Columns>
                     </DataGrid>
