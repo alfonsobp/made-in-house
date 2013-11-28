@@ -159,8 +159,8 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void Buscar() {
 
-            BuscadorProveedorViewModel obj = new  BuscadorProveedorViewModel(this);
             MyWindowManager my = new MyWindowManager();
+            BuscadorProveedorViewModel obj = new  BuscadorProveedorViewModel(my, this);
             my.ShowWindow(obj);
 
         

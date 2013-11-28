@@ -1,29 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using System.Data;
-using MadeInHouse.Views.Compras;
-using System.Windows;
-using System.Data.OleDb;
-using System.Collections.ObjectModel;
-using MadeInHouse.DataObjects.Compras;
+﻿using Caliburn.Micro;
 using MadeInHouse.DataObjects;
+using MadeInHouse.DataObjects.Compras;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Compras;
+using MadeInHouse.ViewModels.Layouts;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.Data;
+using System.Data.OleDb;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace MadeInHouse.ViewModels.Compras
 {
+    [Export(typeof(agregarServicioViewModel))]
     class agregarServicioViewModel : Screen
     {
+        #region constructores
 
         //Constructores de la clase
-
-        public agregarServicioViewModel()
+        [ImportingConstructor]
+        public agregarServicioViewModel(IWindowManager windowmanager)
         {
+            _windowManager = windowmanager;
             //Servicio agregado desde la ventana principal
             indicador = 1;
             Id = usql.ObtenerMaximoID("Servicio", "idServicio");
@@ -31,17 +31,18 @@ namespace MadeInHouse.ViewModels.Compras
 
         }
 
-        public agregarServicioViewModel(string codProveedor)
+        public agregarServicioViewModel(IWindowManager windowmanager, string codProveedor)
         {
+            _windowManager = windowmanager;
             //Servicio agregado desde la ventana mantenimiento de proveedor
             txtProveedor = codProveedor;
             indicador = 1;
         }
 
-        
-        public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m)
-        {
 
+        public agregarServicioViewModel(IWindowManager windowmanager, Servicio s, BuscadorServicioViewModel m)
+        {
+            _windowManager = windowmanager;
             //Servicio para editar del buscador
             txtCodigo = s.CodServicio;
             txtNombre = s.Nombre;
@@ -53,20 +54,22 @@ namespace MadeInHouse.ViewModels.Compras
             indicador = 2;
             model = m;
         }
-        
 
-        public agregarServicioViewModel(BuscadorServicioViewModel m)
+
+        public agregarServicioViewModel(IWindowManager windowmanager, BuscadorServicioViewModel m)
         {
+            _windowManager = windowmanager;
             //Servicio para insertar desde la ventana principal o del buscador
             indicador = 1;
             model = m;
             Id = usql.ObtenerMaximoID("Servicio", "idServicio");
-            TxtCodigo = "SERV-" + (1000000 + Id + 1).ToString(); 
+            TxtCodigo = "SERV-" + (1000000 + Id + 1).ToString();
         }
 
-        private int ventanaAccion = 0;
-        public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m, Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
+
+        public agregarServicioViewModel(IWindowManager windowmanager, Servicio s, BuscadorServicioViewModel m, Ventas.VentaRegistrarViewModel ventaRegistrarViewModel, int ventanaAccion)
         {
+            _windowManager = windowmanager;
             // TODO: Complete member initialization
             this.servicioSeleccionado = s;
             this.buscadorServicioViewModel = m;
@@ -85,8 +88,9 @@ namespace MadeInHouse.ViewModels.Compras
             model = m;
         }
 
-        public agregarServicioViewModel(Servicio s, BuscadorServicioViewModel m, Ventas.VentaCajeroRegistrarViewModel ventaCajeroRegistrarViewModel, int p)
+        public agregarServicioViewModel(IWindowManager windowmanager, Servicio s, BuscadorServicioViewModel m, Ventas.VentaCajeroRegistrarViewModel ventaCajeroRegistrarViewModel, int p)
         {
+            _windowManager = windowmanager;
             // TODO: Complete member initialization
             this.servicioSeleccionado = s;
             this.buscadorServicioViewModel = m;
@@ -105,12 +109,18 @@ namespace MadeInHouse.ViewModels.Compras
             model = m;
         }
 
+        #endregion
+
+        private readonly IWindowManager _windowManager;
+
+        private int ventanaAccion = 0;
+
         public void Acciones(object sender)
         {
             if (ventanaAccion == 1)
             {
                 Seleccionado = ((sender as DataGrid).SelectedItem as ServicioxProducto);
-                if(ventaRegistrarViewModel != null)
+                if (ventaRegistrarViewModel != null)
                 {
                     ventaRegistrarViewModel.Serv = Seleccionado;
                     this.TryClose();
@@ -224,8 +234,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void BuscarProveedor()
         {
-            MadeInHouse.Models.MyWindowManager w = new MadeInHouse.Models.MyWindowManager();
-            w.ShowWindow(new BuscadorProveedorViewModel(this));
+            _windowManager.ShowWindow(new BuscadorProveedorViewModel(_windowManager, this));
         }
 
         public Boolean validar(MadeInHouse.Models.Compras.Servicio s)
@@ -233,7 +242,7 @@ namespace MadeInHouse.ViewModels.Compras
 
             if ((s.Descripcion == null) || (s.Nombre == null))
             {
-                MessageBox.Show("Tiene campos incompletos , rellenar porfavor");
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Tiene campos incompletos , rellenar porfavor"));
                 return false;
             }
             else
@@ -254,7 +263,7 @@ namespace MadeInHouse.ViewModels.Compras
 
             if (validar(s) == true)
             {
-            
+
                 if (indicador == 1)
                 {
                     k = new ServicioSQL().Agregar(s);
@@ -272,10 +281,10 @@ namespace MadeInHouse.ViewModels.Compras
                     }
 
                     if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ocurrio un error"));
                     else
-                        MessageBox.Show("Servicio Registrado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
-                                        "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Servicio Registrado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
+                                        "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion));
                 }
 
                 if (indicador == 2)
@@ -284,17 +293,16 @@ namespace MadeInHouse.ViewModels.Compras
                     k = new ServicioSQL().Actualizar(s);
 
                     if (k == 0)
-                        MessageBox.Show("Ocurrio un error");
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Ocurrio un error"));
                     else
-                        MessageBox.Show("Servicio Editado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
-                                        "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion);
-
+                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Servicio Editado \n\nCodigo = " + txtCodigo + "\nNombre = " + txtNombre +
+                                        "\nProveedor = " + txtProveedor + "\nDescripcion = " + txtDescripcion));
                 }
 
                 if (model != null)
                     model.ActualizarServicio();
             }
-            
+
         }
 
 
@@ -331,7 +339,7 @@ namespace MadeInHouse.ViewModels.Compras
                     cs.Precio = Convert.ToDouble(ds["Precio"].ToString());
 
                     lista.Add(cs);
-                  
+
                 }
 
                 LstProducto = lista;
@@ -342,7 +350,6 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void BuscarPath()
         {
-
             // Create OpenFileDialog
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
 
@@ -359,26 +366,20 @@ namespace MadeInHouse.ViewModels.Compras
                 // Open document
                 string filename = dlg.FileName;
                 Path = filename;
-
             }
-
         }
 
         public void Importar()
         {
+            BuscarPath();
 
-                BuscarPath();
+            MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
 
-                MessageBoxResult r = MessageBox.Show("Desea Importar el Archivo ? ", "Importar", MessageBoxButton.YesNo);
-
-                if (r == MessageBoxResult.Yes)
-                {
+            if (r == MessageBoxResult.Yes)
+            {
 
                 Cargar();
-                }
-
-            
+            }
         }
-
     }
 }

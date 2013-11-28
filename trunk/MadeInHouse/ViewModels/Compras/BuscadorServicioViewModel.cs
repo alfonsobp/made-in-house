@@ -104,7 +104,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void NuevoServicio()
         {
-            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(this);
+            Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(win, this);
             win.ShowWindow(obj);
         }
 
@@ -118,17 +118,17 @@ namespace MadeInHouse.ViewModels.Compras
         {
             if (ventanaAccion == 0)
             {
-                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this);
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(win, servicioSeleccionado, this);
                 win.ShowWindow(obj);
             }
             else if (ventanaAccion == 1)
             {
-                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this, ventaRegistrarViewModel, 1);
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(win, servicioSeleccionado, this, ventaRegistrarViewModel, 1);
                 win.ShowWindow(obj);
             }
             else
             {
-                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(servicioSeleccionado, this, ventaCajeroRegistrarViewModel, 2);
+                Compras.agregarServicioViewModel obj = new Compras.agregarServicioViewModel(win, servicioSeleccionado, this, ventaCajeroRegistrarViewModel, 2);
                 win.ShowWindow(obj);
             }
 

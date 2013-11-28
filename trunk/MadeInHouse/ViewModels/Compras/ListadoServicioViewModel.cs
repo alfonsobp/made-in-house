@@ -14,7 +14,7 @@ namespace MadeInHouse.ViewModels.Compras
 
         public void AbrirAgregarServicio()
         {
-            win.ShowWindow(new Compras.agregarServicioViewModel());
+            win.ShowWindow(new Compras.agregarServicioViewModel(win));
         }
         public void AbrirEditarServicio()
         {
