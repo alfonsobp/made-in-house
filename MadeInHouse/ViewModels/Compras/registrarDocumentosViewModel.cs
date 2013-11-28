@@ -237,9 +237,9 @@ namespace MadeInHouse.ViewModels.Compras
             
             d.TotalBruto = monto;
             d.CantProductos = cant;
-            d.Descuentos = importe;
-            d.Igv = (0.18) * (d.TotalBruto);
-            d.MontoTotal = d.TotalBruto - d.Descuentos;
+            d.Descuentos = monto - importe;
+            d.Igv = (0.18) * (importe);
+            d.MontoTotal = importe;
 
             Boolean noPagado = true;
             List<DocPagoProveedor> listDocs = new DocPagoProveedorSQL().Buscar() as List<DocPagoProveedor>;

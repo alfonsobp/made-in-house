@@ -21,7 +21,7 @@ namespace MadeInHouse.Views.Reportes
     /// <summary>
     /// Lógica de interacción para reporteVentasView.xaml
     /// </summary>
-    public partial class reporteVentasView : UserControl
+   public partial class reporteVentasView : UserControl
     {
         List<Venta> ventas;
         List<Cliente> lstCliente;
