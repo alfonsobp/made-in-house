@@ -166,7 +166,7 @@
                 <Button  x:Name="AbrirMantenerNotaDeIngreso" Content="Nueva NI" Style="{StaticResource WindowButton}" />
                 <Button  x:Name="AbrirMantenerNotaDeSalida" Content="Nueva NS" Style="{StaticResource WindowButton}" />
                 <Button Content="Control de stock" Style="{StaticResource HeadButton}" />
-                <!--Button  x:Name="AbrirBuscarZona" Background="Transparent" Foreground="White" BorderThickness="0" Content="Stock en Tiempo Real" FontSize="20" Height="Auto" Grid.Row="14" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"  Width="220" HorizontalAlignment="Left" /-->
+                <Button  x:Name="AbrirBuscarZona" Content="Stock en Tiempo Real" Style="{StaticResource WindowButton}" />
                 <Button  x:Name="AbrirSolicitudAbConsolidar" Content="Consolidar sol. abastecimiento" Style="{StaticResource WindowButton}" />
                 <Button  x:Name="AbrirMovimientos" Content="Movimientos entre zonas" Style="{StaticResource WindowButton}" />
                 <Button  x:Name="RegistrarSolicitud" Content="Solicitar abastecimiento" Style="{StaticResource WindowButton}" />

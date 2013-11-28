@@ -483,6 +483,7 @@ namespace MadeInHouse.Dictionary {
                 {
                             
                     SolidColorBrush brush = conv.ConvertFromString(this.lstZonas[i].Color) as SolidColorBrush;
+                    (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).Content = "";
                     (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).Background = brush;
                     (this.Children[this.lstZonas[i].LstUbicaciones[j].CordY + NumColumns * this.lstZonas[i].LstUbicaciones[j].CordX] as Button).ToolTip = this.lstZonas[i].Nombre;
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].IdAlmacen = this.lstZonas[i].LstUbicaciones[j].IdAlmacen;
@@ -493,8 +494,8 @@ namespace MadeInHouse.Dictionary {
                     Ubicaciones[this.lstZonas[i].LstUbicaciones[j].CordX][this.lstZonas[i].LstUbicaciones[j].CordY][this.lstZonas[i].LstUbicaciones[j].CordZ].VolOcupado = this.lstZonas[i].LstUbicaciones[j].VolOcupado;
                 }
             }
-            
 
+            
         }
 
 
@@ -502,23 +503,69 @@ namespace MadeInHouse.Dictionary {
         public int VolOcupadoActual;
         public int CapacidadActual;
 
-        public void UbicarSector(int idProducto) {
-
-            TipoZona tz = lstZonas.Find(x => x.IdTipoZona == SelectedZona);
+        public void UbicarSector(int idProducto, int flag = -1)
+        {
             BrushConverter conv = new BrushConverter();
             SolidColorBrush colorOcupado = conv.ConvertFromString("LightPink") as SolidColorBrush;
             SolidColorBrush colorProducto = conv.ConvertFromString("LightSkyBlue") as SolidColorBrush;
-            
 
-            for (int j = 0; j < tz.LstSectores.Count; j++)
+            if (flag > 0)
             {
+
+                bool entro = false;
+                for (int i = 0; i < lstZonas.Count; i++)
+                {
+                    TipoZona tz = lstZonas[i];
+                    for (int j = 0; j < tz.LstSectores.Count; j++)
+                    {
+                        for (int k = 0; k < tz.LstSectores[j].LstUbicaciones.Count; k++)
+                        {
+                            (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Content = "";
+                        }
+                    }
+
+                    
+                    for (int j = 0; j < tz.LstSectores.Count; j++)
+                    {
+                        if (idProducto == tz.LstSectores[j].IdProducto)
+                        {
+                            entro = true;
+                            for (int k = 0; k < tz.LstSectores[j].LstUbicaciones.Count; k++)
+                            {
+                                CapacidadActual = tz.LstSectores[j].Capacidad;
+                                StockActual = tz.LstSectores[j].Cantidad;
+                                VolOcupadoActual = tz.LstSectores[j].VolOcupado;
+                                (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).FontSize = 25;
+                                (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Content = "X";
+                                //(this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Background = colorProducto;
+                            }
+                        }
+                        
+                    }
+
+                }
+                if (!entro)
+                {
+                    CapacidadActual = 0;
+                    StockActual = 0;
+                    VolOcupadoActual = 0;
+
+                }
+
+            }
+            else
+            {
+                TipoZona tz = lstZonas.Find(x => x.IdTipoZona == SelectedZona);
+
+                for (int j = 0; j < tz.LstSectores.Count; j++)
+                {
                     for (int k = 0; k < tz.LstSectores[j].LstUbicaciones.Count; k++)
                     {
                         (this.Children[tz.LstSectores[j].LstUbicaciones[k].CordY + NumColumns * tz.LstSectores[j].LstUbicaciones[k].CordX] as Button).Content = "";
                     }
-            }
+                }
 
-            for (int j = 0; j < tz.LstSectores.Count; j++)
+                for (int j = 0; j < tz.LstSectores.Count; j++)
                 {
                     if (idProducto == tz.LstSectores[j].IdProducto)
                     {
@@ -541,7 +588,8 @@ namespace MadeInHouse.Dictionary {
                     }
 
                 }
-            
+            }
+
         }
 
         public void CargarSectores()
