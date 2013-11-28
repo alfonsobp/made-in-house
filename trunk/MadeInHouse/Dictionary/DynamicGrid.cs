@@ -182,7 +182,7 @@ namespace MadeInHouse.Dictionary {
             int numCols = NumColumns; 
             this.Children.Clear();
 
-            System.Windows.GridLength CL = new System.Windows.GridLength(Tipo==2 ? 250:53);
+            System.Windows.GridLength CL = new System.Windows.GridLength(Tipo==2 ? 180:53);
             System.Windows.GridLength RL = new System.Windows.GridLength(34);
 
             while (numRows > currentNumRows)
