@@ -172,6 +172,7 @@ namespace MadeInHouse.DataObjects.Almacen
             catch (Exception e)
             {
                 MessageBox.Show(e.StackTrace.ToString());
+                conn.Close();
             }
 
             return m;

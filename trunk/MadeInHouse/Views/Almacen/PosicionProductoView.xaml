@@ -95,7 +95,7 @@
                             <TextBox x:Name="VolIngresar" IsEnabled="{Binding Enable}" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="1" Grid.Column="1"/>
                             <TextBox x:Name="TxtCantActual" IsEnabled="False" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="3" />
                             <TextBox x:Name="TxtVolActual"  IsEnabled="False" Height="25" Margin="4" TextWrapping="Wrap" Width="60" Grid.Row="3" Grid.Column="1"/>
-                            <Button Margin="4" Width="25" Height="25" Grid.Column="2">
+                            <Button Margin="5,11,3,4" Width="25" Grid.Column="2" Grid.RowSpan="2">
                                 <Image Source="{Binding ImSource}"  />
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="Click">

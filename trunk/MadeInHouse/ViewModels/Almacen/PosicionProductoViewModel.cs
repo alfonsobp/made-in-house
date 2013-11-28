@@ -213,7 +213,9 @@ namespace MadeInHouse.ViewModels.Almacen
         public string CantIngresar
         {
           get { return cantIngresar; }
-          set   { cantIngresar = value; }
+          set   { cantIngresar = value;
+          NotifyOfPropertyChange(() => CantIngresar);
+          }
         }
 
         private string volIngresar;
@@ -318,6 +320,12 @@ namespace MadeInHouse.ViewModels.Almacen
                 _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe ingresar una cantidad"));
                 return;
             }
+            else if (int.Parse(CantIngresar) <0)
+            {
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Debe ingresar una cantidad positiva"));
+                return;
+            }
+
 
             if (selectedProduct != null)
             {
@@ -341,8 +349,11 @@ namespace MadeInHouse.ViewModels.Almacen
                     LstProductos = new List<ProductoCant>(LstProductos);
                 }
             }
+
             VolIngresar = "";
+            CantIngresar = "";
         }
+
 
 
         public void SelectedItemChanged(object sender, MadeInHouse.Dictionary.DynamicGrid almacen, MadeInHouse.Dictionary.DynamicGrid ubicacionCol)
@@ -368,12 +379,20 @@ namespace MadeInHouse.ViewModels.Almacen
             DataTable temporal= uSQL.CrearUbicacionesDT();
             uSQL.AgregarFilasToUbicacionesDT(temporal, almacenDG.Ubicaciones, id);
             uSQL.AgregarMasivo(temporal, trans);
-            uSQL.ActualizarUbicacionMasivo();
-            UtilesSQL util = new UtilesSQL(db);
-            util.LimpiarTabla("TemporalUbicacion");
-
-            trans.Commit();
-            _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se guardo el stock"));
+            int exito= uSQL.ActualizarUbicacionMasivo();
+            if (exito > 0)
+            {
+                UtilesSQL util = new UtilesSQL(db);
+                util.LimpiarTabla("TemporalUbicacion");
+                trans.Commit();
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se guardo el stock"));
+                
+            }
+            else
+            {
+                trans.Rollback();
+                _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Error: Revisar conexión al servidor"));
+            }
         }
 
 

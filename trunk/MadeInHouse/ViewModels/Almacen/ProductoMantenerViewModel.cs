@@ -285,6 +285,9 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     pSQL.AgregarProducto(p);
                     _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se agregó el producto correctamente"));
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Registrar producto", p.CodigoProd, 1);
+                    
                     TxtAbreviatura = "";
                     TxtNombre = "";
                     Percepcion = false;
@@ -296,9 +299,14 @@ namespace MadeInHouse.ViewModels.Almacen
                 {
                     p.IdProducto = estado;
                     pSQL.ActualizarProducto(p);
+                    //1: Agregar, 2: Editar, 3: Eliminar, 4: Recuperar, 5: Desactivar
+                    DataObjects.Seguridad.LogSQL.RegistrarActividad("Actualizar producto", p.CodigoProd , 2);
+
                     _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Se actualizó el producto correctamente"));
+
                 }
             }
+            if (!isCorrect) _windowManager.ShowDialog(new AlertViewModel(_windowManager, "Alerta: Verificar los datos"));
         }
 
         public void LimpiarCampos()
