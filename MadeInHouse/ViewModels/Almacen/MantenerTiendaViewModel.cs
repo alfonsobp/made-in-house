@@ -748,6 +748,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.StockMin = Int32.Parse(TxtStockMin);
                         pxa.StockMax = Int32.Parse(TxtStockMax);
                         pxa.PrecioVenta = float.Parse(txtPrecioV);
+                        pxa.StockActual = 0;
                         LstProductos = new List<ProductoxTienda>(LstProductos);
                         System.Windows.MessageBox.Show("El actualizaron los datos del producto correctamente");
                     }
@@ -765,7 +766,7 @@ namespace MadeInHouse.ViewModels.Almacen
                         pxa.CodProducto = lstAux[0].CodigoProd;
                         pxa.IdProducto = lstAux[0].IdProducto;
                         pxa.Nombre = lstAux[0].Nombre;
-                        pxa.StockActual = String.IsNullOrEmpty(TxtStockIni) ? 0 : Int32.Parse(TxtStockIni);
+                        pxa.StockActual = 0;
                         pxa.StockMin = Int32.Parse(TxtStockMin);
                         pxa.StockMax = Int32.Parse(TxtStockMax);
                         pxa.PrecioVenta = float.Parse(txtPrecioV);

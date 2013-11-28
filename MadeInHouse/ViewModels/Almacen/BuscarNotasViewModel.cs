@@ -85,8 +85,6 @@ namespace MadeInHouse.ViewModels.Almacen
                     if (!(new GuiaDeRemisionSQL().BuscarIDNota(NotaSel.IdNota)))
                     {
                        
-                        _windowManager.ShowDialog(new AlertViewModel(_windowManager, "chauuuuu"));
-                        //MessageBox.Show("chauuuuu");
                         g.Nota = NotaSel;
                         TryClose();
                     }
