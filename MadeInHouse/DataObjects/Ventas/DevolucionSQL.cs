@@ -63,7 +63,7 @@ namespace MadeInHouse.DataObjects.Ventas
                                  " left join Devolucion d on d.idVenta = dv.idVenta " +
                                  " left join DetalleDevolucion dd on dd.idDevolucion = d.idDevolucion " +
                                  " and dd.idProducto = dv.idProducto " +
-                                 " WHERE 1 = 1 " + where +
+                                 " WHERE v.estado = 1 " + where +
                                  " GROUP BY v.idVenta, dv.cantidad, p.Nombre, p.codProducto, " +
                                  " p.idProducto, dv.precio, dv.descuento, v.numDocPagoProducto ";
             try

@@ -43,7 +43,7 @@
                         <DataGridTextColumn IsReadOnly="True" Width="20*" Binding="{Binding Path=Nombre}"  Header="Nombre"/>
                         <DataGridTextColumn IsReadOnly="True" Width="10*" Binding="{Binding Path=Linea.Nombre}"  Header="Linea"/>
                         <DataGridTextColumn IsReadOnly="True" Width="10*" Binding="{Binding Path=Sublinea.Nombre}"  Header="Sublinea"/>
-                        <DataGridTextColumn Width="10*" Binding="{Binding Path=PrecioVenta,UpdateSourceTrigger=PropertyChanged}"  Header="Precio"/>
+                        <DataGridTextColumn Width="10*" Binding="{Binding Path=PrecioVenta,UpdateSourceTrigger=PropertyChanged}"  Header="Precio (S/.)"/>
                         <!--<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="max. descuento"/>-->
                     </DataGrid.Columns>
                 </DataGrid>

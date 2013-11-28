@@ -315,7 +315,6 @@
     <Compile Include="ViewModels\TestViewModel.cs" />
     <Compile Include="ViewModels\Ventas\DetalleVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\ClienteEditarViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\EditarNotaCreditoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\MantenerIgvPuntosViewModel.cs" />
     <Compile Include="ViewModels\Ventas\PromoProductoEditarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\PromoServicioEditarViewModel.cs" />
@@ -355,7 +354,6 @@
     <Compile Include="ViewModels\RRHH\BuscadorEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\RRHH\MantenerEmpleadoViewModel.cs" />
     <Compile Include="ViewModels\Ventas\VentaEditarViewModel.cs" />
-    <Compile Include="ViewModels\Ventas\EliminarVentaViewModel.cs" />
     <Compile Include="ViewModels\Ventas\VentaBuscarViewModel.cs" />
     <Compile Include="ViewModels\Ventas\VentaRegistrarViewModel.cs" />
     <Compile Include="Views\Almacen\BuscarNotasView.xaml.cs">
@@ -638,9 +636,6 @@
     <Compile Include="Views\Ventas\ClienteEditarView.xaml.cs">
       <DependentUpon>ClienteEditarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Ventas\EditarNotaCreditoView.xaml.cs">
-      <DependentUpon>EditarNotaCreditoView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Ventas\MantenerIgvPuntosView.xaml.cs">
       <DependentUpon>MantenerIgvPuntosView.xaml</DependentUpon>
     </Compile>
@@ -658,9 +653,6 @@
     </Compile>
     <Compile Include="Views\Ventas\VentaEditarView.xaml.cs">
       <DependentUpon>VentaEditarView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Ventas\EliminarVentaView.xaml.cs">
-      <DependentUpon>EliminarVentaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ventas\ClienteBuscarView.xaml.cs">
       <DependentUpon>ClienteBuscarView.xaml</DependentUpon>
@@ -1081,10 +1073,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Ventas\EditarNotaCreditoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\Ventas\MantenerIgvPuntosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1106,10 +1094,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ventas\VentaEditarView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Ventas\EliminarVentaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
