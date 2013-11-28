@@ -9,6 +9,7 @@ using System.Windows;
 using System.Diagnostics;
 using MadeInHouse.Models.Almacen;
 using MadeInHouse.Models.Ventas;
+using MadeInHouse.Models.Compras;
 
 namespace MadeInHouse.DataObjects.Reportes
 {
@@ -110,6 +111,84 @@ namespace MadeInHouse.DataObjects.Reportes
             }
 
             return lstProducto;
+        }
+
+        public static List<Servicio> BuscarServicio()
+        {
+            List<Servicio> lstServicio = new List<Servicio>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT nombre FROM Servicio order by 1";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Servicio e = new Servicio();
+                    e.Nombre = reader["nombre"].ToString();
+                    lstServicio.Add(e);
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return lstServicio;
+        }
+
+        public static List<Venta> BuscarVenta()
+        {
+            List<Venta> lstVenta = new List<Venta>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM venta";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Venta e = new Venta();
+                    e.IdVenta = Convert.ToInt32(reader["idVenta"]);
+                    e.TipoDocPago = reader["tipoDocPago"].ToString();
+                    e.NumDocPago = reader["numDocPagoProducto"].ToString();
+                    e.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
+                    e.IdCliente = reader.IsDBNull(reader.GetOrdinal("idCliente")) ? 0 : Convert.ToInt32(reader["idCliente"]);
+                    e.Monto = Convert.ToDouble(reader["monto"].ToString());
+                    e.PtosGanados = Convert.ToInt32(reader["ptosGanados"]);
+                    e.Igv = Convert.ToDouble(reader["IGV"]);
+                    e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
+                    e.TipoVenta = reader["tipoVenta"].ToString();
+                    e.Estado = Convert.ToInt32(reader["estado"]);
+                    e.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
+                    e.FechaMod = reader.IsDBNull(reader.GetOrdinal("fechaMod")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaMod"].ToString());
+                    e.FechaDespacho = reader.IsDBNull(reader.GetOrdinal("fechaDespacho")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaDespacho"].ToString());
+                    lstVenta.Add(e);
+
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return lstVenta;
         }
 
         public static List<Venta> BuscarVentaxTienda(string tienda)
@@ -248,6 +327,54 @@ namespace MadeInHouse.DataObjects.Reportes
 
             return lstVenta;
         }
+
+        public static List<Venta> BuscarVentaxServicio(string producto)
+        {
+            List<Venta> lstVenta = new List<Venta>();
+            SqlConnection conn = new SqlConnection(Properties.Settings.Default.inf245g4ConnectionString);
+            SqlCommand cmd = new SqlCommand();
+            SqlDataReader reader;
+
+            cmd.CommandText = "SELECT * FROM venta v join DetalleVentaServicio d on (v.idVenta = d.idVenta) join Servicio p on d.idServicio = p.idServicio where p.nombre ='" + producto + "'";
+            cmd.CommandType = CommandType.Text;
+            cmd.Connection = conn;
+
+            try
+            {
+                conn.Open();
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Venta e = new Venta();
+                    e.IdVenta = Convert.ToInt32(reader["idVenta"]);
+                    e.TipoDocPago = reader["tipoDocPago"].ToString();
+                    e.NumDocPago = reader["numDocPagoServicio"].ToString();
+                    e.IdUsuario = Convert.ToInt32(reader["idUsuario"]);
+                    e.IdCliente = reader.IsDBNull(reader.GetOrdinal("idCliente")) ? 0 : Convert.ToInt32(reader["idCliente"]);
+                    e.Monto = Convert.ToDouble(reader["monto"].ToString());
+                    e.PtosGanados = Convert.ToInt32(reader["ptosGanados"]);
+                    e.Igv = Convert.ToDouble(reader["IGV"]);
+                    e.CodTarjeta = reader.IsDBNull(reader.GetOrdinal("codTarjeta")) ? 0 : Convert.ToInt32(reader["codTarjeta"]);
+                    e.TipoVenta = reader["tipoVenta"].ToString();
+                    e.Estado = Convert.ToInt32(reader["estado"]);
+                    e.FechaReg = Convert.ToDateTime(reader["fechaReg"].ToString());
+                    e.FechaMod = reader.IsDBNull(reader.GetOrdinal("fechaMod")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaMod"].ToString());
+                    e.FechaDespacho = reader.IsDBNull(reader.GetOrdinal("fechaDespacho")) ? new DateTime(1 / 1 / 1) : Convert.ToDateTime(reader["fechaDespacho"].ToString());
+                    lstVenta.Add(e);
+
+                }
+
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace.ToString());
+            }
+
+            return lstVenta;
+        }
+
+
     }
 
 }
