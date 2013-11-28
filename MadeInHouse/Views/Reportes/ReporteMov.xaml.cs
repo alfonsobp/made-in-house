@@ -81,6 +81,11 @@ namespace MadeInHouse.Views.Reportes
 
             if (Validar())
             {
+                DateTime desde = Convert.ToDateTime(fechaIni.Text);
+                DateTime hasta = Convert.ToDateTime(fechaFin.Text);
+
+                MessageBox.Show(desde.ToString());
+                MessageBox.Show(hasta.ToString());
                 List<Producto> lst = lstSelectedProducto.ItemsSource as List<Producto>;
                 Almacenes alm = cmbAlmacen.SelectedItem as Almacenes;
                 List<notas> aux = new List<notas>();
@@ -91,6 +96,9 @@ namespace MadeInHouse.Views.Reportes
                     aux = DataObjects.Reportes.reporteKardexSQL.BuscarEntradaSalida(alm.IdAlmacen, lst[i].IdProducto);
                     for (int j = 0; j < aux.Count; j++)
                     {
+                        DateTime fecha = Convert.ToDateTime(aux[j].FechaReg);
+                        
+                        if (fecha > desde && fecha < hasta)
                         lista.Add(aux[j]);
                     }
                 }
