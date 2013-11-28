@@ -56,7 +56,7 @@ namespace MadeInHouse.Dictionary
                     try
                     {
                         client.Send(message);
-                        MessageBox.Show("Mensaje enviado satisfactoriamente");
+                        MessageBox.Show("Mensaje enviado satisfactoriamente a "+ to,"Mensaje Enviado",MessageBoxButton.OK,MessageBoxImage.Information);
                     }
 
                     catch (Exception e)
