@@ -42,27 +42,45 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = 
+            cmd.CommandText =
 
-            "SELECT   "+
-            "nis.idNota   , "+
-            "CASE nis.tipo WHEN '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipoNota , "+
-            "nis.idAlmacen, "+
-            "a.nombre as nombreAlmacen, "+
-            "m.nombre as Motivo , "+
+            "SELECT   " +
+            "nis.idNota   , " +
+            "CASE nis.tipo WHEN '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipoNota , " +
+            "nis.idAlmacen, " +
+            "a.nombre as nombreAlmacen, " +
+            "m.nombre as Motivo , " +
             "p.codProducto, " +
-            "p.nombre as nombreProducto, "+
-            "nis.fechaReg, "+
-            "pnis.cantidad "+
-            
-            "FROM "+
+            "p.nombre as nombreProducto, " +
+            "nis.fechaReg, " +
+            "pnis.cantidad " +
+
+            "FROM " +
             "ProductoxNotaIS pnis  " +
-            "INNER JOIN  NotaIS nis  ON pnis.idNota = nis.idNota "+
-            "INNER JOIN MotivoIS m ON nis.idMotivo =  m.idMotivo "+
-            "INNER JOIN Producto p ON  pnis.idProducto = p.idProducto "+  
+            "INNER JOIN  NotaIS nis  ON pnis.idNota = nis.idNota " +
+            "INNER JOIN MotivoIS m ON nis.idMotivo =  m.idMotivo " +
+            "INNER JOIN Producto p ON  pnis.idProducto = p.idProducto " +
             "INNER JOIN Almacen a ON   nis.idAlmacen = a.idAlmacen " +
-            "where nis.idAlmacen = " + almacen + "and  p.idProducto = " +producto;
-             
+            "where nis.idAlmacen = " + almacen + "and  p.idProducto = " + producto +
+            " UNION " +
+            "SELECT  " +
+"nis.idNota   , " +
+"CASE nis.tipo WHEN '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipoNota , " +
+"nis.idAlmacen, " +
+"a.nombre as nombreAlmacen, " +
+"m.nombre as Motivo , " +
+"p.codProducto, " +
+"p.nombre as nombreProducto, " +
+"nis.fechaReg," +
+"pnis.cantidad " +
+"FROM " +
+" SectorxMovimiento pnis   " +
+" INNER JOIN  NotaIS nis  ON pnis.idNota = nis.idNota  " +
+" INNER JOIN MotivoIS m ON nis.idMotivo =  m.idMotivo " +
+" INNER JOIN Sector s ON s.idSector = pnis.idSector " +
+" INNER JOIN Producto p ON  s.idProducto = p.idProducto  " +
+" INNER JOIN Almacen a ON   nis.idAlmacen = a.idAlmacen "+
+ "where nis.idAlmacen = " + almacen + "and  p.idProducto = " + producto;
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
