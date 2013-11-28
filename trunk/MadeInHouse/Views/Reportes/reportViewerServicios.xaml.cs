@@ -89,14 +89,32 @@ namespace MadeInHouse.Views.Reportes
             Tienda tienda = cmbTienda.SelectedItem as Tienda;
             Cliente cliente = cmbCliente.SelectedItem as Cliente;
             Servicio servicio = cmbServicio.SelectedItem as Servicio;
+            DateTime ini = Convert.ToDateTime(FechaDesde.Text);
+            DateTime fin = Convert.ToDateTime(FechaHasta.Text);
 
             if (servicio.Nombre == "TODOS")
             {
                 lista = DataObjects.Reportes.reporteServiciosSQL.BuscarServiTodos(tienda.IdTienda, cliente.Id);
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    if (Convert.ToDateTime(lista[i].Fecha) < ini || Convert.ToDateTime(lista[i].Fecha) > fin)
+                    {
+                        lista.RemoveAt(i);
+                        i = 0;
+                    }
+                }
             }
             else
             {
                 lista = DataObjects.Reportes.reporteServiciosSQL.BuscarServi(tienda.IdTienda, cliente.Id, servicio.IdServicio);
+                for (int i = 0; i < lista.Count; i++)
+                {
+                    if (Convert.ToDateTime(lista[i].Fecha) < ini || Convert.ToDateTime(lista[i].Fecha) > fin)
+                    {
+                        lista.RemoveAt(i);
+                        i = 0;
+                    }
+                }
             }
             Window_Loaded(sender, e);
         }
