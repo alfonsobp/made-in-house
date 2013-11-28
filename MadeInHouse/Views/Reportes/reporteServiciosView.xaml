@@ -6,81 +6,58 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignWidth="600" Height="696.5">
+             d:DesignWidth="600" Height="516.5">
     <Border Background="White" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Reporte de Servicios" />
             <Grid>
-                <Grid>
-                    <ToolBar VerticalAlignment="Top" Height="41">
-                        <ToolBar.Background>
-                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                                <GradientStop Color="#FF535050" Offset="0.073"/>
-                                <GradientStop Color="Snow" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ToolBar.Background>
-                        <ToolBar.Foreground>
-                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="Black" Offset="1"/>
-                            </LinearGradientBrush>
-                        </ToolBar.Foreground>
-                        <Button ToolTip="Restaurar Ventana">
-                            <Image Source="/MadeInHouse;component/Assets/delete.png" Height="30" Width="30" />
-                        </Button>
-                        <Button x:Name="LimpiarCriterios" ToolTip="Limpiar criterios del reporte">
-                            <Image Source="/MadeInHouse;component/Assets/eraser.png" Height="30" Width="30" />
-                        </Button>
-                        <Button x:Name="ActualizarBusqueda" ToolTip="Actualizar datos" Height="30" Width="30">
-                            <Image Source="/MadeInHouse;component/Assets/refresh.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a Excel" Height="35" Width="35">
-                            <Image Source="/MadeInHouse;component/Assets/xls.png" />
-                        </Button>
-                        <Button ToolTip="Exportar tabla a PDF" Height="35" Width="35">
-                            <Image Source="/MadeInHouse;component/Assets/pdf.png" />
-                        </Button>
-                    </ToolBar>
-                    <GroupBox Header="Reporte de Servicios" HorizontalAlignment="Left" Height="602" Margin="10,46,0,-48" VerticalAlignment="Top" Width="580">
+                <Grid Margin="0,0,0,-21">
+                    <GroupBox Header="Reporte de Ventas de Servicios" HorizontalAlignment="Left" Height="462" Margin="10,10,0,0" VerticalAlignment="Top" Width="576">
                         <Grid>
-                            <Button x:Name="GenerarReporte" Margin="401,21,107,0" VerticalAlignment="Top" Width="60">
+                            <Button Name="GenerarReporte" ToolTip="Generar reporte" Margin="401,21,93,0" VerticalAlignment="Top" Click="Generar">
                                 <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="50"/>
                             </Button>
-                            <GroupBox Header="Tienda" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
+                            <GroupBox Header="Cliente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,183,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <TextBox IsEnabled="False" x:Name="TxtTienda" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="150,40,0,0"/>
-                                    <Label Content="Tienda:" HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top"/>
-                                    <Button x:Name="BuscarTienda" HorizontalAlignment="Left" Width="45" Margin="341,38,0,0" Height="25" VerticalAlignment="Top">
-                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="35" RenderTransformOrigin="0.077,0.441" />
+                                    <ListBox MouseDoubleClick="ListBoxItem_DoubleClicked" MouseLeave="Unselect" Name="listBoxCliente1" HorizontalAlignment="Left" Width="176" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxCliente2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="181" Margin="322,8,0,10"/>
+                                    <Button Name="derecha1" Margin="228,24,264,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda1" Margin="228,49,264,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
-                            <GroupBox Header="Cliente" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,55,0,0" Width="548" Height="123">
+                            <GroupBox  MouseDoubleClick="ListBoxItem_DoubleClicked" Header="Servicio" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,311,0,0" Width="548" Height="123">
                                 <Grid>
-                                    <TextBox IsEnabled="False" x:Name="TxtCliente" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="159" Margin="150,40,0,0"/>
-                                    <Label Content="Cliente:" HorizontalAlignment="Left" Margin="43,40,0,0" VerticalAlignment="Top"/>
-                                    <Button x:Name="BuscarCliente" HorizontalAlignment="Left" Width="45" Margin="341,38,0,0" Height="25" VerticalAlignment="Top">
-                                        <Image Source="/MadeInHouse;component/Assets/find.png" Height="20" Width="35" RenderTransformOrigin="0.077,0.441" />
+                                    <ListBox Name="listBoxProducto1" MouseLeave="Unselect" HorizontalAlignment="Left" Width="175" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxProducto2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="183" Margin="322,8,0,10"/>
+                                    <Button Name="derecha2" Margin="226,24,266,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda2" Margin="226,49,266,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
+                                    </Button>
+                                </Grid>
+                            </GroupBox>
+                            <GroupBox Header="Sede" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,60,0,0" Width="548" Height="123">
+                                <Grid>
+                                    <ListBox Name="listBoxSede1" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="177" Margin="25,10,0,8"/>
+                                    <ListBox Name="ListBoxSede2" MouseLeave="Unselect" MouseDoubleClick="ListBoxItem_DoubleClicked" HorizontalAlignment="Left" Width="179" Margin="322,8,0,10"/>
+                                    <Button Name="derecha3" Margin="230,24,262,52" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/right.png" Height="20" Width="50"/>
+                                    </Button>
+                                    <Button Name="izquierda3" Margin="230,49,262,28" Click="Pasar_Todo">
+                                        <Image Source="/MadeInHouse;component/Assets/left.png" Height="20" Width="50"/>
                                     </Button>
                                 </Grid>
                             </GroupBox>
                             <Label Content="Ingreso Total:" Margin="466,446,15,145"/>
-                            <TextBox x:Name="TxtMonto" HorizontalAlignment="Left" Height="24" Margin="466,472,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
-                            <DataGrid x:Name="LstServiciorepor" cal:Message.Attach="[Event SelectionChanged]=[Action SelectedItemChanged( $source)]"
-                                      HorizontalAlignment="Left" Margin="10,335,0,10" Width="438" AutoGenerateColumns="false">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Width="80" Binding="{Binding Path=Fecha}" Header="Fecha"/>
-                                    <DataGridTextColumn Width="70" Binding="{Binding Path=Cliente}" Header="Cliente"/>
-                                    <DataGridTextColumn Width="100" Binding="{Binding Path=Tienda}" Header="Tienda"/>
-                                    <DataGridTextColumn Width="120" Binding="{Binding Path=Nombre}" Header="Servicio"/>
-                                    <DataGridTextColumn Width="70" Binding="{Binding Path=Precio}" Header="Precio"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
                             <Label Content="Fecha:" HorizontalAlignment="Left" Height="29" Margin="10,21,0,0" VerticalAlignment="Top" Width="80"/>
                             <Label Content="Hasta:" HorizontalAlignment="Left" Height="29" Margin="211,21,0,0" VerticalAlignment="Top" Width="80"/>
-                            <DatePicker x:Name="FechaIni" HorizontalAlignment="Left" Margin="74,22,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-                            <DatePicker x:Name="FechaFin" HorizontalAlignment="Left" Margin="271,21,0,0" VerticalAlignment="Top" Width="110" Height="24"/>
-
+                            <DatePicker Name="FechaDesde" Margin="62,21,393,0" Height="26" VerticalAlignment="Top"></DatePicker>
+                            <DatePicker Name="FechaHasta" Margin="283,22,0,0" HorizontalAlignment="Left" Width="113" Height="25" VerticalAlignment="Top"></DatePicker>
                         </Grid>
                     </GroupBox>
                 </Grid>
@@ -88,3 +65,4 @@
         </StackPanel>
     </Border>
 </UserControl>
+

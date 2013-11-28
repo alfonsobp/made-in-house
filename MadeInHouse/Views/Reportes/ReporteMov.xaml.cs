@@ -16,7 +16,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using Microsoft.ReportingServices;
+using Microsoft.Reporting;
+using Microsoft.Reporting.WinForms;
+using MadeInHouse.DataObjects.Reportes;
 namespace MadeInHouse.Views.Reportes
 {
     /// <summary>
@@ -28,16 +31,14 @@ namespace MadeInHouse.Views.Reportes
         private List<Producto> listaProducto = new List<Producto>();
         private List<Producto> SelectedProducto = new List<Producto>();
         ProductoSQL pSQL = new ProductoSQL();
-       
-       
-
-        public ReportViewer.DataSetMov dataset;
-        public ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter adapter;
+        List<notas> lista;
+        private System.Windows.Forms.BindingSource ProductBindingSource;
+        private System.ComponentModel.IContainer mform_components = null;
 
         public ReporteMov()
         {
             InitializeComponent();
-            _reportViewer.Load += ReportViewer_Load;
+            lista = new List<notas>();
 
             List<Almacenes> lstAlmacenes = new AlmacenSQL().BuscarAlmacen();
             cmbAlmacen.ItemsSource = lstAlmacenes;
@@ -47,45 +48,55 @@ namespace MadeInHouse.Views.Reportes
             this.lstSelectedProducto.ItemsSource = SelectedProducto;
             this.fechaFin.SelectedDate = new DateTime(DateTime.Now.Year, 12, 31);
             this.fechaIni.SelectedDate = new DateTime(DateTime.Now.Year, 1, 1);
+            PrepareReport();
         }
 
-        private bool _isReportViewerLoaded;
-
-        private void ReportViewer_Load(object sender, EventArgs e)
+        private void PrepareReport()
         {
+            this.mform_components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-             dataset = new ReportViewer.DataSetMov();
 
-            dataset.BeginInit();
+            this.ProductBindingSource = new System.Windows.Forms.BindingSource(this.mform_components);
+            ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).BeginInit();
 
-            reportDataSource1.Name = "DataSet1"; //Name of the report dataset in our .RDLC file
-            reportDataSource1.Value = dataset.DataTable1;
+
+
+            reportDataSource1.Name = "DataSet8";
+            reportDataSource1.Value = this.ProductBindingSource;
+
             this._reportViewer.LocalReport.DataSources.Add(reportDataSource1);
-            this._reportViewer.LocalReport.ReportEmbeddedResource = "MadeInHouse.ReportViewer.ReportMov.rdlc";
+            this._reportViewer.LocalReport.ReportEmbeddedResource = "MadeInHouse.ReportViewer.Report6.rdlc";
+            this._reportViewer.Location = new System.Drawing.Point(0, 0);
 
-            dataset.EndInit();
-
-            //fill data into adventureWorksDataSet
-
-            adapter = new ReportViewer.DataSetMovTableAdapters.DataTable1TableAdapter();
-            adapter.ClearBeforeFill = true;
-            dataset.EnforceConstraints = false;
-
-           
+            ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).EndInit();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.ProductBindingSource.DataSource = lista;
+            this._reportViewer.RefreshReport();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
             if (Validar())
-            {
-            
-                adapter.Fill(dataset.DataTable1, fechaIni.SelectedDate, fechaFin.SelectedDate,1 ,1 );
+            {   
+                List<Producto> lst = lstProducto.ItemsSource as List<Producto>;
+                Almacenes alm = cmbAlmacen.SelectedItem as Almacenes;
+                List<notas> aux = new List<notas>();
 
-                _reportViewer.RefreshReport();
+                /////////////AQUI////////////
+               lista = DataObjects.Reportes.reporteKardexSQL.BuscarEntradaSalida(alm.IdAlmacen, lst[0].IdProducto);
+
+
+                Window_Loaded(sender, e);
             }
             
         }
+
+
+
+
 
         private void OnCbObjectCheckBoxChecked(object sender, RoutedEventArgs e)
         {

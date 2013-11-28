@@ -65,11 +65,16 @@ namespace MadeInHouse.Views.Reportes
             ((System.ComponentModel.ISupportInitialize)(this.ProductBindingSource)).EndInit();
         }
 
+
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             this.ProductBindingSource.DataSource = lista;
             this.reportViewer.RefreshReport();
         }
+
+
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Tienda i = cmbTienda.SelectedItem as Tienda;

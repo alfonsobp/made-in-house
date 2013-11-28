@@ -29,7 +29,7 @@ namespace MadeInHouse.DataObjects.Reportes
         public string CodProducto { get { return codproducto; } set { codproducto = value; } }
         public string NombreProducto { get { return nombreproducto; } set { nombreproducto = value; } }
         public string FechaReg { get { return fechareg; } set { fechareg = value; } }
-        public int Cantidad { get { return cantidad; } set { cantidad = value} }
+        public int Cantidad { get { return cantidad; } set { cantidad = value; } }
     }
 
 
@@ -42,7 +42,27 @@ namespace MadeInHouse.DataObjects.Reportes
             SqlCommand cmd = new SqlCommand();
             SqlDataReader reader;
 
-            cmd.CommandText = "SELECT nis.idNota   ,CASE nis.tipo WHEN '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipoNota , nis.idAlmacen,a.nombre as nombreAlmacen,m.nombre as Motivo ,p.codProducto,p.nombre as nombreProducto,nis.fechaReg,pnis.cantidad FROMProductoxNotaIS pnis  INNER JOIN  NotaIS nis  ON pnis.idNota = nis.idNota INNER JOIN MotivoIS m ON nis.idMotivo =  m.idMotivo INNER JOIN Producto p ON  pnis.idProducto = p.idProducto INNER JOIN Almacen a ON   nis.idAlmacen = a.idAlmacen where nis.idalmacen = "+almacen+" and p.idproducto = " + producto;
+            cmd.CommandText = 
+
+            "SELECT   "+
+            "nis.idNota   , "+
+            "CASE nis.tipo WHEN '1' THEN 'ENTRADA' ELSE 'SALIDA' END AS tipoNota , "+
+            "nis.idAlmacen, "+
+            "a.nombre as nombreAlmacen, "+
+            "m.nombre as Motivo , "+
+            "p.codProducto, " +
+            "p.nombre as nombreProducto, "+
+            "nis.fechaReg, "+
+            "pnis.cantidad "+
+            
+            "FROM "+
+            "ProductoxNotaIS pnis  " +
+            "INNER JOIN  NotaIS nis  ON pnis.idNota = nis.idNota "+
+            "INNER JOIN MotivoIS m ON nis.idMotivo =  m.idMotivo "+
+            "INNER JOIN Producto p ON  pnis.idProducto = p.idProducto "+  
+            "INNER JOIN Almacen a ON   nis.idAlmacen = a.idAlmacen " +
+            "where nis.idAlmacen = " + almacen + "and  p.idProducto = " +producto;
+             
 
             cmd.CommandType = CommandType.Text;
             cmd.Connection = conn;
