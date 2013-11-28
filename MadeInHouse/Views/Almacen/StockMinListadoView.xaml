@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" Height="509" Width="512">
+             mc:Ignorable="d" Height="533.444" Width="539.319">
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="6" Background="White">
         <StackPanel>
             <Layouts:TitleBarTemplate title="Stocks en almacén" />
@@ -15,26 +15,30 @@
                             <GradientStop Color="Snow" Offset="1"/>
                         </LinearGradientBrush>
                     </ToolBar.Background>
-                    <Button ToolTip="Generar solicitud de abastecimiento">
-                        <Image Source="/MadeInHouse;component/Assets/start2.png" Height="30" Width="30" />
+                    <Button x:Name="Recargar" ToolTip="Generar solicitud de abastecimiento">
+                        <Image Source="/MadeInHouse;component/Assets/refresh.png" Height="30" Width="30" />
                     </Button>
 
                 </ToolBar>
 
-                <DataGrid Height="302" VerticalAlignment="center" Margin="49,152,47,28" HorizontalAlignment="center" Width="414">
+                <DataGrid Height="373" x:Name="LstProductos" VerticalAlignment="center" AutoGenerateColumns="False" CanUserAddRows="False" 
+                          EnableRowVirtualization="False" Margin="46,99,30,10" HorizontalAlignment="center" Width="459">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Producto" Width="80"/>
-                        <DataGridTextColumn Header="Nombre" Width="120"/>
-                        <DataGridTextColumn Header="Stock Actual" Width="120"/>
-                        <DataGridTextColumn Header="Stock Minimo" Width="200"/>
+                        <DataGridTextColumn Header="Producto" Binding="{Binding CodProducto}" Width="1*"/>
+                        <DataGridTextColumn Header="Nombre" Binding="{Binding Nombre}" Width="2*"/>
+                        <DataGridTextColumn Header="Stock Actual" Binding="{Binding StockActual}" Width="1*"/>
+                        <DataGridTextColumn Header="Stock Mínimo" Binding="{Binding StockMin}" Width="1*"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Label Content="Producto:" HorizontalAlignment="Left" Margin="50,57,0,0" VerticalAlignment="Top" />
-                <TextBox HorizontalAlignment="Left" Height="23" Margin="140,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162"/>
-                <Label Content="Zona:" HorizontalAlignment="Left" Margin="50,90,0,0" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Left" Margin="140,90,0,0" VerticalAlignment="Top" Width="164"/>
-                <Label Content="Stock:" HorizontalAlignment="Left" Margin="50,121,0,0" VerticalAlignment="Top"/>
-                <ComboBox HorizontalAlignment="Left" Margin="140,121,0,0" VerticalAlignment="Top" Width="120"/>
+                <Label Content="Tienda:" HorizontalAlignment="Left" Margin="46,46,0,0" VerticalAlignment="Top"/>
+                <ComboBox
+                    IsEnabled="{Binding Enable}"
+                    ItemsSource="{Binding CmbTiendas}"
+                                SelectedIndex="{Binding Index}" 
+                                SelectedValue="{Binding SelectedTienda, Mode=OneWayToSource}"
+                                DisplayMemberPath="Nombre" 
+                                SelectedValuePath="IdTienda"
+                    HorizontalAlignment="Left" Margin="129,50,0,0" VerticalAlignment="Top" Width="376"/>
 
 
 

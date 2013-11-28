@@ -204,6 +204,16 @@ namespace MadeInHouse.ViewModels
                 _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
         }
 
+        public void ListadoStockMin()
+        {
+            CargarAccesosRol(out accVentana);
+            if (accVentana[12] == 1)
+                _windowManager.ShowWindow(new Almacen.StockMinListadoViewModel(_windowManager));
+            else
+                _windowManager.ShowDialog(new Layouts.AlertViewModel(_windowManager, "No tiene permisos para abrir esta Ventana"));
+        }
+        
+
         #endregion Almacen
 
         //MODULO COMPRAS: 2

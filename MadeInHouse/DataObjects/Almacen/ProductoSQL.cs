@@ -370,7 +370,7 @@ namespace MadeInHouse.DataObjects.Almacen
 
         #region Almacen
 
-        public List<ProductoxTienda> BuscarProductoxTienda(int idTienda = -1)
+        public List<ProductoxTienda> BuscarProductoxTienda(int idTienda = -1, bool stockMin=false)
         {
             List<ProductoxTienda> lstPxa = null;
             ProductoxTienda pxa = null;
@@ -381,6 +381,10 @@ namespace MadeInHouse.DataObjects.Almacen
             {
                 where += " AND idTienda=@idTienda";
                 db.cmd.Parameters.AddWithValue("@idTienda", idTienda);
+            }
+            if (stockMin)
+            {
+                where += " AND A.stockActual< A.stockMin ";
             }
 
 
@@ -414,10 +418,12 @@ namespace MadeInHouse.DataObjects.Almacen
             catch (SqlException e)
             {
                 Console.WriteLine(e);
+                db.conn.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace.ToString());
+                db.conn.Close();
             }
 
             return lstPxa;
@@ -477,7 +483,7 @@ namespace MadeInHouse.DataObjects.Almacen
             return prodAlmacen;
         }
 
-        public List<ProductoxTienda> BuscarProductoxCentral(int idAlmacen, int idProducto)
+        public List<ProductoxTienda> BuscarProductoxCentral(int idAlmacen, int idProducto,bool stockMin=false)
         {
             List<ProductoxTienda> prodAlmacen = null;
 
@@ -489,6 +495,13 @@ namespace MadeInHouse.DataObjects.Almacen
                     where = " WHERE idProducto = @idProducto ";
                     db.cmd.Parameters.AddWithValue("@idProducto", idProducto);
                 }
+
+                if (stockMin)
+                {
+                    where = " WHERE stockActual < stockMin ";
+                }
+
+
                 db.cmd.CommandText = " SELECT * FROM Producto " + where;
                 db.cmd.Parameters.AddWithValue("@idAlmacen", idAlmacen);
 
@@ -506,6 +519,8 @@ namespace MadeInHouse.DataObjects.Almacen
                         int posStockMax = reader.GetOrdinal("stockMax");
                         int posStock = reader.GetOrdinal("stockActual");
                         int posStockPendiente = reader.GetOrdinal("stockPendiente");
+                        prod.CodProducto = reader.IsDBNull(reader.GetOrdinal("CodProducto")) ? "" : reader["CodProducto"].ToString();
+                        prod.Nombre = reader.IsDBNull(reader.GetOrdinal("nombre")) ? "" : reader["nombre"].ToString();
                         prod.IdProducto = reader.IsDBNull(posIdProducto) ? -1 : reader.GetInt32(posIdProducto);
                         prod.StockMin = reader.IsDBNull(posStockMin) ? -1 : reader.GetInt32(posStockMin);
                         prod.StockMax = reader.IsDBNull(posStockMax) ? -1 : reader.GetInt32(posStockMax);
